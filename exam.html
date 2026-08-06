@@ -3,55 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exam | HM Academy</title>
+<title>HM Academy v0.2 - A1 Unit Exam</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-<div class="logo">🇫🇷 HM Academy</div>
-<p>اختبار المستوى A1</p>
+<h2>🇫🇷 HM Academy</h2>
+<p>اختبار الوحدة الأولى A1</p>
 </header>
 
 <main>
 <section class="hero">
-<h1>📝 تقييم الدرس الأول</h1>
-<p>اختبر فهمك قبل الانتقال إلى الدرس التالي.</p>
+<h1>📝 Unit 1 Assessment</h1>
+<p>اختبر فهمك للدروس: التحيات - التعارف - النطق.</p>
 </section>
 
 <section class="course">
 <h2>السؤال 1</h2>
 <p>Bonjour تعني:</p>
-<label><input type="radio" name="q1" value="0"> مساء الخير</label><br>
-<label><input type="radio" name="q1" value="1"> صباح الخير</label><br>
+<label><input type="radio" name="q1" value="1"> مرحباً</label><br>
 <label><input type="radio" name="q1" value="0"> شكراً</label>
 
-<br><br>
-<button class="btn" onclick="checkExam()">تصحيح الاختبار</button>
+<h2>السؤال 2</h2>
+<p>Je m'appelle تعني:</p>
+<label><input type="radio" name="q2" value="1"> اسمي</label><br>
+<label><input type="radio" name="q2" value="0"> إلى اللقاء</label>
 
-<h2>النتيجة</h2>
-<p id="result">لم يتم التصحيح بعد</p>
+<h2>السؤال 3</h2>
+<p>Merci تعني:</p>
+<label><input type="radio" name="q3" value="1"> شكراً</label><br>
+<label><input type="radio" name="q3" value="0"> صباح الخير</label>
+
+<br><br>
+<button class="btn" onclick="checkExam()">إظهار النتيجة</button>
+<h2 id="result"></h2>
 </section>
 
 <section class="hero">
-<h2>بعد النجاح</h2>
-<p>سيتم لاحقاً فتح الدرس التالي وتحديث نسبة الإنجاز تلقائياً.</p>
-<a class="btn" href="dashboard.html">لوحة الطالب</a>
+<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
 </section>
 </main>
 
 <script>
 function checkExam(){
-let answer=document.querySelector('input[name="q1"]:checked');
-let result=document.getElementById('result');
-if(!answer){
-result.innerHTML='⚠️ اختر إجابة أولاً';
-return;
-}
-if(answer.value==='1'){
-result.innerHTML='✅ إجابة صحيحة - حصلت على 100% في هذا السؤال';
-}else{
-result.innerHTML='❌ حاول مرة أخرى';
-}
+let score=0;
+['q1','q2','q3'].forEach(q=>{
+let a=document.querySelector('input[name="'+q+'"]:checked');
+if(a && a.value==='1') score++;
+});
+document.getElementById('result').innerHTML='النتيجة: '+score+'/3 '+(score>=2?'✅ ناجح':'❌ يحتاج مراجعة');
 }
 </script>
 
