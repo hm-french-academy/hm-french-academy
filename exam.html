@@ -7,24 +7,54 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header><div class="logo">🇫🇷 HM Academy</div></header>
-<section>
-<h1>📝 اختبار French A1</h1>
-<div class="course">
-<h2>Lesson 1 Test</h2>
-<p>السؤال 1:</p>
-<h3>Bonjour تعني:</h3>
-<p>◯ مساء الخير</p>
-<p>◯ صباح الخير</p>
-<p>◯ شكراً</p>
-<button class="btn">تأكيد الإجابة</button>
-<h3>نتيجة الاختبار</h3>
-<div class="progress">90%</div>
-<br>
-<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
-</div>
+<header>
+<div class="logo">🇫🇷 HM Academy</div>
+<p>اختبار المستوى A1</p>
+</header>
+
+<main>
+<section class="hero">
+<h1>📝 تقييم الدرس الأول</h1>
+<p>اختبر فهمك قبل الانتقال إلى الدرس التالي.</p>
 </section>
+
+<section class="course">
+<h2>السؤال 1</h2>
+<p>Bonjour تعني:</p>
+<label><input type="radio" name="q1" value="0"> مساء الخير</label><br>
+<label><input type="radio" name="q1" value="1"> صباح الخير</label><br>
+<label><input type="radio" name="q1" value="0"> شكراً</label>
+
+<br><br>
+<button class="btn" onclick="checkExam()">تصحيح الاختبار</button>
+
+<h2>النتيجة</h2>
+<p id="result">لم يتم التصحيح بعد</p>
+</section>
+
+<section class="hero">
+<h2>بعد النجاح</h2>
+<p>سيتم لاحقاً فتح الدرس التالي وتحديث نسبة الإنجاز تلقائياً.</p>
+<a class="btn" href="dashboard.html">لوحة الطالب</a>
+</section>
+</main>
+
+<script>
+function checkExam(){
+let answer=document.querySelector('input[name="q1"]:checked');
+let result=document.getElementById('result');
+if(!answer){
+result.innerHTML='⚠️ اختر إجابة أولاً';
+return;
+}
+if(answer.value==='1'){
+result.innerHTML='✅ إجابة صحيحة - حصلت على 100% في هذا السؤال';
+}else{
+result.innerHTML='❌ حاول مرة أخرى';
+}
+}
+</script>
+
 <footer>HM Academy © 2026</footer>
-<script src="js/app.js"></script>
 </body>
 </html>
