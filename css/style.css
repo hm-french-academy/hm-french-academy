@@ -1,19 +1,21 @@
 *{box-sizing:border-box}
 body{font-family:Arial,Tahoma,sans-serif;background:#f4f7fb;color:#222;margin:0;line-height:1.7}
-header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:white;padding:30px 18px;text-align:center;border-radius:0 0 28px 28px}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:white;padding:28px 18px;text-align:center;border-radius:0 0 30px 30px}
 header h2{margin:0;font-size:32px}
 header p{font-size:18px}
+nav a{color:white;text-decoration:none;font-weight:bold;margin:0 6px}
 main{padding:22px;max-width:1000px;margin:auto}
 .hero{background:white;padding:35px 22px;border-radius:24px;text-align:center;box-shadow:0 8px 25px #d8dde8;margin-bottom:25px}
 .hero h1{color:#0d47a1;font-size:32px;margin-top:0}
+.hero h2{color:#0d47a1}
 .btn{display:inline-block;background:#0d47a1;color:white;text-decoration:none;padding:13px 30px;border-radius:35px;margin-top:15px;transition:.3s}
 .btn:hover{background:#1976d2}
 .cards{display:grid;gap:18px}
 .course{background:white;padding:22px;border-radius:20px;box-shadow:0 4px 15px #ddd}
-.course h3{color:#0d47a1;margin-top:0}
+.course h2,.course h3{color:#0d47a1;margin-top:0}
 .course a{color:#1976d2;font-weight:bold;text-decoration:none}
 .progress{background:#1976d2;color:white;padding:10px;text-align:center;border-radius:15px}
 input{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc}
 footer{text-align:center;padding:25px;color:#666}
 @media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.hero h1{font-size:25px}header h2{font-size:27px}main{padding:14px}}
+@media(max-width:600px){.hero h1{font-size:25px}header h2{font-size:27px}main{padding:14px}.btn{width:100%;text-align:center}}
