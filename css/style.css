@@ -1,1 +1,16 @@
-body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222;margin:0}header{background:#0d47a1;color:#fff;padding:16px}
+*{box-sizing:border-box}
+body{font-family:Arial,Tahoma,sans-serif;background:#f4f7fb;color:#222;margin:0;line-height:1.6}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:white;padding:25px 18px;text-align:center;border-radius:0 0 25px 25px}
+header h2{margin:0;font-size:30px}
+main{padding:20px;max-width:900px;margin:auto}
+.hero{background:white;padding:25px;border-radius:20px;text-align:center;box-shadow:0 5px 20px #ddd;margin-bottom:20px}
+.hero h1{color:#0d47a1;font-size:28px}
+.btn{display:inline-block;background:#0d47a1;color:white;text-decoration:none;padding:12px 25px;border-radius:30px;margin-top:15px}
+.cards{display:grid;gap:15px}
+.course{background:white;padding:20px;border-radius:18px;box-shadow:0 3px 12px #ddd}
+.course h3{color:#0d47a1;margin-top:0}
+.course a{color:#1976d2;font-weight:bold;text-decoration:none}
+.progress{background:#1976d2;color:white;padding:8px;text-align:center;border-radius:15px}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc}
+footer{text-align:center;padding:20px;color:#666}
+@media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr)}}
