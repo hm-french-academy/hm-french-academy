@@ -1,36 +1,67 @@
 {
   "lessonStructure": {
-    "required": [
-      "objectives",
-      "vocabulary",
-      "grammar",
-      "conversation",
-      "audio",
-      "video",
-      "activities",
-      "assessment"
-    ],
-    "lesson": {
+    "required": ["objectives", "vocabulary", "grammar", "conversation", "audio", "video", "activities", "assessment"]
+  },
+  "lessons": [
+    {
       "id": "lesson-hello",
+      "number": 1,
       "level": "A1",
-      "sections": [
-        {
-          "type": "vocabulary",
-          "features": ["translation", "pronunciation", "audio"]
-        },
-        {
-          "type": "conversation",
-          "features": ["speaker-lines", "meaning", "audio-practice"]
-        },
-        {
-          "type": "activity",
-          "features": ["interactive-question", "instant-feedback"]
-        },
-        {
-          "type": "media",
-          "features": ["teacher-video", "download-files"]
-        }
-      ]
+      "titleFr": "Les salutations",
+      "titleAr": "التحيات",
+      "descriptionAr": "تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.",
+      "objectives": ["إلقاء التحية بالفرنسية", "السؤال عن الحال والرد", "التمييز بين التحية الرسمية وغير الرسمية"],
+      "vocabulary": [
+        {"fr":"Bonjour","ar":"صباح الخير / مرحباً","pronunciation":"بونجور"},
+        {"fr":"Salut","ar":"مرحباً (غير رسمي)","pronunciation":"سالو"},
+        {"fr":"Bonsoir","ar":"مساء الخير","pronunciation":"بونسوار"},
+        {"fr":"Au revoir","ar":"إلى اللقاء","pronunciation":"أوغُفوار"}
+      ],
+      "conversation": [
+        {"speaker":"A","fr":"Bonjour !","ar":"مرحباً!"},
+        {"speaker":"B","fr":"Bonjour ! Comment ça va ?","ar":"مرحباً! كيف حالك؟"},
+        {"speaker":"A","fr":"Ça va bien, merci.","ar":"أنا بخير، شكراً."}
+      ],
+      "activity": {"question":"Au revoir = ؟","answer":"إلى اللقاء"},
+      "media": {"audio":[],"video":[],"files":[]}
+    },
+    {
+      "id": "lesson-present",
+      "number": 2,
+      "level": "A1",
+      "titleFr": "Se présenter",
+      "titleAr": "التعريف بالنفس",
+      "descriptionAr": "تعلم كيفية تقديم نفسك باللغة الفرنسية.",
+      "objectives": ["ذكر الاسم", "ذكر مكان السكن", "التعريف بالنفس بجملة قصيرة"],
+      "vocabulary": [
+        {"fr":"Je m'appelle...","ar":"اسمي...","pronunciation":"جو مابيل"},
+        {"fr":"J'habite à...","ar":"أسكن في...","pronunciation":"جابيت آ"},
+        {"fr":"Je suis étudiant(e).","ar":"أنا طالب/طالبة.","pronunciation":"جو سوي إيتوديان"}
+      ],
+      "conversation": [
+        {"speaker":"A","fr":"Bonjour, comment tu t'appelles ?","ar":"مرحباً، ما اسمك؟"},
+        {"speaker":"B","fr":"Je m'appelle Ahmed.","ar":"اسمي أحمد."},
+        {"speaker":"A","fr":"Enchanté !","ar":"تشرفت!"}
+      ],
+      "activity": {"question":"Je m'_____ Hatem.","answer":"appelle"},
+      "media": {"audio":[],"video":[],"files":[]}
+    },
+    {
+      "id": "lesson-alphabet",
+      "number": 3,
+      "level": "A1",
+      "titleFr": "Alphabet et prononciation",
+      "titleAr": "الأبجدية والنطق",
+      "descriptionAr": "تعلم الحروف الفرنسية والنطق الأساسي بطريقة مبسطة.",
+      "objectives": ["التعرف على الحروف الفرنسية", "تحسين النطق الأساسي", "قراءة كلمات فرنسية قصيرة"],
+      "vocabulary": [
+        {"fr":"Bonjour","ar":"مرحباً","pronunciation":"بونجور"},
+        {"fr":"Merci","ar":"شكراً","pronunciation":"ميرسي"},
+        {"fr":"Comment","ar":"كيف / ماذا","pronunciation":"كومون"}
+      ],
+      "conversation": [],
+      "activity": {"question":"اقرأ الكلمات بصوت مرتفع وكرر النطق.","answer":"تدريب نطق"},
+      "media": {"audio":[],"video":[],"files":[]}
     }
-  }
+  ]
 }
