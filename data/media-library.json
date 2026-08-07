@@ -1,0 +1,29 @@
+{
+  "media": [
+    {
+      "id": "lesson-hello-audio",
+      "type": "audio",
+      "lessonId": "lesson-hello",
+      "title": {
+        "ar": "صوت درس التحيات",
+        "fr": "Audio - Les salutations",
+        "en": "Greetings Audio"
+      },
+      "status": "ready_for_upload",
+      "source": "academy"
+    },
+    {
+      "id": "lesson-hello-video",
+      "type": "video",
+      "lessonId": "lesson-hello",
+      "title": {
+        "ar": "فيديو درس التحيات",
+        "fr": "Vidéo - Les salutations",
+        "en": "Greetings Video"
+      },
+      "status": "ready_for_upload",
+      "source": "academy"
+    }
+  ],
+  "supportedTypes": ["audio", "video", "pdf", "image", "document"]
+}
