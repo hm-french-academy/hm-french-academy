@@ -1,0 +1,39 @@
+{
+  "lessonEngine": {
+    "version": "0.3.0",
+    "lessonFlow": [
+      "warmup",
+      "objectives",
+      "presentation",
+      "practice",
+      "interaction",
+      "assessment",
+      "review"
+    ],
+    "lesson": {
+      "id": "lesson-hello",
+      "components": {
+        "objectives": true,
+        "vocabulary": true,
+        "grammar": true,
+        "dialogue": true,
+        "audio": true,
+        "video": true,
+        "activities": true,
+        "quiz": true,
+        "homework": true
+      },
+      "personalization": {
+        "adaptiveDifficulty": true,
+        "recommendedReview": true,
+        "skillTracking": true
+      },
+      "teacherTools": [
+        "add-content",
+        "upload-media",
+        "create-activity",
+        "review-student-performance"
+      ]
+    }
+  }
+}
