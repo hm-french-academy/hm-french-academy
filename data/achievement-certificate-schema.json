@@ -1,0 +1,42 @@
+{
+  "achievements": [
+    {
+      "id": "first-lesson",
+      "title": {
+        "ar": "البداية الأولى",
+        "fr": "Premier pas",
+        "en": "First Step"
+      },
+      "condition": "complete-first-lesson"
+    },
+    {
+      "id": "vocabulary-master",
+      "title": {
+        "ar": "متقن المفردات",
+        "fr": "Maître du vocabulaire",
+        "en": "Vocabulary Master"
+      },
+      "condition": "complete-vocabulary-target"
+    },
+    {
+      "id": "level-complete",
+      "title": {
+        "ar": "إتمام المستوى",
+        "fr": "Niveau terminé",
+        "en": "Level Completed"
+      },
+      "condition": "complete-level"
+    }
+  ],
+  "certificate": {
+    "fields": [
+      "studentName",
+      "programName",
+      "level",
+      "completionDate",
+      "verificationCode",
+      "qrCode"
+    ],
+    "verification": true
+  }
+}
