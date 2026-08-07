@@ -1,0 +1,44 @@
+{
+  "secondaryPages": {
+    "version": "0.3.0",
+    "pages": [
+      {
+        "file": "achievements.html",
+        "title": {
+          "ar": "الإنجازات",
+          "fr": "Récompenses",
+          "en": "Achievements"
+        },
+        "bindsTo": ["achievement-certificate", "student-progress"]
+      },
+      {
+        "file": "preview.html",
+        "title": {
+          "ar": "المعاينة",
+          "fr": "Aperçu",
+          "en": "Preview"
+        },
+        "bindsTo": ["ui-integration-state", "platform-summary"]
+      },
+      {
+        "file": "lesson2.html",
+        "title": {
+          "ar": "الدرس الثاني",
+          "fr": "Leçon 2",
+          "en": "Lesson 2"
+        },
+        "bindsTo": ["lesson-engine", "learning-paths"]
+      },
+      {
+        "file": "lesson3.html",
+        "title": {
+          "ar": "الدرس الثالث",
+          "fr": "Leçon 3",
+          "en": "Lesson 3"
+        },
+        "bindsTo": ["lesson-engine", "learning-paths"]
+      }
+    ],
+    "nextStep": "create-secondary-pages"
+  }
+}
