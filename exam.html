@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HM Academy v0.2 - A1 Unit Exam</title>
-<link rel="stylesheet" href="css/style.css">
+<title>HM Academy v0.3 - Unit Exam</title>
+<link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
 <header>
@@ -15,7 +15,7 @@
 <main>
 <section class="hero">
 <h1>📝 Unit 1 Assessment</h1>
-<p>اختبر فهمك للدروس: التحيات - التعارف - النطق.</p>
+<p>اختبار شامل للتحيات والتعارف والنطق الأساسي.</p>
 </section>
 
 <section class="course">
@@ -30,9 +30,14 @@
 <label><input type="radio" name="q2" value="0"> إلى اللقاء</label>
 
 <h2>السؤال 3</h2>
-<p>Merci تعني:</p>
-<label><input type="radio" name="q3" value="1"> شكراً</label><br>
-<label><input type="radio" name="q3" value="0"> صباح الخير</label>
+<p>اختر التحية المناسبة للمساء:</p>
+<label><input type="radio" name="q3" value="1"> Bonsoir</label><br>
+<label><input type="radio" name="q3" value="0"> Bonjour</label>
+
+<h2>السؤال 4</h2>
+<p>Au revoir تعني:</p>
+<label><input type="radio" name="q4" value="1"> إلى اللقاء</label><br>
+<label><input type="radio" name="q4" value="0"> صباح الخير</label>
 
 <br><br>
 <button class="btn" onclick="checkExam()">إظهار النتيجة</button>
@@ -40,6 +45,8 @@
 </section>
 
 <section class="hero">
+<h2>🏆 نتيجة الاختبار</h2>
+<p>عند النجاح يتم فتح الوحدة التالية وتحديث تقدم الطالب.</p>
 <a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
 </section>
 </main>
@@ -47,11 +54,11 @@
 <script>
 function checkExam(){
 let score=0;
-['q1','q2','q3'].forEach(q=>{
+['q1','q2','q3','q4'].forEach(q=>{
 let a=document.querySelector('input[name="'+q+'"]:checked');
 if(a && a.value==='1') score++;
 });
-document.getElementById('result').innerHTML='النتيجة: '+score+'/3 '+(score>=2?'✅ ناجح':'❌ يحتاج مراجعة');
+document.getElementById('result').innerHTML='النتيجة: '+score+'/4 '+(score>=3?'✅ ناجح':'❌ يحتاج مراجعة');
 }
 </script>
 
