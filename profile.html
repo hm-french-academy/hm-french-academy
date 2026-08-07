@@ -21,35 +21,59 @@
 <section class="hero">
 <h1>👤 ملف الطالب</h1>
 <p>الاسم: طالب HM Academy</p>
+<p>البريد: student@hm-academy.com</p>
 <p>المستوى: A1 Beginner</p>
 <p>الحالة: مستمر في التعلم</p>
 </section>
 
-<section class="cards">
-<div class="course">
+<section class="grid course-grid">
+<div class="course-card">
 <h3>📚 المسار الحالي</h3>
-<p>French A1</p>
-<p>الوحدة: Les bases</p>
+<p class="meta">French A1</p>
+<p class="meta">الوحدة: Les bases</p>
+<div class="progress-wrap">
+<div class="progress-bar"><div data-progress="35"></div></div>
+<p class="small">35% مكتمل</p>
+</div>
 </div>
 
-<div class="course">
+<div class="course-card">
 <h3>🏆 الإنجازات</h3>
-<p>Starter Badge</p>
-<p>إكمال أول درس</p>
+<p class="meta">Starter Badge</p>
+<p class="meta">إكمال أول درس</p>
+<p class="meta">بداية رحلة الفرنسية</p>
+<a class="btn secondary" href="achievements.html">عرض الشارات</a>
 </div>
 
-<div class="course">
+<div class="course-card">
 <h3>📈 الإحصائيات</h3>
-<p>التقدم: 35%</p>
-<p>الدروس المكتملة: 1</p>
+<p class="meta">الدروس المكتملة: 1</p>
+<p class="meta">الاختبارات المنجزة: 1</p>
+<p class="meta">ساعات التعلم: 3</p>
+<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
 </div>
 </section>
 
-<div class="topbar" style="justify-content:center;">
-<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
+<section class="hero" style="margin-top:18px;">
+<div class="section-title"><h2>🎯 أهداف هذا الأسبوع</h2><span>خطة الطالب</span></div>
+<div class="timeline">
+<div class="timeline-item">إكمال درس Se présenter.</div>
+<div class="timeline-item">مراجعة مفردات التحيات.</div>
+<div class="timeline-item">اجتياز اختبار الوحدة الأولى.</div>
 </div>
+</section>
+
+<section class="hero" style="margin-top:18px;">
+<div class="section-title"><h2>🕘 آخر الأنشطة</h2><span>نشاط حديث</span></div>
+<div class="timeline">
+<div class="timeline-item">✅ تم فتح Lesson 1: Les salutations</div>
+<div class="timeline-item">📝 تم إنهاء اختبار الوحدة</div>
+<div class="timeline-item">🎓 تم تسجيل أول شارة إنجاز</div>
+</div>
+</section>
 </main>
 
+<script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
