@@ -1,0 +1,76 @@
+{
+  "settingsUI": {
+    "version": "0.3.0",
+    "pages": [
+      {
+        "id": "general-settings",
+        "title": {
+          "ar": "الإعدادات العامة",
+          "fr": "Paramètres généraux",
+          "en": "General Settings"
+        },
+        "bindsTo": ["settings-core", "navigation-settings", "branding"]
+      },
+      {
+        "id": "curriculum-settings",
+        "title": {
+          "ar": "إعدادات المناهج",
+          "fr": "Paramètres des programmes",
+          "en": "Curriculum Settings"
+        },
+        "bindsTo": ["multi-curriculum-core", "learning-paths", "knowledge-map"]
+      },
+      {
+        "id": "content-settings",
+        "title": {
+          "ar": "إعدادات المحتوى",
+          "fr": "Paramètres du contenu",
+          "en": "Content Settings"
+        },
+        "bindsTo": ["lesson-engine", "media-engine", "digital-library", "smart-dictionary"]
+      },
+      {
+        "id": "assessment-settings",
+        "title": {
+          "ar": "إعدادات التقييم",
+          "fr": "Paramètres d'évaluation",
+          "en": "Assessment Settings"
+        },
+        "bindsTo": ["question-bank", "assessment", "student-progress"]
+      },
+      {
+        "id": "ai-settings",
+        "title": {
+          "ar": "إعدادات الذكاء التعليمي",
+          "fr": "Paramètres IA éducative",
+          "en": "AI Learning Settings"
+        },
+        "bindsTo": ["ai-learning-assistant", "content-search"]
+      },
+      {
+        "id": "backup-settings",
+        "title": {
+          "ar": "النسخ الاحتياطي والإصدارات",
+          "fr": "Sauvegarde et versions",
+          "en": "Backup & Versioning"
+        },
+        "bindsTo": ["backup-versioning", "security"]
+      },
+      {
+        "id": "dashboard-settings",
+        "title": {
+          "ar": "إعدادات الواجهات",
+          "fr": "Paramètres des tableaux de bord",
+          "en": "Dashboard Settings"
+        },
+        "bindsTo": ["student-dashboard", "teacher-dashboard", "admin-teacher-dashboard"]
+      }
+    ],
+    "actions": [
+      "save",
+      "reset",
+      "export",
+      "import"
+    ]
+  }
+}
