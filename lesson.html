@@ -36,6 +36,7 @@
 <section class="cards">
 <div class="course">
 <h2>🔊 المفردات والنطق</h2>
+<div id="vocabulary-list">
 <p>🇫🇷 Bonjour</p><p class="small">النطق: بونجور</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>صباح الخير / مرحباً</p>
 <hr>
 <p>🇫🇷 Salut</p><p class="small">النطق: سالو</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>مرحباً (غير رسمي)</p>
@@ -44,18 +45,21 @@
 <hr>
 <p>🇫🇷 Au revoir</p><p class="small">النطق: أوغُفوار</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>إلى اللقاء</p>
 </div>
+</div>
 
 <div class="course">
 <h2>💬 محادثة تطبيقية</h2>
+<div id="conversation-list">
 <p>👤 A: Bonjour !</p>
 <p>👤 B: Bonjour ! Comment ça va ?</p>
 <p>👤 A: Ça va bien, merci.</p>
 <p class="small">المعنى: مرحباً، كيف حالك؟ أنا بخير شكراً.</p>
 </div>
+</div>
 
 <div class="course">
 <h2>✍️ تدريب الدرس</h2>
-<p>اختر الترجمة الصحيحة:</p>
+<p id="activity-question">اختر الترجمة الصحيحة:</p>
 <p><strong>Au revoir</strong> = ؟</p>
 <button class="btn" type="button" onclick="check()">إظهار الإجابة</button>
 <p id="answer" class="small"></p>
@@ -90,19 +94,58 @@ function check(){
   document.getElementById('answer').textContent='✅ إلى اللقاء';
 }
 
+function escapeHtml(value){
+  return String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+}
+
 (async function hydrateLesson(){
   try {
     const params = new URLSearchParams(window.location.search);
     const lessonId = params.get('id') || 'lesson-hello';
     const response = await fetch('data/lesson-schema.json');
+    if (!response.ok) return;
     const data = await response.json();
-    const lesson = data?.lessonEngine?.lesson;
-    if (!lesson || (lessonId !== 'lesson-hello' && lesson.id !== lessonId)) return;
+    const lessons = Array.isArray(data?.lessons) ? data.lessons : [];
+    const lesson = lessons.find(item => item.id === lessonId) || lessons[0];
+    if (!lesson) return;
 
-    const titleEl = document.getElementById('lesson-title');
-    const descEl = document.getElementById('lesson-description');
-    if (titleEl) titleEl.textContent = '📖 Lesson 1: Les salutations';
-    if (descEl) descEl.textContent = 'تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.';
+    document.title = 'HM Academy - ' + (lesson.titleFr || 'Lesson');
+    const titleNode = document.getElementById('lesson-title');
+    const descNode = document.getElementById('lesson-description');
+    const vocabNode = document.getElementById('vocabulary-list');
+    const convoNode = document.getElementById('conversation-list');
+    const activityNode = document.getElementById('activity-question');
+
+    if (titleNode) titleNode.textContent = '📖 Lesson ' + (lesson.number ?? '') + ': ' + (lesson.titleFr || '');
+    if (descNode) descNode.textContent = lesson.descriptionAr || '';
+    if (activityNode && lesson.activity?.question) activityNode.textContent = lesson.activity.question;
+
+    if (vocabNode && Array.isArray(lesson.vocabulary) && lesson.vocabulary.length) {
+      vocabNode.innerHTML = lesson.vocabulary.map((item, index) => {
+        const parts = [
+          '<p>🇫🇷 ' + escapeHtml(item.fr) + '</p>',
+          '<p class="small">النطق: ' + escapeHtml(item.pronunciation) + '</p>',
+          '<button class="btn" type="button">🔊 تشغيل الصوت</button>',
+          '<p>' + escapeHtml(item.ar) + '</p>'
+        ];
+        if (index < lesson.vocabulary.length - 1) parts.push('<hr>');
+        return parts.join('');
+      }).join('');
+    }
+
+    if (convoNode && Array.isArray(lesson.conversation) && lesson.conversation.length) {
+      convoNode.innerHTML = lesson.conversation.map(item => {
+        const speaker = escapeHtml(item.speaker);
+        const line = escapeHtml(item.fr);
+        const meaning = escapeHtml(item.ar);
+        return '<p>👤 ' + speaker + ': ' + line + '</p><p class="small">' + meaning + '</p>';
+      }).join('');
+    }
+
+    const answerNode = document.getElementById('answer');
+    if (answerNode && lesson.activity?.answer) {
+      answerNode.dataset.correctAnswer = lesson.activity.answer;
+    }
   } catch (error) {
     console.warn('Lesson hydration skipped:', error);
   }
