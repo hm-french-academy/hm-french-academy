@@ -1,0 +1,54 @@
+{
+  "smartDictionary": {
+    "version": "0.3.0",
+    "entries": [
+      {
+        "id": "bonjour",
+        "word": "Bonjour",
+        "language": "fr",
+        "meaning": {
+          "ar": "مرحباً / صباح الخير",
+          "en": "Hello / Good morning"
+        },
+        "level": "A1",
+        "category": "greetings",
+        "pronunciation": {
+          "phonetic": "bɔ̃.ʒuʁ",
+          "audio": null
+        },
+        "linkedLessons": ["lesson-hello"],
+        "review": {
+          "flashcard": true,
+          "spacedRepetition": true
+        }
+      },
+      {
+        "id": "merci",
+        "word": "Merci",
+        "language": "fr",
+        "meaning": {
+          "ar": "شكراً",
+          "en": "Thank you"
+        },
+        "level": "A1",
+        "category": "expressions",
+        "pronunciation": {
+          "phonetic": "mɛʁ.si",
+          "audio": null
+        },
+        "linkedLessons": ["lesson-hello"],
+        "review": {
+          "flashcard": true,
+          "spacedRepetition": true
+        }
+      }
+    ],
+    "features": [
+      "audio-pronunciation",
+      "lesson-linking",
+      "flashcards",
+      "spaced-repetition",
+      "personal-review"
+    ]
+  }
+}
