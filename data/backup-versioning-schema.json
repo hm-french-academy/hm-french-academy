@@ -1,0 +1,32 @@
+{
+  "backupVersioning": {
+    "version": "0.3.0",
+    "features": [
+      "manual-backup",
+      "scheduled-backup",
+      "restore-point",
+      "version-history",
+      "content-snapshot"
+    ],
+    "backupTargets": [
+      "programs",
+      "curricula",
+      "levels",
+      "lessons",
+      "media",
+      "assessments",
+      "dictionary",
+      "student-progress"
+    ],
+    "retentionPolicy": {
+      "daily": 7,
+      "weekly": 4,
+      "monthly": 12
+    },
+    "restoreModes": [
+      "full-restore",
+      "partial-restore",
+      "single-lesson-restore"
+    ]
+  }
+}
