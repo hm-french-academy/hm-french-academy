@@ -1,0 +1,68 @@
+{
+  "vocabulary": [
+    {
+      "id": "bonjour",
+      "lessonId": "lesson-hello",
+      "level": "A1",
+      "fr": "Bonjour",
+      "ar": "صباح الخير / مرحباً",
+      "pronunciation": "بونجور"
+    },
+    {
+      "id": "salut",
+      "lessonId": "lesson-hello",
+      "level": "A1",
+      "fr": "Salut",
+      "ar": "مرحباً (غير رسمي)",
+      "pronunciation": "سالو"
+    },
+    {
+      "id": "bonsoir",
+      "lessonId": "lesson-hello",
+      "level": "A1",
+      "fr": "Bonsoir",
+      "ar": "مساء الخير",
+      "pronunciation": "بونسوار"
+    },
+    {
+      "id": "au-revoir",
+      "lessonId": "lesson-hello",
+      "level": "A1",
+      "fr": "Au revoir",
+      "ar": "إلى اللقاء",
+      "pronunciation": "أوغُفوار"
+    },
+    {
+      "id": "je-m-appelle",
+      "lessonId": "lesson-present",
+      "level": "A1",
+      "fr": "Je m'appelle...",
+      "ar": "اسمي...",
+      "pronunciation": "جو مابيل"
+    },
+    {
+      "id": "j-habite-a",
+      "lessonId": "lesson-present",
+      "level": "A1",
+      "fr": "J'habite à...",
+      "ar": "أسكن في...",
+      "pronunciation": "جابيت آ"
+    },
+    {
+      "id": "je-suis-etudiant",
+      "lessonId": "lesson-present",
+      "level": "A1",
+      "fr": "Je suis étudiant(e).",
+      "ar": "أنا طالب/طالبة.",
+      "pronunciation": "جو سوي إيتوديان"
+    },
+    {
+      "id": "merci",
+      "lessonId": "lesson-alphabet",
+      "level": "A1",
+      "fr": "Merci",
+      "ar": "شكراً",
+      "pronunciation": "ميرسي"
+    }
+  ]
+}
