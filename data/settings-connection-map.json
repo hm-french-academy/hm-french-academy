@@ -1,0 +1,36 @@
+{
+  "settingsConnectionMap": {
+    "version": "0.3.0",
+    "bindings": [
+      {
+        "setting": "general",
+        "targets": ["branding", "navigation", "ui-theme", "language-switcher"]
+      },
+      {
+        "setting": "curriculum",
+        "targets": ["multi-curriculum-core", "learning-paths", "lesson-engine", "knowledge-map"]
+      },
+      {
+        "setting": "content",
+        "targets": ["lesson-engine", "media-engine", "digital-library", "smart-dictionary", "activity-bank", "question-bank"]
+      },
+      {
+        "setting": "assessment",
+        "targets": ["question-bank", "student-progress", "ai-learning-assistant", "learning-paths"]
+      },
+      {
+        "setting": "ai",
+        "targets": ["ai-learning-assistant", "content-search", "student-dashboard", "teacher-dashboard"]
+      },
+      {
+        "setting": "security",
+        "targets": ["student-dashboard", "teacher-dashboard", "admin-access", "backup-versioning"]
+      },
+      {
+        "setting": "integrations",
+        "targets": ["navigation-settings", "student-dashboard", "teacher-dashboard", "content-search"]
+      }
+    ],
+    "note": "Central mapping between settings and platform modules"
+  }
+}
