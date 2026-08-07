@@ -1,0 +1,46 @@
+{
+  "multiCurriculumCore": {
+    "version": "0.3.0",
+    "purpose": "support-multiple-educational-systems",
+    "curriculumTypes": [
+      {
+        "id": "school-curriculum",
+        "title": {
+          "ar": "المناهج المدرسية",
+          "fr": "Programmes scolaires",
+          "en": "School Curricula"
+        }
+      },
+      {
+        "id": "international-levels",
+        "title": {
+          "ar": "المستويات الدولية CEFR",
+          "fr": "Niveaux internationaux CEFR",
+          "en": "CEFR International Levels"
+        }
+      },
+      {
+        "id": "custom-academy-programs",
+        "title": {
+          "ar": "برامج الأكاديمية الخاصة",
+          "fr": "Programmes personnalisés de l'académie",
+          "en": "Custom Academy Programs"
+        }
+      }
+    ],
+    "structure": {
+      "program": true,
+      "level": true,
+      "units": true,
+      "lessons": true,
+      "skills": true,
+      "assessments": true
+    },
+    "features": [
+      "add-new-curriculum",
+      "duplicate-program-template",
+      "language-independent-content",
+      "future-expansion-ready"
+    ]
+  }
+}
