@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 1 | HM Academy</title>
+<title>HM Academy - الدرس</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
 <header>
-<div class="logo">🇫🇷 HM Academy</div>
-<p>الدرس الأول - المستوى A1</p>
+<h2>🇫🇷 HM Academy</h2>
+<p>الدرس التفاعلي - المستوى A1</p>
 <nav>
 <a href="index.html">الرئيسية</a>
 <a href="dashboard.html">لوحة الطالب</a>
 <a href="course.html">المنهج</a>
-<a href="lesson.html">الدرس</a>
+<a href="lesson.html?id=lesson-hello">الدرس</a>
+<a href="lesson2.html">الدرس 2</a>
+<a href="lesson3.html">الدرس 3</a>
 <a href="library.html">المكتبة</a>
 <a href="settings.html">الإعدادات</a>
 </nav>
@@ -22,8 +24,8 @@
 
 <main>
 <section class="hero">
-<h1>📖 Lesson 1: Les salutations</h1>
-<p>تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.</p>
+<h1 id="lesson-title">📖 Lesson 1: Les salutations</h1>
+<p id="lesson-description">تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.</p>
 <div class="grid" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px;">
 <div class="timeline-item"><strong>الهدف 1</strong><div class="small">إلقاء التحية بالفرنسية</div></div>
 <div class="timeline-item"><strong>الهدف 2</strong><div class="small">السؤال عن الحال والرد</div></div>
@@ -85,8 +87,26 @@
 
 <script>
 function check(){
-document.getElementById('answer').textContent='✅ إلى اللقاء';
+  document.getElementById('answer').textContent='✅ إلى اللقاء';
 }
+
+(async function hydrateLesson(){
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const lessonId = params.get('id') || 'lesson-hello';
+    const response = await fetch('data/lesson-schema.json');
+    const data = await response.json();
+    const lesson = data?.lessonEngine?.lesson;
+    if (!lesson || (lessonId !== 'lesson-hello' && lesson.id !== lessonId)) return;
+
+    const titleEl = document.getElementById('lesson-title');
+    const descEl = document.getElementById('lesson-description');
+    if (titleEl) titleEl.textContent = '📖 Lesson 1: Les salutations';
+    if (descEl) descEl.textContent = 'تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.';
+  } catch (error) {
+    console.warn('Lesson hydration skipped:', error);
+  }
+})();
 </script>
 <script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
