@@ -1,0 +1,11 @@
+{
+  "courses": [
+    {
+      "id": "french-a1",
+      "title": "French A1 Beginner",
+      "level": "A1",
+      "units": 2,
+      "lessons": 10
+    }
+  ]
+}
