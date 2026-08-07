@@ -1,0 +1,46 @@
+{
+  "digitalLibrary": {
+    "version": "0.3.0",
+    "categories": [
+      {
+        "id": "books",
+        "title": {
+          "ar": "الكتب والمراجع",
+          "fr": "Livres et références",
+          "en": "Books and References"
+        },
+        "resources": ["pdf", "documents", "worksheets"]
+      },
+      {
+        "id": "audio-library",
+        "title": {
+          "ar": "المكتبة الصوتية",
+          "fr": "Bibliothèque audio",
+          "en": "Audio Library"
+        },
+        "resources": ["pronunciation", "dialogues", "listening"]
+      },
+      {
+        "id": "video-library",
+        "title": {
+          "ar": "المكتبة المرئية",
+          "fr": "Bibliothèque vidéo",
+          "en": "Video Library"
+        },
+        "resources": ["lessons", "explanations", "activities"]
+      }
+    ],
+    "organization": {
+      "byLevel": true,
+      "byCurriculum": true,
+      "bySkill": true,
+      "byLanguage": true
+    },
+    "integration": [
+      "lesson-engine",
+      "learning-paths",
+      "smart-dictionary",
+      "student-dashboard"
+    ]
+  }
+}
