@@ -1,0 +1,91 @@
+{
+  "curricula": [
+    {
+      "id": "primary-french",
+      "category": "primary",
+      "title": {
+        "ar": "منهج الفرنسية للابتدائي",
+        "fr": "Programme de français - Primaire",
+        "en": "Primary French Curriculum"
+      },
+      "stages": [
+        {
+          "id": "primary-stage-1",
+          "title": {
+            "ar": "المرحلة الأولى",
+            "fr": "Phase 1",
+            "en": "Stage 1"
+          },
+          "units": [
+            {
+              "id": "primary-unit-1",
+              "title": {
+                "ar": "الوحدة الأولى: الأساسيات",
+                "fr": "Unité 1: Les bases",
+                "en": "Unit 1: Basics"
+              },
+              "lessons": [
+                {
+                  "id": "lesson-hello",
+                  "title": {
+                    "ar": "التحيات",
+                    "fr": "Les salutations",
+                    "en": "Greetings"
+                  },
+                  "status": "published"
+                },
+                {
+                  "id": "lesson-introduce",
+                  "title": {
+                    "ar": "التعريف بالنفس",
+                    "fr": "Se présenter",
+                    "en": "Introducing Yourself"
+                  },
+                  "status": "draft"
+                },
+                {
+                  "id": "lesson-alphabet",
+                  "title": {
+                    "ar": "الأبجدية والنطق",
+                    "fr": "Alphabet et prononciation",
+                    "en": "Alphabet and Pronunciation"
+                  },
+                  "status": "draft"
+                }
+              ]
+            },
+            {
+              "id": "primary-unit-2",
+              "title": {
+                "ar": "الوحدة الثانية: الحياة اليومية",
+                "fr": "Unité 2: La vie quotidienne",
+                "en": "Unit 2: Daily Life"
+              },
+              "lessons": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cefr-a1",
+      "category": "cefr",
+      "title": {
+        "ar": "المستوى الدولي A1",
+        "fr": "Niveau A1",
+        "en": "Level A1"
+      },
+      "stages": []
+    },
+    {
+      "id": "special-pronunciation",
+      "category": "specialized",
+      "title": {
+        "ar": "كورس النطق",
+        "fr": "Cours de prononciation",
+        "en": "Pronunciation Course"
+      },
+      "stages": []
+    }
+  ]
+}
