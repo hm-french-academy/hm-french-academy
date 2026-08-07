@@ -1,0 +1,52 @@
+{
+  "appName": "HM Academy",
+  "version": "0.3.0",
+  "defaultLanguage": "ar",
+  "supportedLanguages": ["ar", "fr", "en"],
+  "programs": [
+    {
+      "id": "prog-a1",
+      "title": {
+        "ar": "الفرنسية - ابتدائي",
+        "fr": "Français - Primaire",
+        "en": "French - Primary"
+      },
+      "type": "academic",
+      "category": "primary",
+      "status": "published"
+    },
+    {
+      "id": "prog-a2",
+      "title": {
+        "ar": "الفرنسية - إعدادي",
+        "fr": "Français - Collège",
+        "en": "French - Preparatory"
+      },
+      "type": "academic",
+      "category": "preparatory",
+      "status": "draft"
+    },
+    {
+      "id": "cefr-a1",
+      "title": {
+        "ar": "المستوى الدولي A1",
+        "fr": "Niveau A1",
+        "en": "Level A1"
+      },
+      "type": "cefr",
+      "category": "cefr",
+      "status": "draft"
+    },
+    {
+      "id": "course-pronunciation",
+      "title": {
+        "ar": "كورس النطق",
+        "fr": "Cours de prononciation",
+        "en": "Pronunciation Course"
+      },
+      "type": "specialized",
+      "category": "specialized",
+      "status": "draft"
+    }
+  ]
+}
