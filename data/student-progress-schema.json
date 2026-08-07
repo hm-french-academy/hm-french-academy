@@ -1,0 +1,26 @@
+{
+  "studentProgress": {
+    "studentId": "",
+    "level": "A1",
+    "completedLessons": [],
+    "skills": {
+      "listening": 0,
+      "speaking": 0,
+      "reading": 0,
+      "writing": 0,
+      "vocabulary": 0,
+      "grammar": 0
+    },
+    "achievements": [],
+    "certificates": [],
+    "reviewQueue": [],
+    "lastActivity": null
+  },
+  "tracking": [
+    "lesson-completion",
+    "quiz-results",
+    "media-consumption",
+    "practice-time",
+    "skill-development"
+  ]
+}
