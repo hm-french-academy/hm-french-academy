@@ -1,0 +1,27 @@
+{
+  "platformSummary": {
+    "version": "0.3.0",
+    "coreModules": [
+      "settings-core",
+      "navigation-settings",
+      "multi-curriculum-core",
+      "learning-paths",
+      "knowledge-map",
+      "lesson-engine",
+      "media-engine",
+      "digital-library",
+      "smart-dictionary",
+      "activity-bank",
+      "question-bank",
+      "student-progress",
+      "achievement-certificate",
+      "student-dashboard",
+      "admin-teacher-dashboard",
+      "content-search",
+      "backup-versioning",
+      "ai-learning-assistant"
+    ],
+    "status": "architecture-in-place",
+    "nextStep": "wire-ui-to-data"
+  }
+}
