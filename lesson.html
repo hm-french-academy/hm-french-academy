@@ -3,37 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 1 | HM Academy v0.3</title>
+<title>Lesson 1 | HM Academy</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
 <header>
 <div class="logo">🇫🇷 HM Academy</div>
 <p>الدرس الأول - المستوى A1</p>
+<nav>
+<a href="index.html">الرئيسية</a>
+<a href="dashboard.html">لوحة الطالب</a>
+<a href="course.html">المنهج</a>
+</nav>
 </header>
 
 <main>
 <section class="hero">
 <h1>📖 Lesson 1: Les salutations</h1>
 <p>تعلم التحيات الأساسية واستخدامها في مواقف الحياة اليومية.</p>
-<div class="course">
-<h3>🎯 أهداف الدرس</h3>
-<p>• إلقاء التحية بالفرنسية</p>
-<p>• السؤال عن الحال والرد</p>
-<p>• استخدام التحيات الرسمية وغير الرسمية</p>
+<div class="grid" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px;">
+<div class="timeline-item"><strong>الهدف 1</strong><div class="small">إلقاء التحية بالفرنسية</div></div>
+<div class="timeline-item"><strong>الهدف 2</strong><div class="small">السؤال عن الحال والرد</div></div>
+<div class="timeline-item"><strong>الهدف 3</strong><div class="small">التحيات الرسمية وغير الرسمية</div></div>
 </div>
 </section>
 
 <section class="cards">
 <div class="course">
 <h2>🔊 المفردات والنطق</h2>
-<p>🇫🇷 Bonjour</p><p>النطق: بونجور</p><button class="btn">🔊 تشغيل الصوت</button><p>صباح الخير / مرحباً</p>
+<p>🇫🇷 Bonjour</p><p class="small">النطق: بونجور</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>صباح الخير / مرحباً</p>
 <hr>
-<p>🇫🇷 Salut</p><p>النطق: سالو</p><button class="btn">🔊 تشغيل الصوت</button><p>مرحباً (غير رسمي)</p>
+<p>🇫🇷 Salut</p><p class="small">النطق: سالو</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>مرحباً (غير رسمي)</p>
 <hr>
-<p>🇫🇷 Bonsoir</p><p>النطق: بونسوار</p><button class="btn">🔊 تشغيل الصوت</button><p>مساء الخير</p>
+<p>🇫🇷 Bonsoir</p><p class="small">النطق: بونسوار</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>مساء الخير</p>
 <hr>
-<p>🇫🇷 Au revoir</p><p>النطق: أوغُفوار</p><button class="btn">🔊 تشغيل الصوت</button><p>إلى اللقاء</p>
+<p>🇫🇷 Au revoir</p><p class="small">النطق: أوغُفوار</p><button class="btn" type="button">🔊 تشغيل الصوت</button><p>إلى اللقاء</p>
 </div>
 
 <div class="course">
@@ -41,15 +45,15 @@
 <p>👤 A: Bonjour !</p>
 <p>👤 B: Bonjour ! Comment ça va ?</p>
 <p>👤 A: Ça va bien, merci.</p>
-<p>المعنى: مرحباً، كيف حالك؟ أنا بخير شكراً.</p>
+<p class="small">المعنى: مرحباً، كيف حالك؟ أنا بخير شكراً.</p>
 </div>
 
 <div class="course">
 <h2>✍️ تدريب الدرس</h2>
 <p>اختر الترجمة الصحيحة:</p>
-<p>Au revoir = ؟</p>
-<button class="btn" onclick="check()">إظهار الإجابة</button>
-<p id="answer"></p>
+<p><strong>Au revoir</strong> = ؟</p>
+<button class="btn" type="button" onclick="check()">إظهار الإجابة</button>
+<p id="answer" class="small"></p>
 </div>
 </section>
 
@@ -61,13 +65,13 @@
 <section class="hero">
 <h2>🤖 HM AI Tutor</h2>
 <p>مساعد ذكي داخل الدرس للإجابة عن أسئلة الطالب.</p>
-<input placeholder="اكتب سؤالك عن الدرس">
+<input placeholder="اكتب سؤالك عن الدرس" style="width:100%;max-width:520px;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;">
 </section>
 
 <section class="hero">
 <h2>✅ إنهاء الدرس</h2>
 <p>بعد إكمال الدرس سيتم تحديث تقدم الطالب.</p>
-<button class="btn">تم إكمال الدرس</button>
+<button class="btn" type="button">تم إكمال الدرس</button>
 </section>
 
 <a class="btn" href="exam.html">الانتقال إلى الاختبار</a>
@@ -75,7 +79,7 @@
 
 <script>
 function check(){
-document.getElementById('answer').innerHTML='✅ إلى اللقاء';
+document.getElementById('answer').textContent='✅ إلى اللقاء';
 }
 </script>
 
