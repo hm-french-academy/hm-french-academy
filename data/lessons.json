@@ -1,0 +1,18 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-1",
+      "title": "Les salutations",
+      "level": "A1",
+      "unit": "unit-1",
+      "status": "available"
+    },
+    {
+      "id": "lesson-2",
+      "title": "Se présenter",
+      "level": "A1",
+      "unit": "unit-1",
+      "status": "locked"
+    }
+  ]
+}
