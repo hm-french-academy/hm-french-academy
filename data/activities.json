@@ -1,0 +1,71 @@
+{
+  "activities": [
+    {
+      "id": "a1-hello-quiz-1",
+      "lessonId": "lesson-hello",
+      "level": "A1",
+      "type": "multiple-choice",
+      "question": {
+        "ar": "ماذا تعني كلمة Au revoir؟",
+        "fr": "Que signifie Au revoir ?",
+        "en": "What does Au revoir mean?"
+      },
+      "choices": [
+        {
+          "id": "c1",
+          "ar": "إلى اللقاء",
+          "fr": "Au revoir",
+          "correct": true
+        },
+        {
+          "id": "c2",
+          "ar": "صباح الخير",
+          "fr": "Bonjour",
+          "correct": false
+        },
+        {
+          "id": "c3",
+          "ar": "شكراً",
+          "fr": "Merci",
+          "correct": false
+        }
+      ],
+      "feedback": {
+        "correct": "رائع، هذه هي الإجابة الصحيحة.",
+        "incorrect": "راجع مفردات التحيات ثم حاول مرة أخرى."
+      }
+    },
+    {
+      "id": "a1-present-fill-1",
+      "lessonId": "lesson-present",
+      "level": "A1",
+      "type": "fill-blank",
+      "question": {
+        "ar": "أكمل الجملة: Je m'_____ Hatem.",
+        "fr": "Complétez : Je m'_____ Hatem.",
+        "en": "Complete: Je m'_____ Hatem."
+      },
+      "answer": "appelle",
+      "feedback": {
+        "correct": "ممتاز!",
+        "incorrect": "الإجابة الصحيحة هي: appelle"
+      }
+    },
+    {
+      "id": "a1-alphabet-pronunciation-1",
+      "lessonId": "lesson-alphabet",
+      "level": "A1",
+      "type": "pronunciation",
+      "question": {
+        "ar": "اقرأ الكلمات بصوت مرتفع وكرر النطق.",
+        "fr": "Lisez les mots à voix haute et répétez la prononciation.",
+        "en": "Read the words aloud and repeat the pronunciation."
+      },
+      "expectedSkill": "pronunciation",
+      "feedback": {
+        "correct": "استمر! النطق هو أساس القراءة الصحيحة.",
+        "incorrect": "استمع للنطق مرة أخرى ثم أعد المحاولة."
+      }
+    }
+  ]
+}
