@@ -1,0 +1,50 @@
+{
+  "studentDashboard": {
+    "version": "0.3.0",
+    "sections": [
+      {
+        "id": "progress-overview",
+        "title": {
+          "ar": "ملخص التقدم",
+          "fr": "Résumé de progression",
+          "en": "Progress Overview"
+        },
+        "widgets": ["level", "completed-lessons", "skills" ]
+      },
+      {
+        "id": "learning-path",
+        "title": {
+          "ar": "مساري التعليمي",
+          "fr": "Mon parcours",
+          "en": "My Learning Path"
+        },
+        "widgets": ["next-lesson", "recommended-review", "goals"]
+      },
+      {
+        "id": "practice-center",
+        "title": {
+          "ar": "مركز التدريب",
+          "fr": "Centre d'entraînement",
+          "en": "Practice Center"
+        },
+        "widgets": ["dictionary", "audio-practice", "quiz", "speaking"]
+      },
+      {
+        "id": "achievements",
+        "title": {
+          "ar": "الإنجازات",
+          "fr": "Récompenses",
+          "en": "Achievements"
+        },
+        "widgets": ["badges", "certificates"]
+      }
+    ],
+    "integration": [
+      "learning-paths",
+      "knowledge-map",
+      "lesson-engine",
+      "student-progress",
+      "assessment"
+    ]
+  }
+}
