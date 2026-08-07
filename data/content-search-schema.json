@@ -1,0 +1,53 @@
+{
+  "contentSearchEngine": {
+    "version": "0.3.0",
+    "purpose": "discover-lessons-topics-media-resources",
+    "indexes": [
+      "curriculum",
+      "cefr-levels",
+      "lessons",
+      "vocabulary",
+      "grammar",
+      "media",
+      "assessments",
+      "library"
+    ],
+    "searchModes": [
+      {
+        "id": "global-search",
+        "title": {
+          "ar": "بحث شامل",
+          "fr": "Recherche globale",
+          "en": "Global Search"
+        },
+        "scope": ["all"]
+      },
+      {
+        "id": "lesson-search",
+        "title": {
+          "ar": "بحث داخل الدروس",
+          "fr": "Recherche dans les leçons",
+          "en": "Lesson Search"
+        },
+        "scope": ["lessons", "activities", "media"]
+      },
+      {
+        "id": "dictionary-search",
+        "title": {
+          "ar": "بحث القاموس",
+          "fr": "Recherche dictionnaire",
+          "en": "Dictionary Search"
+        },
+        "scope": ["vocabulary"]
+      }
+    ],
+    "features": [
+      "keyword-search",
+      "tag-search",
+      "level-filtering",
+      "skill-filtering",
+      "language-filtering",
+      "related-content-suggestions"
+    ]
+  }
+}
