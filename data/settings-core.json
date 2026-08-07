@@ -1,0 +1,62 @@
+{
+  "settingsCore": {
+    "version": "0.3.0",
+    "general": {
+      "appName": "HM Academy",
+      "defaultLanguage": "ar",
+      "supportedLanguages": ["ar", "fr", "en"],
+      "theme": "light",
+      "primaryColor": "teal",
+      "timezone": "Africa/Cairo"
+    },
+    "branding": {
+      "logo": "assets/images/logo.png",
+      "favicon": "assets/images/favicon.png",
+      "title": {
+        "ar": "HM Academy",
+        "fr": "HM Academy",
+        "en": "HM Academy"
+      }
+    },
+    "curriculum": {
+      "multiCurriculum": true,
+      "programs": true,
+      "levels": true,
+      "cefr": true,
+      "customPrograms": true
+    },
+    "content": {
+      "lessonEngine": true,
+      "mediaEngine": true,
+      "digitalLibrary": true,
+      "dictionary": true,
+      "activityBank": true,
+      "questionBank": true
+    },
+    "assessment": {
+      "autoCorrection": true,
+      "difficultyAdaptation": true,
+      "spacedRepetition": true,
+      "skillTracking": true
+    },
+    "ai": {
+      "enabled": true,
+      "assistant": true,
+      "recommendations": true,
+      "revisionPlanner": true
+    },
+    "security": {
+      "roles": ["admin", "teacher", "student"],
+      "backup": true,
+      "versioning": true
+    },
+    "integrations": [
+      "learning-paths",
+      "knowledge-map",
+      "student-progress",
+      "teacher-dashboard",
+      "student-dashboard",
+      "content-search"
+    ]
+  }
+}
