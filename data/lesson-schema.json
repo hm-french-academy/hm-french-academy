@@ -1,0 +1,36 @@
+{
+  "lessonStructure": {
+    "required": [
+      "objectives",
+      "vocabulary",
+      "grammar",
+      "conversation",
+      "audio",
+      "video",
+      "activities",
+      "assessment"
+    ],
+    "lesson": {
+      "id": "lesson-hello",
+      "level": "A1",
+      "sections": [
+        {
+          "type": "vocabulary",
+          "features": ["translation", "pronunciation", "audio"]
+        },
+        {
+          "type": "conversation",
+          "features": ["speaker-lines", "meaning", "audio-practice"]
+        },
+        {
+          "type": "activity",
+          "features": ["interactive-question", "instant-feedback"]
+        },
+        {
+          "type": "media",
+          "features": ["teacher-video", "download-files"]
+        }
+      ]
+    }
+  }
+}
