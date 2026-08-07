@@ -1,0 +1,75 @@
+{
+  "navigationSettings": {
+    "version": "0.3.0",
+    "mainMenu": [
+      {
+        "id": "home",
+        "label": {
+          "ar": "الرئيسية",
+          "fr": "Accueil",
+          "en": "Home"
+        },
+        "path": "index.html"
+      },
+      {
+        "id": "student",
+        "label": {
+          "ar": "لوحة الطالب",
+          "fr": "Tableau étudiant",
+          "en": "Student Dashboard"
+        },
+        "path": "dashboard.html"
+      },
+      {
+        "id": "curriculum",
+        "label": {
+          "ar": "المنهج",
+          "fr": "Programme",
+          "en": "Curriculum"
+        },
+        "path": "course.html"
+      },
+      {
+        "id": "lesson",
+        "label": {
+          "ar": "الدرس",
+          "fr": "Leçon",
+          "en": "Lesson"
+        },
+        "path": "lesson.html"
+      },
+      {
+        "id": "library",
+        "label": {
+          "ar": "المكتبة",
+          "fr": "Bibliothèque",
+          "en": "Library"
+        },
+        "path": "library.html"
+      },
+      {
+        "id": "settings",
+        "label": {
+          "ar": "الإعدادات",
+          "fr": "Paramètres",
+          "en": "Settings"
+        },
+        "path": "settings.html"
+      }
+    ],
+    "quickActions": [
+      "continue-learning",
+      "view-progress",
+      "open-assessment",
+      "go-to-library"
+    ],
+    "routing": {
+      "home": "index.html",
+      "student": "dashboard.html",
+      "curriculum": "course.html",
+      "lesson": "lesson.html",
+      "library": "library.html",
+      "settings": "settings.html"
+    }
+  }
+}
