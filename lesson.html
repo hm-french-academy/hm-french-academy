@@ -121,6 +121,13 @@ function renderConversation(items){
   }).join('');
 }
 
+function renderActivity(activity){
+  const questionNode = document.getElementById('activity-question');
+  const answerNode = document.getElementById('answer');
+  if (questionNode && activity?.question) questionNode.textContent = activity.question;
+  if (answerNode && activity?.answer) answerNode.dataset.correctAnswer = activity.answer;
+}
+
 (async function hydrateLesson(){
   try {
     const params = new URLSearchParams(window.location.search);
@@ -135,17 +142,13 @@ function renderConversation(items){
     document.title = 'HM Academy - ' + (lesson.titleFr || 'Lesson');
     const titleNode = document.getElementById('lesson-title');
     const descNode = document.getElementById('lesson-description');
-    const activityNode = document.getElementById('activity-question');
 
     if (titleNode) titleNode.textContent = '📖 Lesson ' + (lesson.number ?? '') + ': ' + (lesson.titleFr || '');
     if (descNode) descNode.textContent = lesson.descriptionAr || '';
-    if (activityNode && lesson.activity?.question) activityNode.textContent = lesson.activity.question;
 
     renderVocabulary(lesson.vocabulary);
     renderConversation(lesson.conversation);
-
-    const answerNode = document.getElementById('answer');
-    if (answerNode && lesson.activity?.answer) answerNode.dataset.correctAnswer = lesson.activity.answer;
+    renderActivity(lesson.activity);
   } catch (error) {
     console.warn('Lesson hydration skipped:', error);
   }
