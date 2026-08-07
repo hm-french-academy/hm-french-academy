@@ -1,0 +1,55 @@
+{
+  "adminTeacherDashboard": {
+    "version": "0.3.0",
+    "roles": ["admin", "teacher"],
+    "modules": [
+      {
+        "id": "content-management",
+        "title": {
+          "ar": "إدارة المحتوى",
+          "fr": "Gestion du contenu",
+          "en": "Content Management"
+        },
+        "tools": [
+          "create-course",
+          "create-lesson",
+          "upload-media",
+          "build-activities",
+          "manage-resources"
+        ]
+      },
+      {
+        "id": "student-management",
+        "title": {
+          "ar": "إدارة الطلاب",
+          "fr": "Gestion des étudiants",
+          "en": "Student Management"
+        },
+        "tools": [
+          "profiles",
+          "progress-monitoring",
+          "performance-analysis",
+          "learning-recommendations"
+        ]
+      },
+      {
+        "id": "analytics",
+        "title": {
+          "ar": "التحليلات",
+          "fr": "Analyses",
+          "en": "Analytics"
+        },
+        "metrics": [
+          "completion-rate",
+          "skill-growth",
+          "assessment-results",
+          "engagement"
+        ]
+      }
+    ],
+    "permissions": {
+      "admin": ["all"],
+      "teacher": ["content", "assigned-students", "reports"]
+    }
+  }
+}
