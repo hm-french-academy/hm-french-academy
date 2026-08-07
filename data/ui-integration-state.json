@@ -1,0 +1,23 @@
+{
+  "uiIntegrationState": {
+    "version": "0.3.0",
+    "status": "core-pages-linked",
+    "linkedPages": [
+      "index.html",
+      "dashboard.html",
+      "course.html",
+      "lesson.html",
+      "exam.html",
+      "profile.html",
+      "library.html",
+      "settings.html"
+    ],
+    "pendingPages": [
+      "achievements.html",
+      "preview.html",
+      "lesson2.html",
+      "lesson3.html"
+    ],
+    "nextStep": "add-secondary-pages-and-connect-navigation"
+  }
+}
