@@ -1,0 +1,14 @@
+{
+  "levels": [
+    {
+      "id": "A1",
+      "title": "Beginner",
+      "description": "أساسيات اللغة الفرنسية للمبتدئين"
+    },
+    {
+      "id": "A2",
+      "title": "Elementary",
+      "description": "تطوير التواصل اليومي"
+    }
+  ]
+}
