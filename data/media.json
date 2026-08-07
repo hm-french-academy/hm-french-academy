@@ -1,0 +1,36 @@
+{
+  "media": [
+    {
+      "id": "m-hello-audio-1",
+      "lessonId": "lesson-hello",
+      "type": "audio",
+      "title": "Greetings Audio 1",
+      "source": "assets/audio/lesson-hello-1.mp3",
+      "description": "Greetings pronunciation track"
+    },
+    {
+      "id": "m-hello-video-1",
+      "lessonId": "lesson-hello",
+      "type": "video",
+      "title": "Greetings Video 1",
+      "source": "assets/video/lesson-hello-1.mp4",
+      "description": "Greetings lesson video"
+    },
+    {
+      "id": "m-present-audio-1",
+      "lessonId": "lesson-present",
+      "type": "audio",
+      "title": "Introduce Yourself Audio 1",
+      "source": "assets/audio/lesson-present-1.mp3",
+      "description": "Introducing yourself pronunciation track"
+    },
+    {
+      "id": "m-alphabet-audio-1",
+      "lessonId": "lesson-alphabet",
+      "type": "audio",
+      "title": "Alphabet Audio 1",
+      "source": "assets/audio/lesson-alphabet-1.mp3",
+      "description": "Alphabet pronunciation track"
+    }
+  ]
+}
