@@ -1,0 +1,31 @@
+{
+  "uiBoundaryMap": {
+    "version": "0.3.0",
+    "pages": [
+      {
+        "file": "index.html",
+        "bindsTo": ["settings-core", "navigation-settings", "platform-summary"]
+      },
+      {
+        "file": "dashboard.html",
+        "bindsTo": ["student-dashboard", "student-progress", "learning-paths", "knowledge-map"]
+      },
+      {
+        "file": "course.html",
+        "bindsTo": ["multi-curriculum-core", "curriculum", "learning-paths"]
+      },
+      {
+        "file": "lesson.html",
+        "bindsTo": ["lesson-engine", "media-engine", "smart-dictionary", "activity-bank", "question-bank"]
+      },
+      {
+        "file": "exam.html",
+        "bindsTo": ["question-bank", "assessment", "student-progress"]
+      },
+      {
+        "file": "profile.html",
+        "bindsTo": ["student-progress", "achievement-certificate", "settings-core"]
+      }
+    ]
+  }
+}
