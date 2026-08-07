@@ -1,0 +1,44 @@
+{
+  "learningPaths": [
+    {
+      "id": "cefr-a1-path",
+      "type": "cefr",
+      "level": "A1",
+      "title": {
+        "ar": "المسار الدولي A1 - مبتدئ",
+        "fr": "Parcours international A1 - Débutant",
+        "en": "International A1 Path - Beginner"
+      },
+      "goals": [
+        "understand-basic-expressions",
+        "introduce-yourself",
+        "communicate-in-simple-situations"
+      ],
+      "skills": {
+        "listening": [],
+        "speaking": [],
+        "reading": [],
+        "writing": [],
+        "grammar": [],
+        "vocabulary": []
+      },
+      "modules": [
+        {
+          "id": "a1-module-1",
+          "title": {
+            "ar": "الأساسيات والتواصل الأول",
+            "fr": "Bases et première communication",
+            "en": "Basics and First Communication"
+          },
+          "linkedCurriculum": "primary-french",
+          "lessons": ["lesson-hello", "lesson-introduce", "lesson-alphabet"]
+        }
+      ],
+      "assessment": {
+        "entryTest": true,
+        "progressTests": true,
+        "finalAssessment": true
+      }
+    }
+  ]
+}
