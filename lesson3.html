@@ -9,51 +9,40 @@
 <body>
 <header>
 <h2>🇫🇷 HM Academy</h2>
-<p>المستوى A1 - الدرس الثالث</p>
+<p id="level-label">المستوى A1 - الدرس الثالث</p>
 <nav>
-<a href="index.html">الرئيسية</a>
-<a href="dashboard.html">لوحة الطالب</a>
-<a href="course.html">المنهج</a>
-<a href="lesson.html">الدرس 1</a>
-<a href="lesson2.html">الدرس 2</a>
-<a href="lesson3.html">الدرس 3</a>
-<a href="library.html">المكتبة</a>
-<a href="settings.html">الإعدادات</a>
+<a href="index.html">الرئيسية</a><a href="dashboard.html">لوحة الطالب</a><a href="course.html">المنهج</a><a href="lesson.html?id=lesson-hello">الدرس 1</a><a href="lesson2.html">الدرس 2</a><a href="lesson3.html">الدرس 3</a><a href="library.html">المكتبة</a><a href="settings.html">الإعدادات</a>
 </nav>
 </header>
-
 <main>
-<section class="hero">
-<h1>📖 Lesson 3: Alphabet et prononciation</h1>
-<p>تعلم الحروف الفرنسية والنطق الأساسي بطريقة مبسطة.</p>
-</section>
-
+<section class="hero"><h1 id="lesson-title">📖 Lesson 3: Alphabet et prononciation</h1><p id="lesson-description">تعلم الحروف الفرنسية والنطق الأساسي بطريقة مبسطة.</p></section>
 <section class="cards">
-<div class="course">
-<h2>🔤 الحروف الفرنسية</h2>
-<p>A - B - C - D - E</p>
-<p>تعلم أسماء الحروف والنطق الصحيح.</p>
-</div>
-
-<div class="course">
-<h2>🗣 قواعد النطق</h2>
-<p>Bonjour → بونجور</p>
-<p>Merci → ميرسي</p>
-<p>Comment → كومون</p>
-</div>
-
-<div class="course">
-<h2>✍️ تدريب</h2>
-<p>اقرأ الكلمات بصوت مرتفع وكرر النطق.</p>
-<p class="small">التطبيق الصوتي سيكون ضمن التطوير القادم.</p>
-</div>
+<div class="course"><h2>🎯 أهداف الدرس</h2><div id="objectives"></div></div>
+<div class="course"><h2>🔤 المفردات</h2><div id="vocabulary"></div></div>
+<div class="course"><h2>🗣 المحادثة والتطبيق</h2><div id="conversation"><p class="small">لا توجد محادثة مسجلة لهذا الدرس بعد.</p></div></div>
+<div class="course"><h2>✍️ التدريب</h2><p id="question"></p><p id="answer" class="small"></p></div>
 </section>
-
-<div class="topbar" style="justify-content:center;">
-<a class="btn" href="exam.html">اختبار الوحدة</a>
-</div>
+<div class="topbar" style="justify-content:center;"><a class="btn" href="exam.html">اختبار الوحدة</a></div>
 </main>
-
+<script>
+function esc(value){return String(value ?? '').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
+(async function(){
+ try{
+  const res=await fetch('data/lesson-schema.json'); if(!res.ok) throw new Error('data unavailable');
+  const data=await res.json(); const lesson=data.lessons.find(l=>l.id==='lesson-alphabet'); if(!lesson) return;
+  document.title='HM Academy - '+lesson.titleFr;
+  document.getElementById('level-label').textContent='المستوى '+lesson.level+' - الدرس '+lesson.number;
+  document.getElementById('lesson-title').textContent='📖 Lesson '+lesson.number+': '+lesson.titleFr;
+  document.getElementById('lesson-description').textContent=lesson.descriptionAr;
+  document.getElementById('objectives').innerHTML=lesson.objectives.map(x=>'<p>• '+esc(x)+'</p>').join('');
+  document.getElementById('vocabulary').innerHTML=lesson.vocabulary.map(x=>'<p><strong>🇫🇷 '+esc(x.fr)+'</strong><br>'+esc(x.ar)+'<br><span class="small">النطق: '+esc(x.pronunciation)+'</span></p>').join('<hr>');
+  if(lesson.conversation?.length) document.getElementById('conversation').innerHTML=lesson.conversation.map(x=>'<p><strong>'+esc(x.speaker)+':</strong> '+esc(x.fr)+'<br><span class="small">'+esc(x.ar)+'</span></p>').join('');
+  document.getElementById('question').textContent=lesson.activity?.question || '';
+  document.getElementById('answer').textContent=lesson.activity?.answer || '';
+ }catch(e){console.warn('Lesson 3 JSON load skipped:',e);}
+})();
+</script>
+<script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
