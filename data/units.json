@@ -1,0 +1,10 @@
+{
+  "units": [
+    {
+      "id": "unit-1",
+      "course": "french-a1",
+      "title": "Les bases",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    }
+  ]
+}
