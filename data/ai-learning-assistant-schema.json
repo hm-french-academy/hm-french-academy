@@ -1,0 +1,36 @@
+{
+  "aiLearningAssistant": {
+    "version": "0.3.0",
+    "purpose": "personalized-learning-support",
+    "features": [
+      {
+        "id": "smart-recommendation",
+        "description": "Suggest next lessons and activities based on student performance"
+      },
+      {
+        "id": "weakness-detection",
+        "description": "Identify skills requiring additional practice"
+      },
+      {
+        "id": "adaptive-learning",
+        "description": "Adjust difficulty according to learner progress"
+      },
+      {
+        "id": "revision-planner",
+        "description": "Create personalized spaced review schedule"
+      }
+    ],
+    "inputs": [
+      "student-progress",
+      "assessment-results",
+      "lesson-history",
+      "practice-activity"
+    ],
+    "outputs": [
+      "recommended-lesson",
+      "recommended-exercise",
+      "revision-plan",
+      "skill-report"
+    ]
+  }
+}
