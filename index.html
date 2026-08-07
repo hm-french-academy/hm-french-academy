@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HM Academy - المنصة التعليمية</title>
+<title>HM Academy v0.3 - المنصة التعليمية</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
@@ -13,6 +13,7 @@
 <nav>
 <a href="index.html">الرئيسية</a>
 <a href="dashboard.html">👤 الطالب</a>
+<a href="profile.html">الملف الشخصي</a>
 <a href="preview.html">المعاينة</a>
 </nav>
 </header>
@@ -28,18 +29,43 @@
 </section>
 
 <section class="cards">
-<div class="course"><h3>🇫🇷 A1 Beginner</h3><p>المستوى الأول للمبتدئين</p><p>النطق • التحيات • التعارف • الجمل الأساسية</p><a class="btn" href="course.html">عرض المستوى</a></div>
-<div class="course"><h3>📚 دروس تفاعلية</h3><p>شرح + أمثلة + تدريبات تطبيقية</p><a class="btn secondary" href="lesson.html">فتح الدروس</a></div>
-<div class="course"><h3>📝 الاختبارات</h3><p>قياس تقدمك بعد كل وحدة</p><a class="btn secondary" href="exam.html">ابدأ اختبار</a></div>
+<div class="course">
+<h3>🇫🇷 A1 Beginner</h3>
+<p>المستوى الأول للمبتدئين</p>
+<p>النطق • التحيات • التعارف • الجمل الأساسية</p>
+<a class="btn" href="course.html">عرض المستوى</a>
+</div>
+<div class="course">
+<h3>📚 دروس تفاعلية</h3>
+<p>شرح + أمثلة + تدريبات تطبيقية</p>
+<a class="btn secondary" href="lesson.html">فتح الدروس</a>
+</div>
+<div class="course">
+<h3>📝 الاختبارات</h3>
+<p>قياس تقدمك بعد كل وحدة</p>
+<a class="btn secondary" href="exam.html">ابدأ اختبار</a>
+</div>
+</section>
+
+<section class="hero">
+<h2>🧭 مسارات المنصة</h2>
+<p>تمهيدًا للتوسع القادم، المنصة أصبحت تتجه نحو نظام مستويات ووحدات ومحتوى أكثر تنظيمًا.</p>
+<div class="roadmap" style="margin-top:16px;">
+<div>✅ A1</div>
+<div class="locked">🔒 A2</div>
+<div class="locked">🔒 B1</div>
+<div class="locked">🔒 B2</div>
+</div>
 </section>
 
 <section class="hero">
 <h2>📈 تقدم الطالب</h2>
 <p>A1 Unit 1</p>
-<div class="progress-bar"><div></div></div>
+<div class="progress-bar"><div data-progress="60"></div></div>
 <p class="small">60% مكتمل</p>
 </section>
 </main>
+<script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
