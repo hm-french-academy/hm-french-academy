@@ -1,0 +1,57 @@
+{
+  "knowledgeMap": {
+    "version": "0.3.0",
+    "nodes": [
+      {
+        "id": "a1-greetings",
+        "type": "skill",
+        "title": {
+          "ar": "التحيات والتواصل الأول",
+          "fr": "Salutations et première communication",
+          "en": "Greetings and First Communication"
+        },
+        "level": "A1",
+        "dependsOn": []
+      },
+      {
+        "id": "a1-introduction",
+        "type": "skill",
+        "title": {
+          "ar": "التعريف بالنفس",
+          "fr": "Se présenter",
+          "en": "Introducing Yourself"
+        },
+        "level": "A1",
+        "dependsOn": ["a1-greetings"]
+      },
+      {
+        "id": "a1-pronunciation",
+        "type": "skill",
+        "title": {
+          "ar": "النطق الأساسي",
+          "fr": "Prononciation de base",
+          "en": "Basic Pronunciation"
+        },
+        "level": "A1",
+        "dependsOn": ["a1-greetings"]
+      }
+    ],
+    "links": [
+      {
+        "from": "a1-greetings",
+        "to": "lesson-hello",
+        "relation": "teaches"
+      },
+      {
+        "from": "a1-introduction",
+        "to": "lesson-introduce",
+        "relation": "teaches"
+      },
+      {
+        "from": "a1-pronunciation",
+        "to": "lesson-alphabet",
+        "relation": "teaches"
+      }
+    ]
+  }
+}
