@@ -1,0 +1,43 @@
+{
+  "mediaEngine": {
+    "version": "0.3.0",
+    "purpose": "lesson-media-management",
+    "assets": [
+      {
+        "id": "hello-audio-01",
+        "type": "audio",
+        "lessonId": "lesson-hello",
+        "features": [
+          "repeat",
+          "slow-playback",
+          "normal-playback",
+          "pronunciation-practice"
+        ],
+        "status": "ready_for_upload"
+      },
+      {
+        "id": "hello-video-01",
+        "type": "video",
+        "lessonId": "lesson-hello",
+        "features": [
+          "teacher-explanation",
+          "dialogue-scene",
+          "subtitles",
+          "lesson-summary"
+        ],
+        "status": "ready_for_upload"
+      }
+    ],
+    "supportedFormats": {
+      "audio": ["mp3", "wav", "ogg"],
+      "video": ["mp4", "webm"],
+      "documents": ["pdf", "docx"]
+    },
+    "integration": [
+      "lesson-engine",
+      "smart-dictionary",
+      "student-progress",
+      "assessment"
+    ]
+  }
+}
