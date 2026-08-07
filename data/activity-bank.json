@@ -1,0 +1,40 @@
+{
+  "activityTypes": [
+    {
+      "id": "listening",
+      "title": {
+        "ar": "تدريب الاستماع",
+        "fr": "Compréhension orale",
+        "en": "Listening Practice"
+      },
+      "features": ["audio", "questions", "feedback"]
+    },
+    {
+      "id": "speaking",
+      "title": {
+        "ar": "تدريب المحادثة والنطق",
+        "fr": "Expression orale",
+        "en": "Speaking Practice"
+      },
+      "features": ["recording", "pronunciation", "comparison"]
+    },
+    {
+      "id": "vocabulary",
+      "title": {
+        "ar": "تدريب المفردات",
+        "fr": "Vocabulaire",
+        "en": "Vocabulary Practice"
+      },
+      "features": ["flashcards", "matching", "quiz"]
+    },
+    {
+      "id": "grammar",
+      "title": {
+        "ar": "تدريب القواعد",
+        "fr": "Grammaire",
+        "en": "Grammar Practice"
+      },
+      "features": ["examples", "exercises", "auto-check"]
+    }
+  ]
+}
