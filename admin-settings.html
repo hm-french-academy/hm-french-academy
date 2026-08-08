@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>HM Academy - إعدادات الإدارة</title><link rel="stylesheet" href="css/style.css?v=20260808"></head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>الإعدادات المتقدمة</p></header>
+<main>
+<h1>⚙️ إعدادات الإدارة</h1>
+<div id="settings"></div>
+</main>
+<footer>HM Academy © 2026</footer>
+<script>
+(async()=>{try{const s=await(await fetch('data/admin-settings.json')).json();settings.innerHTML=Object.entries(s).map(([k,v])=>`<div class="card"><b>${k}</b><p>${v}</p></div>`).join('')}catch(e){}})();
+</script>
+</body>
+</html>
