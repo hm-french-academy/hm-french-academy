@@ -1,0 +1,13 @@
+{
+  "lesson-hello": {
+    "Bonjour": "assets/audio/bonjour.mp3",
+    "Salut": "assets/audio/salut.mp3",
+    "Bonsoir": "assets/audio/bonsoir.mp3",
+    "Au revoir": "assets/audio/au-revoir.mp3"
+  },
+  "lesson-present": {
+    "Je m'appelle...": "assets/audio/je-mappelle.mp3",
+    "J'habite à...": "assets/audio/jhabite.mp3",
+    "Je suis étudiant(e).": "assets/audio/je-suis-etudiant.mp3"
+  }
+}
