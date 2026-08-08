@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Academy - Student Profile</title>
+<link rel="stylesheet" href="css/style.css?v=20260809">
+</head>
+<body>
+<header>
+<a href="index.html">🇫🇷 HM Academy</a>
+<h2>تسجيل بيانات الطالب</h2>
+</header>
+<main class="hero">
+<form id="studentForm">
+<label>الاسم الكامل</label>
+<input id="fullName" type="text" required>
+<label>البريد الإلكتروني</label>
+<input id="email" type="email" required>
+<label>المستوى الحالي</label>
+<select id="level">
+<option>A1</option>
+<option>A2</option>
+<option>B1</option>
+<option>B2</option>
+</select>
+<label>أهداف التعلم</label>
+<textarea id="goals"></textarea>
+<button class="btn" type="submit">حفظ البيانات</button>
+</form>
+<p id="status"></p>
+</main>
+<script>
+document.getElementById('studentForm').addEventListener('submit', function(e){
+ e.preventDefault();
+ localStorage.setItem('hm_student_profile', JSON.stringify({
+  name: fullName.value,
+  email: email.value,
+  level: level.value,
+  goals: goals.value
+ }));
+ document.getElementById('status').textContent='تم حفظ بيانات الطالب بنجاح';
+});
+</script>
+</body>
+</html>
