@@ -4,13 +4,22 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>HM Academy - التقييمات</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
-<style>.wrap{padding:24px}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 20px #0001}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:12px;border-bottom:1px solid #ddd;text-align:right}</style>
+<style>
+.wrap{padding:24px}.nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}.nav a{padding:10px 14px;background:#f1f5f9;border-radius:12px;text-decoration:none;color:inherit}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 20px #0001}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:12px;border-bottom:1px solid #ddd;text-align:right}.search{padding:12px;width:100%;max-width:400px;border-radius:12px;border:1px solid #ccc;margin-bottom:15px}.empty{padding:20px;text-align:center;color:#666}
+</style>
 </head>
 <body>
 <header><h2>🇫🇷 HM Academy</h2><p>إدارة التقييمات</p></header>
-<main class="wrap"><section class="card"><h1>📝 نتائج التقييمات</h1><table class="table"><thead><tr><th>التقييم</th><th>المستوى</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody id="rows"></tbody></table></section></main>
+<main class="wrap">
+<nav class="nav"><a href="admin-center.html">مركز الإدارة</a><a href="admin-dashboard.html">لوحة الإدارة</a><a href="admin-students.html">المتعلمين</a><a href="admin-analytics.html">التحليلات</a><a href="admin-notifications.html">الإشعارات</a><a href="admin-settings.html">الإعدادات</a></nav>
+<section class="card"><h1>📝 نتائج التقييمات</h1><input id="search" class="search" placeholder="بحث في التقييمات"><table class="table"><thead><tr><th>التقييم</th><th>المستوى</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody id="rows"></tbody></table></section>
+</main>
 <footer>HM Academy © 2026</footer>
 <script>
-(async()=>{try{const d=await (await fetch('data/admin-assessments.json')).json();document.getElementById('rows').innerHTML=(d.assessments||[]).map(a=>`<tr><td>${a.title}</td><td>${a.level}</td><td>${a.score}%</td><td>${a.date}</td></tr>`).join('')}catch(e){}})();
+let assessments=[];
+async function load(){try{assessments=(await (await fetch('data/admin-assessments.json')).json()).assessments||[]}catch{assessments=[]}render(assessments)}
+function render(list){rows.innerHTML=list.length?list.map(a=>`<tr><td>${a.title}</td><td>${a.level}</td><td>${a.score}%</td><td>${a.date}</td></tr>`).join(''):'<tr><td colspan="4" class="empty">لا توجد تقييمات</td></tr>'}
+search.oninput=e=>render(assessments.filter(a=>a.title.includes(e.target.value)||a.level.includes(e.target.value)));
+load();
 </script>
 </body></html>
