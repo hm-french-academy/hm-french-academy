@@ -12,13 +12,13 @@
 <body>
 <header>
 <h2>🇫🇷 HM Academy</h2><p>لوحة الإدارة والمعلم</p>
-<nav><a href="dashboard.html">لوحة الطالب</a><a href="settings.html">الإعدادات</a><a href="index.html">الموقع</a></nav>
+<nav><a href="dashboard.html">لوحة الطالب</a><a href="settings.html">الإعدادات</a><a href="preview.html">المعاينة</a></nav>
 </header>
 <main>
 <section class="hero">
 <h1>لوحة الإدارة</h1>
 <p>مركز التحكم في الطلاب والمحتوى والتقييمات والشهادات.</p>
-<span class="status">وضع المعاينة — البيانات المحلية</span>
+<span class="status">وضع المعاينة — البيانات المركزية</span>
 </section>
 <section class="admin-grid">
 <div class="admin-card">👨‍🎓 الطلاب<strong id="students">0</strong></div>
@@ -28,14 +28,7 @@
 </section>
 <section class="course">
 <h2>الوحدات الإدارية</h2>
-<div class="admin-actions">
-<a href="dashboard.html"><strong>👨‍🎓 إدارة المتعلمين</strong><br>متابعة التقدم والمهارات.</a>
-<a href="lesson.html"><strong>📚 إدارة الدروس</strong><br>فتح ومراجعة المحتوى.</a>
-<a href="assessment.html"><strong>📝 التقييمات</strong><br>الاختبارات والنتائج.</a>
-<a href="certificate.html"><strong>🏆 الشهادات</strong><br>الإصدار والتحقق.</a>
-<a href="achievements.html"><strong>🎖️ الإنجازات</strong><br>مراجعة نظام التحفيز.</a>
-<a href="settings.html"><strong>⚙️ إعدادات المنصة</strong><br>الإعدادات المركزية.</a>
-</div>
+<div class="admin-actions" id="modules"></div>
 </section>
 <section class="course" style="margin-top:20px">
 <h2>آخر نشاط</h2>
@@ -51,12 +44,14 @@
 <script>
 const safeJSON=async(path,fallback)=>{try{const r=await fetch(path);if(!r.ok)throw Error();return await r.json()}catch{return fallback}};
 (async()=>{
+const admin=await safeJSON('data/admin-dashboard.json',{overview:{students:0,lessons:0,assessments:0,certificates:0},modules:[]});
 const cert=await safeJSON('data/certificates/certificates.json',{certificates:[]});
 const lessons=await safeJSON('data/lessons/lessons.json',{lessons:[]});
-document.getElementById('certificates').textContent=(cert.certificates||[]).length;
-document.getElementById('lessons').textContent=(lessons.lessons||[]).length;
-document.getElementById('students').textContent=localStorage.getItem('hm_students_count')||'0';
-document.getElementById('assessments').textContent=localStorage.getItem('hm_assessments_count')||'0';
+document.getElementById('certificates').textContent=(cert.certificates||[]).length || admin.overview.certificates || 0;
+document.getElementById('lessons').textContent=(lessons.lessons||[]).length || admin.overview.lessons || 0;
+document.getElementById('students').textContent=admin.overview.students || (localStorage.getItem('hm_students_count')||'0');
+document.getElementById('assessments').textContent=admin.overview.assessments || (localStorage.getItem('hm_assessments_count')||'0');
+document.getElementById('modules').innerHTML=(admin.modules||[]).map(m=>`<a href="${m.id==="students"?"profile.html":m.id==="content"?"lesson.html":m.id==="assessments"?"assessment.html":"certificate.html"}"><strong>🔹 ${m.title}</strong><br>${m.description}</a>`).join('');
 })();
 </script>
 </body>
