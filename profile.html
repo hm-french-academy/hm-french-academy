@@ -1,87 +1,35 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - ملف الطالب</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header>
-<h2>🇫🇷 HM Academy</h2>
-<p>ملف الطالب</p>
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="dashboard.html">لوحة الطالب</a>
-<a href="profile.html">الملف الشخصي</a>
-<a href="course.html">المنهج</a>
-<a href="lesson.html">الدرس</a>
-<a href="library.html">المكتبة</a>
-<a href="settings.html">الإعدادات</a>
-</nav>
-</header>
-
+<header><h2>🇫🇷 HM Academy</h2><p>ملف الطالب الذكي</p><nav><a href="dashboard.html">لوحة الطالب</a><a href="achievements.html">الإنجازات</a><a href="course.html">المنهج</a></nav></header>
 <main>
 <section class="hero">
 <h1>👤 ملف الطالب</h1>
-<p>الاسم: طالب HM Academy</p>
-<p>البريد: student@hm-academy.com</p>
-<p>المستوى: A1 Beginner</p>
-<p>الحالة: مستمر في التعلم</p>
-<div class="topbar" style="justify-content:center;margin-top:16px;">
-<a class="btn" href="lesson.html">متابعة آخر درس</a>
-<a class="btn secondary" href="dashboard.html">العودة للوحة الطالب</a>
-</div>
+<p>الاسم: <strong>طالب HM Academy</strong></p>
+<p>المستوى: <strong id="level">A1 Beginner</strong></p>
+<p>XP: <strong id="xp">0</strong></p>
 </section>
-
 <section class="grid course-grid">
-<div class="course-card">
-<h3>📚 المسار الحالي</h3>
-<p class="meta">French A1</p>
-<p class="meta">الوحدة: Les bases</p>
-<div class="progress-wrap">
-<div class="progress-bar"><div data-progress="35"></div></div>
-<p class="small">35% مكتمل</p>
-</div>
-</div>
-
-<div class="course-card">
-<h3>🏆 الإنجازات</h3>
-<p class="meta">Starter Badge</p>
-<p class="meta">إكمال أول درس</p>
-<p class="meta">بداية رحلة الفرنسية</p>
-<a class="btn secondary" href="achievements.html">عرض الشارات</a>
-</div>
-
-<div class="course-card">
-<h3>📈 الإحصائيات</h3>
-<p class="meta">الدروس المكتملة: 1</p>
-<p class="meta">الاختبارات المنجزة: 1</p>
-<p class="meta">ساعات التعلم: 3</p>
-<a class="btn" href="course.html">استعراض المنهج</a>
-</div>
-</section>
-
-<section class="hero" style="margin-top:18px;">
-<div class="section-title"><h2>🎯 أهداف هذا الأسبوع</h2><span>خطة الطالب</span></div>
-<div class="timeline">
-<div class="timeline-item">إكمال درس Se présenter.</div>
-<div class="timeline-item">مراجعة مفردات التحيات.</div>
-<div class="timeline-item">اجتياز اختبار الوحدة الأولى.</div>
-</div>
-</section>
-
-<section class="hero" style="margin-top:18px;">
-<div class="section-title"><h2>🕘 آخر الأنشطة</h2><span>نشاط حديث</span></div>
-<div class="timeline">
-<div class="timeline-item">✅ تم فتح Lesson 1: Les salutations</div>
-<div class="timeline-item">📝 تم إنهاء اختبار الوحدة</div>
-<div class="timeline-item">🎓 تم تسجيل أول شارة إنجاز</div>
-</div>
+<div class="course-card"><h3>📚 المسار الحالي</h3><p>French A1</p><p>الدروس المكتملة: <strong id="lessons">0</strong></p><div class="progress-wrap"><div class="progress-bar"><div id="progress-fill"></div></div><p id="progress-text">0%</p></div></div>
+<div class="course-card"><h3>🏆 الإنجازات</h3><p>الشارات: <strong id="badges">0</strong></p><a class="btn secondary" href="achievements.html">عرض الشارات</a></div>
+<div class="course-card"><h3>📈 الحالة</h3><p id="status">مستمر في التعلم</p></div>
 </section>
 </main>
-
-<script src="scripts/app.js"></script>
+<script src="scripts/learning-progress.js"></script>
+<script>
+const data=HMProgress.get();
+document.getElementById('xp').textContent=data.xp||0;
+document.getElementById('lessons').textContent=(data.completedLessons||[]).length;
+document.getElementById('badges').textContent=(data.achievements||[]).length;
+const percent=Math.min(100,Math.round(((data.completedLessons||[]).length/30)*100));
+document.getElementById('progress-fill').style.width=percent+'%';
+document.getElementById('progress-text').textContent=percent+'% مكتمل';
+</script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
