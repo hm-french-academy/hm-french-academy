@@ -10,94 +10,25 @@
 <header>
 <h2>🇫🇷 HM Academy</h2>
 <p>لوحة الطالب الذكية</p>
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="dashboard.html">👤 الطالب</a>
-<a href="course.html">المنهج</a>
-<a href="lesson.html">الدرس</a>
-<a href="library.html">المكتبة</a>
-<a href="settings.html">الإعدادات</a>
-</nav>
+<nav><a href="index.html">الرئيسية</a><a href="dashboard.html">👤 الطالب</a><a href="course.html">المنهج</a><a href="library.html">المكتبة</a><a href="settings.html">الإعدادات</a></nav>
 </header>
-
 <main>
-<div class="topbar">
-<div>
-<strong>مرحباً بك يا طالب HM Academy</strong>
-<div class="small">تابع رحلتك في تعلم الفرنسية خطوة بخطوة.</div>
-</div>
-<div class="pill">A1 Beginner · 60% مكتمل</div>
-</div>
-
-<section class="hero grid dashboard">
-<div>
-<h1>👤 مرحباً بك في رحلتك التعليمية</h1>
-<p>لوحة منظمة تمنحك وصولاً سريعاً إلى الدروس، المنهج، التقدم، والإنجازات مع تتبع واضح لخطوتك التالية.</p>
-<div class="topbar" style="justify-content:flex-start;margin-top:16px;">
-<a class="btn" href="lesson.html">▶️ متابعة الدرس</a>
-<a class="btn secondary" href="course.html">📚 عرض المنهج</a>
-</div>
-</div>
+<section class="hero">
+<h1>👤 رحلتك التعليمية</h1>
+<p>لوحة متابعة مبنية على بيانات الطالب.</p>
 <div class="stats-card">
-<h3>📈 التقدم الحالي</h3>
-<p class="meta"><strong>المستوى:</strong> A1 Beginner</p>
-<p class="meta"><strong>الوحدة:</strong> Unité 1 - Les bases</p>
-<div class="progress-wrap">
-<div class="progress-bar"><div data-progress="60"></div></div>
-<p class="small">60% مكتمل</p>
-</div>
-</div>
-<div class="stats-card">
-<h3>🎯 الهدف القادم</h3>
-<p class="meta">إنهاء الوحدة الأولى، ثم الانتقال إلى اختبارات المراجعة القصيرة.</p>
-<div class="badge">جاهز للتنفيذ</div>
+<p>المستوى: <strong data-student-level>A1</strong></p>
+<p>النقاط: <strong data-student-xp>120</strong> XP</p>
+<p>سلسلة التعلم: <strong data-student-streak>3</strong> أيام</p>
 </div>
 </section>
-
-<section class="grid course-grid" style="margin-top:18px;">
-<div class="course-card">
-<div class="section-title"><h3>▶️ متابعة التعلم</h3><span>آخر نشاط</span></div>
-<p class="meta">آخر درس: Les salutations</p>
-<p class="meta">الحالة: قيد التعلم</p>
-<a class="btn" href="lesson.html">استمرار الدرس</a>
-</div>
-
-<div class="course-card">
-<div class="section-title"><h3>📚 مقرراتي</h3><span>المسار الحالي</span></div>
-<p class="meta">French A1</p>
-<p class="meta">الوحدة 1: التحيات والتعارف</p>
-<p class="meta">الوحدة 2: قيد الفتح</p>
-<a class="btn secondary" href="course.html">عرض المنهج</a>
-</div>
-
-<div class="course-card">
-<div class="section-title"><h3>🏆 الإنجازات</h3><span>الشارات</span></div>
-<p class="meta">⭐ أول درس مكتمل</p>
-<p class="meta">⭐ بداية رحلة الفرنسية</p>
-<a class="btn secondary" href="achievements.html">عرض الشارات</a>
-</div>
-</section>
-
-<section class="hero" style="margin-top:18px;">
-<div class="section-title"><h2>📊 سجل النشاط</h2><span>آخر التحديثات</span></div>
-<div class="timeline">
-<div class="timeline-item">✅ تم فتح Lesson 1: Les salutations</div>
-<div class="timeline-item">📝 اختبار الوحدة الأولى جاهز</div>
-<div class="timeline-item">🎯 الهدف القادم: إنهاء Unité 1</div>
-</div>
-</section>
-
-<section class="hero" style="margin-top:18px;">
-<div class="section-title"><h2>🗺️ خارطة التعلم</h2><span>المراحل</span></div>
-<div class="roadmap">
-<div>✅ A1 Beginner</div>
-<div class="locked">🔒 A2 Elementary</div>
-<div class="locked">🔒 B1 Intermediate</div>
-<div class="locked">🔒 B2 Advanced</div>
-</div>
+<section class="grid course-grid">
+<div class="course-card"><h3>▶️ المتابعة</h3><p>الدرس الحالي: التعريف بالنفس</p><a class="btn" href="lesson2.html">متابعة</a></div>
+<div class="course-card"><h3>📚 المنهج</h3><p>المسار A1</p><a class="btn secondary" href="course.html">عرض المنهج</a></div>
+<div class="course-card"><h3>🏆 الإنجازات</h3><p>شارات الطالب والتقدم</p><a class="btn secondary" href="achievements.html">عرض</a></div>
 </section>
 </main>
-
+<script src="scripts/progress-engine.js"></script>
 <script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
