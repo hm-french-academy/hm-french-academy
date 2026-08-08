@@ -1,0 +1,25 @@
+:root{
+  --bg:#fffaf3;
+  --card:#ffffff;
+  --text:#243042;
+  --muted:#64748b;
+  --primary:#1d4ed8;
+  --primary-2:#1e40af;
+  --accent:#f97316;
+  --border:#fed7aa;
+  --shadow:0 12px 35px rgba(30,64,175,.10);
+}
+.hero,.course,.stats-card,.library-card,.setting-group,.timeline-item{
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+.btn{
+  border-radius:18px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+}
+.btn.secondary{
+  background:#fff7ed;
+  color:#c2410c!important;
+}
+.badge{background:#dbeafe;color:#1e40af}
+.pill{background:#ffedd5;color:#c2410c}
