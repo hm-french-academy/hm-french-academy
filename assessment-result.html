@@ -7,26 +7,44 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header><h2>🇫🇷 HM Academy</h2><p>تقرير مستوى الطالب</p></header>
+<header>
+  <h2>🇫🇷 HM Academy</h2>
+  <p>تقرير مستوى الطالب</p>
+  <nav>
+    <a href="dashboard.html">لوحة الطالب</a>
+    <a href="profile.html">الملف الشخصي</a>
+    <a href="assessment.html">إعادة الاختبار</a>
+    <a href="certificate.html">الشهادة</a>
+  </nav>
+</header>
 <main>
-<section class="hero">
-<h1>📊 نتيجة الاختبار</h1>
-<div id="report">جاري تحميل التقرير...</div>
-<a href="profile.html">العودة إلى الملف الشخصي</a>
-</section>
+  <section class="hero">
+    <h1>📊 نتيجة الاختبار</h1>
+    <div id="report">جاري تحميل التقرير...</div>
+    <div class="topbar" style="justify-content:center;margin-top:18px;">
+      <a class="btn" href="profile.html">العودة إلى الملف الشخصي</a>
+      <a class="btn secondary" href="assessment.html">إعادة الاختبار</a>
+      <a class="btn secondary" href="certificate.html">عرض الشهادة</a>
+    </div>
+  </section>
 </main>
 <script src="scripts/skills-engine.js"></script>
 <script src="scripts/assessment-report-engine.js"></script>
 <script>
-const score = Number(localStorage.getItem('hm_last_score') || 0);
-const report = HMReport.generate(score, HMSkills ? HMSkills.get() : {});
-document.getElementById('report').innerHTML = `
-<p>النتيجة: ${report.score}%</p>
-<p>المستوى المقترح: ${report.level}</p>
-<p>أقوى مهارة: ${report.strongest || 'غير محدد'}</p>
-<p>تحتاج تطوير: ${report.weakest || 'غير محدد'}</p>
-${report.recommendations.map(r=>'<p>• '+r+'</p>').join('')}
-`;
+  const score = Number(localStorage.getItem('hm_last_score') || 0);
+  const report = HMReport.generate(score, HMSkills ? HMSkills.get() : {});
+  document.getElementById('report').innerHTML = `
+    <div class="course" style="max-width:780px;margin:0 auto;">
+      <h2>النتيجة: ${report.score}%</h2>
+      <p>المستوى المقترح: <strong>${report.level}</strong></p>
+      <p>أقوى مهارة: <strong>${report.strongest || 'غير محدد'}</strong></p>
+      <p>أضعف مهارة: <strong>${report.weakest || 'غير محدد'}</strong></p>
+      <hr>
+      <h3>التوصيات</h3>
+      ${report.recommendations.map(r => `<p>• ${r}</p>`).join('')}
+    </div>
+  `;
 </script>
+<footer>HM Academy © 2026</footer>
 </body>
 </html>
