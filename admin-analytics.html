@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HM Academy - التحليلات</title>
+<link rel="stylesheet" href="css/style.css?v=20260808">
+<style>
+.wrap{padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.bar{height:14px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}
+</style>
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>لوحة التحليلات الإدارية</p></header>
+<main class="wrap">
+<h1>📊 تحليلات المنصة</h1>
+<div class="grid">
+<div class="card">الطلاب النشطون<h2 id="active">0</h2></div>
+<div class="card">متوسط التقييم<h2 id="avg">0%</h2></div>
+</div>
+<div class="card"><h2>توزيع المستويات</h2><div id="levels"></div></div>
+<div class="card"><h2>الدروس الأكثر نشاطًا</h2><ul id="lessons"></ul></div>
+</main>
+<footer>HM Academy © 2026</footer>
+<script>
+(async()=>{try{const d=await (await fetch('data/admin-analytics.json')).json();active.textContent=d.activeStudents||0;avg.textContent=(d.averageAssessmentScore||0)+'%';levels.innerHTML=Object.entries(d.studentsByLevel||{}).map(([k,v])=>`<p>${k}: ${v}<div class="bar"><div class="fill" style="width:${v*20}%"></div></div></p>`).join('');lessons.innerHTML=(d.topLessons||[]).map(x=>`<li>${x}</li>`).join('')||'<li>لا توجد بيانات بعد</li>';}catch(e){}}
+)();
+</script>
+</body>
+</html>
