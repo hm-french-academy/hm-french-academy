@@ -4,25 +4,16 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>HM Academy - التحليلات</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
-<style>
-.wrap{padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.bar{height:14px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}
-</style>
+<style>.wrap{padding:24px}.nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}.nav a{padding:10px 14px;background:#f1f5f9;border-radius:12px;text-decoration:none;color:inherit}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.bar{height:14px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}.empty{color:#666;text-align:center}</style>
 </head>
 <body>
 <header><h2>🇫🇷 HM Academy</h2><p>لوحة التحليلات الإدارية</p></header>
 <main class="wrap">
+<nav class="nav"><a href="admin-center.html">مركز الإدارة</a><a href="admin-dashboard.html">لوحة الإدارة</a><a href="admin-students.html">المتعلمين</a><a href="admin-assessments.html">التقييمات</a><a href="admin-activity.html">النشاط</a><a href="admin-notifications.html">الإشعارات</a><a href="admin-settings.html">الإعدادات</a></nav>
 <h1>📊 تحليلات المنصة</h1>
-<div class="grid">
-<div class="card">الطلاب النشطون<h2 id="active">0</h2></div>
-<div class="card">متوسط التقييم<h2 id="avg">0%</h2></div>
-</div>
+<div class="grid"><div class="card">الطلاب النشطون<h2 id="active">0</h2></div><div class="card">متوسط التقييم<h2 id="avg">0%</h2></div></div>
 <div class="card"><h2>توزيع المستويات</h2><div id="levels"></div></div>
 <div class="card"><h2>الدروس الأكثر نشاطًا</h2><ul id="lessons"></ul></div>
-</main>
-<footer>HM Academy © 2026</footer>
-<script>
-(async()=>{try{const d=await (await fetch('data/admin-analytics.json')).json();active.textContent=d.activeStudents||0;avg.textContent=(d.averageAssessmentScore||0)+'%';levels.innerHTML=Object.entries(d.studentsByLevel||{}).map(([k,v])=>`<p>${k}: ${v}<div class="bar"><div class="fill" style="width:${v*20}%"></div></div></p>`).join('');lessons.innerHTML=(d.topLessons||[]).map(x=>`<li>${x}</li>`).join('')||'<li>لا توجد بيانات بعد</li>';}catch(e){}}
-)();
-</script>
-</body>
-</html>
+</main><footer>HM Academy © 2026</footer>
+<script>(async()=>{try{const d=await(await fetch('data/admin-analytics.json')).json();active.textContent=d.activeStudents||0;avg.textContent=(d.averageAssessmentScore||0)+'%';levels.innerHTML=Object.entries(d.studentsByLevel||{}).map(([k,v])=>`<p>${k}: ${v}<div class="bar"><div class="fill" style="width:${v*20}%"></div></div></p>`).join('')||'<p class="empty">لا توجد بيانات</p>';lessons.innerHTML=(d.topLessons||[]).map(x=>`<li>${x}</li>`).join('')||'<li class="empty">لا توجد بيانات بعد</li>'}catch(e){}})()</script>
+</body></html>
