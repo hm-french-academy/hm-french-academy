@@ -7,31 +7,25 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header>
-<h2>🇫🇷 HM Academy</h2>
-<p>شهادة إتمام المستوى</p>
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="dashboard.html">لوحة الطالب</a>
-<a href="achievements.html">الإنجازات</a>
-</nav>
-</header>
-<main>
-<section class="hero">
+<header><h2>🇫🇷 HM Academy</h2><p>شهادة إتمام المستوى</p></header>
+<main><section class="hero">
 <h1>🏆 شهادة إتمام</h1>
-<p>تهانينا! لقد أكملت مرحلة من رحلتك التعليمية.</p>
-<div class="course" style="max-width:760px;margin:18px auto 0;">
-<h2>French A1 - Unité 1</h2>
-<p>Les bases</p>
-<p>التحيات - التعارف - النطق الأساسي</p>
-<p>Issued by HM Academy</p>
+<p id="message"></p>
+<div class="course">
+<h2 id="level"></h2>
+<p id="student"></p>
+<p id="certificate-id"></p>
+<p id="date"></p>
 </div>
-<div class="topbar" style="justify-content:center;margin-top:18px;">
-<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
-<a class="btn secondary" href="achievements.html">عرض الإنجازات</a>
-</div>
-</section>
-</main>
-<footer>HM Academy © 2026</footer>
+</section></main>
+<script src="scripts/certificate-engine.js"></script>
+<script>
+const cert=HMCertificate.create('طالب HM Academy','A1');
+document.getElementById('message').textContent='تهانينا على إتمام المستوى';
+document.getElementById('level').textContent='المستوى: '+cert.level;
+document.getElementById('student').textContent='الطالب: '+cert.student;
+document.getElementById('certificate-id').textContent='رقم الشهادة: '+cert.id;
+document.getElementById('date').textContent='تاريخ الإصدار: '+new Date(cert.issuedAt).toLocaleDateString('ar-EG');
+</script>
 </body>
 </html>
