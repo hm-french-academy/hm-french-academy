@@ -6,7 +6,7 @@
 <title>HM Academy - لوحة الإدارة</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
 <style>
-.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:24px 0}.admin-card{padding:20px;border-radius:18px;background:var(--card-bg,#fff);box-shadow:0 6px 22px rgba(0,0,0,.07)}.admin-card strong{display:block;font-size:28px;margin-top:8px}.admin-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.admin-actions a{display:block;padding:16px;border-radius:14px;background:#f5f7fb;text-decoration:none}.status{display:inline-block;padding:6px 10px;border-radius:999px;background:#e8f7ee}.table-wrap{overflow:auto}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #eee;text-align:right}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:24px 0}.admin-card{padding:20px;border-radius:18px;background:var(--card-bg,#fff);box-shadow:0 6px 22px rgba(0,0,0,.07)}.admin-card strong{display:block;font-size:28px;margin-top:8px}.admin-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.admin-actions a{display:block;padding:16px;border-radius:14px;background:#f5f7fb;text-decoration:none}.status{display:inline-block;padding:6px 10px;border-radius:999px;background:#e8f7ee}.table-wrap{overflow:auto}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #eee;text-align:right}.student-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.student-item{padding:16px;border-radius:14px;background:#f8fafc;border:1px solid #e5e7eb}
 </style>
 </head>
 <body>
@@ -25,6 +25,12 @@
 <div class="admin-card">📚 الدروس<strong id="lessons">0</strong></div>
 <div class="admin-card">📝 التقييمات<strong id="assessments">0</strong></div>
 <div class="admin-card">🏆 الشهادات<strong id="certificates">0</strong></div>
+</section>
+<section class="course">
+<h2>إدارة المتعلمين</h2>
+<div class="student-list" id="student-list">
+  <div class="student-item">جاري تحميل بيانات المتعلمين...</div>
+</div>
 </section>
 <section class="course">
 <h2>الوحدات الإدارية</h2>
@@ -47,11 +53,15 @@ const safeJSON=async(path,fallback)=>{try{const r=await fetch(path);if(!r.ok)thr
 const admin=await safeJSON('data/admin-dashboard.json',{overview:{students:0,lessons:0,assessments:0,certificates:0},modules:[]});
 const cert=await safeJSON('data/certificates/certificates.json',{certificates:[]});
 const lessons=await safeJSON('data/lessons/lessons.json',{lessons:[]});
+const progress=JSON.parse(localStorage.getItem('hm_academy_progress')||'{"xp":0,"completedLessons":[],"achievements":[]}');
+const skill=JSON.parse(localStorage.getItem('hm_academy_skills')||'{"listening":0,"speaking":0,"reading":0,"writing":0,"grammar":0}');
+const students=[{name:'طالب HM Academy',level:'A1',xp:progress.xp||0,lessons:(progress.completedLessons||[]).length,badges:(progress.achievements||[]).length,skills:skill}];
 document.getElementById('certificates').textContent=(cert.certificates||[]).length || admin.overview.certificates || 0;
 document.getElementById('lessons').textContent=(lessons.lessons||[]).length || admin.overview.lessons || 0;
-document.getElementById('students').textContent=admin.overview.students || (localStorage.getItem('hm_students_count')||'0');
+document.getElementById('students').textContent=admin.overview.students || students.length || (localStorage.getItem('hm_students_count')||'0');
 document.getElementById('assessments').textContent=admin.overview.assessments || (localStorage.getItem('hm_assessments_count')||'0');
 document.getElementById('modules').innerHTML=(admin.modules||[]).map(m=>`<a href="${m.id==="students"?"profile.html":m.id==="content"?"lesson.html":m.id==="assessments"?"assessment.html":"certificate.html"}"><strong>🔹 ${m.title}</strong><br>${m.description}</a>`).join('');
+document.getElementById('student-list').innerHTML=students.map(s=>`<div class="student-item"><strong>${s.name}</strong><br>المستوى: ${s.level}<br>XP: ${s.xp}<br>دروس: ${s.lessons}<br>شارات: ${s.badges}</div>`).join('');
 })();
 </script>
 </body>
