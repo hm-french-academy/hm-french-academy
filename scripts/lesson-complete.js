@@ -19,8 +19,14 @@ function markLessonComplete(lessonId, achievementId = 'first-step', skill = 'gra
     HMSkills.add(skill, 10);
   }
 
+  const button = document.querySelector('[data-complete-lesson]');
+  if (button) {
+    button.textContent = '✅ تم إكمال الدرس';
+    button.disabled = true;
+  }
+
   const message = document.getElementById('completion-message');
   if (message) {
-    message.textContent = '🎉 تم إكمال الدرس وتحديث تقدم المهارة';
+    message.textContent = '🎉 تم إكمال الدرس وتحديث تقدم الطالب';
   }
 }
