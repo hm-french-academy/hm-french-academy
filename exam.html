@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - الاختبار</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
+<link rel="stylesheet" href="css/theme-refresh.css?v=20260809">
 </head>
 <body>
 <header><h2>🇫🇷 HM Academy</h2><p>اختبار ذكي مبني على البيانات</p></header>
@@ -14,6 +15,7 @@
 <div id="exam-container"></div>
 <button class="btn" id="submit-exam">تصحيح الاختبار</button>
 <h2 id="result"></h2>
+<div id="exam-feedback"></div>
 </section>
 </main>
 <script src="scripts/learning-progress.js"></script>
@@ -26,13 +28,16 @@ let exam;
 })();
 
 document.getElementById('submit-exam').onclick=()=>{
+ if(!exam) return;
  let score=0;
  exam.questions.forEach((q,i)=>{
   const answer=document.querySelector(`input[name=q${i}]:checked`);
   if(answer && answer.value===q.answer) score++;
  });
- document.getElementById('result').textContent=`النتيجة ${score}/${exam.questions.length}`;
- if(score===exam.questions.length){
+ const percent=Math.round(score/exam.questions.length*100);
+ document.getElementById('result').textContent=`النتيجة ${score}/${exam.questions.length} (${percent}%)`;
+ document.getElementById('exam-feedback').textContent=percent>=80?'🎉 أداء ممتاز':'📚 راجع الدرس وحاول مرة أخرى';
+ if(percent>=80){
   HMProgress.completeLesson(exam.lessonId,50);
   HMProgress.addAchievement('first-step');
  }
