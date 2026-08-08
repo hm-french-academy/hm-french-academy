@@ -1,0 +1,15 @@
+{
+  "assessments": [
+    {
+      "id": "assessment-001",
+      "studentId": "demo-001",
+      "title": "تقييم تحديد المستوى الأولي",
+      "type": "CEFR",
+      "score": 0,
+      "level": "A1",
+      "strengths": [],
+      "improvements": [],
+      "date": "--"
+    }
+  ]
+}
