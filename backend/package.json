@@ -1,0 +1,9 @@
+{
+  "name": "hm-academy-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  }
+}
