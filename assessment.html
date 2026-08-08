@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Academy - اختبار المستوى</title>
+<link rel="stylesheet" href="css/style.css?v=20260807">
+</head>
+<body>
+<header>
+<h2>🇫🇷 HM Academy</h2>
+<p>اختبار تحديد المستوى الذكي</p>
+</header>
+<main>
+<section class="hero">
+<h1>📝 اختبار اللغة الفرنسية</h1>
+<div id="question-area">جاري تحميل الاختبار...</div>
+<button id="next-btn">التالي</button>
+<div id="result"></div>
+</section>
+</main>
+<script src="scripts/learning-progress.js"></script>
+<script src="scripts/skills-engine.js"></script>
+<script src="scripts/assessment-engine.js"></script>
+<script>
+let current=0; let answers=[];
+const questions=[
+ {skill:'grammar',q:'اختر الصحيح: Je ___ étudiant',options:['suis','es','sommes'],answer:'suis'},
+ {skill:'vocabulary',q:'Bonjour تعني:',options:['مساء الخير','مرحبا','شكرا'],answer:'مرحبا'}
+];
+function render(){
+ const q=questions[current];
+ document.getElementById('question-area').innerHTML=`<h3>${q.q}</h3>`+q.options.map(o=>`<label><input type="radio" name="a" value="${o}">${o}</label><br>`).join('');
+}
+document.getElementById('next-btn').onclick=()=>{
+ const selected=document.querySelector('input[name="a"]:checked');
+ if(!selected)return;
+ const q=questions[current];
+ answers.push({skill:q.skill,correct:selected.value===q.answer});
+ current++;
+ if(current<questions.length){render();}else{
+  const score=answers.filter(a=>a.correct).length;
+  const percent=HMAssessment.calculate(score,questions.length);
+  HMAssessment.updateSkills(answers);
+  document.getElementById('question-area').innerHTML='';
+  document.getElementById('result').innerHTML='النتيجة: '+percent+'%';
+ }
+};
+render();
+</script>
+</body>
+</html>
