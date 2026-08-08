@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header><h2>🇫🇷 HM Academy</h2><p>لوحة الطالب الذكية</p></header>
+<header><a href="index.html">🇫🇷 HM Academy</a><p>لوحة الطالب الذكية</p></header>
 <main>
 <section class="hero">
 <h1>👤 رحلتك التعليمية</h1>
@@ -15,6 +15,7 @@
 <p>النقاط: <strong data-student-xp>0</strong> XP</p>
 <p>الدروس المكتملة: <strong id="completed-lessons">0</strong></p>
 </div>
+<a class="btn" href="student-profile.html">📝 ملف الطالب / تعديل البيانات</a>
 </section>
 <section class="hero">
 <h2>📊 تقدم المستوى</h2>
@@ -36,15 +37,6 @@
  document.getElementById('progress-bar').style.width=percent+'%';
  document.getElementById('progress-text').textContent=percent+'% نحو المستوى التالي';
  document.getElementById('level-description').textContent=level.description;
-
- try {
-   const progress = await HMApi.getProgress();
-   if (progress && progress.completedLessons) {
-     document.getElementById('completed-lessons').textContent = progress.completedLessons.length;
-   }
- } catch (e) {
-   console.warn('API progress unavailable, using local progress');
- }
 })();
 </script>
 <footer>HM Academy © 2026</footer>
