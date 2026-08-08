@@ -15,6 +15,7 @@
 <div class="course-card"><h3>📈 الترقية القادمة</h3><p id="next-level">--</p></div>
 </section>
 <section class="hero"><h2>🎯 مهارات اللغة</h2><div id="skills-list">جاري تحليل المهارات...</div></section>
+<section class="hero"><h2>🤖 توصيات HM Academy الذكية</h2><div id="recommendations">جاري التحليل...</div></section>
 <section class="hero"><h2>🕘 آخر النشاطات</h2><div id="activity-list">لا توجد نشاطات بعد</div></section>
 </main>
 <script src="scripts/learning-progress.js"></script>
@@ -22,8 +23,9 @@
 <script src="scripts/level-engine.js"></script>
 <script src="scripts/learning-path-engine.js"></script>
 <script src="scripts/skills-engine.js"></script>
+<script src="scripts/recommendation-engine.js"></script>
 <script>
-(async()=>{const data=HMProgress.get();const level=await getStudentLevel(data.xp||0);document.getElementById('xp').textContent=data.xp||0;document.getElementById('level').textContent=level.id+' - '+level.title;document.getElementById('level-description').textContent=level.description;document.getElementById('lessons').textContent=(data.completedLessons||[]).length;document.getElementById('badges').textContent=(data.achievements||[]).length;const activities=HMActivity.get();if(activities.length)document.getElementById('activity-list').innerHTML=activities.map(a=>'<p>• '+a.title+'</p>').join('');const skills=HMSkills.get();document.getElementById('skills-list').innerHTML=Object.keys(skills).map(s=>'<p>'+s+' : '+skills[s]+'%</p>').join('');})();
+(async()=>{const data=HMProgress.get();const level=await getStudentLevel(data.xp||0);document.getElementById('xp').textContent=data.xp||0;document.getElementById('level').textContent=level.id+' - '+level.title;document.getElementById('level-description').textContent=level.description;document.getElementById('lessons').textContent=(data.completedLessons||[]).length;document.getElementById('badges').textContent=(data.achievements||[]).length;const skills=HMSkills.get();document.getElementById('skills-list').innerHTML=Object.keys(skills).map(s=>'<p>'+s+' : '+skills[s]+'%</p>').join('');document.getElementById('recommendations').innerHTML=getSkillRecommendations().map(r=>'<p>• '+r+'</p>').join('');const activities=HMActivity.get();if(activities.length)document.getElementById('activity-list').innerHTML=activities.map(a=>'<p>• '+a.title+'</p>').join('');})();
 </script>
 <footer>HM Academy © 2026</footer>
 </body>
