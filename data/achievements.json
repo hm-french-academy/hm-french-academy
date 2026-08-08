@@ -1,0 +1,25 @@
+{
+  "achievements": [
+    {
+      "id": "first-step",
+      "title": "البداية القوية",
+      "description": "أكمل أول درس في المنصة",
+      "icon": "⭐",
+      "xp": 50
+    },
+    {
+      "id": "vocabulary-master",
+      "title": "محترف الكلمات",
+      "description": "أكمل مجموعة مفردات كاملة",
+      "icon": "📚",
+      "xp": 100
+    },
+    {
+      "id": "pronunciation-star",
+      "title": "نجم النطق",
+      "description": "تدرب على النطق والاستماع",
+      "icon": "🎤",
+      "xp": 100
+    }
+  ]
+}
