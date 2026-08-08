@@ -1,13 +1,15 @@
+const { unauthorized, forbidden } = require('./responseHandler');
+
 function requirePermission(allowedRoles = []) {
   return function (req, res, next) {
     const role = req.user && req.user.role;
 
-    if (!role || !allowedRoles.includes(role)) {
-      return res.statusCode = 403,
-        res.end(JSON.stringify({
-          success: false,
-          message: 'Forbidden'
-        }));
+    if (!req.user) {
+      return unauthorized(res);
+    }
+
+    if (!allowedRoles.includes(role)) {
+      return forbidden(res);
     }
 
     next();
