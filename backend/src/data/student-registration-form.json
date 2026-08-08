@@ -1,0 +1,10 @@
+{
+  "title": "تسجيل بيانات الطالب",
+  "description": "نموذج مبدئي لإدخال بيانات الطالب وحفظها خلال المعاينة.",
+  "fields": [
+    {"name": "fullName", "label": "الاسم الكامل", "type": "text", "required": true},
+    {"name": "email", "label": "البريد الإلكتروني", "type": "email", "required": true},
+    {"name": "level", "label": "المستوى الحالي", "type": "select", "options": ["A1", "A2", "B1", "B2"], "required": true},
+    {"name": "goals", "label": "أهداف التعلم", "type": "textarea", "required": false}
+  ]
+}
