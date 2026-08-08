@@ -1,0 +1,13 @@
+{
+  "platform": "HM Academy",
+  "architecture": "modular",
+  "language": "French Arabic Learning",
+  "systems": {
+    "progress": true,
+    "levels": true,
+    "skills": true,
+    "recommendations": true,
+    "learningPaths": true,
+    "smartAssessment": "planned"
+  }
+}
