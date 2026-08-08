@@ -1,0 +1,22 @@
+{
+  "id": "assessment-id",
+  "level": "A1",
+  "title": {
+    "ar": "اختبار تحديد المستوى",
+    "fr": "Test de niveau"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "skill": "grammar",
+      "question": "",
+      "options": [],
+      "answer": ""
+    }
+  ],
+  "scoring": {
+    "xpReward": 100,
+    "skillWeight": true
+  }
+}
