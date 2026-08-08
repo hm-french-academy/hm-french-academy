@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Academy - لوحة الإدارة</title>
+<link rel="stylesheet" href="css/style.css?v=20260808">
+<style>
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:24px 0}.admin-card{padding:20px;border-radius:18px;background:var(--card-bg,#fff);box-shadow:0 6px 22px rgba(0,0,0,.07)}.admin-card strong{display:block;font-size:28px;margin-top:8px}.admin-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.admin-actions a{display:block;padding:16px;border-radius:14px;background:#f5f7fb;text-decoration:none}.status{display:inline-block;padding:6px 10px;border-radius:999px;background:#e8f7ee}.table-wrap{overflow:auto}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #eee;text-align:right}
+</style>
+</head>
+<body>
+<header>
+<h2>🇫🇷 HM Academy</h2><p>لوحة الإدارة والمعلم</p>
+<nav><a href="dashboard.html">لوحة الطالب</a><a href="settings.html">الإعدادات</a><a href="index.html">الموقع</a></nav>
+</header>
+<main>
+<section class="hero">
+<h1>لوحة الإدارة</h1>
+<p>مركز التحكم في الطلاب والمحتوى والتقييمات والشهادات.</p>
+<span class="status">وضع المعاينة — البيانات المحلية</span>
+</section>
+<section class="admin-grid">
+<div class="admin-card">👨‍🎓 الطلاب<strong id="students">0</strong></div>
+<div class="admin-card">📚 الدروس<strong id="lessons">0</strong></div>
+<div class="admin-card">📝 التقييمات<strong id="assessments">0</strong></div>
+<div class="admin-card">🏆 الشهادات<strong id="certificates">0</strong></div>
+</section>
+<section class="course">
+<h2>الوحدات الإدارية</h2>
+<div class="admin-actions">
+<a href="dashboard.html"><strong>👨‍🎓 إدارة المتعلمين</strong><br>متابعة التقدم والمهارات.</a>
+<a href="lesson.html"><strong>📚 إدارة الدروس</strong><br>فتح ومراجعة المحتوى.</a>
+<a href="assessment.html"><strong>📝 التقييمات</strong><br>الاختبارات والنتائج.</a>
+<a href="certificate.html"><strong>🏆 الشهادات</strong><br>الإصدار والتحقق.</a>
+<a href="achievements.html"><strong>🎖️ الإنجازات</strong><br>مراجعة نظام التحفيز.</a>
+<a href="settings.html"><strong>⚙️ إعدادات المنصة</strong><br>الإعدادات المركزية.</a>
+</div>
+</section>
+<section class="course" style="margin-top:20px">
+<h2>آخر نشاط</h2>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>العنصر</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody>
+<tr><td>محرك الدروس</td><td>متصل</td><td><a href="lesson.html">فتح</a></td></tr>
+<tr><td>محرك التقييم</td><td>متصل</td><td><a href="assessment.html">فتح</a></td></tr>
+<tr><td>الشهادات</td><td>متصل</td><td><a href="verify-certificate.html">تحقق</a></td></tr>
+<tr><td>الإعدادات المركزية</td><td>متصل</td><td><a href="settings.html">فتح</a></td></tr>
+</tbody></table></div>
+</section>
+</main>
+<footer>HM Academy © 2026</footer>
+<script>
+const safeJSON=async(path,fallback)=>{try{const r=await fetch(path);if(!r.ok)throw Error();return await r.json()}catch{return fallback}};
+(async()=>{
+const cert=await safeJSON('data/certificates/certificates.json',{certificates:[]});
+const lessons=await safeJSON('data/lessons/lessons.json',{lessons:[]});
+document.getElementById('certificates').textContent=(cert.certificates||[]).length;
+document.getElementById('lessons').textContent=(lessons.lessons||[]).length;
+document.getElementById('students').textContent=localStorage.getItem('hm_students_count')||'0';
+document.getElementById('assessments').textContent=localStorage.getItem('hm_assessments_count')||'0';
+})();
+</script>
+</body>
+</html>
