@@ -1,0 +1,31 @@
+{
+  "overview": {
+    "students": 0,
+    "lessons": 3,
+    "assessments": 1,
+    "certificates": 0,
+    "activePaths": 1
+  },
+  "modules": [
+    {
+      "id": "students",
+      "title": "إدارة المتعلمين",
+      "description": "مراقبة التقدم والنقاط والمهارات والشهادات."
+    },
+    {
+      "id": "content",
+      "title": "إدارة المحتوى",
+      "description": "تحرير الدروس والمفردات والأنشطة والوسائط."
+    },
+    {
+      "id": "assessments",
+      "title": "إدارة التقييمات",
+      "description": "مراجعة الاختبارات وتحليل النتائج ومستوى CEFR."
+    },
+    {
+      "id": "certificates",
+      "title": "إدارة الشهادات",
+      "description": "إصدار الشهادات والتحقق منها وتتبعها."
+    }
+  ]
+}
