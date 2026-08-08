@@ -3,73 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HM Academy - اختبار الوحدة</title>
+<title>HM Academy - الاختبار</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header>
-<h2>🇫🇷 HM Academy</h2>
-<p>اختبار الوحدة الأولى A1</p>
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="dashboard.html">لوحة الطالب</a>
-<a href="course.html">المنهج</a>
-<a href="lesson.html">الدرس</a>
-<a href="library.html">المكتبة</a>
-<a href="settings.html">الإعدادات</a>
-</nav>
-</header>
-
+<header><h2>🇫🇷 HM Academy</h2><p>اختبار ذكي مبني على البيانات</p></header>
 <main>
 <section class="hero">
-<h1>📝 Unit 1 Assessment</h1>
-<p>اختبار شامل للتحيات والتعارف والنطق الأساسي.</p>
-</section>
-
-<section class="course">
-<h2>السؤال 1</h2>
-<p>Bonjour تعني:</p>
-<label><input type="radio" name="q1" value="1"> مرحباً</label><br>
-<label><input type="radio" name="q1" value="0"> شكراً</label>
-
-<h2>السؤال 2</h2>
-<p>Je m'appelle تعني:</p>
-<label><input type="radio" name="q2" value="1"> اسمي</label><br>
-<label><input type="radio" name="q2" value="0"> إلى اللقاء</label>
-
-<h2>السؤال 3</h2>
-<p>اختر التحية المناسبة للمساء:</p>
-<label><input type="radio" name="q3" value="1"> Bonsoir</label><br>
-<label><input type="radio" name="q3" value="0"> Bonjour</label>
-
-<h2>السؤال 4</h2>
-<p>Au revoir تعني:</p>
-<label><input type="radio" name="q4" value="1"> إلى اللقاء</label><br>
-<label><input type="radio" name="q4" value="0"> صباح الخير</label>
-
-<br><br>
-<button class="btn" type="button" onclick="checkExam()">إظهار النتيجة</button>
+<h1>📝 اختبار الدرس</h1>
+<div id="exam-container"></div>
+<button class="btn" id="submit-exam">تصحيح الاختبار</button>
 <h2 id="result"></h2>
 </section>
-
-<section class="hero">
-<h2>🏆 نتيجة الاختبار</h2>
-<p>عند النجاح يتم فتح الوحدة التالية وتحديث تقدم الطالب.</p>
-<a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
-</section>
 </main>
-
+<script src="scripts/learning-progress.js"></script>
 <script>
-function checkExam(){
-let score=0;
-['q1','q2','q3','q4'].forEach(q=>{
-let a=document.querySelector('input[name="'+q+'"]:checked');
-if(a && a.value==='1') score++;
-});
-document.getElementById('result').textContent='النتيجة: '+score+'/4 '+(score>=3?'✅ ناجح':'❌ يحتاج مراجعة');
-}
-</script>
+let exam;
+(async function(){
+ const data=await (await fetch('data/exam-schema.json')).json();
+ exam=data.exams?.[0];
+ document.getElementById('exam-container').innerHTML=(exam.questions||[]).map((q,i)=>`<div class="course"><h3>${i+1}- ${q.question}</h3>${q.choices.map(c=>`<label style="display:block"><input type="radio" name="q${i}" value="${c}"> ${c}</label>`).join('')}</div>`).join('');
+})();
 
+document.getElementById('submit-exam').onclick=()=>{
+ let score=0;
+ exam.questions.forEach((q,i)=>{
+  const answer=document.querySelector(`input[name=q${i}]:checked`);
+  if(answer && answer.value===q.answer) score++;
+ });
+ document.getElementById('result').textContent=`النتيجة ${score}/${exam.questions.length}`;
+ if(score===exam.questions.length){
+  HMProgress.completeLesson(exam.lessonId,50);
+  HMProgress.addAchievement('first-step');
+ }
+};
+</script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
