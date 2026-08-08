@@ -7,25 +7,41 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header><h2>🇫🇷 HM Academy</h2><p>شهادة إتمام المستوى</p></header>
-<main><section class="hero">
-<h1>🏆 شهادة إتمام</h1>
-<p id="message"></p>
-<div class="course">
-<h2 id="level"></h2>
-<p id="student"></p>
-<p id="certificate-id"></p>
-<p id="date"></p>
-</div>
-</section></main>
+<header>
+  <h2>🇫🇷 HM Academy</h2>
+  <p>شهادة إتمام المستوى</p>
+  <nav>
+    <a href="dashboard.html">لوحة الطالب</a>
+    <a href="profile.html">الملف الشخصي</a>
+    <a href="achievements.html">الإنجازات</a>
+    <a href="verify-certificate.html">التحقق</a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <h1>🏆 شهادة إتمام</h1>
+    <p id="message">تهانينا! لقد أكملت مرحلة من رحلتك التعليمية.</p>
+    <div class="course" style="max-width:760px;margin:18px auto 0;">
+      <h2 id="level">المستوى: A1</h2>
+      <p id="student">الطالب: HM Academy</p>
+      <p id="certificate-id">رقم الشهادة: HM-000000</p>
+      <p id="date">تاريخ الإصدار: --</p>
+      <p>Issued by HM Academy</p>
+    </div>
+    <div class="topbar" style="justify-content:center;margin-top:18px;">
+      <a class="btn" href="dashboard.html">العودة للوحة الطالب</a>
+      <a class="btn secondary" href="verify-certificate.html">التحقق من الشهادة</a>
+    </div>
+  </section>
+</main>
 <script src="scripts/certificate-engine.js"></script>
 <script>
-const cert=HMCertificate.create('طالب HM Academy','A1');
-document.getElementById('message').textContent='تهانينا على إتمام المستوى';
-document.getElementById('level').textContent='المستوى: '+cert.level;
-document.getElementById('student').textContent='الطالب: '+cert.student;
-document.getElementById('certificate-id').textContent='رقم الشهادة: '+cert.id;
-document.getElementById('date').textContent='تاريخ الإصدار: '+new Date(cert.issuedAt).toLocaleDateString('ar-EG');
+  const cert = HMCertificate.create('طالب HM Academy','A1');
+  document.getElementById('level').textContent = 'المستوى: ' + cert.level;
+  document.getElementById('student').textContent = 'الطالب: ' + cert.student;
+  document.getElementById('certificate-id').textContent = 'رقم الشهادة: ' + cert.id;
+  document.getElementById('date').textContent = 'تاريخ الإصدار: ' + new Date(cert.issuedAt).toLocaleDateString('ar-EG');
 </script>
+<footer>HM Academy © 2026</footer>
 </body>
 </html>
