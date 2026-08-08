@@ -23,6 +23,7 @@
 <p id="progress-text">0%</p>
 </section>
 </main>
+<script src="scripts/api-client.js"></script>
 <script src="scripts/learning-progress.js"></script>
 <script src="scripts/level-engine.js"></script>
 <script>
@@ -31,11 +32,19 @@
  document.querySelector('[data-student-xp]').textContent=data.xp||0;
  document.getElementById('completed-lessons').textContent=(data.completedLessons||[]).length;
  const level=await getStudentLevel(data.xp||0);
- const nextXP=level.maxXP+1;
  const percent=Math.min(100,Math.round(((data.xp-level.minXP)/(level.maxXP-level.minXP))*100));
  document.getElementById('progress-bar').style.width=percent+'%';
  document.getElementById('progress-text').textContent=percent+'% نحو المستوى التالي';
  document.getElementById('level-description').textContent=level.description;
+
+ try {
+   const progress = await HMApi.getProgress();
+   if (progress && progress.completedLessons) {
+     document.getElementById('completed-lessons').textContent = progress.completedLessons.length;
+   }
+ } catch (e) {
+   console.warn('API progress unavailable, using local progress');
+ }
 })();
 </script>
 <footer>HM Academy © 2026</footer>
