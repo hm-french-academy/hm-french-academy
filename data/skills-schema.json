@@ -1,0 +1,34 @@
+{
+  "skills": [
+    {
+      "id": "listening",
+      "name": "Listening",
+      "ar": "الاستماع",
+      "weight": 20
+    },
+    {
+      "id": "speaking",
+      "name": "Speaking",
+      "ar": "المحادثة والنطق",
+      "weight": 20
+    },
+    {
+      "id": "reading",
+      "name": "Reading",
+      "ar": "القراءة",
+      "weight": 20
+    },
+    {
+      "id": "writing",
+      "name": "Writing",
+      "ar": "الكتابة",
+      "weight": 20
+    },
+    {
+      "id": "grammar",
+      "name": "Grammar & Vocabulary",
+      "ar": "القواعد والمفردات",
+      "weight": 20
+    }
+  ]
+}
