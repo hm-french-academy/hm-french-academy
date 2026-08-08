@@ -1,0 +1,10 @@
+{
+  "achievements": [
+    {
+      "id": "first-step",
+      "title": "الخطوة الأولى",
+      "description": "إكمال أول درس",
+      "active": true
+    }
+  ]
+}
