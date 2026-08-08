@@ -7,43 +7,21 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header>
-<h2>🇫🇷 HM Academy</h2>
-<p id="level-label">المستوى A1 - الدرس الثالث</p>
-<nav><a href="index.html">الرئيسية</a><a href="dashboard.html">لوحة الطالب</a><a href="course.html">المنهج</a><a href="library.html">المكتبة</a></nav>
-</header>
+<header><h2>🇫🇷 HM Academy</h2><p id="level-label">المستوى A1 - الدرس الثالث</p><nav><a href="index.html">الرئيسية</a><a href="dashboard.html">لوحة الطالب</a><a href="library.html">المكتبة</a></nav></header>
 <main>
 <section class="hero"><h1 id="lesson-title">📖 Lesson 3</h1><p id="lesson-description"></p></section>
-<section class="cards">
-<div class="course"><h2>🎯 أهداف الدرس</h2><div id="objectives"></div></div>
-<div class="course"><h2>🔤 المفردات</h2><div id="vocabulary"></div></div>
-<div class="course"><h2>🗣 المحادثة</h2><div id="conversation"></div></div>
-<div class="course"><h2>✍️ التدريب</h2><p id="question"></p><p id="answer" class="small"></p></div>
-</section>
+<section class="cards"><div class="course"><h2>🎯 أهداف الدرس</h2><div id="objectives"></div></div><div class="course"><h2>🔤 المفردات</h2><div id="vocabulary"></div></div><div class="course"><h2>🗣 المحادثة</h2><div id="conversation"></div></div><div class="course"><h2>✍️ التدريب</h2><p id="question"></p><p id="answer" class="small"></p></div></section>
 <section class="hero"><h2>🎧🎥 الوسائط التعليمية</h2><div id="lesson-media"></div></section>
+<section class="hero"><h2>✅ إكمال الدرس</h2><button class="btn" onclick="markLessonComplete('lesson-alphabet','pronunciation-star')">تم إكمال الدرس</button><p id="completion-message"></p></section>
 </main>
+<script src="scripts/learning-progress.js"></script>
+<script src="scripts/lesson-complete.js"></script>
 <script>
-function esc(value){return String(value ?? '').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
-(async function(){
- try{
- const res=await fetch('data/lesson-schema.json');
- const data=await res.json();
- const lesson=data.lessons.find(l=>l.id==='lesson-alphabet');
- if(!lesson)return;
- document.title='HM Academy - '+lesson.titleFr;
- document.getElementById('level-label').textContent='المستوى '+lesson.level+' - الدرس '+lesson.number;
- document.getElementById('lesson-title').textContent='📖 Lesson '+lesson.number+': '+lesson.titleFr;
- document.getElementById('lesson-description').textContent=lesson.descriptionAr;
- document.getElementById('objectives').innerHTML=(lesson.objectives||[]).map(x=>'<p>• '+esc(x)+'</p>').join('');
- document.getElementById('vocabulary').innerHTML=(lesson.vocabulary||[]).map(x=>'<p><strong>🇫🇷 '+esc(x.fr)+'</strong><br>'+esc(x.ar)+'<br><span class="small">النطق: '+esc(x.pronunciation)+'</span></p>').join('<hr>');
- document.getElementById('conversation').innerHTML=(lesson.conversation||[]).map(x=>'<p>'+esc(x.speaker)+': '+esc(x.fr)+'<br><span class="small">'+esc(x.ar)+'</span></p>').join('');
- document.getElementById('question').textContent=lesson.activity?.question||'';
- document.getElementById('answer').textContent=lesson.activity?.answer||'';
- }catch(e){console.warn(e);}
-})();
+function esc(v){return String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
+(async()=>{try{const data=await(await fetch('data/lesson-schema.json')).json();const lesson=data.lessons.find(l=>l.id==='lesson-alphabet');if(!lesson)return;document.title='HM Academy - '+lesson.titleFr;document.getElementById('level-label').textContent='المستوى '+lesson.level+' - الدرس '+lesson.number;document.getElementById('lesson-title').textContent='📖 Lesson '+lesson.number+': '+lesson.titleFr;document.getElementById('lesson-description').textContent=lesson.descriptionAr;document.getElementById('objectives').innerHTML=(lesson.objectives||[]).map(x=>'<p>• '+esc(x)+'</p>').join('');document.getElementById('vocabulary').innerHTML=(lesson.vocabulary||[]).map(x=>'<p>🇫🇷 '+esc(x.fr)+'<br>'+esc(x.ar)+'</p>').join('<hr>');document.getElementById('conversation').innerHTML=(lesson.conversation||[]).map(x=>'<p>'+esc(x.speaker)+': '+esc(x.fr)+'<br>'+esc(x.ar)+'</p>').join('');document.getElementById('question').textContent=lesson.activity?.question||'';}catch(e){console.warn(e);}}
+)();
 </script>
-<script src="scripts/media-loader.js"></script>
-<script>loadLessonMedia('lesson-alphabet');</script>
+<script src="scripts/media-loader.js"></script><script>loadLessonMedia('lesson-alphabet');</script>
 <script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
