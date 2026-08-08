@@ -9,7 +9,7 @@
 <body>
 <header>
 <h2>🇫🇷 HM Academy</h2>
-<p>لوحة الإنجازات</p>
+<p>🏆 إنجازات الطالب</p>
 <nav>
 <a href="index.html">الرئيسية</a>
 <a href="dashboard.html">لوحة الطالب</a>
@@ -19,35 +19,24 @@
 <a href="settings.html">الإعدادات</a>
 </nav>
 </header>
-
 <main>
 <section class="hero">
 <h1>🏆 الإنجازات والشارات</h1>
-<p>كل خطوة مكتملة تضيف شارة جديدة إلى ملف الطالب.</p>
-</section>
-
-<section class="cards">
-<div class="course">
-<h2>⭐ البداية الأولى</h2>
-<p>تم منحها عند إكمال أول درس في المنصة.</p>
-</div>
-<div class="course">
-<h2>📚 متقن المفردات</h2>
-<p>شارة للمراجعة المنتظمة وحفظ الكلمات الأساسية.</p>
-</div>
-<div class="course">
-<h2>🎓 إتمام المستوى</h2>
-<p>تُمنح عند إنهاء المستوى بالكامل واجتياز التقييم النهائي.</p>
-</div>
-</section>
-
-<section class="hero" style="margin-top:18px;">
-<h2>📜 الشهادات</h2>
-<p>الشهادات الرقمية مرتبطة بملف الطالب ويمكن التحقق منها برمز خاص.</p>
-<a class="btn" href="profile.html">العودة للملف الشخصي</a>
+<p>تُعرض الإنجازات من قاعدة البيانات المركزية.</p>
+<div id="achievements-list"></div>
 </section>
 </main>
-
+<script src="scripts/learning-progress.js"></script>
+<script>
+(async function(){
+ const box=document.getElementById('achievements-list');
+ try{
+  const data=await (await fetch('data/achievements.json')).json();
+  const progress=HMProgress.get();
+  box.innerHTML=(data.achievements||[]).map(a=>`<div class="course" style="margin:12px 0;opacity:${progress.achievements.includes(a.id)?1:.55}"><h2>${a.icon} ${a.title}</h2><p>${a.description}</p><strong>${progress.achievements.includes(a.id)?'تم الحصول عليها':'غير مكتملة'} - ${a.xp} XP</strong></div>`).join('');
+ }catch(e){console.warn(e);}
+})();
+</script>
 <script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
