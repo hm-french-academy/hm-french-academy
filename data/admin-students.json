@@ -1,0 +1,14 @@
+{
+  "students": [
+    {
+      "id": "demo-001",
+      "name": "طالب HM Academy",
+      "level": "A1",
+      "xp": 0,
+      "completedLessons": 0,
+      "certificates": 0,
+      "status": "active",
+      "lastActivity": "--"
+    }
+  ]
+}
