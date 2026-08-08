@@ -7,22 +7,44 @@
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header><h2>🇫🇷 HM Academy</h2><p>التحقق من الشهادات</p></header>
+<header>
+  <h2>🇫🇷 HM Academy</h2>
+  <p>التحقق من الشهادات</p>
+  <nav>
+    <a href="dashboard.html">لوحة الطالب</a>
+    <a href="profile.html">الملف الشخصي</a>
+    <a href="certificate.html">الشهادة</a>
+  </nav>
+</header>
 <main>
-<section class="hero">
-<h1>🔎 التحقق من شهادة</h1>
-<input id="certificate-id" placeholder="أدخل رقم الشهادة">
-<button onclick="verify()">تحقق</button>
-<div id="result"></div>
-</section>
+  <section class="hero">
+    <h1>🔎 التحقق من شهادة</h1>
+    <p>أدخل رقم الشهادة للتحقق من صحتها.</p>
+    <input id="certificate-id" placeholder="أدخل رقم الشهادة" style="width:100%;max-width:520px;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;">
+    <div style="margin-top:14px;">
+      <button class="btn" onclick="verify()">تحقق</button>
+    </div>
+    <div id="result" style="margin-top:18px;"></div>
+  </section>
 </main>
 <script>
 async function verify(){
- const id=document.getElementById('certificate-id').value;
- const data=await fetch('data/certificates/certificates.json').then(r=>r.json());
- const cert=data.certificates.find(c=>c.id===id);
- document.getElementById('result').innerHTML=cert ? '✅ شهادة صحيحة<br>الطالب: '+cert.student+'<br>المستوى: '+cert.level : '❌ لم يتم العثور على الشهادة';
+  const id = document.getElementById('certificate-id').value.trim();
+  if(!id){
+    document.getElementById('result').innerHTML = 'يرجى إدخال رقم الشهادة أولاً';
+    return;
+  }
+  try {
+    const data = await fetch('data/certificates/certificates.json').then(r => r.json());
+    const cert = (data.certificates || []).find(c => c.id === id);
+    document.getElementById('result').innerHTML = cert
+      ? `✅ شهادة صحيحة<br>الطالب: ${cert.student}<br>المستوى: ${cert.level}<br>تاريخ الإصدار: ${cert.issuedAt || '--'}`
+      : '❌ لم يتم العثور على الشهادة';
+  } catch (e) {
+    document.getElementById('result').innerHTML = 'تعذر التحقق من الشهادة حالياً';
+  }
 }
 </script>
+<footer>HM Academy © 2026</footer>
 </body>
 </html>
