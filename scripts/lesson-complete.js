@@ -11,6 +11,10 @@ function markLessonComplete(lessonId, achievementId = 'first-step') {
     HMProgress.addAchievement(achievementId);
   }
 
+  if (window.HMActivity) {
+    HMActivity.add('lesson', 'إكمال الدرس: ' + lessonId);
+  }
+
   const message = document.getElementById('completion-message');
   if (message) {
     message.textContent = '🎉 تم إكمال الدرس وإضافة نقاط الخبرة';
