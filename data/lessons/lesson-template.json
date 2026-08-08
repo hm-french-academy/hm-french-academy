@@ -1,0 +1,14 @@
+{
+  "id": "lesson-id",
+  "level": "A1",
+  "title": {
+    "ar": "عنوان الدرس",
+    "fr": "Titre de la leçon"
+  },
+  "skills": ["listening", "speaking"],
+  "objectives": [],
+  "vocabulary": [],
+  "grammar": [],
+  "activities": [],
+  "xpReward": 50
+}
