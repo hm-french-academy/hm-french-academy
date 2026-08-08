@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HM Academy - التقييمات</title>
+<link rel="stylesheet" href="css/style.css?v=20260808">
+<style>.wrap{padding:24px}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 20px #0001}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:12px;border-bottom:1px solid #ddd;text-align:right}</style>
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>إدارة التقييمات</p></header>
+<main class="wrap"><section class="card"><h1>📝 نتائج التقييمات</h1><table class="table"><thead><tr><th>التقييم</th><th>المستوى</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody id="rows"></tbody></table></section></main>
+<footer>HM Academy © 2026</footer>
+<script>
+(async()=>{try{const d=await (await fetch('data/admin-assessments.json')).json();document.getElementById('rows').innerHTML=(d.assessments||[]).map(a=>`<tr><td>${a.title}</td><td>${a.level}</td><td>${a.score}%</td><td>${a.date}</td></tr>`).join('')}catch(e){}})();
+</script>
+</body></html>
