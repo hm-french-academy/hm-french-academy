@@ -16,7 +16,7 @@
 <p id="level-description"></p>
 </section>
 <section class="grid course-grid">
-<div class="course-card"><h3>📚 المسار الحالي</h3><p>French CEFR</p><p>الدروس المكتملة: <strong id="lessons">0</strong></p><div style="background:#eee;height:18px;border-radius:20px;overflow:hidden"><div id="progress-fill" style="height:100%;width:0%"></div></div><p id="progress-text">0%</p></div>
+<div class="course-card"><h3>📚 المسار الحالي</h3><p id="recommended-path">جاري تحديد المسار...</p><p>الدروس المكتملة: <strong id="lessons">0</strong></p><div style="background:#eee;height:18px;border-radius:20px;overflow:hidden"><div id="progress-fill" style="height:100%;width:0%"></div></div><p id="progress-text">0%</p></div>
 <div class="course-card"><h3>🏆 الإنجازات</h3><p>الشارات: <strong id="badges">0</strong></p><a class="btn secondary" href="achievements.html">عرض الشارات</a></div>
 <div class="course-card"><h3>📈 الترقية القادمة</h3><p id="next-level">--</p></div>
 </section>
@@ -25,6 +25,7 @@
 <script src="scripts/learning-progress.js"></script>
 <script src="scripts/activity-log.js"></script>
 <script src="scripts/level-engine.js"></script>
+<script src="scripts/learning-path-engine.js"></script>
 <script>
 (async()=>{const data=HMProgress.get();const level=await getStudentLevel(data.xp||0);document.getElementById('xp').textContent=data.xp||0;document.getElementById('level').textContent=level.id+' - '+level.title;document.getElementById('level-description').textContent=level.description;document.getElementById('lessons').textContent=(data.completedLessons||[]).length;document.getElementById('badges').textContent=(data.achievements||[]).length;const p=Math.min(100,Math.round(((data.xp-level.minXP)/(level.maxXP-level.minXP))*100));document.getElementById('progress-fill').style.width=p+'%';document.getElementById('progress-text').textContent=p+'% نحو المستوى التالي';document.getElementById('next-level').textContent='XP المطلوب: '+(level.maxXP+1);const activities=HMActivity.get();if(activities.length)document.getElementById('activity-list').innerHTML=activities.map(a=>'<p>• '+a.title+'</p>').join('');})();
 </script>
