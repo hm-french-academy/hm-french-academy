@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - لوحة الطالب</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
 </head>
 <body>
-<header>
-<h2>🇫🇷 HM Academy</h2>
-<p>لوحة الطالب الذكية</p>
-<nav><a href="index.html">الرئيسية</a><a href="dashboard.html">👤 الطالب</a><a href="profile.html">الملف الشخصي</a><a href="course.html">المنهج</a><a href="library.html">المكتبة</a><a href="settings.html">الإعدادات</a></nav>
-</header>
+<header><h2>🇫🇷 HM Academy</h2><p>لوحة الطالب الذكية</p></header>
 <main>
 <section class="hero">
 <h1>👤 رحلتك التعليمية</h1>
-<p>متابعة التقدم والمستوى والإنجازات.</p>
 <div class="stats-card">
 <p>المستوى: <strong data-student-level>A1</strong></p>
 <p>النقاط: <strong data-student-xp>0</strong> XP</p>
-<p>سلسلة التعلم: <strong data-student-streak>0</strong> أيام</p>
 <p>الدروس المكتملة: <strong id="completed-lessons">0</strong></p>
 </div>
 </section>
 <section class="hero">
 <h2>📊 تقدم المستوى</h2>
+<div id="level-description"></div>
 <div style="background:#eee;border-radius:20px;height:18px;overflow:hidden"><div id="progress-bar" style="height:100%;width:0%"></div></div>
-<p id="progress-text">0% من المسار</p>
-</section>
-<section class="grid course-grid">
-<div class="course-card"><h3>▶️ المتابعة</h3><p>الدرس الحالي: التعريف بالنفس</p><a class="btn" href="lesson2.html">متابعة</a></div>
-<div class="course-card"><h3>📚 المنهج</h3><p>المسار A1</p><a class="btn secondary" href="course.html">عرض المنهج</a></div>
-<div class="course-card"><h3>🏆 الإنجازات</h3><p>الشارات والجوائز</p><a class="btn secondary" href="achievements.html">عرض</a></div>
+<p id="progress-text">0%</p>
 </section>
 </main>
-<script src="scripts/progress-engine.js"></script>
 <script src="scripts/learning-progress.js"></script>
+<script src="scripts/level-engine.js"></script>
 <script>
-(function(){
+(async()=>{
  const data=HMProgress.get();
- document.getElementById('completed-lessons').textContent=data.completedLessons.length;
- const percent=Math.min(100, Math.round((data.completedLessons.length/30)*100));
+ document.querySelector('[data-student-xp]').textContent=data.xp||0;
+ document.getElementById('completed-lessons').textContent=(data.completedLessons||[]).length;
+ const level=await getStudentLevel(data.xp||0);
+ const nextXP=level.maxXP+1;
+ const percent=Math.min(100,Math.round(((data.xp-level.minXP)/(level.maxXP-level.minXP))*100));
  document.getElementById('progress-bar').style.width=percent+'%';
- document.getElementById('progress-text').textContent=percent+'% من المسار';
+ document.getElementById('progress-text').textContent=percent+'% نحو المستوى التالي';
+ document.getElementById('level-description').textContent=level.description;
 })();
 </script>
-<script src="scripts/app.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
