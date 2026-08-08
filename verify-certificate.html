@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Academy - التحقق من الشهادة</title>
+<link rel="stylesheet" href="css/style.css?v=20260807">
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>التحقق من الشهادات</p></header>
+<main>
+<section class="hero">
+<h1>🔎 التحقق من شهادة</h1>
+<input id="certificate-id" placeholder="أدخل رقم الشهادة">
+<button onclick="verify()">تحقق</button>
+<div id="result"></div>
+</section>
+</main>
+<script>
+async function verify(){
+ const id=document.getElementById('certificate-id').value;
+ const data=await fetch('data/certificates/certificates.json').then(r=>r.json());
+ const cert=data.certificates.find(c=>c.id===id);
+ document.getElementById('result').innerHTML=cert ? '✅ شهادة صحيحة<br>الطالب: '+cert.student+'<br>المستوى: '+cert.level : '❌ لم يتم العثور على الشهادة';
+}
+</script>
+</body>
+</html>
