@@ -1,5 +1,5 @@
 // HM Academy lesson completion UI helper
-function markLessonComplete(lessonId, achievementId = 'first-step') {
+function markLessonComplete(lessonId, achievementId = 'first-step', skill = 'grammar') {
   if (!window.HMProgress) {
     console.warn('Progress engine is not loaded');
     return;
@@ -15,8 +15,12 @@ function markLessonComplete(lessonId, achievementId = 'first-step') {
     HMActivity.add('lesson', 'إكمال الدرس: ' + lessonId);
   }
 
+  if (window.HMSkills) {
+    HMSkills.add(skill, 10);
+  }
+
   const message = document.getElementById('completion-message');
   if (message) {
-    message.textContent = '🎉 تم إكمال الدرس وإضافة نقاط الخبرة';
+    message.textContent = '🎉 تم إكمال الدرس وتحديث تقدم المهارة';
   }
 }
