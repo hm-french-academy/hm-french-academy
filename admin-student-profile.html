@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - ملف الطالب الإداري</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
 <style>
-.wrap{padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.tag{display:inline-block;padding:6px 12px;border-radius:20px;background:#eef7ff}
+.wrap{padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.tag{display:inline-block;padding:6px 12px;border-radius:20px;background:#eef7ff}.bar{height:12px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}
 </style>
 </head>
 <body>
@@ -14,15 +13,14 @@
 <main class="wrap">
 <div class="card"><h1 id="name">طالب HM Academy</h1><span class="tag" id="status">active</span></div>
 <div class="grid" style="margin-top:20px">
-<div class="card">المستوى<h2 id="level">A1</h2></div>
-<div class="card">XP<h2 id="xp">0</h2></div>
-<div class="card">الدروس المكتملة<h2 id="lessons">0</h2></div>
-<div class="card">الشهادات<h2 id="certs">0</h2></div>
+<div class="card">المستوى<h2 id="level">A1</h2></div><div class="card">XP<h2 id="xp">0</h2></div><div class="card">الدروس<h2 id="lessons">0</h2></div><div class="card">الشهادات<h2 id="certs">0</h2></div>
 </div>
-<div class="card" style="margin-top:20px"><h2>المهارات</h2><p id="skills">لا توجد بيانات إضافية</p></div>
+<div class="card" style="margin-top:20px"><h2>تحليل المهارات</h2><div id="skills"></div></div>
+<div class="card" style="margin-top:20px"><h2>التوصيات</h2><p id="recommendation">تحليل مستوى الطالب قيد التحديث.</p></div>
 </main>
 <footer>HM Academy © 2026</footer>
 <script>
-(async()=>{try{const data=await (await fetch('data/admin-students.json')).json();const s=data.students[0]||{};name.textContent=s.name||'طالب HM Academy';status.textContent=s.status||'--';level.textContent=s.level||'--';xp.textContent=s.xp||0;lessons.textContent=s.completedLessons||0;certs.textContent=s.certificates||0;}catch(e){}})();
+(async()=>{try{const data=await (await fetch('data/admin-students.json')).json();const id=new URLSearchParams(location.search).get('id');const s=(data.students||[]).find(x=>x.id===id)||data.students[0]||{};document.getElementById('name').textContent=s.name||'طالب HM Academy';document.getElementById('status').textContent=s.status||'--';document.getElementById('level').textContent=s.level||'--';document.getElementById('xp').textContent=s.xp||0;document.getElementById('lessons').textContent=s.completedLessons||0;document.getElementById('certs').textContent=s.certificates||0;const skills=s.skills||{listening:0,speaking:0,reading:0,writing:0,grammar:0};document.getElementById('skills').innerHTML=Object.entries(skills).map(([k,v])=>`<p>${k}<div class="bar"><div class="fill" style="width:${v}%"></div></div></p>`).join('');document.getElementById('recommendation').textContent=s.xp>500?'جاهز للانتقال للمستوى التالي':'يحتاج إلى مزيد من التدريب والمراجعة';}catch(e){}}
+)();
 </script>
 </body></html>
