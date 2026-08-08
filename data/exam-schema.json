@@ -1,0 +1,16 @@
+{
+  "exams": [
+    {
+      "id": "a1-review-hello",
+      "lessonId": "lesson-hello",
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "ما معنى Bonjour؟",
+          "choices": ["صباح الخير", "شكراً", "إلى اللقاء"],
+          "answer": "صباح الخير"
+        }
+      ]
+    }
+  ]
+}
