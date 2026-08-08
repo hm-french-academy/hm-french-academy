@@ -1,0 +1,12 @@
+{
+  "notifications": [
+    {
+      "id": "welcome-admin",
+      "title": "تم تفعيل مركز الإدارة",
+      "message": "لوحة الإدارة جاهزة للتطوير والتوسعة.",
+      "type": "system",
+      "read": false,
+      "date": "2026-08-08"
+    }
+  ]
+}
