@@ -17,7 +17,10 @@
 <div class="course"><h2>✍️ النشاط</h2><p id="question"></p><button class="btn" onclick="showAnswer()">إظهار الإجابة</button><p id="answer"></p></div>
 </section>
 <section class="hero"><h2>🎧🎥 الوسائط التعليمية</h2><div id="lesson-media"></div></section>
+<section class="hero"><h2>✅ إكمال الدرس</h2><button class="btn" onclick="markLessonComplete('lesson-present','first-step')">تم إكمال الدرس</button><p id="completion-message"></p></section>
 </main>
+<script src="scripts/learning-progress.js"></script>
+<script src="scripts/lesson-complete.js"></script>
 <script>
 let currentLesson;
 function esc(v){return String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
