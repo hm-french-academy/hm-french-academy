@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - إدارة المتعلمين</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
-<style>
-.wrap{padding:24px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px;border-bottom:1px solid #ddd;text-align:right}.search{padding:12px;width:100%;max-width:400px;border-radius:12px;border:1px solid #ccc;margin-bottom:20px}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 20px #0001}
-</style>
+<style>.wrap{padding:24px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px;border-bottom:1px solid #ddd;text-align:right}.search{padding:12px;width:100%;max-width:400px;border-radius:12px;border:1px solid #ccc;margin-bottom:20px}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 20px #0001}.link{padding:6px 10px;background:#eef7ff;border-radius:10px;text-decoration:none}</style>
 </head>
 <body>
 <header><h2>🇫🇷 HM Academy</h2><p>إدارة المتعلمين</p></header>
-<main class="wrap">
-<div class="card">
+<main class="wrap"><div class="card">
 <h1>👨‍🎓 قائمة المتعلمين</h1>
 <input class="search" id="search" placeholder="بحث باسم الطالب">
-<table class="table"><thead><tr><th>الاسم</th><th>المستوى</th><th>XP</th><th>الدروس</th><th>الشهادات</th><th>الحالة</th></tr></thead><tbody id="rows"></tbody></table>
-</div>
-</main>
+<table class="table"><thead><tr><th>الاسم</th><th>المستوى</th><th>XP</th><th>الدروس</th><th>الشهادات</th><th>النشاط</th><th></th></tr></thead><tbody id="rows"></tbody></table>
+</div></main>
 <footer>HM Academy © 2026</footer>
 <script>
 let students=[];
-async function load(){try{students=(await fetch('data/admin-students.json')).json? (await (await fetch('data/admin-students.json')).json()).students:[];}catch{students=[]} render(students)}
-function render(list){document.getElementById('rows').innerHTML=list.map(s=>`<tr><td>${s.name}</td><td>${s.level}</td><td>${s.xp}</td><td>${s.completedLessons}</td><td>${s.certificates}</td><td>${s.status}</td></tr>`).join('')||'<tr><td colspan="6">لا توجد بيانات</td></tr>'}
+async function load(){try{students=(await (await fetch('data/admin-students.json')).json()).students||[]}catch{students=[]}render(students)}
+function render(list){document.getElementById('rows').innerHTML=list.map((s,i)=>`<tr><td>${s.name}</td><td>${s.level}</td><td>${s.xp}</td><td>${s.completedLessons}</td><td>${s.certificates}</td><td>${s.lastActivity||'--'}</td><td><a class="link" href="admin-student-profile.html?id=${s.id}">الملف</a></td></tr>`).join('')||'<tr><td colspan="7">لا توجد بيانات</td></tr>'}
 document.getElementById('search').oninput=e=>render(students.filter(s=>s.name.includes(e.target.value)));
 load();
 </script>
