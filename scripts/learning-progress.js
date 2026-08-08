@@ -32,5 +32,14 @@ const HMProgress = {
     }
     this.save(data);
     return data;
+  },
+
+  summary(){
+    const data = this.get();
+    return {
+      xp: data.xp || 0,
+      lessons: data.completedLessons.length,
+      achievements: data.achievements.length
+    };
   }
 };
