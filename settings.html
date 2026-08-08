@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - الإعدادات</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
+<link rel="stylesheet" href="css/theme-refresh.css?v=20260809">
 </head>
 <body>
 <header>
-<h2>🇫🇷 HM Academy</h2>
+<h2><a href="index.html">🇫🇷 HM Academy</a></h2>
 <p>الإعدادات المركزية</p>
 <nav>
 <a href="index.html">الرئيسية</a>
@@ -19,48 +20,25 @@
 <a href="settings.html">الإعدادات</a>
 </nav>
 </header>
-
 <main>
 <section class="hero">
 <h1>⚙️ الإعدادات المركزية</h1>
-<p>مركز التحكم في الهوية، اللغات، المحتوى، التقييم، الذكاء التعليمي، والنسخ الاحتياطي.</p>
+<p>التحكم في الهوية، اللغة، المحتوى، التقييم، والنسخ الاحتياطي.</p>
 </section>
-
 <section class="cards">
-<div class="course">
-<h2>🌍 الإعدادات العامة</h2>
-<p>اسم الأكاديمية، اللغة الافتراضية، الثيم، اللون الأساسي، والمنطقة الزمنية.</p>
-<a class="btn" href="#">تعديل</a>
-</div>
-<div class="course">
-<h2>📘 إعدادات المناهج</h2>
-<p>المناهج المدرسية، CEFR، البرامج الخاصة، والوحدات التعليمية.</p>
-<a class="btn secondary" href="#">تعديل</a>
-</div>
-<div class="course">
-<h2>📚 إعدادات المحتوى</h2>
-<p>الوسائط، المكتبة الرقمية، القاموس الذكي، بنك الأنشطة والأسئلة.</p>
-<a class="btn secondary" href="#">تعديل</a>
-</div>
+<div class="course"><h2>🌍 الإعدادات العامة</h2><p>اسم الأكاديمية، اللغة، الثيم، اللون الأساسي.</p><button class="btn" data-setting-action="general">تعديل</button></div>
+<div class="course"><h2>📘 إعدادات المناهج</h2><p>إدارة المستويات والوحدات التعليمية.</p><button class="btn secondary" data-setting-action="courses">تعديل</button></div>
+<div class="course"><h2>📚 إعدادات المحتوى</h2><p>الوسائط والمكتبة وبنك الأنشطة.</p><button class="btn secondary" data-setting-action="content">تعديل</button></div>
 </section>
-
 <section class="cards" style="margin-top:18px;">
-<div class="course">
-<h2>📝 إعدادات التقييم</h2>
-<p>التصحيح التلقائي، مستويات الصعوبة، التكرار المتباعد، وتتبع المهارات.</p>
-</div>
-<div class="course">
-<h2>🤖 إعدادات الذكاء التعليمي</h2>
-<p>المساعد الذكي، التوصيات، وخطة المراجعة الشخصية.</p>
-</div>
-<div class="course">
-<h2>💾 النسخ الاحتياطي والإصدارات</h2>
-<p>حفظ النقاط الاسترجاعية، الإصدارات، والاستعادة الجزئية أو الكاملة.</p>
-</div>
+<div class="course"><h2>📝 التقييم</h2><p>التصحيح وتتبع المهارات.</p></div>
+<div class="course"><h2>🤖 الذكاء التعليمي</h2><p>التوصيات وخطة المراجعة.</p></div>
+<div class="course"><h2>💾 النسخ الاحتياطي</h2><p>الإصدارات والاستعادة.</p></div>
 </section>
+<div id="settings-message" class="hero" style="display:none"></div>
 </main>
-
 <script src="scripts/app.js"></script>
+<script src="scripts/settings-preview.js"></script>
 <footer>HM Academy © 2026</footer>
 </body>
 </html>
