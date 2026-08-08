@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Academy - نتيجة الاختبار</title>
+<link rel="stylesheet" href="css/style.css?v=20260807">
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>تقرير مستوى الطالب</p></header>
+<main>
+<section class="hero">
+<h1>📊 نتيجة الاختبار</h1>
+<div id="report">جاري تحميل التقرير...</div>
+<a href="profile.html">العودة إلى الملف الشخصي</a>
+</section>
+</main>
+<script src="scripts/skills-engine.js"></script>
+<script src="scripts/assessment-report-engine.js"></script>
+<script>
+const score = Number(localStorage.getItem('hm_last_score') || 0);
+const report = HMReport.generate(score, HMSkills ? HMSkills.get() : {});
+document.getElementById('report').innerHTML = `
+<p>النتيجة: ${report.score}%</p>
+<p>المستوى المقترح: ${report.level}</p>
+<p>أقوى مهارة: ${report.strongest || 'غير محدد'}</p>
+<p>تحتاج تطوير: ${report.weakest || 'غير محدد'}</p>
+${report.recommendations.map(r=>'<p>• '+r+'</p>').join('')}
+`;
+</script>
+</body>
+</html>
