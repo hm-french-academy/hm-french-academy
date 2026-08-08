@@ -5,10 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy v0.3 - المنصة التعليمية</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
+<style>
+.brand-link{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:opacity .2s ease}
+.brand-link:hover{opacity:.85}
+.brand-link:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:8px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+</style>
 </head>
 <body>
 <header>
+<a class="brand-link" href="index.html" aria-label="العودة إلى الصفحة الرئيسية">
 <h2>🇫🇷 HM Academy</h2>
+</a>
 <p>منصة تعلم الفرنسية التفاعلية</p>
 <nav>
 <a href="index.html">الرئيسية</a>
@@ -24,7 +32,7 @@
 <section class="hero">
 <h1>تعلم الفرنسية من الصفر حتى الاحتراف</h1>
 <p>منصة منسقة حول الإعدادات المركزية، المناهج المتعددة، المسارات التعليمية، والمكتبة الرقمية مع دعم العربية والفرنسية والإنجليزية.</p>
-<div class="topbar" style="justify-content:center;margin-top:16px;">
+<div class="topbar hero-actions">
 <a class="btn" href="course.html">ابدأ التعلم الآن 🚀</a>
 <a class="btn secondary" href="dashboard.html">اذهب إلى لوحة الطالب</a>
 </div>
