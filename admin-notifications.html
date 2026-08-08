@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HM Academy - الإشعارات</title>
+<link rel="stylesheet" href="css/style.css?v=20260808">
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>مركز الإشعارات</p></header>
+<main>
+<h1>🔔 الإشعارات</h1>
+<div id="notifications"></div>
+</main>
+<footer>HM Academy © 2026</footer>
+<script>
+(async()=>{try{const d=await(await fetch('data/admin-notifications.json')).json();document.getElementById('notifications').innerHTML=(d.notifications||[]).map(n=>`<div class="card"><h3>${n.title}</h3><p>${n.message}</p><small>${n.date}</small></div>`).join('')}catch(e){}})();
+</script>
+</body>
+</html>
