@@ -1,0 +1,21 @@
+{
+  "lesson-hello": {
+    "video": {
+      "title": "Les salutations - Introduction",
+      "type": "sample",
+      "source": "assets/video/lesson-hello-demo.mp4"
+    },
+    "images": [
+      {
+        "title": "Bonjour situation",
+        "source": "assets/images/bonjour-demo.jpg"
+      }
+    ],
+    "files": [
+      {
+        "title": "Vocabulary PDF",
+        "source": "assets/files/lesson-hello-vocabulary.pdf"
+      }
+    ]
+  }
+}
