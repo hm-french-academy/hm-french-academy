@@ -1,0 +1,16 @@
+{
+  "student": {
+    "level": "A1",
+    "xp": 120,
+    "completedLessons": ["lesson-hello"],
+    "currentLesson": "lesson-present",
+    "streak": 3
+  },
+  "achievements": [
+    {
+      "id": "first-lesson",
+      "title": "أول درس مكتمل",
+      "icon": "⭐"
+    }
+  ]
+}
