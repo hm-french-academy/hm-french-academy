@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Leçon 1 — Unité 1 : À l'école | HM Academy</title>
+<style>body{font-family:Arial,sans-serif;margin:0;background:#f7f8fb;color:#172033}main{max-width:980px;margin:auto;padding:20px}.card{background:#fff;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 16px rgba(0,0,0,.08)}button{padding:10px 14px;border:0;border-radius:10px;cursor:pointer}a{color:#b21f35}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.item{border:1px solid #e4e7ee;border-radius:14px;padding:14px}.video{aspect-ratio:16/9;width:100%;border:0;border-radius:14px}</style>
+</head>
+<body>
+<main>
+<div class="card"><h1>📘 Leçon 1 — Unité 1 : À l'école</h1><p>درس تفاعلي — الملف الأصلي يحافظ على النطق الفرنسي عبر SpeechSynthesis، والفيديو عبر YouTube.</p></div>
+<div class="card"><h2>🎬 فيديو الدرس</h2><a href="https://www.youtube.com/watch?v=ii5J7ZMT5EY" target="_blank" rel="noopener">▶️ Lexique de l'école — فتح الفيديو على YouTube</a><iframe class="video" src="https://www.youtube.com/embed/ii5J7ZMT5EY" title="Lexique de l'école" allowfullscreen></iframe></div>
+<div class="card"><h2>🔊 المفردات والنطق</h2><div id="vocab" class="grid"></div></div>
+<div class="card"><h2>📝 تدريب سريع</h2><p>استمع إلى الكلمة ثم اختر المعنى.</p><button id="quiz">بدء التدريب</button><p id="result"></p></div>
+</main>
+<script>
+const items=[['Une cantine','كانتين'],['Une cour','فناء'],['Des classes (une)','فصول'],['Un gymnase','صالة ألعاب مغطاة'],['Un CDI','صالة الوسائط المتعددة'],['Un laboratoire','معمل'],['Un terrain de sport','أرض الملعب'],['Un self-service','قاعة طعام بالمدرسة'],['Une piscine','حمام سباحة'],['Une bibliothèque','مكتبة استعارية'],['Des élèves','تلاميذ'],['Un professeur','مدرس'],['Un boulanger','خباز'],['Une boulangère','خبازة']];
+const speak=text=>{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.9;speechSynthesis.speak(u)};
+document.getElementById('vocab').innerHTML=items.map(([fr,ar])=>`<div class="item"><strong>🇫🇷 ${fr}</strong><p>${ar}</p><button type="button" onclick='speak(${JSON.stringify(fr)})'>🔊 نطق</button></div>`).join('');
+let answered=false;document.getElementById('quiz').onclick=()=>{const item=items[Math.floor(Math.random()*items.length)];speak(item[0]);document.getElementById('result').textContent='استمع إلى الكلمة: '+item[0]+' — معناها: '+item[1];answered=true};
+</script>
+</body></html>
