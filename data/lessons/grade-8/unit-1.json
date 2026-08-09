@@ -1,0 +1,42 @@
+{
+  "id": "grade-8-unit-1",
+  "curriculumId": "grade-8-french-semester-1",
+  "unit": "unit-1",
+  "titleFr": "À l'école",
+  "titleAr": "في المدرسة",
+  "status": "pilot",
+  "contentSource": "Revision_Finale_Complete_4Unites.docx",
+  "lessonFiles": {
+    "interactive": {"required": true, "type": "interactive-file", "audioEmbedded": true},
+    "videos": {"required": true, "type": "youtube-links"},
+    "reference": {"required": true, "type": "printable"},
+    "assessment": {"required": true, "type": "interactive-assessment"}
+  },
+  "vocabulary": [
+    {"fr":"Une cantine","ar":"كانتين","audioEmbedded":true},
+    {"fr":"Une cour","ar":"فناء","audioEmbedded":true},
+    {"fr":"Un CDI","ar":"وسائط","audioEmbedded":true},
+    {"fr":"Un tableau","ar":"سبورة","audioEmbedded":true},
+    {"fr":"Une chaise","ar":"كرسي","audioEmbedded":true},
+    {"fr":"Un bureau","ar":"مكتب","audioEmbedded":true},
+    {"fr":"Un stylo","ar":"قلم","audioEmbedded":true},
+    {"fr":"Une gomme","ar":"استيكة","audioEmbedded":true},
+    {"fr":"Une règle","ar":"مسطرة","audioEmbedded":true},
+    {"fr":"Une trousse","ar":"مقلمة","audioEmbedded":true},
+    {"fr":"Un sac à dos","ar":"شنطة ظهر","audioEmbedded":true},
+    {"fr":"Le français","ar":"الفرنسية","audioEmbedded":true},
+    {"fr":"Les mathématiques","ar":"الرياضيات","audioEmbedded":true},
+    {"fr":"L'histoire","ar":"التاريخ","audioEmbedded":true},
+    {"fr":"Un boulanger","ar":"خباز","audioEmbedded":true},
+    {"fr":"Une boulangère","ar":"خبازة","audioEmbedded":true}
+  ],
+  "grammar": [
+    {"title":"Aimer / Préférer","scope":"J'aime / préfère; Tu aimes / préfères; Il / Elle aime / préfère; Nous aimons / préférons; Vous aimez / préférez; Ils / Elles aiment / préfèrent"},
+    {"title":"Il y a / Il n'y a pas de","scope":"Il y a un tableau. → Il n'y a pas de tableau."}
+  ],
+  "pilotActivity": {
+    "type":"revision-linked",
+    "prompt":"اختر أو اكتب الإجابة وفق محتوى الوحدة الأولى.",
+    "note":"هذا Pilot لا يخترع دروسًا غير موجودة في الملف المصدر؛ ملفات الدروس الأصلية تُربط عند رفعها."
+  }
+}
