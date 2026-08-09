@@ -6,20 +6,14 @@
   "titleAr":"في المدرسة",
   "status":"pilot",
   "contentSource":"Revision_Finale_Complete_4Unites.docx + lesson-1-source-original.html",
-  "lessonFiles":{
-    "interactive":{"required":true,"type":"interactive-file","audioEmbedded":true},
-    "videos":{"required":true,"type":"youtube-links"},
-    "reference":{"required":true,"type":"printable"},
-    "assessment":{"required":true,"type":"interactive-assessment"}
-  },
+  "lessonFiles":{"interactive":{"required":true,"type":"interactive-file","audioEmbedded":true},"videos":{"required":true,"type":"youtube-links"},"reference":{"required":true,"type":"printable"},"assessment":{"required":true,"type":"interactive-assessment"}},
   "lesson1Content":{
     "facilities":["Une cantine","Une cour","Des classes","Un gymnase","Un CDI","Un laboratoire","Un terrain de sport","Un self-service","Une piscine","Une bibliothèque"],
     "classroom":["Un bureau","Un tableau","Une porte","Une fenêtre","Des bancs / Un banc","Un panneau","Un TNI","Une horloge","Une chaise","Une table","Le globe terrestre","Un ordinateur"],
-    "professions":["Un boulanger","Une boulangère"],
     "video":{"title":"Lexique de l'école","youtube":"https://www.youtube.com/watch?v=ii5J7ZMT5EY"},
     "grammar":[{"title":"Aimer / Préférer","scope":"J'aime / préfère; Tu aimes / préfères; Il / Elle aime / préfère; Nous aimons / préférons; Vous aimez / préférez; Ils / Elles aiment / préfèrent"},{"title":"Il y a / Il n'y a pas de","scope":"Il y a un tableau. → Il n'y a pas de tableau."}]
   },
   "audioPolicy":"Audio remains embedded inside the interactive lesson file; it is not treated as separate vocabulary audio assets.",
   "videoPolicy":"Lesson videos are represented as YouTube links and open on click.",
-  "accuracyPolicy":"Do not merge unrelated categories, invent lesson counts, or replace source vocabulary with guessed content. Visual assets must be mapped to the exact word before publication."
+  "accuracyPolicy":"Lesson-specific content must come only from the lesson source. Unit-level revision vocabulary must not be injected into a lesson unless the lesson source explicitly contains it. Visual assets must be mapped to the exact word before publication."
 }
