@@ -12,7 +12,7 @@
 <section class="hero">
 <h1>👤 رحلتك التعليمية</h1>
 <div class="stats-card">
-<p>المستوى: <strong data-student-level>A1</strong></p>
+<p>المستوى: <strong data-student-level>A1 - Beginner</strong></p>
 <p>النقاط: <strong data-student-xp>0</strong> XP</p>
 <p>الدروس المكتملة: <strong id="completed-lessons">0</strong></p>
 </div>
@@ -23,22 +23,39 @@
 <div id="level-description"></div>
 <div style="background:#eee;border-radius:20px;height:18px;overflow:hidden"><div id="progress-bar" style="height:100%;width:0%"></div></div>
 <p id="progress-text">0%</p>
+<p id="next-level-text" class="small"></p>
+</section>
+<section class="hero">
+<h2>🚀 متابعة التعلم</h2>
+<a class="btn" href="lesson.html?id=lesson-hello">ابدأ / تابع الدرس الأول</a>
+<a class="btn secondary" href="course.html">عرض المنهج</a>
 </section>
 </main>
 <script src="scripts/api-client.js"></script>
 <script src="scripts/learning-progress.js"></script>
 <script src="scripts/level-engine.js"></script>
-<script src="scripts/theme-init.js"></script>
 <script>
 (async()=>{
- const data=HMProgress.get();
- document.querySelector('[data-student-xp]').textContent=data.xp||0;
- document.getElementById('completed-lessons').textContent=(data.completedLessons||[]).length;
- const level=await getStudentLevel(data.xp||0);
- const percent=Math.min(100,Math.round(((data.xp-level.minXP)/(level.maxXP-level.minXP))*100));
- document.getElementById('progress-bar').style.width=percent+'%';
- document.getElementById('progress-text').textContent=percent+'% نحو المستوى التالي';
- document.getElementById('level-description').textContent=level.description;
+  try {
+    if(!window.HMProgress) throw new Error('Progress engine unavailable');
+    const data = HMProgress.get() || {};
+    const xp = Number(data.xp) || 0;
+    const completed = Array.isArray(data.completedLessons) ? data.completedLessons : [];
+    document.querySelector('[data-student-xp]').textContent = xp;
+    document.getElementById('completed-lessons').textContent = completed.length;
+    const level = await getStudentLevel(xp);
+    document.querySelectorAll('[data-student-level]').forEach(el => el.textContent = `${level.id} - ${level.title}`);
+    document.getElementById('level-description').textContent = level.description || '';
+    const min = Number(level.minXP) || 0;
+    const max = Number(level.maxXP) || min + 1;
+    const percent = max > min ? Math.max(0, Math.min(100, Math.round(((xp-min)/(max-min))*100))) : 100;
+    document.getElementById('progress-bar').style.width = percent+'%';
+    document.getElementById('progress-text').textContent = percent+'% من المستوى الحالي';
+    document.getElementById('next-level-text').textContent = xp < max ? `متبقي ${max-xp} XP للوصول إلى الحد التالي.` : '🎉 وصلت إلى الحد الأعلى لهذا المستوى.';
+  } catch(error){
+    console.warn('Dashboard progress fallback:', error);
+    document.getElementById('level-description').textContent = 'تعذر تحميل بيانات التقدم الآن. يمكنك متابعة الدروس بشكل طبيعي.';
+  }
 })();
 </script>
 <footer>HM Academy © 2026</footer>
