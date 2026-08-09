@@ -23,20 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
     brand.appendChild(link);
   }
 
-  if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
-    const scripts = [
-      'scripts/learning-progress.js',
-      'scripts/lesson-audio-bind.js',
-      'scripts/lesson-media-runtime.js',
-      'scripts/lesson-runtime-init.js',
-      'scripts/lesson-complete.js'
-    ];
+  if (!(location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html'))) return;
 
-    scripts.forEach((src) => {
-      if (document.querySelector(`script[src="${src}"]`)) return;
-      const script = document.createElement('script');
-      script.src = src;
-      document.body.appendChild(script);
-    });
-  }
+  const scripts = [
+    'scripts/learning-progress.js',
+    'scripts/lesson-audio-bind.js',
+    'scripts/lesson-media-runtime.js',
+    'scripts/lesson-runtime-init.js',
+    'scripts/lesson-complete.js'
+  ];
+
+  // Load lesson runtime modules in dependency order. Dynamic scripts are
+  // asynchronous by default, so appending all of them at once can cause
+  // lesson-complete.js to run before learning-progress.js is available.
+  (async function loadLessonRuntime(){
+    for (const src of scripts) {
+      if (document.querySelector(`script[src="${src}"]`)) continue;
+      await new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => {
+          console.warn('HM Academy runtime module failed to load:', src);
+          resolve();
+        };
+        document.body.appendChild(script);
+      });
+    }
+  })();
 });
