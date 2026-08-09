@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leçon 1 — Unité 1 : À l'école | Hatem El-Morsi</title>
+</head>
+<body>
+<header><h1>Leçon 1 — Unité 1 : À l'école</h1><p>Français — 2e année préparatoire</p></header>
+<nav id="tabs"></nav>
+<main id="content"></main>
+<button class="float-audio" onclick="stopAll()" title="إيقاف الصوت">⏹</button>
+<footer>Conçu par Hatem El-Morsi — Le Français avec passion 🇫🇷</footer>
+<script>
+const speak = (text) => { window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'fr-FR'; u.rate = 0.9; window.speechSynthesis.speak(u); };
+function stopAll(){ window.speechSynthesis.cancel(); }
+const sections = [
+{id:'video',label:'فيديو الدرس',ar:'شاهد واستمع',num:'',type:'video'},
+{id:'ecole',label:'المرافق',ar:'في المدرسة',num:1,type:'vocab',items:[['Une cantine','كانتين','🍽️'],['Une cour','فناء','🏫'],['Des classes (une)','فصول','🚪'],['Un gymnase','صالة ألعاب مغطاة','🤸'],['Un CDI','صالة الوسائط المتعددة','📚'],['Un laboratoire','معمل','🧪'],['Un terrain de sport','أرض الملعب','⚽'],['Un self-service','قاعة طعام بالمدرسة','🍴'],['Une piscine','حمام سباحة','🏊'],['Une bibliothèque','مكتبة استعارية','📖'],['Des élèves','تلاميذ','🧑‍🎓'],['Un professeur','مدرس','👨‍🏫'],['Un boulanger','خباز','🥖'],['Une boulangère','خبازة','👩‍🍳']]},
+{id:'classe',label:'في الفصل',ar:'في الفصل',num:2,type:'vocab',items:[['Un bureau','مكتب','🗄️'],['Un tableau','سبورة','🖼️'],['Une porte','باب','🚪'],['Une fenêtre','شباك','🪟'],['Des bancs / Un banc','مقاعد / مقعد','💺'],['Un panneau','لوحة تعليمية','📌'],['Un TNI','سبورة ذكية','🖥️'],['Une horloge','ساعة حائط','🕐'],['Une chaise','كرسي','🪑'],['Une table','منضدة','🛋️'],['Le globe terrestre','الكرة الأرضية','🌍'],['Un ordinateur','كمبيوتر','💻']]},
+{id:'practice',label:'تدرّب بنفسك',ar:'تمرين سريع',num:'',type:'practice'}
+];
+const tabsEl=document.getElementById('tabs');const contentEl=document.getElementById('content');
+sections.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.label;b.onclick=()=>showSection(i);b.id='tab-'+s.id;tabsEl.appendChild(b)});
+function vocabGrid(items){return `<div>${items.map(([fr,ar,icon])=>`<div><span>${icon}</span><strong>${fr}</strong><p>${ar}</p><button onclick='speak(${JSON.stringify(fr)})'>🔊 نطق</button></div>`).join('')}</div>`}
+function showSection(i){const s=sections[i];let html=`<section><h2>${s.label}</h2>`;if(s.type==='video'){html+=`<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ii5J7ZMT5EY">▶ فيديو: Lexique de l'école</a>`}else if(s.type==='vocab'){html+=vocabGrid(s.items)}else if(s.type==='practice'){html+=`<p>اضغط على الزر للاستماع ثم راجع المفردات.</p><button onclick="speak('Bonjour')">🔊 استماع</button>`}html+='</section>';contentEl.innerHTML=html}
+showSection(0);
+</script>
+</body>
+</html>
