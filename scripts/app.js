@@ -5,6 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     bar.style.width = `${Math.max(0, Math.min(100, value))}%`;
   });
 
+  if (!document.querySelector('link[data-hm-theme]')) {
+    const theme = document.createElement('link');
+    theme.rel = 'stylesheet';
+    theme.href = 'css/theme-refresh.css?v=20260809';
+    theme.dataset.hmTheme = 'true';
+    document.head.appendChild(theme);
+  }
+
+  const brand = Array.from(document.querySelectorAll('header h2')).find(node => /HM Academy/i.test(node.textContent || ''));
+  if (brand && !brand.querySelector('a')) {
+    const link = document.createElement('a');
+    link.href = 'index.html';
+    link.textContent = brand.textContent.trim();
+    link.setAttribute('aria-label', 'العودة إلى الصفحة الرئيسية');
+    brand.textContent = '';
+    brand.appendChild(link);
+  }
+
   if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
     const scripts = [
       'scripts/learning-progress.js',
@@ -18,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.querySelector(`script[src="${src}"]`)) return;
       const script = document.createElement('script');
       script.src = src;
-      script.defer = false;
       document.body.appendChild(script);
     });
   }
