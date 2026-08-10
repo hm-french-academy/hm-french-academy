@@ -1,0 +1,7 @@
+{
+  "levels":[
+    {"id":"a1","title":"Beginner"},
+    {"id":"a2","title":"Elementary"},
+    {"id":"b1","title":"Intermediate"}
+  ]
+}
