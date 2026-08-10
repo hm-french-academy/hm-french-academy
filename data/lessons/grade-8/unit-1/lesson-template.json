@@ -1,0 +1,15 @@
+{
+  "lessonTemplate":"HM-Academy-v1",
+  "sections":[
+    "introduction",
+    "vocabulary",
+    "audio",
+    "video",
+    "practice",
+    "games",
+    "assessment",
+    "summary"
+  ],
+  "tracking":true,
+  "beta":true
+}
