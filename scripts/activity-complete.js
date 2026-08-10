@@ -11,6 +11,14 @@
         if(firstCompletion) old.push(payload);
         localStorage.setItem(key,JSON.stringify(old));
       }catch(e){}
+
+      // Persistent student learning map
+      try{
+        if(window.HMStudentLearningMap){
+          HMStudentLearningMap.mark(payload.lessonId,payload.activityId);
+        }
+      }catch(e){}
+
       if(window.HMProgress){
         if(typeof HMProgress.completeActivity==='function') HMProgress.completeActivity(payload.lessonId+':'+payload.activityId,firstCompletion?payload.xp:0);
         else if(firstCompletion&&typeof HMProgress.addXP==='function') HMProgress.addXP(payload.xp);
