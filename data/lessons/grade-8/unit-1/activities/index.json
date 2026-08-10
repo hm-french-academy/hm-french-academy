@@ -2,19 +2,9 @@
   "lessonId":"grade8-u1-l1",
   "title":"Leçon 1 : À l'école",
   "activities":[
-    {
-      "id":"vocabulary-challenge",
-      "title":"Vocabulary Challenge",
-      "type":"game",
-      "file":"vocabulary-challenge-lecon1.html",
-      "xp":20,
-      "skills":["vocabulary","recognition"]
-    }
+    {"id":"vocabulary-challenge","title":"Vocabulary Challenge","type":"game","file":"vocabulary-challenge-lecon1.html","xp":20,"skills":["vocabulary","recognition"]},
+    {"id":"memory-cards","title":"Memory Cards","type":"game","file":"memory-cards-lecon1.html","xp":20,"skills":["vocabulary","matching","memory"]}
   ],
-  "nextActivities":[
-    "listening-challenge",
-    "grammar-game",
-    "memory-cards"
-  ],
+  "nextActivities":["listening-challenge","grammar-game"],
   "status":"pilot"
 }
