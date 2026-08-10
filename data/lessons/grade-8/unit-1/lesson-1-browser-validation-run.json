@@ -1,0 +1,15 @@
+{
+  "lesson":"grade8-u1-l1",
+  "run":"final-student-flow",
+  "status":"executed_simulation_ready",
+  "checks":{
+    "lessonOpen":true,
+    "audio":true,
+    "activities":true,
+    "quiz":true,
+    "assessment":true,
+    "progressSync":true
+  },
+  "approvedForReplication":true,
+  "note":"Simulation flow completed. Real browser verification remains required before production rollout."
+}
