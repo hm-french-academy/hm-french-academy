@@ -1,0 +1,20 @@
+{
+  "id":"grade8-u1-l1",
+  "title":"Leçon 1 : À l'école",
+  "language":"fr",
+  "grade":"grade-8",
+  "unit":"unit-1",
+  "files":{
+    "interactive":"lesson-1-interactive.html",
+    "reference":"reference_lecon1_unite1.html",
+    "assessment":"formal_assessment_lecon1_unite1.html",
+    "quiz":"interactive_assessment_lecon1_unite1.html"
+  },
+  "activities":[
+    {"type":"memory-game","file":"memory_game_lecon1_unite1.html","xp":20},
+    {"type":"drag-drop","file":"drag_drop_lecon1_unite1.html","xp":25},
+    {"type":"pronunciation","file":"pronunciation_challenge_lecon1_unite1.html","xp":20},
+    {"type":"vocabulary","file":"vocabulary_challenge_lecon1_unite1.html","xp":20}
+  ],
+  "media":{"audio":true,"video":true}
+}
