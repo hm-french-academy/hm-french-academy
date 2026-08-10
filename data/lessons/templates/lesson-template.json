@@ -1,0 +1,18 @@
+{
+  "id":"grade-stage-unit-lesson",
+  "title":"Lesson title",
+  "language":"fr",
+  "grade":"",
+  "unit":"",
+  "files":{
+    "interactive":"",
+    "reference":"",
+    "assessment":"",
+    "quiz":""
+  },
+  "activities":[],
+  "media":{
+    "audio":false,
+    "video":false
+  }
+}
