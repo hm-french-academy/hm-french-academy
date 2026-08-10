@@ -1,0 +1,15 @@
+{
+  "id":"grade8-u1-l2",
+  "title":"Leçon 2",
+  "language":"fr",
+  "grade":"grade-8",
+  "unit":"unit-1",
+  "files":{
+    "interactive":"lesson-2-interactive.html",
+    "reference":"reference_lecon2_unite1.html",
+    "assessment":"formal_assessment_lecon2_unite1.html",
+    "quiz":"interactive_assessment_lecon2_unite1.html"
+  },
+  "activities":[],
+  "media":{"audio":false,"video":false}
+}
