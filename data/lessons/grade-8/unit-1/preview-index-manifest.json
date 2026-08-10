@@ -1,0 +1,10 @@
+{
+  "unit":"grade8-unit1",
+  "template":"grade8-unit1-lesson-template",
+  "status":"replication_ready",
+  "lessons":[
+    {"id":"lesson-1","preview":"lesson-beta-preview.html","status":"approved","master":true},
+    {"id":"lesson-2","preview":"lesson-2-preview.html","status":"pending-template-apply"},
+    {"id":"lesson-3","preview":"lesson-3-preview.html","status":"pending-template-apply"}
+  ]
+}
