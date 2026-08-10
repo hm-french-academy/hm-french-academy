@@ -14,6 +14,9 @@ function markLessonComplete(lessonId, achievementId = 'first-step', skill = 'gra
     if (achievementId && window.HMProgress.addAchievement) HMProgress.addAchievement(achievementId);
     if (window.HMActivity) HMActivity.add('lesson', 'إكمال الدرس: ' + id);
     if (window.HMSkills) HMSkills.add(skill, 10);
+    if (window.HMStreak) HMStreak.checkIn();
+    if (window.HMRewards) HMRewards.unlock('lesson-finish');
+    window.dispatchEvent(new CustomEvent('hm:activity-completed',{detail:{lessonId:id,activityId:'lesson-complete',xp:50}}));
   }
 
   const button = document.querySelector('[data-complete-lesson]');
