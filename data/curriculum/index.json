@@ -1,0 +1,14 @@
+{
+  "curricula":[
+    {
+      "id":"french-middle-school",
+      "title":"French Language Curriculum",
+      "grades":[
+        {
+          "id":"grade-8",
+          "file":"data/curriculum/grade-8.json"
+        }
+      ]
+    }
+  ]
+}
