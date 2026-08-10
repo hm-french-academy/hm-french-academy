@@ -3,8 +3,9 @@
   "title":"Leçon 1 : À l'école",
   "activities":[
     {"id":"vocabulary-challenge","title":"Vocabulary Challenge","type":"game","file":"vocabulary-challenge-lecon1.html","xp":20,"skills":["vocabulary","recognition"]},
-    {"id":"memory-cards","title":"Memory Cards","type":"game","file":"memory-cards-lecon1.html","xp":20,"skills":["vocabulary","matching","memory"]}
+    {"id":"memory-cards","title":"Memory Cards","type":"game","file":"memory-cards-lecon1.html","xp":20,"skills":["vocabulary","matching","memory"]},
+    {"id":"listening-challenge","title":"Listening Challenge","type":"audio-game","file":"listening-challenge-lecon1.html","xp":20,"skills":["listening","recognition"]},
+    {"id":"grammar-game","title":"Grammar Game","type":"game","file":"grammar-game-lecon1.html","xp":20,"skills":["grammar","sentence-building"]}
   ],
-  "nextActivities":["listening-challenge","grammar-game"],
-  "status":"pilot"
+  "status":"active"
 }
