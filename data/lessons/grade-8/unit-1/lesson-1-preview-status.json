@@ -1,0 +1,13 @@
+{
+  "lesson":"grade8-u1-l1",
+  "mode":"preview-qa",
+  "masterTemplate":true,
+  "checks":[
+    "json-loaded",
+    "interactive-opened",
+    "activities-tested",
+    "assessment-tested",
+    "progress-verified"
+  ],
+  "approvedForReplication":false
+}
