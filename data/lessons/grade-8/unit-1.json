@@ -5,15 +5,11 @@
   "titleFr":"À l'école",
   "titleAr":"في المدرسة",
   "status":"pilot",
-  "contentSource":"Revision_Finale_Complete_4Unites.docx + lesson-1-source-original.html",
-  "lessonFiles":{"interactive":{"required":true,"type":"interactive-file","audioEmbedded":true},"videos":{"required":true,"type":"youtube-links"},"reference":{"required":true,"type":"printable"},"assessment":{"required":true,"type":"interactive-assessment"}},
-  "lesson1Content":{
-    "facilities":["Une cantine","Une cour","Des classes","Un gymnase","Un CDI","Un laboratoire","Un terrain de sport","Un self-service","Une piscine","Une bibliothèque"],
-    "classroom":["Un bureau","Un tableau","Une porte","Une fenêtre","Des bancs / Un banc","Un panneau","Un TNI","Une horloge","Une chaise","Une table","Le globe terrestre","Un ordinateur"],
-    "video":{"title":"Lexique de l'école","youtube":"https://www.youtube.com/watch?v=ii5J7ZMT5EY"},
-    "grammar":[{"title":"Aimer / Préférer","scope":"J'aime / préfère; Tu aimes / préfères; Il / Elle aime / préfère; Nous aimons / préférons; Vous aimez / préférez; Ils / Elles aiment / préfèrent"},{"title":"Il y a / Il n'y a pas de","scope":"Il y a un tableau. → Il n'y a pas de tableau."}]
-  },
-  "audioPolicy":"Audio remains embedded inside the interactive lesson file; it is not treated as separate vocabulary audio assets.",
+  "contentSource":"Revision_Finale_Complete_4Unites.docx + validated lesson-1 scope",
+  "lessonFiles":{"interactive":{"required":true,"type":"interactive-file","audioEmbedded":true},"videos":{"required":true,"type":"youtube-links"},"reference":{"required":true,"type":"printable-reference"},"assessment":{"required":true,"type":"formal-assessment"},"interactiveAssessment":{"required":true,"type":"separate-interactive-assessment"}},
+  "lesson1Content":{"scopeNote":"Lesson 1 currently covers school facilities and classroom vocabulary. Unit-level professions are not injected into Lesson 1.","facilities":["Une cantine","Une cour","Des classes","Un gymnase","Un CDI","Un laboratoire","Un terrain de sport","Un self-service","Une piscine","Une bibliothèque"],"classroom":["Un bureau","Un tableau","Une porte","Une fenêtre","Des bancs / Un banc","Un panneau","Un TNI","Une horloge","Une chaise","Une table","Le globe terrestre","Un ordinateur"],"video":{"title":"Lexique de l'école","youtube":"https://www.youtube.com/watch?v=ii5J7ZMT5EY"},"supportingGrammar":[{"title":"Aimer / Préférer","role":"supporting-extension","scope":"J'aime / préfère; Tu aimes / préfères; Il / Elle aime / préfère; Nous aimons / préférons; Vous aimez / préférez; Ils / Elles aiment / préfèrent"},{"title":"Il y a / Il n'y a pas de","role":"supporting-extension","scope":"Il y a un tableau. → Il n'y a pas de tableau."}]},
+  "audioPolicy":"Audio remains embedded inside the interactive lesson file; image click and speaker button both trigger pronunciation.",
   "videoPolicy":"Lesson videos are represented as YouTube links and open on click.",
-  "accuracyPolicy":"Lesson-specific content must come only from the lesson source. Unit-level revision vocabulary must not be injected into a lesson unless the lesson source explicitly contains it. Visual assets must be mapped to the exact word before publication."
+  "assessmentPolicy":"The formal assessment and interactive assessment are separate files and must not expose model answers before the student attempts the question.",
+  "accuracyPolicy":"Lesson-specific content must not inherit unrelated unit vocabulary merely because it appears elsewhere in the curriculum. Visual assets must be mapped to the exact word before publication."
 }
