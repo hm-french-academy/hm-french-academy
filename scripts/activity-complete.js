@@ -15,7 +15,15 @@
         if(typeof HMProgress.completeActivity==='function') HMProgress.completeActivity(payload.lessonId+':'+payload.activityId,firstCompletion?payload.xp:0);
         else if(firstCompletion&&typeof HMProgress.addXP==='function') HMProgress.addXP(payload.xp);
       }
-      if(firstCompletion) window.dispatchEvent(new CustomEvent('hm:activity-completed',{detail:payload}));
+      if(firstCompletion){
+        if(window.HMStreak) HMStreak.checkIn();
+        if(window.HMRewards){
+          HMRewards.unlock('first-game');
+          const streak=window.HMStreak?HMStreak.get():{days:0};
+          if(streak.days>=7) HMRewards.unlock('streak-7');
+        }
+        window.dispatchEvent(new CustomEvent('hm:activity-completed',{detail:payload}));
+      }
       return payload;
     }
   };
