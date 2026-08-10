@@ -13,6 +13,7 @@
       const lessonAudio = audioMap[lessonId] || {};
       const buttons = Array.from(document.querySelectorAll('#vocabulary-list button'));
       const sources = Array.isArray(lessonAudio) ? lessonAudio : Object.values(lessonAudio);
+      let boundCount = 0;
 
       buttons.forEach((button, index) => {
         if(button.dataset.audioBound === 'true') return;
@@ -26,6 +27,7 @@
 
         button.dataset.audio = source;
         button.dataset.audioBound = 'true';
+        boundCount++;
         button.addEventListener('click', async () => {
           if(button._audio) button._audio.pause();
           const audio = new Audio(source);
@@ -41,6 +43,8 @@
           }
         });
       });
+
+      window.dispatchEvent(new CustomEvent('hm:audio-ready',{detail:{lessonId,boundCount}}));
     } catch(error) {
       console.warn('Audio binding skipped', error);
     }
