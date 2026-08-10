@@ -1,0 +1,21 @@
+{
+  "id":"grade-8",
+  "title":"الصف الثاني الإعدادي",
+  "language":"fr",
+  "units":[
+    {
+      "id":"unit-1",
+      "title":"Unité 1",
+      "lessons":[
+        {
+          "id":"grade8-u1-l1",
+          "file":"data/lessons/grade-8/unit-1/lesson-1.json"
+        },
+        {
+          "id":"grade8-u1-l2",
+          "file":"data/lessons/grade-8/unit-1/lesson-2.json"
+        }
+      ]
+    }
+  ]
+}
