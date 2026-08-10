@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | Preview Runner</title>
+<style>
+body{font-family:Arial,sans-serif;padding:30px;background:#f5f7fb}
+.card{background:white;border-radius:16px;padding:24px;max-width:700px;margin:auto}
+button{padding:12px 20px;border:0;border-radius:10px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🎓 HM Academy Preview Runner</h1>
+<p>تشغيل معاينة Leçon 1 قبل التعميم.</p>
+<a href="lesson-beta-preview.html"><button>فتح معاينة الدرس الأول</button></a>
+<hr>
+<h2>حالة القالب</h2>
+<div id="status">يتم تحميل الحالة...</div>
+</div>
+<script>
+fetch('data/lessons/grade-8/unit-1/lesson-1-master-template-status.json')
+.then(r=>r.json())
+.then(d=>{
+ document.getElementById('status').textContent=d.approvedForReplication?'✅ Master Template Approved':'🔄 Validation Required';
+})
+.catch(()=>document.getElementById('status').textContent='تعذر تحميل الحالة');
+</script>
+</body>
+</html>
