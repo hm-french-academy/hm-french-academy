@@ -4,12 +4,17 @@
   "language":"fr",
   "grade":"grade-8",
   "unit":"unit-1",
+  "template":"HM-Academy-v1",
   "files":{
     "interactive":"lesson-2-interactive.html",
     "reference":"reference_lecon2_unite1.html",
     "assessment":"formal_assessment_lecon2_unite1.html",
     "quiz":"interactive_assessment_lecon2_unite1.html"
   },
+  "sections":["introduction","vocabulary","audio","video","practice","games","assessment","summary"],
   "activities":[],
-  "media":{"audio":false,"video":false}
+  "media":{"audio":false,"video":false},
+  "tracking":true,
+  "beta":true,
+  "status":"ready-for-content"
 }
