@@ -1,0 +1,15 @@
+{
+  "template":"grade8-unit1-lesson-template",
+  "sourceLesson":"grade8-u1-l1",
+  "status":"approved",
+  "approvedForReplication":true,
+  "includes":[
+    "preview-qa",
+    "student-result-panel",
+    "validation-runtime",
+    "event-bridge",
+    "assessment-flow",
+    "progress-sync"
+  ],
+  "nextStage":"apply-to-unit-lessons"
+}
