@@ -1,0 +1,15 @@
+{
+  "lesson": "grade8-u1-l1",
+  "validationType": "final-preview",
+  "status": "ready_for_browser_validation",
+  "checks": {
+    "lessonOpen": true,
+    "audio": false,
+    "activities": false,
+    "quiz": false,
+    "assessment": false,
+    "progressSync": false
+  },
+  "approvedForReplication": false,
+  "notes": "Awaiting real browser student flow execution."
+}
