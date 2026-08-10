@@ -7,12 +7,30 @@ const HMProgress = {
     return saved ? JSON.parse(saved) : {
       xp: 0,
       completedLessons: [],
+      completedActivities: [],
       achievements: []
     };
   },
 
   save(data){
     localStorage.setItem(this.storageKey, JSON.stringify(data));
+  },
+
+  addXP(amount = 0){
+    const data = this.get();
+    data.xp += Number(amount) || 0;
+    this.save(data);
+    return data;
+  },
+
+  completeActivity(id, xp = 20){
+    const data = this.get();
+    if(!data.completedActivities.includes(id)){
+      data.completedActivities.push(id);
+      data.xp += xp;
+    }
+    this.save(data);
+    return data;
   },
 
   completeLesson(id, xp = 50){
@@ -39,6 +57,7 @@ const HMProgress = {
     return {
       xp: data.xp || 0,
       lessons: data.completedLessons.length,
+      activities: data.completedActivities.length,
       achievements: data.achievements.length
     };
   }
