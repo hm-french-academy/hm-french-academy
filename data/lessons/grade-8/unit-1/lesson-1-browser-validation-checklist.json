@@ -1,0 +1,13 @@
+{
+  "lesson":"grade8-u1-l1",
+  "purpose":"browser-validation-before-replication",
+  "steps":[
+    {"id":"open","label":"Open lesson","done":true},
+    {"id":"audio","label":"Test audio and pronunciation","done":false},
+    {"id":"activities","label":"Complete interactive activities","done":false},
+    {"id":"quiz","label":"Complete quiz","done":false},
+    {"id":"assessment","label":"Complete final assessment","done":false},
+    {"id":"progress","label":"Verify progress sync","done":false}
+  ],
+  "readyForReplication":false
+}
