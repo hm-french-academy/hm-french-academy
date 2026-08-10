@@ -1,0 +1,15 @@
+{
+  "lesson":"grade8-u1-l1",
+  "type":"preview-e2e-report",
+  "status":"testing",
+  "checks":{
+    "lessonOpened":true,
+    "audioTest":false,
+    "activitiesTest":false,
+    "quizTest":false,
+    "assessmentTest":false,
+    "progressVerified":false
+  },
+  "approvedForReplication":false,
+  "note":"Awaiting real student-flow execution in browser preview."
+}
