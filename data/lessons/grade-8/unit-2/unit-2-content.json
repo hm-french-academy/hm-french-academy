@@ -1,0 +1,17 @@
+{
+  "id":"grade8-u2",
+  "unit":"Unité 2",
+  "titleFr":"La maison",
+  "titleAr":"المنزل",
+  "source":"Revision_Finale_Complete_4Unites.docx",
+  "scope":"semester-1",
+  "lessonBreakdown":"source-file-does-not-explicitly-number-lessons",
+  "contentModules":[
+    {"id":"module-vocabulaire","title":"Lexique de la maison","items":["La chambre","La cuisine","Le salon","Un lit","Une armoire","Un oreiller","Un canapé","Un fauteuil","Un tapis","Un évier","Un réfrigérateur","Une douche"]},
+    {"id":"module-grammaire","title":"Avoir / Être","topics":["Avoir au présent","Être au présent"]},
+    {"id":"module-localisation","title":"Prépositions de lieu","topics":["sur","sous","devant","derrière","entre"]},
+    {"id":"module-possessifs","title":"Les possessifs","topics":["mon / ma / mes","ton / ta / tes","son / sa / ses","mon devant un nom féminin commençant par une voyelle"]}
+  ],
+  "plannedPackage":["interactive-explanation","audio","reference","formal-assessment","interactive-assessment","independent-games","progress"],
+  "status":"content-ready-for-lesson-production"
+}
