@@ -1,0 +1,37 @@
+{
+  "curriculumId":"grade-8-french-semester-1",
+  "curriculumName":"Français simple 2",
+  "semester":"1er semestre",
+  "sourceOfTruth":"uploaded lesson package",
+  "includedUnits":[
+    {
+      "id":"unit-1","titleFr":"À l'école","titleAr":"في المدرسة",
+      "lessons":[
+        {"id":"u1-l1","number":1,"titleFr":"À l'école","titleAr":"في المدرسة"},
+        {"id":"u1-l2","number":2,"titleFr":"Leçon 2","titleAr":"الدرس الثاني"},
+        {"id":"u1-l3","number":3,"titleFr":"Leçon 3","titleAr":"الدرس الثالث"},
+        {"id":"u1-l4","number":4,"titleFr":"Leçon 4","titleAr":"الدرس الرابع"}
+      ]
+    },
+    {
+      "id":"unit-2","titleFr":"La maison","titleAr":"المنزل",
+      "lessons":[
+        {"id":"u2-l1","number":1,"titleFr":"Les pièces de la maison et la chambre","titleAr":"غرف المنزل وغرفة النوم"},
+        {"id":"u2-l2","number":2,"titleFr":"La salle de séjour, la cuisine et la salle de bains","titleAr":"غرفة المعيشة والمطبخ والحمام"},
+        {"id":"u2-l3","number":3,"titleFr":"Vocabulaire général et conjugaison Avoir / Être","titleAr":"المفردات العامة وتصريف Avoir وÊtre"},
+        {"id":"u2-l4","number":4,"titleFr":"Les prépositions de lieu et les adjectifs possessifs","titleAr":"حروف الجر للمكان وصفات الملكية"}
+      ]
+    },
+    {
+      "id":"unit-3","titleFr":"Le voyage","titleAr":"السفر",
+      "lessons":[
+        {"id":"u3-l1","number":1,"titleFr":"Les moyens de transport et les lieux","titleAr":"وسائل النقل والأماكن"},
+        {"id":"u3-l2","number":2,"titleFr":"Objets, personnes de voyage et expressions","titleAr":"أدوات السفر والأشخاص والتعبيرات"},
+        {"id":"u3-l3","number":3,"titleFr":"Conjugaison et adjectifs démonstratifs","titleAr":"التصريف وأسماء الإشارة"},
+        {"id":"u3-l4","number":4,"titleFr":"Prépositions, à ou en, et mots interrogatifs","titleAr":"حروف الجر وÀ أو En وأدوات الاستفهام"}
+      ]
+    }
+  ],
+  "excludedUnits":[{"id":"unit-4","titleFr":"La fête","titleAr":"الحفلة","reason":"excluded by curriculum scope"}],
+  "lessonPackageContract":{"interactive":true,"reference":true,"assessment":true,"games":true,"progress":true,"assessmentSeparatedFromGames":true}
+}
