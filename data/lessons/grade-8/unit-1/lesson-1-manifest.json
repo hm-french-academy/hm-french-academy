@@ -9,6 +9,14 @@
   "referenceFile": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
   "assessmentFile": "data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html",
   "interactiveAssessmentFile": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html",
+  "gamesHubFile": "data/lessons/grade-8/unit-1/lesson-1-games.html",
+  "activities": [
+    {"id": "memory-game", "type": "memory-game", "file": "data/lessons/grade-8/unit-1/memory_game_lecon1_unite1.html", "xp": 20},
+    {"id": "drag-drop", "type": "drag-drop", "file": "data/lessons/grade-8/unit-1/drag_drop_lecon1_unite1.html", "xp": 25},
+    {"id": "pronunciation", "type": "pronunciation", "file": "data/lessons/grade-8/unit-1/pronunciation_challenge_lecon1_unite1.html", "xp": 20},
+    {"id": "vocabulary", "type": "vocabulary", "file": "data/lessons/grade-8/unit-1/vocabulary_challenge_lecon1_unite1.html", "xp": 20},
+    {"id": "quiz-express", "type": "quiz-express", "file": "data/lessons/grade-8/unit-1/games_quiz_lecon1_unite1.html", "xp": 20}
+  ],
   "legacyAssessmentFile": "data/lessons/grade-8/unit-1/exam_lecon1_unite1.html",
   "legacyAssessmentLinked": false,
   "videoLinks": [{"title": "Lexique de l'école", "url": "https://www.youtube.com/watch?v=ii5J7ZMT5EY"}],
@@ -18,10 +26,11 @@
   "professionsInLesson1": false,
   "assessmentMode": "separate-formal-assessment",
   "interactiveAssessmentMode": "separate-gamified-assessment",
+  "gamesMode": "separate-practice-and-games",
   "progress": {"completionXP": 50, "trackLesson": true},
   "navigation": {
     "entry": "interactive",
-    "sequence": ["interactive", "reference", "assessment", "interactiveAssessment"],
+    "sequence": ["interactive", "reference", "assessment", "interactiveAssessment", "games"],
     "completion": "interactiveAssessment"
   },
   "status": "pilot"
