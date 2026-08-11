@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(i18n);
   }
 
+  if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
+    if (!document.querySelector('script[src="scripts/lesson-i18n-bind.js"]')) {
+      const lessonI18n = document.createElement('script');
+      lessonI18n.src = 'scripts/lesson-i18n-bind.js';
+      document.head.appendChild(lessonI18n);
+    }
+  }
+
   const progressBars = document.querySelectorAll('[data-progress]');
   progressBars.forEach((bar) => {
     const value = Number(bar.getAttribute('data-progress') || '0');
