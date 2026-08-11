@@ -1,11 +1,12 @@
 {
+  "contentVersion":"2026-08-11-unit1-complete",
   "curriculumId":"grade-8-french-semester-1",
   "includedUnits":[
     {"id":"unit-1","titleAr":"في المدرسة","titleFr":"À l'école","lessons":[
       {"id":"grade8-u1-l1","number":1,"titleAr":"في المدرسة","titleFr":"À l'école","interactive":"data/lessons/grade-8/unit-1/lesson-1-interactive.html","files":"lesson-files.html?lesson=grade8-u1-l1","games":"data/lessons/grade-8/unit-1/lesson-1-games.html","status":"live"},
-      {"id":"grade8-u1-l2","number":2,"titleAr":"الدرس الثاني","titleFr":"Leçon 2","interactive":"data/lessons/grade-8/unit-1/lesson-2-interactive.html","files":"lesson-files.html?lesson=grade8-u1-l2","games":"lesson-files.html?lesson=grade8-u1-l2&section=games","status":"source-verified-upload-pending"},
-      {"id":"grade8-u1-l3","number":3,"titleAr":"الدرس الثالث","titleFr":"Leçon 3","interactive":"lesson.html?id=grade8-u1-l3","files":"lesson-files.html?lesson=grade8-u1-l3","games":"lesson-files.html?lesson=grade8-u1-l3&section=games","status":"source-verified-upload-pending"},
-      {"id":"grade8-u1-l4","number":4,"titleAr":"الدرس الرابع","titleFr":"Leçon 4","interactive":"lesson.html?id=grade8-u1-l4","files":"lesson-files.html?lesson=grade8-u1-l4","games":"lesson-files.html?lesson=grade8-u1-l4&section=games","status":"source-verified-upload-pending"}
+      {"id":"grade8-u1-l2","number":2,"titleAr":"الدرس الثاني","titleFr":"Leçon 2","interactive":"data/lessons/grade-8/unit-1/lesson-2-interactive.html","files":"lesson-files.html?lesson=grade8-u1-l2","games":"data/lessons/grade-8/unit-1/lesson-2-games.html","status":"live"},
+      {"id":"grade8-u1-l3","number":3,"titleAr":"الدرس الثالث","titleFr":"Leçon 3","interactive":"data/lessons/grade-8/unit-1/lesson-3-interactive.html","files":"lesson-files.html?lesson=grade8-u1-l3","games":"data/lessons/grade-8/unit-1/lesson-3-games.html","status":"live"},
+      {"id":"grade8-u1-l4","number":4,"titleAr":"الدرس الرابع","titleFr":"Leçon 4","interactive":"data/lessons/grade-8/unit-1/lesson-4-interactive.html","files":"lesson-files.html?lesson=grade8-u1-l4","games":"data/lessons/grade-8/unit-1/lesson-4-games.html","status":"live"}
     ]},
     {"id":"unit-2","titleAr":"المنزل","titleFr":"La maison","lessons":[
       {"id":"grade8-u2-l1","number":1,"titleAr":"الدرس الأول","titleFr":"Leçon 1","interactive":"lesson.html?id=grade8-u2-l1","files":"lesson-files.html?lesson=grade8-u2-l1","games":"lesson-files.html?lesson=grade8-u2-l1&section=games","status":"content-ready-for-production"},
