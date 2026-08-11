@@ -1,91 +1,12 @@
 {
-  "id": "grade-8-french-semester-1",
-  "title": "الصف الثاني الإعدادي - اللغة الفرنسية",
-  "curriculumName": "Français simple 2",
-  "source": "Revision_Finale_Complete_4Unites.docx",
-  "semester": "1er semestre",
-  "status": "active-pilot",
-  "scope": {
-    "includedUnits": ["unit-1", "unit-2", "unit-3"],
-    "excludedUnits": ["unit-4"],
-    "excludedUnitReason": "Excluded by HM Academy curriculum scope decision; do not render, index, search, or use its content in lessons, games, or assessments."
-  },
-  "units": [
-    {
-      "id": "unit-1",
-      "titleFr": "À l'école",
-      "titleAr": "في المدرسة",
-      "status": "lesson-pilot-ready",
-      "lessonFiles": {
-        "lesson-1": {
-          "titleFr": "Leçon 1 : À l'école",
-          "titleAr": "الدرس الأول: في المدرسة",
-          "interactive": "data/lessons/grade-8/unit-1/lesson-1-interactive.html",
-          "reference": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
-          "assessment": "data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html",
-          "interactiveAssessment": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html",
-          "games": "data/lessons/grade-8/unit-1/lesson-1-games.html"
-        }
-      },
-      "vocabulary": ["Une cantine", "Une cour", "Un CDI", "Un tableau", "Une chaise", "Un bureau", "Un stylo", "Une gomme", "Une règle", "Une trousse", "Un sac à dos", "Le français", "Les mathématiques", "L'histoire", "Un boulanger", "Une boulangère"],
-      "grammar": ["Aimer / Préférer", "Il y a / Il n'y a pas de"],
-      "verbs": ["aimer", "préférer", "détester"]
-    },
-    {
-      "id": "unit-2",
-      "titleFr": "La maison",
-      "titleAr": "المنزل",
-      "status": "content-mapped",
-      "lessonFiles": {},
-      "contentReady": true,
-      "lessonBreakdownRequired": true,
-      "vocabulary": ["La chambre", "La cuisine", "Le salon", "Un lit", "Une armoire", "Un oreiller", "Un canapé", "Un fauteuil", "Un tapis", "Un évier", "Un réfrigérateur", "Une douche"],
-      "grammar": ["Avoir / Être", "Prépositions de lieu: sur, sous, devant, derrière, entre", "Possessifs: mon, ma, mes / ton, ta, tes / son, sa, ses"],
-      "verbs": ["avoir", "être"]
-    },
-    {
-      "id": "unit-3",
-      "titleFr": "Le voyage",
-      "titleAr": "السفر",
-      "status": "content-mapped",
-      "lessonFiles": {},
-      "contentReady": true,
-      "lessonBreakdownRequired": true,
-      "vocabulary": ["Un avion", "Un train", "Un bateau", "Un aéroport", "Une gare", "Un guichet", "Un passager", "Une valise", "Un billet"],
-      "grammar": ["Adjectifs démonstratifs: ce, cet, cette, ces", "Prépositions avec villes et pays: à, au, aux, en, chez"],
-      "verbs": ["voyager", "aller", "prendre"]
-    }
+  "id":"grade-8-french-semester-1","title":"الصف الثاني الإعدادي - اللغة الفرنسية","curriculumName":"Français simple 2","source":"Revision_Finale_Complete_4Unites.docx","semester":"1er semestre","status":"active-pilot",
+  "scope":{"includedUnits":["unit-1","unit-2","unit-3"],"excludedUnits":["unit-4"],"excludedUnitReason":"Excluded by HM Academy curriculum scope decision; do not render, index, or use its content."},
+  "sourceGrounding":{"lessonNumberingAvailable":false,"note":"The available source is a comprehensive revision document. It defines the content of Units 1-4 but does not provide an explicit numbered lesson breakdown for Units 2-3. HM Academy will not invent lesson numbers or titles; unit content is prepared as source-grounded modules until the official lesson breakdown is available."},
+  "units":[
+    {"id":"unit-1","titleFr":"À l'école","titleAr":"في المدرسة","status":"lesson-pilot-ready","lessonFiles":{"lesson-1":{"titleFr":"Leçon 1 : À l'école","titleAr":"الدرس الأول: في المدرسة","interactive":"data/lessons/grade-8/unit-1/lesson-1-interactive.html","reference":"data/lessons/grade-8/unit-1/reference_lecon1_unite1.html","assessment":"data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html","interactiveAssessment":"data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html","games":"data/lessons/grade-8/unit-1/lesson-1-games.html"}},"vocabulary":["Une cantine","Une cour","Un CDI","Un tableau","Une chaise","Un bureau","Un stylo","Une gomme","Une règle","Une trousse","Un sac à dos","Le français","Les mathématiques","L'histoire","Un boulanger","Une boulangère"],"grammar":["Aimer / Préférer","Il y a / Il n'y a pas de"],"verbs":["aimer","préférer","détester"]},
+    {"id":"unit-2","titleFr":"La maison","titleAr":"المنزل","status":"content-ready-for-lesson-production","contentFile":"data/lessons/grade-8/unit-2/unit-2-content.json","lessonFiles":{},"vocabulary":["La chambre","La cuisine","Le salon","Un lit","Une armoire","Un oreiller","Un canapé","Un fauteuil","Un tapis","Un évier","Un réfrigérateur","Une douche"],"grammar":["Avoir / Être","Prépositions de lieu: sur, sous, devant, derrière, entre","Possessifs: mon, ma, mes / ton, ta, tes / son, sa, ses"]},
+    {"id":"unit-3","titleFr":"Le voyage","titleAr":"السفر","status":"content-ready-for-lesson-production","contentFile":"data/lessons/grade-8/unit-3/unit-3-content.json","lessonFiles":{},"vocabulary":["Un avion","Un train","Un bateau","Un aéroport","Une gare","Un guichet","Un passager","Une valise","Un billet"],"grammar":["Adjectifs démonstratifs: ce, cet, cette, ces","Prépositions avec villes et pays: à, au, aux, en, chez"],"verbs":["voyager","aller","prendre"]}
   ],
-  "excludedUnitDefinitions": [
-    {
-      "id": "unit-4",
-      "titleFr": "La fête",
-      "status": "excluded",
-      "doNotRender": true,
-      "doNotIndex": true,
-      "doNotUseForAssessments": true,
-      "doNotUseForGames": true
-    }
-  ],
-  "finalRevision": {
-    "id": "revision-finale",
-    "titleFr": "Révision Finale",
-    "covers": ["À l'école", "La maison", "Le voyage"],
-    "excludedFromPlatform": ["La fête"],
-    "parts": ["Vocabulaire", "Grammaire", "Compréhension écrite", "Exercices variés", "Expression écrite", "Auto-évaluation", "Corrigé enseignant"],
-    "pilotSourceFile": "Revision_Finale_Complete_4Unites.docx"
-  },
-  "lessonTemplate": {
-    "interactiveFile": true,
-    "interactiveAudioInsideFile": true,
-    "youtubeVideos": true,
-    "printableReference": true,
-    "activities": true,
-    "assessment": true,
-    "progressTracking": true,
-    "games": true,
-    "gamesAssessmentSeparation": true,
-    "randomizeGameQuestions": true,
-    "randomizeGameAnswers": true
-  }
+  "excludedUnitDefinitions":[{"id":"unit-4","titleFr":"La fête","status":"excluded","doNotRender":true,"doNotIndex":true,"doNotUseForAssessments":true,"doNotUseForGames":true}],
+  "lessonTemplate":{"interactiveFile":true,"interactiveAudioInsideFile":true,"youtubeVideos":true,"printableReference":true,"activities":true,"assessment":true,"progressTracking":true,"games":true,"gamesAssessmentSeparation":true,"randomizeGameQuestions":true,"randomizeGameAnswers":true}
 }
