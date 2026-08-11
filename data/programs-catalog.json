@@ -18,6 +18,7 @@
       "name": {"ar": "الفرنسية لكم", "fr": "Le français pour vous", "en": "Le français pour vous"},
       "description": {"ar": "المنهج المدرسي للمرحلة الابتدائية", "fr": "Programme scolaire du primaire", "en": "Primary-school curriculum"},
       "grades": [
+        {"id":"primary-3","label":{"ar":"الصف الثالث الابتدائي","fr":"3ème primaire","en":"3rd Primary"},"status":"planned","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
         {"id":"primary-4","label":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
         {"id":"primary-5","label":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
         {"id":"primary-6","label":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]}
