@@ -11,17 +11,13 @@
   "sourceFileTypes":["interactive HTML","electronic exam HTML","reference DOCX","exam DOCX"],
   "sourceFileCountIncluded":48,
   "sourceFileCountExcluded":16,
-  "structure":{
-    "Unite1_Ecole":[1,2,3,4],
-    "Unite2_Maison":[1,2,3,4],
-    "Unite3_Voyage":[1,2,3,4],
-    "Unite4_Fete":"excluded"
-  },
+  "structure":{"Unite1_Ecole":[1,2,3,4],"Unite2_Maison":[1,2,3,4],"Unite3_Voyage":[1,2,3,4],"Unite4_Fete":"excluded"},
   "originalPaths":{
     "unit1":"Unite1_Ecole/Lecon{1..4}/(reference_leconN_unite1.docx, exam_leconN_unite1.docx, leconN_unite1.html, examen_u1-lN.html)",
     "unit2":"Unite2_Maison/Lecon{1..4}/(reference_leconN_unite2.docx, exam_leconN_unite2.docx, leconN_unite2.html, examen_u2-lN.html)",
     "unit3":"Unite3_Voyage/Lecon{1..4}/(reference_leconN_unite3.docx, exam_leconN_unite3.docx, leconN_unite3.html, examen_u3-lN.html)"
   },
-  "binaryTransfer":"pending binary-capable repository upload channel; source package itself has been verified locally",
+  "deployment":{"unit1":"live","unit2":"live-web-runtime","unit3":"content-ready-for-production"},
+  "binaryTransfer":"original binary source package remains archived/verified; deployed lesson runtime uses repository-hosted HTML equivalents until the binary-capable transfer channel is available",
   "doNotImport":"Unite4_Fete"
 }
