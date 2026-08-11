@@ -15,6 +15,7 @@
       "category":"primary",
       "title":{"ar":"الفرنسية لكم","fr":"Le français pour vous","en":"Le français pour vous"},
       "grades":[
+        {"id":"primary-3","title":{"ar":"الصف الثالث الابتدائي","fr":"3ème primaire","en":"3rd Primary"},"terms":["term-1","term-2"]},
         {"id":"primary-4","title":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"terms":["term-1","term-2"]},
         {"id":"primary-5","title":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"terms":["term-1","term-2"]},
         {"id":"primary-6","title":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"terms":["term-1","term-2"]}
