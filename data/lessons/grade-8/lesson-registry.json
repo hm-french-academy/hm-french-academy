@@ -7,8 +7,18 @@
       {"id":"grade8-u1-l3","number":3,"titleAr":"الدرس الثالث","titleFr":"Leçon 3","interactive":"lesson.html?id=grade8-u1-l3","files":"lesson-files.html?lesson=grade8-u1-l3","games":"lesson-files.html?lesson=grade8-u1-l3&section=games","status":"source-verified-upload-pending"},
       {"id":"grade8-u1-l4","number":4,"titleAr":"الدرس الرابع","titleFr":"Leçon 4","interactive":"lesson.html?id=grade8-u1-l4","files":"lesson-files.html?lesson=grade8-u1-l4","games":"lesson-files.html?lesson=grade8-u1-l4&section=games","status":"source-verified-upload-pending"}
     ]},
-    {"id":"unit-2","titleAr":"المنزل","titleFr":"La maison","lessons":[1,2,3,4].map((n)=>({"id":"grade8-u2-l"+n,"number":n,"titleAr":"الدرس "+(n===1?'الأول':n===2?'الثاني':n===3?'الثالث':'الرابع'),"titleFr":"Leçon "+n,"interactive":"lesson.html?id=grade8-u2-l"+n,"files":"lesson-files.html?lesson=grade8-u2-l"+n,"games":"lesson-files.html?lesson=grade8-u2-l"+n+"&section=games","status":"content-ready-for-production"}))},
-    {"id":"unit-3","titleAr":"السفر","titleFr":"Le voyage","lessons":[1,2,3,4].map((n)=>({"id":"grade8-u3-l"+n,"number":n,"titleAr":"الدرس "+(n===1?'الأول':n===2?'الثاني':n===3?'الثالث':'الرابع'),"titleFr":"Leçon "+n,"interactive":"lesson.html?id=grade8-u3-l"+n,"files":"lesson-files.html?lesson=grade8-u3-l"+n,"games":"lesson-files.html?lesson=grade8-u3-l"+n+"&section=games","status":"content-ready-for-production"}))}
+    {"id":"unit-2","titleAr":"المنزل","titleFr":"La maison","lessons":[
+      {"id":"grade8-u2-l1","number":1,"titleAr":"الدرس الأول","titleFr":"Leçon 1","interactive":"lesson.html?id=grade8-u2-l1","files":"lesson-files.html?lesson=grade8-u2-l1","games":"lesson-files.html?lesson=grade8-u2-l1&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u2-l2","number":2,"titleAr":"الدرس الثاني","titleFr":"Leçon 2","interactive":"lesson.html?id=grade8-u2-l2","files":"lesson-files.html?lesson=grade8-u2-l2","games":"lesson-files.html?lesson=grade8-u2-l2&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u2-l3","number":3,"titleAr":"الدرس الثالث","titleFr":"Leçon 3","interactive":"lesson.html?id=grade8-u2-l3","files":"lesson-files.html?lesson=grade8-u2-l3","games":"lesson-files.html?lesson=grade8-u2-l3&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u2-l4","number":4,"titleAr":"الدرس الرابع","titleFr":"Leçon 4","interactive":"lesson.html?id=grade8-u2-l4","files":"lesson-files.html?lesson=grade8-u2-l4","games":"lesson-files.html?lesson=grade8-u2-l4&section=games","status":"content-ready-for-production"}
+    ]},
+    {"id":"unit-3","titleAr":"السفر","titleFr":"Le voyage","lessons":[
+      {"id":"grade8-u3-l1","number":1,"titleAr":"الدرس الأول","titleFr":"Leçon 1","interactive":"lesson.html?id=grade8-u3-l1","files":"lesson-files.html?lesson=grade8-u3-l1","games":"lesson-files.html?lesson=grade8-u3-l1&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u3-l2","number":2,"titleAr":"الدرس الثاني","titleFr":"Leçon 2","interactive":"lesson.html?id=grade8-u3-l2","files":"lesson-files.html?lesson=grade8-u3-l2","games":"lesson-files.html?lesson=grade8-u3-l2&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u3-l3","number":3,"titleAr":"الدرس الثالث","titleFr":"Leçon 3","interactive":"lesson.html?id=grade8-u3-l3","files":"lesson-files.html?lesson=grade8-u3-l3","games":"lesson-files.html?lesson=grade8-u3-l3&section=games","status":"content-ready-for-production"},
+      {"id":"grade8-u3-l4","number":4,"titleAr":"الدرس الرابع","titleFr":"Leçon 4","interactive":"lesson.html?id=grade8-u3-l4","files":"lesson-files.html?lesson=grade8-u3-l4","games":"lesson-files.html?lesson=grade8-u3-l4&section=games","status":"content-ready-for-production"}
+    ]}
   ],
   "excludedUnits":["unit-4"],
   "contract":{"lessonsPerUnit":4,"includedUnits":3,"includedLessons":12,"filesPerLesson":4}
