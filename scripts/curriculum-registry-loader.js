@@ -1,7 +1,11 @@
 // HM Academy Curriculum Registry Loader
 (function(){
+  function resolvePath(url){
+    const base = location.pathname.split('/').slice(0,-1).join('/');
+    return `${base}/${url}`.replace(/\/\//g,'/');
+  }
   async function load(url){
-    const response=await fetch(url,{cache:'no-store'});
+    const response=await fetch(resolvePath(url),{cache:'no-store'});
     if(!response.ok) throw new Error('Curriculum registry unavailable');
     const registry=await response.json();
     window.HMCurriculumRegistry=registry;
