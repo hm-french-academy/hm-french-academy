@@ -2,20 +2,27 @@
   "id":"grade-8",
   "title":"الصف الثاني الإعدادي",
   "language":"fr",
+  "semester":"term-1",
+  "includedUnits":["unit-1","unit-2","unit-3"],
+  "excludedUnits":["unit-4"],
   "units":[
-    {
-      "id":"unit-1",
-      "title":"Unité 1",
-      "lessons":[
-        {
-          "id":"grade8-u1-l1",
-          "file":"data/lessons/grade-8/unit-1/lesson-1.json"
-        },
-        {
-          "id":"grade8-u1-l2",
-          "file":"data/lessons/grade-8/unit-1/lesson-2.json"
-        }
-      ]
-    }
+    {"id":"unit-1","title":"À l'école","lessons":[
+      {"id":"grade8-u1-l1","file":"data/lessons/grade-8/unit-1/lesson-1.json"},
+      {"id":"grade8-u1-l2","file":"data/lessons/grade-8/unit-1/lesson-2.json"},
+      {"id":"grade8-u1-l3","file":"data/lessons/grade-8/unit-1/lesson-3.json"},
+      {"id":"grade8-u1-l4","file":"data/lessons/grade-8/unit-1/lesson-4.json"}
+    ]},
+    {"id":"unit-2","title":"La maison","lessons":[
+      {"id":"grade8-u2-l1","file":"data/lessons/grade-8/unit-2/unit-2-content.json#lesson-1"},
+      {"id":"grade8-u2-l2","file":"data/lessons/grade-8/unit-2/unit-2-content.json#lesson-2"},
+      {"id":"grade8-u2-l3","file":"data/lessons/grade-8/unit-2/unit-2-content.json#lesson-3"},
+      {"id":"grade8-u2-l4","file":"data/lessons/grade-8/unit-2/unit-2-content.json#lesson-4"}
+    ]},
+    {"id":"unit-3","title":"Le voyage","lessons":[
+      {"id":"grade8-u3-l1","file":"data/lessons/grade-8/unit-3/unit-3-content.json#lesson-1"},
+      {"id":"grade8-u3-l2","file":"data/lessons/grade-8/unit-3/unit-3-content.json#lesson-2"},
+      {"id":"grade8-u3-l3","file":"data/lessons/grade-8/unit-3/unit-3-content.json#lesson-3"},
+      {"id":"grade8-u3-l4","file":"data/lessons/grade-8/unit-3/unit-3-content.json#lesson-4"}
+    ]}
   ]
 }
