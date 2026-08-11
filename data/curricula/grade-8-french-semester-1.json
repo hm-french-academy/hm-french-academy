@@ -8,7 +8,18 @@
     {
       "id": "unit-1",
       "titleFr": "À l'école",
+      "titleAr": "في المدرسة",
       "status": "pilot-ready",
+      "lessonFiles": {
+        "lesson-1": {
+          "titleFr": "Leçon 1 : À l'école",
+          "titleAr": "الدرس الأول: في المدرسة",
+          "interactive": "data/lessons/grade-8/unit-1/lesson-1-interactive.html",
+          "reference": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
+          "assessment": "data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html",
+          "interactiveAssessment": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html"
+        }
+      },
       "vocabulary": ["Une cantine", "Une cour", "Un CDI", "Un tableau", "Une chaise", "Un bureau", "Un stylo", "Une gomme", "Une règle", "Une trousse", "Un sac à dos", "Le français", "Les mathématiques", "L'histoire", "Un boulanger", "Une boulangère"],
       "grammar": ["Aimer / Préférer", "Il y a / Il n'y a pas de"],
       "verbs": ["aimer", "préférer", "détester"]
@@ -16,6 +27,7 @@
     {
       "id": "unit-2",
       "titleFr": "La maison",
+      "titleAr": "المنزل",
       "status": "mapped",
       "vocabulary": ["La chambre", "La cuisine", "Le salon", "Un lit", "Une armoire", "Un oreiller", "Un canapé", "Un fauteuil", "Un tapis", "Un évier", "Un réfrigérateur", "Une douche"],
       "grammar": ["Prépositions de lieu", "Possessifs: mon, ma, mes / ton, ta, tes / son, sa, ses"],
@@ -24,24 +36,17 @@
     {
       "id": "unit-3",
       "titleFr": "Le voyage",
+      "titleAr": "السفر",
       "status": "mapped",
       "vocabulary": ["Un avion", "Un train", "Un bateau", "Un aéroport", "Une gare", "Un guichet", "Un passager", "Une valise", "Un billet"],
       "grammar": ["Adjectifs démonstratifs: ce, cet, cette, ces", "Prépositions avec villes et pays: à, au, aux, en, chez"],
       "verbs": ["voyager", "aller", "prendre"]
-    },
-    {
-      "id": "unit-4",
-      "titleFr": "La fête",
-      "status": "mapped",
-      "vocabulary": ["Un anniversaire", "Un cadeau", "Un gâteau", "Une bougie", "Un ballon", "Une surprise", "Les mois de l'année"],
-      "grammar": ["Futur proche: aller au présent + infinitif", "Mots interrogatifs", "Demande polie avec Je voudrais"],
-      "verbs": ["danser", "fêter", "organiser", "venir"]
     }
   ],
   "finalRevision": {
     "id": "revision-finale",
     "titleFr": "Révision Finale",
-    "covers": ["À l'école", "La maison", "Le voyage", "La fête"],
+    "covers": ["À l'école", "La maison", "Le voyage"],
     "parts": ["Vocabulaire", "Grammaire", "Compréhension écrite", "Exercices variés", "Expression écrite", "Auto-évaluation", "Corrigé enseignant"],
     "pilotSourceFile": "Revision_Finale_Complete_4Unites.docx"
   },
