@@ -1,8 +1,17 @@
 {
   "gradeTitle":"2ème année collège",
+  "unit1":"Unité 1 : À l'école",
+  "lesson1":"Leçon 1",
   "startLesson":"Commencer la leçon interactive",
+  "openInteractive":"Ouvrir la leçon interactive",
+  "openReference":"Ouvrir le document de référence",
+  "openAssessment":"Ouvrir l'évaluation",
+  "startAssessment":"Commencer le test interactif",
+  "openGames":"Ouvrir le centre des jeux",
   "interactive":"Leçon interactive",
   "reference":"Document de référence",
   "assessment":"Évaluation",
-  "games":"Activités et jeux"
+  "games":"Activités et jeux",
+  "video":"Vidéo de la leçon",
+  "progress":"Progression de la leçon"
 }
