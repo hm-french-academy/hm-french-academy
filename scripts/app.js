@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
-    ['scripts/lesson-i18n-bind.js','scripts/lesson-finalizer.js'].forEach(src => {
+    ['scripts/lesson-i18n-bind.js','scripts/lesson-finalizer.js','scripts/lesson-quick-i18n.js'].forEach(src => {
       if (!document.querySelector(`script[src="${src}"]`)) {
         const s=document.createElement('script');
         s.src=src;
