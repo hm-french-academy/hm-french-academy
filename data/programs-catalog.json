@@ -1,27 +1,29 @@
 {
-  "version": 1,
+  "version": 2,
   "programs": [
     {
       "id": "le-francais-simple",
       "category": "middle-school",
+      "fixedName": "Le français simple",
       "name": {"ar": "الفرنسية البسيطة", "fr": "Le français simple", "en": "Le français simple"},
       "description": {"ar": "المنهج المدرسي للمرحلة الإعدادية", "fr": "Programme scolaire du collège", "en": "Middle-school curriculum"},
       "grades": [
-        {"id": "grade-7", "label": {"ar": "الصف الأول الإعدادي", "fr": "Français simple 1", "en": "Français simple 1"}, "status": "planned", "terms": [{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
-        {"id": "grade-8", "label": {"ar": "الصف الثاني الإعدادي", "fr": "Français simple 2", "en": "Français simple 2"}, "status": "available", "page": "grade-8.html", "terms": [{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"},"file":"data/curricula/grade-8-french-semester-1.json"},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"},"status":"planned"}]},
-        {"id": "grade-9", "label": {"ar": "الصف الثالث الإعدادي", "fr": "Français simple 3", "en": "Français simple 3"}, "status": "planned", "terms": [{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]}
+        {"id": "grade-7", "label": {"ar": "الصف الأول الإعدادي", "fr": "1ère année du collège", "en": "1st Preparatory Grade"}, "status": "planned", "terms": [{"id":"term-1"},{"id":"term-2"}]},
+        {"id": "grade-8", "label": {"ar": "الصف الثاني الإعدادي", "fr": "2ème année du collège", "en": "2nd Preparatory Grade"}, "status": "available", "page": "grade-8.html", "terms": [{"id":"term-1","file":"data/curricula/grade-8-french-semester-1.json"},{"id":"term-2","status":"planned"}]},
+        {"id": "grade-9", "label": {"ar": "الصف الثالث الإعدادي", "fr": "3ème année du collège", "en": "3rd Preparatory Grade"}, "status": "planned", "terms": [{"id":"term-1"},{"id":"term-2"}]}
       ]
     },
     {
       "id": "le-francais-pour-vous",
       "category": "primary",
+      "fixedName": "Le français pour vous",
       "name": {"ar": "الفرنسية لكم", "fr": "Le français pour vous", "en": "Le français pour vous"},
       "description": {"ar": "المنهج المدرسي للمرحلة الابتدائية", "fr": "Programme scolaire du primaire", "en": "Primary-school curriculum"},
       "grades": [
-        {"id":"primary-3","label":{"ar":"الصف الثالث الابتدائي","fr":"3ème primaire","en":"3rd Primary"},"status":"planned","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
-        {"id":"primary-4","label":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
-        {"id":"primary-5","label":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]},
-        {"id":"primary-6","label":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"status":"available","terms":[{"id":"term-1","label":{"ar":"الترم الأول","fr":"1er semestre","en":"Term 1"}},{"id":"term-2","label":{"ar":"الترم الثاني","fr":"2e semestre","en":"Term 2"}}]}
+        {"id":"primary-3","label":{"ar":"الصف الثالث الابتدائي","fr":"3ème primaire","en":"3rd Primary"},"status":"planned","terms":[{"id":"term-1"},{"id":"term-2"}]},
+        {"id":"primary-4","label":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]},
+        {"id":"primary-5","label":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]},
+        {"id":"primary-6","label":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]}
       ]
     }
   ]
