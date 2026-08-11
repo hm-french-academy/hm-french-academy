@@ -1,0 +1,15 @@
+{
+  "sourcePackage":"Unité 1.zip",
+  "unit":"unit-1",
+  "titleFr":"À l'école",
+  "lessonCount":4,
+  "importedAt":"2026-08-11",
+  "lessons":[
+    {"number":1,"folder":"Lecon1","interactive":"lecon1_unite1.html","reference":"reference_lecon1_unite1.docx","exam":"exam_lecon1_unite1.docx","electronicExam":"examen_u1-l1.html"},
+    {"number":2,"folder":"Lecon2","interactive":"lecon2_unite1.html","reference":"reference_lecon2_unite1.docx","exam":"exam_lecon2_unite1.docx","electronicExam":"examen_u1-l2.html"},
+    {"number":3,"folder":"Lecon3","interactive":"lecon3_unite1.html","reference":"reference_lecon3_unite1.docx","exam":"exam_lecon3_unite1.docx","electronicExam":"examen_u1-l3.html"},
+    {"number":4,"folder":"Lecon4","interactive":"lecon4_unite1.html","reference":"reference_lecon4_unite1.docx","exam":"exam_lecon4_unite1.docx","electronicExam":"examen_u1-l4.html"}
+  ],
+  "status":"source-package-verified",
+  "note":"The ZIP was inspected directly. All four lesson folders and their four source files were confirmed. Binary DOCX files must be transferred through a binary-capable GitHub upload path before their web URLs can be activated. No lesson content was fabricated."
+}
