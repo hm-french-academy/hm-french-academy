@@ -1,0 +1,17 @@
+{
+  "id":"grade8-u3",
+  "unit":"Unité 3",
+  "titleFr":"Le voyage",
+  "titleAr":"السفر",
+  "source":"Revision_Finale_Complete_4Unites.docx",
+  "scope":"semester-1",
+  "lessonBreakdown":"source-file-does-not-explicitly-number-lessons",
+  "contentModules":[
+    {"id":"module-vocabulaire","title":"Lexique du voyage","items":["Un avion","Un train","Un bateau","Un aéroport","Une gare","Un guichet","Un passager","Une valise","Un billet"]},
+    {"id":"module-verbes","title":"Voyager / Aller / Prendre","topics":["voyager au présent","aller au présent","prendre au présent"]},
+    {"id":"module-demonstratifs","title":"Les adjectifs démonstratifs","topics":["ce","cet","cette","ces"]},
+    {"id":"module-villes-pays","title":"Prépositions avec les villes et les pays","topics":["à Paris","au Maroc","aux États-Unis","en Égypte","chez mon père"]}
+  ],
+  "plannedPackage":["interactive-explanation","audio","reference","formal-assessment","interactive-assessment","independent-games","progress"],
+  "status":"content-ready-for-lesson-production"
+}
