@@ -19,24 +19,10 @@
     const host=document.getElementById('hm-motivation');
     if(!host)return;
     const m=pick();
-    host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker" data-motivation-kicker>رسالة تحفيزية</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><div class="hm-motivation-welcome"><span data-motivation-welcome-ar>مرحبًا بك في</span> <strong>HM Academy</strong><span> · </span><span data-motivation-welcome-fr>Bienvenue sur HM Academy</span></div><div class="hm-motivation-signature"><span class="sig-ar">HM Academy — د. محمد فتحي، المؤسس</span><span class="sig-fr">HM Academy — Dr Mohamed Fathy, Fondateur</span></div></div>';
-    function sync(){
-      const lang=window.HMLanguage?HMLanguage.get():(document.documentElement.lang||'ar');
-      host.dataset.language=lang;
-      host.querySelector('.hm-motivation-ar').style.display=lang==='fr'?'none':'block';
-      host.querySelector('.hm-motivation-fr').style.display=lang==='fr'?'block':'none';
-      host.querySelector('.sig-ar').style.display=lang==='fr'?'none':'inline';
-      host.querySelector('.sig-fr').style.display=lang==='fr'?'inline':'none';
-      const kicker=host.querySelector('[data-motivation-kicker]');
-      kicker.textContent=lang==='fr'?'Message du jour':'رسالة تحفيزية';
-      const ar=host.querySelector('[data-motivation-welcome-ar]');
-      const fr=host.querySelector('[data-motivation-welcome-fr]');
-      ar.style.display=lang==='fr'?'none':'inline';
-      fr.style.display=lang==='fr'?'inline':'none';
-      host.querySelector('.hm-motivation-welcome strong').textContent='HM Academy';
-    }
-    sync();
-    window.addEventListener('hm:languagechange',sync);
+    host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">رسالة تحفيزية · Message du jour</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><div class="hm-motivation-welcome"><span>مرحبًا بك في</span> <strong>HM Academy</strong><span> · </span><span>Bienvenue sur HM Academy</span></div><div class="hm-motivation-signature"><span class="sig-ar">HM Academy — د. محمد فتحي، المؤسس</span><span class="sig-fr">HM Academy — Dr Mohamed Fathy, Fondateur</span></div></div>';
+    const lang=window.HMLanguage?HMLanguage.get():(document.documentElement.lang||'ar');
+    host.dataset.language=lang;
+    window.addEventListener('hm:languagechange',e=>{host.dataset.language=e.detail.lang});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
 })();
