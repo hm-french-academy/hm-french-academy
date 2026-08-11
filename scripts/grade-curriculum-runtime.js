@@ -14,8 +14,15 @@
     window.dispatchEvent(new CustomEvent('hm:grade-ready',{detail:data}));
     return data;
   }
+
   function getLessons(){
     return (window.HMGradeCurriculum?.units||[]).flatMap(u=>u.lessons||[]);
   }
+
   window.HMGradeRuntime={loadGrade,getLessons};
+
+  // Compatibility layer: grade-8.html uses HMCurriculumLoader.load()
+  window.HMCurriculumLoader={
+    load: loadGrade
+  };
 })();
