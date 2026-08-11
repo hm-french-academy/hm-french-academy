@@ -17,7 +17,8 @@
           "interactive": "data/lessons/grade-8/unit-1/lesson-1-interactive.html",
           "reference": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
           "assessment": "data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html",
-          "interactiveAssessment": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html"
+          "interactiveAssessment": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html",
+          "games": "data/lessons/grade-8/unit-1/lesson-1-games.html"
         }
       },
       "vocabulary": ["Une cantine", "Une cour", "Un CDI", "Un tableau", "Une chaise", "Un bureau", "Un stylo", "Une gomme", "Une règle", "Une trousse", "Un sac à dos", "Le français", "Les mathématiques", "L'histoire", "Un boulanger", "Une boulangère"],
@@ -57,6 +58,7 @@
     "printableReference": true,
     "activities": true,
     "assessment": true,
-    "progressTracking": true
+    "progressTracking": true,
+    "games": true
   }
 }
