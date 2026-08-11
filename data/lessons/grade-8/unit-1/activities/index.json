@@ -2,10 +2,15 @@
   "lessonId":"grade8-u1-l1",
   "title":"Leçon 1 : À l'école",
   "activities":[
-    {"id":"vocabulary-challenge","title":"Vocabulary Challenge","type":"game","file":"vocabulary-challenge-lecon1.html","xp":20,"skills":["vocabulary","recognition"]},
     {"id":"memory-cards","title":"Memory Cards","type":"game","file":"memory-cards-lecon1.html","xp":20,"skills":["vocabulary","matching","memory"]},
+    {"id":"drag-drop","title":"Drag & Drop Challenge","type":"game","file":"../drag_drop_lecon1_unite1.html","xp":25,"skills":["recognition","classification"]},
+    {"id":"word-catch","title":"Word Catch","type":"game","file":"../word_catch_lecon1_unite1.html","xp":25,"skills":["vocabulary","recognition","speed"]},
     {"id":"listening-challenge","title":"Listening Challenge","type":"audio-game","file":"listening-challenge-lecon1.html","xp":20,"skills":["listening","recognition"]},
-    {"id":"grammar-game","title":"Grammar Game","type":"game","file":"grammar-game-lecon1.html","xp":20,"skills":["grammar","sentence-building"]}
+    {"id":"pronunciation","title":"Pronunciation Challenge","type":"game","file":"../pronunciation_challenge_lecon1_unite1.html","xp":20,"skills":["pronunciation","listening"]},
+    {"id":"vocabulary-challenge","title":"Vocabulary Challenge","type":"game","file":"vocabulary-challenge-lecon1.html","xp":20,"skills":["vocabulary","recognition"]},
+    {"id":"grammar-game","title":"Grammar Game","type":"game","file":"grammar-game-lecon1.html","xp":20,"skills":["grammar","sentence-building"]},
+    {"id":"quiz-express","title":"Quiz Express","type":"game-quiz","file":"../games_quiz_lecon1_unite1.html","xp":20,"skills":["review","recognition"]}
   ],
+  "assessmentSeparated":true,
   "status":"active"
 }
