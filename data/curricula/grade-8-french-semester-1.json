@@ -1,15 +1,21 @@
 {
   "id": "grade-8-french-semester-1",
   "title": "الصف الثاني الإعدادي - اللغة الفرنسية",
+  "curriculumName": "Français simple 2",
   "source": "Revision_Finale_Complete_4Unites.docx",
   "semester": "1er semestre",
-  "status": "pilot",
+  "status": "active-pilot",
+  "scope": {
+    "includedUnits": ["unit-1", "unit-2", "unit-3"],
+    "excludedUnits": ["unit-4"],
+    "excludedUnitReason": "Excluded by HM Academy curriculum scope decision; do not render, index, search, or use its content in lessons, games, or assessments."
+  },
   "units": [
     {
       "id": "unit-1",
       "titleFr": "À l'école",
       "titleAr": "في المدرسة",
-      "status": "pilot-ready",
+      "status": "lesson-pilot-ready",
       "lessonFiles": {
         "lesson-1": {
           "titleFr": "Leçon 1 : À l'école",
@@ -29,25 +35,43 @@
       "id": "unit-2",
       "titleFr": "La maison",
       "titleAr": "المنزل",
-      "status": "mapped",
+      "status": "content-mapped",
+      "lessonFiles": {},
+      "contentReady": true,
+      "lessonBreakdownRequired": true,
       "vocabulary": ["La chambre", "La cuisine", "Le salon", "Un lit", "Une armoire", "Un oreiller", "Un canapé", "Un fauteuil", "Un tapis", "Un évier", "Un réfrigérateur", "Une douche"],
-      "grammar": ["Prépositions de lieu", "Possessifs: mon, ma, mes / ton, ta, tes / son, sa, ses"],
+      "grammar": ["Avoir / Être", "Prépositions de lieu: sur, sous, devant, derrière, entre", "Possessifs: mon, ma, mes / ton, ta, tes / son, sa, ses"],
       "verbs": ["avoir", "être"]
     },
     {
       "id": "unit-3",
       "titleFr": "Le voyage",
       "titleAr": "السفر",
-      "status": "mapped",
+      "status": "content-mapped",
+      "lessonFiles": {},
+      "contentReady": true,
+      "lessonBreakdownRequired": true,
       "vocabulary": ["Un avion", "Un train", "Un bateau", "Un aéroport", "Une gare", "Un guichet", "Un passager", "Une valise", "Un billet"],
       "grammar": ["Adjectifs démonstratifs: ce, cet, cette, ces", "Prépositions avec villes et pays: à, au, aux, en, chez"],
       "verbs": ["voyager", "aller", "prendre"]
+    }
+  ],
+  "excludedUnitDefinitions": [
+    {
+      "id": "unit-4",
+      "titleFr": "La fête",
+      "status": "excluded",
+      "doNotRender": true,
+      "doNotIndex": true,
+      "doNotUseForAssessments": true,
+      "doNotUseForGames": true
     }
   ],
   "finalRevision": {
     "id": "revision-finale",
     "titleFr": "Révision Finale",
     "covers": ["À l'école", "La maison", "Le voyage"],
+    "excludedFromPlatform": ["La fête"],
     "parts": ["Vocabulaire", "Grammaire", "Compréhension écrite", "Exercices variés", "Expression écrite", "Auto-évaluation", "Corrigé enseignant"],
     "pilotSourceFile": "Revision_Finale_Complete_4Unites.docx"
   },
@@ -59,6 +83,9 @@
     "activities": true,
     "assessment": true,
     "progressTracking": true,
-    "games": true
+    "games": true,
+    "gamesAssessmentSeparation": true,
+    "randomizeGameQuestions": true,
+    "randomizeGameAnswers": true
   }
 }
