@@ -1,0 +1,27 @@
+{
+  "source":"Francais_2eme_Prep_Complet_Final-2 (1).zip",
+  "verified":true,
+  "verifiedOn":"2026-08-11",
+  "curriculum":"Français simple 2",
+  "semester":"1er semestre",
+  "unitsIncluded":["Unite1_Ecole","Unite2_Maison","Unite3_Voyage"],
+  "unitExcluded":"Unite4_Fete",
+  "lessonsPerUnit":4,
+  "sourceFilesPerLesson":4,
+  "sourceFileTypes":["interactive HTML","electronic exam HTML","reference DOCX","exam DOCX"],
+  "sourceFileCountIncluded":48,
+  "sourceFileCountExcluded":16,
+  "structure":{
+    "Unite1_Ecole":[1,2,3,4],
+    "Unite2_Maison":[1,2,3,4],
+    "Unite3_Voyage":[1,2,3,4],
+    "Unite4_Fete":"excluded"
+  },
+  "originalPaths":{
+    "unit1":"Unite1_Ecole/Lecon{1..4}/(reference_leconN_unite1.docx, exam_leconN_unite1.docx, leconN_unite1.html, examen_u1-lN.html)",
+    "unit2":"Unite2_Maison/Lecon{1..4}/(reference_leconN_unite2.docx, exam_leconN_unite2.docx, leconN_unite2.html, examen_u2-lN.html)",
+    "unit3":"Unite3_Voyage/Lecon{1..4}/(reference_leconN_unite3.docx, exam_leconN_unite3.docx, leconN_unite3.html, examen_u3-lN.html)"
+  },
+  "binaryTransfer":"pending binary-capable repository upload channel; source package itself has been verified locally",
+  "doNotImport":"Unite4_Fete"
+}
