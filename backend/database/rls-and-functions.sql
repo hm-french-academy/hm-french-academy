@@ -2,17 +2,8 @@
 -- Run after schema.sql in Supabase SQL Editor.
 
 create or replace function public.is_admin()
-returns boolean
-language sql
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and role in ('admin','teacher')
-  );
-$$;
-
+returns boolean language sql security definer set search_path = public
+as $$ select exists (select 1 from public.profiles where id = auth.uid() and role in ('admin','teacher')); $$;
 revoke all on function public.is_admin() from public;
 grant execute on function public.is_admin() to authenticated;
 
@@ -35,7 +26,6 @@ create policy profiles_admin_all on public.profiles for all to authenticated usi
 
 drop policy if exists settings_self on public.student_settings;
 create policy settings_self on public.student_settings for all to authenticated using (user_id = auth.uid() or public.is_admin()) with check (user_id = auth.uid() or public.is_admin());
-
 drop policy if exists progress_self on public.student_progress;
 create policy progress_self on public.student_progress for all to authenticated using (user_id = auth.uid() or public.is_admin()) with check (user_id = auth.uid() or public.is_admin());
 
@@ -43,7 +33,6 @@ drop policy if exists activities_self_insert on public.activity_attempts;
 create policy activities_self_insert on public.activity_attempts for insert to authenticated with check (user_id = auth.uid());
 drop policy if exists activities_self_select on public.activity_attempts;
 create policy activities_self_select on public.activity_attempts for select to authenticated using (user_id = auth.uid() or public.is_admin());
-
 drop policy if exists assessments_self on public.assessment_attempts;
 create policy assessments_self on public.assessment_attempts for all to authenticated using (user_id = auth.uid() or public.is_admin()) with check (user_id = auth.uid() or public.is_admin());
 
@@ -52,33 +41,21 @@ create policy courses_read on public.courses for select to anon, authenticated u
 drop policy if exists lessons_read on public.lessons;
 create policy lessons_read on public.lessons for select to anon, authenticated using (active = true or public.is_admin());
 
--- Analytics is intentionally writable by the public client only for event collection.
--- Do not expose student PII in event_data.
 drop policy if exists analytics_insert on public.analytics_events;
 create policy analytics_insert on public.analytics_events for insert to anon, authenticated with check (user_id is null or user_id = auth.uid());
 drop policy if exists analytics_select_admin on public.analytics_events;
 create policy analytics_select_admin on public.analytics_events for select to authenticated using (public.is_admin());
-
 drop policy if exists visitor_insert on public.visitor_sessions;
 create policy visitor_insert on public.visitor_sessions for insert to anon, authenticated with check (true);
 drop policy if exists visitor_select_admin on public.visitor_sessions;
 create policy visitor_select_admin on public.visitor_sessions for select to authenticated using (public.is_admin());
 
--- New accounts receive a profile and default settings automatically.
 create or replace function public.handle_new_user()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
+returns trigger language plpgsql security definer set search_path = public
 as $$
 begin
   insert into public.profiles (id, full_name, role, level_code)
-  values (
-    new.id,
-    coalesce(new.raw_user_meta_data->>'full_name', split_part(coalesce(new.email,''),'@',1), 'طالب جديد'),
-    'student',
-    new.raw_user_meta_data->>'level_code'
-  )
+  values (new.id, coalesce(new.raw_user_meta_data->>'full_name', split_part(coalesce(new.email,''),'@',1), 'طالب جديد'), 'student', new.raw_user_meta_data->>'level_code')
   on conflict (id) do update set full_name = excluded.full_name, level_code = coalesce(excluded.level_code, public.profiles.level_code);
   insert into public.student_settings (user_id) values (new.id) on conflict (user_id) do nothing;
   return new;
@@ -86,24 +63,13 @@ end;
 $$;
 
 drop trigger if exists on_auth_user_created on auth.users;
-create trigger on_auth_user_created
-after insert on auth.users
-for each row execute procedure public.handle_new_user();
+create trigger on_auth_user_created after insert on auth.users for each row execute procedure public.handle_new_user();
 
--- Atomic progress writer used by the student runtime.
 create or replace function public.save_lesson_progress(
-  p_lesson_id text,
-  p_status text default 'in_progress',
-  p_progress_percent numeric default 0,
-  p_xp_earned integer default 0,
-  p_last_section text default null,
-  p_last_activity_id text default null,
-  p_best_score numeric default null
-)
-returns public.student_progress
-language plpgsql
-security definer
-set search_path = public
+  p_lesson_id text, p_status text default 'in_progress', p_progress_percent numeric default 0,
+  p_xp_earned integer default 0, p_last_section text default null,
+  p_last_activity_id text default null, p_best_score numeric default null)
+returns public.student_progress language plpgsql security definer set search_path = public
 as $$
 declare r public.student_progress;
 begin
@@ -117,8 +83,7 @@ begin
     xp_earned=greatest(public.student_progress.xp_earned, excluded.xp_earned),
     best_score=case when excluded.best_score is null then public.student_progress.best_score else greatest(coalesce(public.student_progress.best_score,0), excluded.best_score) end,
     attempts=public.student_progress.attempts+1,
-    last_section=excluded.last_section,
-    last_activity_id=excluded.last_activity_id,
+    last_section=excluded.last_section, last_activity_id=excluded.last_activity_id,
     completed_at=case when excluded.status='completed' then coalesce(public.student_progress.completed_at, now()) else public.student_progress.completed_at end,
     last_opened_at=now()
   returning * into r;
@@ -126,8 +91,26 @@ begin
   return r;
 end;
 $$;
-
 grant execute on function public.save_lesson_progress(text,text,numeric,integer,text,text,numeric) to authenticated;
 
-create or replace view public.admin_student_summary as
-select * from public.admin_student_summary;
+create or replace function public.admin_overview(p_days integer default 30)
+returns jsonb language plpgsql security definer set search_path = public
+as $$
+declare result jsonb;
+begin
+  if not public.is_admin() then raise exception 'admin access required'; end if;
+  select jsonb_build_object(
+    'students', (select count(*) from public.profiles where role='student'),
+    'visitors', (select count(distinct session_id) from public.analytics_events where event_type='page_view' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'page_views', (select count(*) from public.analytics_events where event_type='page_view' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'lesson_starts', (select count(*) from public.analytics_events where event_type='lesson_start' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'lesson_completions', (select count(*) from public.analytics_events where event_type='lesson_complete' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'activities_completed', (select count(*) from public.analytics_events where event_type='activity_complete' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'assessments_completed', (select count(*) from public.analytics_events where event_type='assessment_complete' and created_at >= now() - make_interval(days => greatest(1,p_days))),
+    'avg_progress', (select coalesce(avg(progress_percent),0) from public.student_progress),
+    'avg_score', (select coalesce(avg(score),0) from public.assessment_attempts)
+  ) into result;
+  return result;
+end;
+$$;
+grant execute on function public.admin_overview(integer) to authenticated;
