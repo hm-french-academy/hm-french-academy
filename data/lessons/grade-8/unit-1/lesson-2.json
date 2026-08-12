@@ -4,23 +4,25 @@
   "language":"fr",
   "grade":"grade-8",
   "unit":"unit-1",
-  "template":"HM-Academy-Lesson-Standard",
+  "template":"HM-Academy-Lesson-Premium",
+  "experience":{"whatYouLearn":"تعلم أسماء الأدوات المدرسية، فهمها من خلال سياق بصري وسمعي، ثم استخدامها في جمل بسيطة.","duration":"18–25 دقيقة","xp":50,"entryAction":"ابدأ التعلم"},
   "files":{
-    "interactive":"lesson-2-interactive.html",
-    "reference":"reference_lecon2_unite1.html",
-    "assessment":"formal_assessment_lecon2_unite1.html",
-    "quiz":"examen_u1-l2.html",
-    "games":"lesson-2-games.html"
+    "interactive":{"file":"lesson-2-interactive.html","label":"الشرح التفاعلي","purpose":"شاهد المشهد، استمع إلى اللغة، وتفاعل مع المفردات والقاعدة.","duration":"8–12 دقيقة","xp":15,"cta":"شاهد وتعلّم"},
+    "reference":{"file":"reference_lecon2_unite1.html","label":"المرجع التعليمي","purpose":"راجع المفردات والقاعدة والأمثلة في مرجع منظم.","duration":"4–6 دقائق","xp":8,"cta":"افتح المرجع"},
+    "assessment":{"file":"formal_assessment_lecon2_unite1.html","label":"التقييم الأكاديمي","purpose":"تحقق من فهمك للدرس في تقييم مستقل عن الألعاب.","duration":"5–8 دقائق","xp":20,"cta":"اختبر نفسك"},
+    "quiz":{"file":"examen_u1-l2.html","label":"مراجعة سريعة","purpose":"راجع أهم أفكار الدرس في جولة قصيرة.","duration":"3–5 دقائق","xp":7,"cta":"راجع الآن"},
+    "games":{"file":"lesson-2-games.html","label":"مختبر الألعاب","purpose":"حوّل ما تعلمته إلى تحديات تفاعلية ممتعة.","duration":"5–10 دقائق","xp":20,"cta":"تحدَّ نفسك"}
   },
   "sections":["introduction","vocabulary","audio","grammar","practice","games","assessment","summary"],
   "activities":[
-    {"type":"pronunciation","id":"u1-l2-pronunciation","xp":20},
-    {"type":"vocabulary","id":"u1-l2-vocabulary","xp":20},
-    {"type":"practice","id":"u1-l2-practice","xp":20},
-    {"type":"games","id":"u1-l2-games","file":"lesson-2-games.html","xp":20},
-    {"type":"assessment","id":"u1-l2-assessment","file":"examen_u1-l2.html","xp":50}
+    {"type":"pronunciation","id":"u1-l2-pronunciation","xp":20,"instruction":"استمع إلى الكلمة ثم كرر نطقها."},
+    {"type":"vocabulary","id":"u1-l2-vocabulary","xp":20,"instruction":"انظر إلى الصورة واختر الكلمة الفرنسية المناسبة."},
+    {"type":"practice","id":"u1-l2-practice","xp":20,"instruction":"استخدم الكلمات لتكوين جملة جديدة."},
+    {"type":"games","id":"u1-l2-games","file":"lesson-2-games.html","xp":20,"instruction":"تحدَّ نفسك من خلال ألعاب الدرس."},
+    {"type":"assessment","id":"u1-l2-assessment","file":"examen_u1-l2.html","xp":50,"instruction":"اختبر إتقانك للدرس."}
   ],
   "media":{"audio":true,"video":false},
   "tracking":true,
+  "progress":{"persistJourney":true,"persistSection":true,"persistCompletion":true},
   "status":"live"
 }
