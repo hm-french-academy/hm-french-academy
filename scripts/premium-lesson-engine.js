@@ -5,7 +5,7 @@
  * Keeps the premium experience consistent without depending on visual labels.
  */
 (() => {
-  const ENGINE_VERSION = '1.0';
+  const ENGINE_VERSION = '1.1';
   const FLOW = [
     'hero',
     'discovery',
@@ -19,16 +19,33 @@
     'masteryReport'
   ];
 
+  function normalizeLesson(lesson) {
+    const content = lesson?.content || {};
+    return {
+      ...lesson,
+      sections: Array.isArray(content.sections) ? content.sections : (lesson.sections || [])
+    };
+  }
+
   window.HMPremiumEngine = {
     version: ENGINE_VERSION,
     flow: FLOW,
+
+    normalizeLesson,
+
     validate(lesson) {
       const errors = [];
-      if (!lesson) return ['Missing lesson data'];
-      if (!lesson.title) errors.push('Missing lesson title');
-      if (!lesson.sections || !Array.isArray(lesson.sections)) errors.push('Missing lesson sections');
+      const data = normalizeLesson(lesson);
+      if (!data) return ['Missing lesson data'];
+      if (!data.title) errors.push('Missing lesson title');
+      if (!Array.isArray(data.sections)) errors.push('Missing lesson sections');
       return errors;
     },
+
+    getSectionsByType(lesson, type) {
+      return normalizeLesson(lesson).sections.filter(section => section.type === type);
+    },
+
     createProgressState(id) {
       return {
         lessonId: id,
@@ -37,6 +54,7 @@
         updatedAt: new Date().toISOString()
       };
     },
+
     completeSection(state, section, xp = 0) {
       if (!state.completedSections.includes(section)) {
         state.completedSections.push(section);
