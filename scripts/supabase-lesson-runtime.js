@@ -7,6 +7,14 @@
   return window.supabase.createClient(window.HMProductionConfig.supabaseUrl,window.HMProductionConfig.supabaseAnonKey);
  }
  const valid=(v)=>typeof v==='string' && v.trim() && !/اكتشف|استخدم الجملة|lorem|placeholder/i.test(v);
+ function normalizeLesson(data){
+  if(window.HMPremiumEngine?.normalizeLesson) return window.HMPremiumEngine.normalizeLesson(data);
+  return {...data,sections:Array.isArray(data?.content?.sections)?data.content.sections:[]};
+ }
+ function validateLesson(data){
+  if(window.HMPremiumEngine?.validate) return window.HMPremiumEngine.validate(data);
+  return [];
+ }
  function renderBlock(s){
   if(s.type==='vocabulary') return `<section class="card"><h2>📚 Vocabulaire</h2><div class="vgrid">${(s.items||[]).filter(i=>valid(i.fr)&&valid(i.ar)).map(i=>`<article class="vcard"><div class="fr">${i.fr}</div><div class="ar">${i.ar}</div><button class="listen" data-audio="${i.audio||''}">🔊</button></article>`).join('')}</div></section>`;
   if(s.type==='dialogue') return `<section class="card"><h2>💬 Dialogue</h2>${(s.lines||[]).filter(l=>valid(l.fr)).map(l=>`<p><b>${l.speaker||''}</b> : ${l.fr}<br>${l.ar||''}</p>`).join('')}</section>`;
@@ -25,10 +33,14 @@
   const client=await getClient();if(!client)return;
   const {data,error}=await client.from('lessons').select('*').eq('id',id).single();
   if(error||!data)return console.warn('Lesson load failed',error);
+  const lesson=normalizeLesson(data);
+  const errors=validateLesson(lesson);
+  if(errors.length) console.warn('HM Lesson validation:',errors);
   const app=document.getElementById('app');
-  if(app) app.innerHTML=`<section class="card"><h1>${data.title||''}</h1><p>${data.objective||''}</p><b>⏱ ${data.duration||0} min | ⭐ ${data.xp_reward||0} XP</b></section>`;
-  renderSections(data.content||{});window.HMCurrentLesson=data;
-  window.dispatchEvent(new CustomEvent('hm:supabase-lesson-ready',{detail:data}));
+  if(app) app.innerHTML=`<section class="card"><h1>${lesson.title||''}</h1><p>${lesson.objective||''}</p><b>⏱ ${lesson.duration||0} min | ⭐ ${lesson.xp_reward||0} XP</b></section>`;
+  renderSections(lesson);
+  window.HMCurrentLesson=lesson;
+  window.dispatchEvent(new CustomEvent('hm:supabase-lesson-ready',{detail:lesson}));
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
