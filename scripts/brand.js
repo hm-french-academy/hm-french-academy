@@ -15,4 +15,10 @@
   const current=()=>window.HMLanguage?.get?.()||localStorage.getItem('hm_display_language')||'ar';
   render(current());
   window.addEventListener('hm:languagechange',e=>render(e.detail?.lang||current()));
+  if(/lesson\.html$/i.test(location.pathname)){
+    const s=document.createElement('script');
+    s.src='scripts/premium-lesson-enhancer.js?v=20260812-premium-interaction2';
+    s.defer=true;
+    document.head.appendChild(s);
+  }
 })();
