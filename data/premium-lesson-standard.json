@@ -21,9 +21,9 @@
     "progress-and-xp-persistence",
     "previous-next-navigation",
     "responsive-mobile-first-layout",
-    "ar-fr-en-display-support",
-    "founder-signature":"Fondateur : Hatem ElMorsi · © 2026"
+    "ar-fr-en-display-support"
   ],
+  "founderSignature":"Fondateur : Hatem ElMorsi · © 2026",
   "qualityGate":{"noEmptyLessonBody":true,"noPlaceholderAsFinalContent":true,"noMissingCoreSection":true,"noUnit4ForGrade8Semester1":true},
   "lessonCompletion":{"xpDefault":50,"persistProgress":true,"persistJourney":true},
   "deliveryRule":"Every newly produced lesson must meet this contract before being marked live. Existing lessons are upgraded to this standard instead of using a lower legacy presentation."
