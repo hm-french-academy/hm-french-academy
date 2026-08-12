@@ -1,5 +1,14 @@
 // HM Academy lesson runtime integration
 (function(){
+  function validateLesson(lesson){
+    const missing=[];
+    if(!lesson?.title) missing.push('title');
+    if(!lesson?.objective) missing.push('objective');
+    if(!lesson?.duration) missing.push('duration');
+    if(!Array.isArray(lesson?.sections) || !lesson.sections.length) missing.push('sections');
+    return missing;
+  }
+
   function init(){
     const completeButton = document.querySelector('[data-complete-lesson]') || [...document.querySelectorAll('button')]
       .find(btn => btn.textContent.includes('تم إكمال الدرس'));
@@ -15,6 +24,18 @@
       HMMedia.load('lesson-media', null);
     }
 
+    window.addEventListener('hm:supabase-lesson-ready',event=>{
+      const lesson=event.detail;
+      const missing=validateLesson(lesson);
+      window.HMLessonQuality={
+        status:missing.length?'Needs Content':'Complete',
+        missing
+      };
+      document.documentElement.dataset.lessonLoaded='true';
+      window.HMCurrentLesson=lesson;
+      window.dispatchEvent(new CustomEvent('hm:lesson-quality-ready',{detail:window.HMLessonQuality}));
+    });
+
     window.addEventListener('hm:lesson-completed', () => {
       const button=document.querySelector('[data-complete-lesson]');
       if(button){
@@ -22,11 +43,6 @@
         button.disabled=true;
       }
     },{passive:true});
-
-    window.addEventListener('hm:supabase-lesson-ready',event=>{
-      document.documentElement.dataset.lessonLoaded='true';
-      window.HMCurrentLesson=event.detail;
-    });
 
     window.dispatchEvent(new CustomEvent('hm:lesson-runtime-ready',{detail:{lessonReady:true}}));
   }
