@@ -1,0 +1,47 @@
+{
+  "lesson": "grade8-u1-l1",
+  "title": "Leçon 1 : À l’école",
+  "experience": "premium-learning-studio",
+  "principles": [
+    "content-first-not-label-premium",
+    "visual-learning",
+    "audio-on-demand",
+    "interactive-practice",
+    "independent-assessment",
+    "progress-and-xp"
+  ],
+  "journey": [
+    {
+      "step": 1,
+      "name": "Découvrir",
+      "goal": "اكتشاف مفردات أدوات الفصل من خلال الصورة والصوت"
+    },
+    {
+      "step": 2,
+      "name": "Écouter et parler",
+      "goal": "استخدام المفردات داخل حوار حقيقي"
+    },
+    {
+      "step": 3,
+      "name": "Comprendre",
+      "goal": "فهم قاعدة Il y a في سياق الدرس"
+    },
+    {
+      "step": 4,
+      "name": "Pratiquer",
+      "goal": "تطبيق المعرفة في أنشطة تفاعلية"
+    },
+    {
+      "step": 5,
+      "name": "Maîtriser",
+      "goal": "تقييم مستقل وتسجيل الإنجاز"
+    }
+  ],
+  "quality_rules": {
+    "no_random_images": true,
+    "image_must_match_word": true,
+    "audio_must_match_content": true,
+    "every_resource_has_goal": true,
+    "every_activity_has_progress_tracking": true
+  }
+}
