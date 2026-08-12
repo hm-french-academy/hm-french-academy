@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-progress]').forEach(bar => { const value=Number(bar.getAttribute('data-progress')||'0'); bar.style.width=`${Math.max(0,Math.min(100,value))}%`; });
   if (!document.querySelector('link[data-hm-theme]')) { const theme=document.createElement('link'); theme.rel='stylesheet'; theme.href='css/theme-refresh.css?v=20260809'; theme.dataset.hmTheme='true'; document.head.appendChild(theme); }
   if (!(location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html'))) return;
-  const scripts=['scripts/learning-progress.js','scripts/lesson-audio-bind.js','scripts/lesson-media-runtime.js','scripts/lesson-runtime-init.js','scripts/lesson-complete.js'];
+  const scripts=['scripts/learning-progress.js','scripts/lesson-audio-bind.js','scripts/lesson-media-runtime.js','scripts/lesson-runtime-init.js','scripts/supabase-lesson-runtime.js','scripts/lesson-complete.js'];
   (async function loadLessonRuntime(){ for(const src of scripts){ if(document.querySelector(`script[src="${src}"]`)) continue; await new Promise(resolve=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=resolve;document.body.appendChild(script);}); } })();
 });
