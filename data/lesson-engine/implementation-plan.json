@@ -1,0 +1,12 @@
+{
+  "status":"active",
+  "engine":"HM Premium Lesson Engine",
+  "nextIntegrationBatch":[
+    "connect lesson pages to engine validation",
+    "load lesson data dynamically",
+    "apply same experience map to Lecon 3 and Lecon 4",
+    "add reusable assessment and game modules",
+    "connect mastery report with student progress"
+  ],
+  "rule":"كل درس جديد يجب أن يرث نفس معيار تجربة Lecon 1 قبل النشر"
+}
