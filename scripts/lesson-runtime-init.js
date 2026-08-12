@@ -1,5 +1,18 @@
 // HM Academy lesson runtime integration
 (function(){
+  function loadLessonBridge(){
+    if(window.HMLessonBridge) return;
+    const script=document.createElement('script');
+    script.src='scripts/lesson-supabase-bridge.js';
+    script.defer=true;
+    script.onload=()=>{
+      if(window.HMLessonBridge){
+        window.HMLessonBridge.load().catch(err=>console.warn('Lesson bridge error',err));
+      }
+    };
+    document.head.appendChild(script);
+  }
+
   function validateLesson(lesson){
     const missing=[];
     if(!lesson?.title) missing.push('title');
@@ -10,6 +23,8 @@
   }
 
   function init(){
+    loadLessonBridge();
+
     const completeButton = document.querySelector('[data-complete-lesson]') || [...document.querySelectorAll('button')]
       .find(btn => btn.textContent.includes('تم إكمال الدرس'));
 
@@ -23,6 +38,10 @@
     if(window.HMMedia && lessonContainer && !lessonContainer.innerHTML.trim()){
       HMMedia.load('lesson-media', null);
     }
+
+    window.addEventListener('hm:lesson-loaded',event=>{
+      window.dispatchEvent(new CustomEvent('hm:supabase-lesson-ready',{detail:event.detail}));
+    });
 
     window.addEventListener('hm:supabase-lesson-ready',event=>{
       const lesson=event.detail;
