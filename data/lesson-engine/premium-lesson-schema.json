@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "name": "HM Premium Lesson Engine",
+  "purpose": "توحيد بناء كل الدروس القادمة بنفس تجربة التعلم المتقدمة",
+  "lessonFlow": [
+    "hero",
+    "discovery",
+    "pronunciation",
+    "interactiveExplanation",
+    "contextDialogue",
+    "grammarLab",
+    "practiceArena",
+    "independentAssessment",
+    "games",
+    "masteryReport"
+  ],
+  "contentStandards": {
+    "visual": {
+      "required": true,
+      "rule": "كل صورة مرتبطة مباشرة بالكلمة أو الفكرة التعليمية"
+    },
+    "audio": {
+      "required": true,
+      "rule": "النطق الأصلي أو نطق فرنسي واضح لكل عنصر أساسي"
+    },
+    "interaction": {
+      "required": true,
+      "minimumActivities": 3
+    },
+    "assessment": {
+      "independent": true,
+      "interactive": true
+    }
+  },
+  "studentExperience": {
+    "xpTracking": true,
+    "progressSaving": true,
+    "completionState": true,
+    "achievementBadges": true
+  },
+  "qualityGate": [
+    "لا يوجد محتوى تجميلي فقط",
+    "لا توجد صور غير مرتبطة",
+    "لا يوجد ملف بدون هدف تعليمي",
+    "لا يوجد درس بدون تقييم وممارسة"
+  ]
+}
