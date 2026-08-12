@@ -16,6 +16,7 @@
     await loadScript('scripts/lesson-supabase-bridge.js');
     await loadScript('scripts/premium-lesson-data-adapter.js');
     await loadScript('scripts/premium-lesson-studio-bridge.js');
+    await loadScript('scripts/premium-lesson-priority-runtime.js');
     if(window.HMLessonBridge){
       window.HMLessonBridge.load().catch(err=>console.warn('Lesson bridge error',err));
     }
