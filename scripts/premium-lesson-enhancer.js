@@ -1,0 +1,109 @@
+(function(){
+  'use strict';
+  if(!/lesson\.html$/i.test(location.pathname)) return;
+
+  const ICONS={
+    'élève':'fa-user-graduate','professeur':'fa-chalkboard-user','classe':'fa-school','lycée':'fa-school',
+    'livre':'fa-book','chaise':'fa-chair','bureau':'fa-table','tableau':'fa-chalkboard',
+    'règle':'fa-ruler','gomme':'fa-eraser','crayon':'fa-pencil','stylo':'fa-pen',
+    'tube de colle':'fa-glue','taille-crayon':'fa-pencil-ruler','ciseaux':'fa-scissors','trousse':'fa-briefcase',
+    'calculatrice':'fa-calculator','sac à dos':'fa-backpack','cahier':'fa-book-open',
+    'médecin':'fa-user-doctor','infirmière':'fa-user-nurse','ingénieur':'fa-helmet-safety','policier':'fa-user-shield',
+    'journaliste':'fa-newspaper','boulanger':'fa-bread-slice','mécanicien':'fa-wrench','agriculteur':'fa-tractor',
+    'vétérinaire':'fa-user-doctor','école':'fa-school','maison':'fa-house','chambre':'fa-bed',
+    'avion':'fa-plane','train':'fa-train','bateau':'fa-ship','aéroport':'fa-plane-departure','gare':'fa-train-subway'
+  };
+  const clean=s=>String(s||'').toLowerCase().replace(/\s+/g,' ').trim();
+  function iconFor(fr){
+    const w=clean(fr.replace(/^un |^une |^des |^le |^la |^les /,'').replace(/[.!?]/g,''));
+    if(ICONS[w]) return ICONS[w];
+    for(const k of Object.keys(ICONS)) if(w.includes(k)) return ICONS[k];
+    return 'fa-circle-info';
+  }
+  function speak(text,card){
+    if(!('speechSynthesis' in window)) return;
+    document.querySelectorAll('.hm-premium-playing').forEach(x=>x.classList.remove('hm-premium-playing'));
+    if(card) card.classList.add('hm-premium-playing');
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text); u.lang='fr-FR'; u.rate=.82; u.pitch=1;
+    u.onend=()=>card&&card.classList.remove('hm-premium-playing');
+    speechSynthesis.speak(u);
+  }
+  function visual(card){
+    const fr=card.querySelector('.word-fr')?.textContent||'';
+    const visual=card.querySelector('.word-visual');
+    if(!visual) return;
+    const icon=iconFor(fr);
+    visual.innerHTML='<div class="hm-visual-core"><span class="hm-visual-icon"><i class="fa-solid '+icon+'" aria-hidden="true"></i></span><span class="hm-visual-label">'+fr.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</span><span class="hm-visual-action">اضغط للاستماع</span></div>';
+    visual.setAttribute('role','button');
+    visual.setAttribute('tabindex','0');
+    visual.setAttribute('aria-label','استمع إلى '+fr);
+    visual.onclick=()=>speak(fr,card);
+    visual.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();speak(fr,card)}};
+  }
+  function addStyles(){
+    if(document.getElementById('hm-premium-enhancer-style')) return;
+    const s=document.createElement('style'); s.id='hm-premium-enhancer-style';
+    s.textContent=`
+      .word-card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+      .word-card:hover{transform:translateY(-4px)}
+      .word-card.hm-premium-playing{border-color:#e92d83;box-shadow:0 0 0 4px #e92d8318,0 18px 35px #14264a16}
+      .word-visual{cursor:pointer!important;position:relative;overflow:hidden!important;background:linear-gradient(145deg,#f5f8ff,#ffffff)!important}
+      .hm-visual-core{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+      .hm-visual-icon{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(145deg,#eaf1ff,#f8eafa);color:#2454a6;font-size:34px;box-shadow:inset 0 1px 0 #fff,0 8px 18px #14264a12}
+      .hm-visual-label{font-size:11px;font-weight:900;color:#30466e;direction:ltr}
+      .hm-visual-action{font-size:9px;font-weight:800;color:#7a8497}
+      .word-card.hm-premium-playing .hm-visual-icon{background:#fff0f7;color:#e92d83;transform:scale(1.06)}
+      .hm-premium-strip{margin:14px 0 0;padding:13px 15px;border-radius:17px;background:linear-gradient(100deg,#f4f7ff,#fff5fa);border:1px solid #dfe6f0;display:flex;gap:9px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+      .hm-premium-strip strong{color:#14264a}.hm-premium-strip span{color:#68758b;font-size:13px}
+      .hm-premium-strip button{border:0;border-radius:11px;padding:10px 13px;background:#2563eb;color:#fff;font-weight:900;cursor:pointer}
+      .resource .open-resource{position:relative}
+      .resource.hm-resource-ready{border-color:#cddcf2;box-shadow:0 12px 30px #14264a0b}
+      @media(max-width:650px){.hm-visual-icon{width:58px;height:58px;font-size:30px}.hm-premium-strip{align-items:flex-start}}
+    `;
+    document.head.appendChild(s);
+  }
+  function enhanceVocab(){
+    document.querySelectorAll('.word-card').forEach(card=>visual(card));
+    document.querySelectorAll('.word-card').forEach(card=>{
+      const fr=card.querySelector('.word-fr')?.textContent||'';
+      const btn=card.querySelector('.speak');
+      if(btn) btn.onclick=e=>{e.preventDefault();e.stopPropagation();speak(fr,card)};
+      if(!card.querySelector('.hm-word-check')){
+        const check=document.createElement('button');
+        check.className='hm-word-check'; check.type='button'; check.textContent='✓ أتقنتها';
+        check.style.cssText='margin:8px 0 0;border:0;background:#edf8f2;color:#16734d;border-radius:10px;padding:7px 10px;font-weight:900;cursor:pointer;font-size:11px';
+        check.onclick=()=>{check.textContent='✓ تم حفظها';check.style.background='#dff4e8';localStorage.setItem('hm_vocab_'+btoa(unescape(encodeURIComponent(fr))), '1');};
+        card.appendChild(check);
+      }
+    });
+    const vocab=document.querySelector('.vocab-grid');
+    if(vocab&&!vocab.parentElement.querySelector('.hm-premium-strip')){
+      const strip=document.createElement('div'); strip.className='hm-premium-strip';
+      strip.innerHTML='<div><strong>🎧 مختبر النطق</strong><br><span>اضغط على أي صورة لسماع الكلمة الفرنسية، ثم أعد نطقها بصوتك.</span></div><button type="button" id="hm-speak-all">🔊 تشغيل المجموعة</button>';
+      vocab.parentElement.appendChild(strip);
+      strip.querySelector('#hm-speak-all').onclick=()=>{
+        const words=[...document.querySelectorAll('.word-card .word-fr')].map(x=>x.textContent.trim()).filter(Boolean);
+        let i=0; const next=()=>{if(i>=words.length)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(words[i++]);u.lang='fr-FR';u.rate=.78;u.onend=()=>setTimeout(next,280);speechSynthesis.speak(u)};next();
+      };
+    }
+  }
+  function enhanceResources(){
+    document.querySelectorAll('.resource').forEach(card=>{
+      card.classList.add('hm-resource-ready');
+      const title=clean(card.querySelector('h3')?.textContent);
+      const button=card.querySelector('.open-resource');
+      if(!button) return;
+      if(/التقييم/.test(title)) button.textContent='📝 ابدأ التقييم هنا';
+      else if(/الألعاب/.test(title)) button.textContent='🎮 العب الآن';
+      else if(/الشرح/.test(title)) button.textContent='▶ افتح الشرح التفاعلي';
+      else if(/المرجع/.test(title)) button.textContent='📖 افتح المرجع';
+      else if(/ملفات/.test(title)) button.textContent='🗂️ افتح مركز الملفات';
+    });
+  }
+  function init(){
+    addStyles(); enhanceVocab(); enhanceResources();
+    setTimeout(()=>{enhanceVocab();enhanceResources()},600);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true}); else init();
+})();
