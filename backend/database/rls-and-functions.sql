@@ -50,6 +50,10 @@ create policy visitor_insert on public.visitor_sessions for insert to anon, auth
 drop policy if exists visitor_select_admin on public.visitor_sessions;
 create policy visitor_select_admin on public.visitor_sessions for select to authenticated using (public.is_admin());
 
+-- Existing admin views are kept for SQL/reporting, but never exposed directly to browser roles.
+revoke all on public.admin_student_summary from anon, authenticated;
+revoke all on public.admin_daily_analytics from anon, authenticated;
+
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public
 as $$
@@ -114,3 +118,15 @@ begin
 end;
 $$;
 grant execute on function public.admin_overview(integer) to authenticated;
+
+create or replace function public.admin_students()
+returns table(id uuid, full_name text, role text, level_code text, xp integer, current_course_id text, current_lesson_id text, current_section text, last_active_at timestamptz, completed_lessons bigint, started_lessons bigint, average_lesson_progress numeric, best_score numeric)
+language sql security definer set search_path = public
+as $$
+  select p.id,p.full_name,p.role,p.level_code,p.xp,p.current_course_id,p.current_lesson_id,p.current_section,p.last_active_at,
+    count(sp.lesson_id) filter(where sp.status='completed'),count(sp.lesson_id),coalesce(avg(sp.progress_percent),0),coalesce(max(sp.best_score),0)
+  from public.profiles p left join public.student_progress sp on sp.user_id=p.id
+  where p.role='student' and public.is_admin()
+  group by p.id;
+$$;
+grant execute on function public.admin_students() to authenticated;
