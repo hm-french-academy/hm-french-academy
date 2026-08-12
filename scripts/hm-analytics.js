@@ -10,6 +10,7 @@
     const d=read();d.version=1;d.events=Array.isArray(d.events)?d.events:[];d.events.push(event);if(d.events.length>MAX)d.events=d.events.slice(-MAX);write(d);
     const endpoint=localStorage.getItem(ENDPOINT_KEY)||'';
     if(endpoint){try{fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(event),keepalive:true}).catch(()=>{})}catch{}}
+    try{if(window.HMProduction?.isConfigured()) window.HMProduction.track(event)}catch{}
     window.dispatchEvent(new CustomEvent('hm:analytics',{detail:event}));return event;
   }
   function aggregate(days=30){
