@@ -23,8 +23,16 @@
     "responsive-mobile-first-layout",
     "ar-fr-en-display-support"
   ],
+  "studentCopyStandard":{
+    "principle":"اكتب للطالب ما سيتعلمه وما الذي سيحدث بعد الضغط، ولا تصف البنية التقنية للملف.",
+    "requiredCardFields":["whatYouLearn","expectedDuration","reward","cta"],
+    "ctaRules":["CTA يصف الفعل التالي بوضوح","لا تستخدم عبارات تقنية مثل فتح الملف أو ابدأ التجربة عندما يمكن استخدام فعل تعليمي أدق","لا تكرر نفس CTA لكل أنواع المحتوى"],
+    "instructionRules":["سؤال أو تعليمات قصيرة ومباشرة","فعل واحد واضح في كل خطوة","عند وجود صورة اجعل المطلوب مبنيًا عليها بدل كشف الإجابة مسبقًا","عند وجود صوت وضّح هل المطلوب الاستماع أو التكرار أو الاختيار"],
+    "assessmentRules":["الأسئلة الأكاديمية مستقلة عن الألعاب","لا تستخدم صياغة تكشف الإجابة","إذا كان للسؤال أكثر من إجابة صحيحة غيّر صياغته أو اجعل الخيارات غير ملتبسة"],
+    "premiumTone":["واضح","تعليمي","مشجع","فاخر دون مبالغة","مناسب لعمر الطالب"]
+  },
   "founderSignature":"Fondateur : Hatem ElMorsi · © 2026",
-  "qualityGate":{"noEmptyLessonBody":true,"noPlaceholderAsFinalContent":true,"noMissingCoreSection":true,"noUnit4ForGrade8Semester1":true},
+  "qualityGate":{"noEmptyLessonBody":true,"noPlaceholderAsFinalContent":true,"noMissingCoreSection":true,"noUnit4ForGrade8Semester1":true,"noTechnicalStudentCopy":true,"noAnswerRevealingInstructions":true},
   "lessonCompletion":{"xpDefault":50,"persistProgress":true,"persistJourney":true},
   "deliveryRule":"Every newly produced lesson must meet this contract before being marked live. Existing lessons are upgraded to this standard instead of using a lower legacy presentation."
 }
