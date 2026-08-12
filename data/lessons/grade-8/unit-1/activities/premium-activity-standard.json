@@ -1,0 +1,27 @@
+{
+  "standardId":"HM-Academy-Premium-Activity-v1",
+  "purpose":"تحويل كل نشاط من رابط لعبة إلى تجربة تعليمية لها هدف ومشهد وتعليمات ونتيجة واضحة.",
+  "requiredFields":["id","title","type","objective","instruction","successState","xp","skills"],
+  "visualRules":{
+    "imageFirstWhenPossible":true,
+    "noAnswerRevealedInPrompt":true,
+    "oneClearScene":true,
+    "consistentCharacterStyle":true,
+    "avoidDecorativeUnrelatedImages":true,
+    "noTechnicalLabelsForStudents":true
+  },
+  "interactionRules":{
+    "vocabulary":"اعرض صورة أو مشهدًا، ثم اطلب من الطالب اختيار الكلمة المناسبة بدل عرض الكلمة نفسها كإجابة.",
+    "listening":"اجعل المطلوب واضحًا: استمع ثم اختر/رتب/كرر، مع إمكانية إعادة المقطع دون قطع الحوار الكامل.",
+    "sentenceBuilding":"قدّم كلمات مبعثرة فعلًا، ثم اجعل الطالب يبني الجملة بنفسه ولا تعرض الحل مرتبًا مسبقًا.",
+    "classification":"لا تعرض العناصر داخل فئاتها الصحيحة مسبقًا؛ ابدأ بعناصر مختلطة.",
+    "grammar":"اعرض القاعدة كاملة، ثم انتقل إلى تطبيق بنائي يسمح للطالب بتكوين مثال جديد.",
+    "assessment":"التقييم مستقل عن الألعاب ولا يعيد نفس السؤال بنفس الصياغة."
+  },
+  "feedbackRules":{
+    "correct":"أحسنت! الإجابة صحيحة.",
+    "incorrect":"اقتربت! راجع الدليل ثم حاول مرة أخرى.",
+    "completion":"رائع! أنجزت هذا التحدي.",
+    "avoid":"لا تستخدم رسائل تكشف الإجابة قبل المحاولة."
+  }
+}
