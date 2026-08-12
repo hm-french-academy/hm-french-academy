@@ -6,29 +6,31 @@
 
     if(completeButton) completeButton.dataset.completeLesson = 'true';
 
-    // Media runtime synchronization
     if(window.HMLessonMedia){
       window.dispatchEvent(new CustomEvent('hm:media-ready',{detail:{items:window.HMLessonMedia}}));
     }
 
-    if(window.HMMedia){
-      const media = document.getElementById('lesson-media');
-      if(media && !media.innerHTML.trim()) HMMedia.load('lesson-media', null);
+    const lessonContainer=document.getElementById('lesson-media');
+    if(window.HMMedia && lessonContainer && !lessonContainer.innerHTML.trim()){
+      HMMedia.load('lesson-media', null);
     }
 
-    // Keep completion state synchronized when another runtime module
-    // completes the lesson.
-    window.addEventListener('hm:lesson-completed', event => {
-      const button = document.querySelector('[data-complete-lesson]');
+    window.addEventListener('hm:lesson-completed', () => {
+      const button=document.querySelector('[data-complete-lesson]');
       if(button){
-        button.textContent = '✅ تم إكمال الدرس';
-        button.disabled = true;
+        button.textContent='✅ تم إكمال الدرس';
+        button.disabled=true;
       }
-    }, {passive:true});
+    },{passive:true});
+
+    window.addEventListener('hm:supabase-lesson-ready',event=>{
+      document.documentElement.dataset.lessonLoaded='true';
+      window.HMCurrentLesson=event.detail;
+    });
 
     window.dispatchEvent(new CustomEvent('hm:lesson-runtime-ready',{detail:{lessonReady:true}}));
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
 })();
