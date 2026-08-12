@@ -1,13 +1,17 @@
 {
-  "studentsByLevel": {
-    "A1": 1,
-    "A2": 0,
-    "B1": 0,
-    "B2": 0,
-    "C1": 0
-  },
-  "averageAssessmentScore": 0,
-  "activeStudents": 1,
+  "source": "static-preview",
+  "status": "ready-for-backend-analytics",
+  "updatedAt": "2026-08-12",
+  "visitors": {"unique": 0, "sessions": 0, "today": 0, "last7Days": 0, "last30Days": 0},
+  "students": {"registered": 1, "active7Days": 0, "new7Days": 0},
+  "learning": {"attemptedLessons": 0, "completedLessons": 0, "averageCompletion": 0, "averageAssessmentScore": 0, "completedActivities": 0},
+  "studentsByLevel": {"A1": 1, "A2": 0, "B1": 0, "B2": 0, "C1": 0},
+  "retention": {"day1": 0, "day7": 0, "day30": 0},
   "topLessons": [],
-  "updatedAt": "2026-08-08"
+  "topActivities": [],
+  "events": {"pageViews": 0, "lessonStarts": 0, "lessonCompletions": 0, "activityStarts": 0, "activityCompletions": 0},
+  "notes": [
+    "هذه النسخة تعرض بيانات المشروع الثابتة فقط.",
+    "الإحصاء الموحد لكل زائر يحتاج endpoint تحليلات مركزيًا وقاعدة بيانات؛ GitHub Pages لا يوفر تخزينًا مركزيًا لبيانات الزوار."
+  ]
 }
