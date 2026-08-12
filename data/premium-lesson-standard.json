@@ -1,0 +1,30 @@
+{
+  "standardId":"HM-Academy-Premium-Lesson-v1",
+  "effectiveFrom":"2026-08-12",
+  "appliesTo":"all curricula, stages, levels and future lessons",
+  "sourceOfTruth":"curriculum lesson package; no lesson content is invented or redistributed",
+  "requiredExperience":[
+    "premium-hero-and-lesson-identity",
+    "learning-objectives",
+    "guided-introduction",
+    "vocabulary-with-meaning-and-pronunciation",
+    "audio-or-accessible-pronunciation-fallback",
+    "visual-media-or-source-media-when-provided",
+    "grammar-explanation-and-examples",
+    "guided-practice",
+    "independent-practice",
+    "lesson-files-hub",
+    "independent-games",
+    "independent-interactive-assessment",
+    "formal-assessment",
+    "lesson-summary-and-mastery",
+    "progress-and-xp-persistence",
+    "previous-next-navigation",
+    "responsive-mobile-first-layout",
+    "ar-fr-en-display-support",
+    "founder-signature":"Fondateur : Hatem ElMorsi · © 2026"
+  ],
+  "qualityGate":{"noEmptyLessonBody":true,"noPlaceholderAsFinalContent":true,"noMissingCoreSection":true,"noUnit4ForGrade8Semester1":true},
+  "lessonCompletion":{"xpDefault":50,"persistProgress":true,"persistJourney":true},
+  "deliveryRule":"Every newly produced lesson must meet this contract before being marked live. Existing lessons are upgraded to this standard instead of using a lower legacy presentation."
+}
