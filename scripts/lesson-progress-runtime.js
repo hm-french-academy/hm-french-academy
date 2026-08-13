@@ -24,14 +24,21 @@
     }catch(e){}
   }
 
-  function complete(){
+  function complete(event){
     try{
-      if(!currentLessonId) return;
+      const lessonId = event?.detail?.lessonId || currentLessonId;
+      if(!lessonId) return;
+
       if(typeof HMProgress.completeLesson === 'function'){
-        HMProgress.completeLesson(currentLessonId);
+        const state = HMProgress.get?.();
+        const alreadyCompleted = Array.isArray(state?.completedLessons) && state.completedLessons.includes(lessonId);
+        if(!alreadyCompleted){
+          HMProgress.completeLesson(lessonId, Number(event?.detail?.xp || 0));
+        }
       }
+
       window.dispatchEvent(new CustomEvent('hm:progress-updated',{
-        detail:{lessonId:currentLessonId,status:'completed'}
+        detail:{lessonId,status:'completed',synced:true}
       }));
     }catch(e){}
   }
