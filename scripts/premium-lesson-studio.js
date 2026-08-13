@@ -163,7 +163,29 @@
   const complete = key => { if(!completed.has(key)){completed.add(key);add(3);} };
   const markResourceDone = key => { if(resourceDone[key])return; resourceDone[key]=true;localStorage.setItem(resourceStateKey,JSON.stringify(resourceDone));add((R.find(r=>r.key===key)||{xp:0}).xp);updateHub();toast('✓ تم تسجيل المورد ضمن رحلة الدرس'); };
   const resourceCard = r => { const done=!!resourceDone[r.key]; return `<article data-resource="${r.key}" class="${done?'done':''}"><div class="resource-top"><div><div class="resource-icon">${r.icon}</div><b>${r.title}</b></div><span class="resource-status ${done?'done':''}">${done?'✓ مكتمل':`+${r.xp} XP`}</span></div><p>${r.desc}</p><div class="resource-meta"><span>🎯 ${r.goal}</span><span>⏱ ${r.time}</span></div><div class="resource-actions"><button class="resource-start ${done?'done':''}" data-resource-start="${r.key}">${done?'✓ راجع التجربة':'ابدأ التجربة'}</button><a class="resource-file" href="${ROOT+r.file}">${r.external} ↗</a></div></article>`; };
+// Premium dynamic lesson override
+try {
+  const override = window.HMPremiumStudioOverride || {};
 
+  if (Array.isArray(override.V)) {
+    V.splice(0, V.length, ...override.V);
+  }
+
+  if (Array.isArray(override.D)) {
+    D.splice(0, D.length, ...override.D);
+  }
+
+  if (Array.isArray(override.Q)) {
+    Q.splice(0, Q.length, ...override.Q);
+  }
+
+  if (Array.isArray(override.R)) {
+    R.splice(0, R.length, ...override.R);
+  }
+
+} catch (e) {
+  console.warn('Premium studio override skipped', e);
+}
   const render = () => {
     app.innerHTML=`
       <section class="studio-hero"><div class="hero-copy"><span class="unit">UNITÉ 1 · LEÇON 1</span><div class="eyebrow">في المدرسة · Learning Studio</div><h1>في المدرسة</h1><p class="fr-title">Leçon 1 : À l’école</p><p class="sub">رحلة تعليمية كاملة: <b>اكتشف → اسمع → افهم → تفاعل → طبّق → اختبر</b>. كل نشاط مرتبط بالموقف الحقيقي للدرس.</p><div class="hero-actions"><button class="primary" data-go="vocab">🚀 ابدأ التجربة</button><button class="ghost" data-go="dialogue">🎭 استوديو الحوار</button><button class="ghost" data-go="resources">📚 مركز الدرس</button></div></div><div class="hero-scene"><img src="${A}classroom-scene.svg" alt="حوار تفاعلي داخل الفصل"><button class="scene-play" id="scenePlay">🔊 اسمع المشهد</button></div></section>
