@@ -19,5 +19,19 @@ const HMAssessment = {
         HMSkills.add(item.skill, 5);
       }
     });
+  },
+
+  completeLesson(lessonId, score){
+    try{
+      window.dispatchEvent(new CustomEvent('hm:assessment-completed',{
+        detail:{lessonId, score, completed:true}
+      }));
+
+      if(window.HMProgress && typeof HMProgress.completeLesson === 'function'){
+        HMProgress.completeLesson(lessonId, score || 0);
+      }
+    }catch(e){
+      console.warn('Assessment completion sync skipped', e);
+    }
   }
 };
