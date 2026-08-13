@@ -17,6 +17,9 @@
     await loadScript('scripts/premium-lesson-data-adapter.js');
     await loadScript('scripts/premium-lesson-studio-bridge.js');
     await loadScript('scripts/premium-lesson-priority-runtime.js');
+    await loadScript('scripts/lesson-media-runtime.js');
+    await loadScript('scripts/assessment-engine.js');
+    await loadScript('scripts/lesson-complete.js');
     if(window.HMLessonBridge){
       window.HMLessonBridge.load().catch(err=>console.warn('Lesson bridge error',err));
     }
@@ -36,6 +39,7 @@
       const lesson=event.detail;
       window.HMCurrentLesson=lesson;
       window.HMLessonQuality={status:'Complete',missing:validateLesson(lesson)};
+      window.dispatchEvent(new CustomEvent('hm:premium-lesson-ready',{detail:{lesson,media:true,assessment:true}}));
       document.documentElement.dataset.lessonLoaded='true';
     });
 
@@ -44,7 +48,7 @@
       if(button){button.textContent='✅ تم إكمال الدرس';button.disabled=true;}
     },{passive:true});
 
-    window.dispatchEvent(new CustomEvent('hm:lesson-runtime-ready',{detail:{lessonReady:true}}));
+    window.dispatchEvent(new CustomEvent('hm:lesson-runtime-ready',{detail:{lessonReady:true,studio:'premium'}}));
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
