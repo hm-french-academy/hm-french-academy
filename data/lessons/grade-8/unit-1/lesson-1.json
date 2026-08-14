@@ -1,1 +1,95 @@
-{"id":"grade8-u1-l1","title":"Leçon 1 : À l'école","language":"fr","grade":"grade-8","unit":"unit-1","files":{"interactive":"lesson-studio-standard-v2.html?id=grade8-u1-l1","reference":"reference_lecon1_unite1.html","assessment":"formal_assessment_lecon1_unite1.html","quiz":"interactive_assessment_lecon1_unite1.html","games":"lesson-1-games.html"},"vocabulary":[{"word":"une cantine","translation":"مقصف المدرسة","image":"🍽️","example":"Je mange à la cantine.","category":"facilities"},{"word":"une bibliothèque","translation":"مكتبة","image":"📚","example":"La bibliothèque est à l'école.","category":"facilities"},{"word":"une cour","translation":"فناء المدرسة","image":"🏫","example":"La cour est grande.","category":"facilities"},{"word":"une classe","translation":"فصل دراسي","image":"🏫","example":"Je suis dans la classe.","category":"classroom"},{"word":"un tableau","translation":"سبورة","image":"🧑‍🏫","example":"Il y a un tableau dans la classe.","category":"classroom"},{"word":"un professeur","translation":"معلم","image":"👨‍🏫","example":"Le professeur est dans la classe.","category":"classroom"}],"vocabularyGroups":[{"id":"facilities","title":"🏫 مرافق المدرسة","description":"الأماكن والمرافق التي نتعرف إليها في المدرسة."},{"id":"classroom","title":"🪑 في الفصل","description":"الأشياء والأشخاص المرتبطون بالفصل الدراسي."}],"grammar":{"explanation":"Utiliser Il y a pour dire qu'une chose existe et Il n'y a pas de pour dire qu'elle n'existe pas.","examples":[{"fr":"Il y a un tableau dans la classe.","ar":"يوجد سبورة في الفصل."},{"fr":"Il y a une bibliothèque à l'école.","ar":"توجد مكتبة في المدرسة."},{"fr":"Il n'y a pas de piscine dans l'école.","ar":"لا يوجد حمام سباحة في المدرسة."}]},"conversation":{"lines":[{"speaker":"Sara","fr":"Où est la bibliothèque ?","ar":"أين المكتبة؟"},{"speaker":"Adam","fr":"Elle est à l'école.","ar":"إنها في المدرسة."},{"speaker":"Sara","fr":"Il y a une cantine ?","ar":"هل يوجد مقصف؟"},{"speaker":"Adam","fr":"Oui, il y a une cantine.","ar":"نعم، يوجد مقصف."}]},"practice":[{"question":"ما معنى une bibliothèque؟","options":["مكتبة","مقصف","فصل"],"answer":0},{"question":"أكمل: Il y a ___ tableau.","options":["un","une","des"],"answer":0},{"question":"أين تأكل في المدرسة؟","options":["à la cantine","à la bibliothèque","dans la cour"],"answer":0},{"question":"اختر النفي الصحيح.","options":["Il n'y a pas de piscine.","Il n'y a pas une piscine.","Il ne y a pas piscine."],"answer":0}],"assessment":{"questions":[{"question":"ما معنى la cantine؟","options":["المقصف","المكتبة","الفصل"],"answer":0},{"question":"اختر الجملة الصحيحة.","options":["Il y a un tableau.","Il y a pas un tableau.","Il un tableau y a."],"answer":0}]},"activities":[{"type":"memory-game","id":"memory-game","file":"memory_game_lecon1_unite1.html","xp":20},{"type":"drag-drop","id":"drag-drop","file":"drag_drop_lecon1_unite1.html","xp":25},{"type":"pronunciation","id":"pronunciation","file":"pronunciation_challenge_lecon1_unite1.html","xp":20},{"type":"vocabulary","id":"vocabulary","file":"vocabulary_challenge_lecon1_unite1.html","xp":20},{"type":"quiz-express","id":"quiz-express","file":"games_quiz_lecon1_unite1.html","xp":20}],"media":{"audio":true,"video":true},"activityHub":{"file":"lesson-1-games.html","label":"Practice & Games","separateFromFormalAssessment":true},"contentScope":{"lesson1":["school facilities","classroom","il y a / il n'y a pas de","school dialogue"],"excludedFromLesson1":["school subjects / Les matières scolaires"]},"status":"standardized"}
+{
+  "id": "grade8-u1-l1",
+  "title": "Leçon 1 : À l'école",
+  "titleAr": "في المدرسة",
+  "titleFr": "Leçon 1 : À l'école",
+  "language": "fr",
+  "grade": "grade-8",
+  "unit": "unit-1",
+  "files": {
+    "interactive": "lesson-studio-standard-v2.html?id=grade8-u1-l1",
+    "reference": "reference_lecon1_unite1.html",
+    "assessment": "formal_assessment_lecon1_unite1.html",
+    "quiz": "interactive_assessment_lecon1_unite1.html",
+    "games": "lesson-1-games.html"
+  },
+  "vocabularyGroups": [
+    {
+      "id": "facilities",
+      "title": "🏫 مرافق المدرسة",
+      "description": "أماكن ومرافق المدرسة التي تظهر في هذا الدرس."
+    },
+    {
+      "id": "classroom",
+      "title": "🪑 في الفصل",
+      "description": "أدوات وأشياء وأشخاص داخل الفصل الدراسي."
+    }
+  ],
+  "vocabulary": [
+    {"word":"une cantine","translation":"مقصف المدرسة","image":"🍽️","example":"Je mange à la cantine.","category":"facilities"},
+    {"word":"une cour","translation":"فناء المدرسة","image":"🏫","example":"La cour est grande.","category":"facilities"},
+    {"word":"des classes","translation":"فصول دراسية","image":"🏫","example":"Il y a des classes à l'école.","category":"facilities"},
+    {"word":"un gymnase","translation":"صالة الألعاب الرياضية","image":"🏟️","example":"Le gymnase est grand.","category":"facilities"},
+    {"word":"un CDI","translation":"مركز التوثيق والمعلومات","image":"📚","example":"Le CDI est à l'école.","category":"facilities"},
+    {"word":"un laboratoire","translation":"معمل","image":"🔬","example":"Le laboratoire est à l'école.","category":"facilities"},
+    {"word":"un terrain de sport","translation":"ملعب رياضي","image":"⚽","example":"Le terrain de sport est grand.","category":"facilities"},
+    {"word":"un self-service","translation":"مطعم الخدمة الذاتية","image":"🍴","example":"Je mange au self-service.","category":"facilities"},
+    {"word":"une piscine","translation":"حمام سباحة","image":"🏊","example":"Il y a une piscine à l'école.","category":"facilities"},
+    {"word":"une bibliothèque","translation":"مكتبة","image":"📚","example":"La bibliothèque est à l'école.","category":"facilities"},
+    {"word":"un bureau","translation":"مكتب","image":"🗄️","example":"Il y a un bureau dans la classe.","category":"classroom"},
+    {"word":"un tableau","translation":"سبورة","image":"🧑‍🏫","example":"Il y a un tableau dans la classe.","category":"classroom"},
+    {"word":"une porte","translation":"باب","image":"🚪","example":"La porte est ouverte.","category":"classroom"},
+    {"word":"une fenêtre","translation":"نافذة","image":"🪟","example":"La fenêtre est ouverte.","category":"classroom"},
+    {"word":"des bancs / un banc","translation":"مقاعد / مقعد","image":"🪑","example":"Les élèves sont sur les bancs.","category":"classroom"},
+    {"word":"un panneau","translation":"لوحة إعلانات","image":"📋","example":"Le panneau est dans la classe.","category":"classroom"},
+    {"word":"un TNI","translation":"سبورة رقمية تفاعلية","image":"🖥️","example":"Le professeur utilise le TNI.","category":"classroom"},
+    {"word":"une horloge","translation":"ساعة حائط","image":"🕐","example":"L'horloge est au mur.","category":"classroom"},
+    {"word":"une chaise","translation":"كرسي","image":"🪑","example":"Je suis sur une chaise.","category":"classroom"},
+    {"word":"une table","translation":"طاولة","image":"🪵","example":"Le livre est sur la table.","category":"classroom"},
+    {"word":"le globe terrestre","translation":"الكرة الأرضية","image":"🌍","example":"Le globe terrestre est dans la classe.","category":"classroom"},
+    {"word":"un ordinateur","translation":"حاسوب","image":"💻","example":"L'ordinateur est sur la table.","category":"classroom"}
+  ],
+  "grammar": {
+    "title": "Il y a / Il n'y a pas de",
+    "explanation": "On utilise « il y a » pour dire qu'une personne, un objet ou un lieu existe ou se trouve quelque part. On utilise « il n'y a pas de » pour exprimer l'absence de quelque chose.",
+    "examples": [
+      {"fr":"Il y a un tableau dans la classe."},
+      {"fr":"Il y a une bibliothèque à l'école."},
+      {"fr":"Il n'y a pas de piscine dans l'école."}
+    ]
+  },
+  "conversation": {
+    "lines": [
+      {"speaker":"Sara","fr":"Où est la bibliothèque ?","ar":"أين المكتبة؟"},
+      {"speaker":"Adam","fr":"Elle est à l'école.","ar":"إنها في المدرسة."},
+      {"speaker":"Sara","fr":"Il y a une cantine ?","ar":"هل يوجد مقصف؟"},
+      {"speaker":"Adam","fr":"Oui, il y a une cantine.","ar":"نعم، يوجد مقصف."}
+    ]
+  },
+  "practice": [
+    {"question":"ما معنى une bibliothèque؟","options":["مكتبة","مقصف","فصل"],"answer":0},
+    {"question":"أكمل: Il y a ___ tableau.","options":["un","une","des"],"answer":0},
+    {"question":"أين تأكل في المدرسة؟","options":["à la cantine","à la bibliothèque","dans la cour"],"answer":0},
+    {"question":"اختر النفي الصحيح.","options":["Il n'y a pas de piscine.","Il n'y a pas une piscine.","Il ne y a pas piscine."],"answer":0}
+  ],
+  "assessment": {
+    "questions": [
+      {"question":"ما معنى la cantine؟","options":["المقصف","المكتبة","الفصل"],"answer":0},
+      {"question":"اختر الجملة الصحيحة.","options":["Il y a un tableau.","Il y a pas un tableau.","Il un tableau y a."],"answer":0}
+    ]
+  },
+  "activities": [
+    {"type":"memory-game","id":"memory-game","file":"memory_game_lecon1_unite1.html","xp":20},
+    {"type":"drag-drop","id":"drag-drop","file":"drag_drop_lecon1_unite1.html","xp":25},
+    {"type":"pronunciation","id":"pronunciation","file":"pronunciation_challenge_lecon1_unite1.html","xp":20},
+    {"type":"vocabulary","id":"vocabulary","file":"vocabulary_challenge_lecon1_unite1.html","xp":20},
+    {"type":"quiz-express","id":"quiz-express","file":"games_quiz_lecon1_unite1.html","xp":20}
+  ],
+  "media": {"audio":true,"video":true},
+  "activityHub": {"file":"lesson-1-games.html","label":"Practice & Games","separateFromFormalAssessment":true},
+  "contentScope": {
+    "lesson1":["school facilities","classroom","il y a / il n'y a pas de","school dialogue"],
+    "excludedFromLesson1":["school subjects / Les matières scolaires"]
+  },
+  "status":"standardized"
+}
