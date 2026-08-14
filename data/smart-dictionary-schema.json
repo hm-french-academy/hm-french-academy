@@ -1,60 +1,39 @@
 {
   "smartDictionary": {
-    "version": "0.4.0",
+    "version": "0.5.0",
     "defaultSourceLanguage": "fr",
     "supportedTargets": ["ar-eg", "ar", "en", "es", "de", "it", "tr"],
     "egyptianArabic": {
       "enabled": true,
       "label": "العربية المصرية",
       "fallback": "ar",
+      "contextModes": ["friendly", "school", "daily", "formal"],
       "entries": {
-        "bonjour": ["أهلاً", "صباح الخير"],
-        "salut": ["إزيك", "أهلاً"],
-        "ça va": ["عامل إيه؟", "أخبارك إيه؟", "إزيك؟"],
-        "merci": ["شكرًا", "متشكر"],
-        "s'il te plaît": ["لو سمحت"],
-        "s'il vous plaît": ["لو سمحت", "لو سمحتي"],
-        "au revoir": ["سلام", "أشوفك بعدين"],
-        "il y a": ["فيه", "يوجد"],
-        "il n'y a pas de": ["مفيش", "لا يوجد"],
-        "d'accord": ["تمام", "ماشي"],
-        "très bien": ["تمام جدًا", "كويس جدًا"],
-        "super": ["جامد", "رائع"],
-        "vite": ["بسرعة"],
-        "attends": ["استنى"],
-        "viens": ["تعالى"],
-        "regarde": ["بص"],
-        "écoute": ["اسمع"],
-        "maintenant": ["دلوقتي"],
-        "aujourd'hui": ["النهارده"],
-        "demain": ["بكرة"]
+        "bonjour": {"friendly":["أهلاً","صباح الخير"],"school":["أهلاً","صباح الخير"],"daily":["أهلاً","صباح الخير"],"formal":["مرحبًا","صباح الخير"]},
+        "salut": {"friendly":["إزيك؟","أهلاً"],"school":["إزيك؟","أهلاً"],"daily":["إزيك؟","أهلاً"],"formal":["مرحبًا"]},
+        "ça va": {"friendly":["عامل إيه؟","أخبارك إيه؟","إزيك؟"],"school":["أخبارك إيه؟","إزيك؟"],"daily":["عامل إيه؟","أخبارك إيه؟"],"formal":["كيف حالك؟"]},
+        "merci": {"friendly":["شكرًا","متشكر"],"school":["شكرًا","متشكر"],"daily":["شكرًا","متشكر"],"formal":["شكرًا لك"]},
+        "s'il te plaît": {"friendly":["لو سمحت"],"school":["لو سمحت"],"daily":["لو سمحت"],"formal":["من فضلك"]},
+        "au revoir": {"friendly":["سلام","أشوفك بعدين"],"school":["سلام","إلى اللقاء"],"daily":["سلام","أشوفك بعدين"],"formal":["إلى اللقاء"]},
+        "d'accord": {"friendly":["تمام","ماشي"],"school":["تمام","حاضر"],"daily":["تمام","ماشي"],"formal":["حسنًا"]},
+        "très bien": {"friendly":["تمام جدًا","كويس جدًا"],"school":["كويس جدًا","ممتاز"],"daily":["كويس جدًا"],"formal":["جيد جدًا"]},
+        "super": {"friendly":["جامد","رائع"],"school":["رائع","ممتاز"],"daily":["جامد","رائع"],"formal":["رائع"]},
+        "vite": {"friendly":["بسرعة"],"school":["بسرعة"],"daily":["بسرعة"],"formal":["بسرعة"]},
+        "attends": {"friendly":["استنى"],"school":["استنى شوية"],"daily":["استنى"],"formal":["انتظر قليلًا"]},
+        "viens": {"friendly":["تعالى"],"school":["تعالى هنا"],"daily":["تعالى"],"formal":["تعال"]},
+        "regarde": {"friendly":["بص"],"school":["بص هنا"],"daily":["بص"],"formal":["انظر"]},
+        "écoute": {"friendly":["اسمع"],"school":["اسمع كويس"],"daily":["اسمع"],"formal":["استمع"]},
+        "maintenant": {"friendly":["دلوقتي"],"school":["دلوقتي"],"daily":["دلوقتي"],"formal":["الآن"]},
+        "aujourd'hui": {"friendly":["النهارده"],"school":["النهارده"],"daily":["النهارده"],"formal":["اليوم"]},
+        "demain": {"friendly":["بكرة"],"school":["بكرة"],"daily":["بكرة"],"formal":["غدًا"]},
+        "il y a": {"friendly":["فيه"],"school":["فيه"],"daily":["فيه"],"formal":["يوجد"]},
+        "il n'y a pas de": {"friendly":["مفيش"],"school":["مفيش"],"daily":["مفيش"],"formal":["لا يوجد"]},
+        "comment ça va": {"friendly":["أخبارك إيه؟","عامل إيه؟"],"school":["إزيك؟","أخبارك إيه؟"],"daily":["عامل إيه؟"],"formal":["كيف حالك؟"]},
+        "je ne comprends pas": {"friendly":["أنا مش فاهم"],"school":["أنا مش فاهم"],"daily":["مش فاهم"],"formal":["لا أفهم"]},
+        "répète": {"friendly":["كررها"],"school":["ممكن تكرر؟"],"daily":["كررها"],"formal":["أعد من فضلك"]}
       },
-      "contextRule": "Prefer the natural Egyptian expression for the sentence context; keep Modern Standard Arabic as a separate target and never silently replace the original French meaning."
+      "contextRule": "Choose the natural Egyptian expression according to context mode. Keep the original French meaning visible and keep Modern Standard Arabic separate. Never silently substitute Egyptian Arabic for the source language."
     },
-    "entries": [
-      {
-        "id": "bonjour",
-        "word": "Bonjour",
-        "language": "fr",
-        "meaning": {"ar": "مرحباً / صباح الخير", "ar-eg": "أهلاً / صباح الخير", "en": "Hello / Good morning"},
-        "level": "A1",
-        "category": "greetings",
-        "pronunciation": {"phonetic": "bɔ̃.ʒuʁ", "audio": null},
-        "linkedLessons": ["lesson-hello"],
-        "review": {"flashcard": true, "spacedRepetition": true}
-      },
-      {
-        "id": "merci",
-        "word": "Merci",
-        "language": "fr",
-        "meaning": {"ar": "شكراً", "ar-eg": "شكرًا / متشكر", "en": "Thank you"},
-        "level": "A1",
-        "category": "expressions",
-        "pronunciation": {"phonetic": "mɛʁ.si", "audio": null},
-        "linkedLessons": ["lesson-hello"],
-        "review": {"flashcard": true, "spacedRepetition": true}
-      }
-    ],
-    "features": ["online-translation", "egyptian-localization", "audio-pronunciation", "lesson-linking", "flashcards", "spaced-repetition", "personal-review"]
+    "features": ["online-translation", "egyptian-localization", "context-aware-egyptian", "audio-pronunciation", "lesson-linking", "flashcards", "spaced-repetition", "personal-review"]
   }
 }
