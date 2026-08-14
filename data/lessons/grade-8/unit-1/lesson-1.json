@@ -5,7 +5,7 @@
   "grade": "grade-8",
   "unit": "unit-1",
   "files": {
-    "interactive": "lesson-1-interactive.html",
+    "interactive": "lesson-1-interactive-v2.html",
     "reference": "reference_lecon1_unite1.html",
     "assessment": "formal_assessment_lecon1_unite1.html",
     "quiz": "interactive_assessment_lecon1_unite1.html",
@@ -23,5 +23,9 @@
     "file": "lesson-1-games.html",
     "label": "Practice & Games",
     "separateFromFormalAssessment": true
+  },
+  "contentScope": {
+    "lesson1": ["school facilities", "classroom", "il y a / il n'y a pas de", "school dialogue"],
+    "excludedFromLesson1": ["school subjects / Les matières scolaires"]
   }
 }
