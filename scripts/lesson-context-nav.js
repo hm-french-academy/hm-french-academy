@@ -1,34 +1,151 @@
-/* HM Academy — contextual lesson navigation for standalone lesson pages. */
+/* HM Academy — contextual lesson navigation + lesson intro + resilient speech fallback. */
 (function(){
+  function pickFrenchVoice(){
+    if(!('speechSynthesis' in window)) return null;
+    const voices=window.speechSynthesis.getVoices()||[];
+    return voices.find(v=>/^fr-FR$/i.test(v.lang)) || voices.find(v=>/^fr[-_]/i.test(v.lang)) || null;
+  }
+
+  function speak(text){
+    if(!text || !('speechSynthesis' in window)) return false;
+    try{
+      const synth=window.speechSynthesis;
+      synth.cancel();
+      const value=String(text).replace(/\s+/g,' ').trim();
+      if(!value) return false;
+      const chunks=value.length>190 ? value.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[value] : [value];
+      const voice=pickFrenchVoice();
+      let index=0;
+      const playNext=()=>{
+        if(index>=chunks.length) return;
+        const u=new SpeechSynthesisUtterance(chunks[index++].trim());
+        u.lang='fr-FR';
+        u.rate=.86;
+        u.pitch=1;
+        if(voice) u.voice=voice;
+        u.onend=()=>{ if(index<chunks.length) window.setTimeout(playNext,40); };
+        u.onerror=()=>{ if(index<chunks.length) window.setTimeout(playNext,40); };
+        synth.resume();
+        synth.speak(u);
+      };
+      playNext();
+      return true;
+    }catch(e){ return false; }
+  }
+
+  function injectIntro(tabs,panel){
+    if(document.getElementById('hm-lesson-intro-tab')) return;
+    const first=tabs.querySelector('.tab');
+    const intro=document.createElement('button');
+    intro.type='button';
+    intro.id='hm-lesson-intro-tab';
+    intro.className='tab';
+    intro.dataset.id='introduction';
+    intro.textContent='🚀 ضربة البداية';
+    tabs.insertBefore(intro,first||null);
+
+    const unit='unit-1';
+    const lessonTitle=(document.querySelector('.hero h1')?.textContent||'Leçon 1 : À l’école').trim();
+    const introHTML=`
+      <div class="head">
+        <div>
+          <h2>🚀 ضربة البداية</h2>
+          <p>ابدأ من هنا لتعرف بسرعة ماذا ستتعلم في <b>${lessonTitle}</b>، ثم انتقل مباشرةً إلى الجزء الذي تريده.</p>
+        </div>
+        <button class="listen" type="button" id="hm-intro-sound">🔊 اختبر النطق</button>
+      </div>
+      <div class="intro-goal">
+        <h3>🎯 في هذا الدرس ستتعلم</h3>
+        <div class="intro-grid">
+          <div>🏫 <b>مرافق المدرسة</b><span>كلمات وأماكن أساسية داخل المدرسة.</span></div>
+          <div>🪑 <b>في الفصل</b><span>أدوات وأشياء مرتبطة بالفصل الدراسي.</span></div>
+          <div>📘 <b>قاعدة الدرس</b><span>Il y a / Il n’y a pas de مع شرح عربي وفرنسي وأمثلة مسموعة.</span></div>
+          <div>💬 <b>المحادثة</b><span>حوار قصير مع نطق كل جملة.</span></div>
+          <div>🎯 <b>التدريب</b><span>أسئلة تطبيقية وتغذية راجعة بعد المحاولة.</span></div>
+          <div>🎮 <b>الألعاب والتقييم</b><span>أنشطة تثبيت ثم تقييم مستقل للدرس.</span></div>
+        </div>
+      </div>
+      <div class="intro-road">
+        <h3>🧭 خريطة رحلة الدرس</h3>
+        <div class="intro-road-grid">
+          <button data-go-section="facilities">1. 🏫 تعلم المفردات</button>
+          <button data-go-section="classroom">2. 🪑 في الفصل</button>
+          <button data-go-section="grammar">3. 📘 افهم القاعدة</button>
+          <button data-go-section="dialogue">4. 💬 استمع للمحادثة</button>
+          <button data-go-section="practice">5. 🎯 تدرب بنفسك</button>
+          <button data-go-section="games">6. 🎮 تحدَّ نفسك</button>
+          <button data-go-section="assessment">7. 🏆 قيّم نفسك</button>
+        </div>
+      </div>
+      <div class="intro-links">
+        <a href="../../../../unit-intro.html?unit=${unit}">🧭 مقدمة الوحدة</a>
+        <a href="../../../../unit-map.html?unit=${unit}">🗺️ خريطة الوحدة</a>
+      </div>`;
+
+    function showIntro(){
+      tabs.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===intro));
+      panel.innerHTML=introHTML;
+      const sound=document.getElementById('hm-intro-sound');
+      if(sound) sound.addEventListener('click',()=>speak('Bonjour. Bienvenue dans la leçon un. À l’école.'));
+      panel.querySelectorAll('[data-go-section]').forEach(b=>b.addEventListener('click',()=>{
+        const target=document.querySelector(`.tab[data-id="${CSS.escape(b.dataset.goSection)}"]`);
+        if(target) target.click();
+      }));
+    }
+    intro.addEventListener('click',showIntro);
+
+    const style=document.createElement('style');
+    style.textContent=`
+      .intro-goal{padding:18px;border-radius:20px;background:linear-gradient(145deg,#f7f9ff,#fff7fb);border:1px solid #e1e7f0;margin-bottom:16px}
+      .intro-goal h3,.intro-road h3{margin:0 0 12px;color:#14264a}
+      .intro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .intro-grid>div{background:#fff;border:1px solid #e1e7f0;border-radius:15px;padding:13px;font-size:14px;color:#243b67}
+      .intro-grid span{display:block;color:#68758c;font-size:12px;line-height:1.7;margin-top:4px;margin-right:22px}
+      .intro-road{padding:18px;border-radius:20px;background:#fff;border:1px solid #e1e7f0}
+      .intro-road-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .intro-road-grid button{border:1px solid #dfe6f2;background:#f7f9fd;color:#173a82;border-radius:13px;padding:12px;font-weight:900;cursor:pointer;text-align:right}
+      .intro-road-grid button:hover{border-color:#e92d83;background:#fff1f7}
+      .intro-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+      .intro-links a{display:inline-flex;text-decoration:none;background:#eef4ff;color:#173a82;border:1px solid #dce5f5;border-radius:13px;padding:11px 14px;font-weight:900}
+      @media(max-width:650px){.intro-grid,.intro-road-grid{grid-template-columns:1fr}}
+    `;
+    document.head.appendChild(style);
+    showIntro();
+  }
+
   function init(){
     const nav=document.querySelector('.topnav');
-    if(!nav || document.getElementById('hm-context-nav')) return;
+    const tabs=document.querySelector('#tabs');
+    const panel=document.querySelector('#panel');
+    if(!nav || !tabs || !panel) return;
+
+    // The lesson page already owns the real section renderer. We only add a non-destructive intro layer.
+    injectIntro(tabs,panel);
 
     const home=[...nav.querySelectorAll('a')].find(a=>/الرئيسية/.test((a.textContent||'').trim()));
     if(!home) return;
 
     const tabButtons=[...document.querySelectorAll('.tab')];
-    const items=tabButtons.map(b=>({
-      id:b.dataset.id,
-      label:(b.textContent||'').trim()
-    })).filter(x=>x.id);
-    const active=document.querySelector('.tab.active')?.dataset.id || items[0]?.id || 'facilities';
+    const items=tabButtons.map(b=>({id:b.dataset.id,label:(b.textContent||'').trim()})).filter(x=>x.id);
+    const active=document.querySelector('.tab.active')?.dataset.id || 'introduction';
 
     home.textContent='الرئيسية';
     home.href='#';
     home.setAttribute('aria-expanded','false');
     home.setAttribute('aria-controls','hm-context-nav');
 
+    if(document.getElementById('hm-context-nav')) return;
     const menu=document.createElement('div');
     menu.id='hm-context-nav';
     menu.className='hm-context-menu';
     menu.setAttribute('role','menu');
     menu.innerHTML=`
       <div class="hm-context-title">التنقل داخل الدرس</div>
-      <div class="hm-context-subtitle">انتقل مباشرةً إلى الجزء الذي تريده دون مغادرة الدرس.</div>
+      <div class="hm-context-subtitle">اختر أي جزء من الدرس مباشرةً دون الرجوع إلى البداية.</div>
       <div class="hm-context-grid">${items.map(x=>`<a class="hm-context-item${x.id===active?' active':''}" href="#" data-context-section="${x.id}">${x.label}</a>`).join('')}</div>
       <div class="hm-context-divider"></div>
-      <a class="hm-context-item hm-context-map" href="../../../../grade-8.html#unit-1">🧭 خريطة الوحدة</a>
+      <a class="hm-context-item hm-context-map" href="../../../../unit-intro.html?unit=unit-1">🧭 مقدمة الوحدة</a>
+      <a class="hm-context-item hm-context-map" href="../../../../grade-8.html#unit-1">🗺️ خريطة الوحدة</a>
       <a class="hm-context-item hm-context-home" href="../../../../index.html">⌂ الصفحة الرئيسية للمنصة</a>
     `;
     document.body.appendChild(menu);
@@ -62,9 +179,14 @@
       if(!link) return;
       e.preventDefault();
       const id=link.dataset.contextSection;
-      const tab=document.querySelector(`.tab[data-id="${CSS.escape(id)}"]`);
+      if(id==='introduction'){
+        document.getElementById('hm-lesson-intro-tab')?.click();
+      }else{
+        const tab=document.querySelector(`.tab[data-id="${CSS.escape(id)}"]`);
+        if(tab) tab.click();
+      }
       close();
-      if(tab){tab.click();window.scrollTo({top:document.querySelector('#tabs')?.offsetTop||0,behavior:'smooth'});}
+      window.scrollTo({top:document.querySelector('#tabs')?.offsetTop||0,behavior:'smooth'});
     });
 
     document.addEventListener('click',function(e){
@@ -72,11 +194,19 @@
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
 
-    // Replace the verbose breadcrumb/back-row with unobtrusive visual context.
+    // Keep the page clean: the contextual menu replaces verbose breadcrumb/back-row text.
     const crumb=document.querySelector('.crumb');
     if(crumb) crumb.style.display='none';
     const back=document.querySelector('.back-row');
     if(back) back.style.display='none';
+
+    // Replace the fragile one-shot speech function with a resilient French speech fallback.
+    window.speak=speak;
+    window.HMSpeech={speak};
+    if('speechSynthesis' in window){
+      window.speechSynthesis.addEventListener('voiceschanged',function(){window.__hmFrenchVoice=pickFrenchVoice();},{once:true});
+      window.__hmFrenchVoice=pickFrenchVoice();
+    }
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
