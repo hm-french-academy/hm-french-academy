@@ -26,6 +26,51 @@
       ||'';
   }
 
+  function frenchVoice(){
+    if(!window.speechSynthesis)return null;
+    const voices=window.speechSynthesis.getVoices?.()||[];
+    return voices.find(v=>/^fr-FR$/i.test(v.lang))
+      ||voices.find(v=>/^fr[-_]/i.test(v.lang))
+      ||voices.find(v=>/french|français/i.test(v.name||''))
+      ||null;
+  }
+
+  function splitSpeech(text,max=220){
+    const s=String(text||'').replace(/\s+/g,' ').trim();
+    if(s.length<=max)return s?[s]:[];
+    const out=[];let rest=s;
+    while(rest.length>max){
+      let cut=rest.lastIndexOf('. ',max);
+      if(cut<80)cut=rest.lastIndexOf(' ',max);
+      if(cut<40)cut=max;
+      out.push(rest.slice(0,cut+(rest[cut]==='.'?1:0)).trim());
+      rest=rest.slice(cut+(rest[cut]==='.'?1:0)).trim();
+    }
+    if(rest)out.push(rest);
+    return out;
+  }
+
+  function browserSpeak(text,button){
+    if(!window.speechSynthesis||!window.SpeechSynthesisUtterance||!text)return false;
+    const synth=window.speechSynthesis;
+    const pieces=splitSpeech(text);
+    const voice=frenchVoice();
+    let index=0;
+    if(button)button.textContent='⏸️ جاري النطق...';
+    synth.cancel();
+    const next=()=>{
+      if(index>=pieces.length){if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';return;}
+      const u=new SpeechSynthesisUtterance(pieces[index++]);
+      u.lang='fr-FR';u.rate=.86;
+      if(voice)u.voice=voice;
+      u.onend=next;
+      u.onerror=()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';};
+      synth.speak(u);
+    };
+    next();
+    return true;
+  }
+
   async function mappedSource(text){
     if(!text)return '';
     const lessonId=new URLSearchParams(location.search).get('id')||'';
@@ -50,17 +95,7 @@
       }catch(_){/* fall through to speech */}
     }
     if(window.HMSpeech?.speak)return !!(await window.HMSpeech.speak(text,{button}));
-    if(window.speechSynthesis&&text){
-      try{
-        speechSynthesis.cancel();
-        const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.86;
-        if(button)button.textContent='⏸️ جاري النطق...';
-        u.onend=()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';};
-        u.onerror=()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';};
-        speechSynthesis.resume();speechSynthesis.speak(u);return true;
-      }catch(_){return false;}
-    }
-    return false;
+    return browserSpeak(text,button);
   }
 
   async function bindButton(button){
@@ -83,6 +118,7 @@
 
   window.HMAudio={bind:bindAll,speak:(text,button)=>playSource('',button,text)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindAll,{once:true});else bindAll();
+  if(window.speechSynthesis?.addEventListener)window.speechSynthesis.addEventListener('voiceschanged',()=>bindAll(),{passive:true});
   const observer=new MutationObserver(bindAll);
   observer.observe(document.documentElement,{childList:true,subtree:true});
 })();
