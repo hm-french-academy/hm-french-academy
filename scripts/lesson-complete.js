@@ -18,7 +18,7 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
     if(achievementId&&window.HMProgress.addAchievement) HMProgress.addAchievement(achievementId);
     if(window.HMActivity?.add) HMActivity.add('lesson','إكمال الدرس: '+id);
     if(window.HMSkills?.add) HMSkills.add(skill,10);
-    if(window.HMStreak?.checkIn) HMSMStreak.checkIn();
+    if(window.HMStreak?.checkIn) HMStreak.checkIn();
     if(window.HMRewards?.unlock) HMRewards.unlock('lesson-finish');
   }
   const button=document.querySelector('#completeBtn,[data-complete-lesson]');
