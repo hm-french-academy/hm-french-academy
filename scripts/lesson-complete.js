@@ -1,11 +1,8 @@
-// HM Academy lesson completion helper + Lesson 1 canonical route
+// HM Academy lesson completion helper + canonical lesson route
 (function(){
-  const path=(location.pathname||'').toLowerCase();
-  const id=new URLSearchParams(location.search).get('id');
-  if(path.endsWith('/lesson.html') && id==='grade8-u1-l1'){
-    const target='data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html';
-    if(!location.pathname.includes('/data/lessons/grade-8/unit-1/')) location.replace(target);
-  }
+  // Lesson 1 now uses the same canonical lesson studio as the rest of the curriculum.
+  // Keep the legacy interactive page available from Files/legacy links, but do not
+  // redirect the main lesson route away from the standardized bilingual template.
 })();
 
 function markLessonComplete(lessonId, achievementId='lesson-finish', skill='grammar') {
@@ -49,6 +46,7 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
       vocab:'📚 المفردات',
       pronunciation:'🎧 النطق',
       grammar:'📖 القواعد',
+      conversation:'💬 المحادثة',
       practice:'✍️ التدريب',
       games:'🎮 الألعاب',
       assessment:'📝 التقييم',
@@ -125,7 +123,6 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
   const synth=window.speechSynthesis;
   const nativeSpeak=synth.speak.bind(synth);
   const nativeCancel=synth.cancel.bind(synth);
-  let patched=false;
 
   function frenchVoice(){
     const voices=synth.getVoices ? synth.getVoices() : [];
@@ -142,7 +139,7 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
       let cut=rest.lastIndexOf('. ',max);
       if(cut<80)cut=rest.lastIndexOf(' ',max);
       if(cut<40)cut=max;
-      out.push(rest.slice(0,cut+((rest[cut]==='.')?1:0)).trim());
+      out.push(rest.slice(0,cut+(rest[cut]==='.'?1:0)).trim());
       rest=rest.slice(cut+(rest[cut]==='.'?1:0)).trim();
     }
     if(rest)out.push(rest);
@@ -173,7 +170,7 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
   if(!synth.__hmRobustPatched){
     synth.__hmRobustPatched=true;
     synth.speak=function(utterance){
-      if(!utterance || !utterance.text){return nativeSpeak(utterance);}
+      if(!utterance || !utterance.text)return nativeSpeak(utterance);
       speakRobust(utterance);
     };
     synth.cancel=function(){nativeCancel();};
