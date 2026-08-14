@@ -12,11 +12,18 @@
   }
 
   function speak(text, lang = 'fr-FR') {
-    if (!text || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    window.speechSynthesis.speak(utterance);
+    if (!text) return false;
+    if (window.HMSpeech?.speak) return window.HMSpeech.speak(text, { lang });
+    if (!('speechSynthesis' in window)) return false;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(String(text));
+      utterance.lang = lang;
+      utterance.rate = .86;
+      window.speechSynthesis.resume();
+      window.speechSynthesis.speak(utterance);
+      return true;
+    } catch (_) { return false; }
   }
 
   function escapeHtml(value) {
