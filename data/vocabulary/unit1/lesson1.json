@@ -1,5 +1,34 @@
 {
   "lessonId": "unit1-lesson1",
   "title": "Unit 1 - Lesson 1 Vocabulary",
-  "vocabulary": []
+  "vocabulary": [
+    {
+      "image": "assets/images/vocabulary/chat.png",
+      "word": "un chat",
+      "translation": "قطة",
+      "example": "J'ai un chat.",
+      "exampleAudio": "assets/audio/vocabulary/chat-example.mp3"
+    },
+    {
+      "image": "assets/images/vocabulary/chien.png",
+      "word": "un chien",
+      "translation": "كلب",
+      "example": "J'ai un chien.",
+      "exampleAudio": "assets/audio/vocabulary/chien-example.mp3"
+    },
+    {
+      "image": "assets/images/vocabulary/livre.png",
+      "word": "un livre",
+      "translation": "كتاب",
+      "example": "J'ai un livre.",
+      "exampleAudio": "assets/audio/vocabulary/livre-example.mp3"
+    },
+    {
+      "image": "assets/images/vocabulary/ecole.png",
+      "word": "une école",
+      "translation": "مدرسة",
+      "example": "Je vais à l'école.",
+      "exampleAudio": "assets/audio/vocabulary/ecole-example.mp3"
+    }
+  ]
 }
