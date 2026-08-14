@@ -7,7 +7,7 @@
   "grade": "grade-8",
   "unit": "unit-1",
   "files": {
-    "interactive": "lesson-studio-standard-v2.html?id=grade8-u1-l1",
+    "interactive": "lesson-1-interactive-v2.html",
     "reference": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
     "assessment": "data/lessons/grade-8/unit-1/formal_assessment_lecon1_unite1.html",
     "quiz": "data/lessons/grade-8/unit-1/interactive_assessment_lecon1_unite1.html",
