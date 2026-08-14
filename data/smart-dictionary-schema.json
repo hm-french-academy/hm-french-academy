@@ -1,54 +1,60 @@
 {
   "smartDictionary": {
-    "version": "0.3.0",
+    "version": "0.4.0",
+    "defaultSourceLanguage": "fr",
+    "supportedTargets": ["ar-eg", "ar", "en", "es", "de", "it", "tr"],
+    "egyptianArabic": {
+      "enabled": true,
+      "label": "العربية المصرية",
+      "fallback": "ar",
+      "entries": {
+        "bonjour": ["أهلاً", "صباح الخير"],
+        "salut": ["إزيك", "أهلاً"],
+        "ça va": ["عامل إيه؟", "أخبارك إيه؟", "إزيك؟"],
+        "merci": ["شكرًا", "متشكر"],
+        "s'il te plaît": ["لو سمحت"],
+        "s'il vous plaît": ["لو سمحت", "لو سمحتي"],
+        "au revoir": ["سلام", "أشوفك بعدين"],
+        "il y a": ["فيه", "يوجد"],
+        "il n'y a pas de": ["مفيش", "لا يوجد"],
+        "d'accord": ["تمام", "ماشي"],
+        "très bien": ["تمام جدًا", "كويس جدًا"],
+        "super": ["جامد", "رائع"],
+        "vite": ["بسرعة"],
+        "attends": ["استنى"],
+        "viens": ["تعالى"],
+        "regarde": ["بص"],
+        "écoute": ["اسمع"],
+        "maintenant": ["دلوقتي"],
+        "aujourd'hui": ["النهارده"],
+        "demain": ["بكرة"]
+      },
+      "contextRule": "Prefer the natural Egyptian expression for the sentence context; keep Modern Standard Arabic as a separate target and never silently replace the original French meaning."
+    },
     "entries": [
       {
         "id": "bonjour",
         "word": "Bonjour",
         "language": "fr",
-        "meaning": {
-          "ar": "مرحباً / صباح الخير",
-          "en": "Hello / Good morning"
-        },
+        "meaning": {"ar": "مرحباً / صباح الخير", "ar-eg": "أهلاً / صباح الخير", "en": "Hello / Good morning"},
         "level": "A1",
         "category": "greetings",
-        "pronunciation": {
-          "phonetic": "bɔ̃.ʒuʁ",
-          "audio": null
-        },
+        "pronunciation": {"phonetic": "bɔ̃.ʒuʁ", "audio": null},
         "linkedLessons": ["lesson-hello"],
-        "review": {
-          "flashcard": true,
-          "spacedRepetition": true
-        }
+        "review": {"flashcard": true, "spacedRepetition": true}
       },
       {
         "id": "merci",
         "word": "Merci",
         "language": "fr",
-        "meaning": {
-          "ar": "شكراً",
-          "en": "Thank you"
-        },
+        "meaning": {"ar": "شكراً", "ar-eg": "شكرًا / متشكر", "en": "Thank you"},
         "level": "A1",
         "category": "expressions",
-        "pronunciation": {
-          "phonetic": "mɛʁ.si",
-          "audio": null
-        },
+        "pronunciation": {"phonetic": "mɛʁ.si", "audio": null},
         "linkedLessons": ["lesson-hello"],
-        "review": {
-          "flashcard": true,
-          "spacedRepetition": true
-        }
+        "review": {"flashcard": true, "spacedRepetition": true}
       }
     ],
-    "features": [
-      "audio-pronunciation",
-      "lesson-linking",
-      "flashcards",
-      "spaced-repetition",
-      "personal-review"
-    ]
+    "features": ["online-translation", "egyptian-localization", "audio-pronunciation", "lesson-linking", "flashcards", "spaced-repetition", "personal-review"]
   }
 }
