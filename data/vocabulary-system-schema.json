@@ -1,0 +1,12 @@
+{
+  "name": "HM Academy Vocabulary System",
+  "version": "1.0",
+  "fields": {
+    "image": "string",
+    "word": "string",
+    "translation": "string",
+    "example": "string",
+    "exampleAudio": "string"
+  },
+  "usage": "Universal vocabulary card structure for all lesson vocabulary pages"
+}
