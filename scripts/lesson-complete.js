@@ -1,4 +1,13 @@
-// HM Academy lesson completion helper
+// HM Academy lesson completion helper + Lesson 1 canonical route
+(function(){
+  const path=(location.pathname||'').toLowerCase();
+  const id=new URLSearchParams(location.search).get('id');
+  if(path.endsWith('/lesson.html') && id==='grade8-u1-l1'){
+    const target='data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html';
+    if(!location.pathname.includes('/data/lessons/grade-8/unit-1/')) location.replace(target);
+  }
+})();
+
 function markLessonComplete(lessonId, achievementId='lesson-finish', skill='grammar') {
   if (!window.HMProgress) return false;
   const id=lessonId||new URLSearchParams(location.search).get('id')||'lesson-hello';
@@ -9,7 +18,7 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
     if(achievementId&&window.HMProgress.addAchievement) HMProgress.addAchievement(achievementId);
     if(window.HMActivity?.add) HMActivity.add('lesson','إكمال الدرس: '+id);
     if(window.HMSkills?.add) HMSkills.add(skill,10);
-    if(window.HMStreak?.checkIn) HMStreak.checkIn();
+    if(window.HMStreak?.checkIn) HMSMStreak.checkIn();
     if(window.HMRewards?.unlock) HMRewards.unlock('lesson-finish');
   }
   const button=document.querySelector('#completeBtn,[data-complete-lesson]');
