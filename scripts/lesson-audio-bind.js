@@ -1,95 +1,88 @@
-// HM Academy lesson vocabulary audio binding — path-safe audio + resilient speech fallback
+// HM Academy universal lesson audio binding
+// MP3 files are optional. When a real source is present it is used; otherwise browser French speech is used.
 (function(){
-  async function loadAudioMap(){
-    const response=await fetch('/data/audio-map.json',{cache:'no-store'});
-    if(!response.ok) throw new Error('audio-map unavailable');
-    return response.json();
+  let audioMapPromise=null;
+  function loadAudioMap(){
+    if(audioMapPromise)return audioMapPromise;
+    audioMapPromise=fetch('/data/audio-map.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}));
+    return audioMapPromise;
   }
 
   function resolveAudioSource(source){
-    if(!source) return '';
+    if(!source)return '';
     try{
-      if(/^https?:\/\//i.test(source)) return source;
+      if(/^https?:\/\//i.test(source))return source;
       const clean=String(source).replace(/^\.\//,'').replace(/^\//,'');
       return new URL('/'+clean,location.origin).href;
-    }catch(e){ return source; }
+    }catch(_){return String(source);}
   }
 
-  function speak(text, button){
-    if(!text) return false;
-    if(window.HMSpeech?.speak){
-      const ok=window.HMSpeech.speak(text);
-      if(ok && button){
-        button.textContent='⏸️ جاري النطق...';
-        window.setTimeout(()=>{button.textContent='🔊 استمع للنطق';},900);
-      }
-      return ok;
-    }
-    if(!('speechSynthesis' in window)) return false;
-    try{
-      window.speechSynthesis.cancel();
-      const u=new SpeechSynthesisUtterance(String(text));
-      u.lang='fr-FR'; u.rate=.86; u.pitch=1;
-      if(button) button.textContent='⏸️ جاري النطق...';
-      u.onend=()=>{if(button)button.textContent='🔊 استمع للنطق';};
-      u.onerror=()=>{if(button)button.textContent='🔊 استمع للنطق';};
-      window.speechSynthesis.resume();
-      window.speechSynthesis.speak(u);
-      return true;
-    }catch(e){return false;}
+  function textFor(button){
+    return button.dataset.speakText
+      ||button.dataset.speakWord
+      ||button.dataset.speakExample
+      ||button.closest('[data-word]')?.dataset.word
+      ||button.closest('[data-speak]')?.dataset.speak
+      ||'';
+  }
+
+  async function mappedSource(text){
+    if(!text)return '';
+    const lessonId=new URLSearchParams(location.search).get('id')||'';
+    const map=await loadAudioMap();
+    const lessonMap=map?.[lessonId];
+    if(!lessonMap)return '';
+    if(Array.isArray(lessonMap))return '';
+    return resolveAudioSource(lessonMap[text]||'');
   }
 
   async function playSource(source,button,text){
-    const src=resolveAudioSource(source);
-    if(!src) return false;
-    const audio=new Audio(src);
-    audio.preload='auto';
-    if(button) button.textContent='⏸️ جاري التشغيل...';
-    try{
-      await audio.play();
-      audio.addEventListener('ended',()=>{if(button)button.textContent='🔊 استمع للنطق';},{once:true});
-      audio.addEventListener('error',()=>{if(button)button.textContent='🔊 استمع للنطق';},{once:true});
-      return true;
-    }catch(e){
-      return speak(text,button);
+    const src=resolveAudioSource(source||'');
+    if(src){
+      const audio=new Audio(src);
+      audio.preload='auto';
+      if(button)button.textContent='⏸️ جاري التشغيل...';
+      try{
+        await audio.play();
+        audio.addEventListener('ended',()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';},{once:true});
+        audio.addEventListener('error',()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';},{once:true});
+        return true;
+      }catch(_){/* fall through to speech */}
     }
+    if(window.HMSpeech?.speak)return !!(await window.HMSpeech.speak(text,{button}));
+    if(window.speechSynthesis&&text){
+      try{
+        speechSynthesis.cancel();
+        const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.86;
+        if(button)button.textContent='⏸️ جاري النطق...';
+        u.onend=()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';};
+        u.onerror=()=>{if(button)button.textContent=button.dataset.hmSpeechLabel||'🔊 استمع للنطق';};
+        speechSynthesis.resume();speechSynthesis.speak(u);return true;
+      }catch(_){return false;}
+    }
+    return false;
   }
 
-  async function bindVocabularyAudio(){
-    try{
-      const audioMap=await loadAudioMap();
-      const lessonId=new URLSearchParams(location.search).get('id')||'lesson-hello';
-      const lessonAudio=audioMap[lessonId]||{};
-      const buttons=Array.from(document.querySelectorAll('#vocabulary-list button'));
-      const sources=Array.isArray(lessonAudio)?lessonAudio:Object.values(lessonAudio);
-      let boundCount=0;
-      buttons.forEach((button,index)=>{
-        if(button.dataset.audioBound==='true') return;
-        const source=sources[index]||'';
-        const text=button.dataset.speakText||button.closest('[data-word]')?.dataset.word||button.getAttribute('aria-label')||'';
-        button.dataset.audio=resolveAudioSource(source);
-        button.dataset.audioBound='true';
-        boundCount++;
-        button.addEventListener('click',async()=>{
-          const ok=await playSource(source,button,text);
-          if(!ok) button.textContent='🔊 النطق غير متاح على هذا الجهاز';
-        });
-      });
-      window.dispatchEvent(new CustomEvent('hm:audio-ready',{detail:{lessonId,boundCount}}));
-    }catch(error){
-      console.warn('Audio binding fallback',error);
-    }
+  async function bindButton(button){
+    if(!button||button.dataset.hmAudioBound==='true')return;
+    const text=textFor(button);
+    if(!text)return;
+    button.dataset.hmAudioBound='true';
+    button.dataset.hmSpeechLabel=button.textContent||'🔊 استمع للنطق';
+    const explicit=button.dataset.audio||button.dataset.audioSrc||'';
+    button.addEventListener('click',async()=>{
+      const source=explicit||await mappedSource(text);
+      const ok=await playSource(source,button,text);
+      if(!ok)button.textContent='🔊 النطق غير متاح على هذا الجهاز';
+    });
   }
 
-  window.HMAudio={bind:bindVocabularyAudio,speak};
-  function init(){
-    bindVocabularyAudio();
-    const n=document.getElementById('vocabulary-list');
-    if(n&&!n.dataset.audioObserver){
-      const o=new MutationObserver(()=>bindVocabularyAudio());
-      o.observe(n,{childList:true,subtree:true});
-      n.dataset.audioObserver='true';
-    }
+  function bindAll(){
+    document.querySelectorAll('[data-speak-text],[data-speak-word],[data-speak-example],[data-audio],[data-audio-src]').forEach(bindButton);
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+
+  window.HMAudio={bind:bindAll,speak:(text,button)=>playSource('',button,text)};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindAll,{once:true});else bindAll();
+  const observer=new MutationObserver(bindAll);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
 })();
