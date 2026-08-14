@@ -1,5 +1,5 @@
 {
-  "contentVersion":"2026-08-14-standardized-lessons-v6",
+  "contentVersion":"2026-08-14-standardized-lessons-v7",
   "curriculumId":"grade-8-french-semester-1",
   "includedUnits":[
     {"id":"unit-1","titleAr":"في المدرسة","titleFr":"À l'école","lessons":[
@@ -15,12 +15,12 @@
       {"id":"grade8-u2-l4","number":4,"titleAr":"حروف الجر للمكان وصفات الملكية","titleFr":"Les prépositions de lieu et les adjectifs possessifs","interactive":"lesson.html?id=grade8-u2-l4","files":"lesson-files-v2.html?lesson=grade8-u2-l4","reference":"data/lessons/grade-8/unit-2/reference_lecon4_unite2.html","assessment":"data/lessons/grade-8/unit-2/formal_assessment_lecon4_unite2.html","quiz":"data/lessons/grade-8/unit-2/examen_u2-l4.html","games":"data/lessons/grade-8/unit-2/lesson-4-games.html","status":"standardized"}
     ]},
     {"id":"unit-3","titleAr":"السفر","titleFr":"Le voyage","lessons":[
-      {"id":"grade8-u3-l1","number":1,"titleAr":"وسائل النقل والأماكن","titleFr":"Les moyens de transport et les lieux","interactive":"lesson.html?id=grade8-u3-l1","files":"lesson-files-v2.html?lesson=grade8-u3-l1","status":"standardized"},
-      {"id":"grade8-u3-l2","number":2,"titleAr":"أدوات السفر والأشخاص والتعبيرات","titleFr":"Objets, personnes de voyage et expressions","interactive":"lesson.html?id=grade8-u3-l2","files":"lesson-files-v2.html?lesson=grade8-u3-l2","status":"standardized"},
-      {"id":"grade8-u3-l3","number":3,"titleAr":"التصريف وأسماء الإشارة","titleFr":"Conjugaison et adjectifs démonstratifs","interactive":"lesson.html?id=grade8-u3-l3","files":"lesson-files-v2.html?lesson=grade8-u3-l3","status":"standardized"},
-      {"id":"grade8-u3-l4","number":4,"titleAr":"حروف الجر وÀ أو En وأدوات الاستفهام","titleFr":"Prépositions, à ou en, et mots interrogatifs","interactive":"lesson.html?id=grade8-u3-l4","files":"lesson-files-v2.html?lesson=grade8-u3-l4","status":"standardized"}
+      {"id":"grade8-u3-l1","number":1,"titleAr":"وسائل النقل والأماكن","titleFr":"Les moyens de transport et les lieux","interactive":"lesson.html?id=grade8-u3-l1","files":"lesson-files-v2.html?lesson=grade8-u3-l1","reference":"data/lessons/grade-8/unit-3/reference_lecon1_unite3.html","assessment":"data/lessons/grade-8/unit-3/formal_assessment_lecon1_unite3.html","quiz":"data/lessons/grade-8/unit-3/examen_u3-l1.html","games":"data/lessons/grade-8/unit-3/lesson-1-games.html","status":"files-ready"},
+      {"id":"grade8-u3-l2","number":2,"titleAr":"أدوات السفر والأشخاص والتعبيرات","titleFr":"Objets, personnes de voyage et expressions","interactive":"lesson.html?id=grade8-u3-l2","files":"lesson-files-v2.html?lesson=grade8-u3-l2","reference":"data/lessons/grade-8/unit-3/reference_lecon2_unite3.html","assessment":"data/lessons/grade-8/unit-3/formal_assessment_lecon2_unite3.html","quiz":"data/lessons/grade-8/unit-3/examen_u3-l2.html","games":"data/lessons/grade-8/unit-3/lesson-2-games.html","status":"files-ready"},
+      {"id":"grade8-u3-l3","number":3,"titleAr":"التصريف وأسماء الإشارة","titleFr":"Conjugaison et adjectifs démonstratifs","interactive":"lesson.html?id=grade8-u3-l3","files":"lesson-files-v2.html?lesson=grade8-u3-l3","reference":"data/lessons/grade-8/unit-3/reference_lecon3_unite3.html","assessment":"data/lessons/grade-8/unit-3/formal_assessment_lecon3_unite3.html","quiz":"data/lessons/grade-8/unit-3/examen_u3-l3.html","games":"data/lessons/grade-8/unit-3/lesson-3-games.html","status":"files-ready"},
+      {"id":"grade8-u3-l4","number":4,"titleAr":"حروف الجر وÀ أو En وأدوات الاستفهام","titleFr":"Prépositions, à ou en, et mots interrogatifs","interactive":"lesson.html?id=grade8-u3-l4","files":"lesson-files-v2.html?lesson=grade8-u3-l4","reference":"data/lessons/grade-8/unit-3/reference_lecon4_unite3.html","assessment":"data/lessons/grade-8/unit-3/formal_assessment_lecon4_unite3.html","quiz":"data/lessons/grade-8/unit-3/examen_u3-l4.html","games":"data/lessons/grade-8/unit-3/lesson-4-games.html","status":"files-ready"}
     ]}
   ],
   "excludedUnits":[{"id":"unit-4","titleFr":"La fête","titleAr":"الحفلة","reason":"excluded by curriculum scope"}],
-  "contract":{"lessonsPerUnit":4,"includedUnits":3,"includedLessons":12,"filesPerLesson":4,"standardTemplate":"lesson.html","framework":"Lesson 1 Premium framework v6 is the shared interactive shell; each lesson loads its own curriculum-aligned JSON content, vocabulary, grammar, conversation, practice, games and assessment."}
+  "contract":{"lessonsPerUnit":4,"includedUnits":3,"includedLessons":12,"standardTemplate":"lesson.html","framework":"Lesson 1 Premium framework v7; lesson files are verified against registry and missing U3 lesson resources were added."}
 }
