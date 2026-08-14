@@ -25,8 +25,6 @@
     button.textContent=speaking?'⏸️ جاري النطق...':button.dataset.hmSpeechLabel;
   }
 
-  // Patch the native browser speech call as well, because some legacy lesson buttons
-  // call speechSynthesis.speak() directly instead of HMSpeech.speak().
   function patchNativeSpeech(){
     try{
       const synth=window.speechSynthesis;
@@ -38,11 +36,11 @@
           if(voice&&!utterance.voice)utterance.voice=voice;
           if(utterance?.lang&&!/^fr/i.test(String(utterance.lang)))utterance.lang=DEFAULT_LANG;
           synth.resume();
-        }catch(_){/* use browser defaults */}
+        }catch(_){ }
         return nativeSpeak(utterance);
       };
       synth.__hmPatchedSpeak=true;
-    }catch(_){/* speech API may be unavailable */}
+    }catch(_){ }
   }
 
   function speak(text,options={}){
@@ -76,14 +74,15 @@
 
     refreshVoices();
     patchNativeSpeech();
-    // Mobile browsers can expose voices only after voiceschanged.
     if(!voices.length&&'onvoiceschanged'in window.speechSynthesis){
       return new Promise(resolve=>{
         let finished=false;
-        const finish=ok=>{if(finished)return;finished=true;window.speechSynthesis.removeEventListener('voiceschanged',onVoices);resolve(ok);};
-        const onVoices=()=>{refreshVoices();run().then(finish);};
+        let timer=null;
+        const cleanup=()=>{if(timer)clearTimeout(timer);try{window.speechSynthesis.removeEventListener('voiceschanged',onVoices);}catch(_){ }};
+        const finish=ok=>{if(finished)return;finished=true;cleanup();resolve(ok);};
+        const onVoices=()=>{if(finished)return;refreshVoices();run().then(finish);};
         window.speechSynthesis.addEventListener('voiceschanged',onVoices,{once:true});
-        window.setTimeout(()=>{refreshVoices();run().then(finish);},180);
+        timer=window.setTimeout(()=>{if(!finished){refreshVoices();run().then(finish);}},220);
       });
     }
     return run();
