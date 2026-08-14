@@ -43,11 +43,16 @@
   ],
   "grammar": {
     "title":"Il y a / Il n'y a pas de",
-    "explanation":"On utilise « il y a » pour dire qu'une personne, un objet ou un lieu existe ou se trouve quelque part. On utilise « il n'y a pas de » pour exprimer l'absence de quelque chose.",
+    "explanation":"🇪🇬 بالعربية: نستخدم « il y a » للتعبير عن وجود شخص أو شيء أو مكان، ونستخدم « il n'y a pas de » للتعبير عن عدم وجود شيء. بعد النفي نستخدم عادةً « de / d' » قبل الاسم.\n\n🇫🇷 En français : On utilise « il y a » pour dire qu'une personne, un objet ou un lieu existe ou se trouve quelque part. On utilise « il n'y a pas de » pour exprimer l'absence de quelque chose. Après la négation, on emploie généralement « de / d' » devant le nom.",
+    "steps":[
+      "🇪🇬 مثبت: il y a + اسم = يوجد / توجد.",
+      "🇪🇬 منفي: il n'y a pas de + اسم = لا يوجد / لا توجد.",
+      "🇫🇷 Affirmatif : il y a + nom. Négatif : il n'y a pas de + nom."
+    ],
     "examples":[
-      {"fr":"Il y a un tableau dans la classe."},
-      {"fr":"Il y a une bibliothèque à l'école."},
-      {"fr":"Il n'y a pas de piscine dans l'école."}
+      {"fr":"Il y a un tableau dans la classe.","ar":"توجد سبورة في الفصل."},
+      {"fr":"Il y a une bibliothèque à l'école.","ar":"توجد مكتبة في المدرسة."},
+      {"fr":"Il n'y a pas de piscine dans l'école.","ar":"لا يوجد حمام سباحة في المدرسة."}
     ]
   },
   "conversation":{"lines":[
