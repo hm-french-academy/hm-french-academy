@@ -1,27 +1,91 @@
 {
   "id": "grade8-u1-l1",
   "title": "Leçon 1 : À l'école",
+  "titleAr": "في المدرسة",
   "language": "fr",
   "grade": "grade-8",
   "unit": "unit-1",
+  "scope": "facilities-and-classroom",
   "files": {
     "interactive": "lesson-1-interactive.html",
     "reference": "reference_lecon1_unite1.html",
     "assessment": "formal_assessment_lecon1_unite1.html",
     "quiz": "interactive_assessment_lecon1_unite1.html",
-    "games": "lesson-1-games.html"
+    "games": "lesson-1-games.html",
+    "conversation": "conversation_lecon1_unite1.html"
   },
-  "activities": [
-    { "type": "memory-game", "id": "memory-game", "file": "memory_game_lecon1_unite1.html", "xp": 20 },
-    { "type": "drag-drop", "id": "drag-drop", "file": "drag_drop_lecon1_unite1.html", "xp": 25 },
-    { "type": "pronunciation", "id": "pronunciation", "file": "pronunciation_challenge_lecon1_unite1.html", "xp": 20 },
-    { "type": "vocabulary", "id": "vocabulary", "file": "vocabulary_challenge_lecon1_unite1.html", "xp": 20 },
-    { "type": "quiz-express", "id": "quiz-express", "file": "games_quiz_lecon1_unite1.html", "xp": 20 }
+  "vocabulary": [
+    {"fr":"Une cantine","ar":"كانتين / مطعم المدرسة","icon":"🍽️","example":"Il y a une cantine dans l'école."},
+    {"fr":"Une cour","ar":"فناء المدرسة","icon":"🏫","example":"Les élèves jouent dans la cour."},
+    {"fr":"Des classes","ar":"فصول","icon":"🏫","example":"Il y a plusieurs classes dans l'école."},
+    {"fr":"Un gymnase","ar":"صالة ألعاب مغطاة","icon":"🤸","example":"Nous faisons du sport au gymnase."},
+    {"fr":"Un CDI","ar":"مركز التوثيق والمعلومات","icon":"📚","example":"Je lis au CDI."},
+    {"fr":"Un laboratoire","ar":"معمل","icon":"🧪","example":"Les élèves travaillent au laboratoire."},
+    {"fr":"Un terrain de sport","ar":"ملعب رياضي","icon":"⚽","example":"Le terrain de sport est près de l'école."},
+    {"fr":"Une piscine","ar":"حمام سباحة","icon":"🏊","example":"La piscine est grande."},
+    {"fr":"Une bibliothèque","ar":"مكتبة","icon":"📖","example":"J'aime la bibliothèque."},
+    {"fr":"Un self-service","ar":"قاعة طعام بالمدرسة","icon":"🍴","example":"Le self-service est près de la cantine."},
+    {"fr":"Des bancs / Un banc","ar":"مقاعد / مقعد","icon":"💺","example":"Les élèves s'assoient sur les bancs."},
+    {"fr":"Un panneau","ar":"لوحة تعليمية","icon":"📌","example":"Le panneau est près de la porte."},
+    {"fr":"Un TNI","ar":"سبورة ذكية","icon":"🖥️","example":"Le professeur utilise le TNI."},
+    {"fr":"Le globe terrestre","ar":"الكرة الأرضية","icon":"🌍","example":"Le globe terrestre est dans la classe."},
+    {"fr":"Un bureau","ar":"مكتب","icon":"🗄️","example":"Le professeur est dans son bureau."},
+    {"fr":"Un tableau","ar":"سبورة","icon":"🖼️","example":"Le tableau est dans la classe."},
+    {"fr":"Une porte","ar":"باب","icon":"🚪","example":"La porte est ouverte."},
+    {"fr":"Une fenêtre","ar":"نافذة","icon":"🪟","example":"La fenêtre est près du tableau."},
+    {"fr":"Une chaise","ar":"كرسي","icon":"🪑","example":"La chaise est devant la table."},
+    {"fr":"Une table","ar":"منضدة / طاولة","icon":"▰","example":"Le livre est sur la table."},
+    {"fr":"Une horloge","ar":"ساعة حائط","icon":"🕐","example":"L'horloge est au mur."},
+    {"fr":"Un ordinateur","ar":"كمبيوتر","icon":"💻","example":"J'utilise un ordinateur en classe."}
   ],
-  "media": { "audio": true, "video": true },
-  "activityHub": {
-    "file": "lesson-1-games.html",
-    "label": "Practice & Games",
-    "separateFromFormalAssessment": true
-  }
+  "grammar": [
+    {
+      "id":"aimer-preferer-detester",
+      "title":"Aimer / Préférer / Détester",
+      "arTitle":"التعبير عن الإعجاب والتفضيل وعدم الإعجاب",
+      "explanation":"نستخدم هذه الأفعال للتعبير عما نحبّه أو نفضّله أو لا نحبّه.",
+      "formula":"J'aime + nom · Je préfère + nom · Je déteste + nom",
+      "examples":[
+        {"fr":"J'aime la bibliothèque.","ar":"أنا أحب المكتبة."},
+        {"fr":"Je préfère le CDI.","ar":"أنا أفضل مركز التوثيق والمعلومات."},
+        {"fr":"Je déteste le bruit dans la classe.","ar":"أنا لا أحب الضوضاء في الفصل."}
+      ]
+    },
+    {
+      "id":"il-y-a",
+      "title":"Il y a / Il n'y a pas de",
+      "arTitle":"يوجد / لا يوجد",
+      "explanation":"نستخدم Il y a للقول إن شيئًا موجود، وIl n'y a pas de لنفي وجوده.",
+      "formula":"Il y a + nom · Il n'y a pas de + nom",
+      "examples":[
+        {"fr":"Il y a une cantine dans l'école.","ar":"يوجد كانتين في المدرسة."},
+        {"fr":"Il n'y a pas de piscine dans cette école.","ar":"لا يوجد حمام سباحة في هذه المدرسة."}
+      ]
+    }
+  ],
+  "dialogue": {
+    "title":"À l'école : une petite visite",
+    "arTitle":"في المدرسة: جولة قصيرة",
+    "context":"حوار قصير بين طالب ومعلمة للتعرّف إلى مرافق المدرسة.",
+    "lines":[
+      {"speaker":"Élève","roleAr":"الطالب","fr":"Bonjour Madame. Où est la cantine ?","ar":"مرحبًا يا أستاذة. أين الكانتين؟"},
+      {"speaker":"Professeure","roleAr":"المعلمة","fr":"Elle est près de la cour.","ar":"إنها بالقرب من الفناء."},
+      {"speaker":"Élève","roleAr":"الطالب","fr":"Y a-t-il une bibliothèque ?","ar":"هل توجد مكتبة؟"},
+      {"speaker":"Professeure","roleAr":"المعلمة","fr":"Oui, il y a une bibliothèque près des classes.","ar":"نعم، توجد مكتبة بالقرب من الفصول."},
+      {"speaker":"Élève","roleAr":"الطالب","fr":"J'aime la bibliothèque. Je préfère lire au CDI.","ar":"أنا أحب المكتبة. أفضل القراءة في مركز التوثيق والمعلومات."},
+      {"speaker":"Professeure","roleAr":"المعلمة","fr":"Très bien ! Découvre aussi le gymnase et le terrain de sport.","ar":"جيد جدًا! تعرّف أيضًا إلى صالة الألعاب والملعب الرياضي."}
+    ]
+  },
+  "media": {"audio":true,"video":true,"videoUrl":"https://www.youtube.com/watch?v=ii5J7ZMT5EY"},
+  "activities": [
+    {"type":"memory-game","id":"memory-game","file":"memory_game_lecon1_unite1.html","xp":20},
+    {"type":"drag-drop","id":"drag-drop","file":"drag_drop_lecon1_unite1.html","xp":25},
+    {"type":"pronunciation","id":"pronunciation","file":"pronunciation_challenge_lecon1_unite1.html","xp":20},
+    {"type":"vocabulary","id":"vocabulary","file":"vocabulary_challenge_lecon1_unite1.html","xp":20},
+    {"type":"word-catch","id":"word-catch","file":"word_catch_lecon1_unite1.html","xp":25},
+    {"type":"quiz-express","id":"quiz-express","file":"games_quiz_lecon1_unite1.html","xp":20}
+  ],
+  "activityHub":{"file":"lesson-1-games.html","label":"الألعاب التعليمية","separateFromFormalAssessment":true},
+  "tracking":true,
+  "status":"live"
 }
