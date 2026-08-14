@@ -115,3 +115,109 @@ function markLessonComplete(lessonId, achievementId='lesson-finish', skill='gram
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initContextNav,{once:true});
   else initContextNav();
 })();
+
+/* HM Academy — robust French speech layer
+   The lesson UI uses browser speech instead of MP3 files. Some Android/Chrome
+   builds load voices asynchronously or fail on long utterances; normalize both
+   cases here without changing the lesson content. */
+(function(){
+  if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+  const synth=window.speechSynthesis;
+  const nativeSpeak=synth.speak.bind(synth);
+  const nativeCancel=synth.cancel.bind(synth);
+  let patched=false;
+
+  function frenchVoice(){
+    const voices=synth.getVoices ? synth.getVoices() : [];
+    return voices.find(v=>/^fr-FR$/i.test(v.lang))
+      || voices.find(v=>/^fr[-_]/i.test(v.lang))
+      || voices.find(v=>/french|français/i.test(v.name||''))
+      || null;
+  }
+  function chunks(text,max=220){
+    const s=String(text||'').replace(/\s+/g,' ').trim();
+    if(s.length<=max)return s?[s]:[];
+    const out=[];let rest=s;
+    while(rest.length>max){
+      let cut=rest.lastIndexOf('. ',max);
+      if(cut<80)cut=rest.lastIndexOf(' ',max);
+      if(cut<40)cut=max;
+      out.push(rest.slice(0,cut+((rest[cut]==='.')?1:0)).trim());
+      rest=rest.slice(cut+(rest[cut]==='.'?1:0)).trim();
+    }
+    if(rest)out.push(rest);
+    return out;
+  }
+  function speakRobust(utterance){
+    const text=utterance?.text||'';
+    if(!text)return;
+    const pieces=chunks(text);
+    const voice=frenchVoice();
+    const rate=Number.isFinite(utterance?.rate)?utterance.rate:.86;
+    const pitch=Number.isFinite(utterance?.pitch)?utterance.pitch:1;
+    const volume=Number.isFinite(utterance?.volume)?utterance.volume:1;
+    let index=0;
+    const playNext=()=>{
+      if(index>=pieces.length){try{utterance.onend?.(new Event('end'));}catch(_){ }return;}
+      const u=new SpeechSynthesisUtterance(pieces[index++]);
+      u.lang='fr-FR';u.rate=rate;u.pitch=pitch;u.volume=volume;
+      if(voice)u.voice=voice;
+      u.onstart=()=>{if(index===1)try{utterance.onstart?.(new Event('start'));}catch(_){} };
+      u.onend=()=>playNext();
+      u.onerror=e=>{try{utterance.onerror?.(e);}catch(_){} };
+      nativeSpeak(u);
+    };
+    playNext();
+  }
+
+  if(!synth.__hmRobustPatched){
+    synth.__hmRobustPatched=true;
+    synth.speak=function(utterance){
+      if(!utterance || !utterance.text){return nativeSpeak(utterance);}
+      speakRobust(utterance);
+    };
+    synth.cancel=function(){nativeCancel();};
+  }
+
+  window.HMSpeech={
+    speak:function(text,opts={}){
+      const u=new SpeechSynthesisUtterance(String(text||''));
+      u.lang='fr-FR';u.rate=opts.rate||.86;
+      if(opts.button){
+        const old=opts.button.textContent;
+        opts.button.textContent='⏸️ جاري النطق...';
+        u.onend=()=>opts.button.textContent=old;
+        u.onerror=()=>opts.button.textContent=old;
+      }
+      synth.cancel();synth.speak(u);return Promise.resolve(true);
+    }
+  };
+
+  if(synth.addEventListener) synth.addEventListener('voiceschanged',()=>synth.getVoices(),{passive:true});
+
+  function addSpeechControls(root=document){
+    const viewer=root.querySelector?.('#viewer')||root;
+    if(!viewer) return;
+    viewer.querySelectorAll('.grammar-language.fr').forEach(box=>{
+      if(box.querySelector('.hm-speech-control'))return;
+      const text=[...box.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(' ').trim() || box.textContent.replace(/Explication en français/i,'').trim();
+      if(!text)return;
+      const b=document.createElement('button');
+      b.type='button';b.className='listen hm-speech-control';b.textContent='🔊 استمع لشرح القاعدة بالفرنسية';
+      b.addEventListener('click',()=>window.HMSpeech.speak(text,{button:b}));
+      box.appendChild(b);
+    });
+    const dialogue=viewer.querySelector('.dialogue');
+    if(dialogue && !dialogue.querySelector('.hm-dialogue-speech')){
+      const lines=[...dialogue.querySelectorAll('.fr-line')].map(x=>x.textContent.trim()).filter(Boolean);
+      if(lines.length){
+        const b=document.createElement('button');b.type='button';b.className='primary hm-dialogue-speech';b.textContent='🔊 استمع إلى المحادثة كاملة';
+        b.style.marginBottom='12px';b.addEventListener('click',()=>window.HMSpeech.speak(lines.join(' '),{button:b}));
+        dialogue.prepend(b);
+      }
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>addSpeechControls(),{once:true});else addSpeechControls();
+  const observer=new MutationObserver(()=>addSpeechControls());
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
