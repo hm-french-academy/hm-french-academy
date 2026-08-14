@@ -10,27 +10,46 @@
     if(!text || !('speechSynthesis' in window)) return false;
     try{
       const synth=window.speechSynthesis;
-      synth.cancel();
       const value=String(text).replace(/\s+/g,' ').trim();
       if(!value) return false;
-      const chunks=value.length>190 ? value.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[value] : [value];
-      const voice=pickFrenchVoice();
+      synth.cancel();
+      const chunks=value.length>160 ? value.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[value] : [value];
       let index=0;
+
       const playNext=()=>{
         if(index>=chunks.length) return;
-        const u=new SpeechSynthesisUtterance(chunks[index++].trim());
-        u.lang='fr-FR';
-        u.rate=.86;
-        u.pitch=1;
-        if(voice) u.voice=voice;
-        u.onend=()=>{ if(index<chunks.length) window.setTimeout(playNext,40); };
-        u.onerror=()=>{ if(index<chunks.length) window.setTimeout(playNext,40); };
-        synth.resume();
-        synth.speak(u);
+        const chunk=chunks[index++].trim();
+        let attempts=0;
+        const play=()=>{
+          try{
+            const voice=pickFrenchVoice();
+            const u=new SpeechSynthesisUtterance(chunk);
+            u.lang='fr-FR';
+            u.rate=.86;
+            u.pitch=1;
+            if(voice)u.voice=voice;
+            let finished=false;
+            const next=()=>{if(finished)return;finished=true;if(index<chunks.length)window.setTimeout(playNext,50);};
+            u.onend=next;
+            u.onerror=()=>{
+              if(finished)return;
+              if(attempts<1){
+                attempts++;
+                window.setTimeout(()=>{try{synth.cancel();synth.resume();}catch(_){ }play();},140);
+              }else next();
+            };
+            synth.resume();
+            synth.speak(u);
+            window.setTimeout(()=>{try{if(synth.paused)synth.resume();}catch(_){ }},90);
+          }catch(_){
+            if(attempts<1){attempts++;window.setTimeout(play,140);}else if(index<chunks.length)window.setTimeout(playNext,50);
+          }
+        };
+        play();
       };
       playNext();
       return true;
-    }catch(e){ return false; }
+    }catch(_){ return false; }
   }
 
   function injectIntro(tabs,panel){
@@ -119,7 +138,6 @@
     const panel=document.querySelector('#panel');
     if(!nav || !tabs || !panel) return;
 
-    // The lesson page already owns the real section renderer. We only add a non-destructive intro layer.
     injectIntro(tabs,panel);
 
     const home=[...nav.querySelectorAll('a')].find(a=>/الرئيسية/.test((a.textContent||'').trim()));
@@ -194,13 +212,12 @@
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
 
-    // Keep the page clean: the contextual menu replaces verbose breadcrumb/back-row text.
     const crumb=document.querySelector('.crumb');
     if(crumb) crumb.style.display='none';
     const back=document.querySelector('.back-row');
     if(back) back.style.display='none';
 
-    // Replace the fragile one-shot speech function with a resilient French speech fallback.
+    // Keep all existing inline lesson buttons working, but make their speech engine resilient.
     window.speak=speak;
     window.HMSpeech={speak};
     if('speechSynthesis' in window){
