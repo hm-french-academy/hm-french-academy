@@ -1,6 +1,17 @@
-// HM Academy lesson media runtime
+// HM Academy lesson media + accessibility runtime
 (function(){
   'use strict';
+  function applySavedFontSize(){
+    const allowed={small:'0.9',medium:'1',large:'1.15',xlarge:'1.3'};
+    let v='medium';
+    try{v=localStorage.getItem('hm-font-size')||'medium'}catch(e){}
+    if(!allowed[v])v='medium';
+    document.documentElement.dataset.hmFontSize=v;
+    document.documentElement.style.setProperty('--hm-font-scale',allowed[v]);
+    if(!document.getElementById('hm-lesson-font-style')){
+      const s=document.createElement('style');s.id='hm-lesson-font-style';s.textContent='html[data-hm-font-size="small"]{--hm-font-scale:.9}html[data-hm-font-size="medium"]{--hm-font-scale:1}html[data-hm-font-size="large"]{--hm-font-scale:1.15}html[data-hm-font-size="xlarge"]{--hm-font-scale:1.3}html[data-hm-font-size] body :where(p,h1,h2,h3,h4,h5,h6,a,button,label,li,td,th,input,select,textarea){font-size:calc(1em * var(--hm-font-scale))}';document.head.appendChild(s);
+    }
+  }
   function youtubeId(url){try{const u=new URL(url);if(u.hostname==='youtu.be')return u.pathname.slice(1);if(u.hostname.includes('youtube.com'))return u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();}catch(e){}return null;}
   function inferLessonId(){
     const params=new URLSearchParams(location.search);
@@ -15,6 +26,7 @@
     return parts.length ? `/${parts[0]}/` : '/';
   }
   async function init(){
+    applySavedFontSize();
     try{
       const lessonId=inferLessonId();
       const response=await fetch(repoRoot()+'data/media.json',{cache:'no-store'});if(!response.ok)return;
