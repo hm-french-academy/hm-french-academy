@@ -1,0 +1,17 @@
+{
+  "id":"grade-8-u2-l1","curriculumId":"grade-8-french-semester-1","unitId":"unit-2","lessonNumber":1,
+  "title":"Leçon 1 — Les pièces de la maison et la chambre",
+  "interactiveFile":"data/lessons/grade-8/unit-2/lesson-1-interactive.html",
+  "referenceFile":"data/lessons/grade-8/unit-2/reference_lecon1_unite2.html",
+  "assessmentFile":"data/lessons/grade-8/unit-2/formal_assessment_lecon1_unite2.html",
+  "interactiveAssessmentFile":"data/lessons/grade-8/unit-2/examen_u2-l1.html",
+  "gamesHubFile":"data/lessons/grade-8/unit-2/lesson-1-games.html",
+  "sourceDataFile":"data/lessons/grade-8/unit-2/lesson-1.json",
+  "vocabularySourceOfTruth":"lesson-1.json",
+  "grammarOrder":["Décrire une pièce","Il y a"],
+  "activities":[{"id":"games","type":"games-hub","file":"data/lessons/grade-8/unit-2/lesson-1-games.html"}],
+  "assessmentMode":"separate-formal-assessment","interactiveAssessmentMode":"separate-gamified-assessment","gamesMode":"separate-practice-and-games",
+  "progress":{"trackLesson":true,"completionOn":"interactiveAssessment"},
+  "navigation":{"entry":"interactive","sequence":["interactive","reference","assessment","interactiveAssessment","games"],"completion":"interactiveAssessment"},
+  "status":"standardized"
+}
