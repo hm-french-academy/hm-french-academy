@@ -57,26 +57,26 @@
     ]
   },
   "practice":[
-    {"question":"ما معنى une gomme؟","options":["مسطرة","ممحاة","قلم"],"answer":1},
-    {"question":"أي أداة نستخدمها للمسح؟","options":["une gomme","une règle","un stylo"],"answer":0},
-    {"question":"أكمل: C'est ___ stylo.","options":["une","un","des"],"answer":1},
-    {"question":"أكمل: Ce sont ___ ciseaux.","options":["des","un","une"],"answer":0},
-    {"question":"ما معنى un sac à dos؟","options":["كراسة","مقلمة","شنطة ظهر"],"answer":2},
-    {"question":"اختر الكلمة المناسبة للصورة 🖊️","options":["un stylo","une gomme","un cahier"],"answer":0},
-    {"question":"أكمل: C'est ___ règle.","options":["un","une","des"],"answer":1},
-    {"question":"اختر الجمع الصحيح: ___ ciseaux.","options":["une","des","un"],"answer":1},
-    {"question":"ماذا يقول Adam عن حقيبته؟","options":["J'ai une règle seulement.","J'ai un cahier et des ciseaux.","Je n'ai pas de sac."],"answer":1},
-    {"question":"أي جملة صحيحة؟","options":["C'est un gomme.","Ce sont une gomme.","C'est une gomme."],"answer":2}
+    {"question":"ما معنى une gomme؟","options":["قلم","ممحاة","مسطرة"],"answer":1},
+    {"question":"أي أداة نستخدمها للمسح؟","options":["une règle","une gomme","un stylo"],"answer":1},
+    {"question":"أكمل: C'est ___ stylo.","options":["des","une","un"],"answer":2},
+    {"question":"أكمل: Ce sont ___ ciseaux.","options":["une","des","un"],"answer":1},
+    {"question":"ما معنى un sac à dos؟","options":["شنطة ظهر","كراسة","مقلمة"],"answer":0},
+    {"question":"اختر الكلمة المناسبة للصورة 🖊️","options":["un cahier","un stylo","une gomme"],"answer":1},
+    {"question":"أكمل: C'est ___ règle.","options":["des","une","un"],"answer":1},
+    {"question":"اختر الجمع الصحيح: ___ ciseaux.","options":["un","des","une"],"answer":1},
+    {"question":"ماذا يقول Adam عن حقيبته؟","options":["Je n'ai pas de sac.","J'ai une règle seulement.","J'ai un cahier et des ciseaux."],"answer":2},
+    {"question":"أي جملة صحيحة؟","options":["C'est une gomme.","C'est un gomme.","Ce sont une gomme."],"answer":0}
   ],
   "assessment":{"questions":[
-    {"question":"ما معنى un crayon؟","options":["قلم جاف","قلم رصاص","مقص"],"answer":1},
-    {"question":"اختر الجملة الصحيحة.","options":["C'est un gomme.","Ce sont une gomme.","C'est une gomme."],"answer":2},
-    {"question":"أكمل: J'ai ___ cahier.","options":["une","un","des"],"answer":1},
-    {"question":"اختر أداة القياس.","options":["une règle","une gomme","un stylo"],"answer":0},
-    {"question":"أي كلمة تعني المقلمة؟","options":["un cahier","un sac à dos","une trousse"],"answer":2},
-    {"question":"اختر الصيغة الصحيحة للجمع.","options":["un ciseaux","des ciseaux","une ciseaux"],"answer":1},
-    {"question":"ما الذي يوجد في حقيبة Adam؟","options":["un cahier et des ciseaux","une gomme et un stylo فقط","une règle فقط"],"answer":0},
-    {"question":"أي جملة تصف أداة مدرسية بشكل صحيح؟","options":["J'écris avec une gomme.","Je mesure avec des ciseaux.","J'écris avec un stylo."],"answer":2}
+    {"question":"ما معنى un crayon؟","options":["مقص","قلم رصاص","قلم جاف"],"answer":1},
+    {"question":"اختر الجملة الصحيحة.","options":["C'est une gomme.","C'est un gomme.","Ce sont une gomme."],"answer":0},
+    {"question":"أكمل: J'ai ___ cahier.","options":["des","une","un"],"answer":2},
+    {"question":"اختر أداة القياس.","options":["un stylo","une règle","une gomme"],"answer":1},
+    {"question":"أي كلمة تعني المقلمة؟","options":["une trousse","un cahier","un sac à dos"],"answer":0},
+    {"question":"اختر الصيغة الصحيحة للجمع.","options":["des ciseaux","un ciseaux","une ciseaux"],"answer":0},
+    {"question":"ما الذي يوجد في حقيبة Adam؟","options":["une règle فقط","un cahier et des ciseaux","une gomme et un stylo فقط"],"answer":1},
+    {"question":"أي جملة تصف أداة مدرسية بشكل صحيح؟","options":["Je mesure avec des ciseaux.","J'écris avec une gomme.","J'écris avec un stylo."],"answer":2}
   ]},
   "activities":[
     {"type":"pronunciation","id":"u1-l2-pronunciation","xp":20},
