@@ -6,6 +6,8 @@
   "language": "fr",
   "grade": "grade-8",
   "unit": "unit-1",
+  "objectiveAr": "التعرّف على مرافق المدرسة وأدوات الفصل، واستخدام قاعدة «Il y a / Il n'y a pas de» للتعبير عن وجود الأشياء أو عدم وجودها، مع تطبيقها في محادثة وتدريب.",
+  "objectiveFr": "Identifier les lieux et les objets de l'école et utiliser « il y a / il n'y a pas de » pour parler de leur présence ou de leur absence.",
   "files": {
     "interactive": "lesson-1-interactive-v2.html",
     "reference": "data/lessons/grade-8/unit-1/reference_lecon1_unite1.html",
@@ -46,32 +48,19 @@
     "explanationAr":"نستخدم « il y a » للتعبير عن وجود شخص أو شيء أو مكان، ونستخدم « il n'y a pas de » للتعبير عن عدم وجود شيء. بعد النفي نستخدم عادةً « de / d' » قبل الاسم.",
     "explanationFr":"On utilise « il y a » pour dire qu'une personne, un objet ou un lieu existe ou se trouve quelque part. On utilise « il n'y a pas de » pour exprimer l'absence de quelque chose. Après la négation, on emploie généralement « de / d' » devant le nom.",
     "explanation":"On utilise « il y a » pour dire qu'une personne, un objet ou un lieu existe ou se trouve quelque part. On utilise « il n'y a pas de » pour exprimer l'absence de quelque chose. Après la négation, on emploie généralement « de / d' » devant le nom.",
-    "steps":[
-      "🇪🇬 مثبت: il y a + اسم = يوجد / توجد.",
-      "🇪🇬 منفي: il n'y a pas de + اسم = لا يوجد / لا توجد.",
-      "🇫🇷 Affirmatif : il y a + nom. Négatif : il n'y a pas de + nom."
-    ],
-    "examples":[
-      {"fr":"Il y a un tableau dans la classe.","ar":"توجد سبورة في الفصل."},
-      {"fr":"Il y a une bibliothèque à l'école.","ar":"توجد مكتبة في المدرسة."},
-      {"fr":"Il n'y a pas de piscine dans l'école.","ar":"لا يوجد حمام سباحة في المدرسة."}
-    ]
+    "steps":["🇪🇬 مثبت: il y a + اسم = يوجد / توجد.","🇪🇬 منفي: il n'y a pas de + اسم = لا يوجد / لا توجد.","🇫🇷 Affirmatif : il y a + nom. Négatif : il n'y a pas de + nom."] ,
+    "examples":[{"fr":"Il y a un tableau dans la classe.","ar":"توجد سبورة في الفصل."},{"fr":"Il y a une bibliothèque à l'école.","ar":"توجد مكتبة في المدرسة."},{"fr":"Il n'y a pas de piscine dans l'école.","ar":"لا يوجد حمام سباحة في المدرسة."}]
   },
-  "conversation":{"lines":[
-    {"speaker":"Sara","fr":"Où est la bibliothèque ?","ar":"أين المكتبة؟"},
-    {"speaker":"Adam","fr":"Elle est à l'école.","ar":"إنها في المدرسة."},
-    {"speaker":"Sara","fr":"Il y a une cantine ?","ar":"هل يوجد مقصف؟"},
-    {"speaker":"Adam","fr":"Oui, il y a une cantine.","ar":"نعم، يوجد مقصف."}
-  ]},
+  "conversation":{"lines":[{"speaker":"Sara","fr":"Où est la bibliothèque ?","ar":"أين المكتبة؟"},{"speaker":"Adam","fr":"Elle est à l'école.","ar":"إنها في المدرسة."},{"speaker":"Sara","fr":"Il y a une cantine ?","ar":"هل يوجد مقصف؟"},{"speaker":"Adam","fr":"Oui, il y a une cantine.","ar":"نعم، يوجد مقصف."}]},
   "practice":[
-    {"question":"ما معنى une bibliothèque؟","options":["مكتبة","مقصف","فصل"],"answer":0},
-    {"question":"أكمل: Il y a ___ tableau.","options":["un","une","des"],"answer":0},
-    {"question":"أين تأكل في المدرسة؟","options":["à la cantine","à la bibliothèque","dans la cour"],"answer":0},
-    {"question":"اختر النفي الصحيح.","options":["Il n'y a pas de piscine.","Il n'y a pas une piscine.","Il ne y a pas piscine."],"answer":0}
+    {"question":"ما معنى une bibliothèque؟","options":["مقصف","مكتبة","فصل"],"answer":1},
+    {"question":"أكمل: Il y a ___ tableau.","options":["une","des","un"],"answer":2},
+    {"question":"أين تأكل في المدرسة؟","options":["à la bibliothèque","à la cantine","dans la cour"],"answer":1},
+    {"question":"اختر النفي الصحيح.","options":["Il n'y a pas une piscine.","Il ne y a pas piscine.","Il n'y a pas de piscine."],"answer":2}
   ],
   "assessment":{"questions":[
-    {"question":"ما معنى la cantine؟","options":["المقصف","المكتبة","الفصل"],"answer":0},
-    {"question":"اختر الجملة الصحيحة.","options":["Il y a un tableau.","Il y a pas un tableau.","Il un tableau y a."],"answer":0}
+    {"question":"ما معنى la cantine؟","options":["المكتبة","المقصف","الفصل"],"answer":1},
+    {"question":"اختر الجملة الصحيحة.","options":["Il y a pas un tableau.","Il un tableau y a.","Il y a un tableau."],"answer":2}
   ]},
   "activities":[
     {"type":"memory-game","id":"memory-game","file":"memory_game_lecon1_unite1.html","xp":20},
