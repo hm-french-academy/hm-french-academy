@@ -7,7 +7,7 @@
       const response=await fetch('data/media.json');if(!response.ok)return;
       const data=await response.json();const media=(data.media||[]).filter(item=>item.lessonId===lessonId);window.HMLessonMedia=media;
       const video=media.find(item=>item.type==='video');
-      const section=Array.from(document.querySelectorAll('section.hero h2')).find(node=>node.textContent.includes('فيديو الدرس'))?.parentElement;
+      const section=Array.from(document.querySelectorAll('section')).find(node=>node.querySelector('h2')?.textContent.includes('فيديو الدرس'));
       if(!section)return;
       if(!video){section.innerHTML='<h2>🎥 فيديو الدرس</h2><p>لا توجد وسائط فيديو لهذا الدرس حالياً.</p>';return;}
       const id=youtubeId(video.source||'');
