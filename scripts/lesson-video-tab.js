@@ -36,9 +36,8 @@
   }
 
   function cleanNonVideoMedia(){
-    if(videoOpen) return;
     const host = viewer();
-    if(!host) return;
+    if(!host || videoOpen) return;
     host.querySelectorAll('iframe, video').forEach(node => {
       const parent = node.closest('.lesson-video-panel,[data-hm-video-panel]');
       if(!parent) node.remove();
@@ -67,15 +66,14 @@
     host.innerHTML = '<div class="head"><h2>🎥 فيديو الدرس</h2><p>'+esc(video.title || 'عرض الفيديو التعليمي')+'</p></div><div class="content"><div class="lesson-video-panel" data-hm-video-panel>'+media+'</div></div>';
   }
 
-  function restoreNormalTabState(){
-    videoOpen = false;
-    cleanNonVideoMedia();
-  }
-
   function bind(){
     videoTab();
     const host = tabs();
-    if(!host) return;
+    const vo = viewer();
+    if(!host || !vo){
+      setTimeout(bind, 150);
+      return;
+    }
 
     if(!host.dataset.hmVideoBound){
       host.dataset.hmVideoBound = '1';
@@ -90,13 +88,12 @@
 
     if(!observerStarted){
       observerStarted = true;
-      const mo = new MutationObserver(function(){
-        videoTab();
-        if(!videoOpen) cleanNonVideoMedia();
-      });
+      const mo = new MutationObserver(function(){ videoTab(); });
       mo.observe(host, {childList:true, subtree:true});
-      const vo = viewer();
-      if(vo) new MutationObserver(function(){ if(!videoOpen) cleanNonVideoMedia(); }).observe(vo,{childList:true,subtree:true});
+      new MutationObserver(function(){
+        if(!vo.querySelector('[data-hm-video-panel]')) videoOpen = false;
+        if(!videoOpen) cleanNonVideoMedia();
+      }).observe(vo,{childList:true,subtree:true});
     }
 
     if(params.get('section') === 'video') renderVideo();
@@ -114,7 +111,7 @@
   }
 
   const style = document.createElement('style');
-  style.textContent = '.lesson-video-panel{max-width:1000px;margin:0 auto}.lesson-video-frame{position:relative;padding-top:56.25%;border-radius:22px;overflow:hidden;background:#101827;box-shadow:0 14px 34px rgba(20,38,74,.14)}.lesson-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.lesson-video-native{width:100%;border-radius:22px;background:#101827;display:block}.lesson-video-panel + *{margin-top:14px}';
+  style.textContent = '.lesson-video-panel{max-width:1000px;margin:0 auto}.lesson-video-frame{position:relative;padding-top:56.25%;border-radius:22px;overflow:hidden;background:#101827;box-shadow:0 14px 34px rgba(20,38,74,.14)}.lesson-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.lesson-video-native{width:100%;border-radius:22px;background:#101827;display:block}';
   document.head.appendChild(style);
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
