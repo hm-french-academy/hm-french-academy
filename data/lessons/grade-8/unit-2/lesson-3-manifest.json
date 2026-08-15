@@ -1,0 +1,8 @@
+{
+  "id":"grade-8-u2-l3","curriculumId":"grade-8-french-semester-1","unitId":"unit-2","lessonNumber":3,
+  "title":"Leçon 3 — Vocabulaire général et conjugaison Avoir / Être",
+  "interactiveFile":"data/lessons/grade-8/unit-2/lesson-3-interactive.html","referenceFile":"data/lessons/grade-8/unit-2/reference_lecon3_unite2.html","assessmentFile":"data/lessons/grade-8/unit-2/formal_assessment_lecon3_unite2.html","interactiveAssessmentFile":"data/lessons/grade-8/unit-2/examen_u2-l3.html","gamesHubFile":"data/lessons/grade-8/unit-2/lesson-3-games.html","sourceDataFile":"data/lessons/grade-8/unit-2/lesson-3.json","vocabularySourceOfTruth":"lesson-3.json",
+  "grammarOrder":["Avoir au présent","Être au présent"],
+  "assessmentMode":"separate-formal-assessment","interactiveAssessmentMode":"separate-gamified-assessment","gamesMode":"separate-practice-and-games",
+  "progress":{"trackLesson":true,"completionOn":"interactiveAssessment"},"navigation":{"entry":"interactive","sequence":["interactive","reference","assessment","interactiveAssessment","games"],"completion":"interactiveAssessment"},"status":"standardized"
+}
