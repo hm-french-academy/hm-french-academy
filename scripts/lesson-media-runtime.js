@@ -1,5 +1,6 @@
 // HM Academy lesson media runtime
 (function(){
+  'use strict';
   function youtubeId(url){try{const u=new URL(url);if(u.hostname==='youtu.be')return u.pathname.slice(1);if(u.hostname.includes('youtube.com'))return u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();}catch(e){}return null;}
   function inferLessonId(){
     const params=new URLSearchParams(location.search);
@@ -9,10 +10,14 @@
     if(m)return `grade8-u${m[1]}-l${m[2]}`;
     return 'lesson-hello';
   }
+  function repoRoot(){
+    const parts=location.pathname.split('/').filter(Boolean);
+    return parts.length ? `/${parts[0]}/` : '/';
+  }
   async function init(){
     try{
       const lessonId=inferLessonId();
-      const response=await fetch('data/media.json');if(!response.ok)return;
+      const response=await fetch(repoRoot()+'data/media.json',{cache:'no-store'});if(!response.ok)return;
       const data=await response.json();const media=(data.media||[]).filter(item=>item.lessonId===lessonId);window.HMLessonMedia=media;
       const video=media.find(item=>item.type==='video');
       const section=Array.from(document.querySelectorAll('section')).find(node=>node.querySelector('h2')?.textContent.includes('فيديو الدرس'));
