@@ -1,0 +1,8 @@
+{
+  "id":"grade-8-u2-l4","curriculumId":"grade-8-french-semester-1","unitId":"unit-2","lessonNumber":4,
+  "title":"Leçon 4 — Les prépositions de lieu et les adjectifs possessifs",
+  "interactiveFile":"data/lessons/grade-8/unit-2/lesson-4-interactive.html","referenceFile":"data/lessons/grade-8/unit-2/reference_lecon4_unite2.html","assessmentFile":"data/lessons/grade-8/unit-2/formal_assessment_lecon4_unite2.html","interactiveAssessmentFile":"data/lessons/grade-8/unit-2/examen_u2-l4.html","gamesHubFile":"data/lessons/grade-8/unit-2/lesson-4-games.html","sourceDataFile":"data/lessons/grade-8/unit-2/lesson-4.json","vocabularySourceOfTruth":"lesson-4.json",
+  "grammarOrder":["Prépositions de lieu: sur, sous, dans, devant, derrière, entre","Possessifs: mon / ma / mes","Possessifs: ton / ta / tes","Possessifs: son / sa / ses","mon devant un nom féminin commençant par une voyelle"],
+  "assessmentMode":"separate-formal-assessment","interactiveAssessmentMode":"separate-gamified-assessment","gamesMode":"separate-practice-and-games",
+  "progress":{"trackLesson":true,"completionOn":"interactiveAssessment"},"navigation":{"entry":"interactive","sequence":["interactive","reference","assessment","interactiveAssessment","games"],"completion":"interactiveAssessment"},"status":"standardized"
+}
