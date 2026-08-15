@@ -49,6 +49,14 @@
       "description": "Lesson 2 original lesson video"
     },
     {
+      "id": "grade8-u2-l1-video",
+      "lessonId": "grade8-u2-l1",
+      "type": "video",
+      "title": "Vocabulaire : La maison (pièces et étages)",
+      "source": "https://www.youtube.com/watch?v=OS40JObvjSo",
+      "description": "Verified house-rooms vocabulary video matching the Lesson 1 video section"
+    },
+    {
       "id": "grade8-u2-l2-video",
       "lessonId": "grade8-u2-l2",
       "type": "video",
