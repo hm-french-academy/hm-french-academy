@@ -1,68 +1,14 @@
 {
   "media": [
-    {
-      "id": "m-hello-audio-1",
-      "lessonId": "lesson-hello",
-      "type": "audio",
-      "title": "Greetings Audio 1",
-      "source": "assets/audio/lesson-hello-1.mp3",
-      "description": "Greetings pronunciation track"
-    },
-    {
-      "id": "m-hello-video-1",
-      "lessonId": "lesson-hello",
-      "type": "video",
-      "title": "Greetings Video 1",
-      "source": "assets/video/lesson-hello-1.mp4",
-      "description": "Greetings lesson video"
-    },
-    {
-      "id": "m-present-audio-1",
-      "lessonId": "lesson-present",
-      "type": "audio",
-      "title": "Introduce Yourself Audio 1",
-      "source": "assets/audio/lesson-present-1.mp3",
-      "description": "Introducing yourself pronunciation track"
-    },
-    {
-      "id": "m-alphabet-audio-1",
-      "lessonId": "lesson-alphabet",
-      "type": "audio",
-      "title": "Alphabet Audio 1",
-      "source": "assets/audio/lesson-alphabet-1.mp3",
-      "description": "Alphabet pronunciation track"
-    },
-    {
-      "id": "grade8-u1-l1-video",
-      "lessonId": "grade8-u1-l1",
-      "type": "video",
-      "title": "Lexique de l'école",
-      "source": "https://www.youtube.com/watch?v=ii5J7ZMT5EY",
-      "description": "Lesson 1 original lesson video"
-    },
-    {
-      "id": "grade8-u1-l2-video",
-      "lessonId": "grade8-u1-l2",
-      "type": "video",
-      "title": "Fournitures scolaires — Objets de la classe",
-      "source": "https://www.youtube.com/watch?v=aGwKSZigXwE",
-      "description": "Lesson 2 original lesson video"
-    },
-    {
-      "id": "grade8-u2-l1-video",
-      "lessonId": "grade8-u2-l1",
-      "type": "video",
-      "title": "Vocabulaire : La maison (pièces et étages)",
-      "source": "https://www.youtube.com/watch?v=OS40JObvjSo",
-      "description": "Verified house-rooms vocabulary video matching the Lesson 1 video section"
-    },
-    {
-      "id": "grade8-u2-l2-video",
-      "lessonId": "grade8-u2-l2",
-      "type": "video",
-      "title": "Parler du logement et des meubles",
-      "source": "https://www.youtube.com/watch?v=_AiwqEJsLBM",
-      "description": "Lesson 2 original lesson video"
-    }
+    {"id":"m-hello-audio-1","lessonId":"lesson-hello","type":"audio","title":"Greetings Audio 1","source":"assets/audio/lesson-hello-1.mp3","description":"Greetings pronunciation track"},
+    {"id":"m-hello-video-1","lessonId":"lesson-hello","type":"video","title":"Greetings Video 1","source":"assets/video/lesson-hello-1.mp4","description":"Greetings lesson video"},
+    {"id":"m-present-audio-1","lessonId":"lesson-present","type":"audio","title":"Introduce Yourself Audio 1","source":"assets/audio/lesson-present-1.mp3","description":"Introducing yourself pronunciation track"},
+    {"id":"m-alphabet-audio-1","lessonId":"lesson-alphabet","type":"audio","title":"Alphabet Audio 1","source":"assets/audio/lesson-alphabet-1.mp3","description":"Alphabet pronunciation track"},
+    {"id":"grade8-u1-l1-video","lessonId":"grade8-u1-l1","type":"video","title":"Lexique de l'école","source":"https://www.youtube.com/watch?v=ii5J7ZMT5EY","description":"Lesson 1 original lesson video"},
+    {"id":"grade8-u1-l2-video","lessonId":"grade8-u1-l2","type":"video","title":"Fournitures scolaires — Objets de la classe","source":"https://www.youtube.com/watch?v=aGwKSZigXwE","description":"Lesson 2 original lesson video"},
+    {"id":"grade8-u2-l1-video","lessonId":"grade8-u2-l1","type":"video","title":"Vocabulaire : La maison (pièces et étages)","source":"https://www.youtube.com/watch?v=OS40JObvjSo","description":"Verified house-rooms vocabulary video matching the Lesson 1 video section"},
+    {"id":"grade8-u2-l2-video","lessonId":"grade8-u2-l2","type":"video","title":"Parler du logement et des meubles","source":"https://www.youtube.com/watch?v=_AiwqEJsLBM","description":"Lesson 2 original lesson video"},
+    {"id":"grade8-u2-l3-video","lessonId":"grade8-u2-l3","type":"video","title":"Leçon 4 — Le verbe avoir","source":"https://www.youtube.com/watch?v=W59FuY6Usac","description":"Verified French beginner video aligned with the Lesson 3 Avoir grammar topic"},
+    {"id":"grade8-u2-l4-video","lessonId":"grade8-u2-l4","type":"video","title":"Les prépositions de lieu en français","source":"https://www.youtube.com/watch?v=HHbpRP1txlc","description":"Verified French beginner video aligned with the Lesson 4 location-prepositions topic"}
   ]
 }
