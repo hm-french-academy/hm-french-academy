@@ -141,10 +141,37 @@
     }
   }
 
+  function restoreLessonVideo() {
+    const id = new URLSearchParams(location.search).get('id') || '';
+    const match = id.match(/^grade8-u1-l([1-4])$/);
+    if (!match) return;
+    const videoMap = {
+      '1': { title: 'Lexique de l’école', source: 'https://www.youtube.com/watch?v=ii5J7ZMT5EY' },
+      '2': { title: 'Fournitures scolaires — Objets de la classe', source: 'https://www.youtube.com/watch?v=aGwKSZigXwE' }
+    };
+    const video = videoMap[match[1]];
+    if (!video || document.querySelector('[data-hm-unit1-video]')) return;
+
+    const tabs = document.getElementById('tabs');
+    const viewer = document.getElementById('viewer');
+    if (!tabs || !viewer) return;
+
+    const card = document.createElement('section');
+    card.className = 'panel';
+    card.setAttribute('data-hm-unit1-video', '1');
+    card.style.marginBottom = '14px';
+    card.innerHTML = '<div class="head"><h2>🎥 فيديو الدرس</h2></div>'
+      + '<div class="content"><div style="position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;background:#101827">'
+      + '<iframe src="https://www.youtube.com/embed/' + (match[1] === '1' ? 'ii5J7ZMT5EY' : 'aGwKSZigXwE') + '" title="' + video.title + '" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>'
+      + '</div><div class="actions" style="margin-top:10px"><a class="btn primary" target="_blank" rel="noopener" href="' + video.source + '">▶ مشاهدة الفيديو على YouTube ↗</a></div></div>';
+    tabs.parentNode.insertBefore(card, viewer);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hook, { once: true });
+    document.addEventListener('DOMContentLoaded', function () { hook(); setTimeout(restoreLessonVideo, 60); }, { once: true });
   } else {
     hook();
+    setTimeout(restoreLessonVideo, 60);
   }
 
   window.HMVocabularyImageFixes = { apply: apply };
