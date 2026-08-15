@@ -1,9 +1,20 @@
-// HM Academy — canonical lesson completion bootstrap
+// HM Academy — canonical lesson completion bootstrap + lesson data preloader
 (function(){
   'use strict';
   function bindDom(){['journey','viewer','unit','title','subtitle','art','completeBtn','completionMessage'].forEach(function(id){var el=document.getElementById(id);if(el)window[id]=el;});var j=document.getElementById('journey');if(j)window.journeyEl=j;}
   bindDom();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindDom,{once:true});
+
+  // Start the two lesson JSON requests before lesson.html's inline loader runs.
+  // This removes the second competing loader and lets the browser reuse the same
+  // in-flight/cacheable response instead of waiting for a late fallback.
+  if(/(?:^|\/)lesson\.html$/i.test(location.pathname)&&window.fetch&&!window.__hmLessonPreload){
+    var nativeFetch=window.fetch.bind(window),qs=new URLSearchParams(location.search),id=qs.get('id')||'grade8-u1-l1',m=id.match(/^grade8-u(\d+)-l(\d+)$/),base='data/lessons/grade-8/';
+    var targets=[base+'lesson-registry.json'];if(m)targets.push(base+'unit-'+m[1]+'/lesson-'+m[2]+'.json');
+    var preload={};targets.forEach(function(path){preload[path]=nativeFetch(path+'?v=20260815-preload1',{cache:'force-cache',credentials:'same-origin'}).then(function(r){return r.clone().json()}).catch(function(){return null});});
+    var original=window.fetch;window.fetch=function(input,init){var raw=typeof input==='string'?input:((input&&input.url)||'');var clean=raw.split('?')[0].replace(/^\.\//,'');for(var i=0;i<targets.length;i++){if(clean===targets[i])return preload[targets[i]].then(function(data){if(data!==null)return new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}});return nativeFetch(input,init);});}return original(input,init)};window.__hmLessonPreload=true;
+  }
+
   window.hmNormalizeLessonWord=function(x){x=x||{};return{w:x.fr||x.word||x.term||x.french||'',ar:x.ar||x.translation||x.meaning||x.arabic||'',im:x.image||x.icon||'🖼️',ex:x.example||x.exampleFr||''};};
   window.markLessonComplete=function(lessonId,achievementId,skill){
     if(!window.HMProgress)return false;
@@ -14,7 +25,4 @@
     var message=document.querySelector('#completionMessage,#completion-message');if(message)message.textContent=already?'ℹ️ هذا الدرس مكتمل بالفعل وتم الحفاظ على تقدمك.':'🎉 تم إكمال الدرس وحفظ التقدم وإضافة 50 XP.';
     window.dispatchEvent(new CustomEvent('hm:activity-completed',{detail:{lessonId:id,activityId:'lesson-complete',xp:already?0:50}}));window.dispatchEvent(new CustomEvent('hm:lesson-completed',{detail:{lessonId:id,alreadyCompleted:already}}));return true;
   };
-  // The canonical lesson.html owns loading/rendering. No fallback renderer is started here,
-  // so there is no second competing loader or delayed duplicate rendering.
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindDom,{once:true});
 })();
