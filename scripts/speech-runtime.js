@@ -1,95 +1,61 @@
-// HM Academy universal French speech runtime
-// Browser speech is the primary pronunciation engine; real audio files remain optional.
+// HM Academy — reliable browser French speech runtime
 (function(){
+  'use strict';
   const DEFAULT_LANG='fr-FR';
-  const DEFAULT_RATE=0.86;
-  let voices=[];
+  const DEFAULT_RATE=0.84;
+  let current=null;
 
-  function refreshVoices(){
-    try{voices=window.speechSynthesis?.getVoices?.()||[];}catch(_){voices=[];}
-    return voices;
+  function voices(){
+    try{return window.speechSynthesis?.getVoices?.()||[];}catch(_){return [];}
   }
-
-  function pickVoice(lang=DEFAULT_LANG){
-    const list=refreshVoices();
-    const wanted=String(lang).toLowerCase();
+  function pickVoice(lang){
+    const wanted=String(lang||DEFAULT_LANG).toLowerCase();
+    const list=voices();
     return list.find(v=>String(v.lang).toLowerCase()===wanted)
-      ||list.find(v=>String(v.lang).toLowerCase().startsWith(wanted.slice(0,2)))
-      ||list.find(v=>/^fr(?:-|$)/i.test(String(v.lang)))
+      ||list.find(v=>String(v.lang).toLowerCase().startsWith('fr'))
       ||null;
   }
-
-  function setButtonState(button,speaking){
+  function state(button,on){
     if(!button)return;
-    if(!button.dataset.hmSpeechLabel)button.dataset.hmSpeechLabel=button.textContent||'🔊 استمع للنطق';
-    button.textContent=speaking?'⏸️ جاري النطق...':button.dataset.hmSpeechLabel;
+    if(!button.dataset.hmLabel)button.dataset.hmLabel=button.textContent||'🔊';
+    button.classList.toggle('playing',!!on);
+    button.setAttribute('aria-busy',on?'true':'false');
+    button.textContent=on?'⏸️':button.dataset.hmLabel;
   }
-
-  function patchNativeSpeech(){
-    try{
-      const synth=window.speechSynthesis;
-      if(!synth||synth.__hmPatchedSpeak)return;
-      const nativeSpeak=synth.speak.bind(synth);
-      synth.speak=function(utterance){
-        try{
-          const voice=pickVoice(utterance?.lang||DEFAULT_LANG);
-          if(voice&&!utterance.voice)utterance.voice=voice;
-          if(utterance?.lang&&!/^fr/i.test(String(utterance.lang)))utterance.lang=DEFAULT_LANG;
-          synth.resume();
-        }catch(_){ }
-        return nativeSpeak(utterance);
-      };
-      synth.__hmPatchedSpeak=true;
-    }catch(_){ }
-  }
-
   function speak(text,options={}){
     const value=String(text??'').trim();
-    if(!value||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return false;
-    const lang=options.lang||DEFAULT_LANG;
-    const rate=Number(options.rate)||DEFAULT_RATE;
+    if(!value||!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined')return Promise.resolve(false);
+    const synth=window.speechSynthesis;
     const button=options.button||null;
-    const run=()=>new Promise(resolve=>{
-      try{
-        const synth=window.speechSynthesis;
-        patchNativeSpeech();
-        synth.cancel();
-        const utterance=new SpeechSynthesisUtterance(value);
-        utterance.lang=lang;
-        utterance.rate=Math.max(.55,Math.min(1.15,rate));
-        utterance.pitch=Number(options.pitch)||1;
-        const voice=pickVoice(lang);
-        if(voice)utterance.voice=voice;
-        setButtonState(button,true);
-        let settled=false;
-        const done=ok=>{if(settled)return;settled=true;setButtonState(button,false);resolve(ok);};
-        utterance.onend=()=>done(true);
-        utterance.onerror=()=>done(false);
-        synth.resume();
-        synth.speak(utterance);
-        window.setTimeout(()=>{try{if(synth.paused)synth.resume();}catch(_){ }},80);
-        window.setTimeout(()=>{if(!settled)done(true);},Math.max(2500,Math.min(12000,value.length*120+1800)));
-      }catch(_){setButtonState(button,false);resolve(false);}
-    });
-
-    refreshVoices();
-    patchNativeSpeech();
-    if(!voices.length&&'onvoiceschanged'in window.speechSynthesis){
+    const lang=options.lang||DEFAULT_LANG;
+    const rate=Math.max(.55,Math.min(1.15,Number(options.rate)||DEFAULT_RATE));
+    try{
+      if(current){try{current.cancel();}catch(_){} current=null;}
+      synth.cancel();
+      const u=new SpeechSynthesisUtterance(value);
+      u.lang=lang;
+      u.rate=rate;
+      u.pitch=Number(options.pitch)||1;
+      const voice=pickVoice(lang);
+      if(voice)u.voice=voice;
+      state(button,true);
       return new Promise(resolve=>{
-        let finished=false;
-        let timer=null;
-        const cleanup=()=>{if(timer)clearTimeout(timer);try{window.speechSynthesis.removeEventListener('voiceschanged',onVoices);}catch(_){ }};
-        const finish=ok=>{if(finished)return;finished=true;cleanup();resolve(ok);};
-        const onVoices=()=>{if(finished)return;refreshVoices();run().then(finish);};
-        window.speechSynthesis.addEventListener('voiceschanged',onVoices,{once:true});
-        timer=window.setTimeout(()=>{if(!finished){refreshVoices();run().then(finish);}},220);
+        let settled=false;
+        const finish=ok=>{if(settled)return;settled=true;state(button,false);if(current===u)current=null;resolve(ok);};
+        u.onend=()=>finish(true);
+        u.onerror=()=>finish(false);
+        current=u;
+        try{synth.resume();}catch(_){}
+        synth.speak(u);
+        window.setTimeout(()=>{try{if(synth.paused)synth.resume();}catch(_){}},120);
+        window.setTimeout(()=>finish(true),Math.max(3000,Math.min(15000,value.length*140+1800)));
       });
-    }
-    return run();
+    }catch(_){state(button,false);return Promise.resolve(false);}
   }
-
-  refreshVoices();
-  patchNativeSpeech();
-  if('onvoiceschanged'in window.speechSynthesis)window.speechSynthesis.addEventListener('voiceschanged',()=>{refreshVoices();patchNativeSpeech();});
-  window.HMSpeech={speak,refreshVoices,pickVoice};
+  function stop(){try{window.speechSynthesis?.cancel?.();}catch(_){} current=null;}
+  window.HMSpeech={speak,stop,pickVoice,refreshVoices:voices};
+  try{window.speechSynthesis?.getVoices?.();}catch(_){}
+  if('speechSynthesis' in window && 'onvoiceschanged' in window.speechSynthesis){
+    window.speechSynthesis.addEventListener('voiceschanged',()=>{try{voices();}catch(_){}},{passive:true});
+  }
 })();
