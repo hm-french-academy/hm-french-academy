@@ -8,9 +8,9 @@
       "id":"unit-1","titleFr":"À l'école","titleAr":"في المدرسة",
       "lessons":[
         {"id":"u1-l1","number":1,"titleFr":"À l'école","titleAr":"في المدرسة"},
-        {"id":"u1-l2","number":2,"titleFr":"Leçon 2","titleAr":"الدرس الثاني"},
-        {"id":"u1-l3","number":3,"titleFr":"Leçon 3","titleAr":"الدرس الثالث"},
-        {"id":"u1-l4","number":4,"titleFr":"Leçon 4","titleAr":"الدرس الرابع"}
+        {"id":"u1-l2","number":2,"titleFr":"Les fournitures, la trousse et le sac à dos","titleAr":"الأدوات المدرسية والمقلمة وشنطة الظهر"},
+        {"id":"u1-l3","number":3,"titleFr":"Les matières scolaires et la conjugaison","titleAr":"المواد الدراسية وتصريف الأفعال"},
+        {"id":"u1-l4","number":4,"titleFr":"Les professions et la règle « il y a »","titleAr":"المهن وقاعدة Il y a"}
       ]
     },
     {
