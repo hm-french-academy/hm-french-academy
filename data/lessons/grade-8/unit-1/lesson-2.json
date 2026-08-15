@@ -1,93 +1,24 @@
 {
-  "id":"grade8-u1-l2",
-  "title":"Leçon 2 : Les fournitures, la trousse et le sac à dos",
-  "titleAr":"الأدوات المدرسية والمقلمة وشنطة الظهر",
-  "titleFr":"Leçon 2 : Les fournitures, la trousse et le sac à dos",
-  "language":"fr",
-  "grade":"grade-8",
-  "unit":"unit-1",
-  "files":{
-    "interactive":"lesson.html?id=grade8-u1-l2",
-    "reference":"data/lessons/grade-8/unit-1/reference_lecon2_unite1.html",
-    "assessment":"data/lessons/grade-8/unit-1/formal_assessment_lecon2_unite1.html",
-    "quiz":"data/lessons/grade-8/unit-1/examen_u1-l2.html",
-    "games":"data/lessons/grade-8/unit-1/lesson-2-games.html"
-  },
-  "vocabularyGroups":[
-    {"id":"school-supplies","title":"✏️ الأدوات المدرسية","description":"الأدوات التي يستخدمها الطالب في الفصل والدراسة."},
-    {"id":"pencil-case-bag","title":"🎒 المقلمة وشنطة الظهر","description":"الكلمات المرتبطة بالمقلمة والحقيبة وما يوجد بداخلهما."}
-  ],
-  "vocabulary":[
-    {"word":"un stylo","translation":"قلم جاف","image":"🖊️","example":"J'écris avec un stylo.","category":"school-supplies"},
-    {"word":"un crayon","translation":"قلم رصاص","image":"✏️","example":"J'écris avec un crayon.","category":"school-supplies"},
-    {"word":"une gomme","translation":"ممحاة","image":"🧽","example":"J'efface avec une gomme.","category":"school-supplies"},
-    {"word":"une règle","translation":"مسطرة","image":"📏","example":"Je mesure avec une règle.","category":"school-supplies"},
-    {"word":"un cahier","translation":"كراسة","image":"📓","example":"J'ai un cahier.","category":"school-supplies"},
-    {"word":"des ciseaux","translation":"مقص","image":"✂️","example":"J'ai des ciseaux.","category":"school-supplies"},
-    {"word":"une trousse","translation":"مقلمة","image":"👜","example":"Ma trousse est sur la table.","category":"pencil-case-bag"},
-    {"word":"un sac à dos","translation":"شنطة ظهر","image":"🎒","example":"J'ai un sac à dos.","category":"pencil-case-bag"}
-  ],
-  "grammar":{
-    "title":"Les articles : un, une et des",
-    "explanationAr":"نستخدم un مع الاسم المذكر المفرد، وune مع الاسم المؤنث المفرد، وdes مع الجمع. في هذا الدرس نستخدمها مع الأدوات المدرسية لنتحدث عما نملكه أو نراه.",
-    "explanationFr":"On utilise un avec un nom masculin singulier, une avec un nom féminin singulier et des avec un nom pluriel. Dans cette leçon, nous les utilisons avec les fournitures scolaires pour parler de ce que nous avons ou voyons.",
-    "steps":[
-      "🇪🇬 مذكر مفرد: un + اسم مثل un stylo و un crayon.",
-      "🇪🇬 مؤنث مفرد: une + اسم مثل une gomme و une règle.",
-      "🇪🇬 جمع: des + اسم مثل des ciseaux.",
-      "🇫🇷 Singulier masculin : un + nom. Singulier féminin : une + nom. Pluriel : des + nom."
-    ],
-    "examples":[
-      {"fr":"C'est un stylo.","ar":"هذا قلم جاف."},
-      {"fr":"C'est une gomme.","ar":"هذه ممحاة."},
-      {"fr":"C'est une règle.","ar":"هذه مسطرة."},
-      {"fr":"Ce sont des ciseaux.","ar":"هذه مقصات."},
-      {"fr":"J'ai un cahier.","ar":"لدي كراسة."}
-    ]
-  },
-  "conversation":{
-    "title":"Dans la classe : la trousse et le sac à dos",
-    "lines":[
-      {"speaker":"Sara","fr":"Qu'est-ce que tu as dans ta trousse ?","ar":"ماذا لديك في مقلمتك؟"},
-      {"speaker":"Adam","fr":"J'ai un stylo, un crayon et une gomme.","ar":"لدي قلم جاف وقلم رصاص وممحاة."},
-      {"speaker":"Sara","fr":"As-tu une règle ?","ar":"هل لديك مسطرة؟"},
-      {"speaker":"Adam","fr":"Oui, j'ai une règle.","ar":"نعم، لدي مسطرة."},
-      {"speaker":"Sara","fr":"Et dans ton sac à dos ?","ar":"وماذا في شنطة ظهرك؟"},
-      {"speaker":"Adam","fr":"J'ai un cahier et des ciseaux.","ar":"لدي كراسة ومقص."}
-    ]
-  },
+  "id":"grade8-u1-l2","title":"Leçon 2 : Les fournitures, la trousse et le sac à dos","titleAr":"الأدوات المدرسية والمقلمة وشنطة الظهر","titleFr":"Leçon 2 : Les fournitures, la trousse et le sac à dos","language":"fr","grade":"grade-8","unit":"unit-1",
+  "files":{"interactive":"lesson.html?id=grade8-u1-l2","reference":"data/lessons/grade-8/unit-1/reference_lecon2_unite1.html","assessment":"data/lessons/grade-8/unit-1/formal_assessment_lecon2_unite1.html","quiz":"data/lessons/grade-8/unit-1/examen_u1-l2.html","games":"data/lessons/grade-8/unit-1/lesson-2-games.html"},
+  "vocabularyGroups":[{"id":"school-supplies","title":"✏️ الأدوات المدرسية","description":"الأدوات التي يستخدمها الطالب في الفصل والدراسة."},{"id":"pencil-case-bag","title":"🎒 المقلمة وشنطة الظهر","description":"الكلمات المرتبطة بالمقلمة والحقيبة وما يوجد بداخلهما."}],
+  "vocabulary":[{"word":"un stylo","translation":"قلم جاف","image":"🖊️","example":"J'écris avec un stylo.","category":"school-supplies"},{"word":"un crayon","translation":"قلم رصاص","image":"✏️","example":"J'écris avec un crayon.","category":"school-supplies"},{"word":"une gomme","translation":"ممحاة","image":"🧽","example":"J'efface avec une gomme.","category":"school-supplies"},{"word":"une règle","translation":"مسطرة","image":"📏","example":"Je mesure avec une règle.","category":"school-supplies"},{"word":"un cahier","translation":"كراسة","image":"📓","example":"J'ai un cahier.","category":"school-supplies"},{"word":"des ciseaux","translation":"مقص","image":"✂️","example":"J'ai des ciseaux.","category":"school-supplies"},{"word":"une trousse","translation":"مقلمة","image":"👜","example":"Ma trousse est sur la table.","category":"pencil-case-bag"},{"word":"un sac à dos","translation":"شنطة ظهر","image":"🎒","example":"J'ai un sac à dos.","category":"pencil-case-bag"}],
+  "grammar":{"title":"Les articles : un, une et des","explanationAr":"نستخدم un مع الاسم المذكر المفرد، وune مع الاسم المؤنث المفرد، وdes مع الجمع. في هذا الدرس نستخدمها مع الأدوات المدرسية لنتحدث عما نملكه أو نراه.","explanationFr":"On utilise un avec un nom masculin singulier, une avec un nom féminin singulier et des avec un nom pluriel. Dans cette leçon, nous les utilisons avec les fournitures scolaires pour parler de ce que nous avons ou voyons.","steps":["🇪🇬 مذكر مفرد: un + اسم مثل un stylo و un crayon.","🇪🇬 مؤنث مفرد: une + اسم مثل une gomme و une règle.","🇪🇬 جمع: des + اسم مثل des ciseaux.","🇫🇷 Singulier masculin : un + nom. Singulier féminin : une + nom. Pluriel : des + nom."],"examples":[{"fr":"C'est un stylo.","ar":"هذا قلم جاف."},{"fr":"C'est une gomme.","ar":"هذه ممحاة."},{"fr":"C'est une règle.","ar":"هذه مسطرة."},{"fr":"Ce sont des ciseaux.","ar":"هذه مقصات."},{"fr":"J'ai un cahier.","ar":"لدي كراسة."}]},
+  "conversation":{"title":"Dans la classe : la trousse et le sac à dos","lines":[{"speaker":"Sara","fr":"Qu'est-ce que tu as dans ta trousse ?","ar":"ماذا لديك في مقلمتك؟"},{"speaker":"Adam","fr":"J'ai un stylo, un crayon et une gomme.","ar":"لدي قلم جاف وقلم رصاص وممحاة."},{"speaker":"Sara","fr":"As-tu une règle ?","ar":"هل لديك مسطرة؟"},{"speaker":"Adam","fr":"Oui, j'ai une règle.","ar":"نعم، لدي مسطرة."},{"speaker":"Sara","fr":"Et dans ton sac à dos ?","ar":"وماذا في شنطة ظهرك؟"},{"speaker":"Adam","fr":"J'ai un cahier et des ciseaux.","ar":"لدي كراسة ومقص."}]},
   "practice":[
-    {"question":"ما معنى une gomme؟","options":["قلم","ممحاة","مسطرة"],"answer":1},
-    {"question":"أي أداة نستخدمها للمسح؟","options":["une règle","une gomme","un stylo"],"answer":1},
-    {"question":"أكمل: C'est ___ stylo.","options":["des","une","un"],"answer":2},
-    {"question":"أكمل: Ce sont ___ ciseaux.","options":["une","des","un"],"answer":1},
-    {"question":"ما معنى un sac à dos؟","options":["شنطة ظهر","كراسة","مقلمة"],"answer":0},
-    {"question":"اختر الكلمة المناسبة للصورة 🖊️","options":["un cahier","un stylo","une gomme"],"answer":1},
-    {"question":"أكمل: C'est ___ règle.","options":["des","une","un"],"answer":1},
-    {"question":"اختر الجمع الصحيح: ___ ciseaux.","options":["un","des","une"],"answer":1},
-    {"question":"ماذا يقول Adam عن حقيبته؟","options":["Je n'ai pas de sac.","J'ai une règle seulement.","J'ai un cahier et des ciseaux."],"answer":2},
-    {"question":"أي جملة صحيحة؟","options":["C'est une gomme.","C'est un gomme.","Ce sont une gomme."],"answer":0}
+    {"question":"ما معنى une gomme؟","options":["مسطرة","قلم","ممحاة"],"answer":2},
+    {"question":"أي أداة نستخدمها للمسح؟","options":["un stylo","une règle","une gomme"],"answer":2},
+    {"question":"أكمل: C'est ___ stylo.","options":["une","un","des"],"answer":1},
+    {"question":"أكمل: Ce sont ___ ciseaux.","options":["un","une","des"],"answer":2},
+    {"question":"ما معنى un sac à dos؟","options":["كراسة","شنطة ظهر","مقلمة"],"answer":1},
+    {"question":"اختر الكلمة المناسبة للصورة 🖊️","options":["une gomme","un cahier","un stylo"],"answer":2},
+    {"question":"أكمل: C'est ___ règle.","options":["un","des","une"],"answer":2},
+    {"question":"اختر الجمع الصحيح: ___ ciseaux.","options":["une","un","des"],"answer":2},
+    {"question":"ماذا يقول Adam عن حقيبته؟","options":["J'ai une règle seulement.","J'ai un cahier et des ciseaux.","Je n'ai pas de sac."],"answer":1},
+    {"question":"أي جملة صحيحة؟","options":["Ce sont une gomme.","C'est un gomme.","C'est une gomme."],"answer":2}
   ],
-  "assessment":{"questions":[
-    {"question":"ما معنى un crayon؟","options":["مقص","قلم رصاص","قلم جاف"],"answer":1},
-    {"question":"اختر الجملة الصحيحة.","options":["C'est une gomme.","C'est un gomme.","Ce sont une gomme."],"answer":0},
-    {"question":"أكمل: J'ai ___ cahier.","options":["des","une","un"],"answer":2},
-    {"question":"اختر أداة القياس.","options":["un stylo","une règle","une gomme"],"answer":1},
-    {"question":"أي كلمة تعني المقلمة؟","options":["une trousse","un cahier","un sac à dos"],"answer":0},
-    {"question":"اختر الصيغة الصحيحة للجمع.","options":["des ciseaux","un ciseaux","une ciseaux"],"answer":0},
-    {"question":"ما الذي يوجد في حقيبة Adam؟","options":["une règle فقط","un cahier et des ciseaux","une gomme et un stylo فقط"],"answer":1},
-    {"question":"أي جملة تصف أداة مدرسية بشكل صحيح؟","options":["Je mesure avec des ciseaux.","J'écris avec une gomme.","J'écris avec un stylo."],"answer":2}
-  ]},
-  "activities":[
-    {"type":"pronunciation","id":"u1-l2-pronunciation","xp":20},
-    {"type":"vocabulary","id":"u1-l2-vocabulary","xp":20},
-    {"type":"practice","id":"u1-l2-practice","xp":20},
-    {"type":"games","id":"u1-l2-games","file":"data/lessons/grade-8/unit-1/lesson-2-games.html","xp":20},
-    {"type":"assessment","id":"u1-l2-assessment","file":"data/lessons/grade-8/unit-1/examen_u1-l2.html","xp":50}
-  ],
+  "assessment":{"questions":[{"question":"ما معنى un crayon؟","options":["قلم جاف","قلم رصاص","مقص"],"answer":1},{"question":"اختر الجملة الصحيحة.","options":["C'est un gomme.","Ce sont une gomme.","C'est une gomme."],"answer":2},{"question":"أكمل: J'ai ___ cahier.","options":["une","un","des"],"answer":1},{"question":"اختر أداة القياس.","options":["une gomme","un stylo","une règle"],"answer":2},{"question":"أي كلمة تعني المقلمة؟","options":["un cahier","un sac à dos","une trousse"],"answer":2},{"question":"اختر الصيغة الصحيحة للجمع.","options":["un ciseaux","des ciseaux","une ciseaux"],"answer":1},{"question":"ما الذي يوجد في حقيبة Adam؟","options":["une règle فقط","une gomme et un stylo فقط","un cahier et des ciseaux"],"answer":2},{"question":"أي جملة تصف أداة مدرسية بشكل صحيح؟","options":["J'écris avec une gomme.","Je mesure avec des ciseaux.","J'écris avec un stylo."],"answer":2}]},
+  "activities":[{"type":"pronunciation","id":"u1-l2-pronunciation","xp":20},{"type":"vocabulary","id":"u1-l2-vocabulary","xp":20},{"type":"practice","id":"u1-l2-practice","xp":20},{"type":"games","id":"u1-l2-games","file":"data/lessons/grade-8/unit-1/lesson-2-games.html","xp":20},{"type":"assessment","id":"u1-l2-assessment","file":"data/lessons/grade-8/unit-1/examen_u1-l2.html","xp":50}],
   "activityHub":{"file":"data/lessons/grade-8/unit-1/lesson-2-games.html","label":"الألعاب والتدريب","separateFromFormalAssessment":true},
-  "contentScope":{"lesson2":["school supplies","pencil case","backpack","un/une/des","classroom conversation"],"excludedFromLesson2":["school subjects / Les matières scolaires"]},
-  "media":{"audio":true,"video":false},
-  "tracking":true,
-  "status":"standardized"
+  "contentScope":{"lesson2":["school supplies","pencil case","backpack","un/une/des","classroom conversation"],"excludedFromLesson2":["school subjects / Les matières scolaires"]},"media":{"audio":true,"video":false},"tracking":true,"status":"standardized"
 }
