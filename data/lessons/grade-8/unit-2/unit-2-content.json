@@ -3,13 +3,13 @@
   "unit":"Unité 2",
   "titleFr":"La maison",
   "titleAr":"المنزل",
-  "source":"Revision_Finale_Complete_4Unites.docx",
+  "source":"Revision_Finale_Complete_4Unites.docx + verified original lesson material",
   "scope":"semester-1",
   "lessonBreakdown":"source-file-does-not-explicitly-number-lessons",
   "contentModules":[
-    {"id":"module-vocabulaire","title":"Lexique de la maison","items":["La chambre","La cuisine","Le salon","Un lit","Une armoire","Un oreiller","Un canapé","Un fauteuil","Un tapis","Un évier","Un réfrigérateur","Une douche"]},
+    {"id":"module-vocabulaire","title":"Lexique de la maison","items":["La maison","La chambre","La porte","La fenêtre","Le lit","Une armoire","Un oreiller","Un bureau","Une chaise","Une table de chevet","Un abat-jour","Un tapis","Un matelas","Un réveil","Un tableau","Un miroir","Un lustre","Un rideau","La cuisine","Le salon","La salle de bains","Un canapé","Un fauteuil","Une table","Un évier","Un réfrigérateur","Une douche","La télévision"]},
     {"id":"module-grammaire","title":"Avoir / Être","topics":["Avoir au présent","Être au présent"]},
-    {"id":"module-localisation","title":"Prépositions de lieu","topics":["sur","sous","devant","derrière","entre"]},
+    {"id":"module-localisation","title":"Prépositions de lieu","topics":["sur","sous","dans","devant","derrière","entre"]},
     {"id":"module-possessifs","title":"Les possessifs","topics":["mon / ma / mes","ton / ta / tes","son / sa / ses","mon devant un nom féminin commençant par une voyelle"]}
   ],
   "plannedPackage":["interactive-explanation","audio","reference","formal-assessment","interactive-assessment","independent-games","progress"],
