@@ -1,0 +1,8 @@
+{
+  "id":"grade-8-u2-l2","curriculumId":"grade-8-french-semester-1","unitId":"unit-2","lessonNumber":2,
+  "title":"Leçon 2 — Le salon, la cuisine et la salle de bains",
+  "interactiveFile":"data/lessons/grade-8/unit-2/lesson-2-interactive.html","referenceFile":"data/lessons/grade-8/unit-2/reference_lecon2_unite2.html","assessmentFile":"data/lessons/grade-8/unit-2/formal_assessment_lecon2_unite2.html","interactiveAssessmentFile":"data/lessons/grade-8/unit-2/examen_u2-l2.html","gamesHubFile":"data/lessons/grade-8/unit-2/lesson-2-games.html","sourceDataFile":"data/lessons/grade-8/unit-2/lesson-2.json","vocabularySourceOfTruth":"lesson-2.json",
+  "grammarOrder":["Il y a","Il n'y a pas de"],
+  "assessmentMode":"separate-formal-assessment","interactiveAssessmentMode":"separate-gamified-assessment","gamesMode":"separate-practice-and-games",
+  "progress":{"trackLesson":true,"completionOn":"interactiveAssessment"},"navigation":{"entry":"interactive","sequence":["interactive","reference","assessment","interactiveAssessment","games"],"completion":"interactiveAssessment"},"status":"standardized"
+}
