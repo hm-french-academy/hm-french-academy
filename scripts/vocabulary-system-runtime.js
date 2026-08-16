@@ -1,42 +1,10 @@
 (function(){'use strict';
-/* HM Academy — Universal Vocabulary System enhancement.
- * Keeps the lesson runtime as the source of truth and upgrades every shared
- * vocabulary card to: image + French word + Arabic meaning + example + example pronunciation.
- */
+/* HM Academy — Universal Vocabulary System + lesson completion bridge. */
 const SELECTOR='.grid .card';
 const textOf=el=>(el?.textContent||'').trim();
-function speak(text,button){
-  if(!text)return;
-  if(window.HMSpeech?.speak){window.HMSpeech.speak(text,{button,lang:'fr-FR',rate:.82});return;}
-  if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u);}
-}
-function enhance(root=document){
-  const viewer=root.querySelector?.('#viewer')||root;
-  const cards=[...viewer.querySelectorAll(SELECTOR)];
-  if(!cards.length)return;
-  cards.forEach(card=>{
-    const fr=card.querySelector('.fr');
-    const example=card.querySelector('.example');
-    if(!fr||!example)return;
-    card.dataset.hmVocabulary='1';
-    if(!example.querySelector('[data-example-speak]')){
-      const row=document.createElement('div');
-      row.className='hm-example-audio';
-      row.style.cssText='display:flex;align-items:center;gap:8px;margin-top:8px;direction:rtl';
-      const b=document.createElement('button');
-      b.type='button';b.dataset.exampleSpeak='1';b.className='audio';
-      b.textContent='🔊';b.title='استمع إلى نطق المثال الفرنسي';b.setAttribute('aria-label','استمع إلى نطق المثال الفرنسي');
-      b.addEventListener('click',()=>speak(textOf(example),b));
-      const label=document.createElement('span');
-      label.className='small';label.textContent='نطق المثال';
-      row.append(b,label);example.appendChild(row);
-    }
-  });
-}
-function boot(){
-  enhance();
-  const viewer=document.querySelector('#viewer');
-  if(viewer){new MutationObserver(()=>enhance(document)).observe(viewer,{childList:true,subtree:true});}
-}
+function speak(text,button){if(!text)return;if(window.HMSpeech?.speak){window.HMSpeech.speak(text,{button,lang:'fr-FR',rate:.82});return;}if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u);}}
+function enhance(root=document){const viewer=root.querySelector?.('#viewer')||root;const cards=[...viewer.querySelectorAll(SELECTOR)];cards.forEach(card=>{const fr=card.querySelector('.fr'),example=card.querySelector('.example');if(!fr||!example)return;card.dataset.hmVocabulary='1';if(!example.querySelector('[data-example-speak]')){const row=document.createElement('div');row.className='hm-example-audio';row.style.cssText='display:flex;align-items:center;gap:8px;margin-top:8px;direction:rtl';const b=document.createElement('button');b.type='button';b.dataset.exampleSpeak='1';b.className='audio';b.textContent='🔊';b.title='استمع إلى نطق المثال الفرنسي';b.setAttribute('aria-label','استمع إلى نطق المثال الفرنسي');b.addEventListener('click',()=>speak(textOf(example).replace('نطق المثال',''),b));const label=document.createElement('span');label.className='small';label.textContent='نطق المثال';row.append(b,label);example.appendChild(row);}});}
+function bindCompletion(){const btn=document.querySelector('#completeBtn,[data-complete-lesson]');if(!btn||btn.dataset.hmCompletionBound)return;btn.dataset.hmCompletionBound='1';const id=new URLSearchParams(location.search).get('id')||'grade8-u1-l1';function done(){if(typeof window.markLessonComplete==='function')return window.markLessonComplete(id,'lesson-finish','grammar');if(window.HMProgress?.completeLesson){const before=window.HMProgress.get?.()||{},already=Array.isArray(before.completedLessons)&&before.completedLessons.includes(id);window.HMProgress.completeLesson(id,50);btn.textContent='✅ تم إكمال الدرس';btn.disabled=true;const msg=document.querySelector('#completionMessage');if(msg)msg.textContent=already?'ℹ️ هذا الدرس مكتمل بالفعل وتم الحفاظ على تقدمك.':'🎉 تم إكمال الدرس وحفظ التقدم وإضافة 50 XP.';return true;}btn.textContent='⚠️ تعذر حفظ التقدم';return false;}btn.addEventListener('click',done);}
+function boot(){enhance();bindCompletion();const viewer=document.querySelector('#viewer');if(viewer){new MutationObserver(()=>enhance(document)).observe(viewer,{childList:true,subtree:true});}window.addEventListener('hm:lesson-rendered',()=>{enhance();bindCompletion();});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
