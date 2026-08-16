@@ -24,18 +24,25 @@ function addStyle(){if(document.getElementById('hmLessonVideoStyle'))return;cons
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function render(){
   const tabs=document.getElementById('tabs'),viewer=document.getElementById('viewer');
-  if(!tabs||!viewer||tabs.dataset.hmVideoReady==='1')return false;
+  if(!tabs||!viewer||tabs.querySelector('[data-hm-video-tab]'))return false;
+  return true;
+}
+function ensureTab(){
+  const tabs=document.getElementById('tabs');
+  if(!tabs||tabs.querySelector('[data-hm-video-tab]'))return false;
   const btn=document.createElement('button');btn.className='tab';btn.type='button';btn.dataset.hmVideoTab='1';btn.textContent='🎬 فيديو الدرس';
   tabs.insertBefore(btn,tabs.firstChild);
   btn.addEventListener('click',()=>{
     tabs.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+    const viewer=document.getElementById('viewer');if(!viewer)return;
     const html=`<div class="head"><h2>🎬 فيديو الدرس</h2><p>شاهد واستمع إلى الفيديوهات المرتبطة بهذا الدرس. يمكنك فتح الفيديو مباشرة على YouTube إذا تعذر تشغيله داخل الصفحة.</p></div><div class="content"><div class="hm-video-grid">${list.map(v=>`<article class="hm-video-card"><h3 class="hm-video-title">${esc(v.title)}</h3><p class="hm-video-ar">${esc(v.ar)}</p><div class="hm-video-frame"><iframe src="https://www.youtube.com/embed/${encodeURIComponent(v.id)}?rel=0" title="${esc(v.title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><a class="btn primary hm-video-fallback" target="_blank" rel="noopener" href="${esc(v.url)}">فتح الفيديو على YouTube ↗</a><div class="hm-video-note">${esc(v.note)}</div></article>`).join('')}</div></div>`;
     viewer.innerHTML=html;window.scrollTo({top:viewer.offsetTop-90,behavior:'smooth'});
   });
-  tabs.dataset.hmVideoReady='1';addStyle();return true;
+  addStyle();return true;
 }
-const timer=setInterval(()=>{if(render())clearInterval(timer)},150);
-setTimeout(()=>clearInterval(timer),10000);
-window.addEventListener('hm:languagechange',()=>{if(tabsReadyReset())setTimeout(render,50)});
-function tabsReadyReset(){const tabs=document.getElementById('tabs');if(!tabs)return false;tabs.dataset.hmVideoReady='';return true}
+const boot=setInterval(()=>{if(ensureTab())clearInterval(boot)},150);
+setTimeout(()=>clearInterval(boot),10000);
+const observer=new MutationObserver(()=>ensureTab());
+function watch(){const tabs=document.getElementById('tabs');if(tabs){observer.observe(tabs,{childList:true});ensureTab();}else setTimeout(watch,150)}
+watch();
 })();
