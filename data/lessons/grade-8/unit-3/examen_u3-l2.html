@@ -1,1 +1,33 @@
-<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>اختبار الدرس 2</title><main><h1>اختبار الدرس 2 — أدوات السفر</h1><ol><li>une valise = حقيبة سفر / جواز سفر</li><li>للسفر: un passeport / une chambre</li><li>J'ai mon ... : passeport / cuisine</li><li>رحلة سعيدة: Bon voyage ! / Bonne classe !</li></ol></main>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy · التقييم التفاعلي · Leçon 2</title>
+<style>
+:root{--nav:#17284b;--pink:#e62982;--blue:#2563eb;--purple:#7041e8;--line:#dfe6f0;--soft:#f4f7ff;--bg:#eef3fb;--good:#15803d;--bad:#b91c1c}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef3fb,#f8fafc);color:var(--nav);font-family:Arial,"Noto Sans Arabic",sans-serif}.wrap{max-width:920px;margin:auto;padding:12px}.hero{background:linear-gradient(135deg,#173b82,#7041e8 55%,#2563eb);color:#fff;border-radius:26px;padding:22px;box-shadow:0 14px 35px #17284b20}.hero h1{margin:8px 0;font-size:clamp(28px,6vw,44px)}.hero p{line-height:1.8;margin:4px 0}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.pill{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900;color:#315a93}.q{background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px;margin:12px 0}.qhead{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.tag{background:var(--soft);border-radius:10px;padding:7px 10px;font-weight:900;color:#315a93}.text{font-size:20px;font-weight:900;line-height:1.8;margin:12px 0}.opts{display:grid;gap:8px}.opt{width:100%;display:flex;align-items:center;gap:10px;border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:right;font:inherit;font-weight:800;color:var(--nav);cursor:pointer}.opt.selected{border-color:var(--pink);background:#fff1f8}.letter{display:grid;place-items:center;min-width:34px;height:34px;background:var(--soft);border-radius:10px;font-weight:900;color:#315a93}.selected .letter{background:var(--pink);color:#fff}.actions{position:sticky;bottom:8px;display:flex;justify-content:center;gap:8px;margin:16px 0;z-index:3}.btn{border:0;border-radius:14px;padding:13px 20px;font-weight:900;cursor:pointer}.primary{background:var(--pink);color:#fff}.secondary{background:#edf3ff;color:#315a93}.btn:disabled{opacity:.5}.result{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;margin-top:15px;text-align:center}.result.show{display:block}.warning{background:#fff8e8;border-color:#efd9a0;color:#735615}.score{font-size:42px;font-weight:900;color:var(--purple)}.review{text-align:right;margin-top:12px}.review div{padding:9px;border-radius:10px;margin:6px 0}.right{background:#effaf3;color:#146c38}.wrong{background:#fff1f1;color:#9b1c1c}@media(max-width:600px){.wrap{padding:9px}.hero,.q{border-radius:18px;padding:15px}.actions{display:grid}.actions .btn{width:100%}}
+</style></head>
+<body><main class="wrap">
+<section class="hero"><div>🎯 HM ACADEMY · ÉVALUATION INTERACTIVE</div><h1>Leçon 2 · Objets, personnes de voyage et expressions</h1><p>تدريب تفاعلي على مفردات السفر، <b dir="ltr">avoir</b>، والتعبيرات الأساسية في السياق.</p></section>
+<div class="meta"><span class="pill">🧠 10 أسئلة</span><span class="pill">⚡ تصحيح فوري</span><span class="pill">🏆 نتيجة الجولة</span></div>
+<section id="message" class="result" aria-live="polite"></section><form id="form"></form>
+<div class="actions"><button class="btn primary" id="submit" type="button">إظهار النتيجة</button><button class="btn secondary" type="button" onclick="location.href='formal_assessment_lecon2_unite3.html'">📝 التقييم الرسمي</button><button class="btn secondary" type="button" onclick="location.href='lesson.html?id=grade8-u3-l2'">← العودة إلى الدرس</button></div>
+<section id="result" class="result"></section></main>
+<script>
+const Q=[
+['مفردات','ما معنى «une valise»؟',['حقيبة سفر','جواز سفر','تذكرة'],0],
+['مفردات','ما معنى «un passeport»؟',['جواز سفر','مرشد','سائح'],0],
+['مفردات','ما معنى «un billet»؟',['تذكرة','حقيبة','رحلة'],0],
+['مفردات','ما معنى «un guide»؟',['مرشد','تذكرة','جواز سفر'],0],
+['تعبيرات','اختر التعبير المناسب عند تمني رحلة سعيدة.',['Bon voyage !','Bon passeport !','Bon billet !'],0],
+['avoir','أكمل: J’ai mon ___.',['passeport','touriste','voyage'],0],
+['avoir','اختر الجملة الصحيحة.',['J’ai un billet.','Je un billet ai.','Un billet je ai.'],0],
+['السياق','من يساعد السائح في التعرف على المكان؟',['un guide','un billet','une valise'],0],
+['السياق','من يقوم بالرحلة بصفته مسافرًا؟',['un touriste','un passeport','un billet'],0],
+['السياق','أي مجموعة تضم أدوات/أشياء مرتبطة بالسفر؟',['valise / passeport / billet','guide / touriste / chambre','table / cuisine / photo'],0]
+];
+let answers=Array(Q.length).fill(null),done=false;
+const form=document.getElementById('form');
+form.innerHTML=Q.map((q,i)=>`<article class="q" data-q="${i}"><div class="qhead"><span class="tag">السؤال ${i+1}</span><span class="tag">${q[0]}</span></div><div class="text">${q[1]}</div><div class="opts">${q[2].map((o,j)=>`<button type="button" class="opt" data-q="${i}" data-o="${j}"><span class="letter">${String.fromCharCode(65+j)}</span><span>${o}</span></button>`).join('')}</div></article>`).join('');
+form.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b||done)return;const i=+b.dataset.q;answers[i]=+b.dataset.o;b.closest('.q').querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+document.getElementById('submit').onclick=()=>{if(done)return;const missing=answers.map((x,i)=>x===null?i+1:null).filter(Boolean);const msg=document.getElementById('message');if(missing.length){msg.className='result show warning';msg.innerHTML='<strong>أكمل التقييم أولًا.</strong><br>تبقى '+missing.length+' أسئلة دون إجابة.';msg.scrollIntoView({behavior:'smooth',block:'center'});return}done=true;let score=0;const review=Q.map((q,i)=>{const ok=answers[i]===q[3];if(ok)score++;return ok});const pct=Math.round(score/Q.length*100);document.querySelectorAll('.opt').forEach(b=>b.disabled=true);document.getElementById('submit').disabled=true;const r=document.getElementById('result');r.className='result show';r.innerHTML='<div>🏆 انتهت الجولة</div><div class="score">'+score+' / '+Q.length+'</div><p>النسبة: <b>'+pct+'%</b></p><p>'+(pct>=90?'ممتاز — أداء قوي.':pct>=70?'جيد جدًا — واصل التدريب.':'راجع مفردات السفر ثم أعد الجولة.')+'</p><div class="review">'+review.map((ok,i)=>'<div class="'+(ok?'right':'wrong')+'">'+(ok?'✅':'❌')+' السؤال '+(i+1)+' — '+(ok?'صحيح':'الإجابة الصحيحة: '+Q[i][2][Q[i][3]])+'</div>').join('')+'</div>';localStorage.setItem('hm_interactive_grade8_u3_l2',JSON.stringify({score,total:Q.length,pct,at:new Date().toISOString()}));r.scrollIntoView({behavior:'smooth',block:'start'})};
+</script></body></html>
