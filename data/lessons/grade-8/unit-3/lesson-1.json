@@ -16,7 +16,17 @@
     {"word":"la station","translation":"المحطة","image":"🚏","example":"La station est près d'ici."},
     {"word":"l'arrêt","translation":"موقف/محطة توقف","image":"🛑","example":"L'arrêt de bus est ici."},
     {"word":"le billet","translation":"تذكرة","image":"🎫","example":"J'ai un billet de train."},
-    {"word":"le voyage","translation":"الرحلة/السفر","image":"🧳","example":"Le voyage commence demain."}
+    {"word":"le voyage","translation":"الرحلة/السفر","image":"🧳","example":"Le voyage commence demain."},
+    {"word":"un guichet","translation":"شباك التذاكر","image":"🎟️","example":"Je vais au guichet pour acheter un billet."},
+    {"word":"une plage","translation":"شاطئ","image":"🏖️","example":"Nous allons à la plage."},
+    {"word":"un zoo","translation":"حديقة حيوان","image":"🦁","example":"Nous visitons un zoo."},
+    {"word":"un cirque","translation":"سيرك","image":"🎪","example":"Nous allons au cirque."},
+    {"word":"un stade","translation":"استاد","image":"🏟️","example":"Ils vont au stade."},
+    {"word":"un club","translation":"نادي","image":"🏢","example":"Il va au club."},
+    {"word":"une pharmacie","translation":"صيدلية","image":"💊","example":"Je vais à la pharmacie."},
+    {"word":"un pays","translation":"بلد","image":"🌍","example":"La France est un pays."},
+    {"word":"une ville","translation":"مدينة","image":"🏙️","example":"Paris est une ville."},
+    {"word":"un lieu","translation":"مكان","image":"📍","example":"C'est un lieu célèbre."}
   ],
   "grammar":{
     "title":"Prendre / Aller + lieux",
