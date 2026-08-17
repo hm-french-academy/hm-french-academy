@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy · نطق الدرس الثاني · الوحدة الثالثة</title>
+<style>
+:root{--nav:#14264a;--pink:#e62982;--blue:#2563eb;--line:#dfe6f0;--soft:#f6f8fd;--muted:#68758b}*{box-sizing:border-box}body{margin:0;background:#f3f6fc;color:var(--nav);font-family:Arial,Cairo,sans-serif}.top{background:#fff;border-bottom:1px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:20px}.wrap{max-width:900px;margin:auto;padding:18px}.hero{background:linear-gradient(135deg,#173b82,#7041e8,#2563eb);color:#fff;border-radius:26px;padding:24px;margin-bottom:14px}.hero h1{margin:5px 0;font-size:clamp(28px,6vw,42px)}.hero p{line-height:1.9}.back{display:inline-block;color:#315aa4;background:#edf3ff;border-radius:12px;padding:10px 13px;text-decoration:none;font-weight:900;margin-bottom:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px}.word{direction:ltr;text-align:left;font-size:21px;font-weight:900}.ar{color:#315aa4;font-weight:900;margin:5px 0 10px}.note{background:var(--soft);border-right:4px solid var(--pink);padding:11px;border-radius:12px;line-height:1.75;color:#58667c}.btn{border:0;border-radius:12px;background:#edf3ff;color:#2850a3;padding:11px 14px;font-weight:900;cursor:pointer}.listenAll{background:var(--pink);color:#fff}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.status{min-height:24px;color:#315aa4;font-weight:900}.footer{color:var(--muted);font-size:13px;text-align:center;padding:20px}@media(max-width:650px){.grid{grid-template-columns:1fr}.wrap{padding:12px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">🇫🇷 HM Academy</div><div>الوحدة 3 · الدرس 2</div></header>
+<main class="wrap">
+<a class="back" href="../../../lesson.html?id=grade8-u3-l2&section=pronunciation">← العودة إلى الدرس</a>
+<section class="hero"><div>🎧 HM Academy · Pronunciation Studio</div><h1>نطق الدرس الثاني · Le voyage</h1><p>تدرّب على نطق مفردات السفر والأشخاص والمعلومات المرتبطة بالرحلة. لكل كلمة ملاحظة نطق واضحة وزر استماع.</p><div class="actions"><button class="btn listenAll" id="all">🔊 استمع إلى الكلمات بالترتيب</button></div><div class="status" id="status"></div></section>
+<section class="grid" id="list"></section>
+<div class="footer">HM Academy © 2026 · مسار نطق مستقل للدرس الثاني</div>
+</main>
+<script>
+const items=[
+['un passager','راكب','ss بين الحركات تُنطق /s/؛ و er في النهاية تُنطق /e/.'],
+['une passagère','راكبة','ss تُنطق /s/؛ و ère في النهاية تُنطق /ɛʁ/.'],
+['un guichetier','موظف الشباك','gui تُنطق /gi/؛ و ch تُنطق /ʃ/ مثل «ش»؛ و ier في النهاية تُنطق تقريبًا /je/.'],
+['un billet','تذكرة قطار أو طائرة','ill تُنطق /j/ تقريبًا؛ و t النهائية لا تُنطق.'],
+['un ticket','تذكرة مترو أو أوتوبيس','ck تُنطق /k/؛ و t النهائية لا تُنطق.'],
+['une valise','حقيبة سفر','s بين حركتين تُنطق /z/؛ و e الأخيرة لا تُنطق.'],
+['des horaires','مواعيد الرحلات','h في البداية لا تُنطق؛ و oi تُنطق /wa/ تقريبًا؛ و s النهائية لا تُنطق.'],
+['un touriste','سائح','ou تُنطق /u/؛ و s بين حركتين تُنطق /z/؛ و e الأخيرة لا تُنطق.'],
+['une touriste','سائحة','ou تُنطق /u/؛ و s بين حركتين تُنطق /z/؛ و e الأخيرة لا تُنطق.'],
+['un pharmacien','صيدلي','ph تُنطق /f/؛ c قبل i تُنطق /s/؛ و ien في النهاية تُنطق تقريبًا /sjɛ̃/.']
+];
+function speak(t){if(window.HMSpeech?.speak)return window.HMSpeech.speak(t,{lang:'fr-FR',rate:.84});if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.84;speechSynthesis.speak(u);return Promise.resolve(true)}return Promise.resolve(false)}
+const list=document.getElementById('list');list.innerHTML=items.map((x,i)=>`<article class="card"><div class="word">${x[0]}</div><div class="ar">${x[1]}</div><div class="note">💡 <b>ملاحظة النطق:</b> ${x[2]}</div><div class="actions"><button class="btn" data-i="${i}">🔊 استمع</button></div></article>`).join('');
+document.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>speak(items[+b.dataset.i][0]));
+document.getElementById('all').onclick=async()=>{for(const x of items){document.getElementById('status').textContent='🎧 '+x[0];await speak(x[0]);await new Promise(r=>setTimeout(r,180))}document.getElementById('status').textContent='✓ اكتمل الاستماع إلى مفردات الدرس الثاني.'};
+</script>
+</body></html>
