@@ -1,28 +1,155 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HM Academy · التقييم الرسمي · Leçon 1</title>
 <style>
 :root{--nav:#17284b;--blue:#2563eb;--purple:#7041e8;--pink:#e62982;--green:#15803d;--red:#b91c1c;--line:#dfe6f0;--soft:#f4f7ff;--bg:#eef3fb}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef3fb,#f8fafc);color:var(--nav);font-family:Arial,"Noto Sans Arabic",sans-serif}
-.wrap{max-width:960px;margin:auto;padding:14px}.hero{background:linear-gradient(135deg,#173b82,#7041e8 55%,#2563eb);color:#fff;border-radius:28px;padding:24px;box-shadow:0 16px 40px #17284b22}.hero h1{margin:8px 0;font-size:clamp(28px,6vw,44px)}.hero p{line-height:1.9}.notice{margin-top:14px;background:#ffffff18;border:1px solid #ffffff33;border-radius:16px;padding:13px;line-height:1.9}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.pill{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900;color:#315a93}
-.question{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin:12px 0;box-shadow:0 7px 22px #17284b0a}.qhead{display:flex;justify-content:space-between;gap:8px;align-items:center}.num,.cat{background:var(--soft);color:#315a93;border-radius:10px;padding:7px 10px;font-weight:900}.qtext{font-size:20px;font-weight:900;line-height:1.8;margin:13px 0}.opts{display:grid;gap:8px}.opt{display:flex;gap:10px;align-items:center;border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:right;font-weight:800;cursor:pointer}.opt input{accent-color:var(--pink);transform:scale(1.15)}.opt:has(input:checked){border-color:#9db5e9;background:#f7f9ff}
-.actions{position:sticky;bottom:10px;display:flex;gap:8px;justify-content:center;margin:18px 0;z-index:5}.btn{border:0;border-radius:14px;padding:13px 20px;font-weight:900;cursor:pointer}.primary{background:var(--pink);color:#fff}.secondary{background:#edf3ff;color:#315a93}
-.result{display:none;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;text-align:center;margin-top:18px}.score{font-size:42px;font-weight:900;color:var(--purple)}.review{margin-top:14px;text-align:right}.review div{padding:9px;border-radius:10px;margin:6px 0}.review .wrong{background:#fff1f1;color:#9b1c1c}.review .right{background:#effaf3;color:#146c38}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#eef3fb,#f8fafc);color:var(--nav);font-family:Arial,"Noto Sans Arabic",sans-serif}
+.wrap{max-width:960px;margin:auto;padding:14px}
+.hero{background:linear-gradient(135deg,#173b82,#7041e8 55%,#2563eb);color:#fff;border-radius:28px;padding:24px;box-shadow:0 16px 40px #17284b22}
+.hero h1{margin:8px 0;font-size:clamp(28px,6vw,44px)}
+.hero p{line-height:1.9;margin:0}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.pill{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900;color:#315a93}
+.question{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin:12px 0;box-shadow:0 7px 22px #17284b0a}
+.qhead{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.num,.cat{background:var(--soft);color:#315a93;border-radius:10px;padding:7px 10px;font-weight:900}
+.qtext{font-size:20px;font-weight:900;line-height:1.8;margin:13px 0}
+.opts{display:grid;gap:8px}
+.opt{width:100%;display:flex;gap:10px;align-items:center;border:2px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:right;font-weight:800;cursor:pointer;color:var(--nav);font:inherit;appearance:none;-webkit-appearance:none}
+.opt:hover{border-color:#9db5e9;background:#f9fbff}
+.opt.selected{border-color:var(--pink);background:#fff1f8;box-shadow:0 0 0 2px #e6298220}
+.opt .letter{display:grid;place-items:center;min-width:34px;height:34px;background:var(--soft);border-radius:10px;color:#315a93;font-weight:900}
+.opt.selected .letter{background:var(--pink);color:#fff}
+.actions{position:sticky;bottom:10px;display:flex;gap:8px;justify-content:center;margin:18px 0;z-index:5}
+.btn{border:0;border-radius:14px;padding:13px 20px;font-weight:900;cursor:pointer}
+.primary{background:var(--pink);color:#fff}
+.secondary{background:#edf3ff;color:#315a93}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.result{display:none;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;text-align:center;margin-top:18px}
+.result.warning{display:block;background:#fff8e8;border-color:#efd9a0;color:#735615}
+.score{font-size:42px;font-weight:900;color:var(--purple)}
+.review{margin-top:14px;text-align:right}
+.review div{padding:9px;border-radius:10px;margin:6px 0}
+.review .wrong{background:#fff1f1;color:#9b1c1c}
+.review .right{background:#effaf3;color:#146c38}
 @media(max-width:600px){.wrap{padding:10px}.hero,.question{border-radius:19px;padding:15px}.qtext{font-size:18px}.actions{display:grid}.actions .btn{width:100%}}
-</style></head><body><main class="wrap">
-<section class="hero"><div>📝 HM ACADEMY · ÉVALUATION OFFICIELLE</div><h1>Leçon 1 · Le voyage</h1><p>تقييم رسمي مستقل لقياس إتقان مفردات السفر وقاعدتي <b dir="ltr">prendre / aller</b> وأدوات المكان.</p><div class="notice"><b>نظام التقييم:</b> اختر إجابة واحدة لكل سؤال. لا تظهر الإجابة الصحيحة أثناء الحل. بعد الضغط على «تسليم التقييم» تظهر النتيجة والمراجعة.</div></section>
-<div class="toolbar"><span class="pill" id="count">جارٍ تحميل الأسئلة…</span><span class="pill">🎯 تقييم رسمي</span><span class="pill">🔒 بدون تصحيح فوري</span></div>
-<form id="form"></form><div class="actions"><button class="btn primary" id="submit" type="button">تسليم التقييم</button><button class="btn secondary" type="button" onclick="location.href='examen_u3-l1.html'">🎯 التقييم التفاعلي</button><button class="btn secondary" type="button" onclick="location.href='reference_lecon1_unite3.html'">📖 المرجع</button></div>
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+  <div>📝 HM ACADEMY · ÉVALUATION OFFICIELLE</div>
+  <h1>Leçon 1 · Le voyage</h1>
+  <p>تقييم ختامي لقياس إتقان مفردات السفر، <b dir="ltr">prendre / aller</b>، وأدوات المكان واستخدامها في السياق.</p>
+</section>
+<div class="toolbar">
+  <span class="pill" id="count">جارٍ تحميل التقييم…</span>
+  <span class="pill">🎯 تقييم رسمي</span>
+</div>
+<section id="message" class="result" aria-live="polite"></section>
+<form id="form"></form>
+<div class="actions">
+  <button class="btn primary" id="submit" type="button">تسليم التقييم</button>
+  <button class="btn secondary" type="button" onclick="location.href='examen_u3-l1-v5.html'">🎯 التقييم التفاعلي</button>
+  <button class="btn secondary" type="button" onclick="location.href='reference_lecon1_unite3.html'">📖 المرجع</button>
+</div>
 <section class="result" id="result"></section>
 </main>
 <script>
 const DATA_URL='lesson-1.json';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fallback=[["مفردات","ما معنى l'aéroport؟",["المطار","المحطة","الشارع"],0],["مفردات","ما معنى un guichet؟",["شباك التذاكر","مدينة","نادي"],0],["مفردات","ما معنى une plage؟",["شاطئ","مطار","تذكرة"],0],["مفردات","ما معنى un zoo؟",["حديقة حيوان","محطة","مكان"],0],["prendre","Nous ___ le bus.",["prenons","allons","prend"],0],["prendre","Tu ___ le taxi.",["prends","vas","allons"],0],["aller","Je ___ à la gare.",["vais","prends","va"],0],["aller","Ils ___ au stade.",["vont","vas","allez"],0],["أدوات المكان","Je vais ___ gare.",["à la","au","aux"],0],["أدوات المكان","Nous allons ___ zoo.",["au","à la","aux"],0],["أدوات المكان","Je vais ___ aéroport.",["à l'","au","aux"],0],["أدوات المكان","Ils vont ___ lieux.",["aux","au","à la"],0],["سياق","أي جملة تعني «أستقل القطار»؟",["Je prends le train.","Je vais le train.","Je prends la gare."],0],["سياق","أي جملة صحيحة؟",["Je vais à l'aéroport.","Je vais au aéroport.","Je prends à l'aéroport."],0],["قاعدة","ما الفعل المستخدم مع وسيلة النقل؟",["prendre","aller","être"],0],["قاعدة","ما الفعل المستخدم مع الوجهة؟",["aller","prendre","avoir"],0]];
-function renderQuestions(data){const qs=(data?.assessment?.questions||[]).slice(0,30).map((q,i)=>[i%4===0?'مفردات':i%4===1?'prendre / aller':i%4===2?'أدوات المكان':'سياق',q.question,q.options,q.answer]);const items=qs.length?qs:fallback;document.getElementById('count').textContent=items.length+' سؤالًا';document.getElementById('form').innerHTML=items.map((q,i)=>`<article class="question"><div class="qhead"><span class="num">السؤال ${i+1}</span><span class="cat">${esc(q[0])}</span></div><div class="qtext">${esc(q[1])}</div><div class="opts">${q[2].map((o,j)=>`<label class="opt"><input type="radio" name="q${i}" value="${j}"><span>${esc(o)}</span></label>`).join('')}</div></article>`).join('');document.getElementById('submit').onclick=()=>submit(items)}
-function submit(items){let score=0,answered=0,review=[];items.forEach((q,i)=>{const el=document.querySelector(`input[name="q${i}"]:checked`);if(el){answered++;if(+el.value===q[3])score++}review.push(el&&+el.value===q[3])});if(answered<items.length){alert(`أكمل جميع الأسئلة أولًا. تمت الإجابة عن ${answered} من ${items.length}.`);return}const pct=Math.round(score/items.length*100);document.getElementById('result').style.display='block';document.getElementById('result').innerHTML=`<div>🏆 النتيجة الرسمية</div><div class="score">${score} / ${items.length}</div><p>النسبة: <b>${pct}%</b></p><p>${pct>=90?'ممتاز — إتقان قوي للدرس.':pct>=75?'جيد جدًا — راجع بعض النقاط فقط.':pct>=60?'جيد — تحتاج إلى مراجعة موجّهة.':'تحتاج إلى إعادة دراسة المرجع ثم المحاولة مرة أخرى.'}</p><div class="review">${review.map((ok,i)=>`<div class="${ok?'right':'wrong'}">${ok?'✅':'❌'} السؤال ${i+1}: ${ok?'صحيح':'غير صحيح'}</div>`).join('')}</div>`;document.getElementById('submit').disabled=true;localStorage.setItem('hm_formal_grade8_u3_l1',JSON.stringify({score,total:items.length,pct,at:new Date().toISOString()}));window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
-fetch(DATA_URL+'?v=20260817').then(r=>r.ok?r.json():null).then(renderQuestions).catch(()=>renderQuestions(null));
-</script></body></html>
+const fallback=[
+ ["مفردات السفر","ما معنى l'aéroport؟",["المطار","المحطة","الشارع"],0],
+ ["مفردات السفر","ما معنى un guichet؟",["شباك التذاكر","مدينة","نادي"],0],
+ ["مفردات السفر","ما معنى une plage؟",["شاطئ","مطار","تذكرة"],0],
+ ["مفردات السفر","ما معنى un zoo؟",["حديقة حيوان","محطة","مكان"],0],
+ ["التصريف","Nous ___ le bus.",["prenons","allons","prend"],0],
+ ["التصريف","Tu ___ le taxi.",["prends","vas","allons"],0],
+ ["التصريف","Je ___ à la gare.",["vais","prends","va"],0],
+ ["التصريف","Ils ___ au stade.",["vont","vas","allez"],0],
+ ["أدوات المكان","Je vais ___ gare.",["à la","au","aux"],0],
+ ["أدوات المكان","Nous allons ___ zoo.",["au","à la","aux"],0],
+ ["أدوات المكان","Je vais ___ aéroport.",["à l'","au","aux"],0],
+ ["أدوات المكان","Ils vont ___ lieux.",["aux","au","à la"],0],
+ ["الاستخدام والسياق","أي جملة تعني «أستقل القطار»؟",["Je prends le train.","Je vais le train.","Je prends la gare."],0],
+ ["الاستخدام والسياق","أي جملة صحيحة؟",["Je vais à l'aéroport.","Je vais au aéroport.","Je prends à l'aéroport."],0],
+ ["الاستخدام والسياق","أي جملة تصف وجهة؟",["Ils vont au zoo.","Ils prennent le train.","Je prends un taxi."],0],
+ ["الاستخدام والسياق","أي جملة تصف وسيلة نقل؟",["Je prends le métro.","Je vais à la gare.","Elle va au club."],0]
+];
+function classify(question,options,index){
+ const q=String(question||'');
+ if(/^ما معنى/.test(q)||/ما معنى «/.test(q)) return 'مفردات السفر';
+ if(options.some(x=>['à la','au','aux',"à l'",'à l’'].includes(String(x).trim()))) return 'أدوات المكان';
+ if(/أكمل|الصيغة الصحيحة|تصريف|___/.test(q)) return 'التصريف';
+ if(/جملة|سؤال|قاعدة|وسيلة النقل|وجهة|تعني/.test(q)) return 'الاستخدام والسياق';
+ return index<10?'مفردات السفر':'مراجعة الدرس';
+}
+function normalizeItems(data){
+ const source=(data?.assessment?.questions||[]).slice(0,30);
+ if(!source.length)return fallback.map(q=>({category:q[0],question:q[1],options:q[2],answer:q[3]}));
+ return source.map((q,i)=>({
+   category:classify(q.question,q.options||[],i),
+   question:q.question||'سؤال',
+   options:Array.isArray(q.options)?q.options:[],
+   answer:Number.isInteger(q.answer)?q.answer:0
+ })).filter(q=>q.options.length>=2);
+}
+let items=[];
+function renderQuestions(data){
+ items=normalizeItems(data);
+ document.getElementById('count').textContent=items.length+' سؤالًا';
+ document.getElementById('form').innerHTML=items.map((q,i)=>`<article class="question" data-q="${i}">
+   <div class="qhead"><span class="num">السؤال ${i+1}</span><span class="cat">${esc(q.category)}</span></div>
+   <div class="qtext">${esc(q.question)}</div>
+   <div class="opts" role="radiogroup" aria-label="خيارات السؤال ${i+1}">
+     ${q.options.map((o,j)=>`<button class="opt" type="button" data-q="${i}" data-option="${j}" aria-pressed="false"><span class="letter">${String.fromCharCode(65+j)}</span><span>${esc(o)}</span></button>`).join('')}
+   </div>
+ </article>`).join('');
+ document.getElementById('form').addEventListener('click',onOptionClick);
+ document.getElementById('submit').onclick=submit;
+}
+function onOptionClick(e){
+ const btn=e.target.closest('.opt');
+ if(!btn||btn.disabled)return;
+ const card=btn.closest('.question');
+ card.querySelectorAll('.opt').forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});
+ btn.classList.add('selected');
+ btn.setAttribute('aria-pressed','true');
+}
+function submit(){
+ const unanswered=[];
+ const answers=items.map((q,i)=>{
+   const selected=document.querySelector(`.opt.selected[data-q="${i}"]`);
+   if(!selected){unanswered.push(i+1);return null}
+   return Number(selected.dataset.option);
+ });
+ if(unanswered.length){
+   const box=document.getElementById('message');
+   box.className='result warning';
+   box.innerHTML=`<strong>لم يكتمل التقييم بعد.</strong><br>يرجى الإجابة عن جميع الأسئلة قبل التسليم. المتبقي: ${unanswered.length} سؤالًا.`;
+   box.scrollIntoView({behavior:'smooth',block:'center'});
+   return;
+ }
+ let score=0;
+ const review=items.map((q,i)=>{
+   const ok=answers[i]===q.answer;
+   if(ok)score++;
+   return ok;
+ });
+ const pct=Math.round(score/items.length*100);
+ document.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+ document.getElementById('submit').disabled=true;
+ const result=document.getElementById('result');
+ result.style.display='block';
+ result.innerHTML=`<div>🏆 النتيجة الرسمية</div><div class="score">${score} / ${items.length}</div><p>النسبة: <b>${pct}%</b></p><p>${pct>=90?'ممتاز — إتقان قوي للدرس.':pct>=75?'جيد جدًا — راجع بعض النقاط فقط.':pct>=60?'جيد — تحتاج إلى مراجعة موجّهة.':'تحتاج إلى مراجعة الدرس ثم إعادة المحاولة.'}</p><div class="review">${review.map((ok,i)=>`<div class="${ok?'right':'wrong'}">${ok?'✅':'❌'} السؤال ${i+1}: ${ok?'صحيح':'غير صحيح'}</div>`).join('')}</div>`;
+ localStorage.setItem('hm_formal_grade8_u3_l1',JSON.stringify({score,total:items.length,pct,at:new Date().toISOString()}));
+ result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+fetch(DATA_URL+'?v=20260817-formal2').then(r=>r.ok?r.json():null).then(renderQuestions).catch(()=>renderQuestions(null));
+</script>
+</body>
+</html>
