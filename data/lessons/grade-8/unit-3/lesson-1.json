@@ -1,10 +1,10 @@
 {
-  "id":"grade8-u3-l1",
-  "title":"Les moyens de transport et les lieux",
-  "unit":"Le voyage",
-  "language":"fr",
-  "status":"standardized",
-  "vocabulary":[
+  "id": "grade8-u3-l1",
+  "title": "Les moyens de transport et les lieux",
+  "unit": "Le voyage",
+  "language": "fr",
+  "status": "standardized",
+  "vocabulary": [
     {"word":"le bus","translation":"الحافلة","image":"🚌","example":"Je prends le bus."},
     {"word":"le train","translation":"القطار","image":"🚆","example":"Je prends le train."},
     {"word":"l'avion","translation":"الطائرة","image":"✈️","example":"Je prends l'avion."},
@@ -28,54 +28,88 @@
     {"word":"une ville","translation":"مدينة","image":"🏙️","example":"Paris est une ville."},
     {"word":"un lieu","translation":"مكان","image":"📍","example":"C'est un lieu célèbre."}
   ],
-  "grammar":{
-    "title":"Prendre / Aller + lieux",
-    "explanation":"نستخدم prendre للتعبير عن وسيلة النقل، ونستخدم aller للتعبير عن الوجهة. بعد ذلك نختار أداة المكان حسب جنس وعدد المكان: à la للمؤنث المفرد، au للمذكر المفرد، à l' قبل حرف متحرك، aux للجمع.",
-    "decision_rule":"وسيلة النقل → prendre. الوجهة → aller. ثم حدّد جنس وعدد اسم المكان.",
-    "conjugation":{
-      "prendre":{"je":"prends","tu":"prends","il/elle":"prend","nous":"prenons","vous":"prenez","ils/elles":"prennent"},
-      "aller":{"je":"vais","tu":"vas","il/elle":"va","nous":"allons","vous":"allez","ils/elles":"vont"}
+  "grammar": {
+    "title": "Prendre / Aller + lieux",
+    "explanation": "نبدأ بتحديد الوظيفة: هل نتحدث عن وسيلة نقل أم عن وجهة/مكان؟ نستخدم prendre مع وسيلة النقل، ونستخدم aller مع الوجهة. بعد aller نختار أداة المكان حسب الجنس والعدد: à la للمؤنث المفرد، au للمذكر المفرد، à l' قبل حرف متحرك، aux للجمع.",
+    "decision_rule": "1) وسيلة النقل → prendre. 2) وجهة/مكان → aller. 3) بعد aller حدّد جنس وعدد المكان واختر à la / au / à l' / aux.",
+    "conjugation": {
+      "prendre": {"je":"prends","tu":"prends","il/elle":"prend","nous":"prenons","vous":"prenez","ils/elles":"prennent"},
+      "aller": {"je":"vais","tu":"vas","il/elle":"va","nous":"allons","vous":"allez","ils/elles":"vont"}
     },
-    "examples":[
+    "examples": [
       {"fr":"Je prends le bus.","ar":"أستقل الحافلة."},
       {"fr":"Nous prenons le train.","ar":"نستقل القطار."},
+      {"fr":"Je prends l'avion.","ar":"أستقل الطائرة."},
       {"fr":"Je vais à la gare.","ar":"أذهب إلى محطة القطار."},
-      {"fr":"Il va au musée.","ar":"يذهب إلى المتحف."},
+      {"fr":"Nous allons à la plage.","ar":"نذهب إلى الشاطئ."},
+      {"fr":"Il va au stade.","ar":"يذهب إلى الاستاد."},
       {"fr":"Je vais à l'aéroport.","ar":"أذهب إلى المطار."},
-      {"fr":"Nous allons aux stations.","ar":"نذهب إلى المحطات."}
+      {"fr":"Elle va à la pharmacie.","ar":"تذهب إلى الصيدلية."},
+      {"fr":"Nous allons au zoo.","ar":"نذهب إلى حديقة الحيوان."},
+      {"fr":"Ils vont aux clubs.","ar":"يذهبون إلى الأندية."}
     ]
   },
-  "conversation":{"lines":[
-    {"speaker":"Sara","fr":"Comment vas-tu à Paris ?","ar":"كيف تذهب إلى باريس؟"},
-    {"speaker":"Adam","fr":"Je prends le train.","ar":"أستقل القطار."},
-    {"speaker":"Sara","fr":"Où est la gare ?","ar":"أين محطة القطار؟"},
-    {"speaker":"Adam","fr":"La gare est près d'ici.","ar":"المحطة قريبة من هنا."},
-    {"speaker":"Sara","fr":"Tu vas à l'aéroport ?","ar":"هل تذهب إلى المطار؟"},
-    {"speaker":"Adam","fr":"Oui, je vais à l'aéroport en taxi.","ar":"نعم، أذهب إلى المطار بسيارة أجرة."}
-  ]},
-  "practice":[
+  "conversation": {
+    "lines": [
+      {"speaker":"Sara","fr":"Comment vas-tu à Paris ?","ar":"كيف تذهب إلى باريس؟"},
+      {"speaker":"Adam","fr":"Je prends le train.","ar":"أستقل القطار."},
+      {"speaker":"Sara","fr":"Où est la gare ?","ar":"أين محطة القطار؟"},
+      {"speaker":"Adam","fr":"La gare est près du guichet.","ar":"المحطة قريبة من شباك التذاكر."},
+      {"speaker":"Sara","fr":"Tu vas à la plage demain ?","ar":"هل تذهب إلى الشاطئ غدًا؟"},
+      {"speaker":"Adam","fr":"Oui, nous allons à la plage en voiture.","ar":"نعم، نذهب إلى الشاطئ بالسيارة."},
+      {"speaker":"Sara","fr":"Et après, tu vas au zoo ?","ar":"وبعد ذلك، هل تذهب إلى حديقة الحيوان؟"},
+      {"speaker":"Adam","fr":"Oui. C'est un lieu très intéressant.","ar":"نعم. إنه مكان ممتع جدًا."},
+      {"speaker":"Sara","fr":"Tu vas à la pharmacie aussi ?","ar":"هل تذهب إلى الصيدلية أيضًا؟"},
+      {"speaker":"Adam","fr":"Non, je vais au club avec mes amis.","ar":"لا، أذهب إلى النادي مع أصدقائي."}
+    ]
+  },
+  "practice": [
     {"question":"ما معنى le train؟","options":["القطار","الطائرة","الحافلة"],"answer":0,"why":"train = القطار."},
-    {"question":"اختر وسيلة النقل المناسبة للسفر جوًا.","options":["l'avion","le bus","le train"],"answer":0,"why":"avion = الطائرة."},
+    {"question":"ما معنى un guichet؟","options":["شباك التذاكر","شاطئ","استاد"],"answer":0,"why":"guichet = شباك التذاكر."},
+    {"question":"ما معنى une plage؟","options":["شاطئ","صيدلية","مدينة"],"answer":0,"why":"plage = شاطئ."},
+    {"question":"ما معنى un zoo؟","options":["حديقة حيوان","سيرك","نادي"],"answer":0,"why":"zoo = حديقة حيوان."},
+    {"question":"اختر وسيلة النقل المناسبة للسفر جوًا.","options":["l'avion","la gare","le stade"],"answer":0,"why":"avion = الطائرة وهي وسيلة نقل."},
     {"question":"أكمل: Je prends ...","options":["le bus","la gare","l'aéroport"],"answer":0,"why":"prendre يأخذ وسيلة النقل، لا المكان."},
-    {"question":"أين تذهب لركوب القطار؟","options":["à la gare","à la maison","à la chambre"],"answer":0,"why":"gare = محطة القطار."},
+    {"question":"أين تذهب لركوب القطار؟","options":["à la gare","au zoo","à la plage"],"answer":0,"why":"gare = محطة القطار."},
     {"question":"أكمل: Je ___ à l'aéroport.","options":["vais","prends","suis"],"answer":0,"why":"aller للتعبير عن الوجهة."},
-    {"question":"اختر: Je vais ___ musée.","options":["au","à la","aux"],"answer":0,"why":"musée مذكر مفرد → au."}
+    {"question":"اختر: Je vais ___ musée.","options":["au","à la","aux"],"answer":0,"why":"musée مذكر مفرد → au."},
+    {"question":"اختر: Nous allons ___ plage.","options":["à la","au","aux"],"answer":0,"why":"plage مؤنث مفرد → à la."},
+    {"question":"اختر: Ils vont ___ stade.","options":["au","à la","aux"],"answer":0,"why":"stade مذكر مفرد → au."},
+    {"question":"اختر: Je vais ___ aéroport.","options":["à l'","au","aux"],"answer":0,"why":"aéroport يبدأ بحرف متحرك → à l'."}
   ],
-  "assessment":{"questionCount":15,"questions":[
-    {"question":"ما معنى l'aéroport؟","options":["المطار","المحطة","الشارع"],"answer":0,"why":"aéroport = المطار."},
-    {"question":"اختر الجملة الصحيحة.","options":["Je prends le train.","Je train prends le.","Prends je le train."],"answer":0,"why":"prendre + وسيلة النقل."},
-    {"question":"Je vais ___ gare.","options":["à la","au","aux"],"answer":0,"why":"gare مؤنث مفرد → à la."},
-    {"question":"Je vais ___ aéroport.","options":["à l'","au","aux"],"answer":0,"why":"aéroport يبدأ بحرف متحرك → à l'."},
-    {"question":"Nous ___ le bus.","options":["prenons","allons","prend"],"answer":0,"why":"nous + prendre = prenons."},
-    {"question":"Ils ___ à la gare.","options":["vont","vonts","allez"],"answer":0,"why":"ils + aller = vont."},
-    {"question":"ما معنى le billet؟","options":["تذكرة","رحلة","محطة"],"answer":0,"why":"billet = تذكرة."},
-    {"question":"Je prends ___ métro.","options":["le","à la","aux"],"answer":0,"why":"métro مذكر مفرد، ووسيلة النقل تأتي مع prendre."},
-    {"question":"Nous allons ___ stations.","options":["aux","au","à la"],"answer":0,"why":"stations جمع → aux."},
-    {"question":"Tu ___ le taxi.","options":["prends","vas","allons"],"answer":0,"why":"tu + prendre = prends."},
-    {"question":"Elle ___ au musée.","options":["va","prend","vont"],"answer":0,"why":"elle + aller = va."},
-    {"question":"أي سؤال يطلب وسيلة النقل؟","options":["Comment vas-tu ?","Où vas-tu ?","Où est la gare ?"],"answer":0,"why":"Comment يسأل عن الكيفية/وسيلة التنقل."},
-    {"question":"أي سؤال يطلب الوجهة؟","options":["Où vas-tu ?","Comment vas-tu ?","Qu'est-ce que tu prends ?"],"answer":0,"why":"Où يسأل عن المكان/الوجهة."},
-    {"question":"أكمل: Je vais ___ maison.","options":["à la","au","aux"],"answer":0,"why":"maison مؤنث مفرد → à la."},
-    {"question":"ما قاعدة الاختيار الأساسية؟","options":["prendre = وسيلة النقل، aller = الوجهة","prendre = الوجهة دائمًا","aller = وسيلة النقل دائمًا"],"answer":0,"why":"هذا هو معيار الفصل بين الاستخدامين."}
-  ]}
+  "assessment": {
+    "questionCount": 30,
+    "questions": [
+      {"question":"ما معنى l'aéroport؟","options":["المطار","المحطة","الشارع"],"answer":0,"why":"aéroport = المطار."},
+      {"question":"ما معنى un guichet؟","options":["شباك التذاكر","مدينة","نادي"],"answer":0,"why":"guichet = شباك التذاكر."},
+      {"question":"ما معنى une plage؟","options":["شاطئ","مطار","تذكرة"],"answer":0,"why":"plage = شاطئ."},
+      {"question":"ما معنى un zoo؟","options":["حديقة حيوان","محطة","مكان"],"answer":0,"why":"zoo = حديقة حيوان."},
+      {"question":"ما معنى un cirque؟","options":["سيرك","صيدلية","بلد"],"answer":0,"why":"cirque = سيرك."},
+      {"question":"ما معنى un stade؟","options":["استاد","شاطئ","موقف"],"answer":0,"why":"stade = استاد."},
+      {"question":"ما معنى une pharmacie؟","options":["صيدلية","مدينة","نادي"],"answer":0,"why":"pharmacie = صيدلية."},
+      {"question":"ما معنى un pays؟","options":["بلد","مكان","تذكرة"],"answer":0,"why":"pays = بلد."},
+      {"question":"ما معنى une ville؟","options":["مدينة","محطة","سيرك"],"answer":0,"why":"ville = مدينة."},
+      {"question":"ما معنى un lieu؟","options":["مكان","مطار","قطار"],"answer":0,"why":"lieu = مكان."},
+      {"question":"اختر الجملة الصحيحة.","options":["Je prends le train.","Je train prends le.","Prends je le train."],"answer":0,"why":"prendre + وسيلة النقل."},
+      {"question":"Je vais ___ gare.","options":["à la","au","aux"],"answer":0,"why":"gare مؤنث مفرد → à la."},
+      {"question":"Je vais ___ aéroport.","options":["à l'","au","aux"],"answer":0,"why":"aéroport يبدأ بحرف متحرك → à l'."},
+      {"question":"Nous ___ le bus.","options":["prenons","allons","prend"],"answer":0,"why":"nous + prendre = prenons."},
+      {"question":"Ils ___ à la gare.","options":["vont","vonts","allez"],"answer":0,"why":"ils + aller = vont."},
+      {"question":"Je prends ___ métro.","options":["le","à la","aux"],"answer":0,"why":"métro مذكر مفرد ووسيلة نقل."},
+      {"question":"Nous allons ___ plage.","options":["à la","au","aux"],"answer":0,"why":"plage مؤنث مفرد → à la."},
+      {"question":"Ils vont ___ zoo.","options":["au","à la","à l'"],"answer":0,"why":"zoo مذكر مفرد → au."},
+      {"question":"Elle va ___ pharmacie.","options":["à la","au","aux"],"answer":0,"why":"pharmacie مؤنث مفرد → à la."},
+      {"question":"Il va ___ club.","options":["au","à la","aux"],"answer":0,"why":"club مذكر مفرد → au."},
+      {"question":"Tu ___ le taxi.","options":["prends","vas","allons"],"answer":0,"why":"tu + prendre = prends."},
+      {"question":"Elle ___ au stade.","options":["va","prend","vont"],"answer":0,"why":"elle + aller = va."},
+      {"question":"أي سؤال يطلب وسيلة النقل؟","options":["Comment vas-tu ?","Où vas-tu ?","Où est la gare ?"],"answer":0,"why":"Comment يسأل عن الكيفية/وسيلة التنقل."},
+      {"question":"أي سؤال يطلب الوجهة؟","options":["Où vas-tu ?","Comment vas-tu ?","Qu'est-ce que tu prends ?"],"answer":0,"why":"Où يسأل عن المكان/الوجهة."},
+      {"question":"أكمل: Je vais ___ maison.","options":["à la","au","aux"],"answer":0,"why":"maison مؤنث مفرد → à la."},
+      {"question":"اختر الجملة الصحيحة.","options":["Nous allons à la plage.","Nous allons au plage.","Nous prenons à la plage."],"answer":0,"why":"plage مؤنث مفرد والوجهة تستخدم aller."},
+      {"question":"اختر الجملة الصحيحة.","options":["Je vais au stade.","Je vais à la stade.","Je prends au stade."],"answer":0,"why":"stade مذكر مفرد → au مع aller."},
+      {"question":"اختر الجملة الصحيحة.","options":["Ils vont au zoo.","Ils vont à la zoo.","Ils prennent au zoo."],"answer":0,"why":"zoo مذكر مفرد → au."},
+      {"question":"اختر: La France est ___.","options":["un pays","une plage","un guichet"],"answer":0,"why":"pays = بلد."},
+      {"question":"ما قاعدة الاختيار الأساسية؟","options":["prendre = وسيلة النقل، aller = الوجهة","prendre = الوجهة دائمًا","aller = وسيلة النقل دائمًا"],"answer":0,"why":"هذا هو معيار الفصل بين الاستخدامين."}
+    ]
+  }
 }
