@@ -1,38 +1,58 @@
-<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#f4f7fc;color:#17223b;font-family:Arial,Cairo,sans-serif}.w{max-width:900px;margin:auto;padding:18px}.hero{background:linear-gradient(135deg,#173a82,#2563eb,#16a394);color:#fff;border-radius:28px;padding:25px;box-shadow:0 12px 30px #203c7a22}.hero h1{margin:0 0 10px}.q{background:#fff;border:1px solid #dfe6f0;border-radius:20px;padding:18px;margin:13px 0;box-shadow:0 6px 16px #1e3a5f0d}.q label{display:block;padding:12px;margin:8px 0;border:1px solid #e1e7f0;border-radius:12px;background:#f8faff;cursor:pointer}.q label:hover{background:#eef4ff}.btn{border:0;background:#2563eb;color:#fff;border-radius:13px;padding:13px 18px;font-weight:900;cursor:pointer}.res{display:none;background:#fff;border:1px solid #dfe6f0;border-radius:18px;padding:18px;margin-top:15px;font-weight:900;line-height:1.8}.show{display:block}.score{font-size:24px}.note{color:#315aa4}.criteria{background:#eef4ff;border-radius:16px;padding:14px;margin-top:15px;line-height:1.8}@media(max-width:620px){.w{padding:12px}}
-</style><main class="w"><section class="hero"><h1>📝 التقييم الرسمي · Leçon 1</h1><p>Les moyens de transport et les lieux · <b>30 سؤالًا</b></p><div class="criteria"><b>معيار الإجابة:</b> أولًا حدّد هل المطلوب وسيلة نقل أم وجهة/مكان. إذا كانت وسيلة نقل → <b>prendre</b>. إذا كانت وجهة → <b>aller</b> ثم اختر أداة المكان المناسبة: à la / au / à l’ / aux.</div></section><form id="f"></form><button class="btn" id="gradeBtn">✓ تصحيح التقييم</button><section id="r" class="res"><div id="s" class="score"></div><div id="m"></div><div class="note">بعد ظهور النتيجة: راجع الأخطاء في المفردات والقواعد ثم أعد التقييم. لا يتم احتساب سؤال غير مكتمل.</div></section></main><script>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy · التقييم التفاعلي · Leçon 1</title>
+<style>
+:root{--nav:#17284b;--blue:#2563eb;--pink:#e62982;--purple:#7041e8;--green:#159447;--red:#c43b3b;--line:#dfe6f0;--soft:#eef4ff;--bg:#f3f6fc}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef3fb,#f8fafc);color:var(--nav);font-family:Arial,"Noto Sans Arabic",sans-serif}.wrap{max-width:930px;margin:auto;padding:16px}.hero{background:linear-gradient(135deg,#173b82,#7041e8 55%,#2563eb);color:#fff;border-radius:28px;padding:25px;box-shadow:0 18px 45px #203c7a22}.eyebrow{display:inline-block;background:#ffffff1c;border:1px solid #ffffff2d;border-radius:999px;padding:7px 11px;font-weight:900}.hero h1{margin:10px 0 5px;font-size:clamp(28px,6vw,44px)}.hero p{line-height:1.8;margin:6px 0}.criteria{margin-top:15px;padding:13px 15px;border-radius:16px;background:#ffffff18;border:1px solid #ffffff2b;line-height:1.9}.bar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:14px 0 8px}.pill{background:#fff;color:#315a93;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900}.progress{height:9px;background:#e5eaf3;border-radius:99px;overflow:hidden;margin-bottom:13px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--purple));transition:.25s}.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 10px 28px #17284b0d}.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:13px}.category{color:#315a93;background:var(--soft);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:900}.question{font-size:clamp(22px,4vw,31px);font-weight:900;line-height:1.7;margin:10px 0 17px}.options{display:grid;gap:10px}.option{border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px;text-align:right;font-size:17px;font-weight:900;color:var(--nav);cursor:pointer;transition:.15s}.option:hover:not(:disabled){border-color:#9db5e9;transform:translateY(-1px)}.option.correct{border-color:#42a870;background:#effaf3}.option.wrong{border-color:#d46a6a;background:#fff2f2}.option:disabled{cursor:default}.feedback{min-height:44px;margin-top:13px;padding:10px 12px;border-radius:14px;line-height:1.8;font-weight:900}.feedback.ok{background:#effaf3;color:var(--green)}.feedback.bad{background:#fff2f2;color:var(--red)}.explain{margin-top:8px;color:#5c6b82;font-weight:700}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:15px}.btn{border:0;border-radius:13px;padding:12px 17px;background:#edf3ff;color:#315a93;font-weight:900;cursor:pointer}.primary{background:var(--pink);color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}.result{text-align:center;padding:8px}.ring{width:130px;height:130px;border-radius:50%;display:grid;place-items:center;margin:5px auto 13px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff}.ring strong{font-size:34px}.result h2{margin:6px 0}.result p{color:#5d6b82;line-height:1.9}.breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}.stat{background:#f7f9fd;border:1px solid var(--line);border-radius:14px;padding:11px}.stat b{display:block;font-size:21px}.review{margin-top:13px;text-align:right;background:#fff8e8;border-radius:15px;padding:13px;color:#725615;line-height:1.8}.nav{display:flex;justify-content:center;gap:9px;margin:15px 0;flex-wrap:wrap}.nav a{text-decoration:none;background:#edf3ff;color:#315a93;border-radius:12px;padding:10px 14px;font-weight:900}@media(max-width:560px){.wrap{padding:10px}.hero,.card{border-radius:20px;padding:16px}.actions{display:grid}.actions .btn{width:100%}.breakdown{grid-template-columns:1fr}.question{font-size:22px}}
+</style>
+</head>
+<body><main class="wrap">
+<section class="hero"><span class="eyebrow">📝 HM Academy · Évaluation interactive</span><h1>Leçon 1 · Le voyage</h1><p>اختبار شامل للمفردات، <b dir="ltr">prendre / aller</b> وأدوات المكان.</p><div class="criteria"><b>قاعدة الحل:</b> اقرأ المطلوب أولًا. إذا كان السؤال عن <b>وسيلة نقل</b> → <b dir="ltr">prendre</b>. إذا كان عن <b>وجهة / مكان</b> → <b dir="ltr">aller</b>، ثم اختر <b dir="ltr">à la / au / à l' / aux</b> حسب المكان.</div></section>
+<div class="nav"><a href="reference_lecon1_unite3.html">📖 المرجع التعليمي</a><a href="lesson-1-games-v2.html">🎮 Game Studio</a></div>
+<div class="bar"><span class="pill" id="counter">السؤال 1 / 30</span><span class="pill" id="score">⭐ 0</span></div><div class="progress"><span id="progress"></span></div>
+<section class="card" id="card"></section>
+</main>
+<script>
 const Q=[
-['ما معنى le train؟',['القطار','المطار','المحطة'],0,'train = القطار.'],
-['ما معنى un guichet؟',['شباك التذاكر','مدينة','نادي'],0,'guichet = شباك التذاكر.'],
-['ما معنى une plage؟',['شاطئ','مطار','تذكرة'],0,'plage = شاطئ.'],
-['ما معنى un zoo؟',['حديقة حيوان','محطة','مكان'],0,'zoo = حديقة حيوان.'],
-['ما معنى un cirque؟',['سيرك','صيدلية','بلد'],0,'cirque = سيرك.'],
-['ما معنى un stade؟',['استاد','شاطئ','موقف'],0,'stade = استاد.'],
-['ما معنى une pharmacie؟',['صيدلية','مدينة','نادي'],0,'pharmacie = صيدلية.'],
-['ما معنى un pays؟',['بلد','مكان','تذكرة'],0,'pays = بلد.'],
-['ما معنى une ville؟',['مدينة','محطة','سيرك'],0,'ville = مدينة.'],
-['ما معنى un lieu؟',['مكان','مطار','قطار'],0,'lieu = مكان.'],
-['اختر الجملة الصحيحة: أستقل القطار.',['Je prends le train.','Je train prends le.','Je vais le train.'],0,'train وسيلة نقل → prendre.'],
-['اختر الجملة الصحيحة: أذهب إلى المحطة.',['Je vais à la gare.','Je prends la gare.','Je gare vais.'],0,'gare وجهة مؤنث مفرد → à la.'],
-['أكمل: Je ___ le train.',['prends','vais','va'],0,'je + prendre = prends.'],
-['أكمل: Je ___ à l’aéroport.',['vais','prends','suis'],0,'je + aller = vais.'],
-['اختر: Je vais ___ gare.',['à la','au','aux'],0,'gare مؤنث مفرد → à la.'],
-['اختر: Je vais ___ musée.',['au','à la','aux'],0,'musée مذكر مفرد → au.'],
-['اختر: Je vais ___ aéroport.',["à l’",'au','aux'],0,'aéroport يبدأ بحرف متحرك → à l’.'],
-['اختر: Nous ___ le bus.',['prenons','allons','prend'],0,'nous + prendre = prenons.'],
-['اختر: Ils ___ à la gare.',['vont','allez','vais'],0,'ils + aller = vont.'],
-['اختر: Je prends ___ métro.',['le','à la','aux'],0,'métro مذكر مفرد، وهو وسيلة نقل.'],
-['اختر: Nous allons ___ plage.',['à la','au','aux'],0,'plage مؤنث مفرد → à la.'],
-['اختر: Ils vont ___ zoo.',['au','à la','à l’'],0,'zoo مذكر مفرد → au.'],
-['اختر: Elle va ___ pharmacie.',['à la','au','aux'],0,'pharmacie مؤنث مفرد → à la.'],
-['اختر: Il va ___ club.',['au','à la','aux'],0,'club مذكر مفرد → au.'],
-['Tu ___ le taxi.',['prends','vas','allons'],0,'tu + prendre = prends.'],
-['Elle ___ au stade.',['va','prend','vont'],0,'elle + aller = va.'],
-['أي سؤال يطلب وسيلة النقل؟',['Comment vas-tu ?','Où vas-tu ?','Où est la gare ?'],0,'Comment يسأل عن الكيفية/وسيلة التنقل.'],
-['أي سؤال يطلب الوجهة؟',['Où vas-tu ?','Comment vas-tu ?','Qu’est-ce que tu prends ?'],0,'Où يسأل عن المكان/الوجهة.'],
-['اختر الجملة الصحيحة: نذهب إلى حديقة الحيوان.',['Nous allons au zoo.','Nous allons à la zoo.','Nous prenons au zoo.'],0,'zoo مذكر مفرد → au مع aller.'],
-['ما قاعدة الاختيار الأساسية؟',['prendre = وسيلة النقل، aller = الوجهة','prendre = الوجهة دائمًا','aller = وسيلة النقل دائمًا'],0,'هذه هي قاعدة الفصل الأساسية في الدرس.']
+['مفردات','ما معنى le train؟','القطار',['القطار','المطار','الحافلة'],'train = القطار.'],
+['مفردات','ما معنى un guichet؟','شباك التذاكر',['شباك التذاكر','مدينة','نادي'],'guichet = شباك التذاكر.'],
+['مفردات','ما معنى une plage؟','شاطئ',['شاطئ','مطار','تذكرة'],'plage = شاطئ.'],
+['مفردات','ما معنى un zoo؟','حديقة حيوان',['حديقة حيوان','محطة','صيدلية'],'zoo = حديقة حيوان.'],
+['مفردات','ما معنى un cirque؟','سيرك',['سيرك','صيدلية','بلد'],'cirque = سيرك.'],
+['مفردات','ما معنى un stade؟','استاد',['استاد','شاطئ','موقف'],'stade = استاد.'],
+['مفردات','ما معنى une pharmacie؟','صيدلية',['صيدلية','مدينة','نادي'],'pharmacie = صيدلية.'],
+['مفردات','ما معنى un pays؟','بلد',['بلد','مكان','تذكرة'],'pays = بلد.'],
+['مفردات','ما معنى une ville؟','مدينة',['مدينة','محطة','سيرك'],'ville = مدينة.'],
+['مفردات','ما معنى un lieu؟','مكان',['مكان','مطار','قطار'],'lieu = مكان.'],
+['Prendre','اختر الجملة الصحيحة: أستقل القطار.','Je prends le train.',['Je prends le train.','Je vais le train.','Je train prends.'],'القطار وسيلة نقل → prendre.'],
+['Aller','اختر الجملة الصحيحة: أذهب إلى المحطة.','Je vais à la gare.',['Je vais à la gare.','Je prends la gare.','Je gare vais.'],'gare مكان مؤنث مفرد → aller + à la.'],
+['Prendre','أكمل: Je ___ le train.','prends',['prends','vais','va'],'je + prendre = prends.'],
+['Aller','أكمل: Je ___ à l’aéroport.','vais',['vais','prends','suis'],'الوجهة → aller؛ je + aller = vais.'],
+['أدوات المكان','أكمل: Je vais ___ gare.','à la',['à la','au','aux'],'gare مؤنث مفرد → à la.'],
+['أدوات المكان','أكمل: Je vais ___ aéroport.','à l’',['à l’','au','aux'],'aéroport يبدأ بحرف متحرك → à l’.'],
+['Prendre','أكمل: Nous ___ le bus.','prenons',['prenons','allons','prend'],'nous + prendre = prenons.'],
+['Aller','أكمل: Ils ___ à la gare.','vont',['vont','allez','vais'],'ils + aller = vont.'],
+['Prendre','أكمل: Tu ___ le taxi.','prends',['prends','vas','allons'],'tu + prendre = prends.'],
+['Aller','أكمل: Elle ___ au stade.','va',['va','prend','vont'],'elle + aller = va.'],
+['أدوات المكان','اختر: Nous allons ___ plage.','à la',['à la','au','aux'],'plage مؤنث مفرد → à la.'],
+['أدوات المكان','اختر: Ils vont ___ zoo.','au',['au','à la','à l’'],'zoo مذكر مفرد → au.'],
+['أدوات المكان','اختر: Il va ___ club.','au',['au','à la','aux'],'club مذكر مفرد → au.'],
+['أدوات المكان','اختر: Je vais ___ pharmacie.','à la',['à la','au','aux'],'pharmacie مؤنث مفرد → à la.'],
+['مفردات','اختر وسيلة النقل المناسبة للسفر جوًا.','l’avion',['l’avion','la gare','le stade'],'avion = الطائرة، وهي وسيلة نقل.'],
+['مفردات','اختر الكلمة التي تعني «سيارة أجرة».','le taxi',['le taxi','le billet','la station'],'taxi = سيارة أجرة.'],
+['فهم القاعدة','أي سؤال يطلب طريقة/وسيلة التنقل؟','Comment vas-tu ?',['Comment vas-tu ?','Où vas-tu ?','Où est la gare ?'],'Comment يسأل عن الكيفية، ومنها وسيلة التنقل.'],
+['فهم القاعدة','أي سؤال يطلب الوجهة أو المكان؟','Où vas-tu ?',['Où vas-tu ?','Comment vas-tu ?','Qu’est-ce que tu prends ?'],'Où يسأل عن المكان أو الوجهة.'],
+['فهم القاعدة','اختر الجملة الصحيحة: نذهب إلى حديقة الحيوان.','Nous allons au zoo.',['Nous allons au zoo.','Nous allons à la zoo.','Nous prenons au zoo.'],'zoo مذكر مفرد → au، وهو وجهة → aller.'],
+['فهم القاعدة','أي قاعدة تلخّص الدرس؟','prendre = وسيلة النقل، aller = الوجهة',['prendre = وسيلة النقل، aller = الوجهة','prendre = الوجهة دائمًا، aller = وسيلة النقل','prendre و aller لهما الاستخدام نفسه'],'هذه هي قاعدة الفصل الأساسية في الدرس.']
 ];
-f.innerHTML=Q.map((q,i)=>`<section class="q"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}</section>`).join('');
-function grade(){let score=0,miss=0;Q.forEach((q,i)=>{const x=document.querySelector('input[name=q'+i+']:checked');if(!x)miss++;else if(+x.value===q[2])score++});r.className='res show';if(miss){s.textContent='⚠️ أكمل التقييم';m.textContent='هناك '+miss+' أسئلة بلا إجابة.';return}s.textContent='النتيجة: '+score+' / '+Q.length;m.textContent=score>=27?'🏆 ممتاز — إتقان قوي.':score>=23?'👍 جيد جدًا — راجع الأخطاء البسيطة ثم أعد المحاولة.':score>=18?'📘 مستوى مقبول — راجع المفردات والقاعدة ثم أعد التقييم.':'🔁 تحتاج إلى مراجعة الدرس والتدريب قبل إعادة التقييم.'}
-document.getElementById('gradeBtn').addEventListener('click',grade);
-</script></html>
+let i=0,score=0,answered=false,results=[];
+function shuffleOptions(item){const opts=item[3].map((text,idx)=>({text,correct:text===item[2]}));return opts.sort(()=>Math.random()-.5)}
+function render(){const q=Q[i],opts=shuffleOptions(q);document.getElementById('counter').textContent='السؤال '+(i+1)+' / '+Q.length;document.getElementById('score').textContent='⭐ '+score;document.getElementById('progress').style.width=((i+1)/Q.length*100)+'%';document.getElementById('card').innerHTML='<div class="meta"><span class="category">'+q[0]+'</span><span class="category">اختر إجابة واحدة</span></div><div class="question">'+q[1]+'</div><div class="options">'+opts.map((o,n)=>'<button class="option" data-index="'+n+'">'+o.text+'</button>').join('')+'</div><div id="feedback" class="feedback"></div><div class="actions"><button class="btn primary" id="next" disabled>'+(i===Q.length-1?'عرض النتيجة ✓':'السؤال التالي ←')+'</button><button class="btn" id="restart">🔄 إعادة من البداية</button></div>';document.querySelectorAll('.option').forEach((b,n)=>b.onclick=()=>answer(b,opts[n],q));document.getElementById('next').onclick=next;document.getElementById('restart').onclick=restart}
+function answer(btn,opt,q){if(answered)return;answered=true;document.querySelectorAll('.option').forEach(b=>b.disabled=true);if(opt.correct){score++;btn.classList.add('correct')}else{btn.classList.add('wrong');document.querySelectorAll('.option').forEach(b=>{if(b.textContent===q[2])b.classList.add('correct')})}const fb=document.getElementById('feedback');fb.className='feedback '+(opt.correct?'ok':'bad');fb.innerHTML=(opt.correct?'✓ إجابة صحيحة.':'✗ ليست الإجابة المطلوبة.')+'<div class="explain">'+q[4]+'<br><b>الإجابة الصحيحة: '+q[2]+'</b></div>';document.getElementById('score').textContent='⭐ '+score;document.getElementById('next').disabled=false;results[i]=opt.correct}
+function next(){if(!answered)return;if(i<Q.length-1){i++;answered=false;render()}else{showResult()}}
+function restart(){i=0;score=0;answered=false;results=[];render();window.scrollTo({top:0,behavior:'smooth'})}
+function showResult(){const pct=Math.round(score/Q.length*100);const wrong=Q.length-score;let title=pct===100?'🏆 إتقان كامل!':pct>=85?'🌟 ممتاز جدًا!':pct>=70?'👍 جيد جدًا!':pct>=50?'📘 جيد، مع حاجة للمراجعة.':'🔁 أعد دراسة المرجع ثم أعد التقييم.';document.getElementById('counter').textContent='اكتمل التقييم';document.getElementById('progress').style.width='100%';document.getElementById('card').innerHTML='<div class="result"><div class="ring"><strong>'+pct+'%</strong></div><h2>'+title+'</h2><p>نتيجتك <b>'+score+' / '+Q.length+'</b>. تم تصحيح كل سؤال مع إظهار سبب الإجابة الصحيحة، ويمكنك إعادة التقييم دون فقدان التقدم الحالي.</p><div class="breakdown"><div class="stat"><b>'+score+'</b><span>إجابات صحيحة</span></div><div class="stat"><b>'+wrong+'</b><span>إجابات تحتاج مراجعة</span></div><div class="stat"><b>'+pct+'%</b><span>النتيجة النهائية</span></div></div><div class="review"><b>ماذا بعد؟</b><br>راجع الكلمات التي أخطأت فيها، ثم راجع قاعدة <b dir="ltr">prendre / aller</b> وأدوات المكان، وبعدها أعد التقييم.</div><div class="actions"><button class="btn primary" id="again">🔄 إعادة التقييم</button><a class="btn" href="lesson-1-games-v2.html" style="text-decoration:none;text-align:center">🎮 تدريب بالألعاب</a><a class="btn" href="reference_lecon1_unite3.html" style="text-decoration:none;text-align:center">📖 المرجع</a></div></div>';document.getElementById('again').onclick=restart}
+render();
+</script>
+</body></html>
