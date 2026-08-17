@@ -1,12 +1,13 @@
 {
   "name": "HM Academy Vocabulary System",
-  "version": "1.0",
+  "version": "1.1",
   "fields": {
     "image": "string",
     "word": "string",
     "translation": "string",
     "example": "string",
-    "exampleAudio": "string"
+    "exampleAudio": "string",
+    "pronunciationNote": "string"
   },
-  "usage": "Universal vocabulary card structure for all lesson vocabulary pages"
+  "usage": "Universal vocabulary card structure for all lesson vocabulary pages; pronunciationNote provides a student-facing French pronunciation tip when a specific audio asset is unavailable."
 }
