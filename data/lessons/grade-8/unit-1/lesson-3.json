@@ -1,1 +1,83 @@
-{"id":"grade8-u1-l3","title":"Leçon 3 : Les matières scolaires et la conjugaison","titleAr":"المواد الدراسية وتصريف الأفعال","titleFr":"Leçon 3 : Les matières scolaires et la conjugaison","language":"fr","grade":"grade-8","unit":"unit-1","objectiveAr":"التعرّف على أسماء المواد الدراسية كما وردت في الملف المرجعي، ثم استخدام aimer وpréférer مع تصريفهما في المضارع للتعبير عن المواد التي نحبها أو نفضلها.","objectiveFr":"Identifier les matières scolaires du fichier de référence et utiliser aimer et préférer au présent pour exprimer ses goûts et ses préférences.","contentSource":"reference_lecon3_unite1.html","vocabularyGroups":[{"id":"subjects","title":"📚 المواد الدراسية","description":"المواد الدراسية الواردة في الملف المرجعي للدرس الثالث."}],"vocabulary":[{"word":"Le français","translation":"اللغة الفرنسية","image":"📘","example":"J'aime le français.","category":"subjects"},{"word":"L'anglais","translation":"اللغة الإنجليزية","image":"🔤","example":"J'aime l'anglais.","category":"subjects"},{"word":"Les mathématiques","translation":"الرياضيات","image":"➗","example":"J'aime les mathématiques.","category":"subjects"},{"word":"L'arabe","translation":"اللغة العربية","image":"📝","example":"J'aime l'arabe.","category":"subjects"},{"word":"Le dessin","translation":"الرسم","image":"🎨","example":"J'aime le dessin.","category":"subjects"},{"word":"Les sciences","translation":"العلوم","image":"🔬","example":"J'aime les sciences.","category":"subjects"},{"word":"L'histoire","translation":"التاريخ","image":"🏛️","example":"J'aime l'histoire.","category":"subjects"},{"word":"La géographie","translation":"الجغرافيا","image":"🌍","example":"J'aime la géographie.","category":"subjects"},{"word":"La musique","translation":"الموسيقى","image":"🎵","example":"J'aime la musique.","category":"subjects"},{"word":"La gymnastique","translation":"التربية البدنية","image":"🤸","example":"J'aime la gymnastique.","category":"subjects"},{"word":"La technologie","translation":"التكنولوجيا","image":"💻","example":"J'aime la technologie.","category":"subjects"}],"grammar":{"title":"Aimer / Préférer","explanationAr":"نستخدم aimer للتعبير عن الإعجاب، وpréférer للتعبير عن التفضيل. يركز هذا الدرس على تصريف الفعلين في المضارع مع جميع الضمائر.","explanationFr":"On utilise aimer pour exprimer ce qu'on aime et préférer pour exprimer une préférence. On étudie la conjugaison des deux verbes au présent.","steps":["🇪🇬 J'aime / Je préfère","🇪🇬 Tu aimes / Tu préfères","🇪🇬 Il / Elle aime / Il / Elle préfère","🇪🇬 Nous aimons / Nous préférons","🇪🇬 Vous aimez / Vous préférez","🇪🇬 Ils / Elles aiment / Ils / Elles préfèrent"],"examples":[{"fr":"J'aime le français.","ar":"أحب اللغة الفرنسية."},{"fr":"J'adore le français.","ar":"أعشق اللغة الفرنسية."},{"fr":"Je préfère la géographie.","ar":"أفضل الجغرافيا."}]},"conversation":{"title":"Parler de ses matières préférées","lines":[{"speaker":"Sara","fr":"Quelle matière tu aimes ?","ar":"ما المادة التي تحبينها؟"},{"speaker":"Adam","fr":"J'aime le français.","ar":"أحب اللغة الفرنسية."},{"speaker":"Sara","fr":"Et tu préfères quelle matière ?","ar":"وما المادة التي تفضلها؟"},{"speaker":"Adam","fr":"Je préfère la géographie.","ar":"أفضل الجغرافيا."}]},"practice":[{"question":"أي كلمة تعني اللغة الفرنسية؟","options":["Le français","La musique","L'histoire"],"answer":0},{"question":"اختر الترجمة الصحيحة: J'aime les mathématiques.","options":["أحب الرياضيات","أفضل الرياضيات","أكره الرياضيات"],"answer":0},{"question":"أكمل: Je ___ la géographie.","options":["préfère","préféres","préférons"],"answer":0},{"question":"أكمل: Nous ___ la musique.","options":["aimons","aime","aimez"],"answer":0},{"question":"أي مادة تعني التربية البدنية؟","options":["La gymnastique","La technologie","Le dessin"],"answer":0}],"assessment":{"questions":[{"question":"ما معنى l'histoire؟","options":["التاريخ","الجغرافيا","العلوم"],"answer":0},{"question":"اختر التصريف الصحيح: Vous ___ le français.","options":["aimez","aimons","aiment"],"answer":0},{"question":"اختر الجملة الصحيحة.","options":["Je préfère la géographie.","Je préfèrent la géographie.","Je préférons la géographie."],"answer":0},{"question":"ما المادة التي تعني التكنولوجيا؟","options":["La technologie","La musique","Le dessin"],"answer":0}]},"activities":[{"type":"pronunciation","id":"u1-l3-pronunciation","xp":20},{"type":"vocabulary","id":"u1-l3-vocabulary","xp":20},{"type":"practice","id":"u1-l3-practice","xp":20},{"type":"games","id":"u1-l3-games","file":"data/lessons/grade-8/unit-1/lesson-3-games.html","xp":20},{"type":"assessment","id":"u1-l3-assessment","file":"data/lessons/grade-8/unit-1/examen_u1-l3.html","xp":50}],"activityHub":{"file":"data/lessons/grade-8/unit-1/lesson-3-games.html","label":"الألعاب والتدريب","separateFromFormalAssessment":true},"contentScope":{"lesson3":["school subjects from the original reference","Aimer conjugation","Préférer conjugation","expressing likes and preferences"],"excludedFromLesson3":["Il y a / Il n'y a pas de","school supplies","professions"]},"media":{"audio":true,"video":false},"tracking":true,"status":"standardized","theme":{"icon":"📚","accent":"#7c3aed","hero":"linear-gradient(135deg,#312e81,#7c3aed,#2563eb)"}}
+{
+  "id": "grade8-u1-l3",
+  "title": "Leçon 3 : Les matières scolaires et la conjugaison",
+  "titleAr": "المواد الدراسية وتصريف الأفعال",
+  "titleFr": "Leçon 3 : Les matières scolaires et la conjugaison",
+  "language": "fr",
+  "grade": "grade-8",
+  "unit": "unit-1",
+  "objectiveAr": "التعرّف على أسماء المواد الدراسية كما وردت في الملف المرجعي، ثم استخدام aimer وpréférer مع تصريفهما في المضارع للتعبير عن المواد التي نحبها أو نفضلها.",
+  "objectiveFr": "Identifier les matières scolaires du fichier de référence et utiliser aimer et préférer au présent pour exprimer ses goûts et ses préférences.",
+  "contentSource": "reference_lecon3_unite1.html",
+  "files": {
+    "interactive": "lesson.html?id=grade8-u1-l3",
+    "reference": "data/lessons/grade-8/unit-1/reference_lecon3_unite1.html",
+    "assessment": "data/lessons/grade-8/unit-1/formal_assessment_lecon3_unite1.html",
+    "quiz": "data/lessons/grade-8/unit-1/examen_u1-l3.html",
+    "games": "data/lessons/grade-8/unit-1/lesson-3-games.html"
+  },
+  "vocabularyGroups": [
+    {"id":"subjects","title":"📚 المواد الدراسية","description":"المواد الدراسية الواردة في الملف المرجعي للدرس الثالث."}
+  ],
+  "vocabulary": [
+    {"word":"Le français","translation":"اللغة الفرنسية","image":"📘","example":"J'aime le français.","category":"subjects"},
+    {"word":"L'anglais","translation":"اللغة الإنجليزية","image":"🔤","example":"J'aime l'anglais.","category":"subjects"},
+    {"word":"Les mathématiques","translation":"الرياضيات","image":"➗","example":"J'aime les mathématiques.","category":"subjects"},
+    {"word":"L'arabe","translation":"اللغة العربية","image":"📝","example":"J'aime l'arabe.","category":"subjects"},
+    {"word":"Le dessin","translation":"الرسم","image":"🎨","example":"J'aime le dessin.","category":"subjects"},
+    {"word":"Les sciences","translation":"العلوم","image":"🔬","example":"J'aime les sciences.","category":"subjects"},
+    {"word":"L'histoire","translation":"التاريخ","image":"🏛️","example":"J'aime l'histoire.","category":"subjects"},
+    {"word":"La géographie","translation":"الجغرافيا","image":"🌍","example":"J'aime la géographie.","category":"subjects"},
+    {"word":"La musique","translation":"الموسيقى","image":"🎵","example":"J'aime la musique.","category":"subjects"},
+    {"word":"La gymnastique","translation":"التربية البدنية","image":"🤸","example":"J'aime la gymnastique.","category":"subjects"},
+    {"word":"La technologie","translation":"التكنولوجيا","image":"💻","example":"J'aime la technologie.","category":"subjects"}
+  ],
+  "grammar": {
+    "title":"Aimer / Préférer",
+    "explanationAr":"نستخدم aimer للتعبير عن الإعجاب، وpréférer للتعبير عن التفضيل. يركز هذا الدرس على تصريف الفعلين في المضارع مع جميع الضمائر.",
+    "explanationFr":"On utilise aimer pour exprimer ce qu'on aime et préférer pour exprimer une préférence. On étudie la conjugaison des deux verbes au présent.",
+    "steps":["J'aime / Je préfère","Tu aimes / Tu préfères","Il / Elle aime / Il / Elle préfère","Nous aimons / Nous préférons","Vous aimez / Vous préférez","Ils / Elles aiment / Ils / Elles préfèrent"],
+    "examples":[
+      {"fr":"J'aime le français.","ar":"أحب اللغة الفرنسية."},
+      {"fr":"J'adore le français.","ar":"أعشق اللغة الفرنسية."},
+      {"fr":"Je préfère la géographie.","ar":"أفضل الجغرافيا."}
+    ]
+  },
+  "conversation": {
+    "title":"Parler de ses matières préférées",
+    "lines":[
+      {"speaker":"Sara","fr":"Quelle matière tu aimes ?","ar":"ما المادة التي تحبينها؟"},
+      {"speaker":"Adam","fr":"J'aime le français.","ar":"أحب اللغة الفرنسية."},
+      {"speaker":"Sara","fr":"Et tu préfères quelle matière ?","ar":"وما المادة التي تفضلها؟"},
+      {"speaker":"Adam","fr":"Je préfère la géographie.","ar":"أفضل الجغرافيا."}
+    ]
+  },
+  "practice":[
+    {"question":"أي كلمة تعني اللغة الفرنسية؟","options":["Le français","La musique","L'histoire"],"answer":0},
+    {"question":"اختر الترجمة الصحيحة: J'aime les mathématiques.","options":["أحب الرياضيات","أفضل الرياضيات","أكره الرياضيات"],"answer":0},
+    {"question":"أكمل: Je ___ la géographie.","options":["préfère","préféres","préférons"],"answer":0},
+    {"question":"أكمل: Nous ___ la musique.","options":["aimons","aime","aimez"],"answer":0},
+    {"question":"أي مادة تعني التربية البدنية؟","options":["La gymnastique","La technologie","Le dessin"],"answer":0}
+  ],
+  "assessment": {
+    "questions":[
+      {"question":"ما معنى l'histoire؟","options":["التاريخ","الجغرافيا","العلوم"],"answer":0},
+      {"question":"اختر التصريف الصحيح: Vous ___ le français.","options":["aimez","aimons","aiment"],"answer":0},
+      {"question":"اختر الجملة الصحيحة.","options":["Je préfère la géographie.","Je préfèrent la géographie.","Je préférons la géographie."],"answer":0},
+      {"question":"ما المادة التي تعني التكنولوجيا؟","options":["La technologie","La musique","Le dessin"],"answer":0}
+    ]
+  },
+  "activities":[
+    {"type":"pronunciation","id":"u1-l3-pronunciation","xp":20},
+    {"type":"vocabulary","id":"u1-l3-vocabulary","xp":20},
+    {"type":"practice","id":"u1-l3-practice","xp":20},
+    {"type":"games","id":"u1-l3-games","file":"data/lessons/grade-8/unit-1/lesson-3-games.html","xp":20},
+    {"type":"assessment","id":"u1-l3-assessment","file":"data/lessons/grade-8/unit-1/examen_u1-l3.html","xp":50}
+  ],
+  "activityHub":{"file":"data/lessons/grade-8/unit-1/lesson-3-games.html","label":"الألعاب والتدريب","separateFromFormalAssessment":true},
+  "contentScope":{"lesson3":["school subjects from the original reference","Aimer conjugation","Préférer conjugation","expressing likes and preferences"],"excludedFromLesson3":["Il y a / Il n'y a pas de","school supplies","professions"]},
+  "media":{"audio":true,"video":false},
+  "tracking":true,
+  "status":"standardized",
+  "theme":{"icon":"📚","accent":"#7c3aed","hero":"linear-gradient(135deg,#312e81,#7c3aed,#2563eb)"}
+}
