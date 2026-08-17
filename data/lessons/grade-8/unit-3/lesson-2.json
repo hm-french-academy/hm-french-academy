@@ -1,1 +1,53 @@
-{"id":"grade8-u3-l2","title":"Objets, personnes de voyage et expressions","unit":"Le voyage","language":"fr","contentSource":"curriculum-aligned lesson framework","vocabulary":[{"word":"une valise","translation":"حقيبة سفر","image":"🧳","example":"J'ai une valise."},{"word":"un passeport","translation":"جواز سفر","image":"🛂","example":"J'ai mon passeport."},{"word":"un billet","translation":"تذكرة","image":"🎫","example":"J'ai un billet."},{"word":"un touriste","translation":"سائح","image":"🧑‍🦱","example":"Le touriste visite la ville."},{"word":"un guide","translation":"مرشد","image":"🧑‍🏫","example":"Le guide parle français."},{"word":"bon voyage","translation":"رحلة سعيدة","image":"🌍","example":"Bon voyage !"}],"grammar":{"explanation":"Utiliser les expressions utiles du voyage et parler de ce que l'on a avec avoir.","examples":[{"fr":"J'ai mon passeport.","ar":"لدي جواز سفري."},{"fr":"J'ai un billet.","ar":"لدي تذكرة."}]},"conversation":{"lines":[{"speaker":"Sara","fr":"Tu as ton passeport ?","ar":"هل معك جواز سفرك؟"},{"speaker":"Adam","fr":"Oui, j'ai mon passeport.","ar":"نعم، معي جواز سفري."},{"speaker":"Sara","fr":"Et ton billet ?","ar":"وتذكرتك؟"},{"speaker":"Adam","fr":"Oui, j'ai mon billet.","ar":"نعم، معي تذكرتي."}]},"practice":[{"question":"ما معنى une valise؟","options":["حقيبة سفر","جواز سفر","تذكرة"],"answer":0},{"question":"ماذا تحتاج للسفر؟","options":["un passeport","une chambre","un tableau"],"answer":0},{"question":"أكمل: J'ai mon ...","options":["passeport","cuisine","bus"],"answer":0},{"question":"اختر التعبير الصحيح لرحلة سعيدة.","options":["Bon voyage !","Bonne classe !","Bon maison !"],"answer":0}],"assessment":{"questions":[{"question":"ما معنى un billet؟","options":["تذكرة","حقيبة","مرشد"],"answer":0},{"question":"اختر الجملة الصحيحة.","options":["J'ai mon passeport.","Je mon passeport ai.","Mon passeport j'ai."],"answer":0}]},"status":"standardized"}
+{
+  "id": "grade8-u3-l2",
+  "title": "Objets, personnes et informations du voyage",
+  "titleFr": "Objets, personnes et informations du voyage",
+  "unit": "Unité 3 · Le voyage",
+  "language": "fr",
+  "objectiveAr": "إتقان مفردات أدوات السفر والأشخاص ومواعيد الرحلات، مع استخدام avoir والتعبيرات الأساسية في السياق.",
+  "objectiveFr": "Maîtriser le vocabulaire du voyage et utiliser avoir et les expressions essentielles en contexte.",
+  "theme": {"icon":"🧳"},
+  "contentSource": "curriculum-aligned lesson framework",
+  "vocabulary": [
+    {"word":"un passager","translation":"راكب","image":"🧑‍✈️","example":"Le passager attend le train."},
+    {"word":"une passagère","translation":"راكبة","image":"👩‍🦱","example":"La passagère attend le bus."},
+    {"word":"un guichetier","translation":"موظف الشباك","image":"🧑‍💼","example":"Le guichetier vend les billets."},
+    {"word":"un billet","translation":"تذكرة قطار أو طائرة","image":"🎫","example":"J'ai un billet de train."},
+    {"word":"un ticket","translation":"تذكرة مترو أو أوتوبيس","image":"🎟️","example":"J'ai un ticket de bus."},
+    {"word":"une valise","translation":"حقيبة سفر","image":"🧳","example":"J'ai une valise rouge."},
+    {"word":"des horaires","translation":"مواعيد الرحلات","image":"🕐","example":"Je regarde les horaires des trains."},
+    {"word":"un touriste","translation":"سائح","image":"🧑‍🦱","example":"Le touriste visite la ville."},
+    {"word":"une touriste","translation":"سائحة","image":"👩‍🦰","example":"La touriste visite le musée."},
+    {"word":"un pharmacien","translation":"صيدلي","image":"💊","example":"Le pharmacien travaille près de la gare."}
+  ],
+  "grammar": {
+    "explanation":"نستخدم avoir للتعبير عما نملكه أو نحمله معنا أثناء السفر.",
+    "examples":[
+      {"fr":"J'ai mon billet.","ar":"لدي تذكرتي."},
+      {"fr":"Nous avons nos valises.","ar":"لدينا حقائبنا."},
+      {"fr":"Elle a son ticket.","ar":"لديها تذكرتها."}
+    ]
+  },
+  "conversation": {
+    "lines":[
+      {"speaker":"Sara","fr":"Tu as ton billet ?","ar":"هل معك تذكرتك؟"},
+      {"speaker":"Adam","fr":"Oui, j'ai mon billet.","ar":"نعم، معي تذكرتي."},
+      {"speaker":"Sara","fr":"Tu connais les horaires ?","ar":"هل تعرف المواعيد؟"},
+      {"speaker":"Adam","fr":"Oui, je regarde les horaires du train.","ar":"نعم، أراجع مواعيد القطار."}
+    ]
+  },
+  "practice":[
+    {"question":"ما معنى un passager؟","options":["موظف الشباك","راكب","صيدلي"],"answer":1},
+    {"question":"اختر الكلمة التي تعني حقيبة سفر.","options":["une valise","un ticket","des horaires"],"answer":0},
+    {"question":"أكمل: J'ai mon ...","options":["passagère","pharmacien","billet"],"answer":2},
+    {"question":"من يبيع التذاكر في الشباك؟","options":["un touriste","un guichetier","un passager"],"answer":1}
+  ],
+  "assessment": {
+    "questions":[
+      {"question":"ما معنى des horaires؟","options":["حقائب سفر","مواعيد الرحلات","موظفو الشباك"],"answer":1},
+      {"question":"اختر الجملة الصحيحة مع avoir.","options":["J'ai mon ticket.","Je mon ticket ai.","Mon ticket je suis."],"answer":0},
+      {"question":"ما الكلمة المناسبة لراكبة؟","options":["un passager","une touriste","une passagère"],"answer":2}
+    ]
+  },
+  "status":"standardized"
+}
