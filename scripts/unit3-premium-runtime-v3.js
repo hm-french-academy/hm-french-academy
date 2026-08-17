@@ -1,6 +1,6 @@
 (function(){'use strict';
 const ID='grade8-u3-l1',BASE='data/lessons/grade-8/unit-3/';
-const page=n=>new URL(BASE+n,location.href).href,stamp='?v=20260817-u3fix3';
+const page=n=>new URL(BASE+n,location.href).href,stamp='?v=20260818-u3pron2';
 const LINKS={games:page('lesson-1-games-v3.html')+stamp,interactive:page('examen_u3-l1.html')+stamp,formal:page('formal_assessment_lecon1_unite3.html')+stamp,reference:page('reference_lecon1_unite3.html')+stamp,pronunciation:page('pronunciation_challenge_lecon1_unite3.html')+stamp};
 const NOTES={'le bus':'u = /y/ تقريبًا، وs الأخيرة مسموعة.','le train':'ai = صوت أنفي /ɛ̃/ تقريبًا؛ n ليست صوتًا مستقلًا.','l\'avion':'on في النهاية صوت أنفي /ɔ̃/؛ n لا تُنطق منفردة.','la voiture':'oi = /wa/ تقريبًا، u = /y/، وe الأخيرة لا تُنطق.','le métro':'é = /e/، وo الأخيرة واضحة.','le taxi':'x = /ks/ تقريبًا.','la gare':'g قبل a = /g/، وe الأخيرة لا تُنطق.','l\'aéroport':'eau = /o/ تقريبًا، وt الأخيرة لا تُنطق.','la station':'tion = /sjɔ̃/ تقريبًا، وon صوت أنفي.','l\'arrêt':'ê = /ɛ/ تقريبًا، وt الأخيرة لا تُنطق.','le billet':'ill = /j/ تقريبًا، وt الأخيرة لا تُنطق.','le voyage':'oy = /waj/ تقريبًا، ge = /ʒ/.','un guichet':'gu = /g/، ch = /ʃ/، وt الأخيرة لا تُنطق.','une plage':'g قبل e = /ʒ/، وe الأخيرة لا تُنطق.','un zoo':'z = /z/، وoo = /o/ تقريبًا.','un cirque':'c قبل i = /s/، qu = /k/، وe الأخيرة لا تُنطق.','un stade':'st متصلة، وe الأخيرة لا تُنطق.','un club':'u = /y/، وb الأخيرة مسموعة.','une pharmacie':'ph = /f/، c قبل i = /s/.','un pays':'ay ≈ /ɛ.i/، وs الأخيرة لا تُنطق.','une ville':'ill = /j/ تقريبًا، وe الأخيرة لا تُنطق.','un lieu':'lieu ≈ /ljø/؛ u ليست «و» عربية.'};
 const norm=s=>String(s||'').trim().replace(/[’]/g,"'").replace(/\s+/g,' '),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -15,13 +15,12 @@ if(kind==='assessment'){
 }
 if(kind==='games'){
  v.dataset.u3v4='games';
- v.innerHTML='<div class="u3v4"><div class="u3v4hero"><span>🎮 HM Game Studio · Unité 3 · Leçon 1</span><h2>مركز الألعاب التفاعلي</h2><p>هذا المركز مخصص للألعاب والتحديات فقط. التقييمات والمرجع والنطق الأساسي لها مسارات مستقلة.</p></div><div class="u3v4grid">'+link(LINKS.games,'🚀 ابدأ مركز الألعاب','النسخة المصححة والمنسقة للهاتف.',true)+link(LINKS.pronunciation,'🔊 تحدي النطق','تحدي نطق مستقل؛ يظهر هنا لأنه نشاط لعب للدرس.')+'</div></div>';
+ v.innerHTML='<div class="u3v4"><div class="u3v4hero"><span>🎮 HM Game Studio · Unité 3 · Leçon 1</span><h2>مركز الألعاب التفاعلي</h2><p>هذا المركز مخصص للألعاب والتحديات فقط. التقييمات والمرجع والنطق الأساسي لها مسارات مستقلة.</p></div><div class="u3v4grid">'+link(LINKS.games,'🚀 ابدأ مركز الألعاب','النسخة المصححة والمنسقة للهاتف.',true)+link(LINKS.pronunciation,'🔊 تحدي النطق','تحدي نطق مستقل؛ يفتح في صفحة النطق المخصصة للدرس.')+'</div></div>';
 }}
-function goPron(){if(!ok())return;location.href=LINKS.pronunciation}
+function goPron(){if(!ok())return;location.assign(LINKS.pronunciation)}
 function run(){if(!ok())return;patchPron();
- document.addEventListener('click',e=>{const b=e.target.closest('[data-t],[data-j]');if(!b)return;const kind=b.dataset.t||b.dataset.j;if(kind==='assessment'||kind==='games'){e.preventDefault();e.stopImmediatePropagation();panel(kind);return}if(kind==='pronunciation'){e.preventDefault();e.stopImmediatePropagation();goPron()}},true);
- let last='';const sync=()=>{patchPron();const s=new URLSearchParams(location.search).get('section');if(s==='assessment'&&last!=='assessment'){last='assessment';panel('assessment')}else if(s==='games'&&last!=='games'){last='games';panel('games')}else if(s!=='assessment'&&s!=='games'){last=''}};new MutationObserver(sync).observe(document.body,{subtree:true,childList:true});setTimeout(sync,250)}
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-t],[data-j]');if(!b)return;const kind=b.dataset.t||b.dataset.j;if(kind==='assessment'||kind==='games'||kind==='pronunciation'){e.preventDefault();e.stopImmediatePropagation();if(kind==='assessment'||kind==='games')panel(kind);else goPron();return}},true);
+ let last='';const sync=()=>{patchPron();const s=new URLSearchParams(location.search).get('section');if(s==='assessment'&&last!=='assessment'){last='assessment';panel('assessment')}else if(s==='games'&&last!=='games'){last='games';panel('games')}else if(s==='pronunciation'){last='pronunciation';goPron()}else if(s!=='assessment'&&s!=='games'&&s!=='pronunciation'){last=''}};new MutationObserver(sync).observe(document.body,{subtree:true,childList:true});setTimeout(sync,250)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
-// Load the unified v4 media/centers guard last so cached/legacy video-center scripts cannot duplicate or override the canonical Unit 3 routes.
-if(ok()){const s=document.createElement('script');s.src='scripts/lesson-media-centers-v4.js?v=20260817-centers4';document.head.appendChild(s)}
+if(ok()){const s=document.createElement('script');s.src='scripts/lesson-media-centers-v4.js?v=20260818-centers5';document.head.appendChild(s)}
 })();
