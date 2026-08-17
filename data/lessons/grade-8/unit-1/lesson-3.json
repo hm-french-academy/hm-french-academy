@@ -33,9 +33,14 @@
     {"word":"La technologie","translation":"التكنولوجيا","image":"💻","example":"J'aime la technologie.","category":"subjects"}
   ],
   "grammar": {
-    "title":"Aimer / Préférer",
-    "explanationAr":"نستخدم aimer للتعبير عن الإعجاب، وpréférer للتعبير عن التفضيل. يركز هذا الدرس على تصريف الفعلين في المضارع مع جميع الضمائر.",
+    "title":"قواعد الدرس · Aimer / Préférer",
+    "explanationAr":"نستخدم aimer للتعبير عن الإعجاب، وpréférer للتعبير عن التفضيل. يركز الدرس على تصريف الفعلين في المضارع مع جميع الضمائر.",
     "explanationFr":"On utilise aimer pour exprimer ce qu'on aime et préférer pour exprimer une préférence. On étudie la conjugaison des deux verbes au présent.",
+    "sections":[
+      {"titleAr":"1. الفعل Aimer · الإعجاب","titleFr":"1. Aimer · exprimer ce qu'on aime","ruleAr":"يأتي الفعل مع الضمير، ويتغير تصريفه حسب الفاعل.","ruleFr":"Le verbe se conjugue selon le sujet.","rows":[["Je","aime"],["Tu","aimes"],["Il / Elle","aime"],["Nous","aimons"],["Vous","aimez"],["Ils / Elles","aiment"]]},
+      {"titleAr":"2. الفعل Préférer · التفضيل","titleFr":"2. Préférer · exprimer une préférence","ruleAr":"نستخدم préférer عندما نريد التعبير عن شيء نفضله.","ruleFr":"Le verbe se conjugue selon le sujet pour exprimer une préférence.","rows":[["Je","préfère"],["Tu","préfères"],["Il / Elle","préfère"],["Nous","préférons"],["Vous","préférez"],["Ils / Elles","préfèrent"]]},
+      {"titleAr":"3. استعمال l' قبل حرف متحرك","titleFr":"3. L' devant une voyelle","ruleAr":"نستخدم l' قبل الكلمة التي تبدأ بحرف متحرك، مثل l'arabe وl'anglais وl'histoire.","ruleFr":"On utilise l' devant un mot qui commence par une voyelle, par exemple l'arabe, l'anglais et l'histoire.","rows":[]}
+    ],
     "steps":["J'aime / Je préfère","Tu aimes / Tu préfères","Il / Elle aime / Il / Elle préfère","Nous aimons / Nous préférons","Vous aimez / Vous préférez","Ils / Elles aiment / Ils / Elles préfèrent"],
     "examples":[
       {"fr":"J'aime le français.","ar":"أحب اللغة الفرنسية."},
