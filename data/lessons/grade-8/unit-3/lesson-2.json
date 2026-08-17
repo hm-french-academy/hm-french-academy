@@ -18,7 +18,8 @@
     {"word":"des horaires","translation":"مواعيد الرحلات","image":"🕐","example":"Je regarde les horaires des trains.","pronunciation":"h في البداية لا تُنطق؛ و oi تُنطق /wa/ تقريبًا؛ و s النهائية لا تُنطق."},
     {"word":"un touriste","translation":"سائح","image":"🧑‍🦱","example":"Le touriste visite la ville.","pronunciation":"ou تُنطق /u/؛ s بين حركتين تُنطق /z/؛ و e الأخيرة لا تُنطق."},
     {"word":"une touriste","translation":"سائحة","image":"👩‍🦰","example":"La touriste visite le musée.","pronunciation":"ou تُنطق /u/؛ s بين حركتين تُنطق /z/؛ و e الأخيرة لا تُنطق."},
-    {"word":"un pharmacien","translation":"صيدلي","image":"💊","example":"Le pharmacien travaille près de la gare.","pronunciation":"ph تُنطق /f/؛ c قبل i تُنطق /s/؛ و ien تُنطق تقريبًا /sjɛ̃/."}
+    {"word":"un pharmacien","translation":"صيدلي","image":"💊","example":"Le pharmacien travaille près de la gare.","pronunciation":"ph تُنطق /f/؛ c قبل i تُنطق /s/؛ ien تُنطق تقريبًا /sjɛ̃/."},
+    {"word":"un passeport","translation":"جواز سفر","image":"🛂","example":"J’ai mon passeport.","pronunciation":"ss تُنطق /s/؛ o تُنطق /ɔ/ تقريبًا؛ و t النهائية لا تُنطق."}
   ],
   "grammar": {"explanation":"نستخدم avoir للتعبير عما نملكه أو نحمله معنا أثناء السفر.","examples":[{"fr":"J'ai mon billet.","ar":"لدي تذكرتي."},{"fr":"Nous avons nos valises.","ar":"لدينا حقائبنا."},{"fr":"Elle a son ticket.","ar":"لديها تذكرتها."}]},
   "conversation": {"lines":[{"speaker":"Sara","fr":"Tu as ton billet ?","ar":"هل معك تذكرتك؟"},{"speaker":"Adam","fr":"Oui, j'ai mon billet.","ar":"نعم، معي تذكرتي."},{"speaker":"Sara","fr":"Tu connais les horaires ?","ar":"هل تعرف المواعيد؟"},{"speaker":"Adam","fr":"Oui, je regarde les horaires du train.","ar":"نعم، أراجع مواعيد القطار."}]},
@@ -29,16 +30,16 @@
     {"question":"من يبيع التذاكر في الشباك؟","options":["un touriste","un guichetier","un passager"],"answer":1}
   ],
   "assessment": {"questions":[
-    {"question":"ما معنى un passager؟","options":["راكب","صيدلي","موظف الشباك"],"answer":0},
-    {"question":"ما معنى une valise؟","options":["تذكرة","حقيبة سفر","موعد"],"answer":1},
-    {"question":"اختر الكلمة التي تعني موظف الشباك.","options":["un guichetier","un touriste","un billet"],"answer":0},
-    {"question":"أكمل: J'ai mon ...","options":["ticket","touriste","valise"],"answer":0},
-    {"question":"ما معنى des horaires؟","options":["صيدلي","مواعيد الرحلات","راكبة"],"answer":1},
+    {"question":"ما معنى un passeport؟","options":["جواز سفر","حقيبة سفر","تذكرة"],"answer":0},
+    {"question":"أي كلمة تعني راكبة؟","options":["un passager","une passagère","une touriste"],"answer":1},
+    {"question":"ما معنى un guichetier؟","options":["سائح","موظف الشباك","صيدلي"],"answer":1},
+    {"question":"اختر الكلمة التي تعني حقيبة سفر.","options":["des horaires","une valise","un ticket"],"answer":1},
+    {"question":"ما معنى des horaires؟","options":["مواعيد الرحلات","صيدلي","راكبة"],"answer":0},
     {"question":"أي جملة صحيحة؟","options":["J'ai mon billet.","Je mon billet ai.","J'ai le billet suis."],"answer":0},
-    {"question":"ما الكلمة المناسبة لراكبة؟","options":["une touriste","un passager","une passagère"],"answer":2},
-    {"question":"من الكلمات التي تعني تذكرة مترو أو أوتوبيس؟","options":["un ticket","un pharmacien","des horaires"],"answer":0},
-    {"question":"أكمل: Nous ... nos valises.","options":["sommes","avons","êtes"],"answer":1},
-    {"question":"ما معنى un pharmacien؟","options":["سائح","موظف الشباك","صيدلي"],"answer":2}
+    {"question":"من الكلمات التي تعني تذكرة مترو أو أوتوبيس؟","options":["un pharmacien","des horaires","un ticket"],"answer":2},
+    {"question":"أكمل: Nous ... nos valises.","options":["avons","sommes","êtes"],"answer":0},
+    {"question":"ما معنى un pharmacien؟","options":["موظف الشباك","صيدلي","سائح"],"answer":1},
+    {"question":"أي جملة صحيحة في السياق؟","options":["La passagère attend le bus.","La passagère attends le bus.","La passagère attendre le bus."],"answer":0}
   ]},
   "status":"standardized"
 }
