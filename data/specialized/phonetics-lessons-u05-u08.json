@@ -1,0 +1,30 @@
+{
+  "courseId":"phonetics","status":"draft-for-review",
+  "units":[
+    {"id":"u05","title":{"ar":"الصوامت الفرنسية","fr":"Consonnes françaises","en":"French Consonants"},"lessons":[
+      {"id":"u05-l01","title":{"ar":"/p-b/ و /t-d/","fr":"/p-b/ et /t-d/","en":"/p-b/ and /t-d/"},"level":"A1","pairs":["/p/-/b/","/t/-/d/"],"practice":["استماع","تمييز","إنتاج"],"examples":["pas/bas","tout/doux"]},
+      {"id":"u05-l02","title":{"ar":"/k-g/ و /f-v/","fr":"/k-g/ et /f-v/","en":"/k-g/ and /f-v/"},"level":"A1","pairs":["/k/-/g/","/f/-/v/"],"practice":["تمييز الجهر","موضع النطق","إنتاج"]},
+      {"id":"u05-l03","title":{"ar":"/s-z/ و /ʃ-ʒ/","fr":"/s-z/ et /ʃ-ʒ/","en":"/s-z/ and /ʃ-ʒ/"},"level":"A1","pairs":["/s/-/z/","/ʃ/-/ʒ/"],"examples":["sac/zéro","chat/jour"]},
+      {"id":"u05-l04","title":{"ar":"الصوت الفرنسي R","fr":"Le R français","en":"The French R"},"level":"A2","focus":"مكان وطريقة النطق، الاستماع إلى نموذج موثوق، التدريب التدريجي دون إجبار الطالب على نسخة لهجية واحدة","reviewFlag":"phonetic/dialect-sensitive"}
+    ]},
+    {"id":"u06","title":{"ar":"أشباه الصوائت","fr":"Semi-voyelles","en":"Glides"},"lessons":[
+      {"id":"u06-l01","title":{"ar":"/j/","fr":"Le son /j/","en":"The /j/ sound"},"level":"A2","examples":["fille","pied","travail"]},
+      {"id":"u06-l02","title":{"ar":"/w/","fr":"Le son /w/","en":"The /w/ sound"},"level":"A2","examples":["oui","moi","trois"]},
+      {"id":"u06-l03","title":{"ar":"/ɥ/","fr":"Le son /ɥ/","en":"The /ɥ/ sound"},"level":"A2","examples":["huit","nuit","lui"]}
+    ]},
+    {"id":"u07","title":{"ar":"المجموعات الإملائية والنطق","fr":"Graphies et prononciation","en":"Spelling Patterns and Pronunciation"},"lessons":[
+      {"id":"u07-l01","title":{"ar":"ou / u","fr":"ou / u","en":"ou / u"},"level":"A1","examples":["roue","rue","tout"]},
+      {"id":"u07-l02","title":{"ar":"oi / oin","fr":"oi / oin","en":"oi / oin"},"level":"A2","examples":["moi","coin","loin"]},
+      {"id":"u07-l03","title":{"ar":"au / eau","fr":"au / eau","en":"au / eau"},"level":"A1","examples":["chaud","eau","beau"]},
+      {"id":"u07-l04","title":{"ar":"ai / ei","fr":"ai / ei","en":"ai / ei"},"level":"A2","examples":["mais","seize"],"reviewFlag":"orthography-to-sound patterns vary by word; teach as frequent patterns, not absolute rules"},
+      {"id":"u07-l05","title":{"ar":"eu / œu","fr":"eu / œu","en":"eu / œu"},"level":"A2","examples":["deux","sœur","peur"]},
+      {"id":"u07-l06","title":{"ar":"ch / j / ge","fr":"ch / j / ge","en":"ch / j / ge"},"level":"A1","examples":["chat","jour","manger"]},
+      {"id":"u07-l07","title":{"ar":"-tion / -sion","fr":"-tion / -sion","en":"-tion / -sion"},"level":"A2","examples":["nation","vision"],"reviewFlag":"teach frequent patterns with exceptions explicitly"}
+    ]},
+    {"id":"u08","title":{"ar":"E الصامت والحروف النهائية","fr":"E caduc et lettres finales","en":"Schwa and Final Letters"},"lessons":[
+      {"id":"u08-l01","title":{"ar":"E caduc","fr":"Le e caduc","en":"Schwa"},"level":"B1","focus":"متى يظهر ومتى قد يُحذف في الكلام؛ ربط الظاهرة بالإيقاع وسهولة النطق","reviewFlag":"context-dependent"},
+      {"id":"u08-l02","title":{"ar":"الحروف النهائية الصامتة","fr":"Les lettres finales muettes","en":"Silent Final Letters"},"level":"A2","examples":["petit","parlent","nez"],"focus":"ملاحظة الأنماط لا حفظ قاعدة مطلقة"},
+      {"id":"u08-l03","title":{"ar":"أنماط متكررة في الكلمات","fr":"Régularités fréquentes","en":"Frequent Patterns"},"level":"A2","focus":"بناء قاموس شخصي للأنماط الإملائية-الصوتية مع أمثلة واستثناءات"}
+    ]}
+  ]
+}
