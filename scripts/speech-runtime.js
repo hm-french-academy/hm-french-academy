@@ -9,11 +9,9 @@ function speak(text,options={}){const value=String(text??'').trim();if(!value||!
 function stop(){try{window.speechSynthesis?.cancel?.()}catch(_){}current=null}
 function applyLessonVisualTheme(){const hero=document.querySelector('.hero'),art=document.querySelector('.hero-art');if(!hero||!art)return;const id=new URLSearchParams(location.search).get('id')||'grade8-u1-l1';const themes={'grade8-u1-l1':['🏫','في المدرسة','#173a82','#2563eb','#16a394'],'grade8-u1-l2':['✏️','الأدوات المدرسية والمقلمة والشنطة','#243b8f','#4169e1','#2aa6a1'],'grade8-u1-l3':['📚','المواد الدراسية وتصريف الأفعال','#312e81','#7c3aed','#2563eb'],'grade8-u1-l4':['👩‍⚕️','المهن وقاعدة Il y a','#134e4a','#0f766e','#14b8a6'],'grade8-u2-l1':['🛏️','غرف المنزل وغرفة النوم','#075e54','#129b8b','#4caf8f'],'grade8-u2-l2':['🛋️','غرفة المعيشة والمطبخ والحمام','#17633b','#2e9b62','#43b883'],'grade8-u2-l3':['🔤','المفردات وتصريف Avoir وÊtre','#7a4b13','#b87920','#d7a64a'],'grade8-u2-l4':['📍','المكان والملكية','#7a3b12','#c15d24','#d79b3b']};const t=themes[id]||themes['grade8-u1-l1'];hero.style.background=`linear-gradient(135deg,${t[2]},${t[3]},${t[4]})`;hero.style.boxShadow=`0 20px 50px ${t[3]}33`;art.textContent=t[0];art.setAttribute('aria-label',t[1]);art.title=t[1]}
 window.HMSpeech={speak,stop,pickVoice,refreshVoices:voices};
-// Unit 2 Lesson 1 now uses the same inline pronunciation page as Unit 1.
-// We only change the URL section so lesson-runtime-v2 renders the pronunciation
-// view from lesson JSON + pronunciation-notes.json; no standalone pronunciation
-// file is required for the student journey.
-document.addEventListener('click',function(e){const target=e.target?.closest?.('[data-t="pronunciation"],[data-j="pronunciation"]');if(!target)return;const id=new URLSearchParams(location.search).get('id')||'';if(id!=='grade8-u2-l1')return;e.preventDefault();e.stopImmediatePropagation();location.href=new URL('lesson.html?id=grade8-u2-l1&section=pronunciation&v=20260817-u2pron6',document.baseURI).href},true);
+// Pronunciation is rendered inline by lesson-runtime-v2. Do not redirect the
+// pronunciation tab: redirecting to the same lesson caused a reload loop on
+// Grade 8 Unit 2 Lesson 1 and made the pronunciation view appear broken.
 if('speechSynthesis'in window&&'onvoiceschanged'in window.speechSynthesis)window.speechSynthesis.addEventListener('voiceschanged',()=>{try{voices()}catch(_){}},{passive:true});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyLessonVisualTheme,{once:true});else applyLessonVisualTheme();
 window.addEventListener('hm:lesson-rendered',applyLessonVisualTheme,{passive:true});window.addEventListener('hm:language-changed',applyLessonVisualTheme,{passive:true});
