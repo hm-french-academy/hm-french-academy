@@ -1,0 +1,10 @@
+(function(){'use strict';
+const p=new URLSearchParams(location.search);if(p.get('id')!=='grade8-u3-l4')return;
+const jsonPath='data/lessons/grade-8/unit-3/lesson-4.json';
+function parse(raw){try{let d=typeof raw==='string'?JSON.parse(raw):raw;if(typeof d.content==='string'){try{d=JSON.parse(d.content)}catch(e){}}return d&&typeof d==='object'?d:null}catch(e){return null}}
+function asset(src){if(!src)return '';src=String(src).trim();if(/^https?:\/\//i.test(src)||src.startsWith('data:')||src.startsWith('/'))return src;if(src.startsWith('assets/'))return '/'+src;return '/data/lessons/grade-8/unit-3/'+src.replace(/^\.\//,'')}
+let vocab=[];
+fetch(jsonPath,{cache:'no-store'}).then(r=>r.json()).then(raw=>{const d=parse(raw);vocab=Array.isArray(d?.vocabulary)?d.vocabulary:[];apply()}).catch(()=>{});
+function apply(){if(!vocab.length)return;const cards=document.querySelectorAll('#viewer .card');cards.forEach(card=>{const word=(card.querySelector('.fr')?.textContent||'').trim();const v=vocab.find(x=>String(x.word||'').trim()===word);if(!v?.image)return;const box=card.querySelector('.pic');if(!box)return;const src=asset(v.image);if(!src)return;let img=box.querySelector('img[data-u3l4-vocab]');if(!img){box.replaceChildren();img=document.createElement('img');img.dataset.u3l4Vocab='1';box.appendChild(img)}img.src=src;img.alt=word;img.loading='lazy';img.decoding='async';img.style.cssText='display:block;width:100%;height:100%;min-height:150px;max-height:240px;object-fit:contain;border-radius:16px';img.onerror=function(){this.style.display='none';box.textContent='🖼️';box.style.fontSize='52px';box.style.display='flex';box.style.alignItems='center';box.style.justifyContent='center'}})}
+const mo=new MutationObserver(()=>{if(document.querySelector('#viewer .card'))apply()});mo.observe(document.getElementById('viewer')||document.body,{childList:true,subtree:true});document.addEventListener('DOMContentLoaded',apply);setTimeout(apply,300);setTimeout(apply,1000);
+})();
