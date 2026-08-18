@@ -1,0 +1,26 @@
+{
+  "courseId":"phonetics","status":"draft-for-review",
+  "units":[
+    {"id":"u09","title":{"ar":"Liaison و Enchaînement","fr":"Liaison et enchaînement","en":"Liaison and Linking"},"lessons":[
+      {"id":"u09-l01","title":{"ar":"ما هي Liaison؟","fr":"Qu'est-ce que la liaison ?","en":"What is Liaison?"},"level":"B1","focus":"إضافة صامت نهائي غير منطوق عادةً في سياق صوتي محدد، مع التمييز بين liaison obligatoire وfacultative وinterdite في المستوى المناسب","reviewFlag":"requires careful contextual examples"},
+      {"id":"u09-l02","title":{"ar":"Enchaînement","fr":"L'enchaînement","en":"Enchaînement"},"level":"B1","focus":"استمرارية الانتقال بين الكلمات دون الخلط بين enchaînement وliaison"},
+      {"id":"u09-l03","title":{"ar":"التطبيق في العبارات","fr":"Application dans les groupes de mots","en":"Applying Linking"},"level":"B1","practice":["استماع","تمييز","تظليل الكلمة","تكرار العبارة","تسجيل ذاتي"]}
+    ]},
+    {"id":"u10","title":{"ar":"المقاطع والإيقاع","fr":"Syllabes et rythme","en":"Syllables and Rhythm"},"lessons":[
+      {"id":"u10-l01","title":{"ar":"ما هو المقطع؟","fr":"Qu'est-ce qu'une syllabe ?","en":"What is a Syllable?"},"level":"A2","focus":"التعرف على المقاطع في الكلمات الفرنسية دون اختزال الظاهرة إلى قاعدة كتابية واحدة"},
+      {"id":"u10-l02","title":{"ar":"تقسيم الكلمات","fr":"Découper les mots","en":"Segmenting Words"},"level":"A2","practice":["تصفيق/نبض","تحديد المقاطع","قراءة متدرجة"]},
+      {"id":"u10-l03","title":{"ar":"مجموعات النطق والإيقاع","fr":"Groupes rythmiques","en":"Rhythmic Groups"},"level":"B1","focus":"تقسيم الكلام إلى مجموعات ذات معنى وتحسين الإيقاع وقابلية الفهم"}
+    ]},
+    {"id":"u11","title":{"ar":"التنغيم والنبرة","fr":"Intonation et prosodie","en":"Intonation and Prosody"},"lessons":[
+      {"id":"u11-l01","title":{"ar":"تنغيم الجملة","fr":"L'intonation de la phrase","en":"Sentence Intonation"},"level":"B1","focus":"ملاحظة حركة النبرة عبر مجموعات الكلام وربطها بالمعنى"},
+      {"id":"u11-l02","title":{"ar":"السؤال والتقرير","fr":"Questions et affirmations","en":"Questions and Statements"},"level":"B1","practice":["استماع لمقاطع قصيرة","تمييز نوع الجملة","إعادة النطق"]},
+      {"id":"u11-l03","title":{"ar":"الإيقاع والنبرة في الكلام الطبيعي","fr":"Rythme et prosodie en parole naturelle","en":"Rhythm and Prosody in Natural Speech"},"level":"B2","focus":"الانتقال من الجملة المصطنعة إلى الكلام الطبيعي مع التركيز على الوضوح والفهم"}
+    ]},
+    {"id":"u12","title":{"ar":"التدريب المتكامل والتقييم النهائي","fr":"Entraînement intégré et évaluation finale","en":"Integrated Practice and Final Assessment"},"lessons":[
+      {"id":"u12-l01","title":{"ar":"مراجعة الأصوات","fr":"Révision des sons","en":"Sound Review"},"level":"A2","assessment":["vowels","nasals","consonants","glides"]},
+      {"id":"u12-l02","title":{"ar":"استماع وتمييز","fr":"Écoute et discrimination","en":"Listening and Discrimination"},"level":"B1","assessment":["minimal contrasts","word identification","sentence identification"]},
+      {"id":"u12-l03","title":{"ar":"إنتاج ونطق","fr":"Production et prononciation","en":"Production and Pronunciation"},"level":"B1","assessment":["controlled words","sentences","short recording"],"rubric":["intelligibility","sound accuracy","rhythm","prosody"]},
+      {"id":"u12-l04","title":{"ar":"التقييم النهائي","fr":"Évaluation finale","en":"Final Assessment"},"level":"B1","assessment":["listening","discrimination","reading aloud","spoken production","reflection"],"passRule":"Use a weighted score plus minimum performance thresholds; final values to be approved during course QA."}
+    ]}
+  ]
+}
