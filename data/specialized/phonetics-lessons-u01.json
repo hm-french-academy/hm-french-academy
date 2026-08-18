@@ -1,0 +1,50 @@
+{
+  "courseId":"phonetics","unitId":"u01","status":"draft-for-review",
+  "unitTitle":{"ar":"مدخل إلى الصوتيات الفرنسية","fr":"Introduction à la phonétique française","en":"Introduction to French Phonetics"},
+  "pedagogy":"Perception → discrimination → explanation → controlled production → application → assessment",
+  "lessons":[
+    {
+      "id":"u01-l01","title":{"ar":"الحرف أم الصوت؟","fr":"Lettre ou son ?","en":"Letter or Sound?"},
+      "level":"A1","estimatedMinutes":25,
+      "objectives":{"ar":["التمييز بين الحرف المكتوب والصوت المنطوق","فهم أن الحرف الواحد قد يمثل أكثر من صوت وأن الصوت قد يُكتب بأكثر من طريقة","البدء في ملاحظة النطق بدل الاعتماد على شكل الكلمة فقط"],"fr":["Distinguer lettre et son","Comprendre qu'une lettre peut représenter plusieurs sons et qu'un son peut avoir plusieurs graphies","Commencer à observer la prononciation"],"en":["Distinguish letters from sounds","Understand that spelling and sound do not map one-to-one","Start noticing pronunciation rather than spelling alone"]},
+      "content":[
+        {"type":"warmup","title":{"ar":"تهيئة سمعية","fr":"Mise en écoute","en":"Listening warm-up"},"prompt":{"ar":"استمع إلى كلمات متقاربة في الكتابة ولاحظ: هل ترى الحروف نفسها؟ وهل تسمع الصوت نفسه دائمًا؟","fr":"Écoutez des mots et observez : les mêmes lettres produisent-elles toujours le même son ?","en":"Listen to words and notice whether the same letters always produce the same sound."}},
+        {"type":"explanation","title":{"ar":"الفكرة الأساسية","fr":"Idée essentielle","en":"Key idea"},"body":{"ar":"الحرف جزء من الكتابة، أما الصوت فهو ما نسمعه في الكلام. لذلك لا ينبغي أن نتعامل مع الفرنسية على أساس أن لكل حرف صوتًا واحدًا ثابتًا. في هذا الكورس سنتعلم العلاقة بين الكتابة والنطق خطوة بخطوة.","fr":"La lettre appartient à l'écrit, tandis que le son appartient à la parole. En français, une lettre ne correspond pas toujours à un seul son. Le cours construit progressivement le lien entre graphie et prononciation.","en":"A letter belongs to writing, while a sound belongs to speech. In French, one letter does not always correspond to one fixed sound. This course builds the spelling–pronunciation relationship progressively."}},
+        {"type":"examples","title":{"ar":"أمثلة أولية","fr":"Premiers exemples","en":"First examples"},"items":[{"text":"chat","ipa":"/ʃa/","note":{"ar":"ch تمثل الصوت /ʃ/ هنا","fr":"ch représente /ʃ/ ici","en":"ch represents /ʃ/ here"}},{"text":"gare","ipa":"/ɡaʁ/","note":{"ar":"r في آخر الكلمة يمثل صوتًا فرنسيًا مختلفًا عن r العربية أو الإنجليزية","fr":"r final correspond à une consonne française spécifique","en":"final r represents a French consonant"}},{"text":"eau","ipa":"/o/","note":{"ar":"ثلاثة أحرف كتابية تمثل صوتًا واحدًا في هذه الكلمة","fr":"Trois lettres écrites correspondent ici à un seul son","en":"Three written letters correspond here to one sound"}}]},
+        {"type":"practice","title":{"ar":"تمييز كتابي/صوتي","fr":"Discrimination graphie/son","en":"Spelling–sound discrimination"},"items":[{"instruction":{"ar":"حدد هل السؤال يتعلق بما نراه أم بما نسمعه.","fr":"Indiquez si la question concerne l'écrit ou l'oral.","en":"Identify whether the question concerns writing or speech."},"answer":"both"}]},
+        {"type":"task","title":{"ar":"مهمة تطبيقية","fr":"Tâche","en":"Task"},"body":{"ar":"اختر خمس كلمات فرنسية تعرفها. اكتب الكلمة، ثم حاول كتابة ما تسمعه باستخدام IPA بمساعدة المعلم أو قاموس موثوق. لا تحاول حفظ جميع الرموز الآن.","fr":"Choisissez cinq mots connus. Écrivez-les puis essayez de noter les sons en API avec l'aide de l'enseignant ou d'une ressource fiable.","en":"Choose five familiar French words. Write them, then try to transcribe the sounds in IPA with teacher or reliable-reference support."}}
+      ],
+      "check":{"type":"mcq","questions":[{"q":{"ar":"ما الفرق الأساسي بين الحرف والصوت؟","fr":"Quelle est la différence essentielle entre une lettre et un son ?","en":"What is the essential difference between a letter and a sound?"},"options":{"ar":["الحرف مكتوب والصوت مسموع","الحرف مسموع والصوت مكتوب","لا فرق بينهما"],"fr":["La lettre est écrite et le son est entendu","La lettre est entendue et le son est écrit","Il n'y a pas de différence"],"en":["A letter is written and a sound is heard","A letter is heard and a sound is written","There is no difference"]},"answer":0}]},
+      "reviewNotes":["تحقق من الأمثلة الصوتية قبل الاعتماد النهائي","يمكن إضافة تسجيلات النطق لاحقًا من مصدر صوتي موثوق","لا نطلب من الطالب إتقان IPA في الدرس الأول"]
+    },
+    {
+      "id":"u01-l02","title":{"ar":"ما هو IPA؟","fr":"Qu'est-ce que l'API ?","en":"What is IPA?"},"level":"A1","estimatedMinutes":25,
+      "objectives":{"ar":["التعرف إلى مفهوم الأبجدية الصوتية الدولية","قراءة عدد محدود من الرموز الفرنسية الأساسية","استخدام IPA كأداة مساعدة لا كهدف حفظ"],"fr":["Découvrir l'alphabet phonétique international","Lire quelques symboles utiles pour le français","Utiliser l'API comme outil"],"en":["Discover the International Phonetic Alphabet","Read a small set of useful French symbols","Use IPA as a tool rather than a memorization goal"]},
+      "content":[
+        {"type":"explanation","title":{"ar":"لماذا نستخدم IPA؟","fr":"Pourquoi utiliser l'API ?","en":"Why use IPA?"},"body":{"ar":"قد تختلف الكتابة عن النطق. يساعدنا IPA على تمثيل الأصوات بطريقة أكثر ثباتًا، ولذلك سنستخدمه عندما يكون مفيدًا لتوضيح الفرق بين الأصوات.","fr":"L'orthographe ne reflète pas toujours directement la prononciation. L'API permet de représenter les sons de manière systématique.","en":"Spelling does not always directly reflect pronunciation. IPA gives us a systematic way to represent sounds."}},
+        {"type":"symbolBank","title":{"ar":"رموز سنقابلها مبكرًا","fr":"Symboles rencontrés tôt","en":"Early symbols"},"items":[{"symbol":"/i/","example":"si","note":"voyelle"},{"symbol":"/y/","example":"tu","note":"voyelle"},{"symbol":"/u/","example":"tout","note":"voyelle"},{"symbol":"/ʃ/","example":"chat","note":"consonne"},{"symbol":"/ʒ/","example":"jour","note":"consonne"},{"symbol":"/ʁ/","example":"rue","note":"consonne"}]},
+        {"type":"practice","title":{"ar":"اقرأ الرمز ثم استمع","fr":"Lisez puis écoutez","en":"Read then listen"},"body":{"ar":"في النسخة التفاعلية، سيضغط الطالب على الرمز لسماع المثال ثم يحاول تكراره.","fr":"Dans la version interactive, l'élève pourra écouter l'exemple puis le répéter.","en":"In the interactive version, the learner will hear an example and repeat it."}}
+      ],
+      "check":{"type":"matching","instruction":{"ar":"صل الرمز بالكلمة المناسبة.","fr":"Associez le symbole au mot.","en":"Match the symbol to the word."},"pairs":[["/ʃ/","chat"],["/ʒ/","jour"],["/y/","tu"]]},
+      "reviewNotes":["يجب ربط كل رمز بصوت مسموع عند تحويل الدرس إلى النسخة التفاعلية","لا نحمّل الدرس عددًا كبيرًا من الرموز دفعة واحدة"]
+    },
+    {
+      "id":"u01-l03","title":{"ar":"كيف نستمع إلى الصوت؟","fr":"Comment écouter un son ?","en":"How Do We Listen to a Sound?"},"level":"A1","estimatedMinutes":25,
+      "objectives":{"ar":["تطوير الوعي بما نسمعه قبل محاولة التقليد","مقارنة أصوات متقاربة","استخدام الاستماع البطيء ثم الطبيعي"],"fr":["Développer l'écoute avant la production","Comparer des sons proches","Passer de l'écoute ralentie à l'écoute naturelle"],"en":["Build listening awareness before imitation","Compare similar sounds","Move from slowed listening to natural speech"]},
+      "content":[
+        {"type":"framework","title":{"ar":"ثلاثة أسئلة عند الاستماع","fr":"Trois questions à l'écoute","en":"Three listening questions"},"items":{"ar":["هل الصوت طويل أم قصير؟","هل يخرج الهواء من الفم أم يوجد مرور أنفي؟","أين أسمع الاختلاف بين الصوتين؟"],"fr":["Le son est-il long ou bref ?","Le flux d'air est-il oral ou nasal ?","Où se trouve la différence entre les deux sons ?"],"en":["Is the sound long or short?","Is the airflow oral or nasal?","Where do you hear the difference?"]}},
+        {"type":"practice","title":{"ar":"تمييز صوتي","fr":"Discrimination auditive","en":"Sound discrimination"},"pairs":[["/i/","/y/"],["/u/","/y/"],["/s/","/ʃ/"]]},
+        {"type":"task","title":{"ar":"مهمة الاستماع","fr":"Tâche d'écoute","en":"Listening task"},"body":{"ar":"استمع إلى زوج من الكلمات. لا تكرر أولًا. اختر الصوت الذي سمعته، ثم أعد الاستماع وحاول التقليد.","fr":"Écoutez une paire de mots sans répéter d'abord. Identifiez le son, puis réécoutez et imitez.","en":"Listen to a word pair without repeating first. Identify the sound, then listen again and imitate."}}
+      ],
+      "check":{"type":"self-check","items":{"ar":["أستطيع وصف الفرق الذي أسمعه بين صوتين.","أستطيع الاستماع قبل أن أحاول النطق.","أستطيع إعادة الاستماع بسرعة طبيعية."],"fr":["Je peux décrire une différence sonore.","Je peux écouter avant de produire.","Je peux réécouter à vitesse naturelle."],"en":["I can describe a sound difference.","I can listen before producing.","I can relisten at natural speed."]}},
+      "reviewNotes":["التمارين الصوتية تحتاج ملفات/مصادر صوتية تفاعلية عند مرحلة التنفيذ النهائي"]
+    },
+    {
+      "id":"u01-l04","title":{"ar":"اختبار التمييز السمعي الأول","fr":"Premier test de discrimination auditive","en":"First Listening Discrimination Test"},"level":"A1","estimatedMinutes":15,
+      "objectives":{"ar":["قياس نقطة البداية في التمييز السمعي","تحديد الأصوات التي تحتاج مراجعة","إعداد الطالب للوحدات التالية"],"fr":["Mesurer le niveau initial de discrimination","Identifier les sons à revoir","Préparer la suite du parcours"],"en":["Measure initial listening discrimination","Identify sounds needing review","Prepare for later units"]},
+      "testPlan":{"ar":["أزواج متقاربة صوتيًا","اختيار الصوت المسموع","تحديد الكلمة التي سمعها الطالب","نتيجة مع توصية بالمراجعة"],"fr":["Paires minimales","Choix du son entendu","Identification du mot entendu","Résultat et recommandation"],"en":["Minimal contrasts","Choose the heard sound","Identify the heard word","Score and review recommendation"]},
+      "scoring":{"pass":80,"review":60,"retryBelow":60},
+      "reviewNotes":["النسخة النهائية تحتاج بنكًا صوتيًا موثوقًا واختبارًا عشوائيًا حتى لا يحفظ الطالب الإجابات"]
+    }
+  ]
+}
