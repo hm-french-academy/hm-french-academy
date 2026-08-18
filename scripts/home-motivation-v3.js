@@ -24,5 +24,11 @@
   function speak(text,lang,button){if(!text)return false;if(window.HMSpeech&&typeof window.HMSpeech.speak==='function'){window.HMSpeech.speak(text,{button,lang:lang||'fr-FR',rate:.86});return true}if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return false;try{const synth=window.speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(String(text));u.lang=lang||'fr-FR';u.rate=.86;u.volume=1;u.onend=()=>{button?.classList.remove('playing')};u.onerror=()=>{button?.classList.remove('playing')};button?.classList.add('playing');synth.resume();synth.speak(u);return true}catch(e){return false}}
   function addSpeakButton(parent,text,lang,label){const b=document.createElement('button');b.type='button';b.className='hm-motivation-speak';b.textContent='🔊 '+label;b.setAttribute('aria-label',label);b.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();speak(text,lang,b)});parent.appendChild(b)}
   function mount(){const host=document.getElementById('hm-motivation');if(!host)return;const m=pick();host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">ومضة اليوم · L’Éclat du jour · Today’s Spark</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><p class="hm-motivation-en">'+m.en+'</p><div class="hm-motivation-audio" aria-label="تشغيل صوت الكبسولة"></div></div>';const audio=host.querySelector('.hm-motivation-audio');const lang=getLang();const primary=lang==='ar'?'ar-EG':lang==='en'?'en-US':'fr-FR';const example=lang==='ar'?m.ar:lang==='en'?m.en:m.fr;addSpeakButton(audio,example,primary,'تشغيل الكبسولة');addSpeakButton(audio,m.fr,'fr-FR','Français');host.dataset.language=lang;}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
+  function ensureSpeechAndMount(){
+    if(window.HMSpeech){mount();return;}
+    const existing=document.querySelector('script[src*="scripts/speech-runtime.js"]');
+    if(existing){let tries=0;const wait=setInterval(()=>{if(window.HMSpeech||++tries>60){clearInterval(wait);mount()}},50);return;}
+    const script=document.createElement('script');script.src='scripts/speech-runtime.js?v=20260818-speech-home1';script.async=false;script.onload=mount;script.onerror=mount;document.head.appendChild(script);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ensureSpeechAndMount,{once:true});else ensureSpeechAndMount();
 })();
