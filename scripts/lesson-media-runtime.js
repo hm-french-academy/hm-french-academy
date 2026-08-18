@@ -1,44 +1,11 @@
 // HM Academy lesson media + accessibility runtime
 (function(){
   'use strict';
-  function applySavedFontSize(){
-    const allowed={small:'0.9',medium:'1',large:'1.15',xlarge:'1.3'};
-    let v='medium';
-    try{v=localStorage.getItem('hm-font-size')||'medium'}catch(e){}
-    if(!allowed[v])v='medium';
-    document.documentElement.dataset.hmFontSize=v;
-    document.documentElement.style.setProperty('--hm-font-scale',allowed[v]);
-    if(!document.getElementById('hm-lesson-font-style')){
-      const s=document.createElement('style');s.id='hm-lesson-font-style';s.textContent='html[data-hm-font-size="small"]{--hm-font-scale:.9}html[data-hm-font-size="medium"]{--hm-font-scale:1}html[data-hm-font-size="large"]{--hm-font-scale:1.15}html[data-hm-font-size="xlarge"]{--hm-font-scale:1.3}html[data-hm-font-size] body :where(p,h1,h2,h3,h4,h5,h6,a,button,label,li,td,th,input,select,textarea){font-size:calc(1em * var(--hm-font-scale))}';document.head.appendChild(s);
-    }
-  }
-  function youtubeId(url){try{const u=new URL(url);if(u.hostname==='youtu.be')return u.pathname.slice(1);if(u.hostname.includes('youtube.com'))return u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();}catch(e){}return null;}
-  function inferLessonId(){
-    const params=new URLSearchParams(location.search);
-    const explicit=params.get('id');
-    if(explicit)return explicit;
-    const m=location.pathname.match(/unit-([0-9]+)\/lesson-([0-9]+)-interactive\.html$/i);
-    if(m)return `grade8-u${m[1]}-l${m[2]}`;
-    return 'lesson-hello';
-  }
-  function repoRoot(){
-    const parts=location.pathname.split('/').filter(Boolean);
-    return parts.length ? `/${parts[0]}/` : '/';
-  }
-  async function init(){
-    applySavedFontSize();
-    try{
-      const lessonId=inferLessonId();
-      const response=await fetch(repoRoot()+'data/media.json',{cache:'no-store'});if(!response.ok)return;
-      const data=await response.json();const media=(data.media||[]).filter(item=>item.lessonId===lessonId);window.HMLessonMedia=media;
-      const video=media.find(item=>item.type==='video');
-      const section=Array.from(document.querySelectorAll('section')).find(node=>node.querySelector('h2')?.textContent.includes('فيديو الدرس'));
-      if(!section)return;
-      if(!video){section.innerHTML='<h2>🎥 فيديو الدرس</h2><p>لا يوجد فيديو مرتبط بهذا الدرس حالياً.</p>';return;}
-      const id=youtubeId(video.source||'');
-      if(id){section.innerHTML=`<h2>🎥 فيديو الدرس</h2><div style="position:relative;padding-top:56.25%;border-radius:20px;overflow:hidden;background:#101827"><iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}" title="${video.title||'Lesson video'}" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>`;return;}
-      section.innerHTML='<h2>🎥 فيديو الدرس</h2><video controls preload="metadata" style="width:100%;border-radius:20px"><source src="'+video.source+'">تعذر تحميل الفيديو.</video>';
-    }catch(error){console.warn('Lesson media runtime skipped',error);}
-  }
+  function applySavedFontSize(){const allowed={small:'0.9',medium:'1',large:'1.15',xlarge:'1.3'};let v='medium';try{v=localStorage.getItem('hm-font-size')||'medium'}catch(e){}if(!allowed[v])v='medium';document.documentElement.dataset.hmFontSize=v;document.documentElement.style.setProperty('--hm-font-scale',allowed[v]);if(!document.getElementById('hm-lesson-font-style')){const s=document.createElement('style');s.id='hm-lesson-font-style';s.textContent='html[data-hm-font-size="small"]{--hm-font-scale:.9}html[data-hm-font-size="medium"]{--hm-font-scale:1}html[data-hm-font-size="large"]{--hm-font-scale:1.15}html[data-hm-font-size="xlarge"]{--hm-font-scale:1.3}html[data-hm-font-size] body :where(p,h1,h2,h3,h4,h5,h6,a,button,label,li,td,th,input,select,textarea){font-size:calc(1em * var(--hm-font-scale))}';document.head.appendChild(s)}}
+  function youtubeId(url){try{const u=new URL(url);if(u.hostname==='youtu.be')return u.pathname.slice(1);if(u.hostname.includes('youtube.com'))return u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop()}catch(e){}return null}
+  function inferLessonId(){const params=new URLSearchParams(location.search);const explicit=params.get('id');if(explicit)return explicit;const m=location.pathname.match(/unit-([0-9]+)\/lesson-([0-9]+)-interactive\.html$/i);if(m)return `grade8-u${m[1]}-l${m[2]}`;return 'lesson-hello'}
+  function repoRoot(){const parts=location.pathname.split('/').filter(Boolean);return parts.length?`/${parts[0]}/`:'/'}
+  function getVideoSection(){let section=Array.from(document.querySelectorAll('section')).find(node=>node.querySelector('h2')?.textContent.includes('فيديو الدرس'));if(section)return section;const host=document.querySelector('main')||document.querySelector('.container')||document.body;section=document.createElement('section');section.className='lesson-media-card';section.style.cssText='margin:20px 0;padding:20px;border:1px solid #e1e7f0;border-radius:20px;background:#fff';host.appendChild(section);return section}
+  async function init(){applySavedFontSize();try{const lessonId=inferLessonId();const response=await fetch(repoRoot()+'data/media.json',{cache:'no-store'});if(!response.ok)return;const data=await response.json();const media=(data.media||[]).filter(item=>item.lessonId===lessonId);window.HMLessonMedia=media;const video=media.find(item=>item.type==='video');const section=getVideoSection();if(!video){section.innerHTML='<h2>🎥 فيديو الدرس</h2><p>لا يوجد فيديو مرتبط بهذا الدرس حالياً.</p>';return}const id=youtubeId(video.source||'');if(id){section.innerHTML=`<h2>🎥 فيديو الدرس</h2><div style="position:relative;padding-top:56.25%;border-radius:20px;overflow:hidden;background:#101827"><iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}" title="${video.title||'Lesson video'}" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>`;return}section.innerHTML='<h2>🎥 فيديو الدرس</h2><video controls preload="metadata" style="width:100%;border-radius:20px"><source src="'+video.source+'">تعذر تحميل الفيديو.</video>'}catch(error){console.warn('Lesson media runtime skipped',error)}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
