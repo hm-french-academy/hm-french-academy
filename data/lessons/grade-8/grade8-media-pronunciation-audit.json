@@ -1,0 +1,25 @@
+{
+  "grade": "grade-8",
+  "scope": "3 units x 4 lessons",
+  "videoCoverage": {
+    "grade8-u1-l1": "BJF_g-nNyfY",
+    "grade8-u1-l2": "BJF_g-nNyfY",
+    "grade8-u1-l3": "Yq-BPKVN41g",
+    "grade8-u1-l4": ["h5UP6DdXnJU", "jn7DT8pE16U"],
+    "grade8-u2-l1": "k2Foos7xZPw",
+    "grade8-u2-l2": "n9K4dMCxqiE",
+    "grade8-u2-l3": "9PbElhYEimo",
+    "grade8-u2-l4": "m9t19Btamx8",
+    "grade8-u3-l1": "RCB6RQrTY78",
+    "grade8-u3-l2": "h56H5M8sQUM",
+    "grade8-u3-l3": "BISbaFN1TIQ",
+    "grade8-u3-l4": "RCB6RQrTY78"
+  },
+  "pronunciation": {
+    "runtime": "scripts/speech-runtime.js",
+    "lessonRuntime": "scripts/lesson-runtime-v2.js",
+    "mode": "inline browser speech synthesis",
+    "grade8-u2-l1": "fixed: removed same-page pronunciation redirect/reload loop"
+  },
+  "note": "Video resources are embedded YouTube learning resources, not local MP4 files. Playback requires browser/network access to YouTube."
+}
