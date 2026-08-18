@@ -1,9 +1,14 @@
 {
   "id": "grade8-u3-l4",
   "title": "Prépositions, à ou en, et mots interrogatifs",
+  "titleAr": "حروف الجر وأدوات الاستفهام في السفر",
+  "titleFr": "Prépositions, à ou en, et mots interrogatifs",
   "unit": "Le voyage",
   "language": "fr",
   "contentSource": "curriculum-aligned lesson framework",
+  "objectiveAr": "التدرب على استخدام à و en وأدوات الاستفهام où و quand و comment و pourquoi في مواقف السفر.",
+  "objectiveFr": "Utiliser à et en ainsi que où, quand, comment et pourquoi dans des situations de voyage.",
+  "contentScope": {"lesson4":["المفردات","النطق","القواعد","المحادثة","التدريب","الفيديو","ملفات الدرس","الألعاب","التقييم"]},
   "vocabulary": [
     {"word":"à","translation":"إلى / في","image":"assets/vocabulary/unit3/a.svg","example":"Je vais à Paris.","pronunciationNote":"تُنطق /a/ بصوت قصير وواضح."},
     {"word":"en","translation":"بـ / في","image":"assets/vocabulary/unit3/en.svg","example":"Je voyage en avion.","pronunciationNote":"تُنطق /ɑ̃/؛ النهاية صوت أنفي."},
@@ -14,14 +19,7 @@
     {"word":"gare","translation":"محطة قطار","image":"assets/vocabulary/unit3/gare.svg","example":"La gare est près d'ici.","pronunciationNote":"تُنطق /ɡaʁ/."},
     {"word":"avion","translation":"طائرة","image":"assets/vocabulary/unit3/avion.svg","example":"Je voyage en avion.","pronunciationNote":"تُنطق /avjɔ̃/؛ النهاية صوت أنفي."}
   ],
-  "grammar": {
-    "title":"Prépositions et mots interrogatifs",
-    "rules":[
-      {"title":"À مع المدن والأماكن","explanation":"نستخدم à مع المدن وبعض الأماكن للدلالة على الذهاب أو الوجود.","examples":["Je vais à Paris.","Je suis à la gare."]},
-      {"title":"En مع وسيلة النقل","explanation":"نستخدم en مع وسائل نقل مثل en avion و en train و en voiture.","examples":["Je voyage en avion.","Nous allons en train."]},
-      {"title":"Les mots interrogatifs","explanation":"où للسؤال عن المكان، quand عن الزمن، comment عن الطريقة، pourquoi عن السبب.","examples":["Où est la gare ?","Quand pars-tu ?","Comment voyages-tu ?","Pourquoi voyages-tu ?"]}
-    ]
-  },
+  "grammar": {"title":"Prépositions et mots interrogatifs","rules":[{"title":"À مع المدن والأماكن","explanation":"نستخدم à مع المدن وبعض الأماكن للدلالة على الذهاب أو الوجود.","examples":["Je vais à Paris.","Je suis à la gare."]},{"title":"En مع وسائل النقل","explanation":"نستخدم en مع وسائل نقل مثل en avion و en train و en voiture.","examples":["Je voyage en avion.","Nous allons en train."]},{"title":"Les mots interrogatifs","explanation":"où للسؤال عن المكان، quand عن الزمن، comment عن الطريقة، pourquoi عن السبب.","examples":["Où est la gare ?","Quand pars-tu ?","Comment voyages-tu ?","Pourquoi voyages-tu ?"]}]},
   "conversation":{"title":"À la gare","lines":["— Où vas-tu ?","— Je vais à Paris.","— Comment voyages-tu ?","— Je voyage en train.","— Quand pars-tu ?","— Je pars demain."]},
   "practice":{"activities":["Complète avec à ou en.","Choisis le mot interrogatif correct.","Associe la question à la réponse.","Transforme la phrase en question.","Corrige l'erreur.","Construis une phrase sur un voyage."]},
   "assessment":{"questions":[{"question":"Je vais ___ Paris.","options":["à","en","où","quand"],"answer":0},{"question":"Je voyage ___ avion.","options":["à","en","où","pourquoi"],"answer":1},{"question":"___ est la gare ?","options":["Où","Quand","Comment","Pourquoi"],"answer":0},{"question":"___ pars-tu ? Demain.","options":["Où","Quand","Comment","Pourquoi"],"answer":1},{"question":"___ voyages-tu ? En train.","options":["Où","Quand","Comment","Pourquoi"],"answer":2},{"question":"___ voyages-tu ? Parce que j'aime voyager.","options":["Où","Quand","Comment","Pourquoi"],"answer":3},{"question":"Laquelle est correcte ?","options":["Je voyage à avion.","Je voyage en avion.","Je voyage où avion.","Je voyage pour avion."],"answer":1},{"question":"Laquelle est correcte ?","options":["Je vais en Paris.","Je vais à Paris.","Je vais où Paris.","Je vais par Paris."],"answer":1}]},
