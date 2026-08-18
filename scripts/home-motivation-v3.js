@@ -19,20 +19,10 @@
     {ar:'خذ نفسًا، ركّز على مهمتك، وابدأ. خطوة واحدة منجزة أفضل من عشر خطوات مؤجلة.',fr:'Respirez, concentrez-vous sur votre tâche et commencez. Une étape accomplie vaut mieux que dix étapes reportées.',en:'Take a breath, focus on your task, and begin. One completed step is better than ten postponed steps.'},
     {ar:'أنت لا تتعلم من أجل الامتحان فقط؛ أنت تبني مهارة ستبقى معك. تعلّم بإتقان، وستظهر النتيجة.',fr:'Vous n’apprenez pas seulement pour un examen ; vous construisez une compétence qui restera avec vous. Apprenez avec soin et les résultats suivront.',en:'You are not learning only for an exam; you are building a skill that will stay with you. Learn well, and the results will follow.'}
   ];
-  function pick(){
-    const key='hm_motivation_history_v3';
-    let history=[];try{history=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}
-    const recent=new Set(history.slice(-12));
-    let pool=messages.map((_,i)=>i).filter(i=>!recent.has(i));
-    if(!pool.length){history=[];pool=messages.map((_,i)=>i)}
-    const i=pool[Math.floor(Math.random()*pool.length)];
-    history.push(i);if(history.length>12)history=history.slice(-12);localStorage.setItem(key,JSON.stringify(history));return messages[i];
-  }
-  function mount(){
-    const host=document.getElementById('hm-motivation');if(!host)return;const m=pick();
-    host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">ومضة اليوم · L’Éclat du jour · Today’s Spark</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><p class="hm-motivation-en">'+m.en+'</p></div>';
-    host.dataset.language=window.HMLanguage?HMLanguage.get():(document.documentElement.lang||'ar');
-    window.addEventListener('hm:languagechange',e=>{host.dataset.language=e.detail.lang});
-  }
+  function pick(){const key='hm_motivation_history_v3';let history=[];try{history=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}const recent=new Set(history.slice(-12));let pool=messages.map((_,i)=>i).filter(i=>!recent.has(i));if(!pool.length){history=[];pool=messages.map((_,i)=>i)}const i=pool[Math.floor(Math.random()*pool.length)];history.push(i);if(history.length>12)history=history.slice(-12);localStorage.setItem(key,JSON.stringify(history));return messages[i]}
+  function getLang(){return window.HMLanguage&&typeof HMLanguage.get==='function'?HMLanguage.get():(document.documentElement.lang||'ar').slice(0,2)}
+  function speak(text,lang){if(!('speechSynthesis' in window)){return false}try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang||'fr-FR';u.rate=.88;u.pitch=1;u.volume=1;const voices=window.speechSynthesis.getVoices();const wanted=(lang||'fr-FR').toLowerCase();const v=voices.find(x=>x.lang&&x.lang.toLowerCase().startsWith(wanted.slice(0,2)))||voices.find(x=>x.lang&&x.lang.toLowerCase()===wanted);if(v)u.voice=v;window.speechSynthesis.speak(u);return true}catch(e){return false}}
+  function addSpeakButton(parent,text,lang,label){const b=document.createElement('button');b.type='button';b.className='hm-motivation-speak';b.textContent='🔊 '+label;b.setAttribute('aria-label',label);b.addEventListener('click',function(){speak(text,lang)});parent.appendChild(b)}
+  function mount(){const host=document.getElementById('hm-motivation');if(!host)return;const m=pick();host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">ومضة اليوم · L’Éclat du jour · Today’s Spark</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><p class="hm-motivation-en">'+m.en+'</p><div class="hm-motivation-audio" aria-label="تشغيل صوت الكبسولة"></div></div>';const audio=host.querySelector('.hm-motivation-audio');const lang=getLang();const primary=lang==='ar'?['ar-EG','ar-SA']:lang==='en'?['en-US']:['fr-FR'];const example=lang==='ar'?m.ar:lang==='en'?m.en:m.fr;addSpeakButton(audio,example,primary[0],'تشغيل الكبسولة');const frLabel='🔊 Français';addSpeakButton(audio,m.fr,'fr-FR',frLabel);host.dataset.language=lang;window.addEventListener('hm:languagechange',e=>{host.dataset.language=e.detail.lang})}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
 })();
