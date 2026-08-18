@@ -1,0 +1,24 @@
+{
+  "courseId":"phonetics","status":"draft-for-review",
+  "units":[
+    {"id":"u02","title":{"ar":"الأبجدية الفرنسية وأسماء الحروف","fr":"Alphabet français et noms des lettres","en":"French Alphabet and Letter Names"},"lessons":[
+      {"id":"u02-l01","title":{"ar":"أسماء الحروف","fr":"Les noms des lettres","en":"Letter Names"},"level":"A1","objectives":["تمييز اسم الحرف عن صوته داخل الكلمة","تهجئة كلمات قصيرة بوضوح"],"lessonFlow":["استماع لأسماء الحروف","مقارنة الاسم بالصوت داخل كلمة","تدريب تهجئة","اختبار قصير"]},
+      {"id":"u02-l02","title":{"ar":"التهجئة الفرنسية","fr":"Épeler en français","en":"Spelling in French"},"level":"A1","objectives":["تهجئة الاسم والكلمات الأساسية","التمييز بين ما يُقال عند التهجئة وما يُنطق داخل الكلمة"],"lessonFlow":["نموذج تهجئة","تكرار","إملاء عكسي","تطبيق"]},
+      {"id":"u02-l03","title":{"ar":"الحروف ذات العلامات","fr":"Les lettres avec accents et signes","en":"Letters with Accents and Signs"},"level":"A1","objectives":["التعرف على العلامات الكتابية الشائعة","فهم أن العلامة قد تؤثر في القراءة أو تميز الشكل الكتابي"],"lessonFlow":["é è ê ë","à â","ç","ï î û ô","أمثلة واستماع"]}
+    ]},
+    {"id":"u03","title":{"ar":"الحركات الشفوية الأساسية","fr":"Voyelles orales de base","en":"Basic Oral Vowels"},"lessons":[
+      {"id":"u03-l01","title":{"ar":"/i/ و /y/","fr":"/i/ et /y/","en":"/i/ and /y/"},"level":"A1","targets":["/i/","/y/"],"examples":["si","tu"],"contrast":"تمييز سمعي ثم إنتاج مضبوط"},
+      {"id":"u03-l02","title":{"ar":"/u/ و /y/ و /i/","fr":"/u/, /y/ et /i/","en":"/u/, /y/ and /i/"},"level":"A1","targets":["/u/","/y/","/i/"],"examples":["tout","tu","si"],"contrast":"مقارنة وضع الشفتين والاستماع"},
+      {"id":"u03-l03","title":{"ar":"/e/ و /ɛ/","fr":"/e/ et /ɛ/","en":"/e/ and /ɛ/"},"level":"A1","targets":["/e/","/ɛ/"],"examples":["été","est"],"contrast":"تمييز السمع وربط الصوت بأنماط كتابية شائعة"},
+      {"id":"u03-l04","title":{"ar":"/o/ و /ɔ/","fr":"/o/ et /ɔ/","en":"/o/ and /ɔ/"},"level":"A1","targets":["/o/","/ɔ/"],"examples":["eau","porte"],"contrast":"تمييز السمع ثم التطبيق في كلمات وجمل"}
+    ]},
+    {"id":"u04","title":{"ar":"الحركات الأنفية","fr":"Voyelles nasales","en":"Nasal Vowels"},"lessons":[
+      {"id":"u04-l01","title":{"ar":"الصوت /ɑ̃/","fr":"Le son /ɑ̃/","en":"The /ɑ̃/ sound"},"level":"A2","examples":["sans","enfant","grand"],"focus":"تمييز الرنين الأنفي عن الحركة الفموية"},
+      {"id":"u04-l02","title":{"ar":"الصوت /ɛ̃/","fr":"Le son /ɛ̃/","en":"The /ɛ̃/ sound"},"level":"A2","examples":["vin","pain","matin"],"focus":"تمييز /ɛ̃/ عن /ɛ/ وعن الحركات الأنفية الأخرى"},
+      {"id":"u04-l03","title":{"ar":"الصوت /ɔ̃/","fr":"Le son /ɔ̃/","en":"The /ɔ̃/ sound"},"level":"A2","examples":["bon","nom","on"],"focus":"الاستماع ثم الإنتاج في كلمات مألوفة"},
+      {"id":"u04-l04","title":{"ar":"الصوت /œ̃/","fr":"Le son /œ̃/","en":"The /œ̃/ sound"},"level":"A2","examples":["un","brun"],"focus":"تمييز الصوت مع التنبيه إلى اختلافه في بعض اللهجات والأنماط المعاصرة"}
+    ]
+  ],
+  "lessonTemplate":{"ar":["هدف","استماع نموذجي","ملاحظة النطق","IPA","أمثلة","تمييز سمعي","إنتاج مضبوط","كلمات","جمل","اختبار","مراجعة"],"fr":["Objectif","Modèle audio","Observation","API","Exemples","Discrimination","Production","Mots","Phrases","Test","Révision"],"en":["Objective","Audio model","Observation","IPA","Examples","Discrimination","Production","Words","Sentences","Test","Review"]},
+  "contentSafety":"All examples are teaching candidates and require lecturer review before publication, especially phonetic variants and dialect-sensitive claims."
+}
