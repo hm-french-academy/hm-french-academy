@@ -1,0 +1,40 @@
+name: Grade 8 E2E Smoke Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  grade8-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate Grade 8 lesson manifests and assets
+        run: node tests/grade8-smoke.mjs
+
+      - name: Run browser smoke test when a local web server is available
+        run: |
+          if npm run | grep -q "start"; then
+            (npm run start -- --host 0.0.0.0 > /tmp/hm-academy.log 2>&1 & echo $! > /tmp/hm-server.pid)
+            sleep 5
+            BASE_URL=http://127.0.0.1:3000 npx playwright test tests/grade8.e2e.spec.mjs --reporter=line
+          else
+            echo "No npm start script; manifest/runtime-static validation remains authoritative for this repository."
+          fi
