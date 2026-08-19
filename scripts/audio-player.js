@@ -45,8 +45,20 @@
   // The runtime then consumes the enriched JSON response transparently.
   if(location.pathname.endsWith('/grade-5-lesson.html')||location.pathname.endsWith('grade-5-lesson.html')){
     const s=document.createElement('script');
-    s.src='scripts/grade5-content-enricher.js?build=20260819-15';
+    s.src='scripts/grade5-content-enricher.js?build=20260819-17';
     s.async=false;
     document.head.appendChild(s);
+
+    // Grade 5 uses its own page runtime, so explicitly load the shared
+    // progress store here and bridge the legacy completion key to HMProgress.
+    const p=document.createElement('script');
+    p.src='scripts/learning-progress.js?build=20260819-18';
+    p.async=false;
+    document.head.appendChild(p);
+
+    const bridge=document.createElement('script');
+    bridge.src='scripts/grade5-progress-bridge.js?build=20260819-1';
+    bridge.async=false;
+    document.head.appendChild(bridge);
   }
 })();
