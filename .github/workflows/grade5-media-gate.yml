@@ -1,0 +1,20 @@
+name: Grade 5 Media Gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-5/source-package/**'
+      - 'scripts/grade5-media-indexer.mjs'
+  workflow_dispatch:
+jobs:
+  validate-grade5-media:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Index and validate lesson videos
+        run: node scripts/grade5-media-indexer.mjs
+      - name: Verify all 11 lessons have video
+        run: node -e "const x=require('./data/lessons/grade-5/media-index.json'); if(!x.complete || x.readyVideos!==11) { console.error(JSON.stringify(x,null,2)); process.exit(1) }"
