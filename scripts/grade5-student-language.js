@@ -1,0 +1,7 @@
+(()=>{'use strict';
+const isG5=()=>/(^|\/)grade-5-lesson\.html$/.test(location.pathname);
+const clean=[['فلسفة العرض','رحلة التعلّم'],['Premium Lesson Studio','رحلة التعلّم'],['تم تجهيز الدرس','ابدأ رحلتك التعليمية'],['يتم تجهيز الدرس…','ابدأ رحلتك التعليمية'],['يتم تحميل المحتوى المنظم.','ابدأ من هنا، ثم انتقل خطوة بخطوة.'],['10 مراحل','رحلة التعلّم'],['يُحفظ تقدمك محليًا.','يُحفظ تقدّمك تلقائيًا.'],['تم إكمال الدرس وحفظ +50 XP في تقدمك العام.','أحسنت! أتممت الدرس وحصلت على +50 XP.'],['تم إكمال الدرس وحفظ تقدمك في المسار.','أحسنت! أتممت الدرس وحصلت على +50 XP.'],['تم حفظ إكمال الدرس ضمن تقدمك العام في HM Academy.','أحسنت! تم حفظ إنجازك في رحلتك التعليمية.'],['الملفات','موارد الدرس']];
+function textNode(n){if(n.nodeType===3){let s=n.nodeValue;clean.forEach(([a,b])=>{s=s.split(a).join(b)});n.nodeValue=s}else if(n.nodeType===1&&n.tagName!=='SCRIPT'&&n.tagName!=='STYLE'){for(const c of n.childNodes)textNode(c)}}
+function run(){if(!isG5())return;const root=document.body;if(!root)return;textNode(root);const title=document.querySelector('.hero h1');if(title&&/Leçon|Lesson/i.test(title.textContent.trim())===false){}document.querySelectorAll('.pill').forEach(p=>{if(/Premium Lesson Studio|10 مراحل/i.test(p.textContent))p.textContent='رحلة التعلّم'});const note=document.querySelector('#loadNote');if(note)note.textContent='رحلة التعلّم';}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();new MutationObserver(run).observe(document.documentElement,{subtree:true,childList:true});
+})();
