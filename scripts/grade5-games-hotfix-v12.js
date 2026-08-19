@@ -1,0 +1,7 @@
+(()=>{'use strict';
+/* HM Academy Grade 5 — Game Center hotfix v12
+   Repairs action controls for Order and Build without changing their question banks. */
+const $=s=>document.querySelector(s);let mode=null,locked=false;
+function watch(){const panel=$('#gpanel');if(!panel)return;const tabs=document.querySelectorAll('.g5v10-tab');tabs.forEach(t=>{t.addEventListener('click',()=>{mode=t.dataset.g;locked=false},{capture:true})});if(panel.dataset.v12)return;panel.dataset.v12='1';panel.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('g5v10-check')||b.classList.contains('g5v112-check')){setTimeout(()=>{const next=panel.querySelector('.g5v10-next,.g5v112-next');if(next){next.disabled=false;next.style.display='inline-block';next.style.pointerEvents='auto';next.onclick=next.onclick;next.addEventListener('click',()=>{locked=false},{capture:true})}},0)}if(b.classList.contains('g5v10-next')||b.classList.contains('g5v112-next')){b.disabled=false;b.style.display='inline-block';b.style.pointerEvents='auto';locked=false}},true)}
+function boot(){watch();const v=document.querySelector('#viewer');if(v&&!v.dataset.v12obs){v.dataset.v12obs='1';new MutationObserver(()=>watch()).observe(v,{childList:true,subtree:true})}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();})();
