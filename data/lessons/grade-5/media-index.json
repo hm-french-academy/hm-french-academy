@@ -1,0 +1,22 @@
+{
+  "grade":"primary-5",
+  "term":"term-1",
+  "generatedAt":"2026-08-19T00:00:00.000Z",
+  "videoExtensions":[".mp4",".webm",".m4v",".mov"],
+  "totalLessons":11,
+  "readyVideos":0,
+  "complete":false,
+  "lessons":[
+    {"lessonId":"g5-t1-l01","sourceDir":"data/lessons/grade-5/source-package/Lecon-01-La-phrase-simple","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l02","sourceDir":"data/lessons/grade-5/source-package/Lecon-02-Les-determinants","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l03","sourceDir":"data/lessons/grade-5/source-package/Lecon-03-Le-pluriel","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l04","sourceDir":"data/lessons/grade-5/source-package/Lecon-04-Les-nombres","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l05","sourceDir":"data/lessons/grade-5/source-package/Lecon-05-L-heure","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l06","sourceDir":"data/lessons/grade-5/source-package/Lecon-06-Les-saisons","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l07","sourceDir":"data/lessons/grade-5/source-package/Lecon-07-Pronoms-et-Present","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l08","sourceDir":"data/lessons/grade-5/source-package/Lecon-08-Adjectifs-possessifs","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l09","sourceDir":"data/lessons/grade-5/source-package/Lecon-09-Le-visage","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l10","sourceDir":"data/lessons/grade-5/source-package/Lecon-10-Fournitures-et-Fruits","source":null,"status":"awaiting-source-package","filename":null},
+    {"lessonId":"g5-t1-l11","sourceDir":"data/lessons/grade-5/source-package/Lecon-11-Le-corps","source":null,"status":"awaiting-source-package","filename":null}
+  ]
+}
