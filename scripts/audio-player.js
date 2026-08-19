@@ -40,4 +40,13 @@
     if(!button)return;
     playAudio(button.dataset.audio||button.dataset.audioSrc||'',button);
   });
+
+  // Grade 5 enrichment is loaded before grade5-lesson-runtime-v4.js.
+  // The runtime then consumes the enriched JSON response transparently.
+  if(location.pathname.endsWith('/grade-5-lesson.html')||location.pathname.endsWith('grade-5-lesson.html')){
+    const s=document.createElement('script');
+    s.src='scripts/grade5-content-enricher.js?build=20260819-15';
+    s.async=false;
+    document.head.appendChild(s);
+  }
 })();
