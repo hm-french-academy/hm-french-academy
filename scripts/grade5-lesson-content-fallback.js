@@ -1,0 +1,10 @@
+(()=>{'use strict';
+const FALLBACK={
+'g5-t1-l09':{vocabulary:[['le nez','الأنف','C’est le nez.'],['les yeux','العينان','J’ai deux yeux.'],['la bouche','الفم','C’est la bouche.'],['les cheveux','الشعر','J’ai les cheveux noirs.']],pronunciation:['le nez','les yeux','la bouche','les cheveux','C’est le nez.','J’ai deux yeux.'],practice:[['أين الأنف؟ اختر المفردة الصحيحة.',['le nez','la bouche','les yeux'],'le nez'],['ماذا يعني les yeux؟',['العينان','الفم','اليد'],'العينان']]},
+'g5-t1-l10':{vocabulary:[['un stylo','قلم','C’est un stylo.'],['un livre','كتاب','C’est un livre.'],['une pomme','تفاحة','J’aime une pomme.'],['une banane','موزة','J’aime une banane.']],pronunciation:['un stylo','un livre','une pomme','une banane','C’est un stylo.','J’aime une pomme.'],practice:[['اختر أداة التعريف المناسبة: ___ stylo',['un','une','des'],'un'],['اختر الكلمة التي تعني تفاحة.',['une pomme','un livre','un stylo'],'une pomme']]},
+'g5-t1-l11':{vocabulary:[['la tête','الرأس','C’est la tête.'],['la main','اليد','C’est la main.'],['le bras','الذراع','C’est le bras.'],['la jambe','الساق','C’est la jambe.'],['les yeux','العينان','J’ai deux yeux.']],pronunciation:['la tête','la main','le bras','la jambe','les yeux','C’est la main.'],practice:[['اختر الكلمة التي تعني اليد.',['la main','le bras','la jambe'],'la main'],['اختر الكلمة التي تعني الرأس.',['la tête','les yeux','la main'],'la tête']]}
+};
+function inject(){const id=new URLSearchParams(location.search).get('id');const f=FALLBACK[id];if(!f||!window.D)return;}
+// The runtime keeps lesson data private; this companion enriches only empty states by dispatching a data request marker.
+window.addEventListener('hm:lesson-loaded',e=>{const id=e.detail?.id,f=FALLBACK[id];if(!f)return;const viewer=document.querySelector('#viewer');if(!viewer)return;window.HMGrade5Fallback= f;});
+})();
