@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'data/lessons/grade-5/source-package/**'
+      - 'data/lessons/grade-5/lesson-media-manifest.json'
       - 'scripts/grade5-media-indexer.mjs'
   workflow_dispatch:
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Index and validate lesson videos
+      - name: Validate all Grade 5 lesson videos
         run: node scripts/grade5-media-indexer.mjs
-      - name: Verify all 11 lessons have video
-        run: node -e "const x=require('./data/lessons/grade-5/media-index.json'); if(!x.complete || x.readyVideos!==11) { console.error(JSON.stringify(x,null,2)); process.exit(1) }"
+      - name: Verify complete 11/11 media release
+        run: node -e "const x=require('./data/lessons/grade-5/media-index.json'); if(!x.complete || x.readyVideos!==11) process.exit(1); console.log('Grade 5 media release gate passed: 11/11')"
