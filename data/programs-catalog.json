@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "programs": [
     {
       "id": "le-francais-simple",
@@ -21,9 +21,9 @@
       "description": {"ar": "المنهج المدرسي للمرحلة الابتدائية", "fr": "Programme scolaire du primaire", "en": "Primary-school curriculum"},
       "grades": [
         {"id":"primary-3","label":{"ar":"الصف الثالث الابتدائي","fr":"3ème primaire","en":"3rd Primary"},"status":"planned","terms":[{"id":"term-1"},{"id":"term-2"}]},
-        {"id":"primary-4","label":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]},
-        {"id":"primary-5","label":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]},
-        {"id":"primary-6","label":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"status":"available","terms":[{"id":"term-1"},{"id":"term-2"}]}
+        {"id":"primary-4","label":{"ar":"الصف الرابع الابتدائي","fr":"4ème primaire","en":"4th Primary"},"status":"planned","terms":[{"id":"term-1"},{"id":"term-2"}]},
+        {"id":"primary-5","label":{"ar":"الصف الخامس الابتدائي","fr":"5ème primaire","en":"5th Primary"},"status":"planned","terms":[{"id":"term-1"},{"id":"term-2"}]},
+        {"id":"primary-6","label":{"ar":"الصف السادس الابتدائي","fr":"6ème primaire","en":"6th Primary"},"status":"planned","terms":[{"id":"term-1"},{"id":"term-2"}]}
       ]
     }
   ]
