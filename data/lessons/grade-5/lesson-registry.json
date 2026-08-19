@@ -1,0 +1,26 @@
+{
+  "grade":"primary-5",
+  "term":"term-1",
+  "titleAr":"الصف الخامس الابتدائي — الفصل الدراسي الأول",
+  "titleFr":"5ème primaire — 1er semestre",
+  "includedUnits":[{
+    "id":"g5-term1",
+    "titleAr":"دروس الفصل الدراسي الأول",
+    "titleFr":"Leçons du premier semestre",
+    "lessons":[
+      {"id":"g5-t1-l01","number":1,"titleAr":"الجملة البسيطة","titleFr":"La phrase simple","sourceDir":"Lecon-01-La-phrase-simple"},
+      {"id":"g5-t1-l02","number":2,"titleAr":"أدوات التعريف والتنكير","titleFr":"Les déterminants","sourceDir":"Lecon-02-Les-determinants"},
+      {"id":"g5-t1-l03","number":3,"titleAr":"صيغة الجمع","titleFr":"Le pluriel","sourceDir":"Lecon-03-Le-pluriel"},
+      {"id":"g5-t1-l04","number":4,"titleAr":"الأرقام","titleFr":"Les nombres","sourceDir":"Lecon-04-Les-nombres"},
+      {"id":"g5-t1-l05","number":5,"titleAr":"الساعة","titleFr":"L'heure","sourceDir":"Lecon-05-L-heure"},
+      {"id":"g5-t1-l06","number":6,"titleAr":"الفصول الأربعة","titleFr":"Les quatre saisons","sourceDir":"Lecon-06-Les-saisons"},
+      {"id":"g5-t1-l07","number":7,"titleAr":"الضمائر والفعل في المضارع","titleFr":"Les pronoms et le présent","sourceDir":"Lecon-07-Pronoms-et-Present"},
+      {"id":"g5-t1-l08","number":8,"titleAr":"الصفات الملكية","titleFr":"Les adjectifs possessifs","sourceDir":"Lecon-08-Adjectifs-possessifs"},
+      {"id":"g5-t1-l09","number":9,"titleAr":"الوجه","titleFr":"Le visage","sourceDir":"Lecon-09-Le-visage"},
+      {"id":"g5-t1-l10","number":10,"titleAr":"اللوازم المدرسية والفواكه","titleFr":"Fournitures scolaires et fruits","sourceDir":"Lecon-10-Fournitures-et-Fruits"},
+      {"id":"g5-t1-l11","number":11,"titleAr":"الجسم","titleFr":"Le corps","sourceDir":"Lecon-11-Le-corps"}
+    ]
+  }],
+  "packageSchema":{"interactive":"01-interactif.html","printable":"02-reference-imprimable.docx","evaluation":"03-evaluation-a-imprimer.docx","electronicExam":"04-examen-electronique.html"},
+  "finalExam":"Examen-Final-Semestriel/Examen-Final-Toutes-Lecons.docx"
+}
