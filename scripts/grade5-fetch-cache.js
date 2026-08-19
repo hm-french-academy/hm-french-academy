@@ -1,0 +1,1 @@
+(()=>{'use strict';const nativeFetch=window.fetch.bind(window);window.fetch=(input,init)=>{if(init&&init.cache==='no-store'){init={...init,cache:'default'}}return nativeFetch(input,init)};})();
