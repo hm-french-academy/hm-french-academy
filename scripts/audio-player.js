@@ -3,25 +3,15 @@
   'use strict';
   const isGrade5Lesson=()=>/(^|\/)grade-5-lesson\.html$/.test(location.pathname);
   if(isGrade5Lesson()&&!window.HMProgress&&document.readyState==='loading')document.write('<script src="scripts/learning-progress.js?build=20260819-21"><\\/script>');
-  function getSpeakText(button){
-    if(button.dataset.speakText||button.dataset.text)return button.dataset.speakText||button.dataset.text;
-    const scope=button.closest('article,section,.card,.lesson-card,.conversation-line,.grammar-example,.vocab-card,.word')||button.parentElement;
-    const fr=scope?.querySelector('[lang="fr"],[dir="ltr"],.fr,.lesson-fr,.fr-line,.grammar-example-fr');
-    if(fr&&fr.textContent.trim())return fr.textContent.trim();
-    return button.closest('[data-word]')?.dataset.word||'';
-  }
-  async function speak(text,button){
-    if(window.HMSpeech?.speak)return !!(await window.HMSpeech.speak(text,{button}));
-    if(!text||!('speechSynthesis'in window))return false;
-    try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.86;if(button)button.textContent='⏸️ جاري النطق...';u.onend=()=>{if(button)button.textContent='🔊 استمع للنطق';};u.onerror=()=>{if(button)button.textContent='🔊 استمع للنطق';};speechSynthesis.resume();speechSynthesis.speak(u);return true}catch(_){return false;}
-  }
-  async function playAudio(src,button){const text=getSpeakText(button);if(src){const audio=new Audio(src);try{if(button)button.textContent='⏸️ جاري التشغيل...';await audio.play();audio.addEventListener('ended',()=>{if(button)button.textContent='🔊 استمع للنطق';},{once:true});return}catch(_){}}if(!await speak(text,button)&&button)button.textContent='🔊 النطق غير متاح على هذا الجهاز';}
+  function getSpeakText(button){if(button.dataset.speakText||button.dataset.text)return button.dataset.speakText||button.dataset.text;const scope=button.closest('article,section,.card,.lesson-card,.conversation-line,.grammar-example,.vocab-card,.word')||button.parentElement;const fr=scope?.querySelector('[lang="fr"],[dir="ltr"],.fr,.lesson-fr,.fr-line,.grammar-example-fr');if(fr&&fr.textContent.trim())return fr.textContent.trim();return button.closest('[data-word]')?.dataset.word||''}
+  async function speak(text,button){if(window.HMSpeech?.speak)return !!(await window.HMSpeech.speak(text,{button}));if(!text||!('speechSynthesis'in window))return false;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.86;if(button)button.textContent='⏸️ جاري النطق...';u.onend=()=>{if(button)button.textContent='🔊 استمع للنطق'};u.onerror=()=>{if(button)button.textContent='🔊 استمع للنطق'};speechSynthesis.resume();speechSynthesis.speak(u);return true}catch(_){return false}}
+  async function playAudio(src,button){const text=getSpeakText(button);if(src){const audio=new Audio(src);try{if(button)button.textContent='⏸️ جاري التشغيل...';await audio.play();audio.addEventListener('ended',()=>{if(button)button.textContent='🔊 استمع للنطق'},{once:true});return}catch(_){}}if(!await speak(text,button)&&button)button.textContent='🔊 النطق غير متاح على هذا الجهاز'}
   document.addEventListener('click',e=>{const b=e.target.closest('[data-audio],[data-speak-text]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();playAudio(b.dataset.audio||b.dataset.audioSrc||'',b)},true);
   function loadProgress(cb){if(window.HMProgress){cb();return}const existing=document.querySelector('script[src*="learning-progress.js"]');if(existing){let n=0;const t=setInterval(()=>{if(window.HMProgress||++n>30){clearInterval(t);if(window.HMProgress)cb()}},50);return}const s=document.createElement('script');s.src='scripts/learning-progress.js?build=20260819-21';s.onload=()=>cb();document.head.appendChild(s)}
   function loadScript(src,marker,cb){if(!isGrade5Lesson()||document.querySelector('script['+marker+']')){if(cb)cb();return}const s=document.createElement('script');s.src=src;s.setAttribute(marker,'1');s.onload=()=>cb&&cb();document.head.appendChild(s)}
   function loadQualityGuard(){loadScript('scripts/grade5-quality-guard.js?build=20260819-22','data-hm-g5-quality')}
   function loadProgressBridge(){loadScript('scripts/grade5-progress-bridge.js?build=20260819-23','data-hm-g5-progress-bridge')}
-  function loadStudentLanguage(){loadScript('scripts/grade5-student-language.js?build=20260819-24','data-hm-g5-student-language')}
+  function loadStudentLanguage(){loadScript('scripts/grade5-student-language.js?build=20260819-25','data-hm-g5-student-language')}
   function syncCompletion(){if(!isGrade5Lesson())return;const id=new URLSearchParams(location.search).get('id');if(!id)return;loadProgress(()=>{window.HMProgress.startLesson(id);const legacy=localStorage.getItem('hm-g5-complete-'+id)==='true';if(legacy&&!window.HMProgress.get().completedLessons.includes(id))window.HMProgress.completeLesson(id,50);const done=window.HMProgress.get().completedLessons.includes(id);const msg=document.getElementById('completionMessage'),btn=document.getElementById('completeBtn');if(done){if(msg)msg.textContent='أحسنت! أتممت الدرس وحصلت على +50 XP.';if(btn){btn.textContent='✓ الدرس مكتمل';btn.disabled=true}}loadQualityGuard();loadProgressBridge();loadStudentLanguage()})}
   function completeGrade5(e){if(!isGrade5Lesson())return;const btn=e.target.closest('#completeBtn');if(!btn)return;const id=new URLSearchParams(location.search).get('id');if(!id)return;loadProgress(()=>{window.HMProgress.completeLesson(id,50);localStorage.setItem('hm-g5-complete-'+id,'true');const msg=document.getElementById('completionMessage');if(msg)msg.textContent='أحسنت! أتممت الدرس وحصلت على +50 XP.';btn.textContent='✓ تم إكمال الدرس';btn.disabled=true;loadQualityGuard();loadProgressBridge();loadStudentLanguage()})}
   document.addEventListener('click',completeGrade5,true);document.addEventListener('DOMContentLoaded',syncCompletion);window.addEventListener('load',syncCompletion);
