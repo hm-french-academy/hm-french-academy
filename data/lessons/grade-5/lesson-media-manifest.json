@@ -1,20 +1,20 @@
 {
   "grade":"primary-5",
   "term":"term-1",
-  "mediaPolicy":"auto-discover-video-from-lesson-package",
+  "mediaPolicy":"source-package-video-binding",
   "lessons":[
-    {"lessonId":"g5-t1-l01","sourceDir":"Lecon-01-La-phrase-simple","title":"La phrase simple"},
-    {"lessonId":"g5-t1-l02","sourceDir":"Lecon-02-Les-determinants","title":"Les déterminants"},
-    {"lessonId":"g5-t1-l03","sourceDir":"Lecon-03-Le-pluriel","title":"Le pluriel"},
-    {"lessonId":"g5-t1-l04","sourceDir":"Lecon-04-Les-nombres","title":"Les nombres"},
-    {"lessonId":"g5-t1-l05","sourceDir":"Lecon-05-L-heure","title":"L'heure"},
-    {"lessonId":"g5-t1-l06","sourceDir":"Lecon-06-Les-saisons","title":"Les quatre saisons"},
-    {"lessonId":"g5-t1-l07","sourceDir":"Lecon-07-Pronoms-et-Present","title":"Les pronoms et le présent"},
-    {"lessonId":"g5-t1-l08","sourceDir":"Lecon-08-Adjectifs-possessifs","title":"Les adjectifs possessifs"},
-    {"lessonId":"g5-t1-l09","sourceDir":"Lecon-09-Le-visage","title":"Le visage"},
-    {"lessonId":"g5-t1-l10","sourceDir":"Lecon-10-Fournitures-et-Fruits","title":"Fournitures scolaires et fruits"},
-    {"lessonId":"g5-t1-l11","sourceDir":"Lecon-11-Le-corps","title":"Le corps"}
+    {"lessonId":"g5-t1-l01","sourceDir":"Lecon-01-La-phrase-simple","title":"La phrase simple","videoId":"IUxs-B3wTuI","youtube":"https://www.youtube.com/embed/IUxs-B3wTuI","watch":"https://www.youtube.com/watch?v=IUxs-B3wTuI"},
+    {"lessonId":"g5-t1-l02","sourceDir":"Lecon-02-Les-determinants","title":"Les déterminants","videoId":"E9Srsa4AtmI","youtube":"https://www.youtube.com/embed/E9Srsa4AtmI","watch":"https://www.youtube.com/watch?v=E9Srsa4AtmI"},
+    {"lessonId":"g5-t1-l03","sourceDir":"Lecon-03-Le-pluriel","title":"Le pluriel","videoId":"5F-oqTRKT_0","youtube":"https://www.youtube.com/embed/5F-oqTRKT_0","watch":"https://www.youtube.com/watch?v=5F-oqTRKT_0"},
+    {"lessonId":"g5-t1-l04","sourceDir":"Lecon-04-Les-nombres","title":"Les nombres","videoId":"NmCize5EwbU","youtube":"https://www.youtube.com/embed/NmCize5EwbU","watch":"https://www.youtube.com/watch?v=NmCize5EwbU"},
+    {"lessonId":"g5-t1-l05","sourceDir":"Lecon-05-L-heure","title":"L'heure","videoId":"Um0pqGjnffM","youtube":"https://www.youtube.com/embed/Um0pqGjnffM","watch":"https://www.youtube.com/watch?v=Um0pqGjnffM"},
+    {"lessonId":"g5-t1-l06","sourceDir":"Lecon-06-Les-saisons","title":"Les quatre saisons","videoId":"n7XeCj_uvns","youtube":"https://www.youtube.com/embed/n7XeCj_uvns","watch":"https://www.youtube.com/watch?v=n7XeCj_uvns"},
+    {"lessonId":"g5-t1-l07","sourceDir":"Lecon-07-Pronoms-et-Present","title":"Les pronoms et le présent","videoId":"luyObngrtJg","youtube":"https://www.youtube.com/embed/luyObngrtJg","watch":"https://www.youtube.com/watch?v=luyObngrtJg"},
+    {"lessonId":"g5-t1-l08","sourceDir":"Lecon-08-Adjectifs-possessifs","title":"Les adjectifs possessifs","videoId":"krvpM6oefFA","youtube":"https://www.youtube.com/embed/krvpM6oefFA","watch":"https://www.youtube.com/watch?v=krvpM6oefFA"},
+    {"lessonId":"g5-t1-l09","sourceDir":"Lecon-09-Le-visage","title":"Le visage","videoId":"3wm14K_G0PA","youtube":"https://www.youtube.com/embed/3wm14K_G0PA","watch":"https://www.youtube.com/watch?v=3wm14K_G0PA"},
+    {"lessonId":"g5-t1-l10","sourceDir":"Lecon-10-Fournitures-et-Fruits","title":"Fournitures scolaires et fruits","videoId":"3XHR5JeHBa4","youtube":"https://www.youtube.com/embed/3XHR5JeHBa4","watch":"https://www.youtube.com/watch?v=3XHR5JeHBa4"},
+    {"lessonId":"g5-t1-l11","sourceDir":"Lecon-11-Le-corps","title":"Le corps","videoId":"d6r_bj0KapQ","youtube":"https://www.youtube.com/embed/d6r_bj0KapQ","watch":"https://www.youtube.com/watch?v=d6r_bj0KapQ"}
   ],
   "videoExtensions":[".mp4",".webm",".m4v",".mov"],
-  "notes":["The runtime discovers the actual video filename from each lesson package directory; no filename is hard-coded.","The binary video itself must exist in the repository/package directory for playback to be possible."]
+  "notes":["Video IDs were extracted from the original interactive lesson files in the supplied ZIP.","Premium Lesson Studio uses the original lesson video embed with a direct-watch fallback."]
 }
