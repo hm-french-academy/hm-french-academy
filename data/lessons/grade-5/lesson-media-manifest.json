@@ -1,0 +1,20 @@
+{
+  "grade":"primary-5",
+  "term":"term-1",
+  "mediaPolicy":"auto-discover-video-from-lesson-package",
+  "lessons":[
+    {"lessonId":"g5-t1-l01","sourceDir":"Lecon-01-La-phrase-simple","title":"La phrase simple"},
+    {"lessonId":"g5-t1-l02","sourceDir":"Lecon-02-Les-determinants","title":"Les déterminants"},
+    {"lessonId":"g5-t1-l03","sourceDir":"Lecon-03-Le-pluriel","title":"Le pluriel"},
+    {"lessonId":"g5-t1-l04","sourceDir":"Lecon-04-Les-nombres","title":"Les nombres"},
+    {"lessonId":"g5-t1-l05","sourceDir":"Lecon-05-L-heure","title":"L'heure"},
+    {"lessonId":"g5-t1-l06","sourceDir":"Lecon-06-Les-saisons","title":"Les quatre saisons"},
+    {"lessonId":"g5-t1-l07","sourceDir":"Lecon-07-Pronoms-et-Present","title":"Les pronoms et le présent"},
+    {"lessonId":"g5-t1-l08","sourceDir":"Lecon-08-Adjectifs-possessifs","title":"Les adjectifs possessifs"},
+    {"lessonId":"g5-t1-l09","sourceDir":"Lecon-09-Le-visage","title":"Le visage"},
+    {"lessonId":"g5-t1-l10","sourceDir":"Lecon-10-Fournitures-et-Fruits","title":"Fournitures scolaires et fruits"},
+    {"lessonId":"g5-t1-l11","sourceDir":"Lecon-11-Le-corps","title":"Le corps"}
+  ],
+  "videoExtensions":[".mp4",".webm",".m4v",".mov"],
+  "notes":["The runtime discovers the actual video filename from each lesson package directory; no filename is hard-coded.","The binary video itself must exist in the repository/package directory for playback to be possible."]
+}
