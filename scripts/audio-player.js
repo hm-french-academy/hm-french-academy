@@ -7,7 +7,6 @@
     if(fr&&fr.textContent.trim())return fr.textContent.trim();
     return button.closest('[data-word]')?.dataset.word||'';
   }
-
   async function speak(text,button){
     if(window.HMSpeech?.speak)return !!(await window.HMSpeech.speak(text,{button}));
     if(!text||!('speechSynthesis'in window))return false;
@@ -20,7 +19,6 @@
       window.speechSynthesis.resume();window.speechSynthesis.speak(u);return true;
     }catch(_){return false;}
   }
-
   async function playAudio(src,button){
     const text=getSpeakText(button);
     if(src){
@@ -34,30 +32,22 @@
     }
     if(!await speak(text,button)&&button)button.textContent='🔊 النطق غير متاح على هذا الجهاز';
   }
-
   document.addEventListener('click',event=>{
     const button=event.target.closest('[data-audio],[data-speak-text]');
     if(!button)return;
     playAudio(button.dataset.audio||button.dataset.audioSrc||'',button);
   });
-
-  // Grade 5 enrichment is loaded before grade5-lesson-runtime-v4.js.
-  // The runtime then consumes the enriched JSON response transparently.
   if(location.pathname.endsWith('/grade-5-lesson.html')||location.pathname.endsWith('grade-5-lesson.html')){
     const s=document.createElement('script');
     s.src='scripts/grade5-content-enricher.js?build=20260819-17';
     s.async=false;
     document.head.appendChild(s);
-
-    // Grade 5 uses its own page runtime, so explicitly load the shared
-    // progress store here and bridge the legacy completion key to HMProgress.
     const p=document.createElement('script');
-    p.src='scripts/learning-progress.js?build=20260819-18';
+    p.src='scripts/learning-progress.js?build=20260819-19';
     p.async=false;
     document.head.appendChild(p);
-
     const bridge=document.createElement('script');
-    bridge.src='scripts/grade5-progress-bridge.js?build=20260819-1';
+    bridge.src='scripts/grade5-progress-bridge.js?build=20260819-3';
     bridge.async=false;
     document.head.appendChild(bridge);
   }
