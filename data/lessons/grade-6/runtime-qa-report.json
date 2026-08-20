@@ -1,0 +1,14 @@
+{
+  "grade": "primary-6",
+  "semester": "term-1",
+  "status": "PASS",
+  "runtime": "lesson.html",
+  "lessons": 8,
+  "checks": {
+    "sourceBinding": "PASS",
+    "runtimeManifest": "PASS",
+    "canonicalRuntime": "PASS",
+    "routes": "PASS"
+  },
+  "generatedAt": "2026-08-20T18:16:01.105Z"
+}
