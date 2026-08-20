@@ -11,8 +11,7 @@ function run(){
   while((n=walker.nextNode()))nodes.push(n);
   nodes.forEach(t=>{
     if(t.parentElement?.closest(skip))return;
-    if(t.__hmPlatformOriginal===undefined)t.__hmPlatformOriginal=t.nodeValue;
-    const source=t.__hmPlatformOriginal;
+    const source=t.__hmI18nOriginal ?? (t.__hmPlatformOriginal ?? (t.__hmPlatformOriginal=t.nodeValue));
     if(source&&source.trim())t.nodeValue=lang==='ar'?source:window.HMTranslate(source);
   });
   document.body.querySelectorAll('[title],[placeholder],[aria-label]').forEach(el=>{
