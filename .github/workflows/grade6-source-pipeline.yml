@@ -1,0 +1,44 @@
+name: Grade 6 Source Pipeline
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-6/6eme_Complet.zip'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ingest-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original ZIP
+        run: |
+          test -s data/lessons/grade-6/6eme_Complet.zip
+          file data/lessons/grade-6/6eme_Complet.zip
+          unzip -t data/lessons/grade-6/6eme_Complet.zip
+      - name: Ingest package
+        run: |
+          rm -rf data/lessons/grade-6/source
+          mkdir -p data/lessons/grade-6/source
+          unzip -q -o data/lessons/grade-6/6eme_Complet.zip -d data/lessons/grade-6/source
+      - name: Validate package inventory and produce manifest
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path');
+          const root='data/lessons/grade-6/source';
+          const files=[]; const walk=d=>fs.readdirSync(d,{withFileTypes:true}).forEach(e=>{const p=path.join(d,e.name);e.isDirectory()?walk(p):files.push(p)}); walk(root);
+          const rel=files.map(x=>x.slice(root.length+1));
+          const ext={}; for(const f of rel){const e=path.extname(f).toLowerCase()||'[none]';ext[e]=(ext[e]||0)+1}
+          const dirs=[...new Set(rel.map(f=>f.split('/').slice(0,-1).join('/')).filter(Boolean))];
+          const report={grade:'primary-6',package:'6eme_Complet.zip',status:'ingested',totalFiles:files.length,extensions:ext,directories:dirs,generatedAt:new Date().toISOString()};
+          fs.writeFileSync('data/lessons/grade-6/source-inventory.json',JSON.stringify(report,null,2)+'\n');
+          NODE
+      - name: Commit ingestion inventory
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-6/source-inventory.json data/lessons/grade-6/source
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat(grade6): ingest and inventory original source package'
+          git push
