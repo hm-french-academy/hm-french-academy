@@ -1,0 +1,51 @@
+name: Grade 5 Release Pipeline
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-5/**'
+      - 'data/curricula/grade-5-french-semester-1.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate-bind-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate original package
+        run: |
+          test -s data/lessons/grade-5/Cours-Francais-5eme-Primaire-Complet.zip
+          unzip -t data/lessons/grade-5/Cours-Francais-5eme-Primaire-Complet.zip
+      - name: Validate curriculum registry
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const j=JSON.parse(fs.readFileSync('data/curricula/grade-5-french-semester-1.json','utf8'));
+          if(j.grade!=='primary-5'||j.semester!=='term-1'||j.lessonCount!==j.lessons.length) process.exit(1);
+          if(new Set(j.lessons.map(x=>x.id)).size!==j.lessons.length) process.exit(1);
+          if(!j.lessonPackage||j.lessonPackage.requiredFiles.length!==4) process.exit(1);
+          console.log(`Validated ${j.lessonCount} lessons`);
+          NODE
+      - name: Binding manifest
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const c=JSON.parse(fs.readFileSync('data/curricula/grade-5-french-semester-1.json','utf8'));
+          const m={program:'le-francais-pour-vous',grade:c.grade,semester:c.semester,status:'bound',lessonCount:c.lessonCount,lessonIds:c.lessons.map(x=>x.id),requiredFiles:c.lessonPackage.requiredFiles,finalExam:c.lessonPackage.finalExam,generatedAt:new Date().toISOString()};
+          fs.writeFileSync('data/lessons/grade-5/binding-manifest.json',JSON.stringify(m,null,2)+'\n');
+          NODE
+      - name: QA report
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const b=JSON.parse(fs.readFileSync('data/lessons/grade-5/binding-manifest.json','utf8')); const checks={package:'PASS',registry:'PASS',lessonIds:b.lessonCount===b.lessonIds.length?'PASS':'FAIL',requiredFiles:b.requiredFiles.length===4?'PASS':'FAIL',finalExam:b.finalExam?'PASS':'FAIL'}; const status=Object.values(checks).every(x=>x==='PASS')?'PASS':'FAIL'; fs.writeFileSync('data/lessons/grade-5/qa-report.json',JSON.stringify({grade:b.grade,semester:b.semester,status,checks,generatedAt:new Date().toISOString()},null,2)+'\n'); if(status!=='PASS') process.exit(1);
+          NODE
+      - name: Mark term ready
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const p='data/curricula/grade-5-french-semester-1.json'; const j=JSON.parse(fs.readFileSync(p,'utf8')); j.status='validated-and-bound'; fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n');
+          NODE
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-5/binding-manifest.json data/lessons/grade-5/qa-report.json data/curricula/grade-5-french-semester-1.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'release(grade5): validate bind and QA first semester'
+          git push
