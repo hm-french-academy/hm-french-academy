@@ -10,10 +10,12 @@ let failures = 0;
 const registry = readJson('data/lessons/grade-5/lesson-registry.json');
 const media = readJson('data/lessons/grade-5/media-index.json');
 const content = readJson('data/lessons/grade-5/lesson-studio-content.json');
+const curriculum = readJson('data/curricula/grade-5-french-semester-1.json');
 const lessons = registry.includedUnits?.flatMap(u => u.lessons || []) || [];
 
 if (registry.grade !== 'primary-5') fail('registry grade is not primary-5');
 if (lessons.length !== 11) fail(`expected 11 lessons, found ${lessons.length}`);
+if (curriculum.lessonCount !== 11 || curriculum.lessons?.length !== 11) fail('curriculum registry is not 11 lessons');
 if (media.videoCount !== 11 || media.readyVideos !== 11 || media.complete !== true) fail('media release is not complete 11/11');
 if (!exists('grade-5-lesson-v3.html')) fail('Grade 5 Lesson Studio entry page missing');
 if (!exists('scripts/grade5-premium-engine-v6.js')) fail('Premium engine missing');
@@ -25,6 +27,14 @@ const requiredGames = [
   'grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html'
 ];
 for (const file of requiredGames) if (!exists(`data/lessons/grade-5/${file}`)) fail(`missing game: ${file}`);
+
+const requiredPackage = [
+  '01-interactif.html','02-reference-imprimable.docx',
+  '03-evaluation-a-imprimer.docx','04-examen-electronique.html'
+];
+const registeredPackage = registry.packageSchema || curriculum.lessonPackage?.requiredFiles || [];
+if (requiredPackage.some(f => !registeredPackage.includes(f))) fail('lesson package schema is incomplete');
+if (!registry.finalExamRegistered) fail('final exam is not registered in release metadata');
 
 for (const lesson of lessons) {
   const d = content.lessons?.[lesson.id];
@@ -47,6 +57,6 @@ for (const needle of [
 ]) if (!html.includes(needle)) fail(`Lesson Studio missing pinned runtime: ${needle}`);
 if (!html.includes('grade5-games.html?v=20260820-144')) fail('Games route is not pinned to release 144');
 
-console.log(`Grade 5 release QA: ${lessons.length} lessons, ${media.readyVideos}/${media.videoCount} videos, ${requiredGames.length} games`);
+console.log(`Grade 5 release QA: ${lessons.length} lessons, ${media.readyVideos}/${media.videoCount} videos, ${requiredGames.length} games, package schema ${requiredPackage.length}/4`);
 if (failures) { console.error(`Grade 5 release QA failed with ${failures} issue(s).`); process.exit(1); }
 console.log('Grade 5 release QA PASSED.');
