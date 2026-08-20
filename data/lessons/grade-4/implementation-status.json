@@ -1,0 +1,7 @@
+{
+  "grade":"primary-4",
+  "completed":["source-audit","content-audit","runtime-manifest","route-map","ingestion-plan","media-plan","games-plan","progress-plan","qa-matrix"],
+  "blocked":["repository-ingestion","media-binding","games-binding","progress-binding","final-qa","release"],
+  "reason":"The original binary source package is verified in the file library but is not yet committed as repository assets.",
+  "nextExecution":"ingest original 28 source files, then bind runtime integrations and execute final QA."
+}
