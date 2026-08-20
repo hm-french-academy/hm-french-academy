@@ -2,8 +2,10 @@ name: Grade 5 Premium Release QA
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - 'data/lessons/grade-5/**'
+      - 'data/curricula/grade-5-french-semester-1.json'
       - 'grade-5-lesson-v3.html'
       - 'scripts/grade5-*.js'
       - 'scripts/grade5-*.mjs'
