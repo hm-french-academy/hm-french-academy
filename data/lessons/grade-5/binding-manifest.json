@@ -1,0 +1,28 @@
+{
+  "program": "le-francais-pour-vous",
+  "grade": "primary-5",
+  "semester": "term-1",
+  "status": "bound",
+  "lessonCount": 11,
+  "lessonIds": [
+    "g5-t1-l01",
+    "g5-t1-l02",
+    "g5-t1-l03",
+    "g5-t1-l04",
+    "g5-t1-l05",
+    "g5-t1-l06",
+    "g5-t1-l07",
+    "g5-t1-l08",
+    "g5-t1-l09",
+    "g5-t1-l10",
+    "g5-t1-l11"
+  ],
+  "requiredFiles": [
+    "01-interactif.html",
+    "02-reference-imprimable.docx",
+    "03-evaluation-a-imprimer.docx",
+    "04-examen-electronique.html"
+  ],
+  "finalExam": "Examen-Final-Semestriel/Examen-Final-Toutes-Lecons.docx",
+  "generatedAt": "2026-08-20T16:49:12.624Z"
+}

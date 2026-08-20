@@ -1,0 +1,13 @@
+{
+  "grade": "primary-5",
+  "semester": "term-1",
+  "status": "PASS",
+  "checks": {
+    "package": "PASS",
+    "registry": "PASS",
+    "lessonIds": "PASS",
+    "requiredFiles": "PASS",
+    "finalExam": "PASS"
+  },
+  "generatedAt": "2026-08-20T16:49:12.779Z"
+}

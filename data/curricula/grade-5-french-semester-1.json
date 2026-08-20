@@ -1,23 +1,134 @@
 {
-  "id":"grade-5-french-semester-1",
-  "grade":"primary-5",
-  "semester":"term-1",
-  "title":{"ar":"الصف الخامس الابتدائي — اللغة الفرنسية","fr":"5ème primaire — Français","en":"Grade 5 Primary — French"},
-  "source":"Cours-Francais-5eme-Primaire-Complet.zip",
-  "status":"ready-for-academic-review",
-  "lessonCount":11,
-  "lessons":[
-    {"id":"g5-t1-l01","number":1,"title":{"ar":"الجملة البسيطة","fr":"La phrase simple","en":"The Simple Sentence"},"sourceDir":"Lecon-01-La-phrase-simple"},
-    {"id":"g5-t1-l02","number":2,"title":{"ar":"أدوات التعريف والتنكير","fr":"Les déterminants","en":"Determiners"},"sourceDir":"Lecon-02-Les-determinants"},
-    {"id":"g5-t1-l03","number":3,"title":{"ar":"صيغة الجمع","fr":"Le pluriel","en":"The Plural"},"sourceDir":"Lecon-03-Le-pluriel"},
-    {"id":"g5-t1-l04","number":4,"title":{"ar":"الأرقام","fr":"Les nombres","en":"Numbers"},"sourceDir":"Lecon-04-Les-nombres"},
-    {"id":"g5-t1-l05","number":5,"title":{"ar":"الساعة","fr":"L'heure","en":"Telling the Time"},"sourceDir":"Lecon-05-L-heure"},
-    {"id":"g5-t1-l06","number":6,"title":{"ar":"الفصول الأربعة","fr":"Les quatre saisons","en":"The Four Seasons"},"sourceDir":"Lecon-06-Les-saisons"},
-    {"id":"g5-t1-l07","number":7,"title":{"ar":"الضمائر والفعل في المضارع","fr":"Les pronoms et le présent","en":"Pronouns and Present Tense"},"sourceDir":"Lecon-07-Pronoms-et-Present"},
-    {"id":"g5-t1-l08","number":8,"title":{"ar":"الصفات الملكية","fr":"Les adjectifs possessifs","en":"Possessive Adjectives"},"sourceDir":"Lecon-08-Adjectifs-possessifs"},
-    {"id":"g5-t1-l09","number":9,"title":{"ar":"الوجه","fr":"Le visage","en":"The Face"},"sourceDir":"Lecon-09-Le-visage"},
-    {"id":"g5-t1-l10","number":10,"title":{"ar":"اللوازم المدرسية والفواكه","fr":"Fournitures scolaires et fruits","en":"School Supplies and Fruits"},"sourceDir":"Lecon-10-Fournitures-et-Fruits"},
-    {"id":"g5-t1-l11","number":11,"title":{"ar":"الجسم","fr":"Le corps","en":"The Body"},"sourceDir":"Lecon-11-Le-corps"}
+  "id": "grade-5-french-semester-1",
+  "grade": "primary-5",
+  "semester": "term-1",
+  "title": {
+    "ar": "الصف الخامس الابتدائي — اللغة الفرنسية",
+    "fr": "5ème primaire — Français",
+    "en": "Grade 5 Primary — French"
+  },
+  "source": "Cours-Francais-5eme-Primaire-Complet.zip",
+  "status": "validated-and-bound",
+  "lessonCount": 11,
+  "lessons": [
+    {
+      "id": "g5-t1-l01",
+      "number": 1,
+      "title": {
+        "ar": "الجملة البسيطة",
+        "fr": "La phrase simple",
+        "en": "The Simple Sentence"
+      },
+      "sourceDir": "Lecon-01-La-phrase-simple"
+    },
+    {
+      "id": "g5-t1-l02",
+      "number": 2,
+      "title": {
+        "ar": "أدوات التعريف والتنكير",
+        "fr": "Les déterminants",
+        "en": "Determiners"
+      },
+      "sourceDir": "Lecon-02-Les-determinants"
+    },
+    {
+      "id": "g5-t1-l03",
+      "number": 3,
+      "title": {
+        "ar": "صيغة الجمع",
+        "fr": "Le pluriel",
+        "en": "The Plural"
+      },
+      "sourceDir": "Lecon-03-Le-pluriel"
+    },
+    {
+      "id": "g5-t1-l04",
+      "number": 4,
+      "title": {
+        "ar": "الأرقام",
+        "fr": "Les nombres",
+        "en": "Numbers"
+      },
+      "sourceDir": "Lecon-04-Les-nombres"
+    },
+    {
+      "id": "g5-t1-l05",
+      "number": 5,
+      "title": {
+        "ar": "الساعة",
+        "fr": "L'heure",
+        "en": "Telling the Time"
+      },
+      "sourceDir": "Lecon-05-L-heure"
+    },
+    {
+      "id": "g5-t1-l06",
+      "number": 6,
+      "title": {
+        "ar": "الفصول الأربعة",
+        "fr": "Les quatre saisons",
+        "en": "The Four Seasons"
+      },
+      "sourceDir": "Lecon-06-Les-saisons"
+    },
+    {
+      "id": "g5-t1-l07",
+      "number": 7,
+      "title": {
+        "ar": "الضمائر والفعل في المضارع",
+        "fr": "Les pronoms et le présent",
+        "en": "Pronouns and Present Tense"
+      },
+      "sourceDir": "Lecon-07-Pronoms-et-Present"
+    },
+    {
+      "id": "g5-t1-l08",
+      "number": 8,
+      "title": {
+        "ar": "الصفات الملكية",
+        "fr": "Les adjectifs possessifs",
+        "en": "Possessive Adjectives"
+      },
+      "sourceDir": "Lecon-08-Adjectifs-possessifs"
+    },
+    {
+      "id": "g5-t1-l09",
+      "number": 9,
+      "title": {
+        "ar": "الوجه",
+        "fr": "Le visage",
+        "en": "The Face"
+      },
+      "sourceDir": "Lecon-09-Le-visage"
+    },
+    {
+      "id": "g5-t1-l10",
+      "number": 10,
+      "title": {
+        "ar": "اللوازم المدرسية والفواكه",
+        "fr": "Fournitures scolaires et fruits",
+        "en": "School Supplies and Fruits"
+      },
+      "sourceDir": "Lecon-10-Fournitures-et-Fruits"
+    },
+    {
+      "id": "g5-t1-l11",
+      "number": 11,
+      "title": {
+        "ar": "الجسم",
+        "fr": "Le corps",
+        "en": "The Body"
+      },
+      "sourceDir": "Lecon-11-Le-corps"
+    }
   ],
-  "lessonPackage":{"requiredFiles":["01-interactif.html","02-reference-imprimable.docx","03-evaluation-a-imprimer.docx","04-examen-electronique.html"],"finalExam":"Examen-Final-Semestriel/Examen-Final-Toutes-Lecons.docx"}
+  "lessonPackage": {
+    "requiredFiles": [
+      "01-interactif.html",
+      "02-reference-imprimable.docx",
+      "03-evaluation-a-imprimer.docx",
+      "04-examen-electronique.html"
+    ],
+    "finalExam": "Examen-Final-Semestriel/Examen-Final-Toutes-Lecons.docx"
+  }
 }
