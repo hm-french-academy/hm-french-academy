@@ -12,13 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Grade 4 release manifests
+      - name: Validate Grade 4 release manifests and source binding
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const files=['release-manifest.json','source-package-manifest.json','source-content-audit.json','content-adapter-manifest.json','premium-runtime-manifest.json','premium-route-map.json','media-plan.json','games-plan.json','progress-plan.json','qa-matrix.json'];
-          for (const f of files) { if (!fs.existsSync('data/lessons/grade-4/'+f)) throw new Error('Missing '+f); }
-          const a=JSON.parse(fs.readFileSync('data/lessons/grade-4/source-content-audit.json'));
-          if(a.lessonCount!==7 || a.fileCount!==28) throw new Error('Invalid source counts');
-          console.log('Grade 4 manifest QA passed: 7 lessons / 28 source files.');
+          const base='data/lessons/grade-4/';
+          const files=['release-manifest.json','source-package-manifest.json','source-content-audit.json','content-adapter-manifest.json','premium-runtime-manifest.json','premium-route-map.json','media-plan.json','games-plan.json','progress-plan.json','qa-matrix.json','validation-report.json','source-binding-manifest.json'];
+          for (const f of files) if (!fs.existsSync(base+f)) throw new Error('Missing '+f);
+          const audit=JSON.parse(fs.readFileSync(base+'source-content-audit.json'));
+          if(audit.lessonCount!==7 || audit.fileCount!==28) throw new Error('Invalid audit counts');
+          const binding=JSON.parse(fs.readFileSync(base+'source-binding-manifest.json'));
+          if(binding.bindings.length!==7 || binding.assetContract.totalFiles!==28) throw new Error('Invalid binding contract');
+          let count=0, html=0, docx=0;
+          function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())walk(p);else{count++;if(p.endsWith('.html'))html++;if(p.endsWith('.docx'))docx++;}}}
+          walk(base+'source/4eme_Complet');
+          if(count!==28 || html!==14 || docx!==14) throw new Error(`Invalid repository source tree: ${count}/${html}/${docx}`);
+          console.log('Grade 4 Final QA source gate passed: 7 lessons / 28 assets / 14 HTML / 14 DOCX.');
           NODE
