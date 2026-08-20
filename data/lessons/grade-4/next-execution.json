@@ -1,0 +1,7 @@
+{
+  "sequence":["repositoryIngestion","mediaBinding","gamesBinding","progressBinding","finalQa","release"],
+  "current":"repositoryIngestion",
+  "doNotSkip":true,
+  "doNotFabricateBinaryAssets":true,
+  "afterIngestion":"run premium runtime audit, bind media/games/progress, execute final QA"
+}
