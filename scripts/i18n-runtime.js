@@ -76,10 +76,9 @@
     if(node.closest('[data-no-i18n]')) return;
 
     const key=node.dataset?.i18n;
-    if(key){
-      const source=key;
-      const next=window.HMLanguage==='ar' ? (dictionary[source]||languageData[source]||source) : (languageData[source]||dictionary[source]||node.textContent);
-      if(node.childElementCount===0 && next!==node.textContent) node.textContent=next;
+    if(key && window.HMLanguage!=='ar'){
+      const next=languageData[key]||dictionary[key];
+      if(next && node.childElementCount===0 && next!==node.textContent) node.textContent=next;
     }
 
     let sources=attrSources.get(node);
