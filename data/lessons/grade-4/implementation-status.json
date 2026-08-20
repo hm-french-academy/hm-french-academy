@@ -2,7 +2,7 @@
   "grade":"primary-4",
   "completed":["source-audit","content-audit","runtime-manifest","route-map","ingestion-plan","repository-ingestion","source-validation","source-binding","media-plan","media-binding","games-plan","games-binding","progress-plan","progress-binding","qa-matrix","final-qa-workflow"],
   "blocked":["final-qa","release"],
-  "reason":"All 28 original source assets are ingested and validated; canonical lesson, media fallback, game-mode and progress runtime bindings are now committed. Final QA is running through the repository workflow and release remains gated until its result is confirmed.",
+  "reason":"All 28 original source assets are ingested and validated; canonical lesson, media fallback, game-mode and progress runtime bindings are committed. Final QA is being re-evaluated by the repository workflow; release remains gated until the workflow result is green.",
   "evidence":["validation-report.json","source-binding-manifest.json","media-binding-manifest.json","games-binding-manifest.json","progress-binding-manifest.json",".github/workflows/grade4-final-qa.yml"],
-  "nextExecution":"confirm Final QA workflow result; if green, update release gate and close Grade 4, then continue Grade 5."
+  "nextExecution":"Final QA workflow result -> automatic release gate -> Grade 5 preflight."
 }
