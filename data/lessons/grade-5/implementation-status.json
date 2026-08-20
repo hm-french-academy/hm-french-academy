@@ -1,10 +1,22 @@
 {
-  "grade":"primary-5",
-  "term":"term-1",
-  "lessonCount":11,
-  "completed":["curriculum-registry","content-baseline","lesson-studio-baseline","media-manifest","games-baseline","progress-baseline","post-grade4-preflight"],
-  "blocked":["source-package-ingestion","source-validation","source-binding","media-binding","games-binding","progress-binding","final-qa","release"],
-  "reason":"Grade 4 is released. Grade 5 baseline and 11-lesson registry are verified. The remaining implementation requires the original Grade 5 source package; no original 5eme source ZIP is currently present in the repository or available in the Library search.",
-  "evidence":["lesson-registry.json","full-course-content.json","lesson-media-manifest.json","grade5-game-bank.js","grade5-games.html"],
-  "nextExecution":"When the original Grade 5 source package is present: ingest -> validate 11 x 4 source assets -> canonical binding -> media/games/progress binding -> Final QA -> release."
+  "grade": "primary-5",
+  "term": "term-1",
+  "lessonCount": 11,
+  "completed": [
+    "curriculum-registry",
+    "content-baseline",
+    "lesson-studio-baseline",
+    "media-manifest",
+    "games-baseline",
+    "progress-baseline"
+  ],
+  "blocked": [
+    "source-package-ingestion",
+    "source-validation",
+    "source-binding",
+    "final-qa",
+    "release"
+  ],
+  "reason": "Grade 4 released; Grade 5 baseline verified. Original source package ingestion is next.",
+  "nextExecution": "Ingest original Grade 5 source package, validate, bind 11 lessons, then Final QA."
 }
