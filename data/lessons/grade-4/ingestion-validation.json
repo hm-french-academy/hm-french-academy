@@ -1,0 +1,8 @@
+{
+  "grade":"primary-4",
+  "expectedLessons":7,
+  "expectedFiles":28,
+  "requiredPerLesson":["interactive","reference","evaluation","electronicExam"],
+  "status":"blocked-until-binary-upload",
+  "releaseGate":"repositoryIngestion"
+}
