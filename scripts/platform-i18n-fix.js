@@ -1,38 +1,18 @@
-/* HM Academy — platform i18n bridge v4
- * Performance-first bridge: translates only initial UI once and newly-added UI nodes.
+/* HM Academy — platform i18n bridge v4.1
+ * Performance-first UI localization. One initial pass + added nodes only.
  */
 (function(){
 'use strict';
-let timer=0,booted=false;
 const skip='.lesson-content,.lesson-body,[data-lesson-content],.lesson-vocab,.lesson-reference,.lesson-assessment,.vocabulary-content,[data-no-i18n]';
-function translateNode(node,lang){
-  if(!node||node.nodeType!==Node.ELEMENT_NODE)return;
-  if(node.matches(skip)||node.closest(skip))return;
-  const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);let n;
-  while((n=walker.nextNode())){
-    const p=n.parentElement;if(!p||p.closest(skip))continue;
-    const source=n.__hmPlatformOriginal ?? (n.__hmI18nOriginal ?? (n.__hmPlatformOriginal=n.nodeValue));
-    if(source&&source.trim())n.nodeValue=lang==='ar'?source:(window.HMTranslate?.(source)||source);
-  }
-  node.querySelectorAll('[title],[placeholder],[aria-label]').forEach(el=>{
-    if(el.closest(skip))return;
-    ['title','placeholder','aria-label'].forEach(a=>{
-      if(!el.hasAttribute(a))return;
-      const k='hmPlatformOriginal_'+a;
-      if(el.dataset[k]===undefined)el.dataset[k]=el.getAttribute(a);
-      const source=el.dataset[k];el.setAttribute(a,lang==='ar'?source:(window.HMTranslate?.(source)||source));
-    });
-  });
-}
-function run(){timer=0;if(!document.body)return;const lang=window.HMLanguage?.get?.()||document.documentElement.lang||'ar';if(!booted){booted=true;translateNode(document.body,lang);return;}}
-function schedule(){if(timer)return;timer=setTimeout(run,180);}
-window.addEventListener('hm:languagechange',()=>{booted=false;schedule();});
-window.addEventListener('hm:language-changed',()=>{booted=false;schedule();});
+const HOME={
+ fr:{'تعليم اللغة الفرنسية':'Enseignement du français','رحلة تعلّم متكاملة':'Parcours d’apprentissage intégré','تعلّم الفرنسية بطريقة أذكى':'Apprenez le français plus intelligemment','منصة تعليمية متكاملة تجمع المناهج المدرسية ومسارات اللغة الدولية والتعلّم التفاعلي.':'Une plateforme complète réunissant les programmes scolaires, les parcours internationaux et l’apprentissage interactif.','ابدأ من منطقة الطالب':'Commencer dans l’espace élève','استكشف المناهج':'Découvrir les programmes','استكشف الكورسات':'Explorer les cours','خريطة المنصة':'Carte de la plateforme','ابحث داخل HM Academy':'Rechercher dans HM Academy','ابحث عن درس أو كلمة أو مورد بسرعة.':'Trouvez rapidement une leçon, un mot ou une ressource.','بحث / Rechercher':'Rechercher','فهرس المنصة':'Index de la plateforme','نقطة وصول سريعة لأهم أجزاء الرحلة.':'Accès rapide aux étapes essentielles du parcours.','المناهج':'Programmes','مستويات اللغة':'Niveaux de langue','الكورسات':'Cours','الصوتيات':'Phonétique','المكتبة':'Bibliothèque','القاموس':'Dictionnaire','تقدمي':'Ma progression','إنجازاتي':'Mes réussites','ملفي':'Mon profil','التقييم':'Évaluation','قاموس HM الذكي':'Dictionnaire HM intelligent','خريطة رحلة التعلّم':'Carte du parcours d’apprentissage','الكورسات المتخصصة':'Cours spécialisés','افتح القاموس ←':'Ouvrir le dictionnaire ←','استكشف الخريطة ←':'Explorer la carte ←','استكشف الكورسات ←':'Explorer les cours ←'},
+ en:{'تعليم اللغة الفرنسية':'French Language Education','رحلة تعلّم متكاملة':'Integrated Learning Journey','تعلّم الفرنسية بطريقة أذكى':'Learn French More Intelligently','منصة تعليمية متكاملة تجمع المناهج المدرسية ومسارات اللغة الدولية والتعلّم التفاعلي.':'A complete platform combining school programs, international language paths, and interactive learning.','ابدأ من منطقة الطالب':'Start in Student Space','استكشف المناهج':'Explore Programs','استكشف الكورسات':'Explore Courses','خريطة المنصة':'Platform Map','ابحث داخل HM Academy':'Search HM Academy','ابحث عن درس أو كلمة أو مورد بسرعة.':'Quickly find a lesson, word, or resource.','بحث / Rechercher':'Search','فهرس المنصة':'Platform Index','نقطة وصول سريعة لأهم أجزاء الرحلة.':'Quick access to the essential parts of your journey.','المناهج':'Programs','مستويات اللغة':'Language Levels','الكورسات':'Courses','الصوتيات':'Phonetics','المكتبة':'Library','القاموس':'Dictionary','تقدمي':'My Progress','إنجازاتي':'My Achievements','ملفي':'My Profile','التقييم':'Assessment','قاموس HM الذكي':'HM Smart Dictionary','خريطة رحلة التعلّم':'Learning Journey Map','الكورسات المتخصصة':'Specialized Courses','افتح القاموس ←':'Open Dictionary ←','استكشف الخريطة ←':'Explore Map ←','استكشف الكورسات ←':'Explore Courses ←'}
+};
+let timer=0;
+function tr(s,lang){const raw=String(s??''),k=raw.replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();return HOME[lang]?.[k]||window.HMTranslate?.(raw)||raw;}
+function translateNode(node,lang){if(!node||node.nodeType!==1||node.matches(skip)||node.closest(skip))return;const w=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);const nodes=[];let n;while((n=w.nextNode()))nodes.push(n);for(const x of nodes){const p=x.parentElement;if(!p||p.closest(skip)||['SCRIPT','STYLE','NOSCRIPT','TEMPLATE'].includes(p.tagName))continue;if(x.__hmPlatformOriginal===undefined)x.__hmPlatformOriginal=x.nodeValue;const s=x.__hmPlatformOriginal;if(s?.trim())x.nodeValue=lang==='ar'?s:tr(s,lang);}node.querySelectorAll('[title],[placeholder],[aria-label]').forEach(el=>{if(el.closest(skip))return;for(const a of ['title','placeholder','aria-label']){if(!el.hasAttribute(a))continue;const k='hmPlatformOriginal_'+a;if(el.dataset[k]===undefined)el.dataset[k]=el.getAttribute(a);const s=el.dataset[k];el.setAttribute(a,lang==='ar'?s:tr(s,lang));}});}
+function schedule(){if(timer)return;timer=setTimeout(()=>{timer=0;translateNode(document.body,window.HMLanguage?.get?.()||document.documentElement.lang||'ar');},120);}
+window.addEventListener('hm:languagechange',schedule);window.addEventListener('hm:language-changed',schedule);
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
-new MutationObserver(mutations=>{
-  if(timer)return;
-  const added=[];for(const m of mutations)for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE)added.push(n);
-  if(!added.length)return;
-  timer=setTimeout(()=>{timer=0;const lang=window.HMLanguage?.get?.()||document.documentElement.lang||'ar';for(const n of added)translateNode(n,lang);},180);
-}).observe(document.documentElement,{subtree:true,childList:true});
+new MutationObserver(ms=>{if(timer)return;const nodes=[];for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===1)nodes.push(n);if(!nodes.length)return;timer=setTimeout(()=>{timer=0;const l=window.HMLanguage?.get?.()||document.documentElement.lang||'ar';nodes.forEach(n=>translateNode(n,l));},160);}).observe(document.documentElement,{subtree:true,childList:true});
 })();
