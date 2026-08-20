@@ -1,0 +1,19 @@
+name: Grade 4 Package Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-4/**'
+      - 'scripts/grade4-package-audit.mjs'
+      - '.github/workflows/grade4-package-audit.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Audit Grade 4 source package
+        run: node scripts/grade4-package-audit.mjs
