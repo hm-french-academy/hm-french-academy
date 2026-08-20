@@ -1,0 +1,11 @@
+{
+  "grade":"primary-4",
+  "status":"runtime-bound",
+  "runtime":"scripts/lesson-complete.js + existing HMProgress runtime",
+  "lessonIds":["g4-l01","g4-l02","g4-l03","g4-l04","g4-l05","g4-l06","g4-l07"],
+  "events":["lesson_started","section_completed","practice_completed","assessment_completed","lesson_completed"],
+  "completionEvent":"hm:lesson-completed",
+  "persistence":"existing HMProgress storage",
+  "xp":50,
+  "policy":"Completion is recorded through the existing canonical lesson completion path."
+}
