@@ -1,10 +1,11 @@
 {
   "grade":"primary-4",
-  "status":"awaiting-original-binary-assets",
+  "status":"repository-ingested-and-validated",
   "root":"data/lessons/grade-4/source/4eme_Complet",
   "expected":28,
+  "verified":28,
   "lessons":7,
   "requiredExtensions":{"html":14,"docx":14},
-  "verification":"asset-contract.json + SOURCE-PACKAGE.sha256 + grade4-ingest-source-package.mjs",
-  "nextGate":"repositoryIngestion"
+  "verification":"validation-report.json + source-package-manifest.json + repository source tree",
+  "nextGate":"binding-and-final-qa"
 }
