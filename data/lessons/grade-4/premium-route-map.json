@@ -1,0 +1,15 @@
+{
+  "grade":"primary-4",
+  "runtime":"premium-runtime-manifest.json",
+  "lessons":{
+    "g4-l01":"lesson.html?id=g4-l01",
+    "g4-l02":"lesson.html?id=g4-l02",
+    "g4-l03":"lesson.html?id=g4-l03",
+    "g4-l04":"lesson.html?id=g4-l04",
+    "g4-l05":"lesson.html?id=g4-l05",
+    "g4-l06":"lesson.html?id=g4-l06",
+    "g4-l07":"lesson.html?id=g4-l07"
+  },
+  "fallback":"grade-4-lesson-v3.html",
+  "policy":"Routes are canonical lesson.html?id=...; fallback is only for legacy compatibility."
+}
