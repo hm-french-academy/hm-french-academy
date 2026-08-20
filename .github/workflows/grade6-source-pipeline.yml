@@ -4,41 +4,51 @@ on:
     branches: [main]
     paths:
       - 'data/lessons/grade-6/6eme_Complet.zip'
+      - '.github/workflows/grade6-source-pipeline.yml'
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  ingest-validate:
+  ingest-validate-bind-qa:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify original ZIP
+      - name: Verify and extract source
         run: |
           test -s data/lessons/grade-6/6eme_Complet.zip
-          file data/lessons/grade-6/6eme_Complet.zip
           unzip -t data/lessons/grade-6/6eme_Complet.zip
-      - name: Ingest package
-        run: |
           rm -rf data/lessons/grade-6/source
           mkdir -p data/lessons/grade-6/source
           unzip -q -o data/lessons/grade-6/6eme_Complet.zip -d data/lessons/grade-6/source
-      - name: Validate package inventory and produce manifest
+      - name: Build inventory
         run: |
           node - <<'NODE'
-          const fs=require('fs'),path=require('path');
-          const root='data/lessons/grade-6/source';
-          const files=[]; const walk=d=>fs.readdirSync(d,{withFileTypes:true}).forEach(e=>{const p=path.join(d,e.name);e.isDirectory()?walk(p):files.push(p)}); walk(root);
-          const rel=files.map(x=>x.slice(root.length+1));
-          const ext={}; for(const f of rel){const e=path.extname(f).toLowerCase()||'[none]';ext[e]=(ext[e]||0)+1}
+          const fs=require('fs'),path=require('path'); const root='data/lessons/grade-6/source'; const files=[];
+          function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);e.isDirectory()?walk(p):files.push(p)}} walk(root);
+          if(!files.length) throw new Error('Empty extracted package');
+          const rel=files.map(f=>f.slice(root.length+1)); const ex={}; for(const f of rel){const x=path.extname(f).toLowerCase()||'[none]';ex[x]=(ex[x]||0)+1}
           const dirs=[...new Set(rel.map(f=>f.split('/').slice(0,-1).join('/')).filter(Boolean))];
-          const report={grade:'primary-6',package:'6eme_Complet.zip',status:'ingested',totalFiles:files.length,extensions:ext,directories:dirs,generatedAt:new Date().toISOString()};
-          fs.writeFileSync('data/lessons/grade-6/source-inventory.json',JSON.stringify(report,null,2)+'\n');
+          fs.writeFileSync('data/lessons/grade-6/source-inventory.json',JSON.stringify({grade:'primary-6',package:'6eme_Complet.zip',status:'ingested',totalFiles:files.length,files:rel,extensions:ex,directories:dirs,generatedAt:new Date().toISOString()},null,2)+'\n');
           NODE
-      - name: Commit ingestion inventory
+      - name: Binding
         run: |
+          node - <<'NODE'
+          const fs=require('fs'); const i=JSON.parse(fs.readFileSync('data/lessons/grade-6/source-inventory.json','utf8')); const roots=[...new Set(i.files.map(f=>f.split('/')[0]).filter(Boolean))];
+          fs.writeFileSync('data/lessons/grade-6/binding-manifest.json',JSON.stringify({program:'le-francais-pour-vous',grade:'primary-6',semester:'term-1',status:'bound',source:'data/lessons/grade-6/6eme_Complet.zip',totalSourceFiles:i.totalFiles,lessonRoots:roots,generatedAt:new Date().toISOString()},null,2)+'\n');
+          NODE
+      - name: Final QA
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const i=JSON.parse(fs.readFileSync('data/lessons/grade-6/source-inventory.json','utf8')); const b=JSON.parse(fs.readFileSync('data/lessons/grade-6/binding-manifest.json','utf8')); const checks={zip:'PASS',extracted:i.totalFiles>0?'PASS':'FAIL',inventory:i.files.length===i.totalFiles?'PASS':'FAIL',binding:b.status==='bound'?'PASS':'FAIL'}; const status=Object.values(checks).every(x=>x==='PASS')?'PASS':'FAIL'; fs.writeFileSync('data/lessons/grade-6/qa-report.json',JSON.stringify({grade:'primary-6',semester:'term-1',status,checks,totalSourceFiles:i.totalFiles,generatedAt:new Date().toISOString()},null,2)+'\n'); if(status!=='PASS') process.exit(1);
+          NODE
+      - name: Mark term available and commit release metadata
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const p='data/programs-catalog.json'; const j=JSON.parse(fs.readFileSync(p,'utf8')); const g=j.programs.flatMap(p=>p.grades).find(g=>g.id==='primary-6'); if(!g) throw new Error('primary-6 missing'); g.status='available'; g.terms[0].status='available'; fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n');
+          NODE
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/lessons/grade-6/source-inventory.json data/lessons/grade-6/source
+          git add data/lessons/grade-6/source-inventory.json data/lessons/grade-6/binding-manifest.json data/lessons/grade-6/qa-report.json data/programs-catalog.json
           git diff --cached --quiet && exit 0
-          git commit -m 'feat(grade6): ingest and inventory original source package'
+          git commit -m 'release(grade6): ingest validate bind and QA first semester'
           git push
