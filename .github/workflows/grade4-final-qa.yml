@@ -1,0 +1,24 @@
+name: Grade 4 Final QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-4/**'
+      - 'scripts/grade4-*.mjs'
+      - '.github/workflows/grade4-final-qa.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Grade 4 release manifests
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const files=['release-manifest.json','source-package-manifest.json','source-content-audit.json','content-adapter-manifest.json','premium-runtime-manifest.json','premium-route-map.json','media-plan.json','games-plan.json','progress-plan.json','qa-matrix.json'];
+          for (const f of files) { if (!fs.existsSync('data/lessons/grade-4/'+f)) throw new Error('Missing '+f); }
+          const a=JSON.parse(fs.readFileSync('data/lessons/grade-4/source-content-audit.json'));
+          if(a.lessonCount!==7 || a.fileCount!==28) throw new Error('Invalid source counts');
+          console.log('Grade 4 manifest QA passed: 7 lessons / 28 source files.');
+          NODE
