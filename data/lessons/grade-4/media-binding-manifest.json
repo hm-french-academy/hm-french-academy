@@ -1,0 +1,16 @@
+{
+  "grade":"primary-4",
+  "status":"runtime-bound",
+  "strategy":"audio-map-then-browser-french-speech-fallback",
+  "runtime":"scripts/lesson-audio-bind.js",
+  "lessons":[
+    {"id":"g4-l01","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l02","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l03","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l04","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l05","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l06","pronunciation":"runtime-speech","lessonSupport":"source-interactive"},
+    {"id":"g4-l07","pronunciation":"runtime-speech","lessonSupport":"source-interactive"}
+  ],
+  "note":"No binary audio/video assets are fabricated. Pronunciation uses the existing universal audio runtime and French browser speech fallback when no mapped file exists."
+}
