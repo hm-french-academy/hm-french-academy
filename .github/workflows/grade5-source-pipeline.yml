@@ -1,0 +1,54 @@
+name: Grade 5 Source Pipeline
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-5/5eme_Complet.zip'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ingest-validate-bind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require original Grade 5 source package
+        run: test -f data/lessons/grade-5/5eme_Complet.zip
+      - name: Ingest and validate 11 lesson packages
+        run: |
+          rm -rf data/lessons/grade-5/source
+          mkdir -p data/lessons/grade-5/source
+          unzip -q -o data/lessons/grade-5/5eme_Complet.zip -d data/lessons/grade-5/source
+          node - <<'NODE'
+          const fs=require('fs'), path=require('path');
+          const b='data/lessons/grade-5/source';
+          const reg=JSON.parse(fs.readFileSync('data/lessons/grade-5/lesson-registry.json','utf8'));
+          const c=JSON.parse(reg.content); const lessons=c.includedUnits.flatMap(u=>u.lessons);
+          const root=fs.readdirSync(b,{withFileTypes:true}).find(x=>x.isDirectory());
+          if(!root) throw new Error('No source package directory found');
+          let total=0;
+          for(const l of lessons){
+            const dir=path.join(b,root.name,l.sourceDir);
+            if(!fs.existsSync(dir)) throw new Error('Missing source directory: '+l.sourceDir);
+            for(const f of ['01-interactif.html','02-reference-imprimable.docx','03-evaluation-a-imprimer.docx','04-examen-electronique.html']){
+              if(!fs.existsSync(path.join(dir,f))) throw new Error('Missing '+l.id+'/'+f);
+              total++;
+            }
+          }
+          if(total!==44) throw new Error('Expected 44 source assets, found '+total);
+          const report={grade:'primary-5',lessonCount:11,fileCount:44,htmlCount:22,docxCount:22,sourceRoot:root.name,status:'validated'};
+          fs.writeFileSync('data/lessons/grade-5/validation-report.json',JSON.stringify(report,null,2)+'\n');
+          const bindings=lessons.map(l=>({lessonId:l.id,route:`lesson.html?id=${l.id}`,sourceDir:l.sourceDir,assets:{interactive:`source/${root.name}/${l.sourceDir}/01-interactif.html`,printable:`source/${root.name}/${l.sourceDir}/02-reference-imprimable.docx`,evaluation:`source/${root.name}/${l.sourceDir}/03-evaluation-a-imprimer.docx`,electronicExam:`source/${root.name}/${l.sourceDir}/04-examen-electronique.html`}}));
+          fs.writeFileSync('data/lessons/grade-5/source-binding-manifest.json',JSON.stringify({grade:'primary-5',assetContract:{lessons:11,totalFiles:44,html:22,docx:22},bindings},null,2)+'\n');
+          fs.writeFileSync('data/lessons/grade-5/media-binding-manifest.json',JSON.stringify({grade:'primary-5',lessons:lessons.map(l=>({lessonId:l.id,route:`lesson.html?id=${l.id}`,audioFallback:'speechSynthesis-fr-FR',audioSource:'source-interactive-vocabulary'}))},null,2)+'\n');
+          fs.writeFileSync('data/lessons/grade-5/games-binding-manifest.json',JSON.stringify({grade:'primary-5',modes:['vocabulary','subject','verb','complement','order','build'],lessons:lessons.map(l=>l.id)},null,2)+'\n');
+          fs.writeFileSync('data/lessons/grade-5/progress-binding-manifest.json',JSON.stringify({grade:'primary-5',lessonIds:lessons.map(l=>l.id),event:'hm:lesson-completed',runtime:'HMProgress'},null,2)+'\n');
+          NODE
+      - name: Commit Grade 5 ingestion, validation and binding
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-5/source data/lessons/grade-5/validation-report.json data/lessons/grade-5/*-binding-manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat(grade5): ingest validate and bind original source package'
+          git push
