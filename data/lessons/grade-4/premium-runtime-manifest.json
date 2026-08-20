@@ -1,8 +1,9 @@
 {
   "grade":"primary-4",
-  "status":"premium-runtime-ready",
+  "status":"premium-runtime-bound",
   "sourceAudit":"data/lessons/grade-4/source-content-audit.json",
   "adapter":"data/lessons/grade-4/content-adapter-manifest.json",
+  "binding":"data/lessons/grade-4/source-binding-manifest.json",
   "lessons":[
     {"id":"g4-l01","titleFr":"Les saisons","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
     {"id":"g4-l02","titleFr":"Les chiffres","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
@@ -13,5 +14,5 @@
     {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]}
   ],
   "package":"four-part-source-package",
-  "releaseGate":"repository-ingestion-required"
+  "releaseGate":"final-qa-required"
 }
