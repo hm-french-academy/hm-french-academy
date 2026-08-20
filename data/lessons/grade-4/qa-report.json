@@ -1,0 +1,22 @@
+{
+  "grade": "primary-4",
+  "semester": "term-1",
+  "status": "PASS",
+  "source": {
+    "lessons": 7,
+    "files": 28,
+    "html": 14,
+    "docx": 14
+  },
+  "binding": {
+    "lessons": 7,
+    "files": 28
+  },
+  "integration": {
+    "media": 7,
+    "games": 7,
+    "progress": 7
+  },
+  "releaseGate": "closed",
+  "generatedAt": "2026-08-20T17:51:45.348Z"
+}
