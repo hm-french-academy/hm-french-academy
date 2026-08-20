@@ -1,0 +1,17 @@
+{
+  "status":"source-content-audited",
+  "lessonCount":7,
+  "fileCount":28,
+  "verifiedComponents":["interactive-html","reference-docx","evaluation-docx","electronic-exam-html"],
+  "lessons":[
+    {"id":"g4-l01","titleFr":"Les saisons","interactiveBytes":36799,"referenceChars":656,"evaluationChars":3360,"examBytes":16125,"focus":"seasons; au/en"},
+    {"id":"g4-l02","titleFr":"Les chiffres","interactiveBytes":24029,"referenceChars":322,"evaluationChars":1138,"examBytes":15484,"focus":"numbers 0-30"},
+    {"id":"g4-l03","titleFr":"L'heure","interactiveBytes":26887,"referenceChars":311,"evaluationChars":1616,"examBytes":16379,"focus":"telling time; et quart; et demie; moins quart"},
+    {"id":"g4-l04","titleFr":"Mon visage","interactiveBytes":33117,"referenceChars":216,"evaluationChars":1257,"examBytes":16016,"focus":"face vocabulary; definite/indefinite articles"},
+    {"id":"g4-l05","titleFr":"Adjectifs possessifs — visage","interactiveBytes":28376,"referenceChars":597,"evaluationChars":1434,"examBytes":16016,"focus":"possessive adjectives with face vocabulary"},
+    {"id":"g4-l06","titleFr":"Le corps","interactiveBytes":31294,"referenceChars":287,"evaluationChars":1334,"examBytes":15812,"focus":"body vocabulary; Samy text"},
+    {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","interactiveBytes":27808,"referenceChars":588,"evaluationChars":1247,"examBytes":16087,"focus":"possessive adjectives with body vocabulary"}
+  ],
+  "nextGate":"repository-ingestion",
+  "policy":"This audit records the original source package. Original DOCX files remain authoritative and must not be replaced by generated substitutes."
+}
