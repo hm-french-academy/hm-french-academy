@@ -18,9 +18,9 @@ function run(){
     if(el.closest(skip))return;
     ['title','placeholder','aria-label'].forEach(a=>{
       if(!el.hasAttribute(a))return;
-      const k='hmPlatformOriginal_'+a;
-      if(el.dataset[k]===undefined)el.dataset[k]=el.getAttribute(a);
-      const source=el.dataset[k];
+      const i18nKey='hmI18nOriginal_'+a.replace(/[^a-z]/gi,'_');
+      const platformKey='hmPlatformOriginal_'+a;
+      const source=el.dataset[i18nKey] ?? (el.dataset[platformKey] ?? (el.dataset[platformKey]=el.getAttribute(a)));
       el.setAttribute(a,lang==='ar'?source:window.HMTranslate(source));
     });
   });
