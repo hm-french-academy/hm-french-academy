@@ -1,0 +1,6 @@
+{
+  "grade":"primary-3","semester":"term-1","runtime":"lesson.html","status":"bound",
+  "lessonIds":["g3-l01","g3-l02","g3-l03","g3-l04","g3-l05","g3-l06"],
+  "routes":["lesson.html?id=g3-l01","lesson.html?id=g3-l02","lesson.html?id=g3-l03","lesson.html?id=g3-l04","lesson.html?id=g3-l05","lesson.html?id=g3-l06"],
+  "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json","preserveOriginals":true
+}
