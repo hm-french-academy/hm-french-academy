@@ -16,7 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Extract Grade 3 source
         shell: bash
         run: |
@@ -24,10 +23,10 @@ jobs:
           rm -rf data/lessons/grade-3/web
           mkdir -p data/lessons/grade-3/web
           unzip -q 'data/lessons/grade-3/3eme prim.zip' -d data/lessons/grade-3/web
-          find data/lessons/grade-3/web -type f -print | sort > /tmp/grade3-files.txt
-          echo "Published $(wc -l < /tmp/grade3-files.txt) source files"
+          count=$(find data/lessons/grade-3/web -type f | wc -l)
+          echo "Published ${count} source files"
+          test "$count" -gt 0
           test -n "$(find data/lessons/grade-3/web -type f -name '*.html' -print -quit)"
-
       - name: Commit published assets
         shell: bash
         run: |
