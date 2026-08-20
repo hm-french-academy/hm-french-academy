@@ -6,6 +6,8 @@
   let dictionary={};
   let languageData={};
   let translating=false;
+  const textSources=new WeakMap();
+  const attrSources=new WeakMap();
 
   const normalize=(value)=>String(value||'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();
 
@@ -58,32 +60,36 @@
     return value;
   }
 
-  function setText(node,next){
-    if(next===undefined || next===node.nodeValue) return;
-    node.nodeValue=next;
-  }
-
   function translateNode(node){
     if(!node || translating) return;
     if(node.nodeType===Node.TEXT_NODE){
       const parent=node.parentElement;
       if(!parent || parent.closest('[data-no-i18n]')) return;
       if(parent.tagName==='SCRIPT' || parent.tagName==='STYLE' || parent.tagName==='NOSCRIPT') return;
-      setText(node,translateValue(node.nodeValue));
+      if(!textSources.has(node)) textSources.set(node,node.nodeValue);
+      const source=textSources.get(node);
+      const next=window.HMLanguage==='ar' ? source : translateValue(source);
+      if(next!==node.nodeValue) node.nodeValue=next;
       return;
     }
     if(node.nodeType!==Node.ELEMENT_NODE) return;
     if(node.closest('[data-no-i18n]')) return;
 
     const key=node.dataset?.i18n;
-    if(key && languageData[key]) node.textContent=languageData[key];
-    else if(key && dictionary[key]) node.textContent=dictionary[key];
+    if(key){
+      const source=key;
+      const next=window.HMLanguage==='ar' ? (dictionary[source]||languageData[source]||source) : (languageData[source]||dictionary[source]||node.textContent);
+      if(node.childElementCount===0 && next!==node.textContent) node.textContent=next;
+    }
 
+    let sources=attrSources.get(node);
+    if(!sources){ sources={}; attrSources.set(node,sources); }
     ['title','placeholder','aria-label','aria-description'].forEach(attr=>{
       if(node.hasAttribute(attr)){
-        const current=node.getAttribute(attr);
-        const next=translateValue(current);
-        if(next!==current) node.setAttribute(attr,next);
+        if(sources[attr]===undefined) sources[attr]=node.getAttribute(attr);
+        const source=sources[attr];
+        const next=window.HMLanguage==='ar' ? source : translateValue(source);
+        if(next!==node.getAttribute(attr)) node.setAttribute(attr,next);
       }
     });
 
@@ -96,7 +102,7 @@
   }
 
   const observer=new MutationObserver((mutations)=>{
-    if(translating || window.HMLanguage==='ar') return;
+    if(translating) return;
     translating=true;
     try{
       for(const mutation of mutations){
