@@ -1,0 +1,8 @@
+{
+  "grade":"primary-4",
+  "status":"progress-binding-prepared",
+  "lessonIds":["g4-l01","g4-l02","g4-l03","g4-l04","g4-l05","g4-l06","g4-l07"],
+  "events":["lesson_started","section_completed","practice_completed","assessment_completed","lesson_completed"],
+  "persistence":"use existing Lesson Studio progress runtime",
+  "policy":"Progress is not marked complete until runtime integration is verified."
+}
