@@ -2,8 +2,6 @@ name: Grade 4 Source Ingestion
 on:
   push:
     branches: [main]
-    paths:
-      - 'data/lessons/grade-4/4eme_Complet.zip'
   workflow_dispatch:
 permissions:
   contents: write
