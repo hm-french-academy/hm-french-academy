@@ -1,22 +1,19 @@
 {
-  "grade": "primary-4",
-  "titleAr": "الصف الرابع الابتدائي — اللغة الفرنسية",
-  "status": "content-audit-required",
-  "lessonCount": 7,
-  "lessons": [
-    {"id":"g4-l01","titleFr":"Les saisons","sourceDir":"Les-saisons"},
-    {"id":"g4-l02","titleFr":"Les chiffres","sourceDir":"Les-chiffres"},
-    {"id":"g4-l03","titleFr":"L'heure","sourceDir":"L-heure"},
-    {"id":"g4-l04","titleFr":"Mon visage","sourceDir":"Mon-visage"},
-    {"id":"g4-l05","titleFr":"Adjectifs possessifs — visage","sourceDir":"Adjectifs-possessifs-visage"},
-    {"id":"g4-l06","titleFr":"Le corps","sourceDir":"Le-corps"},
-    {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","sourceDir":"Adjectifs-possessifs-corps"}
+  "grade":"primary-4",
+  "titleAr":"الصف الرابع الابتدائي — اللغة الفرنسية",
+  "status":"source-package-located-and-verified",
+  "lessonCount":7,
+  "sourceArchive":"4eme_Complet(1).zip",
+  "sourceFileCount":28,
+  "lessons":[
+    {"id":"g4-l01","titleFr":"Les saisons","sourceDir":"01_Les_saisons"},
+    {"id":"g4-l02","titleFr":"Les chiffres","sourceDir":"02_Les_chiffres"},
+    {"id":"g4-l03","titleFr":"L'heure","sourceDir":"03_L_heure"},
+    {"id":"g4-l04","titleFr":"Mon visage","sourceDir":"04_Mon_visage"},
+    {"id":"g4-l05","titleFr":"Adjectifs possessifs — visage","sourceDir":"05_Adjectifs_possessifs_visage"},
+    {"id":"g4-l06","titleFr":"Le corps","sourceDir":"06_Le_corps"},
+    {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","sourceDir":"07_Adjectifs_possessifs_corps"}
   ],
-  "packageSchema": {
-    "interactive":"01-interactif",
-    "printable":"02-reference",
-    "evaluation":"03-evaluation",
-    "electronicExam":"04-examen-electronique"
-  },
-  "releasePolicy": "Do not mark a lesson ready until its original source files are physically present and verified."
+  "packageSchema":{"interactive":"01_interactif","printable":"02_reference","evaluation":"03_evaluation","electronicExam":"04_examen_electronique"},
+  "releasePolicy":"Preserve original source files unchanged. Do not mark lessons release-ready until repository ingestion and QA are complete."
 }
