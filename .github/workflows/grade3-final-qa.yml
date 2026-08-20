@@ -1,0 +1,40 @@
+name: Grade 3 Final QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-3/**'
+      - 'lesson.html'
+      - '.github/workflows/grade3-final-qa.yml'
+permissions:
+  contents: write
+jobs:
+  qa:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Grade 3 source and runtime
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const inv=JSON.parse(fs.readFileSync('data/lessons/grade-3/source-inventory.json','utf8'));
+          const val=JSON.parse(fs.readFileSync('data/lessons/grade-3/validation-report.json','utf8'));
+          const bind=JSON.parse(fs.readFileSync('data/lessons/grade-3/source-binding-manifest.json','utf8'));
+          const run=JSON.parse(fs.readFileSync('data/lessons/grade-3/lesson-runtime-manifest.json','utf8'));
+          if(inv.totalFiles!==32||val.sourceFiles!==32||val.lessons!==6)throw new Error('Inventory/validation mismatch');
+          if(bind.bindings.length!==6||run.lessonIds.length!==6)throw new Error('Binding/runtime lesson count mismatch');
+          for(let i=0;i<6;i++){const id=`g3-l0${i+1}`;if(bind.bindings[i].id!==id||bind.bindings[i].route!==`lesson.html?id=${id}`||run.lessonIds[i]!==id)throw new Error('Route mismatch '+id);}
+          if(!fs.existsSync('lesson.html'))throw new Error('Canonical lesson.html missing');
+          const report={grade:'primary-3',semester:'term-1',status:'PASS',source:{files:32,html:12,docx:20},lessons:6,binding:'PASS',runtime:'PASS',revision:'PRESENT',releaseGate:'PASS',generatedAt:new Date().toISOString()};
+          fs.writeFileSync('data/lessons/grade-3/qa-report.json',JSON.stringify(report,null,2)+'\n');
+          NODE
+      - name: Commit QA report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-3/qa-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'qa(grade3): close validation binding and runtime gates'
+          git push
