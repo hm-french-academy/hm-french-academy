@@ -2,14 +2,9 @@
   "grade":"primary-4",
   "sourceArchive":"4eme_Complet(1).zip",
   "sourceFileCount":28,
-  "status":"ingestion-prepared",
+  "status":"repository-ingested-and-validated",
   "mapping":"source-package-manifest.json",
   "preserveOriginals":true,
-  "targets":{
-    "interactive":"01_interactif",
-    "reference":"02_reference",
-    "evaluation":"03_evaluation",
-    "electronicExam":"04_examen_electronique"
-  },
-  "next":"binary-source-upload"
+  "targets":{"interactive":"01_interactif","reference":"02_reference","evaluation":"03_evaluation","electronicExam":"04_examen_electronique"},
+  "next":"binding-and-final-qa"
 }
