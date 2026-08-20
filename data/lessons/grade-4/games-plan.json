@@ -1,0 +1,7 @@
+{
+  "grade":"primary-4",
+  "status":"games-binding-prepared",
+  "gameModes":["vocabulary","subject","verb","complement","order","build"],
+  "lessons":["g4-l01","g4-l02","g4-l03","g4-l04","g4-l05","g4-l06","g4-l07"],
+  "policy":"Games are enabled only after lesson content is mapped and tested; this manifest does not fabricate completed game assets."
+}
