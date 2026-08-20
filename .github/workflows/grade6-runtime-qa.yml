@@ -1,0 +1,38 @@
+name: Grade 6 Runtime QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-6/**'
+      - 'lesson.html'
+      - '.github/workflows/grade6-runtime-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  qa:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate canonical runtime binding
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const b=JSON.parse(fs.readFileSync('data/lessons/grade-6/source-binding-manifest.json','utf8'));
+          const r=JSON.parse(fs.readFileSync('data/lessons/grade-6/lesson-runtime-manifest.json','utf8'));
+          if(b.bindings.length!==8) throw new Error('Expected 8 lesson bindings');
+          if(r.lessonIds.length!==8||r.routes.length!==8) throw new Error('Runtime manifest mismatch');
+          for(let i=0;i<8;i++){const id=`g6-l0${i+1}`; if(b.bindings[i].id!==id||b.bindings[i].route!==`lesson.html?id=${id}`||r.lessonIds[i]!==id) throw new Error('Route mismatch '+id);}
+          const lesson=fs.readFileSync('lesson.html','utf8'); if(!lesson.includes('scripts/lesson-runtime-v2.js')) throw new Error('Canonical lesson runtime missing');
+          const report={grade:'primary-6',semester:'term-1',status:'PASS',runtime:'lesson.html',lessons:8,checks:{sourceBinding:'PASS',runtimeManifest:'PASS',canonicalRuntime:'PASS',routes:'PASS'},generatedAt:new Date().toISOString()};
+          fs.writeFileSync('data/lessons/grade-6/runtime-qa-report.json',JSON.stringify(report,null,2)+'\n');
+          NODE
+      - name: Commit runtime QA
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-6/runtime-qa-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'qa(grade6): validate canonical lesson runtime routes'
+          git push
