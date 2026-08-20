@@ -1,0 +1,31 @@
+{
+  "release": "grade5-premium-2026-08-20",
+  "grade": "primary-5",
+  "term": "term-1",
+  "lessonCount": 11,
+  "media": { "videoCount": 11, "readyVideos": 11, "complete": true },
+  "studio": {
+    "overview": true,
+    "lesson": true,
+    "vocabulary": true,
+    "video": true,
+    "pronunciation": true,
+    "grammar": true,
+    "practice": true,
+    "games": true,
+    "assessment": true,
+    "files": true,
+    "progressTracking": true
+  },
+  "games": {
+    "hub": "data/lessons/grade-5/grade5-games.html",
+    "modes": ["vocabulary", "subject", "verb", "complement", "order", "build"]
+  },
+  "qualityGates": [
+    "scripts/grade5-release-qa.mjs",
+    ".github/workflows/grade5-release-qa.yml",
+    ".github/workflows/grade5-media-gate.yml"
+  ],
+  "status": "ready-for-release-qa",
+  "nextGate": "browser-and-academic-review"
+}
