@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار إلكتروني — Les adjectifs possessifs</title>
+<style>
+:root{
+  --cream:#FBF4E9; --ink:#20304D; --green:#2F6B4F; --tomato:#C1442E; --mustard:#E3A23B; --line:#E4D8C3;
+}
+*{box-sizing:border-box;}
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Segoe UI', Tahoma, 'Cairo', sans-serif; line-height:1.7; min-height:100vh; }
+.fr{ direction:ltr; unicode-bidi:isolate; font-family:'Georgia',serif; }
+.wrap{ max-width:640px; margin:0 auto; padding:24px 18px 60px; }
+
+.banner{ background:linear-gradient(180deg,var(--ink),#16233b); padding:20px; text-align:center; border-radius:0 0 20px 20px; margin-bottom:20px; }
+.banner .name{ font-family:'Brush Script MT','Segoe Script',cursive; direction:ltr; color:#F6E9D8; font-size:1.7rem; }
+.banner .sub{ color:#C9D4E6; font-size:.8rem; margin-top:2px; }
+
+h1{ text-align:center; font-size:1.3rem; color:var(--tomato); }
+.card{ background:#fff; border-radius:16px; padding:20px; box-shadow:0 4px 14px rgba(0,0,0,.06); margin-top:16px; }
+
+select, input[type=text], textarea{ width:100%; padding:10px; border-radius:10px; border:1px solid #ccc; font-size:1rem; margin-top:8px; font-family:inherit; }
+textarea{ direction:ltr; font-family:monospace; min-height:120px; }
+button{ background:var(--tomato); color:#fff; border:none; padding:12px 24px; border-radius:24px; font-size:1rem; font-weight:bold; cursor:pointer; margin-top:16px; width:100%; }
+button:disabled{ background:#bbb; cursor:not-allowed; }
+button.secondary{ background:var(--ink); }
+button.ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); }
+button.copy{ background:var(--green); }
+
+.qcard{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-top:12px; }
+.qcard p{ margin:0 0 8px; font-weight:600; }
+.qnum{ display:inline-block; background:var(--green); color:#fff; font-size:.72rem; padding:2px 9px; border-radius:10px; margin-inline-end:8px; }
+
+.locked-box{ text-align:center; padding:20px; }
+.locked-box .score{ font-size:2.4rem; font-weight:bold; color:var(--green); margin:10px 0; }
+.locked-box .icon{ font-size:2.5rem; }
+.warn{ background:#FBEAE7; border:1px solid var(--tomato); color:var(--tomato); border-radius:10px; padding:10px 14px; font-size:.85rem; margin-top:10px; }
+.info{ background:#EAF3F2; border:1px solid var(--green); color:var(--green); border-radius:10px; padding:10px 14px; font-size:.85rem; margin-top:10px; }
+
+.code-box{ background:var(--ink); color:#F6E9D8; font-family:monospace; font-size:1.3rem; letter-spacing:1px; text-align:center; padding:14px; border-radius:12px; margin-top:12px; direction:ltr; word-break:break-all; }
+
+table{ width:100%; border-collapse:collapse; margin-top:12px; font-size:.85rem; }
+th,td{ border:1px solid var(--line); padding:6px 8px; text-align:center; }
+th{ background:var(--ink); color:#fff; }
+.status-ok{ color:var(--green); font-weight:bold; }
+.status-bad{ color:var(--tomato); font-weight:bold; }
+
+.progress-wrap{ background:#EEE3CB; border-radius:20px; height:8px; overflow:hidden; margin-top:10px; }
+#examProgress{ height:100%; width:0%; background:linear-gradient(90deg,var(--tomato),var(--mustard)); transition:width .3s; }
+footer{ text-align:center; padding:20px; color:#8a7a56; font-size:.78rem; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="name">Hatem El-Morsi</div>
+  <div class="sub">أستاذ اللغة الفرنسية — اختبار إلكتروني (يعمل بدون إنترنت)</div>
+</div>
+
+<div class="wrap">
+  <h1><span class="fr">Les adjectifs possessifs</span> — اختبار إلكتروني</h1>
+  <div id="app"></div>
+</div>
+
+<footer>© Hatem El-Morsi — يُسمح بمحاولة واحدة فقط لكل كود طالب على نفس الجهاز</footer>
+
+<script>
+/* ============ SECRET SIGNATURE (change this for each exam file you distribute) ============ */
+const SECRET = "PossessifsVisage-Hatem-2026";
+const LESSON_TAG = "PV";
+
+const quiz = [
+  {q:"J'ai un nez → C'est ___ nez.", opts:["mon", "ma"], ans:"mon", isFr:true},
+  {q:"J'ai une tête → C'est ___ tête.", opts:["mon", "ma"], ans:"ma", isFr:true},
+  {q:"J'ai des cils → Ce sont ___ cils.", opts:["mon", "mes"], ans:"mes", isFr:true},
+  {q:"Tu as une bouche → C'est ___ bouche.", opts:["ton", "ta"], ans:"ta", isFr:true},
+  {q:"Il a un menton → C'est ___ menton.", opts:["son", "sa"], ans:"son", isFr:true},
+  {q:"Elle a des dents → Ce sont ___ dents.", opts:["son", "ses"], ans:"ses", isFr:true},
+  {q:"« ma école » — صح ولا غلط؟", opts:["غلط", "صح"], ans:"غلط"},
+  {q:"___ école (بدل ma لتفادي التقاء حرفين متحركين)", opts:["mon", "ma"], ans:"mon", isFr:true},
+  {q:"Ali a un livre, c'est ___ livre.", opts:["son", "sa"], ans:"son", isFr:true},
+  {q:"Tu as des cils, ce sont ___ cils.", opts:["ton", "tes"], ans:"tes", isFr:true},
+  {q:"Elle a une bouche, c'est ___ bouche.", opts:["ta", "sa"], ans:"sa", isFr:true},
+  {q:"Tu as une tête, c'est ___ tête.", opts:["ta", "ton"], ans:"ta", isFr:true},
+  {q:"Il a des pieds, ce sont ___ pieds.", opts:["ses", "tes"], ans:"ses", isFr:true},
+  {q:"J'ai un livre → C'est ___ livre.", opts:["mon", "ma"], ans:"mon", isFr:true},
+  {q:"J'ai un cheval → C'est ___ cheval.", opts:["mon", "ma"], ans:"mon", isFr:true},
+  {q:"J'ai une vache → C'est ___ vache.", opts:["mon", "ma"], ans:"ma", isFr:true},
+  {q:"Ce sont ___ lapins. (Je)", opts:["mon", "mes"], ans:"mes", isFr:true},
+  {q:"Ce sont ___ œufs. (Je)", opts:["mon", "mes"], ans:"mes", isFr:true},
+  {q:"___ petit-déjeuner (Je)", opts:["mon", "ma"], ans:"mon", isFr:true},
+  {q:"___ lait (Je)", opts:["mon", "ma"], ans:"mon", isFr:true},
+];
+const TEACHER_PASSCODE = "hatem2026"; // غيّرها لأي باسورد تحبه
+
+/* ---------- simple deterministic hash (not cryptographically strong, but tamper-evident for classroom use) ---------- */
+function hashStr(str){
+  let h = 5381;
+  for(let i=0;i<str.length;i++){ h = ((h*33) ^ str.charCodeAt(i)) >>> 0; }
+  return h;
+}
+function makeSignature(code, score){
+  const raw = LESSON_TAG + "|" + code.toUpperCase().trim() + "|" + score + "|" + SECRET;
+  return hashStr(raw).toString(36).toUpperCase().slice(0,5).padStart(5,"0");
+}
+function makeDeliveryCode(code, score){
+  return `${LESSON_TAG}-${code.toUpperCase().trim()}-${score}-${makeSignature(code, score)}`;
+}
+function verifyDeliveryCode(deliveryCode){
+  const parts = deliveryCode.trim().toUpperCase().split("-");
+  if(parts.length !== 4) return null;
+  const [tag, code, scoreStr, sig] = parts;
+  const score = parseInt(scoreStr,10);
+  if(tag !== LESSON_TAG || isNaN(score)) return null;
+  const expected = makeSignature(code, score);
+  return { code, score, valid: expected === sig };
+}
+
+let currentCode = null;
+const app = document.getElementById('app');
+
+function lockKey(code){ return 'examLock_'+LESSON_TAG+'_'+code.toUpperCase().trim(); }
+
+function renderEntry(){
+  app.innerHTML = `
+    <div class="card">
+      <p>اكتب <b>كود الطالب</b> بتاعك:</p>
+      <input type="text" id="codeInput" placeholder="مثال: AHMED1 أو 07">
+      <button id="startBtn">ابدأ الاختبار 📝</button>
+      <div class="warn">⚠️ محاولة واحدة بس لكل كود على نفس الجهاز.</div>
+    </div>
+    <div class="card">
+      <button class="ghost" id="teacherBtn">🔐 لوحة المعلم</button>
+    </div>
+  `;
+  document.getElementById('startBtn').addEventListener('click', ()=>{
+    let v = document.getElementById('codeInput').value.trim();
+    v = v.replace(/-/g, '');
+    if(!v){ alert("من فضلك اكتب الكود بتاعك الأول"); return; }
+    loadStudent(v);
+  });
+  document.getElementById('teacherBtn').addEventListener('click', renderTeacherLogin);
+}
+
+function loadStudent(code){
+  currentCode = code;
+  const saved = localStorage.getItem(lockKey(code));
+  if(saved){
+    renderLocked(JSON.parse(saved));
+  } else {
+    renderExam();
+  }
+}
+
+function renderExam(){
+  app.innerHTML = `
+    <div class="card">
+      <p>كود الطالب: <b class="fr">${currentCode}</b></p>
+      <div class="progress-wrap"><div id="examProgress"></div></div>
+    </div>
+    <div id="quizBox"></div>
+    <div class="card">
+      <button id="submitBtn">تسليم الاختبار ✅</button>
+      <div class="warn">تأكد من إجابة كل الأسئلة قبل التسليم — مش هينفع ترجع تعدّل بعد كده.</div>
+    </div>
+  `;
+  const box = document.getElementById('quizBox');
+  quiz.forEach((item,i)=>{
+    const div = document.createElement('div');
+    div.className = 'qcard';
+    div.innerHTML = `<p><span class="qnum">${i+1}</span><span class="${item.isFr?'fr':''}">${item.q}</span></p>
+      <select data-idx="${i}">
+        <option value="">— اختر الإجابة —</option>
+        ${item.opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+      </select>`;
+    box.appendChild(div);
+  });
+  box.addEventListener('change', updateProgress);
+  document.getElementById('submitBtn').addEventListener('click', submitExam);
+  updateProgress();
+}
+
+function updateProgress(){
+  const selects = document.querySelectorAll('#quizBox select');
+  let answered = 0;
+  selects.forEach(s=>{ if(s.value) answered++; });
+  document.getElementById('examProgress').style.width = Math.round((answered/quiz.length)*100)+"%";
+}
+
+function submitExam(){
+  const selects = document.querySelectorAll('#quizBox select');
+  const answers = [];
+  let unanswered = 0;
+  selects.forEach(s=>{ if(!s.value) unanswered++; answers.push(s.value); });
+  if(unanswered > 0){
+    if(!confirm(`فيه ${unanswered} سؤال لسه من غير إجابة. متأكد إنك عايز تسلّم؟`)) return;
+  }
+
+  let score = 0;
+  quiz.forEach((item,i)=>{ if(answers[i] === item.ans) score++; });
+
+  const result = {
+    code: currentCode, score, total: quiz.length,
+    timestamp: new Date().toISOString(),
+    deliveryCode: makeDeliveryCode(currentCode, score),
+  };
+  localStorage.setItem(lockKey(currentCode), JSON.stringify(result));
+  renderLocked(result);
+}
+
+function copyText(text){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject)=>{
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try{
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    }catch(e){
+      document.body.removeChild(ta);
+      reject(e);
+    }
+  });
+}
+
+function renderLocked(result){
+  const date = new Date(result.timestamp).toLocaleString('ar-EG');
+  app.innerHTML = `
+    <div class="card locked-box">
+      <div class="icon">🔒</div>
+      <p>تم تسليم الاختبار — كود الطالب <b class="fr">${result.code}</b></p>
+      <div class="score">${result.score} / ${result.total}</div>
+      <p style="font-size:.8rem;color:#8a7a56;">وقت التسليم: ${date}</p>
+      <div class="info">📤 ابعت الكود ده لأستاذك (واتساب/ايميل) عشان يسجّل درجتك:</div>
+      <div class="code-box" id="deliveryCodeBox">${result.deliveryCode}</div>
+      <button class="copy" id="copyBtn">📋 نسخ الكود</button>
+      <button class="secondary" onclick="renderEntry()">رجوع</button>
+    </div>
+  `;
+  document.getElementById('copyBtn').addEventListener('click', ()=>{
+    copyText(result.deliveryCode).then(()=>{
+      document.getElementById('copyBtn').textContent = "✔ اتنسخ!";
+      setTimeout(()=>{ document.getElementById('copyBtn').textContent = "📋 نسخ الكود"; }, 2000);
+    }).catch(()=>{
+      // select the code box text as a manual-copy fallback
+      const range = document.createRange();
+      range.selectNodeContents(document.getElementById('deliveryCodeBox'));
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      alert("انسخ الكود يدويًا دلوقتي (تم تحديده لك): " + result.deliveryCode);
+    });
+  });
+}
+
+/* ============ TEACHER DASHBOARD (fully offline, paste-based, cumulative) ============ */
+const TEACHER_STORE_KEY = 'teacherResults_' + LESSON_TAG;
+
+function loadStoredResults(){
+  try{ return JSON.parse(localStorage.getItem(TEACHER_STORE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveStoredResults(obj){
+  localStorage.setItem(TEACHER_STORE_KEY, JSON.stringify(obj));
+}
+
+function renderTeacherLogin(){
+  app.innerHTML = `
+    <div class="card">
+      <p>🔐 كلمة سر المعلم:</p>
+      <input type="password" id="teacherPass">
+      <button id="teacherLoginBtn">دخول</button>
+      <button class="ghost" onclick="renderEntry()">رجوع</button>
+    </div>
+  `;
+  document.getElementById('teacherLoginBtn').addEventListener('click', ()=>{
+    const val = document.getElementById('teacherPass').value;
+    if(val === TEACHER_PASSCODE) renderTeacherDashboard();
+    else alert("كلمة السر غلط");
+  });
+}
+
+function renderTeacherDashboard(){
+  app.innerHTML = `
+    <div class="card">
+      <p>📥 الصق كود جديد (أو أكواد متعددة، سطر لكل كود) وضيفه للكشف:</p>
+      <textarea id="codesInput" placeholder="AM-AHMED1-18-7K2F0"></textarea>
+      <button id="checkBtn">إضافة للكشف ✅</button>
+      <button class="ghost" id="clearAllBtn">🗑️ مسح الكشف بالكامل</button>
+      <button class="ghost" onclick="renderEntry()">رجوع</button>
+    </div>
+    <div id="resultsBox"></div>
+  `;
+  renderResultsTable();
+
+  document.getElementById('checkBtn').addEventListener('click', ()=>{
+    const lines = document.getElementById('codesInput').value.split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const stored = loadStoredResults();
+    lines.forEach(line=>{
+      const r = verifyDeliveryCode(line);
+      const key = r ? r.code : line.toUpperCase();
+      stored[key] = r ? {code:r.code, score:r.score, valid:r.valid, raw:line, addedAt:new Date().toISOString()}
+                      : {code:key, score:'-', valid:false, raw:line, addedAt:new Date().toISOString()};
+    });
+    saveStoredResults(stored);
+    document.getElementById('codesInput').value = '';
+    renderResultsTable();
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', ()=>{
+    if(confirm('متأكد إنك عايز تمسح كل نتائج الكشف؟ الخطوة دي مينفعش ترجع فيها.')){
+      localStorage.removeItem(TEACHER_STORE_KEY);
+      renderResultsTable();
+    }
+  });
+}
+
+function renderResultsTable(){
+  const stored = loadStoredResults();
+  const rows = Object.values(stored).sort((a,b)=> a.code.localeCompare(b.code));
+  const validCount = rows.filter(r=>r.valid).length;
+  const avg = validCount ? (rows.filter(r=>r.valid).reduce((s,r)=>s+r.score,0)/validCount).toFixed(1) : 0;
+  document.getElementById('resultsBox').innerHTML = rows.length ? `
+      <div class="card">
+        <p>✔ ${validCount} كود سليم من إجمالي ${rows.length} — المتوسط: <b>${avg} / ${quiz.length}</b></p>
+        <table>
+          <tr><th>كود الطالب</th><th>الدرجة</th><th>الحالة</th></tr>
+          ${rows.map(r=>`<tr>
+            <td class="fr">${r.code}</td>
+            <td>${r.score}</td>
+            <td class="${r.valid?'status-ok':'status-bad'}">${r.valid?'✔ سليم':'✘ غير صالح'}</td>
+          </tr>`).join('')}
+        </table>
+      </div>
+    ` : `<div class="card"><p style="text-align:center;color:#8a7a56;">لسه مفيش أكواد مضافة للكشف.</p></div>`;
+}
+
+renderEntry();
+</script>
+</body>
+</html>

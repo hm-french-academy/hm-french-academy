@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le corps — Leçon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Pinyon+Script&family=Berkshire+Swash&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3F8FB; --paper-2:#EAF1F6;
+    --ink:#2E2A25; --ink-soft:#5B5750;
+    --a:#5EA85B; --a-soft:#E4F3E1;   /* corps - vert */
+    --b:#4A7FB0; --b-soft:#DEEBF5;   /* possessifs - bleu */
+    --accent:#C96A2E; --accent-soft:#F7E4D5;
+    --le:#4A7FB0; --le-soft:#DEEBF5;
+    --la:#C9598B; --la-soft:#F7E0EC;
+    --shadow: 0 10px 28px rgba(46,42,37,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% 8%, rgba(94,168,91,0.10), transparent 40%),
+      radial-gradient(circle at 92% 12%, rgba(74,127,176,0.12), transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(201,89,139,0.08), transparent 40%),
+      radial-gradient(circle at 5% 90%, rgba(201,106,46,0.10), transparent 40%),
+      var(--paper);
+    font-family:'Quicksand', sans-serif; color:var(--ink); padding: 22px 16px 60px;
+  }
+  .wrap{max-width: 1000px; margin: 0 auto;}
+
+  /* ---------- TOP LOGO BANNER ---------- */
+  .top-banner{ display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 22px 16px 18px; margin-bottom: 6px; position:relative; }
+  .badge-row{ display:flex; align-items:flex-end; gap:2px; position:relative; }
+  .logo-h{ font-family:'Pinyon Script', cursive; font-size: 92px; line-height:.7; color: var(--ink); position:relative; z-index:2; opacity:0; transform: translateY(10px) scale(.9); animation: popIn .7s cubic-bezier(.2,.8,.3,1.2) forwards .15s; text-shadow: 2px 2px 0 rgba(0,0,0,0.06); }
+  .logo-tower-wrap{ position:relative; margin: 0 2px 6px; }
+  .logo-tower{ width: 52px; height: 78px; overflow:visible; }
+  .logo-tower path{ fill:none; stroke:var(--ink); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray: 420; stroke-dashoffset:420; animation: draw 1.6s ease forwards .5s; }
+  .logo-tm{ font-family:'Baloo 2'; font-weight:800; font-size:13px; color: var(--accent); border: 2px solid var(--accent); border-radius:6px; padding:0 4px; line-height:1.5; position:relative; top:-46px; left:-4px; z-index:3; background:#fff; opacity:0; transform: scale(.4) rotate(-12deg); animation: tmPop .5s cubic-bezier(.3,1.6,.5,1) forwards 1.9s; }
+  @keyframes tmPop{ to{ opacity:1; transform:scale(1) rotate(-8deg); } }
+  @keyframes popIn{ to{ opacity:1; transform:none; } }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .logo-name{ font-family:'Berkshire Swash', cursive; font-size: clamp(22px,4.4vw,34px); letter-spacing:.02em; margin-top:2px;
+    background: linear-gradient(100deg, var(--ink) 30%, var(--accent) 42%, #ffd58a 50%, var(--accent) 58%, var(--ink) 70%);
+    background-size: 260% 100%; -webkit-background-clip: text; background-clip:text; color:transparent; opacity:0;
+    animation: fadeUp .6s ease forwards 2.1s, shimmer 3.5s linear infinite 2.6s; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  @keyframes shimmer{ 0%{ background-position: 0% 0; } 100%{ background-position: -260% 0; } }
+  .logo-flourish{ width: 180px; height:10px; margin-top:4px; opacity:0; animation: fadeUp .6s ease forwards 2.5s; }
+  .logo-flourish path{ fill:none; stroke: var(--accent); stroke-width:2; stroke-linecap:round; }
+  .sparkle-deco{ position:absolute; font-size:16px; opacity:0; animation: sparklePop 1.6s ease forwards; }
+  @keyframes sparklePop{ 0%{opacity:0; transform:scale(.3);} 30%{opacity:1; transform:scale(1.2);} 60%{opacity:.7; transform:scale(.9);} 100%{opacity:0; transform:scale(1);} }
+
+  /* ---------- HEADER ---------- */
+  header{ text-align:center; margin-bottom: 22px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:'Baloo 2'; font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); background:#fff; border-radius:999px; padding:6px 16px; box-shadow: var(--shadow); }
+  h1{ font-family:'Baloo 2'; font-weight:800; font-size: clamp(30px, 5.6vw, 48px); margin: 14px 0 6px; }
+  h1 span.g{ color: var(--a); } h1 span.b{ color: var(--b); }
+  .subtitle{ font-size:17px; color:var(--ink-soft); font-weight:600; }
+  .sound-hint{ max-width:640px; margin: 14px auto 0; background:#FFF7E6; border:1px solid #F1DDA4; border-radius:14px; padding:10px 16px; font-size:13px; font-weight:600; color:#7A5A16; display:flex; align-items:center; gap:8px; justify-content:center; }
+
+  /* ---------- TABS ---------- */
+  .tabs{ display:flex; gap:12px; justify-content:center; margin-bottom: 22px; flex-wrap:wrap; }
+  .tab-btn{ font-family:'Baloo 2'; font-weight:700; font-size:16px; border:none; border-radius:999px; padding:12px 26px; cursor:pointer; background:#fff; color:var(--ink-soft); box-shadow: var(--shadow); transition: all .2s ease; }
+  .tab-btn.active.a{ background: var(--a); color:#fff; }
+  .tab-btn.active.b{ background: var(--b); color:#fff; }
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{ background:#fff; border-radius: 24px; box-shadow: var(--shadow); padding: 26px 24px; margin-bottom: 24px; }
+  .block-head{ margin-bottom: 18px; }
+  .block-head .tag{ font-family:'Baloo 2'; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#fff; display:inline-block; padding:4px 12px; border-radius:999px; margin-bottom:8px; }
+  .tag.a{ background: var(--a); } .tag.b{ background: var(--b); }
+  .block-head h2{ font-family:'Baloo 2'; font-size:24px; margin:0 0 4px; }
+  .block-head p{ margin:0; color:var(--ink-soft); font-weight:600; font-size:14px; }
+
+  /* ---------- SPEAKER BUTTON ---------- */
+  .speak-btn{ border:none; background: var(--ink); color:#fff; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; font-size:12px; flex-shrink:0; transition: transform .15s ease, background .15s ease; }
+  .speak-btn:hover{ transform: scale(1.12); }
+  .speak-btn.playing{ background: var(--accent); animation: pulse .6s ease infinite; }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(201,106,46,.5);} 50%{ box-shadow:0 0 0 6px rgba(201,106,46,0);} }
+  .speak-btn.mini{ width:22px; height:22px; font-size:10px; }
+
+  /* ---------- BODY DIAGRAM ---------- */
+  .body-wrap{ display:flex; gap:26px; flex-wrap:wrap; align-items:flex-start; justify-content:center; }
+  .body-stage{ position:relative; width:200px; flex-shrink:0; }
+  .body-stage svg{ width:100%; display:block; }
+  .hotspot{ position:absolute; width:26px; height:26px; margin-left:-13px; margin-top:-13px; border-radius:50%;
+    background: rgba(255,255,255,0.55); border:2px solid var(--accent); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--accent); font-weight:800;
+    transition: transform .15s ease, background .15s ease; animation: hotpulse 2s ease infinite; }
+  .hotspot:hover{ transform: scale(1.15); }
+  .hotspot.found{ background: var(--accent); color:#fff; animation:none; }
+  @keyframes hotpulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(201,106,46,.35);} 50%{ box-shadow:0 0 0 7px rgba(201,106,46,0);} }
+  .body-info{ flex:1; min-width:240px; }
+  .progress-line{ font-family:'Baloo 2'; font-weight:700; font-size:13px; color:var(--ink-soft); margin-bottom:10px; }
+  .callout{ background: var(--paper-2); border-radius:16px; padding:16px 18px; min-height:96px; display:flex; flex-direction:column; justify-content:center; gap:6px; margin-bottom:14px; }
+  .callout .cfr{ font-family:'Baloo 2'; font-weight:800; font-size:22px; display:flex; align-items:center; gap:8px; }
+  .callout .car{ font-family:'Baloo 2'; font-weight:700; color:var(--ink-soft); font-size:14px; }
+  .article-tag{ display:inline-block; font-family:'Baloo 2'; font-weight:800; font-size:12px; padding:2px 10px; border-radius:999px; color:#fff; }
+  .checklist{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chk{ font-family:'Baloo 2'; font-weight:700; font-size:11px; padding:4px 9px; border-radius:8px; background:var(--paper-2); color:var(--ink-soft); }
+  .chk.done{ background: var(--a-soft); color:var(--a); }
+
+  /* ---------- READING PASSAGE ---------- */
+  .passage{ background: var(--paper-2); border-radius:16px; padding:18px 20px; font-size:15px; line-height:2; }
+  .passage .num{ display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; font-size:11px; font-weight:800; font-family:'Baloo 2'; margin:0 2px; }
+
+  /* ---------- SORT GAME ---------- */
+  .word-pool{ display:flex; flex-wrap:wrap; gap:10px; margin: 14px 0; }
+  .word-chip{ font-family:'Baloo 2'; font-weight:700; font-size:14px; background:#fff; border:2px solid rgba(46,42,37,0.12); border-radius:999px; padding:8px 16px; cursor:pointer; transition: all .15s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .word-chip:hover{ transform: translateY(-2px); }
+  .word-chip.correct{ background:#DDF3DA; border-color:#3f9a4e; }
+  .word-chip.wrong{ background:#FBE0DC; border-color:#C9503B; }
+  .word-chip.placed{ opacity:.5; pointer-events:none; }
+  .basket-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:12px; }
+  @media (max-width:720px){ .basket-grid{ grid-template-columns: repeat(2,1fr); } }
+  .basket{ border-radius:14px; padding:12px; min-height:80px; cursor:pointer; border:3px dashed rgba(46,42,37,0.15); }
+  .basket h4{ margin:0 0 8px; font-family:'Baloo 2'; font-size:15px; }
+  .basket.le{ background: var(--le-soft); } .basket.le h4{ color:var(--le); }
+  .basket.la{ background: var(--la-soft); } .basket.la h4{ color:var(--la); }
+  .placed-row{ display:flex; flex-wrap:wrap; gap:6px; }
+  .feedback-line{ margin-top:8px; font-weight:700; font-size:13px; display:none; }
+  .feedback-line.show{ display:block; }
+  .feedback-line.ok{ color:#2f7a3f; } .feedback-line.no{ color:#b1402a; }
+
+  /* ---------- POSSESSIVE TABLE ---------- */
+  .poss-table{ width:100%; border-collapse:collapse; font-size:14px; margin-bottom:6px; }
+  .poss-table th{ font-family:'Baloo 2'; background:var(--b); color:#fff; padding:9px 8px; font-size:13px; }
+  .poss-table td{ padding:9px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,.06); font-weight:700; }
+  .poss-table td:first-child{ text-align:left; color:var(--ink-soft); font-weight:600; }
+
+  /* ---------- STATEMENT FLASHCARDS ---------- */
+  .stmt-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+  @media (max-width:720px){ .stmt-grid{ grid-template-columns: 1fr; } }
+  .stmt-card{ perspective:900px; height:96px; cursor:pointer; }
+  .stmt-inner{ position:relative; width:100%; height:100%; transform-style:preserve-3d; transition: transform .5s cubic-bezier(.2,.9,.3,1.1); border-radius:14px; }
+  .stmt-card.flipped .stmt-inner{ transform: rotateY(180deg); }
+  .stmt-face{ position:absolute; inset:0; border-radius:14px; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px; backface-visibility:hidden; font-family:'Baloo 2'; font-weight:700; font-size:14px; box-shadow:0 4px 10px rgba(0,0,0,.06); }
+  .stmt-face.front{ background: var(--b-soft); color:var(--ink); }
+  .stmt-face.back{ background: var(--b); color:#fff; transform: rotateY(180deg); }
+
+  /* ---------- MINI PRACTICE ---------- */
+  .mini-q{ background:var(--paper-2); border-radius:14px; padding:12px 16px; margin-bottom:10px; }
+  .mini-q .mqt{ font-weight:700; font-family:'Baloo 2'; margin-bottom:8px; font-size:14px; }
+  .mini-opts{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mini-opt{ font-family:'Quicksand'; font-weight:700; font-size:13px; background:#fff; border:2px solid rgba(46,42,37,.14); border-radius:10px; padding:6px 12px; cursor:pointer; }
+  .mini-opt.correct{ background:#DDF3DA; border-color:#3f9a4e; }
+  .mini-opt.wrong{ background:#FBE0DC; border-color:#C9503B; }
+
+  /* ---------- VIDEO ---------- */
+  .video-frame{ position:relative; width:100%; padding-top:56.25%; border-radius:18px; overflow:hidden; box-shadow: var(--shadow); background:#000; cursor:pointer; }
+  .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-thumb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .video-play{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.35)); }
+  .video-play .btn-circle{ width:70px; height:70px; border-radius:50%; background: rgba(201,106,46,0.92); display:flex; align-items:center; justify-content:center; font-size:26px; color:#fff; box-shadow: 0 8px 20px rgba(0,0,0,.35); transition: transform .2s ease; }
+  .video-frame:hover .btn-circle{ transform: scale(1.1); }
+  .video-caption{ text-align:center; font-size:13px; color:var(--ink-soft); font-weight:600; margin-top:10px; }
+  .video-fallback{ display:block; text-align:center; font-size:13px; font-weight:700; color:var(--b); margin-top:6px; text-decoration:none; }
+  .video-fallback:hover{ text-decoration:underline; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-q{ border-radius:16px; background: var(--paper-2); padding:16px 18px; margin-bottom:14px; }
+  .quiz-q .qtitle{ font-weight:700; margin-bottom:10px; font-family:'Baloo 2'; }
+  .opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .opt{ font-family:'Quicksand'; font-weight:700; font-size:14px; background:#fff; border:2px solid rgba(46,42,37,0.14); border-radius:12px; padding:8px 14px; cursor:pointer; }
+  .opt.selected{ border-color: var(--b); background: var(--b-soft); }
+  .opt.correct{ border-color: var(--a); background:#DDF3DA; }
+  .opt.wrong{ border-color:#C9503B; background:#FBE0DC; }
+  input.text-ans{ font-family:'Quicksand'; font-weight:700; font-size:14px; border:2px solid rgba(46,42,37,0.14); border-radius:12px; padding:8px 12px; width: 220px; max-width:100%; }
+  .quiz-actions{ text-align:center; margin-top:10px; }
+  button.primary{ font-family:'Baloo 2'; font-weight:700; font-size:16px; background: var(--accent); color:#fff; border:none; border-radius:999px; padding: 12px 30px; cursor:pointer; box-shadow: var(--shadow); transition: transform .15s ease; }
+  button.primary:hover{ transform: translateY(-2px); }
+  #score-panel{ text-align:center; margin-top:16px; font-family:'Baloo 2'; font-size:20px; display:none; }
+  #score-panel.show{ display:block; }
+  #score-panel .big{ font-size:40px; display:block; margin-bottom:4px;}
+
+  footer{ text-align:center; margin-top: 30px; color: var(--ink-soft); font-size:13px; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-banner" id="topBanner">
+    <div class="badge-row">
+      <span class="logo-h">H</span>
+      <span class="logo-tower-wrap">
+        <svg class="logo-tower" viewBox="0 0 60 90">
+          <path d="
+            M30 4 L30 11
+            M22 22 L38 22
+            M15 38 L45 38
+            M9 56 L51 56
+            M4 78 L56 78
+            M30 11 L22 22 M30 11 L38 22
+            M22 22 L15 38 M38 22 L45 38
+            M15 38 L9 56 M45 38 L51 56
+            M9 56 L4 78 M51 56 L56 78
+            M15 38 L45 38
+            M4 78 L56 78
+            M6 84 L54 84
+          "/>
+        </svg>
+        <span class="logo-tm">TM</span>
+      </span>
+    </div>
+    <div class="logo-name">Hatem El&#8209;Morsi</div>
+    <svg class="logo-flourish" viewBox="0 0 180 10"><path d="M2 5 Q45 -3 90 5 T178 5"/></svg>
+  </div>
+
+  <header>
+    <span class="eyebrow">Unité 4 · الدرس الأول</span>
+    <h1>Le <span class="g">corps</span></h1>
+    <div class="subtitle">جسمي — المفردات 🧍</div>
+    <div class="sound-hint">🔊 اضغط على أي أيقونة سماعة عشان تسمع النطق الصحيح بالفرنسية</div>
+  </header>
+
+  <!-- ===================== PART A : LE CORPS ===================== -->
+  <div class="tab-panel active" id="panelA">
+
+    <section class="block">
+      <div class="block-head">
+        <span class="tag a">Vocabulaire</span>
+        <h2>اكتشف جسم سامي — اضغط على كل نقطة 👆</h2>
+        <p>Clique sur chaque point pour découvrir le mot et son article</p>
+      </div>
+      <div class="body-wrap">
+        <div class="body-stage" id="bodyStage"></div>
+        <div class="body-info">
+          <div class="progress-line" id="progressLine">اكتشفت 0 من 10 🔍</div>
+          <div class="callout" id="callout">
+            <div class="cfr">👆 اضغط على أي جزء من الجسم</div>
+          </div>
+          <div class="checklist" id="checklist"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <span class="tag a">Lecture</span>
+        <h2>📖 Le corps de Samy</h2>
+        <p>اقرأ النص، ولاحظ أرقام الصورة اللي بتوصف كل جزء</p>
+      </div>
+      <div class="passage">
+        C'est un garçon. Il s'appelle Samy.<br>
+        Sa tête <span class="num">1</span> est ronde.<br>
+        Son cou <span class="num">2</span> est court.<br>
+        Et ses bras <span class="num">3</span> sont solides.<br>
+        Il a deux pieds <span class="num">4</span>, un dos droit et une poitrine <span class="num">5</span>.
+        <button class="speak-btn mini" data-say="C'est un garçon. Il s'appelle Samy. Sa tête est ronde. Son cou est court. Et ses bras sont solides. Il a deux pieds, un dos droit et une poitrine.">🔊</button>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <span class="tag a">Exercice interactif</span>
+        <h2>لعبة التصنيف: le / la</h2>
+        <p>اضغط على الكلمة ثم اضغط على السلة المناسبة</p>
+      </div>
+      <div class="word-pool" id="artWordPool"></div>
+      <div class="basket-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="basket le" data-key="le"><h4>le</h4><div class="placed-row" id="rowLe"></div></div>
+        <div class="basket la" data-key="la"><h4>la</h4><div class="placed-row" id="rowLa"></div></div>
+      </div>
+      <div class="feedback-line" id="artFeedback"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <span class="tag a">Vidéo</span>
+        <h2>🎬 Chanson : Tête, épaules, genoux, pieds</h2>
+        <p>غنّوا وحرّكوا مع الأغنية عشان تحفظوا أجزاء الجسم</p>
+      </div>
+      <div class="video-frame" id="videoFrame">
+        <img class="video-thumb" src="https://img.youtube.com/vi/KeYXG5Xq5DU/hqdefault.jpg" alt="Tête épaules genoux pieds">
+        <div class="video-play"><div class="btn-circle">▶</div></div>
+      </div>
+      <div class="video-caption">Tête, épaules, genoux, pieds — CoComelon en Français — اضغط على الصورة للتشغيل</div>
+      <a class="video-fallback" href="https://www.youtube.com/watch?v=KeYXG5Xq5DU" target="_blank" rel="noopener">↗️ لو الفيديو مايشتغلش هنا، شاهده مباشرة على YouTube</a>
+    </section>
+
+  </div>
+
+  <!-- ===================== QUIZ (shared) ===================== -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag" style="background:var(--accent);">Évaluation rapide</span>
+      <h2>اختبر نفسك 🎯</h2>
+      <p>أسئلة على مفردات الجسم</p>
+    </div>
+    <div id="quizContainer"></div>
+    <div class="quiz-actions"><button class="primary" id="checkBtn">✅ Vérifier mes réponses</button></div>
+    <div id="score-panel"></div>
+  </section>
+
+  <footer>
+    4ème Primaire — 1er semestre 🌍
+    <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:10px; opacity:.8;" aria-hidden="true">
+      <svg viewBox="0 0 60 90" style="height:24px; width:auto;">
+        <path style="fill:none;stroke:var(--ink-soft);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;" d="
+          M30 4 L30 11 M22 22 L38 22 M15 38 L45 38 M9 56 L51 56 M4 78 L56 78
+          M30 11 L22 22 M30 11 L38 22 M22 22 L15 38 M38 22 L45 38 M15 38 L9 56 M45 38 L51 56
+          M9 56 L4 78 M51 56 L56 78 M15 38 L45 38 M4 78 L56 78 M6 84 L54 84"/>
+      </svg>
+      <span style="font-family:'Berkshire Swash',cursive; font-size:20px; color:var(--ink-soft);">Hatem El-Morsi</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ================= LOGO SPARKLES ================= */
+(function(){
+  const banner = document.getElementById('topBanner');
+  const positions = [
+    {top:'6%', left:'10%', delay:2.6}, {top:'14%', left:'86%', delay:2.9},
+    {top:'54%', left:'4%', delay:3.2}, {top:'60%', left:'92%', delay:2.75},
+    {top:'2%', left:'50%', delay:3.4}
+  ];
+  positions.forEach(p=>{
+    const s = document.createElement('span');
+    s.className = 'sparkle-deco';
+    s.textContent = '✨';
+    s.style.top = p.top; s.style.left = p.left;
+    s.style.animationDelay = p.delay + 's';
+    banner.appendChild(s);
+  });
+})();
+
+/* ================= TEXT-TO-SPEECH ================= */
+let frVoice = null;
+function pickVoice(){ const voices = speechSynthesis.getVoices(); frVoice = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('fr')) || null; }
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, btn){
+  if(!('speechSynthesis' in window)){ alert('عذراً، هذا المتصفح لا يدعم النطق الصوتي.'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'fr-FR'; if(frVoice) u.voice = frVoice; u.rate = 0.85;
+  if(btn){ btn.classList.add('playing'); u.onend = ()=> btn.classList.remove('playing'); u.onerror = ()=> btn.classList.remove('playing'); }
+  speechSynthesis.speak(u);
+}
+function speakBtn(text, mini=false){ return `<button type="button" class="speak-btn${mini?' mini':''}" data-say="${text.replace(/"/g,'&quot;')}">🔊</button>`; }
+document.addEventListener('click', (e)=>{ const btn = e.target.closest('.speak-btn'); if(btn){ speak(btn.dataset.say, btn); } });
+
+/* ================= VIDEO CLICK-TO-PLAY ================= */
+document.getElementById('videoFrame').addEventListener('click', function(){
+  this.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/KeYXG5Xq5DU?autoplay=1&rel=0" title="Tête épaules genoux pieds" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+});
+
+/* ================= BODY DIAGRAM ================= */
+const bodyParts = [
+  {id:'tete', fr:'La tête', ar:'الرأس', article:'la', x:50, y:10},
+  {id:'cou', fr:'Le cou', ar:'الرقبة', article:'le', x:50, y:24},
+  {id:'poitrine', fr:'La poitrine', ar:'الصدر', article:'la', x:50, y:36},
+  {id:'ventre', fr:'Le ventre', ar:'البطن', article:'le', x:50, y:48},
+  {id:'bras', fr:'Le bras', ar:'الذراع', article:'le', x:20, y:40},
+  {id:'main', fr:'La main', ar:'اليد', article:'la', x:14, y:56},
+  {id:'doigt', fr:'Le doigt', ar:'الإصبع', article:'le', x:82, y:56},
+  {id:'jambe', fr:'La jambe', ar:'الرجل', article:'la', x:38, y:75},
+  {id:'genou', fr:'Le genou', ar:'الركبة', article:'le', x:62, y:75},
+  {id:'pied', fr:'Le pied', ar:'القدم', article:'le', x:50, y:94}
+];
+const articleColors = { le:'var(--le)', la:'var(--la)' };
+
+function bodySVG(){
+  return `
+  <svg viewBox="0 0 200 260">
+    <circle cx="100" cy="34" r="24" fill="#F4D2A8"/>
+    <path d="M78 22 Q100 6 122 22 Q124 30 122 34 Q100 24 78 34 Q76 30 78 22 Z" fill="#6B4226"/>
+    <rect x="92" y="54" width="16" height="14" fill="#F4D2A8"/>
+    <path d="M70 68 Q100 60 130 68 L136 150 Q100 162 64 150 Z" fill="#4A7FB0"/>
+    <path d="M70 68 L38 96 L30 150 L44 154 L56 100 L74 84 Z" fill="#4A7FB0"/>
+    <path d="M130 68 L162 96 L170 150 L156 154 L144 100 L126 84 Z" fill="#4A7FB0"/>
+    <circle cx="30" cy="156" r="9" fill="#F4D2A8"/>
+    <circle cx="170" cy="156" r="9" fill="#F4D2A8"/>
+    <path d="M66 150 L60 210 L78 210 L84 158 Z" fill="#2E2A25"/>
+    <path d="M134 150 L140 210 L122 210 L116 158 Z" fill="#2E2A25"/>
+    <ellipse cx="69" cy="222" rx="16" ry="9" fill="#C96A2E"/>
+    <ellipse cx="131" cy="222" rx="16" ry="9" fill="#C96A2E"/>
+    <circle cx="72" cy="182" r="5" fill="#F4D2A8" opacity="0"/>
+  </svg>`;
+}
+
+const bodyStage = document.getElementById('bodyStage');
+bodyStage.innerHTML = bodySVG();
+const found = new Set();
+
+function updateProgress(){ document.getElementById('progressLine').textContent = `اكتشفت ${found.size} من ${bodyParts.length} 🔍`; }
+function buildChecklist(){
+  const box = document.getElementById('checklist');
+  box.innerHTML = bodyParts.map(p=>`<span class="chk" id="chk-${p.id}">${p.fr}</span>`).join('');
+}
+buildChecklist();
+
+bodyParts.forEach(p=>{
+  const dot = document.createElement('button');
+  dot.type='button'; dot.className='hotspot'; dot.id = 'dot-'+p.id;
+  dot.style.left = p.x+'%'; dot.style.top = p.y+'%';
+  dot.textContent = '?';
+  dot.addEventListener('click', ()=>{
+    found.add(p.id);
+    dot.classList.add('found'); dot.textContent = '✓';
+    document.getElementById('chk-'+p.id).classList.add('done');
+    updateProgress();
+    document.getElementById('callout').innerHTML = `
+      <div class="cfr">${p.fr} ${speakBtn(p.fr, true)}</div>
+      <div class="car">${p.ar}</div>
+      <span class="article-tag" style="background:${articleColors[p.article]}">${p.article}</span>
+    `;
+  });
+  bodyStage.appendChild(dot);
+});
+
+/* ================= ARTICLE SORT GAME (le/la) ================= */
+const artWords = [
+  {word:'bras', article:'le'}, {word:'cou', article:'le'}, {word:'doigt', article:'le'}, {word:'genou', article:'le'}, {word:'pied', article:'le'}, {word:'ventre', article:'le'},
+  {word:'jambe', article:'la'}, {word:'main', article:'la'}, {word:'tête', article:'la'}, {word:'poitrine', article:'la'}
+];
+const artWordPool = document.getElementById('artWordPool');
+const artRows = { le:document.getElementById('rowLe'), la:document.getElementById('rowLa') };
+const artFeedback = document.getElementById('artFeedback');
+let artSelected = null, artPlaced = 0;
+
+[...artWords].sort(()=>Math.random()-0.5).forEach(item=>{
+  const chip = document.createElement('div');
+  chip.className='word-chip'; chip.textContent = item.word; chip.dataset.article = item.article;
+  chip.addEventListener('click', ()=>{
+    if(chip.classList.contains('placed')) return;
+    if(artSelected) artSelected.style.outline = '';
+    artSelected = chip; chip.style.outline = '3px solid #2E2A25';
+    artFeedback.textContent = 'دلوقتي اضغط على السلة المناسبة 👇';
+    artFeedback.className = 'feedback-line show'; artFeedback.style.color = '#5B5750';
+  });
+  artWordPool.appendChild(chip);
+});
+document.querySelectorAll('.basket-grid .basket').forEach(basket=>{
+  basket.addEventListener('click', ()=>{
+    if(!artSelected) return;
+    const key = basket.dataset.key;
+    const correct = key === artSelected.dataset.article;
+    artSelected.classList.add(correct ? 'correct' : 'wrong');
+    artSelected.classList.add('placed');
+    artSelected.style.outline = '';
+    const clone = artSelected.cloneNode(true); clone.classList.remove('placed');
+    artRows[key].appendChild(clone);
+    artPlaced++; artSelected = null;
+    if(artPlaced === artWords.length){
+      artFeedback.textContent = '🎉 أحسنت! لقد صنّفت كل الكلمات.';
+      artFeedback.className = 'feedback-line show ok';
+    }
+  });
+});
+
+/* ================= QUIZ (shared) ================= */
+const quiz = [
+  {type:'mcq', q:"1) Complète : ____ bras (le/la)", opts:['le','la'], ans:'le'},
+  {type:'mcq', q:"2) Complète : ____ jambe (le/la)", opts:['le','la'], ans:'la'},
+  {type:'mcq', q:"3) Complète : ____ tête (le/la)", opts:['le','la'], ans:'la'},
+  {type:'mcq', q:"4) Complète : ____ pied (le/la)", opts:['le','la'], ans:'le'},
+  {type:'text', q:"5) Écris en français : « البطن »", ans:['le ventre']},
+  {type:'text', q:"6) Écris en français : « اليد »", ans:['la main']},
+  {type:'text', q:"7) Écris en français : « الإصبع »", ans:['le doigt']},
+  {type:'text', q:"8) Combien de parties du corps as-tu appris aujourd'hui ? (en chiffres)", ans:['10','dix']}
+];
+
+const quizContainer = document.getElementById('quizContainer');
+quiz.forEach((item, idx)=>{
+  const q = document.createElement('div');
+  q.className = 'quiz-q'; q.dataset.index = idx;
+  let inner = `<div class="qtitle">${item.q}</div>`;
+  if(item.type==='mcq'){
+    inner += `<div class="opts">${item.opts.map(o=>`<button type="button" class="opt" data-val="${o}">${o}</button>`).join('')}</div>`;
+  } else if(item.type==='bool'){
+    inner += `<div class="opts"><button type="button" class="opt" data-val="Vrai">✔️ Vrai</button><button type="button" class="opt" data-val="Faux">✘ Faux</button></div>`;
+  } else if(item.type==='text'){
+    inner += `<input type="text" class="text-ans" placeholder="اكتب هنا…">`;
+  }
+  inner += `<div class="feedback-line"></div>`;
+  q.innerHTML = inner;
+  quizContainer.appendChild(q);
+  if(item.type!=='text'){
+    q.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        q.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  }
+});
+
+document.getElementById('checkBtn').addEventListener('click', ()=>{
+  let score = 0;
+  quiz.forEach((item, idx)=>{
+    const q = quizContainer.querySelector(`[data-index="${idx}"]`);
+    const fb = q.querySelector('.feedback-line');
+    let correct = false;
+    if(item.type==='text'){
+      const input = q.querySelector('.text-ans');
+      const userVal = (input.value||'').trim().toLowerCase();
+      correct = item.ans.some(a => userVal === a.toLowerCase());
+    } else {
+      const sel = q.querySelector('.opt.selected');
+      const userVal = sel ? sel.dataset.val : null;
+      correct = userVal === item.ans;
+      q.querySelectorAll('.opt').forEach(b=>{
+        if(b.dataset.val === item.ans) b.classList.add('correct');
+        else if(b.classList.contains('selected') && !correct) b.classList.add('wrong');
+      });
+    }
+    if(correct){ score++; fb.textContent = '✔️ صحيح!'; fb.className='feedback-line show ok'; }
+    else { fb.textContent = `✘ الإجابة الصحيحة: ${Array.isArray(item.ans)?item.ans[0]:item.ans}`; fb.className='feedback-line show no'; }
+  });
+  const panel = document.getElementById('score-panel');
+  const pct = Math.round(score/quiz.length*100);
+  let msg = pct===100 ? 'ممتاز! 🌟' : pct>=70 ? 'أحسنت! 👏' : 'حاول مرة أخرى 💪';
+  panel.innerHTML = `<span class="big">${score} / ${quiz.length}</span>${msg}`;
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+</body>
+</html>
