@@ -13,5 +13,14 @@
   "assessment":"Assessment",
   "games":"Educational Games",
   "video":"Lesson Video",
-  "progress":"Lesson Progress"
+  "progress":"Lesson Progress",
+  "tagline":"French Language Education",
+  "home":"Home",
+  "student":"Student",
+  "schoolCurriculum":"School Programs",
+  "languageTracks":"Language Levels",
+  "library":"Library",
+  "settings":"Settings",
+  "homeTitle":"Learn French More Intelligently",
+  "homeSub":"A complete platform combining school programs, international language paths, and interactive learning."
 }
