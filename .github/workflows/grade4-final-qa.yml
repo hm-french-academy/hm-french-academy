@@ -43,3 +43,5 @@ jobs:
       - name: Verify release gate remains explicit
         run: |
           node -e "const x=require('./data/lessons/grade-4/premium-runtime-manifest.json'); if(x.releaseGate!=='final-qa-required') process.exit(1); console.log('Release remains gated by Final QA.');"
+      - name: QA completion marker
+        run: echo "Grade 4 QA gate evaluated at commit $GITHUB_SHA"
