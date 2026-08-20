@@ -1,0 +1,23 @@
+{
+  "grade": "primary-4",
+  "term": "all",
+  "titleAr": "الصف الرابع الابتدائي — اللغة الفرنسية",
+  "titleFr": "4ème primaire — Français",
+  "lessons": [
+    {"id":"g4-l01","number":1,"titleAr":"الفصول","titleFr":"Les saisons","sourceDir":"Les-saisons"},
+    {"id":"g4-l02","number":2,"titleAr":"الأرقام","titleFr":"Les chiffres","sourceDir":"Les-chiffres"},
+    {"id":"g4-l03","number":3,"titleAr":"الساعة","titleFr":"L'heure","sourceDir":"L-heure"},
+    {"id":"g4-l04","number":4,"titleAr":"وجهي","titleFr":"Mon visage","sourceDir":"Mon-visage"},
+    {"id":"g4-l05","number":5,"titleAr":"صفات الملكية — الوجه","titleFr":"Adjectifs possessifs — visage","sourceDir":"Adjectifs-possessifs-visage"},
+    {"id":"g4-l06","number":6,"titleAr":"الجسم","titleFr":"Le corps","sourceDir":"Le-corps"},
+    {"id":"g4-l07","number":7,"titleAr":"صفات الملكية — الجسم","titleFr":"Adjectifs possessifs — corps","sourceDir":"Adjectifs-possessifs-corps"}
+  ],
+  "packageSchema": {
+    "interactive":"01-interactif",
+    "printable":"02-reference",
+    "evaluation":"03-evaluation",
+    "electronicExam":"04-examen-electronique"
+  },
+  "status":"source-package-registered",
+  "note":"يجب أن تُربط الملفات الثنائية الأصلية من الحزمة بعد رفعها إلى المستودع؛ هذا السجل لا ينشئ ملفات DOCX غير موجودة."
+}
