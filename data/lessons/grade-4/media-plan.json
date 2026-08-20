@@ -1,0 +1,14 @@
+{
+  "grade":"primary-4",
+  "status":"media-binding-prepared",
+  "lessons":[
+    {"id":"g4-l01","mediaRequired":["pronunciation","lesson-support"]},
+    {"id":"g4-l02","mediaRequired":["pronunciation","number-practice"]},
+    {"id":"g4-l03","mediaRequired":["pronunciation","time-practice"]},
+    {"id":"g4-l04","mediaRequired":["pronunciation","vocabulary-support"]},
+    {"id":"g4-l05","mediaRequired":["pronunciation","grammar-support"]},
+    {"id":"g4-l06","mediaRequired":["pronunciation","vocabulary-support"]},
+    {"id":"g4-l07","mediaRequired":["pronunciation","grammar-support"]}
+  ],
+  "policy":"Do not claim media is bound until actual media assets are present and playable."
+}
