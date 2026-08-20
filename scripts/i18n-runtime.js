@@ -20,6 +20,8 @@
     document.documentElement.lang=lang;
     document.documentElement.dir=lang==='ar'?'rtl':'ltr';
     translateDocument();
+    const selector=document.querySelector('[data-lang-select]');
+    if(selector) selector.value=lang;
     return languageData;
   }
 
@@ -31,7 +33,6 @@
     if(languageData[key]) return languageData[key];
     if(dictionary[key]) return dictionary[key];
 
-    // Common dynamic dashboard phrases: keep numbers and IDs intact.
     let m=key.match(/^(\d+)\s*\/\s*(\d+)\s*دروس$/);
     if(m) return `${m[1]} / ${m[2]} ${window.HMLanguage==='fr'?'leçons':'lessons'}`;
     m=key.match(/^(\d+)\s*\/\s*(\d+)\s*وحدات$/);
@@ -49,7 +50,6 @@
     m=key.match(/^([🔒✅])\s*(مكتسبة|لم تُكتسب بعد)\s*·\s*(.*)$/);
     if(m) return `${m[1]} ${m[2]==='مكتسبة'?(window.HMLanguage==='fr'?'Acquise':'Earned'):(window.HMLanguage==='fr'?'Pas encore acquise':'Not earned yet')} · ${m[3]}`;
 
-    // Translate page titles while preserving the HM Academy brand.
     if(key.startsWith('HM Academy | ')){
       const suffix=key.slice('HM Academy | '.length);
       const translated=translateValue(suffix);
@@ -116,13 +116,17 @@
 
   window.HMTranslate=translateValue;
 
-  document.addEventListener('DOMContentLoaded',()=>{
+  function boot(){
     observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
     loadLanguage().catch(()=>{});
     const selector=document.querySelector('[data-lang-select]');
-    if(selector){
+    if(selector && !selector.dataset.hmI18nBound){
+      selector.dataset.hmI18nBound='1';
       selector.value=window.HMLanguage;
       selector.addEventListener('change',()=>window.HMSetLanguage(selector.value).catch(()=>{}));
     }
-  });
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
+  else boot();
 })();
