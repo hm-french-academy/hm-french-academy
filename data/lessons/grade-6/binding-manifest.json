@@ -1,0 +1,12 @@
+{
+  "program": "le-francais-pour-vous",
+  "grade": "primary-6",
+  "semester": "term-1",
+  "status": "bound",
+  "source": "data/lessons/grade-6/6eme_Complet.zip",
+  "totalSourceFiles": 34,
+  "lessonRoots": [
+    "6eme_Complet"
+  ],
+  "generatedAt": "2026-08-20T17:15:10.218Z"
+}

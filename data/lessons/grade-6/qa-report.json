@@ -1,0 +1,13 @@
+{
+  "grade": "primary-6",
+  "semester": "term-1",
+  "status": "PASS",
+  "checks": {
+    "zip": "PASS",
+    "extracted": "PASS",
+    "inventory": "PASS",
+    "binding": "PASS"
+  },
+  "totalSourceFiles": 34,
+  "generatedAt": "2026-08-20T17:15:10.245Z"
+}
