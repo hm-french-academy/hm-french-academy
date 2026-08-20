@@ -1,7 +1,7 @@
 {
   "grade":"primary-4",
   "titleAr":"الصف الرابع الابتدائي — اللغة الفرنسية",
-  "status":"source-package-located-and-verified",
+  "status":"source-content-audited",
   "lessonCount":7,
   "sourceArchive":"4eme_Complet(1).zip",
   "sourceFileCount":28,
@@ -15,5 +15,7 @@
     {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","sourceDir":"07_Adjectifs_possessifs_corps"}
   ],
   "packageSchema":{"interactive":"01_interactif","printable":"02_reference","evaluation":"03_evaluation","electronicExam":"04_examen_electronique"},
+  "audits":{"sourcePackage":true,"sourceContent":true,"fileCount":28},
+  "nextGate":"repository-ingestion",
   "releasePolicy":"Preserve original source files unchanged. Do not mark lessons release-ready until repository ingestion and QA are complete."
 }
