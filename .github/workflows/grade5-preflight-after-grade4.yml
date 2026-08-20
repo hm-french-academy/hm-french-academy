@@ -1,0 +1,34 @@
+name: Grade 5 Preflight After Grade 4 Release
+on:
+  workflow_run:
+    workflows: ["Grade 4 Release Gate"]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  preflight:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Grade 5 baseline
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const b='data/lessons/grade-5/';
+          const r=JSON.parse(fs.readFileSync(b+'lesson-registry.json','utf8'));
+          const c=JSON.parse(r.content);
+          const lessons=c.includedUnits.flatMap(u=>u.lessons);
+          if(lessons.length!==11) throw new Error('Expected 11 lessons');
+          for(const f of ['full-course-content.json','lesson-registry.json','lesson-media-manifest.json','grade5-game-bank.js','grade5-games.html']) if(!fs.existsSync(b+f)) throw new Error('Missing '+f);
+          const s={grade:'primary-5',term:'term-1',lessonCount:11,completed:['curriculum-registry','content-baseline','lesson-studio-baseline','media-manifest','games-baseline','progress-baseline'],blocked:['source-package-ingestion','source-validation','source-binding','final-qa','release'],reason:'Grade 4 released; Grade 5 baseline verified. Original source package ingestion is next.',nextExecution:'Ingest original Grade 5 source package, validate, bind 11 lessons, then Final QA.'};
+          fs.writeFileSync(b+'implementation-status.json',JSON.stringify(s,null,2)+'\n');
+          NODE
+      - name: Commit preflight state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-5/implementation-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(grade5): initialize post-grade4 preflight state"
+          git push
