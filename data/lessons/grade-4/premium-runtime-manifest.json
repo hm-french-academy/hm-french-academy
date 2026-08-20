@@ -1,0 +1,17 @@
+{
+  "grade":"primary-4",
+  "status":"premium-runtime-ready",
+  "sourceAudit":"data/lessons/grade-4/source-content-audit.json",
+  "adapter":"data/lessons/grade-4/content-adapter-manifest.json",
+  "lessons":[
+    {"id":"g4-l01","titleFr":"Les saisons","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l02","titleFr":"Les chiffres","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l03","titleFr":"L'heure","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l04","titleFr":"Mon visage","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l05","titleFr":"Adjectifs possessifs — visage","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l06","titleFr":"Le corps","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]},
+    {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps","sections":["lesson","vocabulary","grammar","practice","pronunciation","media","progress"]}
+  ],
+  "package":"four-part-source-package",
+  "releaseGate":"repository-ingestion-required"
+}
