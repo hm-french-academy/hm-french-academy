@@ -1,0 +1,19 @@
+{
+  "grade": "primary-6",
+  "status": "bound-to-canonical-runtime",
+  "sourceRoot": "data/lessons/grade-6/source/6eme_Complet",
+  "runtime": "lesson.html",
+  "assetContract": {"fullLessons": 8, "revisionAssets": 2, "totalSourceFiles": 34},
+  "bindings": [
+    {"id":"g6-l01","folder":"01_Au_marche","route":"lesson.html?id=g6-l01","interactive":"01_interactif_au_marche.html","reference":"02_fiche_reference_au_marche.docx","evaluation":"03_evaluation_au_marche.docx","electronicExam":"04_examen_electronique_au_marche.html"},
+    {"id":"g6-l02","folder":"02_Le_present","route":"lesson.html?id=g6-l02","interactive":"01_interactif_le_present.html","reference":"02_fiche_reference_le_present.docx","evaluation":"03_evaluation_le_present.docx","electronicExam":"04_examen_electronique_le_present.html"},
+    {"id":"g6-l03","folder":"03_La_negation","route":"lesson.html?id=g6-l03","interactive":"01_interactif_la_negation.html","reference":"02_fiche_reference_la_negation.docx","evaluation":"03_evaluation_la_negation.docx","electronicExam":"04_examen_electronique_la_negation.html"},
+    {"id":"g6-l04","folder":"04_Mon_bureau","route":"lesson.html?id=g6-l04","interactive":"01_interactif_mon_bureau.html","reference":"02_fiche_reference_mon_bureau.docx","evaluation":"03_evaluation_mon_bureau.docx","electronicExam":"04_examen_electronique_mon_bureau.html"},
+    {"id":"g6-l05","folder":"05_Le_futur_proche","route":"lesson.html?id=g6-l05","interactive":"01_interactif_futur_proche.html","reference":"02_fiche_reference_futur_proche.docx","evaluation":"03_evaluation_futur_proche.docx","electronicExam":"04_examen_electronique_futur_proche.html"},
+    {"id":"g6-l06","folder":"06_Les_vetements","route":"lesson.html?id=g6-l06","interactive":"01_interactif_les_vetements.html","reference":"02_fiche_reference_les_vetements.docx","evaluation":"03_evaluation_les_vetements.docx","electronicExam":"04_examen_electronique_les_vetements.html"},
+    {"id":"g6-l07","folder":"07_Adjectifs_possessifs","route":"lesson.html?id=g6-l07","interactive":"01_interactif_adjectifs_possessifs.html","reference":"02_fiche_reference_adjectifs_possessifs.docx","evaluation":"03_evaluation_adjectifs_possessifs.docx","electronicExam":"04_examen_electronique_adjectifs_possessifs.html"},
+    {"id":"g6-l08","folder":"08_L_heure","route":"lesson.html?id=g6-l08","interactive":"01_interactif_lheure.html","reference":"02_fiche_reference_lheure.docx","evaluation":"03_evaluation_lheure.docx","electronicExam":"04_examen_electronique_lheure.html"}
+  ],
+  "revision": {"folder":"09_Revision_generale","interactive":"01_revision_generale_interactif.html","referenceOrExam":"02_revision_generale_examen.docx"},
+  "preserveOriginals": true
+}
