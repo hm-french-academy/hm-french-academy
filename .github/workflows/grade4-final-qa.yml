@@ -6,26 +6,40 @@ on:
     paths:
       - 'data/lessons/grade-4/**'
       - 'scripts/grade4-*.mjs'
+      - 'scripts/lesson-audio-bind.js'
+      - 'scripts/lesson-complete.js'
       - '.github/workflows/grade4-final-qa.yml'
+permissions:
+  contents: read
 jobs:
   qa:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Grade 4 release manifests and source binding
+      - name: Validate Grade 4 source, binding and integration gates
         run: |
           node - <<'NODE'
           const fs=require('fs');
           const base='data/lessons/grade-4/';
-          const files=['release-manifest.json','source-package-manifest.json','source-content-audit.json','content-adapter-manifest.json','premium-runtime-manifest.json','premium-route-map.json','media-plan.json','games-plan.json','progress-plan.json','qa-matrix.json','validation-report.json','source-binding-manifest.json'];
-          for (const f of files) if (!fs.existsSync(base+f)) throw new Error('Missing '+f);
+          const required=['release-manifest.json','source-package-manifest.json','source-content-audit.json','content-adapter-manifest.json','premium-runtime-manifest.json','premium-route-map.json','media-plan.json','games-plan.json','progress-plan.json','qa-matrix.json','validation-report.json','source-binding-manifest.json','media-binding-manifest.json','games-binding-manifest.json','progress-binding-manifest.json'];
+          for(const f of required) if(!fs.existsSync(base+f)) throw new Error('Missing '+f);
           const audit=JSON.parse(fs.readFileSync(base+'source-content-audit.json'));
-          if(audit.lessonCount!==7 || audit.fileCount!==28) throw new Error('Invalid audit counts');
+          if(audit.lessonCount!==7||audit.fileCount!==28) throw new Error('Invalid audit counts');
           const binding=JSON.parse(fs.readFileSync(base+'source-binding-manifest.json'));
-          if(binding.bindings.length!==7 || binding.assetContract.totalFiles!==28) throw new Error('Invalid binding contract');
-          let count=0, html=0, docx=0;
+          if(binding.bindings.length!==7||binding.assetContract.totalFiles!==28) throw new Error('Invalid source binding');
+          for(const b of binding.bindings){if(!/^lesson\.html\?id=g4-l0[1-7]$/.test(b.route))throw new Error('Bad route '+b.route);}
+          const media=JSON.parse(fs.readFileSync(base+'media-binding-manifest.json'));
+          const games=JSON.parse(fs.readFileSync(base+'games-binding-manifest.json'));
+          const progress=JSON.parse(fs.readFileSync(base+'progress-binding-manifest.json'));
+          if(media.lessons.length!==7||games.lessons.length!==7||progress.lessonIds.length!==7)throw new Error('Integration lesson count mismatch');
+          if(!fs.existsSync('scripts/lesson-audio-bind.js'))throw new Error('Audio runtime missing');
+          if(!fs.existsSync('scripts/lesson-complete.js'))throw new Error('Progress runtime missing');
+          let count=0,html=0,docx=0;
           function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())walk(p);else{count++;if(p.endsWith('.html'))html++;if(p.endsWith('.docx'))docx++;}}}
           walk(base+'source/4eme_Complet');
-          if(count!==28 || html!==14 || docx!==14) throw new Error(`Invalid repository source tree: ${count}/${html}/${docx}`);
-          console.log('Grade 4 Final QA source gate passed: 7 lessons / 28 assets / 14 HTML / 14 DOCX.');
+          if(count!==28||html!==14||docx!==14)throw new Error(`Invalid repository source tree: ${count}/${html}/${docx}`);
+          console.log('Grade 4 Final QA static gate passed: source 28/28, canonical binding 7/7, media runtime 7/7, games 7/7, progress 7/7.');
           NODE
+      - name: Verify release gate remains explicit
+        run: |
+          node -e "const x=require('./data/lessons/grade-4/premium-runtime-manifest.json'); if(x.releaseGate!=='final-qa-required') process.exit(1); console.log('Release remains gated by Final QA.');"
