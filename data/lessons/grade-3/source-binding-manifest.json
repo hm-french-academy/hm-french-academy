@@ -1,0 +1,18 @@
+{
+  "grade":"primary-3",
+  "semester":"term-1",
+  "status":"bound-to-canonical-runtime",
+  "sourceRoot":"data/lessons/grade-3/source/3eme prim",
+  "runtime":"lesson.html",
+  "assetContract":{"lessons":6,"sourceFiles":32,"html":12,"docx":20},
+  "bindings":[
+    {"id":"g3-l01","folder":"01_Introduction","route":"lesson.html?id=g3-l01","interactive":"01_interactif_introduction.html","reference":"02_reference_introduction.docx","evaluation":"03_evaluation_introduction.docx","electronicExam":"04_examen_introduction.html","support":"02_script_narration_introduction.docx","form":"dossier_google_forms_introduction.docx"},
+    {"id":"g3-l02","folder":"02_En_classe","route":"lesson.html?id=g3-l02","interactive":"01_interactif_enclasse.html","reference":"02_reference_enclasse.docx","evaluation":"03_evaluation_enclasse.docx","electronicExam":"04_examen_enclasse.html","form":"dossier_google_forms_enclasse.docx"},
+    {"id":"g3-l03","folder":"03_Actes_et_verbes","route":"lesson.html?id=g3-l03","interactive":"01_interactif_actesverbes.html","reference":"02_reference_actesverbes.docx","evaluation":"03_evaluation_actesverbes.docx","electronicExam":"04_examen_actesverbes.html","form":"dossier_google_forms_actesverbes.docx"},
+    {"id":"g3-l04","folder":"04_Unite1_Cest_ma_classe","route":"lesson.html?id=g3-l04","interactive":"01_interactif_maclasse.html","reference":"02_reference_maclasse.docx","evaluation":"03_evaluation_maclasse.docx","electronicExam":"04_examen_maclasse.html","form":"dossier_google_forms_maclasse.docx"},
+    {"id":"g3-l05","folder":"05_Unite2_Cest_ma_maison","route":"lesson.html?id=g3-l05","interactive":"01_interactif_maison.html","reference":"02_reference_maison.docx","evaluation":"03_evaluation_maison.docx","electronicExam":"04_examen_maison.html","form":"dossier_google_forms_maison.docx"},
+    {"id":"g3-l06","folder":"06_Unite3_Fruits_et_legumes","route":"lesson.html?id=g3-l06","interactive":"01_interactif_fruits.html","reference":"02_reference_fruits.docx","evaluation":"03_evaluation_fruits.docx","electronicExam":"04_examen_fruits.html","form":"dossier_google_forms_fruits.docx"}
+  ],
+  "revision":{"folder":"07_Revision_generale","asset":"04_revision_generale_complete.docx"},
+  "preserveOriginals":true
+}
