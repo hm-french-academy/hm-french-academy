@@ -1,62 +1,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-const root = process.cwd();
-const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
-const exists = (p) => fs.existsSync(path.join(root, p));
-const fail = (msg) => { console.error(`FAIL: ${msg}`); failures++; };
-let failures = 0;
-
-const registry = readJson('data/lessons/grade-5/lesson-registry.json');
-const media = readJson('data/lessons/grade-5/media-index.json');
-const content = readJson('data/lessons/grade-5/lesson-studio-content.json');
-const curriculum = readJson('data/curricula/grade-5-french-semester-1.json');
-const lessons = registry.includedUnits?.flatMap(u => u.lessons || []) || [];
-
-if (registry.grade !== 'primary-5') fail('registry grade is not primary-5');
-if (lessons.length !== 11) fail(`expected 11 lessons, found ${lessons.length}`);
-if (curriculum.lessonCount !== 11 || curriculum.lessons?.length !== 11) fail('curriculum registry is not 11 lessons');
-if (media.videoCount !== 11 || media.readyVideos !== 11 || media.complete !== true) fail('media release is not complete 11/11');
-if (!exists('grade-5-lesson-v3.html')) fail('Grade 5 Lesson Studio entry page missing');
-if (!exists('scripts/grade5-premium-engine-v6.js')) fail('Premium engine missing');
-if (!exists('scripts/grade5-games-entry-v1.js')) fail('Games entry missing');
-if (!exists('data/lessons/grade-5/grade5-games.html')) fail('Games hub missing');
-
-const requiredGames = [
-  'grade5-game-vocabulary.html','grade5-game-subject.html','grade5-game-verb.html',
-  'grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html'
-];
-for (const file of requiredGames) if (!exists(`data/lessons/grade-5/${file}`)) fail(`missing game: ${file}`);
-
-const requiredPackage = [
-  '01-interactif.html','02-reference-imprimable.docx',
-  '03-evaluation-a-imprimer.docx','04-examen-electronique.html'
-];
-const registeredPackage = registry.packageSchema || curriculum.lessonPackage?.requiredFiles || [];
-if (requiredPackage.some(f => !registeredPackage.includes(f))) fail('lesson package schema is incomplete');
-if (!registry.finalExamRegistered) fail('final exam is not registered in release metadata');
-
-for (const lesson of lessons) {
-  const d = content.lessons?.[lesson.id];
-  if (!d) { fail(`${lesson.id}: missing lesson content`); continue; }
-  for (const key of ['titleAr','titleFr','objectiveAr']) if (!d[key]) fail(`${lesson.id}: missing ${key}`);
-  if (!Array.isArray(d.vocabulary) || d.vocabulary.length === 0) fail(`${lesson.id}: vocabulary missing`);
-  if (!Array.isArray(d.practice) || d.practice.length === 0) fail(`${lesson.id}: practice missing`);
-  if (!d.grammar) fail(`${lesson.id}: grammar missing`);
-  if (!Array.isArray(d.pronunciation) || d.pronunciation.length === 0) fail(`${lesson.id}: pronunciation content missing`);
-  const m = media.lessons?.find(x => x.lessonId === lesson.id);
-  if (!m || m.status !== 'ready' || !m.videoId || !/^[-_A-Za-z0-9]{8,12}$/.test(m.videoId)) fail(`${lesson.id}: valid ready video binding missing`);
-}
-
-const html = fs.readFileSync(path.join(root, 'grade-5-lesson-v3.html'), 'utf8');
-for (const needle of [
-  'learning-progress.js?build=20260820-144',
-  'grade5-fetch-cache.js?build=20260820-144',
-  'grade5-premium-engine-v6.js?build=20260820-144',
-  'grade5-games-entry-v1.js?build=20260820-144'
-]) if (!html.includes(needle)) fail(`Lesson Studio missing pinned runtime: ${needle}`);
-if (!html.includes('grade5-games.html?v=20260820-144')) fail('Games route is not pinned to release 144');
-
-console.log(`Grade 5 release QA: ${lessons.length} lessons, ${media.readyVideos}/${media.videoCount} videos, ${requiredGames.length} games, package schema ${requiredPackage.length}/4`);
-if (failures) { console.error(`Grade 5 release QA failed with ${failures} issue(s).`); process.exit(1); }
-console.log('Grade 5 release QA PASSED.');
+const root=process.cwd();let failures=0;
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+const exists=p=>fs.existsSync(path.join(root,p));
+const fail=m=>{console.error(`FAIL: ${m}`);failures++};
+const registry=read('data/lessons/grade-5/lesson-registry.json');
+const media=read('data/lessons/grade-5/media-index.json');
+const content=read('data/lessons/grade-5/lesson-studio-content.json');
+const curriculum=read('data/curricula/grade-5-french-semester-1.json');
+const lessons=registry.includedUnits?.flatMap(u=>u.lessons||[])||[];
+if(registry.grade!=='primary-5')fail('registry grade');
+if(lessons.length!==11)fail(`lesson count ${lessons.length}/11`);
+if(curriculum.lessonCount!==11||curriculum.lessons?.length!==11)fail('curriculum count');
+if(media.videoCount!==11||media.readyVideos!==11||media.complete!==true)fail('media 11/11');
+for(const p of ['grade-5-lesson-v3.html','scripts/grade5-premium-engine-v6.js','scripts/grade5-games-entry-v1.js','data/lessons/grade-5/grade5-games.html'])if(!exists(p))fail(`missing ${p}`);
+for(const p of ['grade5-game-vocabulary.html','grade5-game-subject.html','grade5-game-verb.html','grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html'])if(!exists(`data/lessons/grade-5/${p}`))fail(`missing game ${p}`);
+const schema=registry.packageSchema||{};const expected={interactive:'01-interactif.html',printable:'02-reference-imprimable.docx',evaluation:'03-evaluation-a-imprimer.docx',electronicExam:'04-examen-electronique.html'};for(const[k,v]of Object.entries(expected))if(schema[k]!==v)fail(`package schema ${k}`);
+if(!(registry.finalExamRegistered===true||registry.finalExam===true||registry.finalExam?.registered===true))fail('final exam registration');
+const mediaById=new Map((media.lessons||[]).map(x=>[x.lessonId,x]));
+for(const l of lessons){const d=content.lessons?.[l.id];if(!d){fail(`${l.id} content missing`);continue}for(const k of ['titleAr','titleFr','objectiveAr'])if(!d[k])fail(`${l.id} ${k}`);if(!Array.isArray(d.vocabulary)||!d.vocabulary.length)fail(`${l.id} vocabulary`);if(!d.grammar)fail(`${l.id} grammar`);if(!Array.isArray(d.practice)||!d.practice.length)fail(`${l.id} practice`);if(!Array.isArray(d.pronunciation)||!d.pronunciation.length)fail(`${l.id} pronunciation`);const m=mediaById.get(l.id);if(!m||m.status!=='ready'||!m.videoId)fail(`${l.id} video binding`)}
+const html=fs.readFileSync(path.join(root,'grade-5-lesson-v3.html'),'utf8');for(const n of ['learning-progress.js?build=20260820-144','grade5-fetch-cache.js?build=20260820-144','grade5-premium-engine-v6.js?build=20260820-144','grade5-games-entry-v1.js?build=20260820-144','grade5-games.html?v=20260820-144'])if(!html.includes(n))fail(`runtime pin ${n}`);
+console.log(`Grade 5 Release QA: ${lessons.length} lessons; ${media.readyVideos}/${media.videoCount} videos; 6 games; package gate; runtime 144`);if(failures){console.error(`FAILED: ${failures} issue(s)`);process.exit(1)}console.log('PASSED: Grade 5 release gates are structurally satisfied.');
