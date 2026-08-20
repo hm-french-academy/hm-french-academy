@@ -20,6 +20,12 @@ if (!exists('scripts/grade5-premium-engine-v6.js')) fail('Premium engine missing
 if (!exists('scripts/grade5-games-entry-v1.js')) fail('Games entry missing');
 if (!exists('data/lessons/grade-5/grade5-games.html')) fail('Games hub missing');
 
+const requiredGames = [
+  'grade5-game-vocabulary.html','grade5-game-subject.html','grade5-game-verb.html',
+  'grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html'
+];
+for (const file of requiredGames) if (!exists(`data/lessons/grade-5/${file}`)) fail(`missing game: ${file}`);
+
 for (const lesson of lessons) {
   const d = content.lessons?.[lesson.id];
   if (!d) { fail(`${lesson.id}: missing lesson content`); continue; }
@@ -27,16 +33,20 @@ for (const lesson of lessons) {
   if (!Array.isArray(d.vocabulary) || d.vocabulary.length === 0) fail(`${lesson.id}: vocabulary missing`);
   if (!Array.isArray(d.practice) || d.practice.length === 0) fail(`${lesson.id}: practice missing`);
   if (!d.grammar) fail(`${lesson.id}: grammar missing`);
+  if (!Array.isArray(d.pronunciation) || d.pronunciation.length === 0) fail(`${lesson.id}: pronunciation content missing`);
   const m = media.lessons?.find(x => x.lessonId === lesson.id);
-  if (!m || m.status !== 'ready' || !m.videoId) fail(`${lesson.id}: ready video binding missing`);
+  if (!m || m.status !== 'ready' || !m.videoId || !/^[-_A-Za-z0-9]{8,12}$/.test(m.videoId)) fail(`${lesson.id}: valid ready video binding missing`);
 }
 
-const requiredGames = [
-  'grade5-game-vocabulary.html','grade5-game-subject.html','grade5-game-verb.html',
-  'grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html'
-];
-for (const file of requiredGames) if (!exists(`data/lessons/grade-5/${file}`)) fail(`missing game: ${file}`);
+const html = fs.readFileSync(path.join(root, 'grade-5-lesson-v3.html'), 'utf8');
+for (const needle of [
+  'learning-progress.js?build=20260820-144',
+  'grade5-fetch-cache.js?build=20260820-144',
+  'grade5-premium-engine-v6.js?build=20260820-144',
+  'grade5-games-entry-v1.js?build=20260820-144'
+]) if (!html.includes(needle)) fail(`Lesson Studio missing pinned runtime: ${needle}`);
+if (!html.includes('grade5-games.html?v=20260820-144')) fail('Games route is not pinned to release 144');
 
-console.log(`Grade 5 release QA: ${lessons.length} lessons, ${media.readyVideos}/${media.videoCount} videos`);
+console.log(`Grade 5 release QA: ${lessons.length} lessons, ${media.readyVideos}/${media.videoCount} videos, ${requiredGames.length} games`);
 if (failures) { console.error(`Grade 5 release QA failed with ${failures} issue(s).`); process.exit(1); }
 console.log('Grade 5 release QA PASSED.');
