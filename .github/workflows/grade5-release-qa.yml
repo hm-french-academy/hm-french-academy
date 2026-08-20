@@ -1,0 +1,20 @@
+name: Grade 5 Premium Release QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/lessons/grade-5/**'
+      - 'grade-5-lesson-v3.html'
+      - 'scripts/grade5-*.js'
+      - 'scripts/grade5-*.mjs'
+      - '.github/workflows/grade5-release-qa.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run Grade 5 Premium release QA
+        run: node scripts/grade5-release-qa.mjs
