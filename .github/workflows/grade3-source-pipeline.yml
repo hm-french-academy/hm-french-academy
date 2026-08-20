@@ -1,0 +1,38 @@
+name: Grade 3 Source Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-3/3eme prim.zip'
+      - '.github/workflows/grade3-source-pipeline.yml'
+permissions:
+  contents: write
+jobs:
+  ingest-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify ZIP and build source inventory
+        run: |
+          test -s 'data/lessons/grade-3/3eme prim.zip'
+          unzip -t 'data/lessons/grade-3/3eme prim.zip'
+          rm -rf data/lessons/grade-3/source
+          mkdir -p data/lessons/grade-3/source
+          unzip -q -o 'data/lessons/grade-3/3eme prim.zip' -d data/lessons/grade-3/source
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path'); const root='data/lessons/grade-3/source'; const files=[];
+          function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);e.isDirectory()?walk(p):files.push(p)}} walk(root);
+          if(!files.length) throw new Error('Empty Grade 3 package');
+          const rel=files.map(f=>f.slice(root.length+1)); const ext={}; for(const f of rel){const x=path.extname(f).toLowerCase()||'[none]';ext[x]=(ext[x]||0)+1}
+          fs.writeFileSync('data/lessons/grade-3/source-inventory.json',JSON.stringify({grade:'primary-3',package:'3eme prim.zip',status:'ingested',totalFiles:files.length,files:rel,extensions:ext,generatedAt:new Date().toISOString()},null,2)+'\n');
+          NODE
+      - name: Commit ingestion inventory
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-3/source-inventory.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'ingest(grade3): inventory original source package'
+          git push
