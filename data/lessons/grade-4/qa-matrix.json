@@ -1,0 +1,7 @@
+{
+  "grade":"primary-4",
+  "status":"qa-matrix-prepared",
+  "lessons":["g4-l01","g4-l02","g4-l03","g4-l04","g4-l05","g4-l06","g4-l07"],
+  "checks":["source-present","interactive-opens","reference-downloads","evaluation-opens","electronic-exam-opens","vocabulary","grammar","pronunciation","practice","media-playback","games","progress-save","completion","navigation"],
+  "rule":"A lesson is release-ready only when all applicable checks pass against the actual repository assets."
+}
