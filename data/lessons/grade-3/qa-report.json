@@ -1,0 +1,16 @@
+{
+  "grade": "primary-3",
+  "semester": "term-1",
+  "status": "PASS",
+  "source": {
+    "files": 32,
+    "html": 12,
+    "docx": 20
+  },
+  "lessons": 6,
+  "binding": "PASS",
+  "runtime": "PASS",
+  "revision": "PRESENT",
+  "releaseGate": "PASS",
+  "generatedAt": "2026-08-20T19:02:17.072Z"
+}
