@@ -1,0 +1,43 @@
+name: Publish Grade 3 Source
+
+on:
+  push:
+    paths:
+      - 'data/lessons/grade-3/3eme prim.zip'
+      - '.github/workflows/publish-grade3-source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract Grade 3 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf data/lessons/grade-3/web
+          mkdir -p data/lessons/grade-3/web
+          unzip -q 'data/lessons/grade-3/3eme prim.zip' -d data/lessons/grade-3/web
+          find data/lessons/grade-3/web -type f -print | sort > /tmp/grade3-files.txt
+          echo "Published $(wc -l < /tmp/grade3-files.txt) source files"
+          test -n "$(find data/lessons/grade-3/web -type f -name '*.html' -print -quit)"
+
+      - name: Commit published assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-3/web
+          if git diff --cached --quiet; then
+            echo 'No extracted source changes.'
+            exit 0
+          fi
+          git commit -m 'build: publish grade 3 source assets'
+          git push
