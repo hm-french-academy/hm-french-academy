@@ -1,0 +1,12 @@
+{
+  "grade":"primary-3",
+  "semester":"term-1",
+  "status":"PASS",
+  "sourcePackage":"3eme prim.zip",
+  "sourceFiles":32,
+  "lessons":6,
+  "structure":{"html":12,"docx":20},
+  "checks":{"zipInventory":"PASS","lessonStructure":"PASS","requiredCoreAssets":"PASS","revisionAsset":"PRESENT"},
+  "notes":["Lesson 01 contains an additional narration script asset.","Revision is preserved as a standalone asset and is not promoted to a lesson."],
+  "generatedAt":"2026-08-20"
+}
