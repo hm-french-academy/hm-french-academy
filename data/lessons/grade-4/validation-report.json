@@ -1,0 +1,13 @@
+{
+  "grade":"primary-4",
+  "status":"validated",
+  "sourceRoot":"data/lessons/grade-4/source/4eme_Complet",
+  "lessons":7,
+  "files":28,
+  "extensions":{"html":14,"docx":14},
+  "contract":"4 assets per lesson: interactive, reference, evaluation, electronicExam",
+  "lessonsVerified":["g4-l01","g4-l02","g4-l03","g4-l04","g4-l05","g4-l06","g4-l07"],
+  "repositoryEvidence":"source/4eme_Complet contains all seven lesson folders; lesson folders expose the four expected source assets.",
+  "originalsPreserved":true,
+  "next":"binding-and-qa"
+}
