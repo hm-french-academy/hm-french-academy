@@ -1,0 +1,38 @@
+name: Grade 4 Release Gate
+on:
+  workflow_run:
+    workflows: ["Grade 4 Final QA"]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Close Grade 4 release gate
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const p='data/lessons/grade-4/implementation-status.json';
+          const x=JSON.parse(fs.readFileSync(p,'utf8'));
+          x.completed=[...new Set([...(x.completed||[]),'final-qa','release'])];
+          x.blocked=[];
+          x.reason='Grade 4 Final QA completed successfully; release gate closed.';
+          x.nextExecution='Grade 5 implementation may proceed.';
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n');
+          const r='data/lessons/grade-4/premium-runtime-manifest.json';
+          const m=JSON.parse(fs.readFileSync(r,'utf8'));
+          m.releaseGate='released';
+          m.releaseStatus='qa-passed';
+          fs.writeFileSync(r,JSON.stringify(m,null,2)+'\n');
+          NODE
+      - name: Commit Grade 4 release state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-4/implementation-status.json data/lessons/grade-4/premium-runtime-manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "release(grade4): close QA gate after successful final QA"
+          git push
