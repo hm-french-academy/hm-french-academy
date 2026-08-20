@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Je me présente — Introduction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Pinyon+Script&family=Berkshire+Swash&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F0;
+    --paper-2:#F5EEE1;
+    --ink:#2E2A25;
+    --ink-soft:#5B5750;
+    --nom:#E4674A;      --nom-soft:#FCE4DD;
+    --humeur:#E0A72E;   --humeur-soft:#FBF0D3;
+    --age:#3E8FB0;      --age-soft:#DDEEF5;
+    --shadow: 0 10px 28px rgba(46,42,37,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% 8%, rgba(228,103,74,0.10), transparent 40%),
+      radial-gradient(circle at 92% 12%, rgba(224,167,46,0.12), transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(62,143,176,0.10), transparent 40%),
+      radial-gradient(circle at 5% 90%, rgba(228,103,74,0.08), transparent 40%),
+      var(--paper);
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    padding: 22px 16px 60px;
+  }
+  .wrap{max-width: 1000px; margin: 0 auto;}
+
+  /* ---------- TOP LOGO BANNER (Hatem El-Morsi) ---------- */
+  .top-banner{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 22px 16px 18px; margin-bottom: 6px; position:relative;
+  }
+  .badge-row{ display:flex; align-items:flex-end; gap:2px; position:relative; }
+
+  .logo-h{
+    font-family:'Pinyon Script', cursive; font-size: 92px; line-height:.7;
+    color: var(--ink); position:relative; z-index:2;
+    opacity:0; transform: translateY(10px) scale(.9);
+    animation: popIn .7s cubic-bezier(.2,.8,.3,1.2) forwards .15s;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.06);
+  }
+  .logo-tower-wrap{ position:relative; margin: 0 2px 6px; }
+  .logo-tower{ width: 52px; height: 78px; overflow:visible; }
+  .logo-tower path{
+    fill:none; stroke:var(--ink); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray: 420; stroke-dashoffset:420;
+    animation: draw 1.6s ease forwards .5s;
+  }
+  .logo-tm{
+    font-family:'Baloo 2'; font-weight:800; font-size:13px; color: var(--nom);
+    border: 2px solid var(--nom); border-radius:6px; padding:0 4px; line-height:1.5;
+    position:relative; top:-46px; left:-4px; z-index:3; background:#fff;
+    opacity:0; transform: scale(.4) rotate(-12deg);
+    animation: tmPop .5s cubic-bezier(.3,1.6,.5,1) forwards 1.9s;
+  }
+  @keyframes tmPop{ to{ opacity:1; transform:scale(1) rotate(-8deg); } }
+  @keyframes popIn{ to{ opacity:1; transform:none; } }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  .logo-name{
+    font-family:'Berkshire Swash', cursive; font-size: clamp(22px,4.4vw,34px);
+    letter-spacing:.02em; margin-top:2px;
+    background: linear-gradient(100deg, var(--ink) 30%, var(--nom) 42%, #ffd08a 50%, var(--nom) 58%, var(--ink) 70%);
+    background-size: 260% 100%;
+    -webkit-background-clip: text; background-clip:text; color:transparent;
+    opacity:0;
+    animation: fadeUp .6s ease forwards 2.1s, shimmer 3.5s linear infinite 2.6s;
+  }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  @keyframes shimmer{ 0%{ background-position: 0% 0; } 100%{ background-position: -260% 0; } }
+
+  .logo-flourish{ width: 180px; height:10px; margin-top:4px; opacity:0; animation: fadeUp .6s ease forwards 2.5s; }
+  .logo-flourish path{ fill:none; stroke: var(--nom); stroke-width:2; stroke-linecap:round; }
+
+  .sparkle-deco{ position:absolute; font-size:16px; opacity:0; animation: sparklePop 1.6s ease forwards; }
+  @keyframes sparklePop{ 0%{opacity:0; transform:scale(.3);} 30%{opacity:1; transform:scale(1.2);} 60%{opacity:.7; transform:scale(.9);} 100%{opacity:0; transform:scale(1);} }
+
+  /* ---------- HEADER ---------- */
+  header{ text-align:center; margin-bottom: 28px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2'; font-weight:700; font-size:14px;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); background:#fff; border-radius:999px;
+    padding:6px 16px; box-shadow: var(--shadow);
+  }
+  h1{ font-family:'Baloo 2'; font-weight:800; font-size: clamp(32px, 6vw, 52px); margin: 14px 0 6px; }
+  h1 span{ color: var(--nom); }
+  .subtitle{ font-size:17px; color:var(--ink-soft); font-weight:600; }
+  .sound-hint{
+    max-width:640px; margin: 14px auto 0; background:#FFF7E6; border:1px solid #F1DDA4;
+    border-radius:14px; padding:10px 16px; font-size:13px; font-weight:600; color:#7A5A16;
+    display:flex; align-items:center; gap:8px; justify-content:center;
+  }
+
+  /* ---------- ALBUM / STAMP WHEEL ---------- */
+  .album{ background:#fff; border-radius: 28px; box-shadow: var(--shadow); padding: 30px 22px 26px; margin-bottom: 26px; position:relative; overflow:hidden; }
+  .album-title{ font-family:'Baloo 2'; font-weight:700; font-size:15px; color:var(--ink-soft); text-align:center; margin-bottom:18px; }
+  .stamps{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width:640px){ .stamps{ grid-template-columns: repeat(1,1fr); } }
+
+  .stamp{
+    cursor:pointer; border:none; background: var(--card-bg, #fff); border-radius: 4px;
+    padding: 16px 10px 14px; text-align:center; font-family:'Baloo 2'; position:relative;
+    transform: rotate(var(--tilt,0deg)); transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+    -webkit-mask-image: radial-gradient(circle 5px at 0 0, transparent 98%, #000 100%),
+                         radial-gradient(circle 5px at 100% 0, transparent 98%, #000 100%),
+                         radial-gradient(circle 5px at 0 100%, transparent 98%, #000 100%),
+                         radial-gradient(circle 5px at 100% 100%, transparent 98%, #000 100%);
+    outline: 3px dashed rgba(46,42,37,0.18); outline-offset: -10px;
+  }
+  .stamp:nth-child(1){ --tilt: -3deg; --card-bg: var(--nom-soft); }
+  .stamp:nth-child(2){ --tilt: 2deg; --card-bg: var(--humeur-soft); }
+  .stamp:nth-child(3){ --tilt: -2deg; --card-bg: var(--age-soft); }
+  .stamp:hover{ transform: rotate(0deg) translateY(-4px); }
+  .stamp.active{ transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 14px 24px rgba(46,42,37,0.18); }
+  .stamp .emoji{ font-size: 36px; display:block; margin-bottom:4px; }
+  .stamp .fr{ font-weight:700; font-size:15px; }
+  .stamp .ar{ font-family:'Baloo 2'; font-weight:600; font-size:12px; color:var(--ink-soft); margin-top:2px; }
+
+  /* ---------- DETAIL PANEL ---------- */
+  .detail{ margin-top: 24px; border-radius: 20px; padding: 20px; background: var(--panel-bg, var(--nom-soft)); transition: background .3s ease; }
+  .detail-grid{ display:grid; grid-template-columns: 1fr 1.05fr; gap: 20px; }
+  @media (max-width:780px){ .detail-grid{ grid-template-columns:1fr; } }
+
+  .scene-box{
+    position:relative; border-radius:16px; overflow:hidden; height:220px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+  }
+  .scene-box svg{ width:100%; height:100%; display:block; }
+  .particles{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .particle{ position:absolute; top:-10%; font-size: 18px; animation: fall linear infinite; opacity:.9; }
+  @keyframes fall{
+    0%{ transform: translateY(-10%) translateX(0) rotate(0deg); }
+    100%{ transform: translateY(240px) translateX(var(--drift,20px)) rotate(220deg); }
+  }
+  .sparkle{ position:absolute; font-size:14px; animation: twinkle 1.8s ease-in-out infinite; }
+  @keyframes twinkle{ 0%,100%{opacity:.2; transform:scale(.8);} 50%{opacity:1; transform:scale(1.15);} }
+
+  .detail h2{ font-family:'Baloo 2'; font-size:24px; margin:0 0 2px; color: var(--accent, var(--nom)); display:flex; align-items:center; gap:8px; }
+  .detail .subtitle-ar{ font-family:'Baloo 2'; font-weight:700; color:var(--ink-soft); margin-bottom:12px; font-size:14px; }
+
+  .months-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .month-chip{ background:#fff; border-radius: 999px; padding:6px 14px; font-weight:700; font-size:13px; box-shadow:0 2px 6px rgba(0,0,0,0.06); color: var(--accent, var(--nom)); }
+
+  .weather-list{ list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .weather-list li{ background:#fff; border-radius:14px; padding:9px 12px; display:flex; align-items:center; gap:10px; font-weight:600; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+  .weather-list li .ic{ font-size:18px; }
+  .weather-list li .txt{ flex:1; }
+
+  .grammar-mini{ background:#fff; border-radius:14px; padding:12px 14px; font-size:14px; line-height:1.5; margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .grammar-mini b{ color: var(--accent, var(--nom)); }
+
+  /* ---------- SPEAKER BUTTON ---------- */
+  .speak-btn{
+    border:none; background: var(--ink); color:#fff; width:26px; height:26px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; cursor:pointer; font-size:12px;
+    flex-shrink:0; transition: transform .15s ease, background .15s ease;
+  }
+  .speak-btn:hover{ transform: scale(1.12); }
+  .speak-btn.playing{ background: var(--nom); animation: pulse .6s ease infinite; }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(228,103,74,.5);} 50%{ box-shadow:0 0 0 6px rgba(228,103,74,0);} }
+  .speak-btn.mini{ width:22px; height:22px; font-size:10px; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{ background:#fff; border-radius: 24px; box-shadow: var(--shadow); padding: 26px 24px; margin-bottom: 24px; }
+  .block-head{ margin-bottom: 18px; }
+  .block-head .tag{ font-family:'Baloo 2'; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--nom); display:inline-block; padding:4px 12px; border-radius:999px; margin-bottom:8px; }
+  .block-head h2{ font-family:'Baloo 2'; font-size:24px; margin:0 0 4px; }
+  .block-head p{ margin:0; color:var(--ink-soft); font-weight:600; font-size:14px; }
+
+  /* ---------- VIDEO ---------- */
+  .video-frame{ position:relative; width:100%; padding-top:56.25%; border-radius:18px; overflow:hidden; box-shadow: var(--shadow); background:#000; cursor:pointer; }
+  .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-thumb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .video-play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.35));
+  }
+  .video-play .btn-circle{
+    width:70px; height:70px; border-radius:50%; background: rgba(228,103,74,0.92);
+    display:flex; align-items:center; justify-content:center; font-size:26px; color:#fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35); transition: transform .2s ease;
+  }
+  .video-frame:hover .btn-circle{ transform: scale(1.1); }
+  .video-caption{ text-align:center; font-size:13px; color:var(--ink-soft); font-weight:600; margin-top:10px; }
+  .video-fallback{ display:block; text-align:center; font-size:13px; font-weight:700; color:var(--age); margin-top:6px; text-decoration:none; }
+  .video-fallback:hover{ text-decoration:underline; }
+
+  /* ---------- FLASHCARDS ---------- */
+  .flash-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:14px; }
+  @media (max-width:720px){ .flash-grid{ grid-template-columns: repeat(2,1fr); } }
+  .flash{ perspective: 800px; height: 112px; cursor:pointer; position:relative; }
+  .flash-inner{ position:relative; width:100%; height:100%; transform-style:preserve-3d; transition: transform .5s cubic-bezier(.2,.9,.3,1.1); border-radius:16px; }
+  .flash.flipped .flash-inner{ transform: rotateY(180deg); }
+  .flash-face{ position:absolute; inset:0; border-radius:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; backface-visibility:hidden; font-family:'Baloo 2'; font-weight:700; text-align:center; padding:8px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
+  .flash-face.front{ background: var(--age-soft); color:var(--ink); font-size:14px; gap:4px; }
+  .flash-face.back{ background: var(--age); color:#fff; transform: rotateY(180deg); font-size:15px; }
+  .flash-face .hint{ font-size:10px; font-weight:600; color:var(--ink-soft); }
+  .flash .mini-speak{ position:absolute; top:6px; right:6px; z-index:2; }
+
+  /* ---------- GRAMMAR SORT ---------- */
+  .rule-card{ background: var(--paper-2); border-radius:16px; padding:16px 18px; margin-bottom:20px; font-size:15px; line-height:1.7; }
+  .rule-card .ex{ margin-top:8px; font-weight:700; color:var(--nom); }
+  .sort-zone{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:18px; }
+  .basket{ flex:1; min-width:170px; border-radius:16px; padding:14px; border: 3px dashed rgba(46,42,37,0.18); min-height: 90px; cursor:pointer; }
+  .basket h3{ font-family:'Baloo 2'; margin:0 0 8px; font-size:15px; }
+  .basket.b-nom{ background: var(--nom-soft); }
+  .basket.b-humeur{ background: var(--humeur-soft); }
+  .basket.b-age{ background: var(--age-soft); }
+  .word-pool{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .word-chip{ font-family:'Baloo 2'; font-weight:700; font-size:14px; background:#fff; border:2px solid rgba(46,42,37,0.12); border-radius:999px; padding:8px 16px; cursor:pointer; transition: all .15s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .word-chip:hover{ transform: translateY(-2px); }
+  .word-chip.correct{ background:#DDF3DA; border-color:#5EA85B; }
+  .word-chip.wrong{ background:#FBE0DC; border-color:#C9503B; }
+  .word-chip.placed{ opacity:.55; pointer-events:none; }
+  .placed-row{ display:flex; flex-wrap:wrap; gap:8px; min-height: 34px; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-q{ border-radius:16px; background: var(--paper-2); padding:16px 18px; margin-bottom:14px; }
+  .quiz-q .qtitle{ font-weight:700; margin-bottom:10px; font-family:'Baloo 2'; }
+  .opts{ display:flex; flex-wrap:wrap; gap:8px; }
+  .opt{ font-family:'Quicksand'; font-weight:700; font-size:14px; background:#fff; border:2px solid rgba(46,42,37,0.14); border-radius:12px; padding:8px 14px; cursor:pointer; }
+  .opt.selected{ border-color: var(--age); background: var(--age-soft); }
+  .opt.correct{ border-color: #5EA85B; background:#DDF3DA; }
+  .opt.wrong{ border-color:#C9503B; background:#FBE0DC; }
+  input.text-ans{ font-family:'Quicksand'; font-weight:700; font-size:14px; border:2px solid rgba(46,42,37,0.14); border-radius:12px; padding:8px 12px; width: 220px; max-width:100%; }
+  .feedback-line{ margin-top:8px; font-weight:700; font-size:13px; display:none; }
+  .feedback-line.show{ display:block; }
+  .feedback-line.ok{ color:#2f7a3f; }
+  .feedback-line.no{ color:#b1402a; }
+  .quiz-actions{ text-align:center; margin-top:10px; }
+  button.primary{ font-family:'Baloo 2'; font-weight:700; font-size:16px; background: var(--nom); color:#fff; border:none; border-radius:999px; padding: 12px 30px; cursor:pointer; box-shadow: var(--shadow); transition: transform .15s ease; }
+  button.primary:hover{ transform: translateY(-2px); }
+  #score-panel{ text-align:center; margin-top:16px; font-family:'Baloo 2'; font-size:20px; display:none; }
+  #score-panel.show{ display:block; }
+  #score-panel .big{ font-size:40px; display:block; margin-bottom:4px;}
+
+  footer{ text-align:center; margin-top: 30px; color: var(--ink-soft); font-size:13px; font-weight:600; }
+  footer .brand{ justify-content:center; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-banner" id="topBanner">
+    <div class="badge-row">
+      <span class="logo-h">H</span>
+      <span class="logo-tower-wrap">
+        <svg class="logo-tower" viewBox="0 0 60 90">
+          <path d="
+            M30 4 L30 11
+            M22 22 L38 22
+            M15 38 L45 38
+            M9 56 L51 56
+            M4 78 L56 78
+            M30 11 L22 22 M30 11 L38 22
+            M22 22 L15 38 M38 22 L45 38
+            M15 38 L9 56 M45 38 L51 56
+            M9 56 L4 78 M51 56 L56 78
+            M15 38 L45 38
+            M4 78 L56 78
+            M6 84 L54 84
+          "/>
+        </svg>
+        <span class="logo-tm">TM</span>
+      </span>
+    </div>
+    <div class="logo-name">Hatem El&#8209;Morsi</div>
+    <svg class="logo-flourish" viewBox="0 0 180 10"><path d="M2 5 Q45 -3 90 5 T178 5"/></svg>
+  </div>
+
+  <header>
+    <span class="eyebrow">Leçon 1 · 3ème Primaire</span>
+    <h1>Je me <span>présente</span></h1>
+    <div class="subtitle">التعارف بالفرنسية — اضغط، اسمع، وشاهد 👋</div>
+    <div class="sound-hint">🔊 اضغط على أي أيقونة سماعة في الصفحة عشان تسمع النطق الصحيح بالفرنسية</div>
+  </header>
+
+  <!-- ===== INTRO STAMP ALBUM ===== -->
+  <div class="album">
+    <div class="album-title">3 أسئلة أساسية للتعارف 👋</div>
+    <div class="stamps" id="stamps"></div>
+    <div class="detail" id="detail"></div>
+  </div>
+
+  <!-- ===== VIDEO ===== -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag">Vidéo</span>
+      <h2>🎬 Chanson : Comment tu t'appelles ?</h2>
+      <p>شغّل الفيديو وغنّوا مع الأغنية عشان تحفظوا طريقة التعارف</p>
+    </div>
+    <div class="video-frame" id="videoFrame">
+      <img class="video-thumb" src="https://img.youtube.com/vi/kjIidDjyYt4/hqdefault.jpg" alt="Se présenter en chantant - comment tu t'appelles">
+      <div class="video-play"><div class="btn-circle">▶</div></div>
+    </div>
+    <div class="video-caption">Se présenter en chantant (Apprendre le français) — اضغط على الصورة للتشغيل</div>
+    <a class="video-fallback" href="https://www.youtube.com/watch?v=kjIidDjyYt4" target="_blank" rel="noopener">↗️ لو الفيديو مايشتغلش هنا، شاهده مباشرة على YouTube</a>
+  </section>
+
+  <!-- ===== VOCABULARY FLASHCARDS ===== -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag">Vocabulaire</span>
+      <h2>بطاقات الكلمات — اضغط لتقلب، واضغط 🔊 للنطق</h2>
+      <p>Clique sur une carte pour voir la traduction</p>
+    </div>
+    <div class="flash-grid" id="flashGrid"></div>
+  </section>
+
+  <!-- ===== GRAMMAR: MATCH QUESTION TYPE ===== -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag">Grammaire</span>
+      <h2>صل كل إجابة بنوع سؤالها</h2>
+      <p>القاعدة ثم لعبة تصنيف صغيرة</p>
+    </div>
+    <div class="rule-card">
+      🔑 في الفرنسية 3 أسئلة أساسية للتعارف: سؤال عن <b>الاسم</b> (Comment tu t'appelles؟)، سؤال عن <b>الحال</b> (Comment ça va؟)، وسؤال عن <b>العمر</b> (Quel âge as-tu؟). كل سؤال له نوع إجابة مختلف.
+      <div class="ex">Ex : Je m'appelle Ali. — Ça va bien. — J'ai neuf ans.
+        <button class="speak-btn mini" data-say="Je m'appelle Ali. Ça va bien. J'ai neuf ans.">🔊</button>
+      </div>
+    </div>
+    <div class="word-pool" id="wordPool"></div>
+    <div class="sort-zone">
+      <div class="basket b-nom" id="basketNom"><h3>🪪 الاسم (Nom)</h3><div class="placed-row" id="rowNom"></div></div>
+      <div class="basket b-humeur" id="basketHumeur"><h3>😊 الحال (Humeur)</h3><div class="placed-row" id="rowHumeur"></div></div>
+      <div class="basket b-age" id="basketAge"><h3>🎂 العمر (Âge)</h3><div class="placed-row" id="rowAge"></div></div>
+    </div>
+    <div class="feedback-line" id="sortFeedback"></div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="block">
+    <div class="block-head">
+      <span class="tag">Évaluation rapide</span>
+      <h2>اختبر نفسك 🎯</h2>
+      <p>Réponds puis clique sur « Vérifier mes réponses »</p>
+    </div>
+    <div id="quizContainer"></div>
+    <div class="quiz-actions"><button class="primary" id="checkBtn">✅ Vérifier mes réponses</button></div>
+    <div id="score-panel"></div>
+  </section>
+
+  <footer>
+    3ème Primaire — Introduction 👋
+    <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:10px; opacity:.8;" aria-hidden="true">
+      <svg viewBox="0 0 60 90" style="height:24px; width:auto;">
+        <path style="fill:none;stroke:var(--ink-soft);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;" d="
+          M30 4 L30 11 M22 22 L38 22 M15 38 L45 38 M9 56 L51 56 M4 78 L56 78
+          M30 11 L22 22 M30 11 L38 22 M22 22 L15 38 M38 22 L45 38 M15 38 L9 56 M45 38 L51 56
+          M9 56 L4 78 M51 56 L56 78 M15 38 L45 38 M4 78 L56 78 M6 84 L54 84"/>
+      </svg>
+      <span style="font-family:'Berkshire Swash',cursive; font-size:20px; color:var(--ink-soft);">Hatem El-Morsi</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ================= VIDEO CLICK-TO-PLAY ================= */
+document.getElementById('videoFrame').addEventListener('click', function(){
+  this.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/kjIidDjyYt4?autoplay=1&rel=0" title="Se présenter en chantant" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+});
+
+/* ================= LOGO SPARKLES ================= */
+(function(){
+  const banner = document.getElementById('topBanner');
+  const positions = [
+    {top:'6%', left:'10%', delay:2.6}, {top:'14%', left:'86%', delay:2.9},
+    {top:'54%', left:'4%', delay:3.2}, {top:'60%', left:'92%', delay:2.75},
+    {top:'2%', left:'50%', delay:3.4}
+  ];
+  positions.forEach(p=>{
+    const s = document.createElement('span');
+    s.className = 'sparkle-deco';
+    s.textContent = '✨';
+    s.style.top = p.top; s.style.left = p.left;
+    s.style.animationDelay = p.delay + 's';
+    banner.appendChild(s);
+  });
+})();
+
+/* ================= TEXT-TO-SPEECH ================= */
+let frVoice = null;
+function pickVoice(){
+  const voices = speechSynthesis.getVoices();
+  frVoice = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('fr')) || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text, btn){
+  if(!('speechSynthesis' in window)){ alert('عذراً، هذا المتصفح لا يدعم النطق الصوتي.'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'fr-FR';
+  if(frVoice) u.voice = frVoice;
+  u.rate = 0.85;
+  if(btn){
+    btn.classList.add('playing');
+    u.onend = ()=> btn.classList.remove('playing');
+    u.onerror = ()=> btn.classList.remove('playing');
+  }
+  speechSynthesis.speak(u);
+}
+function speakBtn(text, mini=false){
+  return `<button type="button" class="speak-btn${mini?' mini':''}" data-say="${text.replace(/"/g,'&quot;')}">🔊</button>`;
+}
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.speak-btn');
+  if(btn){ speak(btn.dataset.say, btn); }
+});
+
+/* ================= SVG INTRO SCENES ================= */
+function scene(kind){
+  const skies = {
+    nom: ['#FBD8C8','#FCE9DF'],
+    humeur: ['#FCE9B8','#FEF5DC'],
+    age: ['#C9E6F0','#E6F4F9']
+  };
+  const [sTop,sBot] = skies[kind];
+  let ground, extras = '';
+  if(kind==='nom'){
+    ground = '#F3B79C';
+    extras = `
+      <circle cx="70" cy="120" r="20" fill="#E4674A"/>
+      <circle cx="70" cy="95" r="14" fill="#FBD8C8"/>
+      <rect x="58" y="132" width="24" height="30" rx="6" fill="#E4674A"/>
+      <circle cx="150" cy="120" r="20" fill="#F2955A"/>
+      <circle cx="150" cy="95" r="14" fill="#FBD8C8"/>
+      <rect x="138" y="132" width="24" height="30" rx="6" fill="#F2955A"/>
+      <path d="M92 120 Q110 100 128 120" stroke="#8B5A2B" stroke-width="2" fill="none" stroke-dasharray="4 4"/>`;
+  } else if(kind==='humeur'){
+    ground = '#F6D98C';
+    extras = `
+      <circle cx="110" cy="90" r="34" fill="#F6C94B"/>
+      <circle cx="98" cy="82" r="4" fill="#2E2A25"/>
+      <circle cx="122" cy="82" r="4" fill="#2E2A25"/>
+      <path d="M92 100 Q110 118 128 100" stroke="#2E2A25" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g stroke="#F6C94B" stroke-width="3" stroke-linecap="round">
+        <line x1="110" y1="40" x2="110" y2="50"/>
+        <line x1="110" y1="130" x2="110" y2="140"/>
+        <line x1="60" y1="90" x2="70" y2="90"/>
+        <line x1="150" y1="90" x2="160" y2="90"/>
+      </g>`;
+  } else {
+    ground = '#A9D4E3';
+    extras = `
+      <rect x="88" y="120" width="44" height="34" rx="4" fill="#E4674A"/>
+      <rect x="88" y="120" width="44" height="8" fill="#F6C94B"/>
+      <rect x="94" y="126" width="6" height="20" fill="#FBD8C8"/>
+      <rect x="110" y="126" width="6" height="20" fill="#F6C94B"/>
+      <rect x="126" y="126" width="6" height="20" fill="#3E8FB0"/>
+      <line x1="110" y1="100" x2="110" y2="120" stroke="#8B5A2B" stroke-width="3"/>
+      <path d="M110 100 Q116 90 110 82 Q104 90 110 100" fill="#F6C94B"/>`;
+  }
+  return `
+  <svg viewBox="0 0 220 190" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="sky-${kind}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${sTop}"/>
+        <stop offset="100%" stop-color="${sBot}"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="220" height="190" fill="url(#sky-${kind})"/>
+    <rect x="0" y="160" width="220" height="30" fill="${ground}"/>
+    ${extras}
+  </svg>`;
+}
+
+function particlesFor(kind){
+  const map = {
+    nom: {emoji:['👋','✨'], count:7},
+    humeur: {emoji:['😊','💛'], count:7},
+    age: {emoji:['🎈','⭐'], count:7}
+  };
+  const cfg = map[kind];
+  let html = '';
+  for(let i=0;i<cfg.count;i++){
+    const left = Math.round(Math.random()*90)+2;
+    const dur = (4+Math.random()*4).toFixed(1);
+    const delay = (Math.random()*4).toFixed(1);
+    const drift = (Math.random()*40-20).toFixed(0)+'px';
+    const em = cfg.emoji[Math.floor(Math.random()*cfg.emoji.length)];
+    html += `<span class="particle" style="left:${left}%; --drift:${drift}; animation-duration:${dur}s; animation-delay:-${delay}s;">${em}</span>`;
+  }
+  return html;
+}
+
+/* ================= DATA ================= */
+const topics = [
+  { id:'nom', fr:"L'identité", ar:'الاسم', emoji:'🪪', accent:'var(--nom)', bg:'var(--nom-soft)',
+    phrases:['Comment tu t\'appelles ?', 'Comment t\'appelles-tu ?'],
+    lines:[ {ic:'❓', t:'Comment tu t\'appelles ?'}, {ic:'💬', t:'Je m\'appelle Seif.'}, {ic:'❓', t:'Comment t\'appelles-tu ?'}, {ic:'💬', t:'Je m\'appelle Hana.'} ],
+    ruleFr:'Je m\'appelle ...' },
+  { id:'humeur', fr:'Comment ça va ?', ar:'الحال', emoji:'😊', accent:'var(--humeur)', bg:'var(--humeur-soft)',
+    phrases:['Comment ça va ?', 'Ça va ?'],
+    lines:[ {ic:'😄', t:'Ça va bien, merci.'}, {ic:'🙂', t:'Pas mal.'}, {ic:'😕', t:'Ça ne va pas.'}, {ic:'✅', t:'Oui, ça va bien.'} ],
+    ruleFr:'Ça va bien, merci.' },
+  { id:'age', fr:'Quel âge as-tu ?', ar:'العمر', emoji:'🎂', accent:'var(--age)', bg:'var(--age-soft)',
+    phrases:['Quel âge as-tu ?', 'Tu as quel âge ?'],
+    lines:[ {ic:'❓', t:'Quel âge as-tu ?'}, {ic:'💬', t:'J\'ai huit ans.'}, {ic:'❓', t:'Tu as quel âge ?'}, {ic:'💬', t:'J\'ai neuf ans.'} ],
+    ruleFr:'J\'ai huit ans.' }
+];
+
+const vocab = [
+  {fr:'Je m\'appelle', ar:'أنا اسمي'}, {fr:'J\'ai', ar:'أنا عندي'}, {fr:'Oui', ar:'نعم'}, {fr:'Non', ar:'لا'},
+  {fr:'Ça va bien', ar:'بخير'}, {fr:'Pas mal', ar:'لا بأس'}, {fr:'Ça ne va pas', ar:'لست على ما يرام'}, {fr:'Merci', ar:'شكرًا'}
+];
+
+const sortWords = [
+  {word:'Je m\'appelle Ali.', cat:'nom'},
+  {word:'Ça va bien, merci.', cat:'humeur'},
+  {word:'J\'ai neuf ans.', cat:'age'},
+  {word:'Je m\'appelle Sara.', cat:'nom'},
+  {word:'Pas mal.', cat:'humeur'},
+  {word:'J\'ai dix ans.', cat:'age'},
+];
+
+const quiz = [
+  {type:'mcq', q:'1) « Comment tu t\'appelles ؟ » — ما هي الإجابة الصحيحة؟', opts:['J\'ai neuf ans.','Je m\'appelle Sara.','Ça va bien, merci.'], ans:'Je m\'appelle Sara.'},
+  {type:'mcq', q:'2) « Quel âge as-tu ؟ » — ما هي الإجابة الصحيحة؟', opts:['Je m\'appelle Ali.','Non, ça ne va pas.','J\'ai neuf ans.'], ans:'J\'ai neuf ans.'},
+  {type:'mcq', q:'3) « Comment ça va ؟ » — ما هي الإجابة الصحيحة؟', opts:['Ça va bien, merci.','J\'ai huit ans.','Je m\'appelle Hana.'], ans:'Ça va bien, merci.'},
+  {type:'bool', q:'4) « Merci » تعني «لا».', ans:'Faux'},
+  {type:'bool', q:'5) « Quel âge as-tu ؟ » سؤال عن العمر.', ans:'Vrai'},
+  {type:'fill', q:'6) Bonjour, comment ____ t\'appelles ؟', opts:['tu','vous'], ans:'tu'},
+  {type:'fill', q:'7) J\' ____ dix ans.', opts:['ai','suis'], ans:'ai'},
+  {type:'fill', q:'8) Je ____ Seif.', opts:['ai','m\'appelle'], ans:'m\'appelle'},
+  {type:'text', q:'9) اكتب اسمك بالفرنسية بصيغة «Je m\'appelle ...»', ans:['appelle']},
+  {type:'text', q:'10) اكتب عمرك بالفرنسية بصيغة «J\'ai ... ans»', ans:['ai']}
+];
+
+/* ================= RENDER STAMPS ================= */
+const stampsEl = document.getElementById('stamps');
+const detailEl = document.getElementById('detail');
+
+function renderDetail(topic){
+  detailEl.style.setProperty('--panel-bg', topic.bg);
+  detailEl.style.setProperty('--accent', topic.accent);
+  detailEl.innerHTML = `
+    <div class="detail-grid">
+      <div>
+        <div class="scene-box">
+          ${scene(topic.id)}
+          <div class="particles">${particlesFor(topic.id)}</div>
+        </div>
+        <div class="grammar-mini">
+          On dit : <b>${topic.ruleFr}</b>
+          ${speakBtn(topic.ruleFr, true)}
+        </div>
+      </div>
+      <div>
+        <h2>${topic.emoji} ${topic.fr} ${speakBtn(topic.fr, true)}</h2>
+        <div class="subtitle-ar">${topic.ar}</div>
+        <div class="months-row">
+          ${topic.phrases.map(m=>`<span class="month-chip">${m}</span>`).join('')}
+        </div>
+        <ul class="weather-list">
+          ${topic.lines.map(w=>`<li><span class="ic">${w.ic}</span><span class="txt">${w.t}</span>${speakBtn(w.t, true)}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+topics.forEach((s, i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'stamp' + (i===0 ? ' active' : '');
+  btn.innerHTML = `<span class="emoji">${s.emoji}</span><span class="fr">${s.fr}</span><span class="ar">${s.ar}</span>`;
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.stamp').forEach(el=>el.classList.remove('active'));
+    btn.classList.add('active');
+    renderDetail(s);
+  });
+  stampsEl.appendChild(btn);
+});
+renderDetail(topics[0]);
+
+/* ================= FLASHCARDS ================= */
+const flashGrid = document.getElementById('flashGrid');
+vocab.forEach(v=>{
+  const card = document.createElement('div');
+  card.className='flash';
+  card.innerHTML = `
+    <div class="flash-inner">
+      <div class="flash-face front">${v.fr}<span class="hint">اضغط 👆</span></div>
+      <div class="flash-face back">${v.ar}</div>
+    </div>
+    <span class="mini-speak">${speakBtn(v.fr, true)}</span>`;
+  card.addEventListener('click', (e)=>{
+    if(e.target.closest('.speak-btn')) return;
+    card.classList.toggle('flipped');
+  });
+  flashGrid.appendChild(card);
+});
+
+/* ================= GRAMMAR SORT GAME ================= */
+const wordPool = document.getElementById('wordPool');
+const rowNom = document.getElementById('rowNom');
+const rowHumeur = document.getElementById('rowHumeur');
+const rowAge = document.getElementById('rowAge');
+const sortFeedback = document.getElementById('sortFeedback');
+const basketNom = document.getElementById('basketNom');
+const basketHumeur = document.getElementById('basketHumeur');
+const basketAge = document.getElementById('basketAge');
+let placedCount = 0;
+let selectedChip = null;
+
+const shuffled = [...sortWords].sort(()=>Math.random()-0.5);
+shuffled.forEach(item=>{
+  const chip = document.createElement('div');
+  chip.className='word-chip';
+  chip.textContent = item.word;
+  chip.dataset.cat = item.cat;
+  chip.addEventListener('click', ()=>{
+    if(chip.classList.contains('placed')) return;
+    if(selectedChip) selectedChip.style.outline = '';
+    selectedChip = chip;
+    chip.style.outline = '3px solid #2E2A25';
+    sortFeedback.textContent = 'الآن اضغط على السلة المناسبة (الاسم / الحال / العمر) 👇';
+    sortFeedback.className = 'feedback-line show';
+    sortFeedback.style.color = '#5B5750';
+  });
+  wordPool.appendChild(chip);
+});
+
+function dropInto(cat){
+  if(!selectedChip) return;
+  const correct = cat === selectedChip.dataset.cat;
+  selectedChip.classList.add(correct ? 'correct' : 'wrong');
+  selectedChip.classList.add('placed');
+  selectedChip.style.outline = '';
+  const clone = selectedChip.cloneNode(true);
+  clone.classList.remove('placed');
+  const targetRow = cat==='nom' ? rowNom : (cat==='humeur' ? rowHumeur : rowAge);
+  targetRow.appendChild(clone);
+  placedCount++;
+  selectedChip = null;
+  if(placedCount === sortWords.length){
+    sortFeedback.textContent = '🎉 أحسنت! لقد صنّفت كل الجمل.';
+    sortFeedback.className = 'feedback-line show ok';
+  }
+}
+basketNom.addEventListener('click', ()=> dropInto('nom'));
+basketHumeur.addEventListener('click', ()=> dropInto('humeur'));
+basketAge.addEventListener('click', ()=> dropInto('age'));
+
+/* ================= QUIZ ================= */
+const quizContainer = document.getElementById('quizContainer');
+quiz.forEach((item, idx)=>{
+  const q = document.createElement('div');
+  q.className = 'quiz-q';
+  q.dataset.index = idx;
+  let inner = `<div class="qtitle">${item.q}</div>`;
+  if(item.type==='mcq'){
+    inner += `<div class="opts">${item.opts.map(o=>`<button type="button" class="opt" data-val="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div>`;
+  } else if(item.type==='bool'){
+    inner += `<div class="opts"><button type="button" class="opt" data-val="Vrai">✔️ Vrai</button><button type="button" class="opt" data-val="Faux">✘ Faux</button></div>`;
+  } else if(item.type==='fill'){
+    inner += `<div class="opts">${item.opts.map(o=>`<button type="button" class="opt" data-val="${o}">${o}</button>`).join('')}</div>`;
+  } else if(item.type==='text'){
+    inner += `<input type="text" class="text-ans" placeholder="اكتب هنا…">`;
+  }
+  inner += `<div class="feedback-line"></div>`;
+  q.innerHTML = inner;
+  quizContainer.appendChild(q);
+  if(item.type!=='text'){
+    q.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        q.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  }
+});
+
+document.getElementById('checkBtn').addEventListener('click', ()=>{
+  let score = 0;
+  quiz.forEach((item, idx)=>{
+    const q = quizContainer.querySelector(`[data-index="${idx}"]`);
+    const fb = q.querySelector('.feedback-line');
+    let userVal = null, correct = false;
+    if(item.type==='text'){
+      const input = q.querySelector('.text-ans');
+      userVal = (input.value||'').toLowerCase();
+      correct = item.ans.every(a => userVal.includes(a));
+    } else {
+      const sel = q.querySelector('.opt.selected');
+      userVal = sel ? sel.dataset.val : null;
+      correct = userVal === item.ans;
+      q.querySelectorAll('.opt').forEach(b=>{
+        if(b.dataset.val === item.ans) b.classList.add('correct');
+        else if(b.classList.contains('selected') && !correct) b.classList.add('wrong');
+      });
+    }
+    if(correct){ score++; fb.textContent = '✔️ صحيح!'; fb.className='feedback-line show ok'; }
+    else { fb.textContent = `✘ الإجابة الصحيحة: ${Array.isArray(item.ans)?item.ans.join(' / '):item.ans}`; fb.className='feedback-line show no'; }
+  });
+  const panel = document.getElementById('score-panel');
+  const pct = Math.round(score/quiz.length*100);
+  let msg = pct===100 ? 'ممتاز! 🌟' : pct>=70 ? 'أحسنت! 👏' : 'حاول مرة أخرى 💪';
+  panel.innerHTML = `<span class="big">${score} / ${quiz.length}</span>${msg}`;
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+</body>
+</html>

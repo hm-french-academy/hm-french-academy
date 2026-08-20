@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C'est ma classe — Examen Électronique</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Fredoka:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@500;700&family=Pinyon+Script&family=Berkshire+Swash&display=swap');
+
+  :root{
+    --sun:#AC85BE; --sun-deep:#8B5FA3; --clay:#6B4380; --ink:#2E2A25;
+    --navy:#D98E2E; --navy-light:#EBA84F; --cream:#FFF8EC; --card:#FFFFFF;
+    --ok:#2E8B57; --bad:#C0392B; --shadow: 0 10px 30px rgba(40,20,10,0.15);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Fredoka', sans-serif;
+    background: radial-gradient(circle at 10% 10%, #EDE1F2 0%, transparent 45%),
+      radial-gradient(circle at 90% 20%, #FBECD6 0%, transparent 40%), var(--cream);
+    color:var(--ink); min-height:100vh; padding-bottom:60px;
+    user-select:none;
+  }
+  input, textarea{ user-select:text; }
+  .arabic{font-family:'Noto Sans Arabic', sans-serif; direction:rtl;}
+
+  header.hero{
+    position:relative; padding:34px 20px 56px;
+    background:linear-gradient(160deg, var(--sun) 0%, var(--sun-deep) 55%, var(--clay) 100%);
+    overflow:hidden; text-align:center; color:#fff;
+    border-bottom-left-radius:40% 30px; border-bottom-right-radius:40% 30px;
+  }
+  .logo-badge{
+    display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+    margin:0 auto 10px; background:#fff; padding:10px 22px 8px;
+    border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.25); cursor:pointer;
+  }
+  .logo-badge .badge-row{ display:flex; align-items:flex-end; gap:1px; }
+  .logo-h{ font-family:'Pinyon Script', cursive; font-size:40px; line-height:.7; color:var(--ink); }
+  .logo-tower-wrap{ margin:0 0 3px; }
+  .logo-tower{ width:22px; height:34px; }
+  .logo-tower path{ fill:none; stroke:var(--ink); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+  .logo-name{ font-family:'Berkshire Swash', cursive; font-size:14px; color:var(--clay); margin-top:1px; }
+  .school-tag{font-size:12px; opacity:.9; letter-spacing:1px; text-transform:uppercase;}
+  h1.title{
+    font-family:'Baloo 2', sans-serif; font-size:clamp(24px,5vw,38px);
+    margin:6px 0 2px; text-shadow:0 3px 0 rgba(0,0,0,0.12);
+  }
+  .subtitle-ar{font-size:16px; margin-top:2px;}
+  .exam-badge{
+    margin-top:12px; display:inline-flex; gap:8px; align-items:center;
+    background:rgba(255,255,255,0.22); backdrop-filter:blur(4px);
+    padding:6px 16px; border-radius:999px; font-size:12px;
+  }
+
+  main{max-width:760px; margin:-30px auto 0; padding:0 16px; position:relative; z-index:2;}
+
+  /* -------- NAME ENTRY SCREEN -------- */
+  .name-card{
+    background:#fff; border-radius:24px; box-shadow:var(--shadow); padding:32px 26px; text-align:center;
+  }
+  .name-card h2{font-family:'Baloo 2'; color:var(--navy); font-size:22px; margin-top:0;}
+  .name-input{
+    width:100%; padding:14px 18px; font-size:17px; border:2px solid var(--navy); border-radius:14px;
+    font-family:'Fredoka'; margin:16px 0; text-align:center;
+  }
+  .start-btn{
+    background:linear-gradient(135deg,var(--sun),var(--clay)); color:#fff; border:none;
+    padding:14px 36px; border-radius:999px; font-family:'Baloo 2'; font-weight:700; font-size:17px;
+    cursor:pointer; box-shadow:var(--shadow);
+  }
+  .start-btn:active{transform:scale(0.96);}
+  .name-warning{font-size:13px; color:var(--bad); margin-top:10px; min-height:18px;}
+  .rules-box{
+    background:#FFF7E8; border-radius:14px; padding:14px; margin-top:18px; text-align:right;
+    font-size:13.5px; color:#7A5C10; line-height:1.8;
+  }
+
+  /* -------- QUIZ SCREEN -------- */
+  .progress-wrap{ padding:10px 0 16px; }
+  .progress-bar{height:8px; background:#eee; border-radius:99px; overflow:hidden; box-shadow:var(--shadow);}
+  .progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--sun),var(--clay)); transition:width .3s;}
+  .progress-label{font-size:12px; color:#888; text-align:center; margin-top:6px;}
+
+  .q-card{
+    background:#fff; border-radius:20px; box-shadow:var(--shadow); padding:22px; margin-bottom:16px;
+    border-top:6px solid var(--sun);
+  }
+  .q-num{
+    display:inline-block; background:var(--navy); color:#fff; font-family:'Baloo 2'; font-weight:700;
+    font-size:13px; padding:3px 12px; border-radius:999px; margin-bottom:10px;
+  }
+  .q-text{font-family:'Baloo 2'; font-size:18px; color:var(--navy); margin-bottom:4px;}
+  .q-ar{font-size:13px; color:#999; margin-bottom:14px;}
+  .opt-grid{display:flex; flex-direction:column; gap:10px;}
+  .opt-btn{
+    border:2px solid #ddd; background:#fafafa; border-radius:12px; padding:12px 16px;
+    cursor:pointer; font-family:'Fredoka'; font-weight:600; font-size:15px; text-align:left;
+    transition:.15s;
+  }
+  .opt-btn:active{transform:scale(0.98);}
+  .opt-btn.selected{border-color:var(--navy); background:#EAF0FA;}
+  .text-input{
+    width:100%; padding:12px 16px; font-size:16px; border:2px solid #ccc; border-radius:12px;
+    font-family:'Fredoka';
+  }
+  .text-input:focus{border-color:var(--navy); outline:none;}
+
+  .submit-final-btn{
+    display:block; width:100%; background:linear-gradient(135deg,var(--navy),var(--navy-light)); color:#fff;
+    border:none; padding:16px; border-radius:16px; font-family:'Baloo 2'; font-weight:700; font-size:18px;
+    cursor:pointer; box-shadow:var(--shadow); margin-top:10px;
+  }
+  .submit-final-btn:active{transform:scale(0.98);}
+  .submit-final-btn:disabled{opacity:.5; cursor:not-allowed;}
+  .unanswered-warning{
+    text-align:center; color:var(--bad); font-size:13px; margin-top:10px; min-height:18px; font-weight:600;
+  }
+
+  /* -------- RESULTS SCREEN -------- */
+  .results-card{
+    background:#fff; border-radius:24px; box-shadow:var(--shadow); padding:30px 26px; text-align:center;
+  }
+  .results-card .student-name{font-family:'Baloo 2'; font-size:20px; color:var(--navy);}
+  .score-circle{
+    width:140px; height:140px; border-radius:50%; margin:20px auto;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    background:linear-gradient(160deg,var(--sun),var(--clay)); color:#fff;
+    box-shadow:var(--shadow);
+  }
+  .score-circle .num{font-family:'Baloo 2'; font-size:34px; font-weight:800;}
+  .score-circle .denom{font-size:13px; opacity:.9;}
+  .stars{font-size:32px; margin:10px 0;}
+  .locked-note{
+    background:#FFF3CD; border:1.5px solid #E8C468; border-radius:12px; padding:12px; margin-top:20px;
+    font-size:13px; color:#7A5C10;
+  }
+  .review-list{text-align:right; margin-top:24px;}
+  .review-item{
+    background:#FAFAFA; border-radius:12px; padding:12px 16px; margin-bottom:8px; font-size:14px;
+    border-right:5px solid #ccc;
+  }
+  .review-item.correct{border-right-color:var(--ok);}
+  .review-item.wrong{border-right-color:var(--bad);}
+  .review-q{font-weight:700; margin-bottom:4px;}
+  .review-answer{font-size:13px; color:#666;}
+
+  footer{text-align:center; padding:26px 16px; color:#a08a6a; font-size:12px;}
+  footer .sig{font-family:'Berkshire Swash', cursive; font-weight:700; font-size:16px; color:var(--navy); display:block; margin-top:4px;}
+  .protection-note{font-size:11px; color:#bbb; margin-top:14px; line-height:1.6;}
+
+  .hidden{display:none !important;}
+
+  @media (max-width:480px){
+    .opt-btn{font-size:14px;}
+  }
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<header class="hero">
+  <div class="logo-badge" id="logoResetTrigger" title="Cliquez 5 fois pour réinitialiser (enseignant uniquement)">
+    <span class="logo-h">H</span>
+    <span class="logo-tower-wrap">
+      <svg class="logo-tower" viewBox="0 0 60 90">
+        <path d="
+          M30 4 L30 11
+          M22 22 L38 22
+          M15 38 L45 38
+          M9 56 L51 56
+          M4 78 L56 78
+          M30 11 L22 22 M30 11 L38 22
+          M22 22 L15 38 M38 22 L45 38
+          M15 38 L9 56 M45 38 L51 56
+          M9 56 L4 78 M51 56 L56 78
+          M15 38 L45 38
+          M4 78 L56 78
+          M6 84 L54 84
+        "/>
+      </svg>
+    </span>
+    <span class="logo-name">Hatem El&#8209;Morsi</span>
+  </div>
+  <div class="school-tag">Cours de Français · Hatem El-Morsi</div>
+  <h1 class="title">C'est ma classe</h1>
+  <div class="subtitle-ar arabic">أدوات الفصل و un/une — اختبار إلكتروني</div>
+  <div class="exam-badge">📝 Examen Électronique &nbsp;•&nbsp; ⏱️ Une seule tentative</div>
+</header>
+
+<main>
+
+  <!-- SCREEN 1: NAME ENTRY -->
+  <div id="screenName" class="name-card">
+    <h2>👋 Bienvenue à l'examen</h2>
+    <p class="arabic" style="color:#666; font-size:14px;">أدخل اسمك الكامل ثم اضغط "ابدأ الاختبار". يمكنك حل هذا الاختبار مرة واحدة فقط.</p>
+    <input type="text" id="studentNameInput" class="name-input" placeholder="Ton nom complet / اسمك الكامل" autocomplete="off">
+    <div><button class="start-btn" onclick="startExam()">🚀 Commencer l'examen</button></div>
+    <div class="name-warning" id="nameWarning"></div>
+    <div class="rules-box arabic">
+      ⚠️ تنبيه: بمجرد إرسال الاختبار لن تتمكن من إعادة حله على نفس هذا الجهاز والمتصفح. تأكد من إجاباتك قبل الضغط على "إرسال الاختبار النهائي".
+    </div>
+  </div>
+
+  <!-- SCREEN 2: QUIZ -->
+  <div id="screenQuiz" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 10 répondu(e)s</div>
+    </div>
+    <div id="quizContainer"></div>
+    <button class="submit-final-btn" id="submitBtn" onclick="submitExam()">✅ Envoyer l'examen final</button>
+    <div class="unanswered-warning" id="unansweredWarning"></div>
+  </div>
+
+  <!-- SCREEN 3: RESULTS (locked) -->
+  <div id="screenResults" class="hidden">
+    <div class="results-card">
+      <div class="student-name" id="resultName"></div>
+      <div class="score-circle">
+        <div class="num" id="resultScore">0</div>
+        <div class="denom">/ 20</div>
+      </div>
+      <div class="stars" id="resultStars"></div>
+      <p id="resultMessage" style="font-size:15px;"></p>
+      <div class="locked-note arabic">
+        🔒 تم إرسال إجاباتك بنجاح وحفظها. هذا الاختبار مغلق الآن ولا يمكن إعادة حله على هذا الجهاز.
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Examen électronique — 3ème Primaire
+  <span class="sig">Hatem El-Morsi</span>
+  <div class="protection-note">
+    Ce fichier verrouille une tentative unique par navigateur (protection légère, usage pédagogique quotidien).
+  </div>
+</footer>
+
+<script>
+/* ================= CONFIGURATION ================= */
+const LESSON_ID = "maclasse";
+const STORAGE_KEY = "examen_" + LESSON_ID + "_v1";
+const QUESTIONS = [{"type": "mcq", "question": "C'est ______ gomme.", "ar": "", "options": ["un", "une"], "answer": "une", "points": 2}, {"type": "mcq", "question": "C'est ______ stylo.", "ar": "", "options": ["un", "une"], "answer": "un", "points": 2}, {"type": "mcq", "question": "Qui enseigne dans la classe ?", "ar": "", "options": ["un élève", "un professeur", "un cartable"], "answer": "un professeur", "points": 2}, {"type": "mcq", "question": "« Qu'est-ce que c'est ? » sert à demander…", "ar": "", "options": ["une personne", "une chose", "une action"], "answer": "une chose", "points": 2}, {"type": "tf", "question": "On utilise « un » avec les noms féminins.", "ar": "", "options": ["Vrai", "Faux"], "answer": "Faux", "points": 2}, {"type": "tf", "question": "« Une chaise » est un nom féminin.", "ar": "", "options": ["Vrai", "Faux"], "answer": "Vrai", "points": 2}, {"type": "tf", "question": "« Un cartable » est le sac d'école.", "ar": "", "options": ["Vrai", "Faux"], "answer": "Vrai", "points": 2}, {"type": "text", "question": "Complète : « C'est un ____. » (📕 livre/chaise)", "ar": "", "answer": "livre", "points": 2}, {"type": "text", "question": "Comment dit-on « ممحاة » en français ?", "ar": "", "answer": "gomme", "points": 2}, {"type": "text", "question": "Comment dit-on « مسطرة » en français ?", "ar": "", "answer": "règle", "points": 2}];
+const TOTAL_POINTS = QUESTIONS.reduce((sum, q) => sum + q.points, 0);
+
+let studentAnswers = {};
+let studentName = "";
+
+/* ================= LIGHT ANTI-TAMPER (deterrent only, not real security) ================= */
+document.addEventListener('keydown', function(e){
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) e.preventDefault();
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) e.preventDefault();
+});
+
+/* ================= LOGO RESET TRIGGER (teacher-only manual reset) ================= */
+let logoClickCount = 0;
+let logoClickTimer = null;
+document.getElementById('logoResetTrigger').addEventListener('click', function(){
+  logoClickCount++;
+  clearTimeout(logoClickTimer);
+  logoClickTimer = setTimeout(()=>{ logoClickCount = 0; }, 1500);
+  if(logoClickCount >= 5){
+    if(confirm("Réinitialiser cet examen sur cet appareil ? (Enseignant uniquement)\n\nهل تريد إعادة ضبط هذا الاختبار على هذا الجهاز؟ (للمعلم فقط)")){
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+    logoClickCount = 0;
+  }
+});
+
+/* ================= INIT: CHECK IF ALREADY SUBMITTED ================= */
+function init(){
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if(saved){
+    try{
+      const data = JSON.parse(saved);
+      if(data.submitted){
+        showResultsScreen(data.name, data.score, data.answers, data.details);
+        return;
+      }
+    }catch(e){}
+  }
+  document.getElementById('screenName').classList.remove('hidden');
+}
+
+/* ================= START EXAM ================= */
+function startExam(){
+  const nameInput = document.getElementById('studentNameInput');
+  const name = nameInput.value.trim();
+  if(name.length < 2){
+    document.getElementById('nameWarning').textContent = "⚠️ الرجاء إدخال اسمك الكامل أولاً";
+    return;
+  }
+  studentName = name;
+  document.getElementById('screenName').classList.add('hidden');
+  document.getElementById('screenQuiz').classList.remove('hidden');
+  buildQuiz();
+}
+
+/* ================= BUILD QUIZ ================= */
+function buildQuiz(){
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  QUESTIONS.forEach((q, idx) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    let bodyHtml = '';
+    if(q.type === 'mcq' || q.type === 'tf'){
+      const opts = q.options.map(opt => `<button class="opt-btn" data-value="${escapeAttr(opt)}" onclick="selectOption(${idx}, this, '${escapeJs(opt)}')">${opt}</button>`).join('');
+      bodyHtml = `<div class="opt-grid">${opts}</div>`;
+    } else if(q.type === 'text'){
+      bodyHtml = `<input type="text" class="text-input" placeholder="?" oninput="setTextAnswer(${idx}, this.value)">`;
+    }
+    card.innerHTML = `
+      <div class="q-num">Question ${idx+1} / ${QUESTIONS.length} — ${q.points} pt${q.points>1?'s':''}</div>
+      <div class="q-text">${q.question}</div>
+      ${q.ar ? `<div class="q-ar arabic">${q.ar}</div>` : ''}
+      ${bodyHtml}
+    `;
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+function escapeAttr(s){ return String(s).replace(/"/g,'&quot;'); }
+function escapeJs(s){ return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+function selectOption(qIdx, btnEl, value){
+  const card = btnEl.closest('.q-card');
+  card.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+  btnEl.classList.add('selected');
+  studentAnswers[qIdx] = value;
+  updateProgress();
+}
+function setTextAnswer(qIdx, value){
+  studentAnswers[qIdx] = value.trim();
+  updateProgress();
+}
+function updateProgress(){
+  const answered = Object.keys(studentAnswers).filter(k => studentAnswers[k] !== '' && studentAnswers[k] !== undefined).length;
+  const pct = Math.round((answered / QUESTIONS.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${answered} / ${QUESTIONS.length} répondu(e)s`;
+}
+
+/* ================= SUBMIT EXAM ================= */
+function submitExam(){
+  const answered = Object.keys(studentAnswers).filter(k => studentAnswers[k] !== '' && studentAnswers[k] !== undefined).length;
+  if(answered < QUESTIONS.length){
+    document.getElementById('unansweredWarning').textContent =
+      `⚠️ لديك ${QUESTIONS.length - answered} سؤال لم تجب عليه بعد. يمكنك المتابعة، لكن ستُحتسب كإجابة خاطئة.`;
+    if(!confirm("لم تُجب على كل الأسئلة. هل تريد الإرسال الآن على أي حال؟ لن تتمكن من التعديل لاحقاً.")) return;
+  }
+  if(!confirm("هل أنت متأكد من إرسال الاختبار؟ لا يمكن التراجع بعد الإرسال.")) return;
+
+  let score = 0;
+  const details = QUESTIONS.map((q, idx) => {
+    const given = (studentAnswers[idx] || '').toString().trim();
+    const correct = normalize(given) === normalize(q.answer);
+    if(correct) score += q.points;
+    return { question: q.question, given: given || '(pas de réponse)', correctAnswer: q.answer, isCorrect: correct, points: q.points };
+  });
+
+  const data = { name: studentName, score, answers: studentAnswers, details, submitted: true, timestamp: new Date().toISOString() };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+  document.getElementById('screenQuiz').classList.add('hidden');
+  showResultsScreen(studentName, score, studentAnswers, details);
+}
+function normalize(s){
+  return String(s).toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+/* ================= RESULTS SCREEN ================= */
+function showResultsScreen(name, score, answers, details){
+  document.getElementById('screenName').classList.add('hidden');
+  document.getElementById('screenQuiz').classList.add('hidden');
+  document.getElementById('screenResults').classList.remove('hidden');
+  document.getElementById('resultName').textContent = "👤 " + name;
+  document.getElementById('resultScore').textContent = score;
+
+  const pct = score / TOTAL_POINTS;
+  let stars = pct>=0.9? '⭐⭐⭐⭐⭐' : pct>=0.7? '⭐⭐⭐⭐' : pct>=0.5? '⭐⭐⭐' : pct>=0.3? '⭐⭐' : '⭐';
+  document.getElementById('resultStars').textContent = stars;
+  let msg = pct>=0.9 ? "Excellent travail ! 🎉" : pct>=0.6 ? "Très bien ! Continue comme ça." : "Continue à t'entraîner, tu vas progresser !";
+  document.getElementById('resultMessage').textContent = msg;
+
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '';
+  if(details){
+    details.forEach((d, idx) => {
+      const item = document.createElement('div');
+      item.className = 'review-item ' + (d.isCorrect ? 'correct' : 'wrong');
+      item.innerHTML = `
+        <div class="review-q">${idx+1}. ${d.question}</div>
+        <div class="review-answer">${d.isCorrect ? '✅' : '❌'} Ta réponse : <strong>${d.given}</strong>
+        ${!d.isCorrect ? `<br>✔️ Bonne réponse : <strong>${d.correctAnswer}</strong>` : ''}</div>
+      `;
+      reviewList.appendChild(item);
+    });
+  }
+}
+
+init();
+</script>
+</body>
+</html>
