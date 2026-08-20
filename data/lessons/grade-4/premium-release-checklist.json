@@ -1,0 +1,13 @@
+{
+  "grade":"primary-4",
+  "sourceAudit":true,
+  "contentAudit":true,
+  "runtimeManifest":true,
+  "routeMap":true,
+  "repositoryIngestion":false,
+  "mediaBinding":false,
+  "gamesBinding":false,
+  "progressBinding":false,
+  "finalQa":false,
+  "release":false
+}
