@@ -1,0 +1,35 @@
+name: Grade 4 Source Ingestion
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-4/4eme_Complet.zip'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ingest:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ingest original Grade 4 package
+        run: |
+          rm -rf data/lessons/grade-4/source
+          mkdir -p data/lessons/grade-4/source
+          unzip -q -o data/lessons/grade-4/4eme_Complet.zip -d data/lessons/grade-4/source
+          count=$(find data/lessons/grade-4/source/4eme_Complet -type f | wc -l)
+          html=$(find data/lessons/grade-4/source/4eme_Complet -type f -name '*.html' | wc -l)
+          docx=$(find data/lessons/grade-4/source/4eme_Complet -type f -name '*.docx' | wc -l)
+          test "$count" -eq 28
+          test "$html" -eq 14
+          test "$docx" -eq 14
+          echo "Grade 4 source ingestion validated: $count files ($html HTML + $docx DOCX)."
+      - name: Commit ingested source assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/lessons/grade-4/source
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore(grade4): ingest original source assets'
+          git push
