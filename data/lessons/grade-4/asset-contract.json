@@ -1,0 +1,11 @@
+{
+  "grade":"primary-4",
+  "sourceArchive":"4eme_Complet(1).zip",
+  "lessonCount":7,
+  "fileCount":28,
+  "assetsPerLesson":{"interactive":".html","reference":".docx","evaluation":".docx","electronicExam":".html"},
+  "canonicalRoot":"data/lessons/grade-4/source/4eme_Complet",
+  "requiredLessons":["01_Les_saisons","02_Les_chiffres","03_L_heure","04_Mon_visage","05_Adjectifs_possessifs_visage","06_Le_corps","07_Adjectifs_possessifs_corps"],
+  "binaryIntegrity":"sha256-pinned",
+  "releaseRule":"No release until all 28 original assets are present and validated."
+}
