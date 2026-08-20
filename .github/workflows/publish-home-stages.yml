@@ -1,0 +1,35 @@
+name: Publish School Stages On Home
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/programs-catalog.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject curriculum stage cards into homepage
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const catalog=JSON.parse(fs.readFileSync('data/programs-catalog.json','utf8'));
+          const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+          const cards=catalog.programs.flatMap(p=>p.grades.map(g=>{const available=g.status==='available';const visible=g.status==='visible';const href=g.page||'course.html';const state=available?'متاح الآن':visible?'قريبًا':'قريبًا';return `<a class="home-stage-card" href="${href}"><span class="home-stage-icon">${p.category==='primary'?'📚':'🎓'}</span><strong>${esc(g.label.ar)}</strong><small>${esc(g.label.fr)}</small><em class="${available?'ready':''}">${state}</em></a>`})).join('');
+          const block=`<section class="home-section" id="hm-school-stages"><div class="home-section-head"><div><h2>🎓 المراحل الدراسية</h2><p>اختر مرحلتك الآن؛ المحتوى الكامل لكل مرحلة يُستكمل تدريجيًا.</p></div><a href="course.html" style="font-weight:900;color:#2563eb;text-decoration:none">عرض المناهج كاملة ←</a></div><div class="home-stages-grid">${cards}</div></section>`;
+          const p='index.html'; let html=fs.readFileSync(p,'utf8');
+          html=html.replace(/<style>([\s\S]*?)<\/style>/,m=>m.replace('</style>','.home-stages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.home-stage-card{position:relative;text-decoration:none;background:#fff;border:1px solid #e1e7f0;border-radius:20px;padding:17px;color:#14264a;box-shadow:0 10px 28px rgba(20,38,74,.06);min-height:126px}.home-stage-icon{display:block;font-size:27px;margin-bottom:8px}.home-stage-card strong{display:block;font-size:17px}.home-stage-card small{display:block;color:#738097;margin-top:4px}.home-stage-card em{display:inline-block;margin-top:10px;font-style:normal;font-size:11px;padding:5px 9px;border-radius:999px;background:#f3f4f6;color:#6b7280;font-weight:900}.home-stage-card em.ready{background:#eaf8f5;color:#16796b}@media(max-width:800px){.home-stages-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.home-stages-grid{grid-template-columns:1fr}}</style>'));
+          if(html.includes('id="hm-school-stages"')) html=html.replace(/<section class="home-section" id="hm-school-stages">[\s\S]*?<\/section>/,block); else html=html.replace('<section class="home-motivation-wrap">',block+'<section class="home-motivation-wrap">');
+          fs.writeFileSync(p,html);
+          NODE
+      - name: Commit homepage stage cards
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat(home): publish all school stages in main interface'
+          git push
