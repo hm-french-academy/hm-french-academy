@@ -1,0 +1,20 @@
+name: Grade 4 Content Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/grade-4/**'
+      - 'scripts/grade4-*.mjs'
+      - '.github/workflows/grade4-content-audit.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate Grade 4 source/content manifests
+        run: |
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('data/lessons/grade-4/source-content-audit.json')); const m=JSON.parse(fs.readFileSync('data/lessons/grade-4/content-adapter-manifest.json')); if(a.lessonCount!==7||a.fileCount!==28||m.lessons.length!==7) process.exit(1); console.log('Grade 4 manifests: 7 lessons / 28 source files / 7 adapters');"
