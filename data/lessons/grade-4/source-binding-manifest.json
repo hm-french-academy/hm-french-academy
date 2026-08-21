@@ -7,12 +7,13 @@
   "assetContract":{"perLesson":4,"totalLessons":7,"totalFiles":28},
   "bindings":[
     {"id":"g4-l01","folder":"01_Les_saisons","route":"lesson.html?id=g4-l01","interactive":"01_interactif_les_saisons.html","reference":"02_reference_les_saisons.docx","evaluation":"03_evaluation_les_saisons.docx","electronicExam":"04_examen_electronique_les_saisons.html"},
-    {"id":"g4-l02","folder":"02_Les_chiffres","route":"lesson.html?id=g4-l02","interactive":"01_interactif_les_chiffres.html","reference":"02_reference_les_chiffres.docx","evaluation":"03_evaluation_les_chiffres.docx","electronicExam":"04_examen_electronique_les_chiffres.html"},
+    {"id":"g4-l02","folder":"02_Les_chiffres","route":"lesson.html?id=g4-l02","interactive":"01_interactif_les_chiffres-runtime-fixed.html","sourceInteractive":"01_interactif_les_chiffres.html","reference":"02_reference_les_chiffres.docx","evaluation":"03_evaluation_les_chiffres.docx","electronicExam":"04_examen_electronique_les_chiffres.html","video":"youtube.com/embed/zjinmuX25_E","videoFallback":"youtube.com/watch?v=zjinmuX25_E"},
     {"id":"g4-l03","folder":"03_L_heure","route":"lesson.html?id=g4-l03","interactive":"01_interactif_lheure.html","reference":"02_reference_lheure.docx","evaluation":"03_evaluation_lheure.docx","electronicExam":"04_examen_electronique_lheure.html"},
     {"id":"g4-l04","folder":"04_Mon_visage","route":"lesson.html?id=g4-l04","interactive":"01_interactif_mon_visage.html","reference":"02_reference_mon_visage.docx","evaluation":"03_evaluation_mon_visage.docx","electronicExam":"04_examen_electronique_mon_visage.html"},
     {"id":"g4-l05","folder":"05_Adjectifs_possessifs_visage","route":"lesson.html?id=g4-l05","interactive":"01_interactif_adjectifs_possessifs_visage.html","reference":"02_reference_adjectifs_possessifs_visage.docx","evaluation":"03_evaluation_adjectifs_possessifs_visage.docx","electronicExam":"04_examen_electronique_adjectifs_possessifs_visage.html"},
     {"id":"g4-l06","folder":"06_Le_corps","route":"lesson.html?id=g4-l06","interactive":"01_interactif_le_corps.html","reference":"02_reference_le_corps.docx","evaluation":"03_evaluation_le_corps.docx","electronicExam":"04_examen_electronique_le_corps.html"},
     {"id":"g4-l07","folder":"07_Adjectifs_possessifs_corps","route":"lesson.html?id=g4-l07","interactive":"01_interactif_adjectifs_possessifs_corps.html","reference":"02_reference_adjectifs_possessifs_corps.docx","evaluation":"03_evaluation_adjectifs_possessifs_corps.docx","electronicExam":"04_examen_electronique_adjectifs_possessifs_corps.html"}
   ],
-  "preserveOriginals":true
+  "preserveOriginals":true,
+  "qualityFixes":{"g4-l02":{"videoEmbed":"youtube-standard","sourcePreserved":true}}
 }
