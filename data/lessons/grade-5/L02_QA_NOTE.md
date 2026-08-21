@@ -1,0 +1,1 @@
+L02 final premium corrective pass: real image binding, fr-FR speech fallback, independent game state, locked answers, verified lesson-scoped question sets.
