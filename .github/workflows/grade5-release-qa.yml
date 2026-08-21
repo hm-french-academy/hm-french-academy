@@ -6,9 +6,11 @@ on:
     paths:
       - 'data/lessons/grade-5/**'
       - 'data/curricula/grade-5-french-semester-1.json'
+      - 'grade-5.html'
       - 'grade-5-lesson-v3.html'
       - 'scripts/grade5-*.js'
       - 'scripts/grade5-*.mjs'
+      - 'scripts/i18n.js'
       - '.github/workflows/grade5-release-qa.yml'
 jobs:
   qa:
