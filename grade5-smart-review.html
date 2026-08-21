@@ -1,1 +1,101 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy | المراجعة الذكية · الصف الخامس</title><link rel="stylesheet" href="css/premium-shell.css"><style>body{background:#101216}.wrap{max-width:900px;margin:auto;padding:20px}.hero,.card{border:1px solid #2b3444;border-radius:24px;padding:20px;margin-bottom:16px}.hero{background:linear-gradient(135deg,#152a55,#7041e8 55%,#2563eb);color:#fff}.card{background:#191b1f;color:#eee}.type{display:inline-block;padding:6px 10px;border-radius:99px;background:#2b3444;font-size:13px;font-weight:900}.prompt{font-size:25px;font-weight:900;line-height:1.7;margin:14px 0}.sub{color:#aeb8c7;line-height:1.8}.options{display:grid;gap:10px}.option{border:2px solid #2b3444;background:#191b1f;color:#eee;border-radius:14px;padding:14px;text-align:right;cursor:pointer;font-weight:900}.option.correct{border-color:#45aa73;background:#effaf3;color:#176b3a}.option.wrong{border-color:#d66b6b;background:#fff2f2;color:#9d2d2d}.btn{border:0;background:#d51b78;color:#fff;border-radius:12px;padding:11px 15px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block;margin:4px}.result{text-align:center}.progress{height:8px;background:#2b3444;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:#d51b78;width:0}.fr{font-size:30px;font-weight:900}.example{margin:14px 0;padding:14px;border-radius:16px;background:#202329;line-height:1.8}</style></head><body><main class="wrap"><section class="hero"><div>🧠 HM Academy · 5e année</div><h1 id="title">المراجعة الذكية</h1><p>مراجعة متعددة المهارات مرتبطة بالدرس المختار فقط: مفردات، سياق، استماع، قواعد وتطبيق.</p><div class="progress"><i id="bar"></i></div></section><section class="card" id="app">جارٍ تحميل مراجعة الدرس…</section></main><script>(async()=>{const p=new URLSearchParams(location.search),id=p.get('lesson')||'g5-t1-l01',app=document.getElementById('app'),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let D;try{let r=await fetch('data/lessons/grade-5/lesson-studio-content.json?v=20260822-smartreview1',{cache:'no-store'}),x=await r.json();for(let n=0;n<8&&typeof x.content==='string';n++)x=JSON.parse(x.content);D=x.lessons?.[id]}catch(e){}if(!D){app.textContent='تعذر تحميل مراجعة هذا الدرس.';return}document.getElementById('title').textContent='🧠 المراجعة الذكية · '+D.titleFr;const v=(D.vocabulary||[]).filter(x=>x.word&&(x.meaning||x.translation)),g=D.grammar||{},examples=(g.examples||[]).filter(x=>x.fr),pool=v.map(x=>({word:x.word,meaning:x.meaning||x.translation,example:x.example||''}));const questions=[];const take=(a,n=3)=>a.slice(0,n);pool.slice(0,5).forEach(c=>{const others=pool.filter(x=>x.word!==c.word).map(x=>x.meaning);questions.push({type:'المفردات · المعنى',q:'اختر المعنى الصحيح لـ «'+c.word+'».',answer:c.meaning,options:[c.meaning,...take(others)],speech:c.word,example:c.example})});pool.slice(0,3).forEach(c=>{const others=pool.filter(x=>x.word!==c.word).map(x=>x.word);questions.push({type:'المفردات · الكلمة',q:'أي كلمة فرنسية تعبّر عن «'+c.meaning+'»؟',answer:c.word,options:[c.word,...take(others)],speech:c.word,example:c.example})});examples.slice(0,3).forEach(c=>{const z=c.parts||String(c.fr).replace(/[.!?]/g,'').split(' ');const subject=z[0],verb=z[1]||z[0],comp=z[2]||z[z.length-1];questions.push({type:'القواعد · تحليل الجملة',q:'في «'+c.fr+'» ما هو الفعل Verbe؟',answer:verb,options:[verb,subject,comp].filter(Boolean),speech:c.fr,example:c.ar||''});questions.push({type:'القواعد · ترتيب الجملة',q:'ما ترتيب أجزاء «'+c.fr+'» في هذا الدرس؟',answer:z.join(' + '),options:[z.join(' + '),z.slice().reverse().join(' + '),[z[1],z[0],z[2]].filter(Boolean).join(' + ')],speech:c.fr,example:'Sujet + Verbe + Complément'});});if(g.miniRule)questions.push({type:'القاعدة · القاعدة الأساسية',q:'اختر القاعدة الأساسية التي تلخّص درس اليوم.',answer:g.miniRule,options:[g.miniRule,...take((g.steps||[]).filter(x=>x!==g.miniRule))],speech:g.miniRule,example:'تذكّر القاعدة ثم طبّقها في مثال جديد.'});if(examples[0])questions.push({type:'التطبيق · اختيار الجملة',q:'أي جملة من الآتي تمثل النموذج الصحيح الذي تدربنا عليه؟',answer:examples[0].fr,options:[examples[0].fr,...examples.slice(1,4).map(x=>x.fr)],speech:examples[0].fr,example:examples[0].ar||''});const seen=new Set(),chosen=questions.filter(q=>{const k=q.type+'|'+q.q+'|'+q.answer;if(seen.has(k))return false;seen.add(k);return true}).slice(0,12);let i=0,score=0;function speak(t){if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}}function render(){document.getElementById('bar').style.width=(i/Math.max(chosen.length,1)*100)+'%';if(i>=chosen.length){document.getElementById('bar').style.width='100%';app.innerHTML='<div class="result"><h2>🎉 انتهت المراجعة الذكية</h2><p>نتيجتك: '+score+' / '+chosen.length+'</p><p class="sub">تمت مراجعة أكثر من مهارة، وليس المعنى فقط.</p><a class="btn" href="grade-5-lesson-v3.html?id='+encodeURIComponent(id)+'&section=vocabulary">📚 العودة إلى الدرس</a><a class="btn" href="grade-5.html">← الصف الخامس</a></div>';return}const c=chosen[i],others=chosen.filter((x,j)=>j!==i&&x.answer!==c.answer).slice(0,3),opts=[c,...others].sort(()=>Math.random()-.5);app.innerHTML='<span class="type">'+esc(c.type)+'</span><div class="prompt">'+esc(c.q)+'</div>'+(c.speech?'<div class="fr">'+esc(c.speech)+' <button class="btn" id="sp">🔊 استمع</button></div>':'')+(c.example?'<div class="example"><b>تذكّر:</b> '+esc(c.example)+'</div>':'')+'<div class="sub">سؤال '+(i+1)+' من '+chosen.length+'</div><div class="options">'+opts.map(o=>'<button class="option" data-ok="'+(o.answer===c.answer)+'">'+esc(o.answer)+'</button>').join('')+'</div><div id="fb" style="min-height:35px;margin-top:12px;font-weight:900"></div>';if(document.getElementById('sp'))document.getElementById('sp').onclick=()=>speak(c.speech);app.querySelectorAll('.option').forEach(b=>b.onclick=()=>{if(b.dataset.done)return;b.dataset.done='1';const ok=b.dataset.ok==='true';b.classList.add(ok?'correct':'wrong');document.getElementById('fb').textContent=ok?'✅ صحيح':'❌ الإجابة الصحيحة: '+c.answer;if(ok)score++;setTimeout(()=>{i++;render()},750)})}if(!chosen.length){app.textContent='لا توجد أسئلة كافية لهذا الدرس بعد.';return}render()})()</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | المراجعة الذكية · الصف الخامس</title>
+<link rel="stylesheet" href="css/premium-shell.css">
+<style>
+body{background:#101216}.wrap{max-width:900px;margin:auto;padding:20px}.hero,.card{border:1px solid #2b3444;border-radius:24px;padding:20px;margin-bottom:16px}.hero{background:linear-gradient(135deg,#152a55,#7041e8 55%,#2563eb);color:#fff}.card{background:#191b1f;color:#eee}.type{display:inline-block;padding:6px 10px;border-radius:99px;background:#2b3444;font-size:13px;font-weight:900}.prompt{font-size:24px;font-weight:900;line-height:1.8;margin:14px 0}.context{padding:16px;border-radius:16px;background:#202329;font-size:22px;line-height:1.9;direction:ltr;text-align:center}.sub{color:#aeb8c7;line-height:1.8}.options{display:grid;gap:10px}.option{border:2px solid #2b3444;background:#191b1f;color:#eee;border-radius:14px;padding:14px;text-align:right;cursor:pointer;font-weight:900;font-size:17px}.option.correct{border-color:#45aa73;background:#effaf3;color:#176b3a}.option.wrong{border-color:#d66b6b;background:#fff2f2;color:#9d2d2d}.btn{border:0;background:#d51b78;color:#fff;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block;margin:4px}.result{text-align:center}.progress{height:8px;background:#2b3444;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:#d51b78;width:0}.feedback{min-height:38px;margin-top:12px;font-weight:900}.listen{direction:rtl}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero"><div>🧠 HM Academy · 5e année</div><h1 id="title">المراجعة الذكية</h1><p>مراجعة متعددة المهارات للدرس نفسه: تطبيق، قواعد، سياق، استماع وبناء جملة.</p><div class="progress"><i id="bar"></i></div></section>
+<section class="card" id="app">جارٍ تحميل مراجعة الدرس…</section>
+</main>
+<script>
+(async()=>{
+const params=new URLSearchParams(location.search),id=params.get('lesson')||'g5-t1-l01',app=document.getElementById('app');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v??'').trim().toLowerCase().replace(/[.!؟?،,:;«»]/g,'').replace(/\s+/g,' ');
+let D;
+try{let r=await fetch('data/lessons/grade-5/lesson-studio-content.json?v=20260822-smartreview2',{cache:'no-store'});let x=await r.json();for(let n=0;n<8&&typeof x.content==='string';n++)x=JSON.parse(x.content);D=x.lessons?.[id]}catch(e){}
+if(!D){app.textContent='تعذر تحميل مراجعة هذا الدرس.';return}
+document.getElementById('title').textContent='🧠 المراجعة الذكية · '+(D.titleFr||id);
+const g=D.grammar||{}, examples=(g.examples||[]).filter(x=>x.fr), practice=(D.practice||[]).filter(x=>x.q&&Array.isArray(x.options)&&x.answer), vocab=(D.vocabulary||[]).filter(x=>x.word&&(x.meaning||x.translation));
+const questions=[];
+function add(q){if(!q||!q.type||!q.answer||!Array.isArray(q.options))return;const opts=[...new Set(q.options.map(String).map(s=>s.trim()).filter(Boolean))];const answer=String(q.answer).trim();if(!opts.some(x=>norm(x)===norm(answer))||opts.length<2)return;q.options=opts.slice(0,4);questions.push(q)}
+function distract(list,answer,n=3){return [...new Set(list.map(String).map(s=>s.trim()).filter(s=>s&&norm(s)!==norm(answer)))].slice(0,n)}
+// 1) Use the curriculum's own practice questions, but remove weak vocabulary-only prompts.
+practice.forEach(p=>{
+ const q=String(p.q); const isMeaning=/معنى|تعني|ماذا تعني|translate|meaning/i.test(q);
+ const isBareVocab=/ما معنى|اختر معنى|أي كلمة فرنسية تعبّر عن/i.test(q)&&!/[«"'].*[.!؟?]/.test(q);
+ if(!isBareVocab) add({type:'تطبيق الدرس',q,answer:p.answer,options:p.options,example:p.explanation||''});
+});
+// 2) Sentence structure / grammar analysis from real examples.
+examples.forEach(ex=>{
+ const parts=Array.isArray(ex.parts)?ex.parts.filter(Boolean):String(ex.fr).split(' ').filter(Boolean);
+ if(parts.length>=3){
+  add({type:'القواعد · تحديد العنصر',q:'في الجملة التالية، ما هو الـ Sujet (الفاعل)؟',context:ex.fr,answer:parts[0],options:[parts[0],parts[1],parts[parts.length-1]],speech:ex.fr,example:ex.ar||''});
+  add({type:'القواعد · تحديد العنصر',q:'في الجملة التالية، ما هو الـ Verbe (الفعل)؟',context:ex.fr,answer:parts[1],options:[parts[1],parts[0],parts[parts.length-1]],speech:ex.fr,example:ex.ar||''});
+  add({type:'القواعد · بناء الجملة',q:'ما الترتيب الصحيح لعناصر هذه الجملة؟',context:ex.fr,answer:'Sujet → Verbe → Complément',options:['Sujet → Verbe → Complément','Verbe → Sujet → Complément','Complément → Sujet → Verbe'],example:'نحدد وظيفة كل جزء ثم نرتبه في النموذج الذي يدرسه الدرس.'});
+ }
+});
+// 3) Meaning from context: use complete sentences, never display the answer word as a heading.
+const arabicExamples=examples.map(x=>x.ar).filter(Boolean);
+examples.slice(0,4).forEach(ex=>{
+ if(arabicExamples.length>=2)add({type:'السياق · فهم الجملة',q:'ما المعنى الصحيح للجملة التالية؟',context:ex.fr,answer:ex.ar,options:[ex.ar,...distract(arabicExamples,ex.ar)],speech:ex.fr});
+});
+// 4) Listening: the French sentence is hidden from the visual question; student hears it and chooses its meaning.
+examples.slice(0,3).forEach(ex=>{
+ if(arabicExamples.length>=2)add({type:'الاستماع · فهم المسموع',q:'استمع إلى الجملة ثم اختر معناها الصحيح.',answer:ex.ar,options:[ex.ar,...distract(arabicExamples,ex.ar)],speech:ex.fr});
+});
+// 5) Rule understanding: use the actual rule, but do not turn the rule into a vocabulary question.
+if(g.miniRule){
+ const steps=(g.steps||[]).filter(Boolean);
+ const opts=[g.miniRule,...steps.filter(s=>norm(s)!==norm(g.miniRule)).slice(0,3)];
+ if(opts.length>=2)add({type:'القاعدة · الفكرة الأساسية',q:'أي قاعدة تلخّص النموذج الذي نتعلمه في هذا الدرس؟',answer:g.miniRule,options:opts,example:g.titleAr||''});
+}
+// 6) Sentence transformation / application from examples.
+examples.slice(0,3).forEach((ex,idx)=>{
+ const parts=Array.isArray(ex.parts)?ex.parts.filter(Boolean):[];
+ if(parts.length>=3){
+  const correct=parts.join(' '), wrong1=[parts[1],parts[0],...parts.slice(2)].join(' '), wrong2=[...parts.slice(2),parts[0],parts[1]].join(' ');
+  add({type:'التطبيق · ترتيب الكلمات',q:'اختر الجملة المرتبة ترتيبًا صحيحًا.',options:[correct,wrong1,wrong2],answer:correct,example:ex.ar||''});
+ }
+});
+// 7) Only when a practice item is genuinely contextual, keep it as a separate skill.
+practice.filter(p=>/[«"'].*[.!؟?]/.test(String(p.q))).slice(0,3).forEach(p=>add({type:'تطبيق في سياق',q:p.q,answer:p.answer,options:p.options,example:p.explanation||''}));
+// Deduplicate by semantic identity and prevent consecutive same-type questions.
+const seen=new Set(),unique=[];
+for(const q of questions){const key=q.type+'|'+norm(q.q)+'|'+norm(q.answer)+'|'+norm(q.context||'');if(seen.has(key))continue;seen.add(key);unique.push(q)}
+const byType={};unique.forEach(q=>(byType[q.type]??=[]).push(q));
+const chosen=[];let last='';
+while(chosen.length<Math.min(12,unique.length)){
+ let candidate=null;
+ for(const q of unique){if(chosen.includes(q))continue;if(q.type!==last){candidate=q;break}}
+ if(!candidate) candidate=unique.find(q=>!chosen.includes(q));
+ if(!candidate)break;chosen.push(candidate);last=candidate.type;
+}
+if(!chosen.length){app.textContent='لا توجد أسئلة تطبيقية كافية لهذا الدرس بعد.';return}
+let i=0,score=0;
+function speak(text){if('speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}}
+function render(){
+ document.getElementById('bar').style.width=(i/chosen.length*100)+'%';
+ if(i>=chosen.length){document.getElementById('bar').style.width='100%';app.innerHTML='<div class="result"><h2>🎉 انتهت المراجعة الذكية</h2><p>نتيجتك: '+score+' / '+chosen.length+'</p><p class="sub">هذه المراجعة اختبرت مهارات متعددة، وليس حفظ معاني الكلمات فقط.</p><a class="btn" href="grade-5-lesson-v3.html?id='+encodeURIComponent(id)+'&section=lesson">📚 العودة إلى الدرس</a><a class="btn" href="grade-5.html">← الصف الخامس</a></div>';return}
+ const c=chosen[i];
+ const opts=[...c.options].sort(()=>Math.random()-.5);
+ let html='<span class="type">'+esc(c.type)+'</span><div class="prompt">'+esc(c.q)+'</div>';
+ if(c.context)html+='<div class="context">'+esc(c.context)+'</div>';
+ if(c.speech)html+='<div class="listen"><button class="btn" id="sp">🔊 استمع</button></div>';
+ if(c.example)html+='<div class="sub">💡 '+esc(c.example)+'</div>';
+ html+='<div class="sub">سؤال '+(i+1)+' من '+chosen.length+'</div><div class="options">'+opts.map(o=>'<button class="option" data-ok="'+(norm(o)===norm(c.answer))+'">'+esc(o)+'</button>').join('')+'</div><div class="feedback" id="fb"></div>';
+ app.innerHTML=html;
+ if(document.getElementById('sp'))document.getElementById('sp').onclick=()=>speak(c.speech);
+ app.querySelectorAll('.option').forEach(b=>b.onclick=()=>{if(b.dataset.done)return;b.dataset.done='1';const ok=b.dataset.ok==='true';b.classList.add(ok?'correct':'wrong');document.getElementById('fb').textContent=ok?'✅ صحيح':'❌ الإجابة الصحيحة: '+c.answer;if(ok)score++;setTimeout(()=>{i++;render()},800)});
+}
+render();
+})().catch(()=>{document.getElementById('app').textContent='تعذر تشغيل المراجعة الذكية.'});
+</script>
+</body>
+</html>
