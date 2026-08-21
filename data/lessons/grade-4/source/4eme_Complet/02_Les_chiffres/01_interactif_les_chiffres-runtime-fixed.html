@@ -1,0 +1,12 @@
+<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Les chiffres — Leçon</title></head><body><script>
+(async()=>{
+ const src='01_interactif_les_chiffres.html';
+ try{
+  const r=await fetch(src,{cache:'no-store'}); if(!r.ok) throw new Error('HTTP '+r.status);
+  let html=await r.text();
+  const patch=`<script>(function(){function fix(){const old=document.getElementById('videoFrame');if(!old)return;const vf=old.cloneNode(true);old.replaceWith(vf);vf.addEventListener('click',function(){vf.innerHTML='<iframe src="https://www.youtube.com/embed/zjinmuX25_E?autoplay=1&rel=0" title="Les chiffres — Compter jusqu à 30" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix,{once:true});else fix();})();<\\/script>`;
+  html=html.replace('</body>',patch+'</body>');
+  document.open();document.write(html);document.close();
+ }catch(e){document.body.innerHTML='<main style="font-family:Arial,sans-serif;padding:30px;text-align:center"><h2>تعذر تحميل الدرس</h2><p>يرجى العودة والمحاولة مرة أخرى.</p></main>';}
+})();
+</script></body></html>
