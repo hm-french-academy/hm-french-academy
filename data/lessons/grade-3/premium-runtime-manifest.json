@@ -1,0 +1,12 @@
+{
+  "grade":"primary-3",
+  "runtime":"lesson.html",
+  "status":"premium-studio-runtime-ready",
+  "lessonCount":6,
+  "journey":["lesson","vocabulary","grammar","practice","pronunciation","media","games","assessment","progress"],
+  "scope":"lesson-id-isolated",
+  "preserveOriginals":true,
+  "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json",
+  "cacheVersion":"20260822-g3premium1",
+  "releaseGate":"final-qa-and-browser-smoke-test"
+}
