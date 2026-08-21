@@ -1,0 +1,79 @@
+{
+  "lessons": {
+    "g5-t1-l09": {
+      "titleFr": "Le visage", "titleAr": "الوجه", "type": "Vocabulaire", "duration": "20 min",
+      "objectiveAr": "اكتساب مفردات أساسية لأجزاء الوجه وربط الصورة بالكلمة والنطق ثم استخدامها في عبارات قصيرة.",
+      "objectiveFr": "Identifier les principales parties du visage et les utiliser dans de courtes phrases.",
+      "successCriteria": ["أتعرف على المفردة من الصورة.", "أنطق الكلمة الفرنسية بوضوح.", "أستخدم المفردة في عبارة قصيرة."],
+      "teacherGuide": {"focus": "Vocabulaire visuel", "before": "اعرض صورة وجه واضحة واطلب من الطالب الإشارة إلى الجزء قبل كشف الكلمة.", "during": "اربط الصورة بالكلمة ثم النطق ثم العبارة.", "after": "اطلب من الطالب تسمية خمسة أجزاء من الوجه دون مساعدة."},
+      "grammar": {"titleAr": "المفردة داخل سياق", "titleFr": "Utiliser le vocabulaire", "explanationAr": "لا نحفظ كلمة الجزء منفردة فقط؛ نربطها بصورة واضحة، ثم نستمع إلى نطقها، ثم نستخدمها في عبارة قصيرة.", "steps": ["شاهد الصورة وحدد الجزء.", "استمع إلى الكلمة وكررها.", "اربط الكلمة بأداة التعريف المناسبة.", "استخدمها في عبارة قصيرة."], "examples": [{"fr":"C'est le nez.","ar":"هذا الأنف."},{"fr":"C'est la bouche.","ar":"هذا الفم."},{"fr":"J'ai deux yeux.","ar":"لدي عينان."},{"fr":"J'ai deux oreilles.","ar":"لدي أذنان."}]},
+      "vocabulary": [
+        {"word":"le visage","meaning":"الوجه","example":"C'est le visage.","image":"data/lessons/grade-5/assets/vocab/l09-visage.svg"},
+        {"word":"le nez","meaning":"الأنف","example":"C'est le nez.","image":"data/lessons/grade-5/assets/vocab/l09-nez.svg"},
+        {"word":"la bouche","meaning":"الفم","example":"C'est la bouche.","image":"data/lessons/grade-5/assets/vocab/l09-bouche.svg"},
+        {"word":"les yeux","meaning":"العينان / العيون","example":"J'ai deux yeux.","image":"data/lessons/grade-5/assets/vocab/l09-yeux.svg"},
+        {"word":"les oreilles","meaning":"الأذنان / الأذنين","example":"J'ai deux oreilles.","image":"data/lessons/grade-5/assets/vocab/l09-oreilles.svg"},
+        {"word":"les cheveux","meaning":"الشعر","example":"J'ai les cheveux noirs.","image":"data/lessons/grade-5/assets/vocab/l09-cheveux.svg"},
+        {"word":"les dents","meaning":"الأسنان","example":"J'ai de belles dents.","image":"data/lessons/grade-5/assets/vocab/l09-dents.svg"},
+        {"word":"le front","meaning":"الجبهة","example":"Le front est haut.","image":"data/lessons/grade-5/assets/vocab/l09-front.svg"}
+      ],
+      "pronunciation": ["le visage","le nez","la bouche","les yeux","les oreilles","les cheveux","les dents","le front","C'est le nez.","J'ai deux yeux."],
+      "practice": [
+        {"q":"اختر الكلمة الصحيحة للصورة: الأنف","options":["le nez","la bouche","le front"],"answer":"le nez","explanation":"الأنف = le nez."},
+        {"q":"اختر الكلمة الصحيحة: العينان","options":["les yeux","les dents","les oreilles"],"answer":"les yeux","explanation":"العينان = les yeux."},
+        {"q":"اختر الصحيح: ___ bouche","options":["la","le","les"],"answer":"la","explanation":"bouche مؤنث مفرد، لذلك la bouche."},
+        {"q":"أكمل: J'ai deux ___.","options":["yeux","nez","bouche"],"answer":"yeux","explanation":"نقول J'ai deux yeux."}
+      ]
+    },
+    "g5-t1-l10": {
+      "titleFr": "Fournitures scolaires et fruits", "titleAr": "اللوازم المدرسية والفواكه", "type": "Vocabulaire", "duration": "20 min",
+      "objectiveAr": "تعلم مفردات أساسية من اللوازم المدرسية والفواكه وربطها بالصورة والنطق واستخدامها في جمل قصيرة.",
+      "objectiveFr": "Identifier des fournitures scolaires et des fruits et les utiliser dans de courtes phrases.",
+      "successCriteria": ["أتعرف على الكلمة من الصورة.", "أنطق المفردة الفرنسية.", "أستخدم المفردة في جملة قصيرة."],
+      "teacherGuide": {"focus":"Vocabulaire thématique", "before":"قسّم الكلمات إلى مجموعة المدرسة ومجموعة الفواكه.", "during":"الصورة أولًا، ثم الكلمة، ثم النطق، ثم الجملة.", "after":"اختبر الطالب في تصنيف الكلمات إلى fournitures أو fruits."},
+      "grammar": {"titleAr":"المفردات في جملة", "titleFr":"Le vocabulaire en contexte", "explanationAr":"الهدف ليس حفظ قائمة كلمات؛ بل التعرف على الشيء، وسماع اسمه، ثم استخدامه في جملة قصيرة صحيحة.", "steps":["تعرف على الشيء من الصورة.","استمع إلى الاسم وكرره.","لاحظ أداة الاسم.","استخدم الكلمة في جملة قصيرة."], "examples":[{"fr":"C'est un cahier.","ar":"هذا كراس."},{"fr":"C'est une règle.","ar":"هذه مسطرة."},{"fr":"J'aime les pommes.","ar":"أحب التفاح."},{"fr":"J'aime les bananes.","ar":"أحب الموز."}]},
+      "vocabulary": [
+        {"word":"un cahier","meaning":"كراس / دفتر","example":"C'est un cahier.","image":"data/lessons/grade-5/assets/vocab/l10-cahier.svg"},
+        {"word":"un crayon","meaning":"قلم رصاص","example":"C'est un crayon.","image":"data/lessons/grade-5/assets/vocab/l10-crayon.svg"},
+        {"word":"une règle","meaning":"مسطرة","example":"C'est une règle.","image":"data/lessons/grade-5/assets/vocab/l10-regle.svg"},
+        {"word":"une gomme","meaning":"ممحاة","example":"C'est une gomme.","image":"data/lessons/grade-5/assets/vocab/une-gomme.svg"},
+        {"word":"un livre","meaning":"كتاب","example":"C'est un livre.","image":"data/lessons/grade-5/assets/vocab/l10-livre.svg"},
+        {"word":"une pomme","meaning":"تفاحة","example":"J'aime les pommes.","image":"data/lessons/grade-5/assets/vocab/l10-pomme.svg"},
+        {"word":"une banane","meaning":"موزة","example":"J'aime les bananes.","image":"data/lessons/grade-5/assets/vocab/l10-banane.svg"},
+        {"word":"une orange","meaning":"برتقالة","example":"J'aime les oranges.","image":"data/lessons/grade-5/assets/vocab/l10-orange.svg"}
+      ],
+      "pronunciation": ["un cahier","un crayon","une règle","une gomme","un livre","une pomme","une banane","une orange","C'est un cahier.","J'aime les pommes."],
+      "practice": [
+        {"q":"اختر الأداة الصحيحة: ___ cahier","options":["un","une","des"],"answer":"un","explanation":"cahier مذكر مفرد، لذلك un cahier."},
+        {"q":"اختر الأداة الصحيحة: ___ règle","options":["un","une","des"],"answer":"une","explanation":"règle مؤنث مفرد، لذلك une règle."},
+        {"q":"أي كلمة تنتمي إلى الفواكه؟","options":["une pomme","un cahier","une règle"],"answer":"une pomme","explanation":"pomme = تفاحة وهي فاكهة."},
+        {"q":"أكمل: J'aime les ___.","options":["pommes","cahier","règle"],"answer":"pommes","explanation":"نقول J'aime les pommes."}
+      ]
+    },
+    "g5-t1-l11": {
+      "titleFr": "Le corps", "titleAr": "أجزاء الجسم", "type": "Vocabulaire", "duration": "20 min",
+      "objectiveAr": "اكتساب مفردات أساسية لأجزاء الجسم وربطها بالصورة والنطق والجملة.",
+      "objectiveFr": "Identifier les principales parties du corps et les utiliser dans de courtes phrases.",
+      "successCriteria": ["أتعرف على أجزاء الجسم الأساسية.", "أنطق المفردات بوضوح.", "أستخدم مفردة في جملة قصيرة."],
+      "teacherGuide": {"focus":"Vocabulaire visuel", "before":"ابدأ بصورة جسم كاملة، ثم انتقل إلى الأجزاء الأساسية.", "during":"الصورة ثم الكلمة ثم النطق ثم الاستعمال.", "after":"نفذ نشاط أشر إلى الجزء الصحيح ثم سمّه بالفرنسية."},
+      "grammar": {"titleAr":"المفردة في سياق", "titleFr":"Le vocabulaire du corps", "explanationAr":"نتعلم أجزاء الجسم من خلال الصورة والنطق ثم نستخدم كل مفردة في جملة قصيرة، مع الانتباه إلى أداة الاسم.", "steps":["شاهد الجزء وحدده.","استمع إلى الاسم وكرره.","لاحظ أداة التعريف.","استخدمه في جملة قصيرة."], "examples":[{"fr":"C'est la main.","ar":"هذه اليد."},{"fr":"C'est le pied.","ar":"هذه القدم."},{"fr":"J'ai deux yeux.","ar":"لدي عينان."},{"fr":"J'ai deux jambes.","ar":"لدي ساقان."}]},
+      "vocabulary": [
+        {"word":"la tête","meaning":"الرأس","example":"C'est la tête.","image":"data/lessons/grade-5/assets/vocab/l11-tete.svg"},
+        {"word":"le bras","meaning":"الذراع","example":"C'est le bras.","image":"data/lessons/grade-5/assets/vocab/l11-bras.svg"},
+        {"word":"la main","meaning":"اليد","example":"C'est la main.","image":"data/lessons/grade-5/assets/vocab/l11-main.svg"},
+        {"word":"la jambe","meaning":"الساق","example":"C'est la jambe.","image":"data/lessons/grade-5/assets/vocab/l11-jambe.svg"},
+        {"word":"le pied","meaning":"القدم","example":"C'est le pied.","image":"data/lessons/grade-5/assets/vocab/l11-pied.svg"},
+        {"word":"le ventre","meaning":"البطن","example":"C'est le ventre.","image":"data/lessons/grade-5/assets/vocab/l11-ventre.svg"},
+        {"word":"le genou","meaning":"الركبة","example":"C'est le genou.","image":"data/lessons/grade-5/assets/vocab/l11-genou.svg"},
+        {"word":"le doigt","meaning":"الإصبع","example":"C'est le doigt.","image":"data/lessons/grade-5/assets/vocab/l11-doigt.svg"}
+      ],
+      "pronunciation": ["la tête","le bras","la main","la jambe","le pied","le ventre","le genou","le doigt","C'est la main.","C'est le pied."],
+      "practice": [
+        {"q":"اختر الكلمة الصحيحة: اليد","options":["la main","le pied","le bras"],"answer":"la main","explanation":"اليد = la main."},
+        {"q":"اختر الكلمة الصحيحة: القدم","options":["le pied","la jambe","le genou"],"answer":"le pied","explanation":"القدم = le pied."},
+        {"q":"اختر الأداة الصحيحة: ___ tête","options":["la","le","les"],"answer":"la","explanation":"tête مؤنث مفرد، لذلك la tête."},
+        {"q":"أكمل: C'est le ___.","options":["bras","main","jambe"],"answer":"bras","explanation":"le bras مذكر مفرد."}
+      ]
+    }
+  }
+}
