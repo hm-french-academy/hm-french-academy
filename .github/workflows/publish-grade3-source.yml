@@ -25,8 +25,23 @@ jobs:
           unzip -q 'data/lessons/grade-3/3eme prim.zip' -d data/lessons/grade-3/web
           count=$(find data/lessons/grade-3/web -type f | wc -l)
           echo "Published ${count} source files"
-          test "$count" -gt 0
+          test "$count" -eq 32
+          test "$(find data/lessons/grade-3/web -type f -name '*.html' | wc -l)" -eq 12
+          test "$(find data/lessons/grade-3/web -type f -name '*.docx' | wc -l)" -eq 20
           test -n "$(find data/lessons/grade-3/web -type f -name '*.html' -print -quit)"
+      - name: Verify canonical lesson assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            'data/lessons/grade-3/web/3eme prim/01_Introduction/01_interactif_introduction.html' \
+            'data/lessons/grade-3/web/3eme prim/02_En_classe/01_interactif_enclasse.html' \
+            'data/lessons/grade-3/web/3eme prim/03_Actes_et_verbes/01_interactif_actesverbes.html' \
+            'data/lessons/grade-3/web/3eme prim/04_Unite1_Cest_ma_classe/01_interactif_maclasse.html' \
+            'data/lessons/grade-3/web/3eme prim/05_Unite2_Cest_ma_maison/01_interactif_maison.html' \
+            'data/lessons/grade-3/web/3eme prim/06_Unite3_Fruits_et_legumes/01_interactif_fruits.html'; do
+            test -f "$f"
+          done
       - name: Commit published assets
         shell: bash
         run: |
