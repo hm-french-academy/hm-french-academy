@@ -1,5 +1,5 @@
 {
-  "release": "grade5-premium-2026-08-20",
+  "release": "grade5-premium-2026-08-22",
   "grade": "primary-5",
   "term": "term-1",
   "lessonCount": 11,
@@ -18,11 +18,14 @@
     "progressTracking": true
   },
   "games": {
-    "hub": "data/lessons/grade-5/grade5-games.html",
+    "owner": "scripts/grade5-premium-engine-v7.js",
+    "scope": "lesson",
+    "legacyHubRemoved": true,
     "modes": ["vocabulary", "subject", "verb", "complement", "order", "build"]
   },
   "qualityGates": [
     "scripts/grade5-release-qa.mjs",
+    "scripts/grade5-browser-review.mjs",
     ".github/workflows/grade5-release-qa.yml",
     ".github/workflows/grade5-media-gate.yml"
   ],
