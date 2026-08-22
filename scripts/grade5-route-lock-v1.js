@@ -1,0 +1,11 @@
+(()=>{'use strict';
+const params=new URLSearchParams(location.search),section=params.get('section');
+if(!['practice','assessment'].includes(section))return;
+let busy=false,last='';
+const enforce=()=>{if(busy||!window.HMGrade5Stage?.mount)return;const root=document.querySelector('#viewer');if(!root)return;const marker=root.innerHTML.slice(0,500);if(marker===last)return;busy=true;try{window.HMGrade5Stage.mount();last=root.innerHTML.slice(0,500)}finally{setTimeout(()=>{busy=false},40)}};
+window.addEventListener('load',()=>setTimeout(enforce,350));
+document.addEventListener('DOMContentLoaded',()=>setTimeout(enforce,500));
+window.addEventListener('popstate',()=>setTimeout(enforce,100));
+const start=()=>{const root=document.querySelector('#viewer');if(!root)return;const mo=new MutationObserver(()=>{if(!busy)setTimeout(enforce,80)});mo.observe(root,{childList:true,subtree:true});setTimeout(enforce,650)};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();
