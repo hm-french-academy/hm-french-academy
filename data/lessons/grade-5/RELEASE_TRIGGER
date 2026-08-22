@@ -1,3 +1,4 @@
 Run Grade 5 first-semester validation, binding, and QA after source package upload.
 L02 Premium final QA: purge legacy game/assessment routes; validate shared lesson-scoped games and assessment.
-Release trigger: 2026-08-22T16:45:00+03:00
+L02/L03 runtime fix: replace legacy-looking games UI and render lesson-scoped assessment directly.
+Release trigger: 2026-08-22T16:52:00+03:00
