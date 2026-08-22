@@ -12,15 +12,25 @@ const lessons = {
   'g3-l06':['06_Unite3_Fruits_et_legumes','01_interactif_fruits.html']
 };
 fs.mkdirSync(out,{recursive:true});
-function cleanHtml(html){return html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'').replace(/<noscript[\s\S]*?<\/noscript>/gi,'').replace(/\son(?:click|load|change|input|submit)\s*=\s*("[^"]*"|'[^']*')/gi,'').replace(/\shidden(\s|>)/gi,'$1').replace(/\saria-hidden\s*=\s*(["'])true\1/gi,'');}
-function sectionData(html){const sections=[];const re=/<(?:section|div)\b[^>]*class=["'][^"']*\bblock\b[^"']*["'][^>]*>[\s\S]*?<\/(?:section|div)>/gi;let m;while((m=re.exec(html)))sections.push(cleanHtml(m[0]));return sections;}
+function cleanHtml(html){return html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<noscript[\s\S]*?<\/noscript>/gi,'').replace(/\son(?:click|load|change|input|submit)\s*=\s*("[^"]*"|'[^']*')/gi,'').replace(/\shidden(\s|>)/gi,'$1').replace(/\saria-hidden\s*=\s*(["'])true\1/gi,'');}
+function sectionData(html){
+  const sections=[];
+  const sectionRe=/<section\b[^>]*class=["'][^"']*\bblock\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi;
+  let m;
+  while((m=sectionRe.exec(html)))sections.push(cleanHtml(m[0]));
+  if(!sections.length){
+    const divRe=/<div\b[^>]*class=["'][^"']*\bblock\b[^"']*["'][^>]*>[\s\S]*?<\/div>/gi;
+    while((m=divRe.exec(html)))sections.push(cleanHtml(m[0]));
+  }
+  return sections;
+}
 for(const [id,[folder,file]] of Object.entries(lessons)){
   const src=path.join(base,folder,file); if(!fs.existsSync(src)) throw new Error(`${id}: missing ${src}`);
   const html=fs.readFileSync(src,'utf8');
   const sections=sectionData(html);
   if(sections.length<1) throw new Error(`${id}: no lesson blocks extracted`);
   const text=sections.join('\n').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
-  const payload={id,folder,file,sections,text,generatedAt:new Date().toISOString()};
+  const payload={id,folder,file,sectionCount:sections.length,sections,text,generatedAt:new Date().toISOString()};
   fs.writeFileSync(path.join(out,`${id}.json`),JSON.stringify(payload,null,2));
 }
 console.log('Compiled grade 3:',Object.keys(lessons).join(', '));
