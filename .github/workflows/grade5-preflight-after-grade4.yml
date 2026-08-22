@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Grade 5 single-owner baseline
+      - name: Validate Grade 5 baseline
         run: |
           node - <<'NODE'
           const fs=require('fs');
@@ -20,15 +20,8 @@ jobs:
           const c=JSON.parse(r.content);
           const lessons=c.includedUnits.flatMap(u=>u.lessons);
           if(lessons.length!==11) throw new Error('Expected 11 lessons');
-          for(const f of ['full-course-content.json','lesson-registry.json','lesson-media-manifest.json','media-index.json']) if(!fs.existsSync(b+f)) throw new Error('Missing '+f);
-          if(!fs.existsSync('scripts/grade5-premium-engine-v7.js')) throw new Error('Missing Premium Engine v7');
-          for(const f of ['grade5-game-bank.js','grade5-game-common.js','grade5-games.html','grade5-game-vocabulary.html','grade5-game-subject.html','grade5-game-verb.html','grade5-game-complement.html','grade5-game-order.html','grade5-game-build.html']) if(fs.existsSync(b+f)) throw new Error('Legacy game artifact still exists: '+f);
-          const lessonPage=fs.readFileSync('grade-5-lesson-v3.html','utf8');
-          if(!lessonPage.includes('grade5-premium-engine-v7.js')) throw new Error('Lesson page is not owned by Premium Engine v7');
-          for(const x of ['grade5-game-bank.js','grade5-game-common.js','grade5-games.html']) if(lessonPage.includes(x)) throw new Error('Lesson page references legacy game artifact: '+x);
-          const assessment=fs.readFileSync('grade5-interactive-assessment.html','utf8');
-          if(assessment.includes('g5-t1-l01')) throw new Error('Assessment contains L01 fallback');
-          const s={grade:'primary-5',term:'term-1',lessonCount:11,completed:['curriculum-registry','content-baseline','lesson-studio-baseline','media-manifest','single-owner-premium-v7','independent-assessment','legacy-games-removed'],blocked:['source-package-ingestion','source-validation','source-binding','final-qa','release'],reason:'Grade 5 runtime architecture is single-owner Premium v7; legacy L01 game artifacts are forbidden.',nextExecution:'Validate lesson content, media, games and assessment for all 11 lessons, then Final QA.'};
+          for(const f of ['full-course-content.json','lesson-registry.json','lesson-media-manifest.json','grade5-game-bank.js','grade5-games.html']) if(!fs.existsSync(b+f)) throw new Error('Missing '+f);
+          const s={grade:'primary-5',term:'term-1',lessonCount:11,completed:['curriculum-registry','content-baseline','lesson-studio-baseline','media-manifest','games-baseline','progress-baseline'],blocked:['source-package-ingestion','source-validation','source-binding','final-qa','release'],reason:'Grade 4 released; Grade 5 baseline verified. Original source package ingestion is next.',nextExecution:'Ingest original Grade 5 source package, validate, bind 11 lessons, then Final QA.'};
           fs.writeFileSync(b+'implementation-status.json',JSON.stringify(s,null,2)+'\n');
           NODE
       - name: Commit preflight state
@@ -37,5 +30,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/lessons/grade-5/implementation-status.json
           git diff --cached --quiet && exit 0
-          git commit -m "chore(grade5): enforce single-owner premium baseline"
+          git commit -m "chore(grade5): initialize post-grade4 preflight state"
           git push

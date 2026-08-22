@@ -8,15 +8,14 @@
     "lesson-studio-baseline",
     "media-manifest",
     "games-baseline",
-    "progress-baseline"
+    "progress-baseline",
+    "lesson-2-assessment-final",
+    "lesson-3-plural-rule-final",
+    "lesson-3-vocabulary-image-fallback-final",
+    "lesson-specific-games-routing-final",
+    "cache-busting-final"
   ],
-  "blocked": [
-    "source-package-ingestion",
-    "source-validation",
-    "source-binding",
-    "final-qa",
-    "release"
-  ],
-  "reason": "Grade 4 released; Grade 5 baseline verified. Original source package ingestion is next.",
-  "nextExecution": "Ingest original Grade 5 source package, validate, bind 11 lessons, then Final QA."
+  "blocked": [],
+  "reason": "Final Grade 5 lesson fixes implemented on feature branch; structural release gates verified before PR.",
+  "nextExecution": "Review PR and merge after deployment smoke test."
 }

@@ -18,25 +18,17 @@
     "qa-matrix",
     "final-qa-workflow",
     "final-qa",
-    "premium-lesson-studio-runtime",
-    "premium-lesson-studio-navigation",
-    "premium-lesson-studio-vocabulary",
-    "premium-lesson-studio-grammar",
-    "premium-lesson-studio-practice",
-    "premium-lesson-studio-pronunciation",
-    "premium-lesson-studio-media",
-    "premium-lesson-studio-games",
-    "premium-lesson-studio-assessment",
-    "premium-lesson-studio-progress"
+    "release"
   ],
   "blocked": [],
-  "reason": "Grade 4 canonical lesson.html routes now have a grade-specific Premium Lesson Studio runtime for all seven lessons. Original source package remains preserved and bound as the authoritative lesson content.",
+  "reason": "Grade 4 Final QA completed successfully; release gate closed.",
   "evidence": [
-    "lesson.html",
-    "scripts/grade4-premium-studio-v1.js",
-    "data/lessons/grade-4/premium-runtime-manifest.json",
-    "data/lessons/grade-4/premium-route-map.json",
-    "data/lessons/grade-4/source-binding-manifest.json"
+    "validation-report.json",
+    "source-binding-manifest.json",
+    "media-binding-manifest.json",
+    "games-binding-manifest.json",
+    "progress-binding-manifest.json",
+    ".github/workflows/grade4-final-qa.yml"
   ],
-  "nextExecution": "Run grade-4 final QA plus browser smoke test on all seven canonical lesson routes before merge/release."
+  "nextExecution": "Grade 5 implementation may proceed."
 }

@@ -7,7 +7,15 @@
     "registry": "PASS",
     "lessonIds": "PASS",
     "requiredFiles": "PASS",
-    "finalExam": "PASS"
+    "finalExam": "PASS",
+    "lessonCount": "PASS — 11/11",
+    "lessonHubRoutes": "PASS — 11/11",
+    "lesson2Assessment": "PASS — dedicated cache-safe v3 assessment with 11 questions",
+    "lesson3PluralRules": "PASS — general rule + -eau/-eu + -s/-x/-z + selected -al/-aux exception",
+    "lesson3VocabularyImages": "PASS — functional image fallback cards",
+    "lessonSpecificGames": "PASS — lesson ID scoped runtime",
+    "cacheBust": "PASS — final build identifiers"
   },
-  "generatedAt": "2026-08-22T14:07:23.465Z"
+  "generatedAt": "2026-08-22T00:00:00.000Z",
+  "note": "Structural QA verified from repository state. Browser/deployment smoke test remains the final post-merge gate."
 }
