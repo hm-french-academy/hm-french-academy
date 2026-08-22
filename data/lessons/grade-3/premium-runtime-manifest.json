@@ -3,10 +3,13 @@
   "runtime":"lesson.html",
   "status":"premium-studio-runtime-ready",
   "lessonCount":6,
+  "lessonIds":["g3-l01","g3-l02","g3-l03","g3-l04","g3-l05","g3-l06"],
   "journey":["lesson","vocabulary","grammar","practice","pronunciation","media","games","assessment","progress"],
   "scope":"lesson-id-isolated",
   "preserveOriginals":true,
   "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json",
-  "cacheVersion":"20260822-g3premium1",
-  "releaseGate":"final-qa-and-browser-smoke-test"
+  "runtimeScript":"scripts/grade3-premium-studio-v2.js",
+  "cacheVersion":"20260822-g3premium3",
+  "releaseGate":"final-qa-and-browser-smoke-test",
+  "qaStatus":"source-and-runtime-reviewed-browser-smoke-test-pending"
 }
