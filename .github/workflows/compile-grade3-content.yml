@@ -1,0 +1,31 @@
+name: Compile Grade 3 Lesson Content
+on:
+  push:
+    paths:
+      - 'data/lessons/grade-3/web/**'
+      - 'scripts/compile-grade3-content.mjs'
+      - '.github/workflows/compile-grade3-content.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Compile lesson sources
+        run: node scripts/compile-grade3-content.mjs
+      - name: Commit compiled content
+        run: |
+          git config user.name 'HM Academy Bot'
+          git config user.email 'actions@github.com'
+          git add data/lessons/grade-3/compiled
+          if git diff --cached --quiet; then
+            echo 'No compiled changes.'
+          else
+            git commit -m 'Build Grade 3 compiled lesson content'
+            git push
+          fi
