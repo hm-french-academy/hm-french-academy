@@ -25,6 +25,7 @@ jobs:
           unzip -q 'data/lessons/grade-3/3eme prim.zip' -d data/lessons/grade-3/web
           count=$(find data/lessons/grade-3/web -type f | wc -l)
           echo "Published ${count} source files"
+          echo "Grade 3 source publish: validating canonical interactive pages"
           test "$count" -eq 32
           test "$(find data/lessons/grade-3/web -type f -name '*.html' | wc -l)" -eq 12
           test "$(find data/lessons/grade-3/web -type f -name '*.docx' | wc -l)" -eq 20
