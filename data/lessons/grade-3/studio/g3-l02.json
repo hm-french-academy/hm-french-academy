@@ -1,0 +1,13 @@
+{
+  "id":"g3-l02","grade":"primary-3","title":"En classe !","source":{"folder":"02_En_classe","interactive":"01_interactif_enclasse.html","reference":"02_reference_enclasse.docx","evaluation":"03_evaluation_enclasse.docx","electronicExam":"04_examen_enclasse.html","form":"dossier_google_forms_enclasse.docx"},
+  "sourcePolicy":"canonical-source-only","sourceInteractionMap":{"video":"Les Titounis à l'école maternelle","vocabulary":"flip-card + speech","grammar":"categorize-by-question-type","assessment":"source-quick-assessment"},
+  "media":{"youtubeId":"M4phO17uOtE","title":"La chanson de l'école","sourceRole":"original-lesson-media"},
+  "grammar":{"title":"Impératif et Infinitif","rule":"الأمر المباشر يستخدم صيغة Impératif، والفعل بوصفه مصدرًا يستخدم Infinitif.","examples":[{"fr":"Lève-toi !","ar":"انهض!","type":"impératif"},{"fr":"lire","ar":"يقرأ / القراءة","type":"infinitif"}]},
+  "activities":[{"id":"vocabulary","type":"flashcards","source":"interactive","behavior":"flip-and-speak"},{"id":"grammar-sort","type":"sort","source":"interactive","behavior":"sort-source-items"},{"id":"listen-choice","type":"listen-choice","source":"source-content"}],
+  "games":[{"id":"sort-commands","title":"أمر أم مصدر؟","type":"sort","source":"grammar"},{"id":"listen-class","title":"اسمع واختر","type":"listen-choice","source":"interactive"},{"id":"memory-class","title":"ذاكرة الفصل","type":"memory","source":"vocabulary"}],
+  "assessment":{"mode":"source-assessment","reference":"03_evaluation_enclasse.docx","officialExam":"04_examen_enclasse.html","rule":"لا تُخترع إجابات؛ تُستخرج الإجابات من المصدر الرسمي."},
+  "reference":{"title":"مرجع الدرس","source":"02_reference_enclasse.docx"},
+  "postLesson":["reference","official-assessment","smart-review"],
+  "sourceSections":["Vidéo","Vocabulaire","Grammaire — أمر (Impératif) أم فعل (Infinitif)؟","Évaluation rapide"],
+  "progress":{"adaptive":true,"persist":true}
+}
