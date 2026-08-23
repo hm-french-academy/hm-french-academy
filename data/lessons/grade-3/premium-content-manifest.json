@@ -3,16 +3,18 @@
   "contentAuthority":"data/lessons/grade-3/source-binding-manifest.json",
   "preserveOriginals":true,
   "lessonIds":["g3-l01","g3-l02","g3-l03","g3-l04","g3-l05","g3-l06"],
-  "studioSections":["lesson","vocabulary","grammar","practice","pronunciation","media","games","assessment","progress"],
+  "studioSections":["lesson","vocabulary","pronunciation","grammar","conversation","practice","media","assessment","progress"],
   "sourcePolicy":"canonical-source-only",
   "manualContentFallback":false,
   "crossLessonFallback":false,
+  "legacyGames":false,
+  "legacyLessonBlocks":false,
   "bindings":{
     "g3-l01":{"folder":"01_Introduction","interactive":"01_interactif_introduction.html","reference":"02_reference_introduction.docx","evaluation":"03_evaluation_introduction.docx","electronicExam":"04_examen_introduction.html","support":"02_script_narration_introduction.docx","form":"dossier_google_forms_introduction.docx"},
     "g3-l02":{"folder":"02_En_classe","interactive":"01_interactif_enclasse.html","reference":"02_reference_enclasse.docx","evaluation":"03_evaluation_enclasse.docx","electronicExam":"04_examen_enclasse.html","form":"dossier_google_forms_enclasse.docx"},
     "g3-l03":{"folder":"03_Actes_et_verbes","interactive":"01_interactif_actesverbes.html","reference":"02_reference_actesverbes.docx","evaluation":"03_evaluation_actesverbes.docx","electronicExam":"04_examen_actesverbes.html","form":"dossier_google_forms_actesverbes.docx"},
     "g3-l04":{"folder":"04_Unite1_Cest_ma_classe","interactive":"01_interactif_maclasse.html","reference":"02_reference_maclasse.docx","evaluation":"03_evaluation_maclasse.docx","electronicExam":"04_examen_maclasse.html","form":"dossier_google_forms_maclasse.docx"},
     "g3-l05":{"folder":"05_Unite2_Cest_ma_maison","interactive":"01_interactif_maison.html","reference":"02_reference_maison.docx","evaluation":"03_evaluation_maison.docx","electronicExam":"04_examen_maison.html","form":"dossier_google_forms_maison.docx"},
-    "g3-l06":{"folder":"06_Unite3_Fruits_et_legumes","interactive":"01_interactif_fruits.html","reference":"02_reference_fruits.docx","evaluation":"03_evaluation_fruits.docx","electronicExam":"04_examen_fruits.html","form":"dossier_google_forms_fruits.docx"}
+    "g3-l06":{"folder":"06_Unite3_Fruits_et_legumes","interactive":"01_interactif_fruits.html","reference":"02_reference_fruits.docx","evaluation":"03_evaluation_fruits.docx","electronicExam":"04_examen_fruits.html","form":"dossier_google_forms_fruits.html"}
   }
 }
