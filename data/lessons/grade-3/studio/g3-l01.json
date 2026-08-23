@@ -4,35 +4,39 @@
   "title":"Je me présente",
   "source":{"folder":"01_Introduction","interactive":"01_interactif_introduction.html","reference":"02_reference_introduction.docx","evaluation":"03_evaluation_introduction.docx","electronicExam":"04_examen_introduction.html","compiled":"data/lessons/grade-3/compiled/g3-l01.json"},
   "sourcePolicy":"canonical-source-only",
-  "sourceTrace":{"mood":"interactive source: Comment ça va ? / Ça va ?; answers: Ça va bien, merci. / Pas mal. / Ça ne va pas. / Oui, ça va bien.","rule":"Do not collapse source variants into one canonical answer.","originalsPreserved":true},
-  "objectives":["السؤال عن الاسم","السؤال عن الحال بصيغتيه الواردتين في المصدر","استخدام إجابات الحال الأربع الواردة في المصدر","السؤال عن العمر","استخدام الإجابات في حوار قصير"],
+  "sourceTrace":{"mood":"Comment ça va ? / Ça va ?","moodAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"originalInteractiveSections":["video","vocabulary","grammar-sort","quick-assessment"],"rule":"Preserve source variants and interactive intent; do not collapse source answers."},
+  "objectives":["السؤال عن الاسم","السؤال عن الحال بصيغتيه الواردتين في المصدر","استخدام إجابات الحال الأربع الواردة في المصدر","السؤال عن العمر","استخدام العبارات في حوار قصير"],
   "vocabulary":[
     {"id":"bonjour","fr":"Bonjour","ar":"مرحبًا","audio":"Bonjour"},
     {"id":"je-mappelle","fr":"Je m'appelle","ar":"اسمي","audio":"Je m'appelle"},
+    {"id":"comment-ca-va","fr":"Comment ça va ?","ar":"كيف حالك؟","audio":"Comment ça va ?"},
+    {"id":"ca-va","fr":"Ça va ?","ar":"هل أنت بخير؟ / كيف حالك؟","audio":"Ça va ?"},
     {"id":"ca-va-bien-merci","fr":"Ça va bien, merci.","ar":"أنا بخير، شكرًا.","audio":"Ça va bien, merci."},
     {"id":"pas-mal","fr":"Pas mal.","ar":"لا بأس.","audio":"Pas mal."},
     {"id":"ca-ne-va-pas","fr":"Ça ne va pas.","ar":"لست بخير.","audio":"Ça ne va pas."},
     {"id":"oui-ca-va-bien","fr":"Oui, ça va bien.","ar":"نعم، أنا بخير.","audio":"Oui, ça va bien."},
-    {"id":"jai-neuf-ans","fr":"J'ai neuf ans","ar":"عمري تسع سنوات","audio":"J'ai neuf ans"}
+    {"id":"quel-age-as-tu","fr":"Quel âge as-tu ?","ar":"كم عمرك؟","audio":"Quel âge as-tu ?"},
+    {"id":"jai-neuf-ans","fr":"J'ai neuf ans.","ar":"عمري تسع سنوات.","audio":"J'ai neuf ans."}
   ],
   "expressions":[
-    {"id":"ask-name","category":"الاسم","questions":["Comment tu t'appelles ?"],"answers":["Je m'appelle Ali.","Je m'appelle Lina."]},
-    {"id":"ask-mood","category":"الحال","questions":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"answerPolicy":"all-listed-source-answers-are-valid"},
-    {"id":"ask-age","category":"العمر","questions":["Quel âge as-tu ?"],"answers":["J'ai neuf ans."]}
+    {"id":"ask-name","category":"الاسم","questions":["Comment tu t'appelles ?"],"answers":["Je m'appelle Lina."],"sourceVariants":[]},
+    {"id":"ask-mood","category":"الحال","questions":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"answerPolicy":"all-listed-source-answers-are-valid","multipleValid":true},
+    {"id":"ask-age","category":"العمر","questions":["Quel âge as-tu ?"],"answers":["J'ai neuf ans."],"sourceVariants":[]}
   ],
   "conversation":[
-    {"speaker":"👦","text":"Bonjour ! Comment tu t'appelles ?"},
-    {"speaker":"👧","text":"Je m'appelle Lina."},
-    {"speaker":"👦","text":"Comment ça va ?"},
-    {"speaker":"👧","text":"Ça va bien, merci."},
-    {"speaker":"👦","text":"Quel âge as-tu ?"},
-    {"speaker":"👧","text":"J'ai neuf ans."}
+    {"speaker":"👦","text":"Bonjour ! Comment tu t'appelles ?","audio":"Bonjour ! Comment tu t'appelles ?"},
+    {"speaker":"👧","text":"Je m'appelle Lina.","audio":"Je m'appelle Lina."},
+    {"speaker":"👦","text":"Comment ça va ?","audio":"Comment ça va ?"},
+    {"speaker":"👧","text":"Ça va bien, merci.","audio":"Ça va bien, merci."},
+    {"speaker":"👦","text":"Quel âge as-tu ?","audio":"Quel âge as-tu ?"},
+    {"speaker":"👧","text":"J'ai neuf ans.","audio":"J'ai neuf ans."}
   ],
   "listening":[
     {"id":"listen-name","audio":"Comment tu t'appelles ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["ما اسمك؟"]},
     {"id":"listen-mood-1","audio":"Comment ça va ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كيف حالك؟"]},
     {"id":"listen-mood-2","audio":"Ça va ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كيف حالك؟"]},
-    {"id":"listen-age","audio":"Quel âge as-tu ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كم عمرك؟"]}
+    {"id":"listen-age","audio":"Quel âge as-tu ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كم عمرك؟"]},
+    {"id":"listen-answer-mood","audio":"Pas mal.","prompt":"استمع واختر الإجابة التي سمعتها.","options":["Pas mal.","Ça ne va pas.","J'ai neuf ans."],"acceptedAnswers":["Pas mal."]}
   ],
   "practice":[
     {"id":"reply-name","prompt":"Comment tu t'appelles ?","options":["Je m'appelle Lina.","Ça va bien, merci.","J'ai neuf ans."],"acceptedAnswers":["Je m'appelle Lina."]},
@@ -48,13 +52,14 @@
     {"id":"listen-choice","title":"صيد السؤال","description":"اسمع Comment ça va ? أو Ça va ? واختر المعنى.","type":"listen-choice","source":"listening","items":["listen-mood-1","listen-mood-2"]},
     {"id":"mood-match","title":"كل إجابات الحال","description":"طابق صيغتي سؤال الحال مع الإجابات الأربع الواردة في المصدر.","type":"match","source":"expressions.ask-mood","items":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."]},
     {"id":"match","title":"طابق المعنى","description":"طابق العبارة الفرنسية مع معناها.","type":"match","source":"vocabulary"},
-    {"id":"sentence-builder","title":"ابنِ الجملة","description":"رتب كلمات جملة من الدرس ثم استمع إليها.","type":"sentence-builder","target":["Je","m'appelle","Lina"],"audio":"Je m'appelle Lina."}
+    {"id":"sentence-builder","title":"ابنِ الجملة","description":"رتب كلمات الجملة ثم تحقق من الترتيب الصحيح واستمع إليها.","type":"sentence-builder","target":["Je","m'appelle","Lina"],"audio":"Je m'appelle Lina.","successMessage":"🎉 ممتاز! Je m'appelle Lina.","retryMessage":"💡 ابدأ بـ Je ثم m'appelle ثم الاسم."}
   ],
   "assessment":[
     {"id":"a-name","prompt":"ماذا تقول عندما يسألك عن اسمك؟","options":["Je m'appelle Lina.","Ça va bien, merci.","J'ai neuf ans."],"acceptedAnswers":["Je m'appelle Lina."]},
     {"id":"a-mood","prompt":"اختر إجابة صحيحة يمكن أن تستخدمها مع سؤال الحال.","audio":"Comment ça va ?","options":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"acceptedAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"multipleValid":true},
     {"id":"a-age","prompt":"كيف تقول: عمري تسع سنوات؟","options":["J'ai neuf ans.","Ça va bien.","Je m'appelle Lina."],"acceptedAnswers":["J'ai neuf ans."]}
   ],
-  "media":{"youtubeId":"kjIidDjyYt4","title":"Se présenter en chantant"},
-  "reference":{"title":"مرجع الدرس","items":["الكلمات ومعانيها ونطقها","Comment tu t'appelles ? / Je m'appelle…","Comment ça va ? / Ça va ?","Ça va bien, merci. / Pas mal. / Ça ne va pas. / Oui, ça va bien.","Quel âge as-tu ? / J'ai neuf ans.","الحوار والأمثلة والوسائط","ما يجب تذكره"],"source":"02_reference_introduction.docx"}
+  "media":{"youtubeId":"kjIidDjyYt4","title":"Se présenter en chantant","sourceRole":"original-lesson-media"},
+  "reference":{"title":"مرجع الدرس","items":["الكلمات ومعانيها ونطقها","Comment tu t'appelles ? / Je m'appelle…","Comment ça va ? / Ça va ?","Ça va bien, merci. / Pas mal. / Ça ne va pas. / Oui, ça va bien.","Quel âge as-tu ? / J'ai neuf ans.","الحوار والأمثلة والوسائط","ما يجب تذكره"],"source":"02_reference_introduction.docx"},
+  "sourceInteractionMap":{"video":"video","vocabulary":"flip-card + speech","grammar":"categorize-by-question-type","assessment":"source-quick-assessment","studioExpansion":["multi-answer mood","listening variants","reference layer","game layer","progress layer"]}
 }
