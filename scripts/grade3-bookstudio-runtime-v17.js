@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-
   var params = new URLSearchParams(window.location.search);
   var lessonId = params.get('id') || 'g3-l01';
   var dataUrl = 'data/lessons/grade-3/studio/' + encodeURIComponent(lessonId) + '.json';
@@ -8,158 +7,36 @@
   var journey = document.getElementById('journey');
   var title = document.getElementById('title');
   var subtitle = document.getElementById('subtitle');
-  var page = 0;
-  var data = null;
+  var page = 0, data = null;
   var labels = ['البداية','اكتشف','المفردات','اسمع وتحدث','القاعدة','اسمع واختر','حان دورك','الوسائط','مركز الألعاب','التقييم','بعد الرحلة'];
-
-  function esc(value) {
-    return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
+  function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function speak(text){if(!text||!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;window.speechSynthesis.speak(u);}
+  function list(key){return data&&Array.isArray(data[key])?data[key]:[];}
+  function examples(){var result=[];var grammar=data&&Array.isArray(data.grammar)?data.grammar:[];grammar.forEach(function(g){(Array.isArray(g.examples)?g.examples:[]).forEach(function(x){result.push(x);});});return result;}
+  function nav(){return '<div class="booknav"><button class="g3btn light" data-prev>السابق</button><button class="g3btn" data-next>التالي</button></div>';}
+  function choices(items,key){if(!items.length)return '<div class="g3card">لا توجد أسئلة مصدرية مهيأة لهذا الجزء.</div>';return items.map(function(q,i){var options=Array.isArray(q.options)?q.options:[];return '<div class="g3card"><h3>'+esc(q.prompt||q.question||'اختر الإجابة الصحيحة')+'</h3>'+(q.audio?'<button class="g3btn speak" data-s="'+esc(q.audio)+'">🔊 استمع</button>':'')+'<div class="g3choices">'+options.map(function(o){return '<button class="g3btn option" data-key="'+key+i+'" data-value="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div><div class="feedback" data-feedback="'+key+i+'"></div><button class="g3btn check" data-key="'+key+i+'">تحقق</button></div>';}).join('');}
+  function build(){
+    var vocab=list('vocabulary'),grammar=Array.isArray(data.grammar)?data.grammar:[],listening=list('listening'),practice=list('practice'),assessment=list('assessment'),games=list('games'),ex=examples();
+    var pages=[];
+    pages.push('<section class="g3panel hero"><small>PREMIUM LESSON BOOK STUDIO · الصف الثالث</small><h2>'+esc(data.title||lessonId)+'</h2><p>'+esc(data.subtitle||'رحلة التعلم التفاعلية')+'</p><div class="g3card"><h3>🎯 أهداف الدرس</h3><ul>'+list('objectives').map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>'+nav()+'</section>');
+    var discover=Array.isArray(data.expressions)?data.expressions:[];
+    pages.push('<section class="g3panel"><small>02</small><h2>🔎 اكتشف</h2><div class="g3cards">'+(discover.length?discover.map(function(x){return '<div class="g3card"><b>'+esc(x.category||'اكتشف')+'</b><p>'+esc((x.questions||[]).join(' · '))+'</p><p>'+esc((x.answers||[]).join(' · '))+'</p></div>';}).join(''):ex.map(function(x){return '<div class="g3card"><b>'+esc(x.fr)+'</b><p>'+esc(x.ar)+'</p><button class="g3btn speak" data-s="'+esc(x.fr)+'">🔊</button></div>';}).join(''))+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>03</small><h2>🧩 المفردات</h2><div class="g3cards">'+vocab.map(function(x){return '<div class="g3card"><b>'+esc(x.fr)+'</b><p>'+esc(x.ar)+'</p><button class="g3btn speak" data-s="'+esc(x.audio||x.fr)+'">🔊 استمع</button></div>';}).join('')+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>04</small><h2>🔊 اسمع وتحدث</h2><div class="g3cards">'+vocab.slice(0,10).map(function(x){return '<div class="g3card"><h3>'+esc(x.fr)+'</h3><p>'+esc(x.ar)+'</p><button class="g3btn speak" data-s="'+esc(x.audio||x.fr)+'">🔊 اسمع</button></div>';}).join('')+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>05</small><h2>🧠 القاعدة</h2>'+grammar.map(function(g){return '<div class="g3card"><h3>'+esc(g.title||g.label||'قاعدة الدرس')+'</h3><p>'+esc(g.rule||g.note||'')+'</p><div class="g3cards">'+(g.examples||[]).map(function(x){return '<div class="g3card"><b>'+esc(x.fr)+'</b><p>'+esc(x.ar)+'</p></div>';}).join('')+'</div></div>';}).join('')+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>06</small><h2>🎧 اسمع واختر</h2><div>'+choices(listening,'l')+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>07</small><h2>🎯 حان دورك</h2><p>اختر من الإجابات التي يثبتها محتوى هذا الدرس.</p><div>'+choices(practice,'p')+'</div>'+nav()+'</section>');
+    var media=data.media||{};pages.push('<section class="g3panel"><small>08</small><h2>🎬 الوسائط</h2><div class="g3card">'+(media.youtubeId?'<iframe style="width:100%;min-height:300px;border:0;border-radius:18px" src="https://www.youtube.com/embed/'+encodeURIComponent(media.youtubeId)+'" allowfullscreen></iframe>':'لا توجد وسائط مثبتة لهذا الدرس.')+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>09</small><h2>🎮 مركز الألعاب</h2><div class="g3cards">'+games.map(function(g,i){return '<div class="g3card"><h3>'+esc(g.title)+'</h3><p>'+esc(g.description||'')+'</p><button class="g3btn game" data-game="'+i+'">▶ ابدأ اللعبة</button></div>';}).join('')+'</div><div id="gameArea"></div>'+nav()+'</section>');
+    pages.push('<section class="g3panel"><small>10</small><h2>🏆 التقييم</h2><div>'+choices(assessment,'a')+'</div>'+nav()+'</section>');
+    pages.push('<section class="g3panel hero"><small>11</small><h2>🎓 بعد الرحلة</h2><p>مراجعة ختامية خاصة بالدرس: '+esc(data.title||lessonId)+'</p><div class="g3cards"><button class="g3btn tool" data-tool="reference">📘 المرجع</button><button class="g3btn tool" data-tool="official">📝 التقييم الرسمي</button><button class="g3btn tool" data-tool="review">🧠 المراجعة الذكية</button></div><div id="postArea"></div>'+nav()+'</section>');
+    viewer.innerHTML=pages.join('');title.textContent=data.title||lessonId;subtitle.textContent=data.subtitle||'Premium Lesson Book Studio';paint();bind();
   }
-
-  function speak(text) {
-    if (!text || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'fr-FR';
-    u.rate = 0.82;
-    window.speechSynthesis.speak(u);
-  }
-
-  function list(key) {
-    return data && Array.isArray(data[key]) ? data[key] : [];
-  }
-
-  function examples() {
-    var result = [];
-    var grammar = data && Array.isArray(data.grammar) ? data.grammar : [];
-    grammar.forEach(function (g) {
-      (Array.isArray(g.examples) ? g.examples : []).forEach(function (x) { result.push(x); });
-    });
-    return result;
-  }
-
-  function nav() {
-    return '<div class="booknav"><button class="g3btn light" data-prev>السابق</button><button class="g3btn" data-next>التالي</button></div>';
-  }
-
-  function choices(items, key) {
-    if (!items.length) return '<div class="g3card">لا توجد أسئلة مصدرية مهيأة لهذا الجزء.</div>';
-    return items.map(function (q, i) {
-      var options = Array.isArray(q.options) ? q.options : [];
-      return '<div class="g3card"><h3>' + esc(q.prompt || q.question || 'اختر الإجابة الصحيحة') + '</h3>' +
-        (q.audio ? '<button class="g3btn speak" data-s="' + esc(q.audio) + '">🔊 استمع</button>' : '') +
-        '<div class="g3choices">' + options.map(function (o) {
-          return '<button class="g3btn option" data-key="' + key + i + '" data-value="' + esc(o) + '">' + esc(o) + '</button>';
-        }).join('') + '</div><div class="feedback" data-feedback="' + key + i + '"></div><button class="g3btn check" data-key="' + key + i + '">تحقق</button></div>';
-    }).join('');
-  }
-
-  function build() {
-    var vocab = list('vocabulary');
-    var grammar = Array.isArray(data.grammar) ? data.grammar : [];
-    var listening = list('listening');
-    var practice = list('practice');
-    var assessment = list('assessment');
-    var games = list('games');
-    var ex = examples();
-
-    var pages = [];
-    pages.push('<section class="g3panel hero"><small>PREMIUM LESSON BOOK STUDIO · الصف الثالث</small><h2>' + esc(data.title || lessonId) + '</h2><p>رحلة تعلم تفاعلية مبنية على المحتوى الأصلي لهذا الدرس.</p>' + nav() + '</section>');
-
-    var discover = Array.isArray(data.expressions) ? data.expressions : [];
-    pages.push('<section class="g3panel"><small>02</small><h2>🔎 اكتشف</h2><div class="g3cards">' + (discover.length ? discover.map(function (x) {
-      return '<div class="g3card"><b>' + esc(x.category || 'اكتشف') + '</b><p>' + esc((x.questions || []).join(' · ')) + '</p><p>' + esc((x.answers || []).join(' · ')) + '</p></div>';
-    }).join('') : ex.map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.fr) + '">🔊</button></div>'; }).join('')) + '</div>' + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>03</small><h2>🧩 المفردات</h2><div class="g3cards">' + vocab.map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.audio || x.fr) + '">🔊 استمع</button></div>'; }).join('') + '</div>' + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>04</small><h2>🔊 اسمع وتحدث</h2><div class="g3cards">' + vocab.slice(0, 10).map(function (x) { return '<div class="g3card"><h3>' + esc(x.fr) + '</h3><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.audio || x.fr) + '">🔊 اسمع</button></div>'; }).join('') + '</div>' + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>05</small><h2>🧠 القاعدة</h2>' + grammar.map(function (g) { return '<div class="g3card"><h3>' + esc(g.title || g.label || 'قاعدة الدرس') + '</h3><p>' + esc(g.rule || g.note || '') + '</p><div class="g3cards">' + (g.examples || []).map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p></div>'; }).join('') + '</div></div>'; }).join('') + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>06</small><h2>🎧 اسمع واختر</h2><div>' + choices(listening, 'l') + '</div>' + nav() + '</section>');
-    pages.push('<section class="g3panel"><small>07</small><h2>🎯 حان دورك</h2><p>اختر من الإجابات التي يثبتها محتوى هذا الدرس.</p><div>' + choices(practice, 'p') + '</div>' + nav() + '</section>');
-
-    var media = data.media || {};
-    pages.push('<section class="g3panel"><small>08</small><h2>🎬 الوسائط</h2><div class="g3card">' + (media.youtubeId ? '<iframe style="width:100%;min-height:300px;border:0;border-radius:18px" src="https://www.youtube.com/embed/' + encodeURIComponent(media.youtubeId) + '" allowfullscreen></iframe>' : 'لا توجد وسائط مثبتة لهذا الدرس.') + '</div>' + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>09</small><h2>🎮 مركز الألعاب</h2><div class="g3cards">' + games.map(function (g, i) { return '<div class="g3card"><h3>' + esc(g.title) + '</h3><p>' + esc(g.description || '') + '</p><button class="g3btn game" data-game="' + i + '">▶ ابدأ اللعبة</button></div>'; }).join('') + '</div><div id="gameArea"></div>' + nav() + '</section>');
-
-    pages.push('<section class="g3panel"><small>10</small><h2>🏆 التقييم</h2><div>' + choices(assessment, 'a') + '</div>' + nav() + '</section>');
-    pages.push('<section class="g3panel hero"><small>11</small><h2>🎓 بعد الرحلة</h2><p>أكملت رحلة التعلم. اختر ما تريد تثبيته.</p><div class="g3cards"><button class="g3btn tool" data-tool="reference">📘 المرجع</button><button class="g3btn tool" data-tool="official">📝 التقييم الرسمي</button><button class="g3btn tool" data-tool="review">🧠 المراجعة الذكية</button></div><div id="postArea"></div>' + nav() + '</section>');
-
-    viewer.innerHTML = pages.join('');
-    title.textContent = data.title || lessonId;
-    subtitle.textContent = 'Premium Lesson Book Studio';
-    paint();
-    bind();
-  }
-
-  function paint() {
-    var pages = viewer.querySelectorAll(':scope > .g3panel');
-    pages.forEach(function (p, i) { p.hidden = i !== page; });
-    journey.innerHTML = labels.map(function (label, i) { return '<button class="step ' + (i === page ? 'active' : '') + '" data-page="' + i + '"><span class="stepIcon">' + (i + 1) + '</span>' + label + '</button>'; }).join('');
-    journey.querySelectorAll('[data-page]').forEach(function (b) { b.onclick = function () { page = Number(b.getAttribute('data-page')); paint(); bind(); }; });
-    window.scrollTo(0, 0);
-  }
-
-  function bind() {
-    document.querySelectorAll('.speak').forEach(function (b) { b.onclick = function () { speak(b.getAttribute('data-s')); }; });
-    document.querySelectorAll('[data-prev]').forEach(function (b) { b.onclick = function () { page = Math.max(0, page - 1); paint(); bind(); }; });
-    document.querySelectorAll('[data-next]').forEach(function (b) { b.onclick = function () { page = Math.min(10, page + 1); paint(); bind(); }; });
-    document.querySelectorAll('.option').forEach(function (b) { b.onclick = function () { var key = b.getAttribute('data-key'); document.querySelectorAll('.option[data-key="' + key + '"]').forEach(function (x) { x.classList.remove('selected'); }); b.classList.add('selected'); }; });
-    document.querySelectorAll('.check').forEach(function (b) { b.onclick = function () { checkAnswer(b); }; });
-    document.querySelectorAll('.game').forEach(function (b) { b.onclick = function () { var g = gamesAt(Number(b.getAttribute('data-game'))); document.getElementById('gameArea').innerHTML = '<div class="g3card"><h3>' + esc(g && g.title || 'اللعبة') + '</h3><p>' + esc(g && g.description || 'نشاط تفاعلي من محتوى الدرس.') + '</p></div>'; }; });
-    document.querySelectorAll('.tool').forEach(function (b) { b.onclick = function () { tool(b.getAttribute('data-tool')); }; });
-  }
-
-  function gamesAt(i) { var g = list('games'); return g[i] || {}; }
-
-  function checkAnswer(button) {
-    var key = button.getAttribute('data-key');
-    var prefix = key.charAt(0);
-    var index = Number(key.slice(1));
-    var source = prefix === 'l' ? list('listening') : prefix === 'p' ? list('practice') : list('assessment');
-    var q = source[index] || {};
-    var selected = document.querySelector('.option[data-key="' + key + '"].selected');
-    var ok = false;
-    if (selected && Array.isArray(q.acceptedAnswers)) {
-      ok = q.acceptedAnswers.some(function (a) { return String(a).trim() === selected.getAttribute('data-value').trim(); });
-    }
-    var feedback = document.querySelector('[data-feedback="' + key + '"]');
-    if (feedback) feedback.textContent = ok ? '✅ صحيح!' : '💡 راجع محتوى الدرس وحاول مرة أخرى.';
-  }
-
-  function tool(type) {
-    var area = document.getElementById('postArea');
-    if (!area) return;
-    if (type === 'review') {
-      area.innerHTML = '<div id="smartReviewMount"></div>';
-      var s = document.createElement('script');
-      s.src = 'scripts/grade3-smart-review-v5.js?v=20260823-final';
-      s.onload = function () { if (window.HMGrade3SmartReviewV5) window.HMGrade3SmartReviewV5.mount(document.getElementById('smartReviewMount'), data); };
-      document.body.appendChild(s);
-    } else if (type === 'reference') {
-      area.innerHTML = '<div class="g3card"><h3>📘 المرجع</h3><p>' + esc(data.reference && data.reference.title || 'مرجع الدرس') + '</p><p>' + esc(data.reference && data.reference.source || data.source && data.source.reference || 'المصدر الأصلي للدرس') + '</p></div>';
-    } else {
-      area.innerHTML = '<div class="g3card"><h3>📝 التقييم الرسمي</h3><p>' + esc(data.source && data.source.electronicExam || data.assessment && data.assessment.officialExam || 'ملف التقييم الرسمي المرتبط بهذا الدرس') + '</p></div>';
-    }
-  }
-
-  function fail(message) {
-    viewer.innerHTML = '<div class="g3panel"><h2>تعذر فتح الدرس</h2><p>' + esc(lessonId + ' · ' + message) + '</p><button class="g3btn" onclick="location.reload()">إعادة المحاولة</button></div>';
-  }
-
-  fetch(dataUrl, { cache: 'no-store' })
-    .then(function (response) {
-      if (!response.ok) throw new Error('Lesson HTTP ' + response.status);
-      return response.text();
-    })
-    .then(function (text) {
-      data = JSON.parse(text);
-      build();
-    })
-    .catch(function (error) { fail(error.message); });
+  function paint(){var pages=viewer.querySelectorAll(':scope > .g3panel');pages.forEach(function(p,i){p.hidden=i!==page;});journey.innerHTML=labels.map(function(label,i){return '<button class="step '+(i===page?'active':'')+'" data-page="'+i+'"><span class="stepIcon">'+(i+1)+'</span>'+label+'</button>';}).join('');journey.querySelectorAll('[data-page]').forEach(function(b){b.onclick=function(){page=Number(b.getAttribute('data-page'));paint();bind();};});window.scrollTo(0,0);}
+  function bind(){document.querySelectorAll('.speak').forEach(function(b){b.onclick=function(){speak(b.getAttribute('data-s'));};});document.querySelectorAll('[data-prev]').forEach(function(b){b.onclick=function(){page=Math.max(0,page-1);paint();bind();};});document.querySelectorAll('[data-next]').forEach(function(b){b.onclick=function(){page=Math.min(10,page+1);paint();bind();};});document.querySelectorAll('.option').forEach(function(b){b.onclick=function(){var key=b.getAttribute('data-key');document.querySelectorAll('.option[data-key="'+key+'"]').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');};});document.querySelectorAll('.check').forEach(function(b){b.onclick=function(){checkAnswer(b);};});document.querySelectorAll('.game').forEach(function(b){b.onclick=function(){var g=gamesAt(Number(b.getAttribute('data-game')));document.getElementById('gameArea').innerHTML='<div class="g3card"><h3>'+esc(g&&g.title||'اللعبة')+'</h3><p>'+esc(g&&g.description||'نشاط تفاعلي من محتوى الدرس.')+'</p></div>';};});document.querySelectorAll('.tool').forEach(function(b){b.onclick=function(){tool(b.getAttribute('data-tool'));};});}
+  function gamesAt(i){var g=list('games');return g[i]||{};}
+  function checkAnswer(button){var key=button.getAttribute('data-key'),prefix=key.charAt(0),index=Number(key.slice(1)),source=prefix==='l'?list('listening'):prefix==='p'?list('practice'):list('assessment'),q=source[index]||{},selected=document.querySelector('.option[data-key="'+key+'"][class*="selected"]'),ok=false;if(selected&&Array.isArray(q.acceptedAnswers))ok=q.acceptedAnswers.some(function(a){return String(a).trim()===selected.getAttribute('data-value').trim();});var feedback=document.querySelector('[data-feedback="'+key+'"]');if(feedback)feedback.textContent=ok?'✅ صحيح!':'💡 راجع محتوى الدرس وحاول مرة أخرى.';}
+  function tool(type){var area=document.getElementById('postArea');if(!area)return;if(type==='review'){area.innerHTML='<div id="smartReviewMount"></div>';var s=document.createElement('script');s.src='scripts/grade3-smart-review-v5.js?v=20260823-final';s.onload=function(){if(window.HMGrade3SmartReviewV5)window.HMGrade3SmartReviewV5.mount(document.getElementById('smartReviewMount'),data);};s.onerror=function(){area.innerHTML='<div class="g3card"><h3>تعذر تحميل المراجعة الذكية</h3><p>أعد تحميل الصفحة وحاول مرة أخرى.</p></div>';};document.body.appendChild(s);}else if(type==='reference'){area.innerHTML='<div class="g3card"><h3>📘 '+esc(data.reference&&data.reference.title||'مرجع الدرس')+'</h3><p>المصدر: '+esc(data.reference&&data.reference.source||data.source&&data.source.reference||'المصدر الأصلي للدرس')+'</p><div>'+((data.reference&&Array.isArray(data.reference.items))?data.reference.items.map(function(x){return '<p>• '+esc(x)+'</p>';}).join(''):'')+'</div></div>';}else{area.innerHTML='<div class="g3card"><h3>📝 التقييم الرسمي</h3><p>'+esc(data.source&&data.source.electronicExam||data.assessment&&data.assessment.officialExam||'ملف التقييم الرسمي المرتبط بهذا الدرس')+'</p></div>';}}
+  function fail(message){viewer.innerHTML='<div class="g3panel"><h2>تعذر فتح الدرس</h2><p>'+esc(lessonId+' · '+message)+'</p><button class="g3btn" onclick="location.reload()">إعادة المحاولة</button></div>';}
+  fetch(dataUrl,{cache:'no-store'}).then(function(response){if(!response.ok)throw new Error('Lesson HTTP '+response.status);return response.text();}).then(function(text){data=JSON.parse(text);build();}).catch(function(error){fail(error.message);});
 }());
