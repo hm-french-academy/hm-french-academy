@@ -4,19 +4,20 @@
   "title":"Je me présente",
   "source":{"folder":"01_Introduction","interactive":"01_interactif_introduction.html","reference":"02_reference_introduction.docx","evaluation":"03_evaluation_introduction.docx","electronicExam":"04_examen_introduction.html","compiled":"data/lessons/grade-3/compiled/g3-l01.json"},
   "sourcePolicy":"canonical-source-only",
-  "objectives":["السؤال عن الاسم","السؤال عن الحال","السؤال عن العمر","استخدام الإجابات في حوار قصير"],
+  "sourceTrace":{"mood":"interactive source: Comment ça va ? / Ça va ?; answers: Ça va bien, merci. / Pas mal. / Ça ne va pas. / Oui, ça va bien.","rule":"Do not collapse source variants into one canonical answer.","originalsPreserved":true},
+  "objectives":["السؤال عن الاسم","السؤال عن الحال بصيغتيه الواردتين في المصدر","استخدام إجابات الحال الأربع الواردة في المصدر","السؤال عن العمر","استخدام الإجابات في حوار قصير"],
   "vocabulary":[
     {"id":"bonjour","fr":"Bonjour","ar":"مرحبًا","audio":"Bonjour"},
     {"id":"je-mappelle","fr":"Je m'appelle","ar":"اسمي","audio":"Je m'appelle"},
     {"id":"ca-va-bien-merci","fr":"Ça va bien, merci.","ar":"أنا بخير، شكرًا.","audio":"Ça va bien, merci."},
-    {"id":"pas-mal","fr":"Pas mal.","ar":"ليس سيئًا / لا بأس.","audio":"Pas mal."},
+    {"id":"pas-mal","fr":"Pas mal.","ar":"لا بأس.","audio":"Pas mal."},
     {"id":"ca-ne-va-pas","fr":"Ça ne va pas.","ar":"لست بخير.","audio":"Ça ne va pas."},
     {"id":"oui-ca-va-bien","fr":"Oui, ça va bien.","ar":"نعم، أنا بخير.","audio":"Oui, ça va bien."},
     {"id":"jai-neuf-ans","fr":"J'ai neuf ans","ar":"عمري تسع سنوات","audio":"J'ai neuf ans"}
   ],
   "expressions":[
-    {"id":"ask-name","category":"الاسم","questions":["Comment tu t'appelles ?"],"answers":["Je m'appelle Ali."]},
-    {"id":"ask-mood","category":"الحال","questions":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."]},
+    {"id":"ask-name","category":"الاسم","questions":["Comment tu t'appelles ?"],"answers":["Je m'appelle Ali.","Je m'appelle Lina."]},
+    {"id":"ask-mood","category":"الحال","questions":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"answerPolicy":"all-listed-source-answers-are-valid"},
     {"id":"ask-age","category":"العمر","questions":["Quel âge as-tu ?"],"answers":["J'ai neuf ans."]}
   ],
   "conversation":[
@@ -28,32 +29,32 @@
     {"speaker":"👧","text":"J'ai neuf ans."}
   ],
   "listening":[
-    {"id":"listen-name","audio":"Comment tu t'appelles ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["ما اسمك؟","ما اسمك?"]},
+    {"id":"listen-name","audio":"Comment tu t'appelles ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["ما اسمك؟"]},
     {"id":"listen-mood-1","audio":"Comment ça va ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كيف حالك؟"]},
     {"id":"listen-mood-2","audio":"Ça va ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كيف حالك؟"]},
     {"id":"listen-age","audio":"Quel âge as-tu ?","prompt":"ما معنى السؤال الذي سمعته؟","options":["ما اسمك؟","كيف حالك؟","كم عمرك؟"],"acceptedAnswers":["كم عمرك؟"]}
   ],
   "practice":[
     {"id":"reply-name","prompt":"Comment tu t'appelles ?","options":["Je m'appelle Lina.","Ça va bien, merci.","J'ai neuf ans."],"acceptedAnswers":["Je m'appelle Lina."]},
-    {"id":"reply-mood","prompt":"Comment ça va ? / Ça va ?","options":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"acceptedAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."]},
+    {"id":"reply-mood","prompt":"Comment ça va ? / Ça va ?","options":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"acceptedAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"multipleValid":true},
     {"id":"reply-age","prompt":"Quel âge as-tu ?","options":["J'ai neuf ans.","Ça va bien.","Je m'appelle Lina."],"acceptedAnswers":["J'ai neuf ans."]}
   ],
   "grammar":[
     {"label":"الاسم","questionForms":["Comment tu t'appelles ?"],"answers":["Je m'appelle Lina."],"note":"نستخدم هذه العبارة لتقديم الاسم."},
-    {"label":"الحال","questionForms":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"note":"يمكن السؤال عن الحال بأكثر من صيغة، ويقدم الدرس عدة إجابات ممكنة."},
+    {"label":"الحال","questionForms":["Comment ça va ?","Ça va ?"],"answers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"note":"المصدر يقدم صيغتي سؤال للحال وأربع إجابات؛ لا نختزلها إلى إجابة واحدة."},
     {"label":"العمر","questionForms":["Quel âge as-tu ?"],"answers":["J'ai neuf ans."],"note":"نستخدم J'ai مع العمر في المثال الأصلي."}
   ],
   "games":[
-    {"id":"listen-choice","title":"صيد الجملة","description":"اسمع أكثر من صيغة للسؤال واختر المعنى الصحيح.","type":"listen-choice","source":"listening"},
-    {"id":"mood-match","title":"كيف حاله؟","description":"طابق سؤال الحال مع إحدى الإجابات الواردة في الدرس.","type":"match","source":"expressions.ask-mood"},
+    {"id":"listen-choice","title":"صيد السؤال","description":"اسمع Comment ça va ? أو Ça va ? واختر المعنى.","type":"listen-choice","source":"listening","items":["listen-mood-1","listen-mood-2"]},
+    {"id":"mood-match","title":"كل إجابات الحال","description":"طابق صيغتي سؤال الحال مع الإجابات الأربع الواردة في المصدر.","type":"match","source":"expressions.ask-mood","items":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."]},
     {"id":"match","title":"طابق المعنى","description":"طابق العبارة الفرنسية مع معناها.","type":"match","source":"vocabulary"},
-    {"id":"sentence-builder","title":"ابنِ الجملة","description":"رتب كلمات جملة من الدرس.","type":"sentence-builder","target":["Je","m'appelle","Lina"]}
+    {"id":"sentence-builder","title":"ابنِ الجملة","description":"رتب كلمات جملة من الدرس ثم استمع إليها.","type":"sentence-builder","target":["Je","m'appelle","Lina"],"audio":"Je m'appelle Lina."}
   ],
   "assessment":[
     {"id":"a-name","prompt":"ماذا تقول عندما يسألك عن اسمك؟","options":["Je m'appelle Lina.","Ça va bien, merci.","J'ai neuf ans."],"acceptedAnswers":["Je m'appelle Lina."]},
-    {"id":"a-mood","prompt":"اختر إجابة صحيحة يمكن أن تستخدمها مع سؤال الحال.","audio":"Comment ça va ?","options":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"acceptedAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."]},
+    {"id":"a-mood","prompt":"اختر إجابة صحيحة يمكن أن تستخدمها مع سؤال الحال.","audio":"Comment ça va ?","options":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"acceptedAnswers":["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],"multipleValid":true},
     {"id":"a-age","prompt":"كيف تقول: عمري تسع سنوات؟","options":["J'ai neuf ans.","Ça va bien.","Je m'appelle Lina."],"acceptedAnswers":["J'ai neuf ans."]}
   ],
   "media":{"youtubeId":"kjIidDjyYt4","title":"Se présenter en chantant"},
-  "reference":{"title":"مرجع الدرس","items":["الكلمات ومعانيها","كل صيغ السؤال والإجابة الواردة في الدرس","الحوار","الأمثلة","النقاط التي يجب تذكرها"]}
+  "reference":{"title":"مرجع الدرس","items":["الكلمات ومعانيها ونطقها","Comment tu t'appelles ? / Je m'appelle…","Comment ça va ? / Ça va ?","Ça va bien, merci. / Pas mal. / Ça ne va pas. / Oui, ça va bien.","Quel âge as-tu ? / J'ai neuf ans.","الحوار والأمثلة والوسائط","ما يجب تذكره"],"source":"02_reference_introduction.docx"}
 }
