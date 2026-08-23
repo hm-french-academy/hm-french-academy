@@ -1,17 +1,17 @@
 {
   "grade":"primary-3",
   "runtime":"grade-3-lesson-journey.html",
-  "status":"premium-studio-source-first-release-candidate",
+  "status":"premium-studio-schema-driven-release-candidate",
   "lessonCount":6,
   "lessonIds":["g3-l01","g3-l02","g3-l03","g3-l04","g3-l05","g3-l06"],
-  "journey":["lesson","vocabulary","grammar","conversation","practice","pronunciation","media","assessment","progress"],
+  "journey":["lesson","vocabulary","grammar","conversation","practice","pronunciation","media","games","assessment","progress"],
   "scope":"lesson-id-isolated",
   "preserveOriginals":true,
   "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json",
   "contentAuthority":"data/lessons/grade-3/premium-content-manifest.json",
-  "runtimeScript":"scripts/grade3-premium-studio-v4.js",
+  "runtimeScript":"scripts/grade3-premium-studio-v5.js",
   "sourceRoot":"data/lessons/grade-3/web/3eme prim",
-  "cacheVersion":"20260823-g3premium14",
+  "cacheVersion":"20260823-g3studio-v5",
   "releaseGate":"final-qa-and-browser-smoke-test",
-  "qaStatus":"source-paths-verified-6-of-6-runtime-entry-verified-browser-smoke-test-pending"
+  "qaStatus":"schema-driven-runtime-wired-g3-l01-source-variants-enabled-browser-smoke-test-pending"
 }
