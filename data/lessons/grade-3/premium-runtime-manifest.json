@@ -9,9 +9,9 @@
   "preserveOriginals":true,
   "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json",
   "contentAuthority":"data/lessons/grade-3/premium-content-manifest.json",
-  "runtimeScript":"scripts/grade3-premium-studio-v5.js",
+  "runtimeScript":"scripts/grade3-premium-studio-v6.js",
   "sourceRoot":"data/lessons/grade-3/web/3eme prim",
-  "cacheVersion":"20260823-g3studio-v6",
+  "cacheVersion":"20260823-g3studio-v7",
   "releaseGate":"full-stage-browser-smoke-test",
-  "qaStatus":"runtime-wired-for-all-six-lesson-ids-source-safe-fallbacks-enabled-browser-smoke-test-required"
+  "qaStatus":"runtime-v6-distinct-page-content-interactive-vocabulary-varied-practice-full-assessment-structured-postlesson-reference"
 }
