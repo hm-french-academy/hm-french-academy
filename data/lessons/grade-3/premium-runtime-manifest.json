@@ -1,17 +1,17 @@
 {
   "grade":"primary-3",
   "runtime":"grade-3-lesson-journey.html",
-  "status":"premium-studio-schema-driven-release-candidate",
+  "status":"premium-studio-schema-driven-stage-runtime",
   "lessonCount":6,
   "lessonIds":["g3-l01","g3-l02","g3-l03","g3-l04","g3-l05","g3-l06"],
-  "journey":["lesson","vocabulary","grammar","conversation","practice","pronunciation","media","games","assessment","progress"],
+  "journey":["lesson","discover","vocabulary","grammar","conversation","practice","pronunciation","media","games","assessment","postLesson"],
   "scope":"lesson-id-isolated",
   "preserveOriginals":true,
   "sourceBinding":"data/lessons/grade-3/source-binding-manifest.json",
   "contentAuthority":"data/lessons/grade-3/premium-content-manifest.json",
   "runtimeScript":"scripts/grade3-premium-studio-v5.js",
   "sourceRoot":"data/lessons/grade-3/web/3eme prim",
-  "cacheVersion":"20260823-g3studio-v5",
-  "releaseGate":"final-qa-and-browser-smoke-test",
-  "qaStatus":"schema-driven-runtime-wired-g3-l01-source-variants-enabled-browser-smoke-test-pending"
+  "cacheVersion":"20260823-g3studio-v6",
+  "releaseGate":"full-stage-browser-smoke-test",
+  "qaStatus":"runtime-wired-for-all-six-lesson-ids-source-safe-fallbacks-enabled-browser-smoke-test-required"
 }
