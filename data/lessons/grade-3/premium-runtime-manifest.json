@@ -11,7 +11,7 @@
   "contentAuthority":"data/lessons/grade-3/premium-content-manifest.json",
   "runtimeScript":"scripts/grade3-premium-studio-v4.js",
   "sourceRoot":"data/lessons/grade-3/web/3eme prim",
-  "cacheVersion":"20260822-g3premium8",
+  "cacheVersion":"20260823-g3premium9",
   "releaseGate":"final-qa-and-browser-smoke-test",
-  "qaStatus":"canonical-source-published-runtime-wired-browser-smoke-test-pending"
+  "qaStatus":"canonical-source-published-runtime-wired-cross-lesson-leakage-fixed-browser-smoke-test-pending"
 }
