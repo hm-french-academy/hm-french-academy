@@ -27,22 +27,16 @@
     window.speechSynthesis.speak(u);
   }
 
-  function list(key) {
-    return data && Array.isArray(data[key]) ? data[key] : [];
-  }
+  function list(key) { return data && Array.isArray(data[key]) ? data[key] : []; }
 
   function examples() {
     var result = [];
     var grammar = data && Array.isArray(data.grammar) ? data.grammar : [];
-    grammar.forEach(function (g) {
-      (Array.isArray(g.examples) ? g.examples : []).forEach(function (x) { result.push(x); });
-    });
+    grammar.forEach(function (g) { (Array.isArray(g.examples) ? g.examples : []).forEach(function (x) { result.push(x); }); });
     return result;
   }
 
-  function nav() {
-    return '<div class="booknav"><button class="g3btn light" data-prev>السابق</button><button class="g3btn" data-next>التالي</button></div>';
-  }
+  function nav() { return '<div class="booknav"><button class="g3btn light" data-prev>السابق</button><button class="g3btn" data-next>التالي</button></div>'; }
 
   function choices(items, key) {
     if (!items.length) return '<div class="g3card">لا توجد أسئلة مصدرية مهيأة لهذا الجزء.</div>';
@@ -57,44 +51,22 @@
   }
 
   function build() {
-    var vocab = list('vocabulary');
-    var grammar = Array.isArray(data.grammar) ? data.grammar : [];
-    var listening = list('listening');
-    var practice = list('practice');
-    var assessment = list('assessment');
-    var games = list('games');
-    var ex = examples();
-
+    var vocab = list('vocabulary'), grammar = Array.isArray(data.grammar) ? data.grammar : [], listening = list('listening'), practice = list('practice'), assessment = list('assessment'), games = list('games'), ex = examples();
     var pages = [];
     pages.push('<section class="g3panel hero"><small>PREMIUM LESSON BOOK STUDIO · الصف الثالث</small><h2>' + esc(data.title || lessonId) + '</h2><p>رحلة تعلم تفاعلية مبنية على المحتوى الأصلي لهذا الدرس.</p>' + nav() + '</section>');
-
     var discover = Array.isArray(data.expressions) ? data.expressions : [];
-    pages.push('<section class="g3panel"><small>02</small><h2>🔎 اكتشف</h2><div class="g3cards">' + (discover.length ? discover.map(function (x) {
-      return '<div class="g3card"><b>' + esc(x.category || 'اكتشف') + '</b><p>' + esc((x.questions || []).join(' · ')) + '</p><p>' + esc((x.answers || []).join(' · ')) + '</p></div>';
-    }).join('') : ex.map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.fr) + '">🔊</button></div>'; }).join('')) + '</div>' + nav() + '</section>');
-
+    pages.push('<section class="g3panel"><small>02</small><h2>🔎 اكتشف</h2><div class="g3cards">' + (discover.length ? discover.map(function (x) { return '<div class="g3card"><b>' + esc(x.category || 'اكتشف') + '</b><p>' + esc((x.questions || []).join(' · ')) + '</p><p>' + esc((x.answers || []).join(' · ')) + '</p></div>'; }).join('') : ex.map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.fr) + '">🔊</button></div>'; }).join('')) + '</div>' + nav() + '</section>');
     pages.push('<section class="g3panel"><small>03</small><h2>🧩 المفردات</h2><div class="g3cards">' + vocab.map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.audio || x.fr) + '">🔊 استمع</button></div>'; }).join('') + '</div>' + nav() + '</section>');
-
     pages.push('<section class="g3panel"><small>04</small><h2>🔊 اسمع وتحدث</h2><div class="g3cards">' + vocab.slice(0, 10).map(function (x) { return '<div class="g3card"><h3>' + esc(x.fr) + '</h3><p>' + esc(x.ar) + '</p><button class="g3btn speak" data-s="' + esc(x.audio || x.fr) + '">🔊 اسمع</button></div>'; }).join('') + '</div>' + nav() + '</section>');
-
     pages.push('<section class="g3panel"><small>05</small><h2>🧠 القاعدة</h2>' + grammar.map(function (g) { return '<div class="g3card"><h3>' + esc(g.title || g.label || 'قاعدة الدرس') + '</h3><p>' + esc(g.rule || g.note || '') + '</p><div class="g3cards">' + (g.examples || []).map(function (x) { return '<div class="g3card"><b>' + esc(x.fr) + '</b><p>' + esc(x.ar) + '</p></div>'; }).join('') + '</div></div>'; }).join('') + nav() + '</section>');
-
     pages.push('<section class="g3panel"><small>06</small><h2>🎧 اسمع واختر</h2><div>' + choices(listening, 'l') + '</div>' + nav() + '</section>');
     pages.push('<section class="g3panel"><small>07</small><h2>🎯 حان دورك</h2><p>اختر من الإجابات التي يثبتها محتوى هذا الدرس.</p><div>' + choices(practice, 'p') + '</div>' + nav() + '</section>');
-
     var media = data.media || {};
     pages.push('<section class="g3panel"><small>08</small><h2>🎬 الوسائط</h2><div class="g3card">' + (media.youtubeId ? '<iframe style="width:100%;min-height:300px;border:0;border-radius:18px" src="https://www.youtube.com/embed/' + encodeURIComponent(media.youtubeId) + '" allowfullscreen></iframe>' : 'لا توجد وسائط مثبتة لهذا الدرس.') + '</div>' + nav() + '</section>');
-
     pages.push('<section class="g3panel"><small>09</small><h2>🎮 مركز الألعاب</h2><div class="g3cards">' + games.map(function (g, i) { return '<div class="g3card"><h3>' + esc(g.title) + '</h3><p>' + esc(g.description || '') + '</p><button class="g3btn game" data-game="' + i + '">▶ ابدأ اللعبة</button></div>'; }).join('') + '</div><div id="gameArea"></div>' + nav() + '</section>');
-
     pages.push('<section class="g3panel"><small>10</small><h2>🏆 التقييم</h2><div>' + choices(assessment, 'a') + '</div>' + nav() + '</section>');
     pages.push('<section class="g3panel hero"><small>11</small><h2>🎓 بعد الرحلة</h2><p>أكملت رحلة التعلم. اختر ما تريد تثبيته.</p><div class="g3cards"><button class="g3btn tool" data-tool="reference">📘 المرجع</button><button class="g3btn tool" data-tool="official">📝 التقييم الرسمي</button><button class="g3btn tool" data-tool="review">🧠 المراجعة الذكية</button></div><div id="postArea"></div>' + nav() + '</section>');
-
-    viewer.innerHTML = pages.join('');
-    title.textContent = data.title || lessonId;
-    subtitle.textContent = 'Premium Lesson Book Studio';
-    paint();
-    bind();
+    viewer.innerHTML = pages.join(''); title.textContent = data.title || lessonId; subtitle.textContent = 'Premium Lesson Book Studio'; paint(); bind();
   }
 
   function paint() {
@@ -118,28 +90,22 @@
   function gamesAt(i) { var g = list('games'); return g[i] || {}; }
 
   function checkAnswer(button) {
-    var key = button.getAttribute('data-key');
-    var prefix = key.charAt(0);
-    var index = Number(key.slice(1));
+    var key = button.getAttribute('data-key'), prefix = key.charAt(0), index = Number(key.slice(1));
     var source = prefix === 'l' ? list('listening') : prefix === 'p' ? list('practice') : list('assessment');
-    var q = source[index] || {};
-    var selected = document.querySelector('.option[data-key="' + key + '"].selected');
-    var ok = false;
-    if (selected && Array.isArray(q.acceptedAnswers)) {
-      ok = q.acceptedAnswers.some(function (a) { return String(a).trim() === selected.getAttribute('data-value').trim(); });
-    }
+    var q = source[index] || {}, selected = document.querySelector('.option[data-key="' + key + '"].selected'), ok = false;
+    if (selected && Array.isArray(q.acceptedAnswers)) ok = q.acceptedAnswers.some(function (a) { return String(a).trim() === selected.getAttribute('data-value').trim(); });
     var feedback = document.querySelector('[data-feedback="' + key + '"]');
     if (feedback) feedback.textContent = ok ? '✅ صحيح!' : '💡 راجع محتوى الدرس وحاول مرة أخرى.';
   }
 
   function tool(type) {
-    var area = document.getElementById('postArea');
-    if (!area) return;
+    var area = document.getElementById('postArea'); if (!area) return;
     if (type === 'review') {
       area.innerHTML = '<div id="smartReviewMount"></div>';
       var s = document.createElement('script');
-      s.src = 'scripts/grade3-smart-review-v5.js?v=20260823-final';
-      s.onload = function () { if (window.HMGrade3SmartReviewV5) window.HMGrade3SmartReviewV5.mount(document.getElementById('smartReviewMount'), data); };
+      s.src = 'scripts/grade3-smart-review-v7.js?v=20260823-smart-review-v7-01';
+      s.onload = function () { if (window.HMGrade3SmartReviewV7) window.HMGrade3SmartReviewV7.mount(document.getElementById('smartReviewMount'), data); };
+      s.onerror = function () { area.innerHTML = '<div class="g3card"><h3>تعذر تحميل المراجعة الذكية</h3><p>أعد تحميل الصفحة وحاول مرة أخرى.</p></div>'; };
       document.body.appendChild(s);
     } else if (type === 'reference') {
       area.innerHTML = '<div class="g3card"><h3>📘 المرجع</h3><p>' + esc(data.reference && data.reference.title || 'مرجع الدرس') + '</p><p>' + esc(data.reference && data.reference.source || data.source && data.source.reference || 'المصدر الأصلي للدرس') + '</p></div>';
@@ -148,18 +114,7 @@
     }
   }
 
-  function fail(message) {
-    viewer.innerHTML = '<div class="g3panel"><h2>تعذر فتح الدرس</h2><p>' + esc(lessonId + ' · ' + message) + '</p><button class="g3btn" onclick="location.reload()">إعادة المحاولة</button></div>';
-  }
+  function fail(message) { viewer.innerHTML = '<div class="g3panel"><h2>تعذر فتح الدرس</h2><p>' + esc(lessonId + ' · ' + message) + '</p><button class="g3btn" onclick="location.reload()">إعادة المحاولة</button></div>'; }
 
-  fetch(dataUrl, { cache: 'no-store' })
-    .then(function (response) {
-      if (!response.ok) throw new Error('Lesson HTTP ' + response.status);
-      return response.text();
-    })
-    .then(function (text) {
-      data = JSON.parse(text);
-      build();
-    })
-    .catch(function (error) { fail(error.message); });
+  fetch(dataUrl, { cache: 'no-store' }).then(function (response) { if (!response.ok) throw new Error('Lesson HTTP ' + response.status); return response.text(); }).then(function (text) { data = JSON.parse(text); build(); }).catch(function (error) { fail(error.message); });
 }());
