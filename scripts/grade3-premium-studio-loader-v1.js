@@ -1,0 +1,1 @@
+(()=>{'use strict';const id=new URLSearchParams(location.search).get('id')||new URLSearchParams(location.search).get('lesson')||'g3-l01';const s=document.createElement('script');s.src=id==='g3-l01'?'scripts/grade3-l01-source-runtime-v1.js?v=20260823-l01-source-v1':'scripts/grade3-premium-studio-v6.js?v=20260823-g3-v6';document.body.appendChild(s)})();
