@@ -1,22 +1,56 @@
 {
-  "grade":"primary-4",
-  "status":"premium-standard-journey-bound",
-  "sourceAudit":"data/lessons/grade-4/source-content-audit.json",
-  "adapter":"data/lessons/grade-4/content-adapter-manifest.json",
-  "binding":"data/lessons/grade-4/source-binding-manifest.json",
-  "runtime":"grade-4-lesson-journey.html",
-  "scope":"grade-4-only",
-  "contentAuthority":"data/lessons/grade-4/source/4eme_Complet",
-  "journey":["lesson","vocabulary","pronunciation","grammar","conversation","practice","media","games","assessment","progress"],
-  "smartReview":"outside-journey",
-  "preserveOriginals":true,
-  "lessons":[
-    {"id":"g4-l01","titleFr":"Les saisons"},
-    {"id":"g4-l02","titleFr":"Les chiffres"},
-    {"id":"g4-l03","titleFr":"L'heure"},
-    {"id":"g4-l04","titleFr":"Mon visage"},
-    {"id":"g4-l05","titleFr":"Adjectifs possessifs — visage"},
-    {"id":"g4-l06","titleFr":"Le corps"},
-    {"id":"g4-l07","titleFr":"Adjectifs possessifs — corps"}
-  ]
+  "grade": "primary-4",
+  "status": "premium-standard-journey-bound",
+  "sourceAudit": "data/lessons/grade-4/source-content-audit.json",
+  "adapter": "data/lessons/grade-4/content-adapter-manifest.json",
+  "binding": "data/lessons/grade-4/source-binding-manifest.json",
+  "runtime": "grade-4-lesson-journey.html",
+  "scope": "grade-4-only",
+  "contentAuthority": "data/lessons/grade-4/source/4eme_Complet",
+  "journey": [
+    "lesson",
+    "vocabulary",
+    "pronunciation",
+    "grammar",
+    "conversation",
+    "practice",
+    "media",
+    "games",
+    "assessment",
+    "progress"
+  ],
+  "smartReview": "outside-journey",
+  "preserveOriginals": true,
+  "lessons": [
+    {
+      "id": "g4-l01",
+      "titleFr": "Les saisons"
+    },
+    {
+      "id": "g4-l02",
+      "titleFr": "Les chiffres"
+    },
+    {
+      "id": "g4-l03",
+      "titleFr": "L'heure"
+    },
+    {
+      "id": "g4-l04",
+      "titleFr": "Mon visage"
+    },
+    {
+      "id": "g4-l05",
+      "titleFr": "Adjectifs possessifs — visage"
+    },
+    {
+      "id": "g4-l06",
+      "titleFr": "Le corps"
+    },
+    {
+      "id": "g4-l07",
+      "titleFr": "Adjectifs possessifs — corps"
+    }
+  ],
+  "releaseGate": "released",
+  "releaseStatus": "qa-passed"
 }
