@@ -1,42 +1,15 @@
 {
-  "grade": "primary-4",
-  "completed": [
-    "source-audit",
-    "content-audit",
-    "runtime-manifest",
-    "route-map",
-    "ingestion-plan",
-    "repository-ingestion",
-    "source-validation",
-    "source-binding",
-    "media-plan",
-    "media-binding",
-    "games-plan",
-    "games-binding",
-    "progress-plan",
-    "progress-binding",
-    "qa-matrix",
-    "final-qa-workflow",
-    "final-qa",
-    "premium-lesson-studio-runtime",
-    "premium-lesson-studio-navigation",
-    "premium-lesson-studio-vocabulary",
-    "premium-lesson-studio-grammar",
-    "premium-lesson-studio-practice",
-    "premium-lesson-studio-pronunciation",
-    "premium-lesson-studio-media",
-    "premium-lesson-studio-games",
-    "premium-lesson-studio-assessment",
-    "premium-lesson-studio-progress"
+  "grade":"primary-4",
+  "completed":[
+    "source-audit","content-audit","runtime-manifest","route-map","ingestion-plan","repository-ingestion","source-validation","source-binding",
+    "standard-journey-shell","grade4-source-only-adapter","grade4-isolated-routing"
   ],
-  "blocked": [],
-  "reason": "Grade 4 canonical lesson.html routes now have a grade-specific Premium Lesson Studio runtime for all seven lessons. Original source package remains preserved and bound as the authoritative lesson content.",
-  "evidence": [
-    "lesson.html",
-    "scripts/grade4-premium-studio-v1.js",
-    "data/lessons/grade-4/premium-runtime-manifest.json",
-    "data/lessons/grade-4/premium-route-map.json",
-    "data/lessons/grade-4/source-binding-manifest.json"
-  ],
-  "nextExecution": "Run grade-4 final QA plus browser smoke test on all seven canonical lesson routes before merge/release."
+  "preserved":["data/lessons/grade-4/source/4eme_Complet","all-original-docx-assets"],
+  "excluded":["grade-3-content","grade-3-runtime","cross-grade-content-import"],
+  "journey":["lesson","vocabulary","pronunciation","grammar","conversation","practice","media","games","assessment","progress"],
+  "smartReview":"outside-journey",
+  "status":"implementation-updated-awaiting-browser-smoke-qa",
+  "reason":"Grade 4 now has an isolated standard 10-stage journey. Each stage reads the corresponding Grade 4 source package; official electronic assessment remains sourced from the Grade 4 exam file. No Grade 3 content is imported.",
+  "evidence":["grade-4-lesson-journey.html","lesson.html","data/lessons/grade-4/premium-runtime-manifest.json","data/lessons/grade-4/content-adapter-manifest.json","data/lessons/grade-4/premium-route-map.json"],
+  "nextExecution":"Run Grade 4 browser smoke QA across g4-l01..g4-l07 and verify no non-grade4 files changed."
 }
