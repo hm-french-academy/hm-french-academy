@@ -7,8 +7,9 @@
     "content-baseline",
     "lesson-studio-baseline",
     "media-manifest",
-    "games-baseline",
-    "progress-baseline"
+    "single-owner-premium-v7",
+    "independent-assessment",
+    "legacy-games-removed"
   ],
   "blocked": [
     "source-package-ingestion",
@@ -17,6 +18,6 @@
     "final-qa",
     "release"
   ],
-  "reason": "Grade 4 released; Grade 5 baseline verified. Original source package ingestion is next.",
-  "nextExecution": "Ingest original Grade 5 source package, validate, bind 11 lessons, then Final QA."
+  "reason": "Grade 5 runtime architecture is single-owner Premium v7; legacy L01 game artifacts are forbidden.",
+  "nextExecution": "Validate lesson content, media, games and assessment for all 11 lessons, then Final QA."
 }
