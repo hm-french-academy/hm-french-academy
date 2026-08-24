@@ -1,7 +1,11 @@
 {
   "grade":"primary-4",
-  "status":"adapter-ready",
-  "requiredBlocks":["objective","vocabulary","grammar","practice","pronunciation","media","progress"],
+  "status":"adapter-standard-journey-ready",
+  "scope":"grade-4-only",
+  "sourceAuthority":"data/lessons/grade-4/source/4eme_Complet",
+  "requiredJourney":["lesson","vocabulary","pronunciation","grammar","conversation","practice","media","games","assessment","progress"],
+  "smartReview":"outside-journey",
+  "contentRule":"Every block must be derived from the corresponding Grade 4 original source assets; do not import Grade 3 student-facing content.",
   "package":["interactive","printable","evaluation","electronicExam"],
   "lessons":[
     {"id":"g4-l01","titleFr":"Les saisons","focus":"seasons; au/en"},
