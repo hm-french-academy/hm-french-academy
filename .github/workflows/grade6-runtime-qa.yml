@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'data/lessons/grade-6/**'
+      - 'data/curricula/grade-6-french-semester-1.json'
       - 'lesson.html'
       - '.github/workflows/grade6-runtime-qa.yml'
   workflow_dispatch:
@@ -15,24 +16,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate canonical runtime binding
+      - name: Materialize Grade 6 canonical source package
+        run: |
+          rm -rf data/lessons/grade-6/source
+          mkdir -p data/lessons/grade-6/source
+          unzip -q -o data/lessons/grade-6/6eme_Complet.zip -d data/lessons/grade-6/source
+      - name: Validate canonical runtime, registry and source routes
         run: |
           node - <<'NODE'
           const fs=require('fs');
+          const path=require('path');
           const b=JSON.parse(fs.readFileSync('data/lessons/grade-6/source-binding-manifest.json','utf8'));
           const r=JSON.parse(fs.readFileSync('data/lessons/grade-6/lesson-runtime-manifest.json','utf8'));
+          const reg=JSON.parse(fs.readFileSync('data/lessons/grade-6/lesson-registry.json','utf8'));
+          const ids=['g6-l01','g6-l02','g6-l03','g6-l04','g6-l05','g6-l06','g6-l07','g6-l08'];
           if(b.bindings.length!==8) throw new Error('Expected 8 lesson bindings');
-          if(r.lessonIds.length!==8||r.routes.length!==8) throw new Error('Runtime manifest mismatch');
-          for(let i=0;i<8;i++){const id=`g6-l0${i+1}`; if(b.bindings[i].id!==id||b.bindings[i].route!==`lesson.html?id=${id}`||r.lessonIds[i]!==id) throw new Error('Route mismatch '+id);}
+          if(r.lessonIds.join(',')!==ids.join(',')||r.routes.length!==8) throw new Error('Runtime manifest mismatch');
+          const lessons=reg.includedUnits.flatMap(u=>u.lessons);
+          if(lessons.length!==8) throw new Error('Registry lesson count mismatch');
+          for(let i=0;i<8;i++){
+            const id=ids[i];
+            if(b.bindings[i].id!==id||b.bindings[i].route!==`lesson.html?id=${id}`||r.lessonIds[i]!==id) throw new Error('Route mismatch '+id);
+            const item=lessons.find(x=>x.id===id); if(!item) throw new Error('Registry missing '+id);
+            const binding=b.bindings[i];
+            for(const f of [binding.interactive,binding.reference,binding.evaluation,binding.electronicExam]){
+              const full=path.join('data/lessons/grade-6/source/6eme_Complet',binding.folder,f);
+              if(!fs.existsSync(full)) throw new Error('Missing source file '+full);
+            }
+          }
+          const revision=['01_revision_generale_interactif.html','02_revision_generale_examen.docx'];
+          for(const f of revision){const full=path.join('data/lessons/grade-6/source/6eme_Complet/09_Revision_generale',f); if(!fs.existsSync(full)) throw new Error('Missing revision asset '+full);}
           const lesson=fs.readFileSync('lesson.html','utf8'); if(!lesson.includes('scripts/lesson-runtime-v2.js')) throw new Error('Canonical lesson runtime missing');
-          const report={grade:'primary-6',semester:'term-1',status:'PASS',runtime:'lesson.html',lessons:8,checks:{sourceBinding:'PASS',runtimeManifest:'PASS',canonicalRuntime:'PASS',routes:'PASS'},generatedAt:new Date().toISOString()};
+          const report={grade:'primary-6',semester:'term-1',status:'PASS',templateSource:'grade-8',runtime:'lesson.html',lessons:8,sourceFiles:34,checks:{sourceMaterialization:'PASS',sourceBinding:'PASS',runtimeManifest:'PASS',lessonRegistry:'PASS',canonicalRuntime:'PASS',routes:'PASS',revisionAssets:'PASS'},generatedAt:new Date().toISOString()};
           fs.writeFileSync('data/lessons/grade-6/runtime-qa-report.json',JSON.stringify(report,null,2)+'\n');
           NODE
-      - name: Commit runtime QA
+      - name: Commit materialized source and QA report
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/lessons/grade-6/runtime-qa-report.json
+          git add data/lessons/grade-6/source data/lessons/grade-6/runtime-qa-report.json
           git diff --cached --quiet && exit 0
-          git commit -m 'qa(grade6): validate canonical lesson runtime routes'
+          git commit -m 'qa(grade6): materialize source package and validate premium routes'
           git push
