@@ -1,0 +1,17 @@
+{
+  "grade":"primary-6",
+  "templateSource":"grade-8",
+  "curriculumId":"grade-6-french-semester-1",
+  "lessons":[
+    {"id":"g6-l01","unit":"unit-1","number":1,"titleAr":"في السوق","titleFr":"Au marché","sourceDir":"01_Au_marche"},
+    {"id":"g6-l02","unit":"unit-1","number":2,"titleAr":"المضارع","titleFr":"Le présent","sourceDir":"02_Le_present"},
+    {"id":"g6-l03","unit":"unit-1","number":3,"titleAr":"النفي","titleFr":"La négation","sourceDir":"03_La_negation"},
+    {"id":"g6-l04","unit":"unit-1","number":4,"titleAr":"مكتبي","titleFr":"Mon bureau","sourceDir":"04_Mon_bureau"},
+    {"id":"g6-l05","unit":"unit-2","number":1,"titleAr":"المستقبل القريب","titleFr":"Le futur proche","sourceDir":"05_Le_futur_proche"},
+    {"id":"g6-l06","unit":"unit-2","number":2,"titleAr":"الملابس","titleFr":"Les vêtements","sourceDir":"06_Les_vetements"},
+    {"id":"g6-l07","unit":"unit-2","number":3,"titleAr":"صفات الملكية","titleFr":"Les adjectifs possessifs","sourceDir":"07_Adjectifs_possessifs"},
+    {"id":"g6-l08","unit":"unit-2","number":4,"titleAr":"الساعة","titleFr":"L'heure","sourceDir":"08_L_heure"}
+  ],
+  "revision":{"id":"g6-revision","sourceDir":"09_Revision_generale"},
+  "runtimeContract":{"entry":"lesson.html","routePattern":"lesson.html?id=g6-lNN","completion":"interactiveAssessment","progressScopedByLesson":true}
+}
