@@ -1,0 +1,21 @@
+{
+  "id": "grade-6-french-semester-1",
+  "grade": "primary-6",
+  "semester": "term-1",
+  "title": {"ar": "الصف السادس الابتدائي — اللغة الفرنسية", "fr": "6ème primaire — Français", "en": "Grade 6 Primary — French"},
+  "source": "data/lessons/grade-6/6eme_Complet.zip",
+  "status": "validated-and-bound",
+  "lessonCount": 8,
+  "lessons": [
+    {"id":"g6-t1-l01","number":1,"title":{"ar":"في السوق","fr":"Au marché","en":"Au marché"},"sourceDir":"01_Au_marche"},
+    {"id":"g6-t1-l02","number":2,"title":{"ar":"المضارع","fr":"Le présent","en":"Le présent"},"sourceDir":"02_Le_present"},
+    {"id":"g6-t1-l03","number":3,"title":{"ar":"النفي","fr":"La négation","en":"La négation"},"sourceDir":"03_La_negation"},
+    {"id":"g6-t1-l04","number":4,"title":{"ar":"مكتبي","fr":"Mon bureau","en":"Mon bureau"},"sourceDir":"04_Mon_bureau"},
+    {"id":"g6-t1-l05","number":5,"title":{"ar":"المستقبل القريب","fr":"Le futur proche","en":"Le futur proche"},"sourceDir":"05_Le_futur_proche"},
+    {"id":"g6-t1-l06","number":6,"title":{"ar":"الملابس","fr":"Les vêtements","en":"Les vêtements"},"sourceDir":"06_Les_vetements"},
+    {"id":"g6-t1-l07","number":7,"title":{"ar":"صفات الملكية","fr":"Les adjectifs possessifs","en":"Possessive adjectives"},"sourceDir":"07_Adjectifs_possessifs"},
+    {"id":"g6-t1-l08","number":8,"title":{"ar":"الساعة","fr":"L'heure","en":"Telling the time"},"sourceDir":"08_L_heure"}
+  ],
+  "revision": {"folder":"09_Revision_generale","files":["01_revision_generale_interactif.html","02_revision_generale_examen.docx"]},
+  "lessonPackage": {"requiredFiles":["interactive HTML","reference DOCX","evaluation DOCX","electronic exam HTML"]}
+}
