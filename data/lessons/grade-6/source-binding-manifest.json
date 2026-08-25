@@ -1,8 +1,10 @@
 {
   "grade": "primary-6",
   "status": "bound-to-canonical-runtime",
+  "templateSource": "grade-8",
   "sourceRoot": "data/lessons/grade-6/source/6eme_Complet",
   "runtime": "lesson.html",
+  "registry": "data/lessons/grade-6/lesson-registry.json",
   "assetContract": {"fullLessons": 8, "revisionAssets": 2, "totalSourceFiles": 34},
   "bindings": [
     {"id":"g6-l01","folder":"01_Au_marche","route":"lesson.html?id=g6-l01","interactive":"01_interactif_au_marche.html","reference":"02_fiche_reference_au_marche.docx","evaluation":"03_evaluation_au_marche.docx","electronicExam":"04_examen_electronique_au_marche.html"},
