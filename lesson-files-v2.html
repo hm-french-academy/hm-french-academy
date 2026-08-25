@@ -1,1 +1,46 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate,max-age=0"><title>HM Academy | ملفات الدرس</title><link rel="stylesheet" href="css/premium-shell.css?v=20260824-files-route2"></head><body><main style="font-family:Arial,Cairo,sans-serif;padding:40px;text-align:center"><h1>📁 ملفات الدرس</h1><p>جارٍ فتح ملفات الدرس…</p></main><script>(function(){const id=new URLSearchParams(location.search).get('lesson')||'';if(id==='g4-l01')location.replace('grade-4-l01-files.html');else if(id==='g4-l02')location.replace('grade-4-l02-files.html');else if(/^g4-l0[3-7]$/.test(id)){document.querySelector('main').innerHTML='<h1>📁 ملفات الصف الرابع</h1><p>هذا الدرس لم يُنقل إلى المسار القياسي بعد.</p><a href="grade-4.html">العودة إلى الصف الرابع</a>'}else if(id)location.replace('grade-8.html')})()</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate,max-age=0">
+<title>HM Academy | ملفات الدرس</title>
+<link rel="stylesheet" href="css/premium-shell.css?v=20260825-files-route3">
+<style>
+body{background:#f4f7fb}.files-wrap{max-width:1000px;margin:auto;padding:24px 16px 48px}.files-hero{background:linear-gradient(135deg,#102a43,#1f5f8b);color:#fff;border-radius:22px;padding:24px;box-shadow:0 12px 30px rgba(16,42,67,.14)}.files-hero h1{margin:6px 0}.files-hero p{margin:0;opacity:.9}.files-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:20px}.file-card{background:#fff;border:1px solid #e3eaf2;border-radius:18px;padding:18px;box-shadow:0 6px 18px rgba(16,42,67,.06)}.file-card h2{font-size:17px;margin:0 0 7px}.file-card p{font-size:13px;color:#64748b;margin:0 0 13px;line-height:1.6}.file-actions{display:flex;gap:8px;flex-wrap:wrap}.file-btn{display:inline-flex;text-decoration:none;border-radius:11px;padding:10px 13px;font-weight:700;font-size:13px;background:#0f6fb5;color:#fff}.file-btn.alt{background:#eef5fa;color:#0f568a}.state{padding:28px;text-align:center;color:#64748b}.error{margin-top:20px;background:#fff3f3;border:1px solid #ffd1d1;color:#9b1c1c;border-radius:14px;padding:15px}
+</style>
+</head>
+<body>
+<main class="files-wrap">
+<section class="files-hero"><div style="opacity:.8;font-size:13px">HM Academy · الصف الثاني الإعدادي</div><h1 id="title">📁 ملفات الدرس</h1><p id="subtitle">جاري تحميل ملفات الدرس…</p><a href="javascript:history.back()" style="display:inline-block;margin-top:16px;color:#fff;font-weight:700;text-decoration:none">← العودة للدرس</a></section>
+<div id="app" class="state">جاري قراءة بيانات الدرس…</div>
+</main>
+<script>
+const id=new URLSearchParams(location.search).get('lesson')||'';
+const app=document.getElementById('app');
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+function pathForLesson(x){const m=x.match(/^grade8-u(\d+)-l(\d+)$/);return m?`data/lessons/grade-8/unit-${m[1]}/lesson-${m[2]}.json`:null}
+function add(list,label,path,desc){if(path)list.push({label,path,desc})}
+async function run(){
+ if(!id){app.innerHTML='<div class="error">لم يتم تحديد الدرس. افتح الصفحة من زر «ملفات الدرس» داخل الدرس.</div>';return}
+ const jsonPath=pathForLesson(id);
+ if(!jsonPath){app.innerHTML='<div class="error">معرّف الدرس غير صالح.</div>';return}
+ try{
+  const r=await fetch(jsonPath,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();
+  document.getElementById('title').textContent='📁 ملفات '+(d.titleAr||'الدرس');
+  document.getElementById('subtitle').textContent=d.titleFr||d.title||id;
+  const list=[];
+  add(list,'الدرس التفاعلي',d.files?.interactive,'فتح واجهة الدرس التفاعلية');
+  add(list,'المصدر / المرجع',d.files?.reference,'فتح ملف المحتوى المرجعي');
+  add(list,'التقييم',d.files?.assessment,'فتح ملف التقييم الرسمي');
+  add(list,'التقييم التفاعلي',d.files?.quiz,'فتح التقييم التفاعلي');
+  add(list,'الألعاب والتفاعل',d.files?.games||d.activityHub?.file,'فتح مركز الألعاب والتفاعل');
+  add(list,'النطق',d.files?.pronunciation,'فتح تدريب النطق');
+  add(list,'الفيديو',d.files?.video,'فتح فيديو الدرس');
+  (d.activities||[]).forEach(a=>add(list,a.id||'نشاط',a.file,`فتح نشاط ${a.id||''}`));
+  app.className='';app.innerHTML=`<div class="files-grid">${list.map(x=>`<article class="file-card"><h2>${esc(x.label)}</h2><p>${esc(x.desc)}</p><div class="file-actions"><a class="file-btn" href="${esc(x.path)}">فتح الملف</a><a class="file-btn alt" href="${esc(x.path)}" target="_blank" rel="noopener">تبويب جديد</a></div></article>`).join('')}</div><p style="color:#64748b;font-size:13px;margin-top:18px">تم تحميل ${list.length} رابطاً من بيانات ${esc(id)} مباشرة.</p>`;
+ }catch(e){console.error(e);app.className='';app.innerHTML='<div class="error">تعذر تحميل بيانات هذا الدرس. أعد فتح الصفحة أو حدّثها مرة واحدة.</div>'}
+}
+run();
+</script>
+</body></html>
