@@ -1,0 +1,8 @@
+{
+  "id":"unit-2","grade":"primary-6","semester":"term-1","templateSource":"grade-8","lessons":[
+    {"id":"g6-l05","number":1,"titleAr":"المستقبل القريب","titleFr":"Le futur proche","route":"lesson.html?id=g6-l05"},
+    {"id":"g6-l06","number":2,"titleAr":"الملابس","titleFr":"Les vêtements","route":"lesson.html?id=g6-l06"},
+    {"id":"g6-l07","number":3,"titleAr":"صفات الملكية","titleFr":"Les adjectifs possessifs","route":"lesson.html?id=g6-l07"},
+    {"id":"g6-l08","number":4,"titleAr":"الساعة","titleFr":"L'heure","route":"lesson.html?id=g6-l08"}
+  ]
+}
