@@ -1,0 +1,27 @@
+{
+  "contentVersion": "2026-08-25-grade6-premium-template-v1",
+  "curriculumId": "grade-6-french-semester-1",
+  "templateSource": "grade-8",
+  "includedUnits": [
+    {
+      "id": "unit-1", "titleAr": "الوحدة الأولى", "titleFr": "Unité 1",
+      "lessons": [
+        {"id":"g6-l01","number":1,"titleAr":"في السوق","titleFr":"Au marché","interactive":"lesson.html?id=g6-l01","files":"lesson-files-v2.html?lesson=g6-l01","reference":"data/lessons/grade-6/source/6eme_Complet/01_Au_marche/02_fiche_reference_au_marche.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/01_Au_marche/03_evaluation_au_marche.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/01_Au_marche/04_examen_electronique_au_marche.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l02","number":2,"titleAr":"المضارع","titleFr":"Le présent","interactive":"lesson.html?id=g6-l02","files":"lesson-files-v2.html?lesson=g6-l02","reference":"data/lessons/grade-6/source/6eme_Complet/02_Le_present/02_fiche_reference_le_present.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/02_Le_present/03_evaluation_le_present.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/02_Le_present/04_examen_electronique_le_present.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l03","number":3,"titleAr":"النفي","titleFr":"La négation","interactive":"lesson.html?id=g6-l03","files":"lesson-files-v2.html?lesson=g6-l03","reference":"data/lessons/grade-6/source/6eme_Complet/03_La_negation/02_fiche_reference_la_negation.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/03_La_negation/03_evaluation_la_negation.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/03_La_negation/04_examen_electronique_la_negation.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l04","number":4,"titleAr":"مكتبي","titleFr":"Mon bureau","interactive":"lesson.html?id=g6-l04","files":"lesson-files-v2.html?lesson=g6-l04","reference":"data/lessons/grade-6/source/6eme_Complet/04_Mon_bureau/02_fiche_reference_mon_bureau.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/04_Mon_bureau/03_evaluation_mon_bureau.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/04_Mon_bureau/04_examen_electronique_mon_bureau.html","premium":true,"media":{"video":false,"pronunciation":true}}
+      ]
+    },
+    {
+      "id": "unit-2", "titleAr": "الوحدة الثانية", "titleFr": "Unité 2",
+      "lessons": [
+        {"id":"g6-l05","number":1,"titleAr":"المستقبل القريب","titleFr":"Le futur proche","interactive":"lesson.html?id=g6-l05","files":"lesson-files-v2.html?lesson=g6-l05","reference":"data/lessons/grade-6/source/6eme_Complet/05_Le_futur_proche/02_fiche_reference_futur_proche.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/05_Le_futur_proche/03_evaluation_futur_proche.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/05_Le_futur_proche/04_examen_electronique_futur_proche.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l06","number":2,"titleAr":"الملابس","titleFr":"Les vêtements","interactive":"lesson.html?id=g6-l06","files":"lesson-files-v2.html?lesson=g6-l06","reference":"data/lessons/grade-6/source/6eme_Complet/06_Les_vetements/02_fiche_reference_les_vetements.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/06_Les_vetements/03_evaluation_les_vetements.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/06_Les_vetements/04_examen_electronique_les_vetements.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l07","number":3,"titleAr":"صفات الملكية","titleFr":"Les adjectifs possessifs","interactive":"lesson.html?id=g6-l07","files":"lesson-files-v2.html?lesson=g6-l07","reference":"data/lessons/grade-6/source/6eme_Complet/07_Adjectifs_possessifs/02_fiche_reference_adjectifs_possessifs.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/07_Adjectifs_possessifs/03_evaluation_adjectifs_possessifs.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/07_Adjectifs_possessifs/04_examen_electronique_adjectifs_possessifs.html","premium":true,"media":{"video":false,"pronunciation":true}},
+        {"id":"g6-l08","number":4,"titleAr":"الساعة","titleFr":"L'heure","interactive":"lesson.html?id=g6-l08","files":"lesson-files-v2.html?lesson=g6-l08","reference":"data/lessons/grade-6/source/6eme_Complet/08_L_heure/02_fiche_reference_lheure.docx","assessment":"data/lessons/grade-6/source/6eme_Complet/08_L_heure/03_evaluation_lheure.docx","quiz":"data/lessons/grade-6/source/6eme_Complet/08_L_heure/04_examen_electronique_lheure.html","premium":true,"media":{"video":false,"pronunciation":true}}
+      ]
+    }
+  ],
+  "revision": {"id":"g6-revision","interactive":"data/lessons/grade-6/source/6eme_Complet/09_Revision_generale/01_revision_generale_interactif.html","exam":"data/lessons/grade-6/source/6eme_Complet/09_Revision_generale/02_revision_generale_examen.docx"},
+  "contract": {"lessonsPerUnit":4,"includedUnits":2,"includedLessons":8,"revisionAssets":2,"standardTemplate":"lesson.html","framework":"Grade 8 Premium Learning Studio adapted to primary-6; lesson-scoped routes and source bindings."}
+}
