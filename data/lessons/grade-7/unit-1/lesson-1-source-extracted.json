@@ -1,0 +1,87 @@
+{
+  "id": "g7-u1-l01",
+  "title": "L'alphabet et les mots transparents",
+  "source": "Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip / Leçon_1",
+  "sourceFiles": [
+    "lesson1_reference.pdf",
+    "lesson1_interactive.html",
+    "lesson1_assessment.pdf",
+    "lesson1_quiz_secure.html"
+  ],
+  "sections": [
+    {
+      "id": "alphabet",
+      "title": "L'alphabet français",
+      "content": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "interaction": "click-letter-to-hear-pronunciation",
+      "fullAlphabetAudio": true
+    },
+    {
+      "id": "vowels",
+      "title": "Les voyelles",
+      "items": [
+        {"letter":"A","word":"arbre","arabic":"شجرة","emoji":"🌳"},
+        {"letter":"E","word":"éléphant","arabic":"فيل","emoji":"🐘"},
+        {"letter":"I","word":"image","arabic":"صورة","emoji":"🖼️"},
+        {"letter":"O","word":"orange","arabic":"برتقالة","emoji":"🍊"},
+        {"letter":"U","word":"uniforme","arabic":"زي مدرسي","emoji":"👔"},
+        {"letter":"Y","word":"yoyo","arabic":"يويو","emoji":"🪀"},
+        {"letter":"H","word":"hôpital","arabic":"مستشفى","emoji":"🏥"}
+      ]
+    },
+    {
+      "id": "transparent-1",
+      "title": "Les mots transparents (1)",
+      "items": [
+        ["Un pyjama","بيجاما","🩳"],["Un pantalon","بنطلون","👖"],["Un taxi","تاكسي","🚕"],["Un domino","دومينو","🎲"],["Un canapé","كنبة","🛋️"],["Un téléphone","تليفون","☎️"],["Un biscuit","بسكويت","🍪"],["Un balcon","بلكونة","🏘️"],["Un vase","فازة","🏺"]
+      ]
+    },
+    {
+      "id": "transparent-2",
+      "title": "Les mots transparents (2)",
+      "items": [
+        ["Un ascenseur","أسانسير","🛗"],["Une caméra","كاميرا","📷"],["Un autobus","أوتوبيس","🚌"],["Un gilet","جيلية","🦺"],["Une écharpe","إيشارب","🧣"],["Un bouquet","باقة ورد","💐"],["Une guitare","جيتار","🎸"],["Une télévision","تليفزيون","📺"],["Une plage","شاطئ","🏖️"],["Une lampe","لمبة","💡"],["Une raquette","مضرب","🏸"],["Une radio","راديو","📻"],["Un piano","بيانو","🎹"],["Un garage","جراج","🚗"],["Un cinéma","سينما","🎬"],["Un journal","جورنال","📰"]
+      ]
+    }
+  ],
+  "embeddedChecks": [
+    {"question":"كيف تُكتب 'شكرًا' بالفرنسية؟","options":["Merci","Bonjour","Salut"],"answer":"Merci"},
+    {"question":"ما الحرف المتحرك الذي تبدأ به كلمة 'éléphant'؟","options":["A","E","O"],"answer":"E"},
+    {"question":"اختر الكلمة الشفافة الصحيحة لـ 'تليفون'","options":["Un taxi","Un téléphone","Un piano"],"answer":"Un téléphone"},
+    {"question":"ما معنى 'Un autobus'؟","options":["أوتوبيس","تاكسي","دراجة"],"answer":"أوتوبيس"},
+    {"question":"اختر الحرف الذي يُنطق 'إيغريك' في الفرنسية","options":["W","Y","H"],"answer":"Y"},
+    {"question":"ما هي الكلمة الشفافة لـ 'جيتار'؟","options":["Une radio","Une guitare","Un vase"],"answer":"Une guitare"}
+  ],
+  "assessment": {
+    "total": 20,
+    "exercises": [
+      {"id":1,"title":"Choisis la bonne réponse","points":4,"items":4},
+      {"id":2,"title":"Complète chaque mot","points":3,"items":6},
+      {"id":3,"title":"Chasse l'intrus","points":3,"items":3},
+      {"id":4,"title":"Relie chaque mot à son image","points":4,"items":4},
+      {"id":5,"title":"Écris les lettres manquantes","points":3,"items":1},
+      {"id":6,"title":"Écris le mot correspondant","points":3,"items":6},
+      {"id":7,"title":"Vrai ou Faux ?","points":3,"items":3},
+      {"id":8,"title":"Classe (Meuble / Transport / Vêtement)","points":4,"items":8}
+    ]
+  },
+  "journey": {
+    "01_start": {"status":"ready","sourceSection":"overview"},
+    "02_vocabulary": {"status":"ready","sourceSections":["vowels","transparent-1","transparent-2"],"interaction":"cards-with-audio"},
+    "03_pronunciation": {"status":"ready","sourceSection":"alphabet","interaction":"letter-and-word-audio"},
+    "04_grammar": {"status":"not-applicable","note":"لا يوجد درس قواعد مستقل في المصدر الأصلي؛ لا نضيف قاعدة مصطنعة."},
+    "05_conversation": {"status":"not-applicable","note":"لا يوجد حوار مستقل في المصدر الأصلي؛ لا نضيف حوارًا مصطنعًا."},
+    "06_training": {"status":"ready","sourceSection":"embeddedChecks"},
+    "07_video": {"status":"source-mapped","note":"الفيديو التكميلي موجود في المصدر ويجب تشغيل الـasset الأصلي، لا استبداله بمصدر غير موثق."},
+    "08_games": {"status":"ready","sourceSection":"embeddedChecks","interaction":"interactive-checks"},
+    "09_smart_review": {"status":"ready","mode":"external-lesson-entry"},
+    "10_assessment": {"status":"ready","source":"lesson1_assessment.pdf","total":20},
+    "11_progress": {"status":"ready","tracks":["lesson completion","practice","assessment"]}
+  },
+  "integrityRules": [
+    "لا يتم إسقاط أي مفردة من المصدر.",
+    "لا يتم اختراع Grammar أو Conversation غير موجودة في المصدر.",
+    "الاختبار الإلكتروني والـassessment مصدران مستقلان ويجب الحفاظ على محتواهما.",
+    "الصف الثاني الإعدادي Reference للهيكل والتفاعل فقط، وليس مصدرًا للمحتوى."
+  ]
+}
