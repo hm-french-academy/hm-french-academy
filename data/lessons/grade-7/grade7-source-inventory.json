@@ -1,0 +1,21 @@
+{
+  "grade":"grade-7",
+  "sourcePackage":"Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
+  "lessonCount":11,
+  "units":3,
+  "lessons":[
+    {"id":"g7-u1-l1","unit":1,"lesson":1,"title":"L'alphabet et les mots transparents","sections":["L'alphabet français","Les voyelles","Les mots transparents (1)","Les mots transparents (2)","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u1-l2","unit":1,"lesson":2,"title":"Les salutations","sections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Le matin ou le soir ?","Formules à retenir","Remets le dialogue en ordre","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u1-l3","unit":1,"lesson":3,"title":"Les pronoms sujets et les verbes en \"-er\"","sections":["Les pronoms sujets","Remplace le nom par le bon pronom","La règle de conjugaison","Conjugue le verbe","Complète avec la bonne forme du verbe","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u1-l4","unit":1,"lesson":4,"title":"Le verbe \"être\" et la présentation","sections":["Le verbe être","Comment se présenter ?","Se présenter","Présenter quelqu'un","Construis ta présentation !","Complète avec être","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u1-l5","unit":1,"lesson":5,"title":"Les nombres (0-20)","sections":["De 0 à 20","La ligne des nombres","Compte les objets !","Calcule et écris en lettres","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u1-l6","unit":1,"lesson":6,"title":"L'heure","sections":["Quelle heure est-il ?","Les moments spéciaux","Associe l'heure à la bonne horloge","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u2-l1","unit":2,"lesson":1,"title":"Tu as quel âge ?","sections":["Le verbe avoir","Quel âge as-tu ?","Compte les bougies !","Complète avec avoir","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u2-l2","unit":2,"lesson":2,"title":"Qu'est-ce que c'est ? Les objets de la classe","sections":["Les articles indéfinis","Les objets de la classe","Choisis l'article indéfini convenable","Qu'est-ce qu'il y a dans ton sac à dos ?","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u3-l1","unit":3,"lesson":1,"title":"Les couleurs","sections":["Les couleurs","Colorie l'objet !","Les adjectifs de couleur","Choisis l'adjectif de couleur qui convient","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u3-l2","unit":3,"lesson":2,"title":"Les articles définis et les jours de la semaine","sections":["Les articles définis","Choisis l'article défini convenable","Les jours de la semaine","Quel jour sommes-nous ?","Vérifie-toi !","Vidéo complémentaire"]},
+    {"id":"g7-u3-l3","unit":3,"lesson":3,"title":"Les mois de l'année et les saisons","sections":["Les mois de l'année","Les saisons de l'année","Quel temps fait-il ?","Associe le mois à sa saison","Vérifie-toi !","Vidéo complémentaire","Félicitations !"]}
+  ],
+  "assetRule":"Each lesson has reference PDF, interactive HTML, assessment PDF and secure quiz HTML in the source package.",
+  "architectureRule":"Grade-8 supplies only UI/interaction architecture. Source content must come from this package."
+}
