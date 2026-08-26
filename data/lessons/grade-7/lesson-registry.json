@@ -3,14 +3,23 @@
   "templateReference":"grade-8",
   "independent":true,
   "contentSource":"uploaded-authoritative-package",
+  "sourcePackage":"Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
   "lessonRoute":"grade7-lesson-studio.html?id={lessonId}&section={section}",
   "journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],
   "lessons":[
-    "grade7-u1-l1","grade7-u1-l2","grade7-u1-l3","grade7-u1-l4","grade7-u1-l5","grade7-u1-l6",
-    "grade7-u2-l1","grade7-u2-l2",
-    "grade7-u3-l1","grade7-u3-l2","grade7-u3-l3"
+    {"id":"grade7-u1-l1","sourceLesson":1,"titleFr":"L'alphabet et les mots transparents","titleAr":"الأبجدية والكلمات الشفافة"},
+    {"id":"grade7-u1-l2","sourceLesson":2,"titleFr":"Les salutations","titleAr":"التحيات"},
+    {"id":"grade7-u1-l3","sourceLesson":3,"titleFr":"Les pronoms sujets et les verbes en -er","titleAr":"ضمائر الفاعل وأفعال المجموعة الأولى"},
+    {"id":"grade7-u1-l4","sourceLesson":4,"titleFr":"Le verbe être et la présentation","titleAr":"فعل être والتقديم"},
+    {"id":"grade7-u1-l5","sourceLesson":5,"titleFr":"Les nombres (0-20)","titleAr":"الأعداد من 0 إلى 20"},
+    {"id":"grade7-u1-l6","sourceLesson":6,"titleFr":"L'heure","titleAr":"الساعة"},
+    {"id":"grade7-u2-l1","sourceLesson":7,"titleFr":"Tu as quel âge ?","titleAr":"كم عمرك؟"},
+    {"id":"grade7-u2-l2","sourceLesson":8,"titleFr":"Qu'est-ce que c'est ? Les objets de la classe","titleAr":"ما هذا؟ أدوات الفصل"},
+    {"id":"grade7-u3-l1","sourceLesson":9,"titleFr":"Les couleurs","titleAr":"الألوان"},
+    {"id":"grade7-u3-l2","sourceLesson":10,"titleFr":"Les articles définis et les jours de la semaine","titleAr":"أدوات المعرفة وأيام الأسبوع"},
+    {"id":"grade7-u3-l3","sourceLesson":11,"titleFr":"Les mois de l'année et les saisons","titleAr":"شهور السنة والفصول"}
   ],
   "sourceLessons":11,
-  "routingPolicy":{"noGrade8Fallback":true,"noSharedGrade8Content":true,"sourceData":"data/lessons/grade-7/grade7-content.json"},
+  "routingPolicy":{"noGrade8Fallback":true,"noSharedGrade8Content":true,"sourceData":"data/lessons/grade-7/grade7-source-content.json"},
   "sourceMapping":"data/lessons/grade-7/source-package-manifest.json"
 }
