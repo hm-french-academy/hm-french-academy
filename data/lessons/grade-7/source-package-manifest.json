@@ -1,0 +1,22 @@
+{
+  "grade":"grade-7",
+  "package":"Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
+  "authoritative":true,
+  "templateReference":"grade-8",
+  "templateReferenceIsContentSource":false,
+  "lessonCount":11,
+  "lessons":[
+    {"sourceLesson":1,"id":"grade7-u1-l1","title":"L'alphabet et les mots transparents","interactive":"Leçon_1/lesson1_interactive.html","reference":"Leçon_1/lesson1_reference.pdf","assessment":"Leçon_1/lesson1_assessment.pdf","quiz":"Leçon_1/lesson1_quiz_secure.html"},
+    {"sourceLesson":2,"id":"grade7-u1-l2","title":"Les salutations","interactive":"Leçon_2/lesson2_interactive.html","reference":"Leçon_2/lesson2_reference.pdf","assessment":"Leçon_2/lesson2_assessment.pdf","quiz":"Leçon_2/lesson2_quiz_secure.html"},
+    {"sourceLesson":3,"id":"grade7-u1-l3","title":"Les pronoms sujets et les verbes du 1er groupe","interactive":"Leçon_3/lesson3_interactive.html","reference":"Leçon_3/lesson3_reference.pdf","assessment":"Leçon_3/lesson3_assessment.pdf","quiz":"Leçon_3/lesson3_quiz_secure.html"},
+    {"sourceLesson":4,"id":"grade7-u1-l4","title":"Le verbe être et la présentation","interactive":"Leçon_4/lesson4_interactive.html","reference":"Leçon_4/lesson4_reference.pdf","assessment":"Leçon_4/lesson4_assessment.pdf","quiz":"Leçon_4/lesson4_quiz_secure.html"},
+    {"sourceLesson":5,"id":"grade7-u1-l5","title":"Les nombres (0-20)","interactive":"Leçon_5/lesson5_interactive.html","reference":"Leçon_5/lesson5_reference.pdf","assessment":"Leçon_5/lesson5_assessment.pdf","quiz":"Leçon_5/lesson5_quiz_secure.html"},
+    {"sourceLesson":6,"id":"grade7-u1-l6","title":"L'heure","interactive":"Leçon_6/lesson6_interactive.html","reference":"Leçon_6/lesson6_reference.pdf","assessment":"Leçon_6/lesson6_assessment.pdf","quiz":"Leçon_6/lesson6_quiz_secure.html"},
+    {"sourceLesson":7,"id":"grade7-u2-l1","title":"Tu as quel âge ?","interactive":"Leçon_7/lesson7_interactive.html","reference":"Leçon_7/lesson7_reference.pdf","assessment":"Leçon_7/lesson7_assessment.pdf","quiz":"Leçon_7/lesson7_quiz_secure.html"},
+    {"sourceLesson":8,"id":"grade7-u2-l2","title":"Qu'est-ce que c'est ? Les objets de la classe","interactive":"Leçon_8/lesson8_interactive.html","reference":"Leçon_8/lesson8_reference.pdf","assessment":"Leçon_8/lesson8_assessment.pdf","quiz":"Leçon_8/lesson8_quiz_secure.html"},
+    {"sourceLesson":9,"id":"grade7-u3-l1","title":"Les couleurs","interactive":"Leçon_9/lesson9_interactive.html","reference":"Leçon_9/lesson9_reference.pdf","assessment":"Leçon_9/lesson9_assessment.pdf","quiz":"Leçon_9/lesson9_quiz_secure.html"},
+    {"sourceLesson":10,"id":"grade7-u3-l2","title":"Les articles définis et les jours de la semaine","interactive":"Leçon_10/lesson10_interactive.html","reference":"Leçon_10/lesson10_reference.pdf","assessment":"Leçon_10/lesson10_assessment.pdf","quiz":"Leçon_10/lesson10_quiz_secure.html"},
+    {"sourceLesson":11,"id":"grade7-u3-l3","title":"Les mois de l'année et les saisons","interactive":"Leçon_11/lesson11_interactive.html","reference":"Leçon_11/lesson11_reference.pdf","assessment":"Leçon_11/lesson11_assessment.pdf","quiz":"Leçon_11/lesson11_quiz_secure.html"}
+  ],
+  "note":"The uploaded package is the authoritative source for grade-7 content. Existing grade-7 placeholder/derived content must be audited against these 11 source lessons before production release."
+}
