@@ -1,0 +1,14 @@
+{
+  "id":"grade7-term1-learning-studio",
+  "grade":"grade-7",
+  "title":"HM Academy — الصف الأول الإعدادي",
+  "source":"data/lessons/grade-7/grade7-content.json",
+  "registry":"data/lessons/grade-7/lesson-registry.json",
+  "templateReference":"grade-8 / lesson-studio-standard.html",
+  "templateMode":"reference-only",
+  "units":6,
+  "lessons":24,
+  "sections":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],
+  "features":{"speech":true,"interactivePractice":true,"games":true,"assessment":true,"progressTracking":true,"smartReview":true},
+  "integrity":{"gradeIdentifier":"grade-7","forbiddenLegacyPrefix":"grade8-","forbiddenLegacyRoutes":["lesson-studio-standard.html"],"isolatedRuntime":"grade7-lesson-studio.html"}
+}
