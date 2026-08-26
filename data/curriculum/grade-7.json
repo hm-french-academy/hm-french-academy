@@ -1,18 +1,17 @@
 {
-  "id":"grade-7",
-  "title":"الصف الأول الإعدادي",
-  "language":"fr",
-  "semester":"term-1",
-  "templateReference":"grade-8",
-  "templatePolicy":"Reference only; grade-8 files are never modified or reused as grade-7 content.",
-  "source":"Ensemble / La Vie — French A1 Grade 7 curriculum source package",
-  "includedUnits":["unit-1","unit-2","unit-3","unit-4","unit-5","unit-6"],
-  "units":[
-    {"id":"unit-1","titleFr":"Bonjour !","titleAr":"مرحبًا!","lessons":["grade7-u1-l1","grade7-u1-l2","grade7-u1-l3","grade7-u1-l4"]},
-    {"id":"unit-2","titleFr":"Je suis égyptien, et toi ?","titleAr":"أنا مصري، وأنت؟","lessons":["grade7-u2-l1","grade7-u2-l2","grade7-u2-l3","grade7-u2-l4"]},
-    {"id":"unit-3","titleFr":"J'habite à Louxor","titleAr":"أسكن في الأقصر","lessons":["grade7-u3-l1","grade7-u3-l2","grade7-u3-l3","grade7-u3-l4"]},
-    {"id":"unit-4","titleFr":"Dans ma classe","titleAr":"في فصلي","lessons":["grade7-u4-l1","grade7-u4-l2","grade7-u4-l3","grade7-u4-l4"]},
-    {"id":"unit-5","titleFr":"J'aime le sport !","titleAr":"أحب الرياضة!","lessons":["grade7-u5-l1","grade7-u5-l2","grade7-u5-l3","grade7-u5-l4"]},
-    {"id":"unit-6","titleFr":"Je suis grand et j'ai les yeux marron.","titleAr":"أنا طويل وعيناي بنيتان","lessons":["grade7-u6-l1","grade7-u6-l2","grade7-u6-l3","grade7-u6-l4"]}
+  "id": "grade-7",
+  "title": "الصف الأول الإعدادي",
+  "language": "fr",
+  "semester": "term-1",
+  "templateReference": "grade-8",
+  "templatePolicy": "Reference only; grade-8 files are never modified or reused as grade-7 content.",
+  "source": "Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
+  "authoritativeSource": true,
+  "sourceLessonCount": 11,
+  "includedUnits": ["unit-1", "unit-2", "unit-3"],
+  "units": [
+    {"id":"unit-1","titleFr":"Unité 1","titleAr":"الوحدة الأولى","lessons":["grade7-u1-l1","grade7-u1-l2","grade7-u1-l3","grade7-u1-l4","grade7-u1-l5","grade7-u1-l6"]},
+    {"id":"unit-2","titleFr":"Unité 2","titleAr":"الوحدة الثانية","lessons":["grade7-u2-l1","grade7-u2-l2"]},
+    {"id":"unit-3","titleFr":"Unité 3","titleAr":"الوحدة الثالثة","lessons":["grade7-u3-l1","grade7-u3-l2","grade7-u3-l3"]}
   ]
 }
