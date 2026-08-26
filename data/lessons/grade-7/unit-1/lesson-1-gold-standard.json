@@ -1,0 +1,37 @@
+{
+  "id": "grade7-u1-l1",
+  "status": "source-mapped-gold-standard",
+  "sourceLesson": 1,
+  "titleFr": "L'alphabet et les mots transparents",
+  "titleAr": "الأبجدية والكلمات الشفافة",
+  "sourceIntegrity": "authoritative-source-only",
+  "templateReference": "grade-8",
+  "templateReferencePolicy": "UI-and-interaction-architecture-only",
+  "journey": [
+    {"id":"introduction","status":"ready","sourceSections":["alphabet","vowels","transparent-1","transparent-2"]},
+    {"id":"vocabulary","status":"source-extraction-required","sourceSections":["alphabet","transparent-1","transparent-2"]},
+    {"id":"pronunciation","status":"source-extraction-required","sourceSections":["vowels","alphabet"]},
+    {"id":"grammar","status":"not-a-primary-source-object","note":"Do not invent a grammar lesson; only surface grammar if explicitly present in the source."},
+    {"id":"conversation","status":"not-present-in-mapped-source-sections","note":"Do not fabricate dialogue for this lesson."},
+    {"id":"practice","status":"source-extraction-required","sourceSections":["transparent-1","transparent-2"]},
+    {"id":"video","status":"asset-verification-required","sourceSection":"video"},
+    {"id":"games","status":"enrichment-required","note":"Games must be generated from verified extracted lesson content."},
+    {"id":"smart-review","status":"enrichment-required","note":"Review must use only verified lesson atoms."},
+    {"id":"assessment","status":"source-extraction-required","sourceSection":"check","sourceFile":"Leçon_1/lesson1_assessment.pdf"},
+    {"id":"progress","status":"ready","note":"Local lesson completion tracking only; no invented mastery score."}
+  ],
+  "sourceSections": [
+    {"id":"alphabet","title":"L'alphabet français","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
+    {"id":"vowels","title":"Les voyelles","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
+    {"id":"transparent-1","title":"Les mots transparents (١)","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
+    {"id":"transparent-2","title":"Les mots transparents (٢)","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
+    {"id":"check","title":"Vérifie-toi !","source":"Leçon_1/lesson1_interactive.html + lesson1_assessment.pdf + lesson1_quiz_secure.html"},
+    {"id":"video","title":"Vidéo complémentaire","source":"Leçon_1/lesson1_interactive.html"}
+  ],
+  "completionGate": {
+    "mustVerifySourceExtraction": true,
+    "mustVerifyAssessment": true,
+    "mustVerifyVideoAsset": true,
+    "mustNotInventMissingSections": true
+  }
+}
