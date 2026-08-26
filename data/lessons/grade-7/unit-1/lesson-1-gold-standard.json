@@ -1,26 +1,27 @@
 {
-  "id": "grade7-u1-l1",
-  "status": "source-mapped-gold-standard",
-  "sourceLesson": 1,
-  "titleFr": "L'alphabet et les mots transparents",
-  "titleAr": "الأبجدية والكلمات الشفافة",
-  "sourceIntegrity": "authoritative-source-only",
-  "templateReference": "grade-8",
-  "templateReferencePolicy": "UI-and-interaction-architecture-only",
-  "journey": [
-    {"id":"introduction","status":"ready","sourceSections":["alphabet","vowels","transparent-1","transparent-2"]},
-    {"id":"vocabulary","status":"source-extraction-required","sourceSections":["alphabet","transparent-1","transparent-2"]},
-    {"id":"pronunciation","status":"source-extraction-required","sourceSections":["vowels","alphabet"]},
-    {"id":"grammar","status":"not-a-primary-source-object","note":"Do not invent a grammar lesson; only surface grammar if explicitly present in the source."},
-    {"id":"conversation","status":"not-present-in-mapped-source-sections","note":"Do not fabricate dialogue for this lesson."},
-    {"id":"practice","status":"source-extraction-required","sourceSections":["transparent-1","transparent-2"]},
-    {"id":"video","status":"asset-verification-required","sourceSection":"video"},
-    {"id":"games","status":"enrichment-required","note":"Games must be generated from verified extracted lesson content."},
-    {"id":"smart-review","status":"enrichment-required","note":"Review must use only verified lesson atoms."},
-    {"id":"assessment","status":"source-extraction-required","sourceSection":"check","sourceFile":"Leçon_1/lesson1_assessment.pdf"},
-    {"id":"progress","status":"ready","note":"Local lesson completion tracking only; no invented mastery score."}
-  ],
-  "sourceSections": [
+  "id":"grade7-u1-l1",
+  "status":"gold-standard-v2",
+  "sourceLesson":1,
+  "titleFr":"L'alphabet et les mots transparents",
+  "titleAr":"الأبجدية والكلمات الشفافة",
+  "sourceIntegrity":"authoritative-source-first-plus-pedagogical-enrichment",
+  "templateReference":"grade-8",
+  "templateReferencePolicy":"UI-and-interaction-architecture-only",
+  "principle":"Preserve all verified source content; enrich the learning experience where pedagogically useful without changing the lesson objective or inventing unsupported curriculum facts.",
+  "journey":{
+    "introduction":{"status":"ready","purpose":"context, goals and motivation","sourceSections":["alphabet","vowels","transparent-1","transparent-2"]},
+    "vocabulary":{"status":"enrichment-ready","sourceSections":["alphabet","transparent-1","transparent-2"],"experience":["complete source items","visual/context cards","listen","recognize","match","quick-check"],"rule":"no source item may be omitted"},
+    "pronunciation":{"status":"enrichment-ready","sourceSections":["alphabet","vowels"],"experience":["listen","repeat","letter-sound discrimination","guided retry"]},
+    "grammar":{"status":"light-enrichment","sourceTruth":"no standalone grammar lesson in source","experience":["language-notes only","micro-examples when directly useful for the lesson"],"rule":"never present enrichment as an official source grammar topic"},
+    "conversation":{"status":"light-enrichment","sourceTruth":"no standalone conversation section in source","experience":["micro-situations","listen","choose","complete","role-play"],"rule":"very short level-appropriate language practice using only verified lesson language; never fabricate a source dialogue"},
+    "practice":{"status":"enrichment-ready","sourceSections":["transparent-1","transparent-2","check"],"experience":["source activities","easy-to-progressive practice","immediate feedback","retry"]},
+    "video":{"status":"source-asset","sourceSection":"video","required":false,"rule":"use the verified original asset when available; never invent a video"},
+    "games":{"status":"enrichment-ready","experience":["alphabet recognition","vowel sorting","transparent-word matching"],"rule":"every game must assess a verified lesson atom"},
+    "smart-review":{"status":"enrichment-ready","experience":["mistake-driven review","weak-skill retry","cumulative recall"],"rule":"review only verified lesson atoms"},
+    "assessment":{"status":"source-first","sourceFiles":["Leçon_1/lesson1_assessment.pdf","Leçon_1/lesson1_quiz_secure.html"],"experience":["official assessment","clearly separated enrichment questions","feedback","retry"]},
+    "progress":{"status":"ready","skills":["vocabulary","pronunciation","reading","practice"],"completion":"meaningful learning interaction plus assessment; not page opening alone"}
+  },
+  "sourceSections":[
     {"id":"alphabet","title":"L'alphabet français","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
     {"id":"vowels","title":"Les voyelles","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
     {"id":"transparent-1","title":"Les mots transparents (١)","source":"Leçon_1/lesson1_interactive.html + lesson1_reference.pdf"},
@@ -28,10 +29,13 @@
     {"id":"check","title":"Vérifie-toi !","source":"Leçon_1/lesson1_interactive.html + lesson1_assessment.pdf + lesson1_quiz_secure.html"},
     {"id":"video","title":"Vidéo complémentaire","source":"Leçon_1/lesson1_interactive.html"}
   ],
-  "completionGate": {
-    "mustVerifySourceExtraction": true,
-    "mustVerifyAssessment": true,
-    "mustVerifyVideoAsset": true,
-    "mustNotInventMissingSections": true
-  }
+  "qualityGate":[
+    "all verified source sections represented",
+    "all source vocabulary and activities preserved",
+    "enrichment clearly distinguished from source truth",
+    "no invented source dialogue or grammar",
+    "official assessment and quiz preserved",
+    "mobile-first interactions",
+    "learning evidence required for completion"
+  ]
 }
