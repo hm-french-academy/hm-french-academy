@@ -1,0 +1,16 @@
+{
+  "grade":"grade-7",
+  "templateReference":"grade-8",
+  "independent":true,
+  "lessonRoute":"grade7-lesson-studio.html?id={lessonId}&section={section}",
+  "journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],
+  "lessons":[
+    "grade7-u1-l1","grade7-u1-l2","grade7-u1-l3","grade7-u1-l4",
+    "grade7-u2-l1","grade7-u2-l2","grade7-u2-l3","grade7-u2-l4",
+    "grade7-u3-l1","grade7-u3-l2","grade7-u3-l3","grade7-u3-l4",
+    "grade7-u4-l1","grade7-u4-l2","grade7-u4-l3","grade7-u4-l4",
+    "grade7-u5-l1","grade7-u5-l2","grade7-u5-l3","grade7-u5-l4",
+    "grade7-u6-l1","grade7-u6-l2","grade7-u6-l3","grade7-u6-l4"
+  ],
+  "routingPolicy":{"noGrade8Fallback":true,"noSharedGrade8Content":true,"sourceData":"data/lessons/grade-7/grade7-content.json"}
+}
