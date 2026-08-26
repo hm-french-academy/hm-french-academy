@@ -1,0 +1,36 @@
+{
+  "grade":"grade-7",
+  "status":"gold-standard-v1",
+  "purpose":"Quality contract for all Grade 7 lessons",
+  "contentTruth":"uploaded-authoritative-package",
+  "templateReference":"grade-8",
+  "templateMode":"reference-only",
+  "rules":[
+    "Preserve every source teaching point, vocabulary item, activity and assessment item.",
+    "Enrich presentation and pedagogy when it improves learning without changing the curriculum target.",
+    "Never invent unsupported curriculum facts and never silently omit source content.",
+    "Grammar and conversation may be pedagogically enriched from the lesson objective and source language, while remaining level-appropriate.",
+    "Adapt the interaction pattern to the nature of each lesson rather than forcing identical content into every section."
+  ],
+  "journey":{
+    "introduction":"lesson goals, context and motivation",
+    "vocabulary":"complete source vocabulary plus visual/contextual interaction",
+    "pronunciation":"source pronunciation targets plus listen-repeat discrimination practice",
+    "grammar":"source-grounded explanation, guided examples, progressive practice and error feedback",
+    "conversation":"natural level-appropriate dialogue using lesson language, listen/choose/complete/role-play",
+    "practice":"source activities plus additional graduated practice",
+    "video":"use source video/assets when present; never fabricate unavailable media",
+    "games":"short skill-aligned games tied to lesson objectives",
+    "smart-review":"adaptive review driven by mistakes and mastery, cumulative across lessons",
+    "assessment":"official source assessment preserved, with clearly separated enrichment questions where useful",
+    "progress":"mastery by skill, completion state and targeted retry path"
+  },
+  "masteryModel":{
+    "skills":["vocabulary","pronunciation","grammar","conversation","practice"],
+    "completionRequires":"meaningful interaction and assessment, not page opening alone",
+    "reviewTrigger":"weak performance or repeated errors",
+    "display":"skill-level mastery plus overall lesson mastery"
+  },
+  "mobileFirst":true,
+  "accessibility":["clear hierarchy","large touch targets","readable French/Arabic text","keyboard-safe interactions","audio controls with visible labels"]
+}
