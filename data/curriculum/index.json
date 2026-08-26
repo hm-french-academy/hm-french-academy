@@ -5,7 +5,7 @@
       "category":"middle-school",
       "title":{"ar":"الفرنسية البسيطة","fr":"Le français simple","en":"Le français simple"},
       "grades":[
-        {"id":"grade-7","title":{"ar":"الصف الأول الإعدادي","fr":"Français simple 1","en":"Français simple 1"},"terms":["term-1","term-2"]},
+        {"id":"grade-7","title":{"ar":"الصف الأول الإعدادي","fr":"Français simple 1","en":"Français simple 1"},"file":"data/curriculum/grade-7.json","terms":["term-1","term-2"]},
         {"id":"grade-8","title":{"ar":"الصف الثاني الإعدادي","fr":"Français simple 2","en":"Français simple 2"},"file":"data/curriculum/grade-8.json","terms":["term-1","term-2"]},
         {"id":"grade-9","title":{"ar":"الصف الثالث الإعدادي","fr":"Français simple 3","en":"Français simple 3"},"terms":["term-1","term-2"]}
       ]
