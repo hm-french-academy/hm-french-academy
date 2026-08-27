@@ -1,0 +1,142 @@
+{
+  "grade": "secondary-1",
+  "subject": "French",
+  "academic_year": "2026/2027",
+  "semester": 1,
+  "source_method": "Club @dos Plus 1",
+  "source_basis": "Club @dos Plus 1 first-semester scope: Units 1-2 and Aide-Memoire pp.36-37",
+  "source_reference": "Publicly accessible digital copy checked 2026-08-28; pages 6-37",
+  "status": "content-mapping-in-progress",
+  "instruction": "Treat the textbook as source truth. Do not replace source content with external summaries. Enrichment must be layered on top and clearly marked as HM Academy enrichment.",
+  "semester_scope": {
+    "unit_1": {
+      "title_fr": "Le Club de ma classe",
+      "pages": "6-19",
+      "communication": [
+        "Saluer",
+        "Se présenter",
+        "Présenter et identifier ses copains",
+        "Décrire ses copains",
+        "Compter de 0 à 50",
+        "Parler du caractère"
+      ],
+      "vocabulary": [
+        "Les nombres de 0 à 50",
+        "Les couleurs",
+        "L'alphabet",
+        "Les salutations",
+        "Les connaissances: copain/copine, ami/amie, voisin/voisine, camarade de classe, cybercopain/cybercopine",
+        "Adjectifs de caractère: sympathique, désordonné(e), intelligent(e), bavard(e), gourmand(e), souriant(e), romantique, timide"
+      ],
+      "grammar": [
+        "Subject pronouns",
+        "Le verbe s'appeler au présent",
+        "Le verbe être au présent",
+        "Articles indéfinis: un, une, des",
+        "Masculin/féminin des adjectifs qualificatifs",
+        "Accord de l'adjectif avec le nom/personne"
+      ],
+      "phonetics": [
+        "Pronunciation work around names and introductory vocabulary",
+        "Alphabet and sound recognition"
+      ],
+      "core_tasks": [
+        "Introduce yourself with name, age, school and character",
+        "Introduce and identify classmates/friends",
+        "Describe a classmate's character",
+        "Use greetings and leave-taking expressions",
+        "Recognize and produce numbers 0-50 and colors"
+      ],
+      "audio_tracks": [1,2,3,4,5,6,7,8],
+      "content_checkpoints": [
+        "Page 6 unit launch and communication goals",
+        "Pages 7-12 introduction, names, age, city and basic interaction",
+        "Pages 13-16 greetings, identifying people, être and character",
+        "Pages 17-18 grammar practice",
+        "Page 19 lexicon/review"
+      ]
+    },
+    "unit_2": {
+      "title_fr": "Le Club des artistes",
+      "pages": "20-35",
+      "communication": [
+        "Identifier et décrire des objets",
+        "Demander et dire l'âge",
+        "Demander et dire la date d'anniversaire",
+        "Exprimer ses goûts",
+        "Utiliser la négation"
+      ],
+      "vocabulary": [
+        "Les fournitures scolaires",
+        "Les mois de l'année",
+        "Les nombres de 50 à 100",
+        "Objets et éléments de la chambre/espace personnel",
+        "Loisirs et goûts"
+      ],
+      "grammar": [
+        "Definite articles: le, la, l', les",
+        "Present tense of regular -er verbs used in the unit",
+        "Avoir au présent",
+        "Negation ne...pas",
+        "Plural of adjectives",
+        "Question forms for age, birthday, objects and preferences"
+      ],
+      "phonetics": [
+        "Sound work integrated with unit vocabulary and listening activities"
+      ],
+      "core_tasks": [
+        "Identify and describe objects",
+        "Say and ask someone's age",
+        "Say and ask a birthday date",
+        "Talk about likes and dislikes",
+        "Describe what is in a school bag/pencil case",
+        "Use numbers 50-100 and months"
+      ],
+      "audio_tracks": [9,10,11,12,13,14,15,16],
+      "content_checkpoints": [
+        "Page 20 transition/review",
+        "Pages 21-24 unit launch, bedroom/object context and identification",
+        "Pages 25-32 object description, articles, avoir, -er verbs, negation and preferences",
+        "Pages 33-34 school supplies, months and numbers 50-100",
+        "Page 35 Magazine @dos.plus and cultural/reading enrichment"
+      ]
+    }
+  },
+  "review": {
+    "pages": "36-37",
+    "purpose": "Aide-Memoire consolidation after Units 1-2",
+    "sections": [
+      "Communication: greetings and leave-taking",
+      "Presenting and identifying people",
+      "Describing people",
+      "Identifying objects",
+      "Saying age",
+      "Expressing tastes",
+      "Saying birthday date",
+      "Grammar reference for articles, adjective agreement, s'appeler, être, avoir, questions, definite articles, negation"
+    ]
+  },
+  "hm_academy_build_plan": {
+    "lesson_journey": [
+      "البداية",
+      "المفردات",
+      "النطق",
+      "القواعد",
+      "المحادثة",
+      "التدريب",
+      "الفيديو",
+      "الألعاب",
+      "المراجعة الذكية",
+      "التقييم",
+      "التقدم"
+    ],
+    "rule": "Preserve the existing HM Academy Lesson Studio structure. Build lessons from source-truth content first; enrichment follows source extraction and QA.",
+    "semester_1_priority": [
+      "Create a source-truth content map for Units 1-2",
+      "Split the source into teachable lesson nodes without inventing missing textbook lessons",
+      "Capture every vocabulary item, grammar target, dialogue/listening target and exercise type",
+      "Create a missing-content checklist before implementation",
+      "Then implement the Learning Studio pages"
+    ]
+  }
+}
