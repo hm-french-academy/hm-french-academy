@@ -9,9 +9,10 @@ The Learning Studio is a shared runtime. Content must be sourced from the author
 ## Verified
 
 - Unit 1 lessons 1–6 are represented in `grade7-content.json`.
-- Lesson 6 (`L'heure`) is represented in the current `grade7-lesson-studio.html` runtime.
+- Lesson 6 (`L'heure`) is represented in the current Grade 7 runtime.
 - Lesson 1 was audited against extracted source content and its vocabulary/source assessment structure was expanded.
 - Lesson 1 does not receive invented standalone grammar/conversation when the source does not contain those sections.
+- Lessons 2–5 have structured source-mapped lesson records containing their source sections/atoms/activities and explicit enrichment boundaries; they remain pending item-by-item source-file reconciliation before final release.
 
 ## Lesson 6 source map
 
@@ -27,9 +28,11 @@ Authoritative assets declared by the curriculum:
 - `Leçon_6/lesson6_assessment.pdf`
 - `Leçon_6/lesson6_quiz_secure.html`
 
+The structured lesson-6 record is currently missing from `data/lessons/grade-7/unit-1/`. It must be created only from the authoritative source assets; no lesson-6 content is to be inferred from the runtime card alone.
+
 ## Next gate — Unit 2 / source lesson 7
 
-The curriculum registry identifies source lesson 7 as `grade7-u2-l1`, titled `Tu as quel âge ?`, with these source sections:
+The curriculum registry identifies source lesson 7 as `grade7-u1-l7` in the current source-truth index, titled `Le verbe avoir - Tu as quel âge`, with these source sections:
 
 - Le verbe avoir
 - Quel âge as-tu ?
