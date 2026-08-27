@@ -1,24 +1,2 @@
 {
-  "id":"grade7-u1-l2",
-  "unit":"unit-1",
-  "sourceLesson":2,
-  "titleFr":"Les salutations",
-  "titleAr":"التحيات",
-  "status":"gold-standard-v1",
-  "sourceTruth":"data/lessons/grade-7/grade7-source-content.json",
-  "journey":{
-    "introduction":{"enabled":true,"goal":"استخدام التحيات المناسبة وفهم الفرق بين Bonjour وBonsoir واختيار التعبير المناسب للموقف"},
-    "vocabulary":{"mode":"source-plus-enrichment","sourceSections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Le matin ou le soir ?","Formules à retenir"],"experience":["complete source items","visual situation cards","listen","match","quick-check"]},
-    "pronunciation":{"mode":"source-plus-enrichment","experience":["listen","repeat","discriminate Bonjour/Bonsoir/Salut","guided retry"]},
-    "grammar":{"mode":"pedagogical-enrichment","sourceTruth":"communication formulas rather than a standalone grammar lesson","experience":["micro-language-notes","form-and-context examples","progressive practice"],"rule":"enrichment must remain tied to source expressions and level"},
-    "conversation":{"mode":"source-plus-enrichment","sourceSections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Remets le dialogue en ordre"],"experience":["listen","choose the appropriate greeting","complete dialogue","reorder dialogue","role-play"],"rule":"preserve the source dialogue and add short contextual practice without claiming invented dialogue is source material"},
-    "practice":{"mode":"source-plus-enrichment","sourceSections":["Remets le dialogue en ordre","Vérifie-toi !"],"experience":["source exercises","progressive scenarios","immediate feedback","retry"]},
-    "video":{"mode":"source-asset","required":false,"rule":"use verified original video asset when available"},
-    "games":{"mode":"skill-aligned","experience":["morning-or-evening","choose-the-right-greeting","greeting-match","dialogue-order"]},
-    "smart-review":{"mode":"adaptive","targets":["greetings","time/context","communication formulas","dialogue sequencing"]},
-    "assessment":{"mode":"source-first","sourceSection":"Vérifie-toi !","rule":"official source assessment remains authoritative; enrichment is clearly separated"},
-    "progress":{"mode":"mastery","skills":["vocabulary","pronunciation","conversation","practice"],"completion":"meaningful interaction plus assessment"}
-  },
-  "sourceSections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Le matin ou le soir ?","Formules à retenir","Remets le dialogue en ordre","Vérifie-toi !","Vidéo complémentaire"],
-  "qualityGate":["all source sections represented","no source activity omitted","conversation enrichment distinguished from source","grammar enrichment distinguished from source","mobile-first","assessment preserved","mastery evidence required"]
-}
+  "id":"grade7-u1-l2","unit":"unit-1","sourceLesson":2,"titleFr":"Les salutations","titleAr":"التحيات","status":"gold-standard-v2","sourceTruth":"authoritative-source-package/Leçon_2","journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],"sourceSections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Le matin ou le soir ?","Formules à retenir","Remets le dialogue en ordre","Vérifie-toi !","Vidéo complémentaire"],"enrichment":{"grammar":"micro-language notes tied to greetings and context; not presented as a standalone source grammar lesson","conversation":"short contextual practice built only from verified lesson language; source dialogue remains identifiable","games":["morning-or-evening","choose-the-right-greeting","greeting-match","dialogue-order"],"smartReview":"mistake-driven review of greeting, context, formulas and dialogue sequencing"},"qualityGate":["all source sections represented","source dialogue preserved and distinguishable","no invented source attribution","official assessment preserved","enrichment clearly labeled","mobile-first","mastery evidence required"]}
