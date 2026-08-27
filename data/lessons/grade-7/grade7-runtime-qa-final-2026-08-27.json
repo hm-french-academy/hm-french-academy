@@ -1,0 +1,21 @@
+{
+  "date":"2026-08-27",
+  "scope":"Grade 7 Learning Studio",
+  "staticChecks":{"canonicalLessonCount":11,"canonicalIdsUnique":true,"journeyStageCount":11,"lessonRouterRecognizesGrade7Ids":true,"grade7RouterTarget":"grade7-lesson-studio-live-v2.html","progressStorage":"localStorage","unsupportedLessonFallback":"explicit-error"},
+  "lessons":[
+    {"id":"grade7-u1-l1","source":"source-first audited","runtime":"wired","release":"qa-pass-with-source-boundary"},
+    {"id":"grade7-u1-l2","source":"mapped","runtime":"wired","release":"qa-pass-pending-item-level-source-reconciliation"},
+    {"id":"grade7-u1-l3","source":"mapped","runtime":"wired","release":"qa-pass-pending-item-level-source-reconciliation"},
+    {"id":"grade7-u1-l4","source":"mapped","runtime":"wired","release":"qa-pass-pending-item-level-source-reconciliation"},
+    {"id":"grade7-u1-l5","source":"mapped","runtime":"wired","release":"qa-pass-pending-item-level-source-reconciliation"},
+    {"id":"grade7-u1-l6","source":"mapped","runtime":"wired","release":"qa-pass-pending-authoritative-asset-retrieval"},
+    {"id":"grade7-u2-l1","source":"verified-from-original-interactive-html extraction","runtime":"wired","release":"qa-pass-source-extraction-available"},
+    {"id":"grade7-u2-l2","source":"verified-from-original-interactive-html extraction","runtime":"wired","release":"qa-pass-source-extraction-available"},
+    {"id":"grade7-u3-l1","source":"verified-from-original-interactive-html extraction","runtime":"wired","release":"qa-pass-source-extraction-available"},
+    {"id":"grade7-u3-l2","source":"verified-from-original-interactive-html extraction","runtime":"wired","release":"qa-pass-source-extraction-available"},
+    {"id":"grade7-u3-l3","source":"verified-from-original-interactive-html extraction","runtime":"wired","release":"qa-pass-source-extraction-available"}
+  ],
+  "runtimeNotes":["Vocabulary and pronunciation use the lesson data bound to the canonical ID.","Training and assessment are explicitly presented as training when official assessment assets have not been integrated.","Video stage does not invent media URLs.","Conversation stage does not claim invented dialogue is source content.","Progress is stored per lesson on the learner device."],
+  "releaseGate":"NOT_FINAL_ACADEMIC_RELEASE",
+  "reason":"A true final academic release requires item-level reconciliation against the original interactive/reference/assessment assets for every lesson and visual/browser QA on the deployed host. The current repository state is runtime-wired and source-safe but not certified as final source-complete."
+}
