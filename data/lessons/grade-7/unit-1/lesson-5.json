@@ -1,24 +1,2 @@
 {
-  "id":"grade7-u1-l5",
-  "unit":"unit-1",
-  "sourceLesson":5,
-  "titleFr":"Les nombres (0-20)",
-  "titleAr":"الأعداد من 0 إلى 20",
-  "status":"gold-standard-v1",
-  "sourceTruth":"data/lessons/grade-7/grade7-source-content.json",
-  "journey":{
-    "introduction":{"enabled":true,"goal":"التعرف على الأعداد الفرنسية من 0 إلى 20 واستخدامها في العد والكتابة."},
-    "vocabulary":{"mode":"source-plus-enrichment","sourceSections":["De 0 à 20","La ligne des nombres"],"experience":["number cards","listen","recognize","match","quick-check"],"rule":"preserve every source number"},
-    "pronunciation":{"mode":"source-plus-enrichment","experience":["listen","repeat","number discrimination","guided retry"]},
-    "grammar":{"mode":"pedagogical-enrichment","sourceTruth":"no standalone grammar lesson","experience":["micro-language notes about number use","short contextual examples"],"rule":"do not introduce unrelated grammar"},
-    "conversation":{"mode":"pedagogical-enrichment","sourceTruth":"no standalone dialogue","experience":["counting situations","listen","answer","role-play"],"rule":"use only verified lesson numbers and level-appropriate language"},
-    "practice":{"mode":"source-plus-enrichment","sourceSections":["Compte les objets !","Calcule et écris en lettres"],"experience":["count objects","calculation","write numbers in words","feedback","retry"]},
-    "video":{"mode":"source-asset","required":false},
-    "games":{"mode":"skill-aligned","experience":["number line","count objects","number-to-word match","mental calculation"]},
-    "smart-review":{"mode":"adaptive","targets":["0-20 recognition","pronunciation","number words","calculation"]},
-    "assessment":{"mode":"source-first","sourceSection":"Vérifie-toi !","rule":"official source assessment remains authoritative"},
-    "progress":{"mode":"mastery","skills":["number recognition","pronunciation","number words","practice"]}
-  },
-  "sourceSections":["De 0 à 20","La ligne des nombres","Compte les objets !","Calcule et écris en lettres","Vérifie-toi !","Vidéo complémentaire"],
-  "qualityGate":["all source sections represented","all 0-20 content preserved","source assessment preserved","enrichment clearly labeled","mobile-first","mastery evidence required"]
-}
+  "id":"grade7-u1-l5","unit":"unit-1","sourceLesson":5,"titleFr":"Les nombres (0-20)","titleAr":"الأعداد من 0 إلى 20","status":"gold-standard-v2","sourceTruth":"authoritative-source-package/Leçon_5","journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],"sourceSections":["De 0 à 20","La ligne des nombres","Compte les objets !","Calcule et écris en lettres","Vérifie-toi !","Vidéo complémentaire"],"sourceData":{"range":"0-20","skills":["number recognition","number pronunciation","counting","writing numbers in words","calculation"],"practice":["Compte les objets !","Calcule et écris en lettres"],"assessment":"Vérifie-toi !"},"enrichment":{"vocabulary":"interactive number cards, audio, recognition, matching and quick checks while preserving 0-20","pronunciation":"listen/repeat/discrimination/retry","grammar":"brief language notes about number use only; no unrelated grammar","conversation":"short counting and answer situations using verified lesson numbers; enrichment clearly labeled","games":["number line","count objects","number-to-word match","mental calculation"],"smartReview":"adaptive review of weak number recognition, pronunciation, number words or calculation"},"qualityGate":["all source sections represented","all 0-20 source content preserved","source practice preserved","source assessment preserved","enrichment distinguished","mobile-first","mastery evidence required"]}
