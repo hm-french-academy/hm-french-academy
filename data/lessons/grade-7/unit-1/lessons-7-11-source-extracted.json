@@ -1,0 +1,48 @@
+{
+  "source": "Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
+  "status": "verified-from-original-interactive-html",
+  "lessons": {
+    "7": {
+      "title": "Tu as quel âge ?",
+      "sections": ["Le verbe avoir", "Quel âge as-tu ?", "Compte les bougies !", "Complète avec avoir", "Vérifie-toi !", "Vidéo complémentaire"],
+      "avoir": [["J'","ai"],["Tu","as"],["Il / Elle","a"],["Nous","avons"],["Vous","avez"],["Ils / Elles","ont"]],
+      "age_example": "J'ai treize ans.",
+      "number_words": ["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze","treize","quatorze","quinze","seize","dix-sept","dix-huit","dix-neuf","vingt"],
+      "fill": ["Nous avons des amis.","Vous avez un copain français ?","Tu as un stylo ?","Amr a une trousse rouge.","J'ai un frère.","Nader et Seif ont des crayons."],
+      "quiz_count": 6
+    },
+    "8": {
+      "title": "Qu'est-ce que c'est ? Les objets de la classe",
+      "sections": ["Les articles indéfinis", "Les objets de la classe", "Choisis l'article indéfini convenable", "Qu'est-ce qu'il y a dans ton sac à dos ?", "Vérifie-toi !", "Vidéo complémentaire"],
+      "articles": [["un","Nom masculin singulier","un garçon"],["une","Nom féminin singulier","une fille"],["des","Nom pluriel (m/f)","des garçons, des filles"]],
+      "objects": ["un livre","un cahier","un stylo","un crayon","un banc","un tableau","un sac à dos","une maison","une règle","une trousse","une chaise","une table","une gomme","une porte","une fenêtre","une classe"],
+      "backpack": ["un livre","un cahier","une trousse","un stylo","une règle","une gomme","un crayon"],
+      "quiz_count": 6
+    },
+    "9": {
+      "title": "Les couleurs",
+      "sections": ["Les couleurs", "Colorie l'objet !", "Les adjectifs de couleur", "Choisis l'adjectif de couleur qui convient", "Vérifie-toi !", "Vidéo complémentaire"],
+      "colors": ["rouge","orange","blanc","gris","bleu","violet","jaune","vert","marron","rose","noir"],
+      "invariant": ["orange","marron"],
+      "agreement": ["vert/verte/verts/vertes","bleu/bleue/bleus/bleues","noir/noire/noirs/noires","gris/grise/gris/grises","jaune/jaune/jaunes/jaunes","rouge/rouge/rouges/rouges","orange/orange/orange/orange","marron/marron/marron/marron","blanc/blanche/blancs/blanches","violet/violette/violets/violettes"],
+      "quiz_count": 6
+    },
+    "10": {
+      "title": "Les articles définis et les jours de la semaine",
+      "sections": ["Les articles définis", "Choisis l'article défini convenable", "Les jours de la semaine", "Quel jour sommes-nous ?", "Vérifie-toi !", "Vidéo complémentaire"],
+      "articles": [["Le","Nom masculin singulier","Le crayon"],["La","Nom féminin singulier","La classe"],["L'","Nom (m/f) commençant par voyelle","L'école"],["Les","Nom pluriel (m/f)","Les professeurs"]],
+      "days_france": ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"],
+      "days_egypt": ["Samedi","Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi"],
+      "quiz_count": 6
+    },
+    "11": {
+      "title": "Les mois de l'année et les saisons",
+      "sections": ["Les mois de l'année", "Les saisons de l'année", "Quel temps fait-il ?", "Associe le mois à sa saison", "Vérifie-toi !", "Vidéo complémentaire", "Félicitations !"],
+      "months": ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+      "seasons": [{"fr":"Le printemps","months":"Mars - Avril - Mai","weather":"Il fait beau"},{"fr":"L'été","months":"Juin - Juillet - Août","weather":"Il fait chaud"},{"fr":"L'automne","months":"Septembre - Octobre - Novembre","weather":"Il fait mauvais"},{"fr":"L'hiver","months":"Décembre - Janvier - Février","weather":"Il fait froid"}],
+      "weather": ["il fait beau","il fait chaud","il fait mauvais","il fait froid"],
+      "match": [["Juillet","L'été"],["Décembre","L'hiver"],["Avril","Le printemps"],["Octobre","L'automne"]],
+      "quiz_count": 6
+    }
+  }
+}
