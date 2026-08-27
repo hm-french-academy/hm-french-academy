@@ -1,0 +1,35 @@
+{
+  "grade": "secondary-1",
+  "academic_year": "2026/2027",
+  "subject": "French",
+  "source": "Club @dos Plus 1",
+  "semester": 1,
+  "status": "content-mapped-ready-for-learning-studio",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Le Club de ma classe",
+      "source_pages": "6-19",
+      "lessons": [
+        {"id":"s1-u1-01","title":"Les retrouvailles & se présenter","source_pages":"6-9","focus":["saluer","se présenter","nom","âge","ville","s'appeler","être"]},
+        {"id":"s1-u1-02","title":"Présenter et identifier ses copains","source_pages":"10-12","focus":["identifier une personne","présenter un ami","copain/copine","nombres 0-50","couleurs","alphabet"]},
+        {"id":"s1-u1-03","title":"Parler du caractère","source_pages":"13-16","focus":["décrire une personne","adjectifs de caractère","masculin/féminin","être"]},
+        {"id":"s1-u1-04","title":"Grammaire & lexique — Unité 1","source_pages":"17-19","focus":["pronoms sujets","s'appeler","être","articles indéfinis","accord des adjectifs","révision lexicale"]}
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Le Club des artistes",
+      "source_pages": "20-35",
+      "lessons": [
+        {"id":"s1-u2-01","title":"Dans la chambre d'Alex & les objets","source_pages":"20-24","focus":["identifier et décrire des objets","fournitures scolaires","articles définis","avoir"]},
+        {"id":"s1-u2-02","title":"L'âge & la date d'anniversaire","source_pages":"25-28","focus":["demander/dire l'âge","date d'anniversaire","mois","nombres","avoir"]},
+        {"id":"s1-u2-03","title":"Exprimer ses goûts","source_pages":"29-32","focus":["aimer","adorer","détester","verbes en -er","négation ne...pas","questions"]},
+        {"id":"s1-u2-04","title":"Grammaire, lexique & Magazine @dos.plus","source_pages":"33-35","focus":["nombres 50-100","mois","fournitures scolaires","consolidation","lecture/culture"]}
+      ]
+    }
+  ],
+  "review": {"id":"s1-aide-memoire","title":"Aide-Mémoire — Consolidation du semestre","source_pages":"36-37"},
+  "lesson_journey": ["البداية","المفردات","النطق","القواعد","المحادثة","التدريب","الفيديو","الألعاب","المراجعة الذكية","التقييم","التقدم"],
+  "implementation_rule": "Do not alter source-truth content. HM Academy enrichment must be explicitly marked as enrichment. Smart Review remains outside the lesson journey main interface, consistent with the platform convention."
+}
