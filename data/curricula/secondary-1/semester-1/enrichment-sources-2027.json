@@ -1,0 +1,35 @@
+{
+  "program": "secondary-1-french",
+  "semester": 1,
+  "academic_year": "2026/2027",
+  "method": "Club @dos Plus 1",
+  "content_policy": {
+    "core_source": "Club @dos Plus 1",
+    "enrichment_sources": ["Merci 2027", "Bravo 2027", "ElMoasser 2027 if a verified first-secondary French edition matching this curriculum is found"],
+    "rule": "Core curriculum is mandatory. External books enrich rather than replace it. Do not copy protected books verbatim; extract learning objectives, topic coverage, exercise patterns and original-source-aligned concepts, then author original HM Academy activities."
+  },
+  "source_status": {
+    "merci_2027": "verified_public_listing_for_first-secondary_first-semester_2027",
+    "bravo_2027": "verified_public_listing_for_Club_@dos_plus_1_first-secondary_first-semester",
+    "elmoasser_2027": "not yet verified as first-secondary-French-2027; continue monitoring"
+  },
+  "lesson_matrix": [
+    {"id":"s1-u1-01","title":"Les retrouvailles & se présenter","enrichment":["expanded greetings and introductions","name/age/city question-answer patterns","numbers 0-50 reinforcement","alphabet spelling drills","color recognition and agreement-aware mini tasks","graduated dialogue and exam-style situations"]},
+    {"id":"s1-u1-02","title":"Présenter et identifier ses copains","enrichment":["identity and relationship vocabulary","question formation","male/female noun awareness","expanded description practice","guided and free production","mixed-choice and correction tasks"]},
+    {"id":"s1-u1-03","title":"Parler du caractère","enrichment":["expanded personality adjectives","masculine/feminine agreement drills","opinion and description situations","contrastive vocabulary tasks","reading/listening mini texts","graduated assessment"]},
+    {"id":"s1-u1-04","title":"Grammaire & lexique — Unité 1","enrichment":["consolidated grammar map","lexical retrieval drills","mixed grammar questions","dictation/spelling activities","unit-level exam simulation"]},
+    {"id":"s1-u2-01","title":"Dans la chambre d'Alex & les objets","enrichment":["expanded school-supply vocabulary","object identification and description","articles practice","avoir contextual drills","visual matching and listening tasks","exam-style vocabulary questions"]},
+    {"id":"s1-u2-02","title":"L'âge & la date d'anniversaire","enrichment":["months and dates reinforcement","numbers 50-100 fluency","age interview dialogues","birthday/date production","listening discrimination","mixed assessment"]},
+    {"id":"s1-u2-03","title":"Exprimer ses goûts","enrichment":["aimer/adorer/détester expansion","regular -er conjugation fluency","ne...pas transformation drills","school subjects and leisure vocabulary","opinion interviews","reading/listening and exam-style tasks"]},
+    {"id":"s1-u2-04","title":"Grammaire, lexique & Magazine @dos.plus","enrichment":["unit synthesis","retrieval practice across vocabulary and grammar","mixed-format tests","reading/culture enrichment","full semester-style review tasks"]}
+  ],
+  "implementation_order": [
+    "Audit each Club @dos lesson against the current JSON content",
+    "Map Merci 2027 enrichment to the same lesson objective",
+    "Map Bravo 2027 enrichment to the same lesson objective",
+    "Add only relevant enrichment to each Learning Studio section",
+    "Author original interactive questions rather than reproducing copyrighted exercise pages",
+    "Add cumulative Smart Review across both units",
+    "Run final source-alignment QA and mark each lesson complete only after coverage is checked"
+  ]
+}
