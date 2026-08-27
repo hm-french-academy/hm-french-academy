@@ -1,14 +1,9 @@
 {
-  "id":"g7-u1-l6",
-  "titleFr":"L'heure",
-  "titleAr":"الساعة",
-  "grade":"grade-7",
-  "unit":"unit-1",
-  "lesson":6,
-  "status":"source-mapped-runtime-safe",
+  "id":"grade7-u1-l6","sourceLesson":6,"unit":"unit-1","lesson":6,"grade":"grade-7","titleFr":"L'heure","titleAr":"الساعة","status":"source-mapped-runtime-safe",
   "sourceFiles":{"interactive":"Leçon_6/lesson6_interactive.html","reference":"Leçon_6/lesson6_reference.pdf","assessment":"Leçon_6/lesson6_assessment.pdf","quiz":"Leçon_6/lesson6_quiz_secure.html"},
   "sourceSections":["Quelle heure est-il ?","Les moments spéciaux","Associe l'heure à la bonne horloge","Vérifie-toi !","Vidéo complémentaire"],
-  "journey":{"introduction":true,"vocabulary":true,"pronunciation":true,"grammar":true,"conversation":true,"practice":true,"video":true,"games":true,"smart-review":true,"assessment":true,"progress":true},
-  "sourceIntegrity":"Source inventory is authoritative. Runtime may enrich presentation, but no missing source item is invented or represented as official content.",
-  "qa":"Structure mapped from the authoritative source inventory. Full item-level content remains pending until the four declared source assets are retrievable in repository storage."
+  "journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],
+  "sourceIntegrity":"The grade7 source inventory is authoritative. Runtime enrichment is additive only and must not be presented as original source content.",
+  "qa":{"registryMatch":true,"canonicalId":"grade7-u1-l6","sourceSectionCoverage":"mapped","itemLevelExtraction":"pending-authoritative-asset-retrieval","finalRelease":false},
+  "implementationNote":"A structured Lesson 6 record now exists so the router/data layer cannot silently fall back to another lesson. It is intentionally not marked final until the declared interactive/reference/assessment/quiz assets are retrievable and reconciled item-by-item."
 }
