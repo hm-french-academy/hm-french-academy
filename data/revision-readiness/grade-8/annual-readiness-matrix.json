@@ -1,0 +1,34 @@
+{
+  "grade": 8,
+  "targetCourse": "Le Français Simple 2",
+  "reviewedCourse": "Le Français Simple 1",
+  "scope": "full academic year",
+  "designPrinciple": "Prerequisite readiness, not textbook summary",
+  "annualUnits": [
+    {"unit":1,"title":"Présente-toi","priority":"critical","focus":["transparent words","alphabet and vowels","greetings","leave-taking","subject pronouns je/tu/il/elle/vous","s'appeler","numbers 0-20","asking and telling the time"]},
+    {"unit":2,"title":"Tu as quel âge ?","priority":"critical","focus":["age questions","avoir present","classroom objects","indefinite articles un/une/des","Qu'est-ce que c'est ?","simple noun identification"]},
+    {"unit":3,"title":"Les couleurs","priority":"high","focus":["colours","colour agreement in basic noun phrases","days of the week","months","seasons","prepositions used with seasons/months"]},
+    {"unit":4,"title":"Les nationalités","priority":"critical","focus":["countries","nationalities","être present","masculine/feminine nationality forms","asking/giving nationality"]},
+    {"unit":5,"title":"La famille","priority":"critical","focus":["family vocabulary","definite articles le/la/l'/les","Qui ?","Comment ?","Quel/Quelle ?","Qu'est-ce que c'est ?","simple family descriptions"]},
+    {"unit":6,"title":"Les vêtements / Qu'est-ce que tu portes ?","priority":"high","focus":["clothing","porter present","colour + clothing descriptions","seasonal clothing","asking what someone wears"]}
+  ],
+  "domains": [
+    {"id":"identity_communication","priority":"critical","skills":["greet","say goodbye","introduce self","ask/give name","ask/give age","ask/give nationality"]},
+    {"id":"phonology","priority":"high","skills":["alphabet","vowels","sound-letter awareness","read familiar beginner words"]},
+    {"id":"numbers_time","priority":"critical","skills":["numbers 0-20","ask/tell time","recognise numerical information"]},
+    {"id":"grammar_core","priority":"critical","skills":["subject pronouns","être","avoir","s'appeler","porter","indefinite articles","definite articles","basic gender agreement"]},
+    {"id":"classroom","priority":"high","skills":["school objects","identify objects","use un/une/des"]},
+    {"id":"calendar_colours_seasons","priority":"high","skills":["colours","days","months","seasons","basic seasonal expressions"]},
+    {"id":"nationalities","priority":"critical","skills":["country vocabulary","nationality forms","gender distinction","être + nationality"]},
+    {"id":"family","priority":"critical","skills":["family members","identify people","definite articles","simple family statements"]},
+    {"id":"clothing","priority":"high","skills":["clothing vocabulary","porter","colour + clothing","seasonal clothing statements"]},
+    {"id":"question_functions","priority":"critical","skills":["Comment ?","Qui ?","Quel/Quelle ?","Quel âge ?","Quelle heure ?","Qu'est-ce que c'est ?","Qu'est-ce que tu portes ?"]},
+    {"id":"reading_production","priority":"critical","skills":["read a short personal/family profile","extract factual details","write a short self-introduction","describe nationality/family/clothing"]}
+  ],
+  "assessmentBlueprint": {
+    "diagnostic":{"items":36,"coverage":"all six annual units and all critical/high domains","rule":"sample prerequisite readiness before remediation"},
+    "remediation":{"microLessons":true,"adaptiveRouting":true,"rule":"route only weak prerequisite domains"},
+    "finalReadiness":{"items":40,"threshold":0.7,"masteryThreshold":0.8,"rule":"critical domains cannot remain materially weak"}
+  },
+  "externalResearchPolicy":{"officialCurriculum":"primary scope truth","annualMaterials":"required cross-check for second semester","Original":"supplementary practice/reference","Bravo":"supplementary exercise-pattern source only","Genial":"general French enrichment/exercise-design reference only","restriction":"no external source may silently replace or expand the annual course map"}
+}
