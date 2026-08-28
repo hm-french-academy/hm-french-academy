@@ -1,0 +1,22 @@
+{
+  "id":"grade8-annual-revision",
+  "version":"1.0.0",
+  "grade":8,
+  "titleAr":"المراجعة السنوية التأسيسية للصف الثاني الإعدادي",
+  "sourceCourse":"Le Français Simple 1",
+  "targetCourse":"Le Français Simple 2",
+  "mode":"readiness",
+  "diagnostic":{"id":"g8-rev-diagnostic","items":36,"passRate":0.70,"criticalDomains":["identity_communication","numbers_time","grammar_core","nationalities","family"]},
+  "modules":[
+    {"id":"r8-u1","title":"Je me présente","domain":"identity_communication","cards":["01"],"masteryItems":3},
+    {"id":"r8-u2","title":"Nombres, âge et école","domain":"numbers_time","cards":["02","03","04"],"masteryItems":9},
+    {"id":"r8-u3","title":"Couleurs et calendrier","domain":"calendar_colours_seasons","cards":["05"],"masteryItems":6},
+    {"id":"r8-u4","title":"Nationalités et être","domain":"nationalities","cards":["06"],"masteryItems":6},
+    {"id":"r8-u5","title":"La famille","domain":"family","cards":["07"],"masteryItems":6},
+    {"id":"r8-u6","title":"Les vêtements","domain":"clothing","cards":["08"],"masteryItems":6}
+  ],
+  "retrieval":{"id":"g8-rev-retrieval","activities":["mixed-completion","reading-extraction","guided-production"],"required":true},
+  "final":{"id":"g8-rev-final","items":32,"passRate":0.70,"productionItems":4,"remediationOnFail":true},
+  "scoring":{"85":"ready","70":"ready_with_targeted_review","50":"targeted_remediation","0":"foundation_rebuild"},
+  "uiContract":{"entry":"revision-dashboard.html?id=grade8-annual-revision","diagnostic":"interactive-assessment.html?revision=g8-rev-diagnostic","module":"revision-module.html?revision=grade8-annual-revision&module={moduleId}","final":"interactive-assessment.html?revision=g8-rev-final","progress":"revision-progress.html?revision=grade8-annual-revision"}
+}
