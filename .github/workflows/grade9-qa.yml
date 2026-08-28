@@ -1,0 +1,34 @@
+name: Grade 9 QA
+
+on:
+  push:
+    paths:
+      - 'data/lessons/grade-9/**'
+      - 'data/curricula/grade-9/**'
+      - 'scripts/grade9-qa.mjs'
+      - 'grade-9-lesson-studio.html'
+      - '.github/workflows/grade9-qa.yml'
+  pull_request:
+    paths:
+      - 'data/lessons/grade-9/**'
+      - 'data/curricula/grade-9/**'
+      - 'scripts/grade9-qa.mjs'
+      - 'grade-9-lesson-studio.html'
+      - '.github/workflows/grade9-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  grade9-content-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run Grade 9 QA
+        run: node scripts/grade9-qa.mjs
