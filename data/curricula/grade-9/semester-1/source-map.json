@@ -1,0 +1,31 @@
+{
+  "grade": 9,
+  "semester": 1,
+  "source": "3ème prép 1er semestre .pdf",
+  "source_pages": 93,
+  "status": "source-mapped",
+  "units": [
+    {
+      "id": "unit-1",
+      "title": "Le sport",
+      "content": ["vocabulary", "dialogue", "grammar", "situations", "exercises", "comprehension", "evaluation"]
+    },
+    {
+      "id": "unit-2",
+      "title": "La santé",
+      "content": ["vocabulary", "dialogue", "grammar", "imperative", "possessive_adjectives", "avoir_mal", "exercises", "comprehension", "evaluation"]
+    },
+    {
+      "id": "unit-3",
+      "title": "Les vêtements",
+      "content": ["vocabulary", "porter_mettre_choisir", "materials", "prices", "sizes", "colors", "dialogue", "exercises", "comprehension", "evaluation"]
+    }
+  ],
+  "build_policy": {
+    "reference_template": "grade-8 Learning Studio",
+    "preserve_source_content": true,
+    "do_not_use_raw_ocr_as_authoritative": true,
+    "review_scanned_pages_visually": true,
+    "do_not_modify_other_grades": true
+  }
+}
