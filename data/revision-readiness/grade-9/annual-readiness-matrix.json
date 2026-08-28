@@ -1,0 +1,32 @@
+{
+  "grade": 9,
+  "targetCourse": "Le Français Simple 2",
+  "reviewedCourse": "Le Français Simple 1",
+  "scope": "full academic year",
+  "designPrinciple": "Prerequisite readiness, not textbook summary",
+  "domains": [
+    {"id":"identity_communication","priority":"critical","skills":["greeting and leave-taking","introducing self","asking/giving name","asking/giving age","asking/giving nationality"]},
+    {"id":"phonology","priority":"high","skills":["alphabet","vowel recognition","basic sound-letter awareness","reading short familiar words"]},
+    {"id":"numbers_time","priority":"critical","skills":["numbers 0-20","telling and asking time","recognising numerical information"]},
+    {"id":"grammar_core","priority":"critical","skills":["subject pronouns je/tu/il/elle","être present","avoir present","s'appeler present","regular -er verb awareness","indefinite articles un/une/des","definite articles le/la/l'/les","basic gender/number agreement"]},
+    {"id":"classroom","priority":"high","skills":["classroom object vocabulary","identifying an object","simple noun phrases"]},
+    {"id":"colours_calendar","priority":"high","skills":["common colours","days of week","months","seasons","simple date/time expressions"]},
+    {"id":"nationalities","priority":"high","skills":["country/nationality vocabulary","masculine/feminine nationality forms","using être for nationality"]},
+    {"id":"family","priority":"high","skills":["core family vocabulary","identifying people","using definite articles","simple possessive-style family statements"]},
+    {"id":"clothing_description","priority":"high","skills":["clothing vocabulary","porter present","colour + clothing descriptions","simple seasonal clothing statements"]},
+    {"id":"question_functions","priority":"critical","skills":["Comment ?","Qui ?","Quel/Quelle ?","Quel âge ?","Quelle heure ?","Qu'est-ce que c'est ?"]},
+    {"id":"reading_production","priority":"critical","skills":["read a short personal profile","extract name/age/nationality/family facts","write a short self-introduction","describe a person or outfit"]}
+  ],
+  "assessmentBlueprint": {
+    "diagnostic": {"items":30,"weighting":"balanced across critical/high domains","rule":"sample all annual prerequisites before targeted remediation"},
+    "remediation": {"microLessons":true,"adaptiveRouting":true,"rule":"review weak prerequisite only; preserve mastered content"},
+    "finalReadiness": {"items":35,"threshold":0.7,"masteryThreshold":0.8,"rule":"critical domains must not remain materially weak"}
+  },
+  "externalResearchPolicy": {
+    "officialCourse": "primary truth",
+    "publishedAnnualMaterials": "cross-check for second-semester coverage",
+    "Bravo": "supplementary exercise-pattern source only",
+    "Genial": "general French enrichment and exercise-design reference only",
+    "restriction": "no external source may silently replace or add prerequisite content to the course map"
+  }
+}
