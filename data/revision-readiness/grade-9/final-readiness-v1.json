@@ -1,0 +1,29 @@
+{
+  "packId":"g9-annual-readiness-v1",
+  "assessment":"final-readiness",
+  "scope":"full-year Grade 8 prerequisites",
+  "items":[
+    {"id":"F01","domain":"identity_communication","type":"mcq","prompt":"Bonjour ! Je ___ Youssef.","options":["m'appelle","t'appelles","s'appelle"],"answer":"m'appelle"},
+    {"id":"F02","domain":"numbers_time","type":"mcq","prompt":"J'ai ___ ans.","options":["treize","troisième","trois"],"answer":"treize"},
+    {"id":"F03","domain":"grammar_core","type":"mcq","prompt":"Tu ___ égyptien ?","options":["es","est","suis"],"answer":"es"},
+    {"id":"F04","domain":"grammar_core","type":"mcq","prompt":"C'est ___ livre.","options":["un","une","les"],"answer":"un"},
+    {"id":"F05","domain":"grammar_core","type":"mcq","prompt":"___ parents sont à la maison.","options":["Le","La","Les"],"answer":"Les"},
+    {"id":"F06","domain":"question_functions","type":"mcq","prompt":"___ est-ce ? — C'est ma sœur.","options":["Qui","Comment","Quelle heure"],"answer":"Qui"},
+    {"id":"F07","domain":"nationalities","type":"mcq","prompt":"Elle est ___. (Italie)","options":["italien","italienne","Italie"],"answer":"italienne"},
+    {"id":"F08","domain":"clothing_description","type":"mcq","prompt":"Elle ___ une robe rouge.","options":["porte","portes","portent"],"answer":"porte"},
+    {"id":"F09","domain":"colours_calendar","type":"short_answer","prompt":"Écris quatre saisons.","rubric":"4/4"},
+    {"id":"F10","domain":"phonology","type":"short_answer","prompt":"Écris les cinq voyelles de base étudiées.","rubric":"5/5"},
+    {"id":"F11","domain":"classroom","type":"short_answer","prompt":"Nomme cinq objets de la classe.","rubric":"5 correct words"},
+    {"id":"F12","domain":"family","type":"short_answer","prompt":"Nomme cinq membres de la famille.","rubric":"5 correct words"},
+    {"id":"F13","domain":"clothing_description","type":"short_answer","prompt":"Nomme cinq vêtements.","rubric":"5 correct words"},
+    {"id":"F14","domain":"numbers_time","type":"short_answer","prompt":"Écris 16 en lettres.","answer":"seize"},
+    {"id":"F15","domain":"question_functions","type":"production","prompt":"Écris une question pour demander l'âge.","rubric":"uses Quel âge correctly"},
+    {"id":"F16","domain":"identity_communication","type":"production","prompt":"Écris une question pour demander le nom.","rubric":"uses Comment correctly"},
+    {"id":"F17","domain":"reading_production","type":"reading","prompt":"Lis un profil court et relève nom, âge, nationalité et un membre de famille.","rubric":"4 facts accurate"},
+    {"id":"F18","domain":"reading_production","type":"writing","prompt":"Écris 6 phrases pour te présenter.","rubric":"name + age + nationality + family + two understandable additional details"},
+    {"id":"F19","domain":"clothing_description","type":"writing","prompt":"Décris une tenue en 4 phrases avec au moins deux couleurs.","rubric":"clothes + porter + colour agreement/usage"},
+    {"id":"F20","domain":"integrated","type":"integrated","prompt":"Complète un mini-dialogue: salutation, nom, âge, nationalité, objet ou vêtement.","rubric":"5 functions intelligibly completed"}
+  ],
+  "scoring":"100-point conversion after rubric scoring",
+  "thresholds":{"ready":70,"strong_ready":80,"critical_rule":"A learner below threshold on a critical domain must receive targeted remediation even if the aggregate score is sufficient."}
+}
