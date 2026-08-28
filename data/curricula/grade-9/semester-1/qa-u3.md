@@ -22,8 +22,10 @@ Unit 3 (`Les vêtements`) covers source pages 70–93 through four instructional
 
 French source content remains authoritative. Arabic text is support only. Visual/audio/game fields describe intended interactive treatment and must not be interpreted as claims that external assets already exist.
 
-## Remaining deployment QA
+## Final deployment QA checklist
 
 - Validate each Journey transition in the live Grade-9 Learning Studio.
 - Check mobile/desktop rendering and interactive state persistence.
 - Confirm video/game/smart-review routes do not break when a lesson lacks a dedicated asset.
+- Confirm all four Unit-3 lesson IDs resolve to their own JSON files with no static fallback.
+- Confirm evaluation and progress states remain reachable after practice and review.
