@@ -1,0 +1,33 @@
+{
+  "grade": 9,
+  "prerequisite_grade": 8,
+  "duration_minutes": 45,
+  "total_marks": 40,
+  "sections": [
+    {"id":"vocab","title":"Vocabulary in context","marks":8,"items":8},
+    {"id":"grammar","title":"Core grammar","marks":10,"items":10},
+    {"id":"communication","title":"Communication functions","marks":6,"items":3},
+    {"id":"reading","title":"Reading comprehension","marks":8,"items":4},
+    {"id":"writing","title":"Guided production","marks":8,"items":1}
+  ],
+  "critical_domains":["core_verbs","articles_gender","question_forms","identity_family_clothes","reading","writing"],
+  "decision_rules":{"strong_ready":"score>=32 and no critical domain <60%","ready":"score>=28 and no critical domain <55%","targeted_revision":"score>=24 or critical domain below ready threshold","foundation_required":"score<24"},
+  "items":[
+    {"id":"FR9-01","domain":"vocab","type":"mcq","prompt":"C'est ___ trousse.","choices":["un","une","des"],"answer":"une","marks":1},
+    {"id":"FR9-02","domain":"vocab","type":"mcq","prompt":"En hiver, je porte ___ .","choices":["un manteau","un short","une jupe"],"answer":"un manteau","marks":1},
+    {"id":"FR9-03","domain":"vocab","type":"short","prompt":"Write four family words in French.","marks":2},
+    {"id":"FR9-04","domain":"vocab","type":"short","prompt":"Write four colours in French.","marks":2},
+    {"id":"FR9-05","domain":"vocab","type":"short","prompt":"Write four clothes in French.","marks":2},
+    {"id":"FR9-06","domain":"grammar","type":"mcq","prompt":"Je ___ égyptien.","choices":["suis","es","est"],"answer":"suis","marks":1},
+    {"id":"FR9-07","domain":"grammar","type":"mcq","prompt":"Tu ___ douze ans.","choices":["ai","as","a"],"answer":"as","marks":1},
+    {"id":"FR9-08","domain":"grammar","type":"mcq","prompt":"Elle s'___ Salma.","choices":["appelle","appelles","appellent"],"answer":"appelle","marks":1},
+    {"id":"FR9-09","domain":"grammar","type":"mcq","prompt":"___ parents sont égyptiens.","choices":["Le","La","Les"],"answer":"Les","marks":1},
+    {"id":"FR9-10","domain":"grammar","type":"mcq","prompt":"Il ___ un pantalon noir.","choices":["porte","portes","portons"],"answer":"porte","marks":1},
+    {"id":"FR9-11","domain":"grammar","type":"short","prompt":"Complete: Je ___ onze ans. / Tu ___ français ? / Elle ___ italienne.","marks":3},
+    {"id":"FR9-12","domain":"communication","type":"matching","prompt":"Match each function: name, age, object with the correct question form.","marks":2},
+    {"id":"FR9-13","domain":"communication","type":"production","prompt":"Write a 3-line dialogue asking and answering name and age.","marks":2},
+    {"id":"FR9-14","domain":"communication","type":"production","prompt":"Ask and answer one question about nationality.","marks":2},
+    {"id":"FR9-15","domain":"reading","type":"reading","text":"Je m'appelle Adam. J'ai onze ans. Je suis égyptien. J'ai une sœur. Elle s'appelle Salma. En hiver, je porte un pull bleu et un pantalon noir.","questions":["Quel âge a Adam ?","Quelle est sa nationalité ?","Comment s'appelle sa sœur ?","Qu'est-ce qu'il porte en hiver ?"],"marks":8},
+    {"id":"FR9-16","domain":"writing","type":"extended","prompt":"Write 6–7 connected sentences: name, age, nationality, one family member, and what you wear in one season.","marks":8}
+  ]
+}
