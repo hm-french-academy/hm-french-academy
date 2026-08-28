@@ -1,0 +1,13 @@
+{
+  "grade": 9,
+  "semester": 1,
+  "status": "in-progress",
+  "source": "3ème prép 1er semestre .pdf",
+  "units": [
+    {"id":"g9-u1","title":"Le sport","lessons":[]},
+    {"id":"g9-u2","title":"La santé","lessons":[]},
+    {"id":"g9-u3","title":"Les vêtements","lessons":[]}
+  ],
+  "lesson_journey": ["start","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","evaluation","progress"],
+  "note": "Registry scaffold created after source inspection; lesson files are to be populated from the scanned source, with visual verification of OCR-sensitive content."
+}
