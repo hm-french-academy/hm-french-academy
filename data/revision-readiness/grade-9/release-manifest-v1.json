@@ -1,0 +1,16 @@
+{
+  "package":"grade-9-annual-revision",
+  "status":"content-complete-print-generation-pending",
+  "scope":"full Grade 8 annual prerequisite review",
+  "studentPack":"student-pack-v1.md",
+  "teacherPack":"teacher-pack-v1.md",
+  "diagnostic":"question-bank-v1.json",
+  "productionBank":"production-question-bank-v1.md",
+  "remediation":"remediation-content-v1.md",
+  "routing":"remediation-routing-v1.json",
+  "finalAssessment":"final-assessment-v1.md",
+  "rubric":"teacher-rubric-v1.md",
+  "printSpec":"print-pack-spec-v1.md",
+  "qa":"qa-checklist-v1.md",
+  "releaseGates":["annual-scope-verified","second-semester-included","critical-skills-routed","teacher-key-present","print-composition","visual-qa"]
+}
