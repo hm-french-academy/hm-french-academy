@@ -1,0 +1,20 @@
+{
+  "packId":"g9-annual-readiness-v1",
+  "remediationModel":"targeted-micro-review",
+  "clusters":[
+    {"id":"R01","domain":"identity_communication","microReview":"Greetings, name and basic introduction","items":["Choose: Je m'appelle / Je t'appelle Karim.","Complete: Comment ___ t'appelles ?","Write one greeting and one leave-taking expression."],"masteryRule":"3/3 or teacher-approved equivalent"},
+    {"id":"R02","domain":"phonology","microReview":"Alphabet and vowels","items":["Write a, e, i, o, u.","Circle the vowel in: livre.","Read aloud: radio, cinéma, téléphone."],"masteryRule":"accurate recognition + intelligible reading"},
+    {"id":"R03","domain":"numbers_time","microReview":"Numbers 0–20 and time","items":["Write 7, 13 and 20 in French.","Answer: Quel âge as-tu ?","Answer: Quelle heure est-il ? — 8:00"],"masteryRule":"3/3"},
+    {"id":"R04","domain":"grammar_core","microReview":"Être, avoir, s'appeler","items":["Je ___ égyptien. (être)","J'___ 12 ans. (avoir)","Elle ___ Lina. (s'appeler)"],"masteryRule":"3/3"},
+    {"id":"R05","domain":"grammar_core","microReview":"Articles and gender","items":["___ livre (un/une)","___ trousse (un/une)","___ parents (le/la/les)","Change: un stylo bleu → une robe ___."],"masteryRule":"4/4"},
+    {"id":"R06","domain":"classroom","microReview":"Classroom objects and identification","items":["Name four classroom objects.","Answer: Qu'est-ce que c'est ? — ___ cahier.","Sort: livre / sœur / règle into classroom vs family."],"masteryRule":"accurate vocabulary + article"},
+    {"id":"R07","domain":"colours_calendar","microReview":"Colours, days, months and seasons","items":["Write six colours.","Write seven days.","Write four seasons.","Complete: en ______ (season)."],"masteryRule":"80%+ recall"},
+    {"id":"R08","domain":"nationalities","microReview":"Countries and nationalities","items":["Je suis ___. (Égypte)","Elle est ___. (Italie)","Transforme: français → feminine"],"masteryRule":"3/3"},
+    {"id":"R09","domain":"family","microReview":"Family vocabulary and identification","items":["Name five family members.","Answer: Qui est-ce ? — C'est ma ___.","Choose: le/la/l' père/mère/oncle."],"masteryRule":"3/3"},
+    {"id":"R10","domain":"clothing_description","microReview":"Clothes, porter and colour agreement","items":["Name five clothes.","Je ___ un T-shirt bleu. (porter)","Write: une robe + rouge correctly.","Write one winter clothing sentence."],"masteryRule":"4/4"},
+    {"id":"R11","domain":"question_functions","microReview":"Question toolkit","items":["Ask the name with Comment.","Ask nationality.","Ask the person with Qui.","Ask about an object with Qu'est-ce que c'est ?"],"masteryRule":"4 functional questions"},
+    {"id":"R12","domain":"reading_production","microReview":"Read a short profile and produce information","items":["Extract name, age and nationality from a 3–4 sentence profile.","Write three new sentences using the extracted facts."],"masteryRule":"accurate extraction + intelligible production"}
+  ],
+  "routing":"A diagnostic miss routes to the relevant cluster; after mastery, learner returns to a short mixed checkpoint before final readiness.",
+  "safety":"No remediation cluster may introduce content outside the verified annual prerequisite map."
+}
