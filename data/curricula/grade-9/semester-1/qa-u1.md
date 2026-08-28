@@ -2,33 +2,36 @@
 
 Source: `3ème prép 1er semestre .pdf`
 
+## Source-aligned coverage
+
+Unit 1 (`Le sport`) is packaged into four learning modules covering the confirmed source sections.
+
+- Lesson 1: sports vocabulary and core sport structures.
+- Lesson 2: sports places, people and equipment.
+- Lesson 3: `jouer à`, `faire de`, `pratiquer` and second-group verbs.
+- Lesson 4: dialogue, comprehension and consolidation.
+
 ## Visual source verification
 
-Pages 16–38 were inspected against the scanned source.
+Pages 16–38 were inspected against the scanned source. Sports vocabulary, places, characters, `jouer + à`, `jouer + de`, `faire + de`, `pratiquer + article`, second-group verbs, dialogues and varied exercises are represented in the unit packaging.
 
-### Verified content groups
-- Unit overview and learning targets: page 16.
-- Sports vocabulary with illustrated entries: pages 17–20.
-- Sports objects and music instruments: page 20.
-- Places, characters and verbs: pages 21–22.
-- Preferred sport and practice location prompts: page 23.
-- `jouer + à` and `jouer + de`: pages 24–26.
-- `faire + de` and `pratiquer + article`: pages 27–29.
-- Second-group verbs: page 30.
-- `finir`, `applaudir`, referee/player/coach actions: page 31.
-- Dialogue and communicative situations: pages 32–33.
-- Varied exercises, completion, multiple choice and sentence production: pages 34–38.
+## Content-quality checks
 
-## Packaging validation
+- French target language remains primary; Arabic is support only.
+- Preserve source terminology, accents and confirmed grammar structures.
+- Visual, audio and game fields describe presentation activities and do not claim unavailable assets exist.
+- Practice and assessment activities remain tied to the source topics.
 
-The 4 Grade-9 Unit-1 learning modules cover the source sections without changing the unit's subject matter. Source page ranges are recorded in each module.
+## Enrichment applied
 
-## Corrections applied
+- Added pronunciation practice and visual-learning activities across the unit.
+- Added production tasks instead of relying only on recognition questions.
+- Added scene-based sports activities and short oral exchanges.
 
-- Cleaned an Arabic practice label in `u1-l2.json`.
-- Kept the source's French terminology and examples rather than relying on OCR variants.
+## Required final QA
 
-## Remaining QA
-
-- Renderer/browser interaction testing should be performed in the deployed site.
-- Audio/video/game assets are not invented when no source asset exists; they remain presentation slots in the Learning Studio.
+- Browser/renderer interaction testing on the deployed Grade-9 Learning Studio.
+- Responsive checks on mobile and desktop widths.
+- Verify every Journey transition: start → vocabulary → pronunciation → grammar → conversation → practice → video → games → smart review → evaluation → progress.
+- Verify lesson loading for all four Unit-1 lesson IDs and confirm no static fallback content is displayed.
+- Audio/video/game assets must not be treated as available unless an actual asset is connected.
