@@ -1,0 +1,18 @@
+{
+  "grade": 9,
+  "prerequisiteGrade": 8,
+  "routing": [
+    {"skill":"identity_and_sappel","diagnosticSignals":["wrong_s_appeler","self_intro_missing"],"review":"identity"},
+    {"skill":"etre","diagnosticSignals":["etre_form_error"],"review":"core_verbs"},
+    {"skill":"avoir_age","diagnosticSignals":["avoir_form_error","age_error"],"review":"core_verbs"},
+    {"skill":"articles_gender","diagnosticSignals":["article_error","gender_error"],"review":"articles"},
+    {"skill":"question_forms","diagnosticSignals":["question_word_error"],"review":"communication"},
+    {"skill":"numbers_time_calendar","diagnosticSignals":["number_error","time_error","calendar_error"],"review":"calendar_time"},
+    {"skill":"nationalities","diagnosticSignals":["nationality_error","masculine_feminine_error"],"review":"nationalities"},
+    {"skill":"family","diagnosticSignals":["family_vocab_error"],"review":"family"},
+    {"skill":"clothes_colours","diagnosticSignals":["clothing_vocab_error","colour_error","agreement_error"],"review":"clothes_colours"},
+    {"skill":"reading","diagnosticSignals":["reading_comprehension_low"],"review":"reading"},
+    {"skill":"writing","diagnosticSignals":["sentence_production_low"],"review":"writing"}
+  ],
+  "rerouteRule":"After remediation, assign a short checkpoint for the same skill; if passed, return to mixed readiness practice. If failed twice, route to Foundation Required."
+}
