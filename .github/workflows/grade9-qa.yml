@@ -24,18 +24,24 @@ jobs:
   grade9-content-qa:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main revision
         uses: actions/checkout@v4
         with:
+          ref: main
           clean: true
-      - name: Show checked-out revision and lesson files
+          fetch-depth: 1
+      - name: Show revision and lesson inventory
         run: |
           git rev-parse HEAD
-          printf '\nTracked lesson JSON files:\n'
+          printf '\nTracked Grade 9 semester-1 JSON files:\n'
           git ls-files 'data/lessons/grade-9/semester-1/*.json'
+          printf '\nQA harness fingerprint:\n'
+          sha256sum scripts/grade9-qa.mjs
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Validate QA harness syntax
+        run: node --check scripts/grade9-qa.mjs
       - name: Run Grade 9 QA
         run: node scripts/grade9-qa.mjs
