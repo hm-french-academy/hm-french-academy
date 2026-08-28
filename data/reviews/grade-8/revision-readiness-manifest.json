@@ -1,0 +1,32 @@
+{
+  "id":"grade-8-revision-readiness",
+  "version":"2026-08-28-v1",
+  "status":"draft-content-ready",
+  "targetGrade":8,
+  "targetTitleAr":"الصف الثاني الإعدادي",
+  "reviewOfGrade":7,
+  "reviewOfTitleAr":"الصف الأول الإعدادي",
+  "sourceCurriculum":"data/lessons/grade-7/grade7-source-content.json",
+  "sourceRegistry":"data/lessons/grade-7/lesson-registry.json",
+  "sourceCourse":"Le Français Simple 1",
+  "purpose":"Pre-course diagnostic and readiness review before Grade 8 current curriculum.",
+  "delivery":{"print":true,"digital":true,"studentBook":true,"teacherAnswerKey":true},
+  "designSystem":{"paper":"A4","brand":"HM Academy","sections":["cover","diagnostic","lesson-review","grammar-lab","vocabulary-bank","communication-bank","reading","writing","final-readiness","answer-key"]},
+  "sourceLessons":[
+    {"id":"grade7-u1-l1","titleFr":"L'alphabet et les mots transparents"},
+    {"id":"grade7-u1-l2","titleFr":"Les salutations"},
+    {"id":"grade7-u1-l3","titleFr":"Les pronoms sujets et les verbes du 1er groupe"},
+    {"id":"grade7-u1-l4","titleFr":"Le verbe être et la présentation"},
+    {"id":"grade7-u1-l5","titleFr":"Les nombres (0-20)"},
+    {"id":"grade7-u1-l6","titleFr":"L'heure"},
+    {"id":"grade7-u2-l1","titleFr":"Tu as quel âge ?"},
+    {"id":"grade7-u2-l2","titleFr":"Qu'est-ce que c'est ? Les objets de la classe"},
+    {"id":"grade7-u3-l1","titleFr":"Les couleurs"},
+    {"id":"grade7-u3-l2","titleFr":"Les articles définis et les jours de la semaine"},
+    {"id":"grade7-u3-l3","titleFr":"Les mois de l'année et les saisons"}
+  ],
+  "priorityPrerequisites":["alphabet and transparent words","greetings","subject pronouns","first-group verbs","être","presentation","numbers 0-20","time","age","classroom objects","colours","definite articles","days","months","seasons"],
+  "assessmentBlueprint":{"diagnosticMinutes":30,"finalMinutes":40,"readinessThreshold":0.70,"skills":["vocabulary","grammar","pronunciation","communication","reading","writing"]},
+  "qualityRules":["Grade 7 source content is authoritative.","Do not reproduce textbook pages verbatim.","External books are supplementary only.","Every core review item must map to a source lesson before release.","Do not modify Grade 7 or Grade 8 runtime files."],
+  "nextBuild":["extract exact vocabulary/grammar inventory","map prerequisites to Grade 8 opening requirements","build original exercises","generate A4 student and teacher PDFs","register in review library","run final QA"]
+}
