@@ -43,3 +43,29 @@ input,select,textarea{font:inherit}
 @media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr)}.course-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:960px){.roadmap{grid-template-columns:1fr 1fr}.section-title,.topbar{flex-direction:column;align-items:flex-start}}
 @media(max-width:600px){main{padding:10px}.hero,.course{padding:18px 12px}.btn{width:100%;display:flex}p{font-size:16px}h1{line-height:1.4}nav{flex-direction:column}.roadmap{grid-template-columns:1fr}}
+
+/* HM Academy: scoped mobile header fix. The generic nav mobile rule above must not turn the main navigation into a tall vertical column. */
+.hm-header{flex-wrap:nowrap;min-width:0}
+.hm-header .hm-nav{display:flex;flex:1 1 auto;min-width:0;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:0;overflow:visible}
+.hm-header .hm-nav a{color:var(--hm-navy);opacity:1;text-decoration:none;white-space:nowrap;font-size:13px;font-weight:850;padding:7px 9px;border-radius:11px}
+.hm-header .hm-nav a:hover{background:#f1f5ff;text-decoration:none}
+@media(max-width:900px){
+  .hm-header{padding:9px 12px;gap:8px;flex-wrap:wrap;align-items:center}
+  .hm-header .hm-brand{min-width:0}
+  .hm-header .hm-tools{flex:0 0 auto}
+  .hm-header .hm-nav{order:3;flex:1 0 100%;width:100%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding:3px 2px 5px;scrollbar-width:none}
+  .hm-header .hm-nav::-webkit-scrollbar{display:none}
+  .hm-header .hm-nav a{flex:0 0 auto;background:#f5f8ff;border:1px solid #e3eaf5}
+}
+@media(max-width:600px){
+  .hm-header{padding:8px 10px}
+  .hm-header .hm-brand::after{display:none}
+  .hm-brand-text{font-size:16px}
+  .hm-logo{width:40px;height:40px;border-radius:13px}
+  .hm-header .hm-nav{gap:6px}
+  .hm-header .hm-nav a{font-size:12px;padding:6px 9px;border-radius:10px}
+  .home-pro{padding:12px 10px 42px}
+  .home-hero{border-radius:24px;padding:24px 18px}
+  .home-hero h1{font-size:clamp(30px,9vw,42px);line-height:1.2}
+  .home-hero p{font-size:15px;line-height:1.8}
+}
