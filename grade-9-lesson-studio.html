@@ -15,7 +15,7 @@
 </main>
 <script>
 const steps=[['start','🚀','البداية'],['vocabulary','🖼️','المفردات'],['pronunciation','🎧','النطق'],['grammar','📘','القواعد'],['conversation','💬','المحادثة'],['practice','✍️','التدريب'],['video','🎬','الفيديو'],['games','🎮','الألعاب'],['smart-review','🧠','المراجعة الذكية'],['evaluation','🏆','التقييم'],['progress','📈','التقدم']];
-const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1';let d=null,idx=Math.max(0,steps.findIndex(x=>x[0]===(q.get('section')||'start'))),mastered=new Set();
+const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1',fileId=id.replace(/^g9-/,'');let d=null,idx=Math.max(0,steps.findIndex(x=>x[0]===(q.get('section')||'start'))),mastered=new Set();
 const panel=document.getElementById('panel'),nav=document.getElementById('journey'),bar=document.getElementById('bar');
 const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
 const speak=t=>{if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)};
@@ -44,7 +44,7 @@ function render(){
  panel.innerHTML=`${b}<div class="g9-nav-buttons">${idx?`<button onclick="go(${idx-1})">→ السابق</button>`:''}${idx<steps.length-1?`<button class="primary" onclick="go(${idx+1})">التالي ←</button>`:''}</div>`;
 }
 async function load(){
- try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(id)+'.json?v=20260828-g9-dynamic',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render();}
+ try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(fileId)+'.json?v=20260829-g9-fix1',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render();}
  catch(e){document.getElementById('title').textContent='تعذر تحميل الدرس';document.getElementById('subtitle').textContent='تحقق من اتصال الصفحة أو ملف المحتوى';document.getElementById('meta').textContent=id;panel.innerHTML=`<div class="g9-error"><h2>تعذر تحميل محتوى الدرس</h2><p>معرّف الدرس: ${esc(id)}</p><small>${esc(e.message)}</small></div>`}}
 load();
 </script>
