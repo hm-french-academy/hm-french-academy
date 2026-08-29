@@ -10,76 +10,15 @@ nav a{color:white;text-decoration:none;font-weight:700;opacity:.95}
 nav a:hover{opacity:1;text-decoration:underline}
 main{width:100%;max-width:1180px;padding:18px;margin:auto;overflow:hidden}
 .hero,.course{background:var(--card);padding:22px 16px;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);margin-bottom:20px;width:100%;overflow-wrap:anywhere}
-.hero{text-align:center}
-.hero h1{color:var(--primary);font-size:clamp(24px,6vw,34px);margin-top:0}
-.hero h2,.course h2,.course h3{color:var(--primary);margin-top:0}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:white!important;text-decoration:none;padding:12px 20px;border-radius:14px;margin-top:12px;max-width:100%;text-align:center;font-weight:700;transition:transform .15s ease,background .15s ease}
-.btn:hover{background:var(--primary-2);transform:translateY(-1px)}
-.btn.secondary{background:#eef2ff;color:#1e3a8a!important}
-.cards{display:grid;grid-template-columns:1fr;gap:18px}
-.course a{color:#1976d2;font-weight:bold}
-.progress{background:linear-gradient(90deg,var(--primary),#22c55e);color:white;padding:10px;text-align:center;border-radius:15px;font-weight:700}
-footer{text-align:center;padding:25px;color:var(--muted)}
-.small{font-size:14px;color:var(--muted)}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:700}
-.grid{display:grid;gap:18px}
-.topbar,.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.pill{background:#dcfce7;color:#166534;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px}
-.progress-bar{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}
-.progress-bar > div{height:100%;width:60%;background:linear-gradient(90deg,var(--primary),#22c55e)}
-.timeline{display:grid;gap:12px}
-.timeline-item{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
-.roadmap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.roadmap div{padding:14px;border:1px dashed var(--border);border-radius:16px;background:#fafafa;text-align:center}
-.locked{opacity:.55}
-.course-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.course-grid{display:grid;gap:18px}
-.stats-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.progress-wrap{margin-top:10px}
-.meta{margin:6px 0;color:var(--muted)}
-.library-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.setting-group{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-input,select,textarea{font:inherit}
+.hero{text-align:center}.hero h1{color:var(--primary);font-size:clamp(24px,6vw,34px);margin-top:0}.hero h2,.course h2,.course h3{color:var(--primary);margin-top:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:white!important;text-decoration:none;padding:12px 20px;border-radius:14px;margin-top:12px;max-width:100%;text-align:center;font-weight:700;transition:transform .15s ease,background .15s ease}.btn:hover{background:var(--primary-2);transform:translateY(-1px)}.btn.secondary{background:#eef2ff;color:#1e3a8a!important}
+.cards{display:grid;grid-template-columns:1fr;gap:18px}.course a{color:#1976d2;font-weight:bold}.progress{background:linear-gradient(90deg,var(--primary),#22c55e);color:white;padding:10px;text-align:center;border-radius:15px;font-weight:700}footer{text-align:center;padding:25px;color:var(--muted)}.small{font-size:14px;color:var(--muted)}.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:700}.grid{display:grid;gap:18px}.topbar,.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.pill{background:#dcfce7;color:#166534;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px}.progress-bar{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress-bar>div{height:100%;width:60%;background:linear-gradient(90deg,var(--primary),#22c55e)}.timeline{display:grid;gap:12px}.timeline-item{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}.roadmap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.roadmap div{padding:14px;border:1px dashed var(--border);border-radius:16px;background:#fafafa;text-align:center}.locked{opacity:.55}.course-card,.stats-card,.library-card,.setting-group{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.course-grid{display:grid;gap:18px}.progress-wrap{margin-top:10px}.meta{margin:6px 0;color:var(--muted)}input,select,textarea{font:inherit}
 @media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr)}.course-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:960px){.roadmap{grid-template-columns:1fr 1fr}.section-title,.topbar{flex-direction:column;align-items:flex-start}}
 @media(max-width:600px){main{padding:10px}.hero,.course{padding:18px 12px}.btn{width:100%;display:flex}p{font-size:16px}h1{line-height:1.4}nav{flex-direction:column}.roadmap{grid-template-columns:1fr}}
-
-/* HM Academy: scoped mobile header fix. The generic nav mobile rule above must not turn the main navigation into a tall vertical column. */
-.hm-header{flex-wrap:nowrap;min-width:0}
-.hm-header .hm-nav{display:flex;flex:1 1 auto;min-width:0;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:0;overflow:visible}
-.hm-header .hm-nav a{color:var(--hm-navy);opacity:1;text-decoration:none;white-space:nowrap;font-size:13px;font-weight:850;padding:7px 9px;border-radius:11px}
-.hm-header .hm-nav a:hover{background:#f1f5ff;text-decoration:none}
-@media(max-width:900px){
-  .hm-header{padding:9px 12px;gap:8px;flex-wrap:wrap;align-items:center}
-  .hm-header .hm-brand{min-width:0}
-  .hm-header .hm-tools{flex:0 0 auto}
-  .hm-header .hm-nav{order:3;flex:1 0 100%;width:100%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding:3px 2px 5px;scrollbar-width:none}
-  .hm-header .hm-nav::-webkit-scrollbar{display:none}
-  .hm-header .hm-nav a{flex:0 0 auto;background:#f5f8ff;border:1px solid #e3eaf5}
-}
-@media(max-width:600px){
-  .hm-header{padding:8px 10px}
-  .hm-header .hm-brand::after{display:none}
-  .hm-brand-text{font-size:16px}
-  .hm-logo{width:40px;height:40px;border-radius:13px}
-  .hm-header .hm-nav{gap:6px}
-  .hm-header .hm-nav a{font-size:12px;padding:6px 9px;border-radius:10px}
-  .home-pro{padding:12px 10px 42px}
-  .home-hero{border-radius:24px;padding:24px 18px}
-  .home-hero h1{font-size:clamp(30px,9vw,42px);line-height:1.2}
-  .home-hero p{font-size:15px;line-height:1.8}
-}
-
-/* HM Academy: mobile home quick-access grid. Keep desktop layout unchanged and make the six primary actions a clean 2x3 touch-friendly grid on phones. */
-@media(max-width:600px){
-  .home-index{padding:14px;border-radius:20px}
-  .home-index-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .home-index a{min-height:82px;padding:13px 8px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:14px;line-height:1.35;box-shadow:0 5px 14px rgba(20,38,74,.05)}
-  .home-index a span{font-size:27px;line-height:1;margin:0}
-}
-@media(max-width:360px){
-  .home-index{padding:12px}
-  .home-index-grid{gap:8px}
-  .home-index a{min-height:76px;font-size:13px;padding:11px 6px}
-  .home-index a span{font-size:24px}
-}
+.hm-header{flex-wrap:nowrap;min-width:0}.hm-header .hm-nav{display:flex;flex:1 1 auto;min-width:0;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:0;overflow:visible}.hm-header .hm-nav a{color:var(--hm-navy);opacity:1;text-decoration:none;white-space:nowrap;font-size:13px;font-weight:850;padding:7px 9px;border-radius:11px}.hm-header .hm-nav a:hover{background:#f1f5ff;text-decoration:none}
+@media(max-width:900px){.hm-header{padding:9px 12px;gap:8px;flex-wrap:wrap;align-items:center}.hm-header .hm-brand{min-width:0}.hm-header .hm-tools{flex:0 0 auto}.hm-header .hm-nav{order:3;flex:1 0 100%;width:100%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding:3px 2px 5px;scrollbar-width:none}.hm-header .hm-nav::-webkit-scrollbar{display:none}.hm-header .hm-nav a{flex:0 0 auto;background:#f5f8ff;border:1px solid #e3eaf5}}
+@media(max-width:600px){.hm-header{padding:8px 10px}.hm-header .hm-brand::after{display:none}.hm-brand-text{font-size:16px}.hm-logo{width:40px;height:40px;border-radius:13px}.hm-header .hm-nav{gap:6px}.hm-header .hm-nav a{font-size:12px;padding:6px 9px;border-radius:10px}.home-pro{padding:12px 10px 42px}.home-hero{border-radius:24px;padding:24px 18px}.home-hero h1{font-size:clamp(30px,9vw,42px);line-height:1.2}.home-hero p{font-size:15px;line-height:1.8}}
+/* Mobile primary actions: the existing index is transformed visually into the exact 2x3 navigation requested. */
+@media(max-width:600px){.home-index{padding:14px;border-radius:20px}.home-index-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.home-index a{min-height:82px;padding:13px 8px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:14px;line-height:1.35;box-shadow:0 5px 14px rgba(20,38,74,.05)}.home-index a span{font-size:27px;line-height:1;margin:0}.home-index-grid a:nth-child(n+7){display:none}.home-index-grid a:nth-child(1),.home-index-grid a:nth-child(2),.home-index-grid a:nth-child(3),.home-index-grid a:nth-child(4),.home-index-grid a:nth-child(5),.home-index-grid a:nth-child(6){display:flex}.home-index-grid a:nth-child(1) span{font-size:0}.home-index-grid a:nth-child(1) span:after{content:'🎓';font-size:27px}.home-index-grid a:nth-child(1){font-size:0}.home-index-grid a:nth-child(1):after{content:'الطالب';font-size:14px}.home-index-grid a:nth-child(2) span{font-size:0}.home-index-grid a:nth-child(2) span:after{content:'📚';font-size:27px}.home-index-grid a:nth-child(2){font-size:0}.home-index-grid a:nth-child(2):after{content:'الكورسات';font-size:14px}.home-index-grid a:nth-child(3) span{font-size:0}.home-index-grid a:nth-child(3) span:after{content:'📖';font-size:27px}.home-index-grid a:nth-child(3){font-size:0}.home-index-grid a:nth-child(3):after{content:'المكتبة';font-size:14px}.home-index-grid a:nth-child(4) span{font-size:0}.home-index-grid a:nth-child(4) span:after{content:'🗺️';font-size:27px}.home-index-grid a:nth-child(4){font-size:0}.home-index-grid a:nth-child(4):after{content:'الخريطة';font-size:14px}.home-index-grid a:nth-child(5) span{font-size:0}.home-index-grid a:nth-child(5) span:after{content:'🎯';font-size:27px}.home-index-grid a:nth-child(5){font-size:0}.home-index-grid a:nth-child(5):after{content:'التقييم';font-size:14px}.home-index-grid a:nth-child(6) span{font-size:0}.home-index-grid a:nth-child(6) span:after{content:'📈';font-size:27px}.home-index-grid a:nth-child(6){font-size:0}.home-index-grid a:nth-child(6):after{content:'التقدم';font-size:14px}}
+@media(max-width:360px){.home-index{padding:12px}.home-index-grid{gap:8px}.home-index a{min-height:76px;font-size:13px;padding:11px 6px}.home-index a span:after{font-size:24px!important}.home-index-grid a:after{font-size:13px!important}}
