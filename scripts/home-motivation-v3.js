@@ -1,60 +1,18 @@
 (function(){
-  const messages=[
-    {ar:'كل خطوة صغيرة تخطوها اليوم تصنع فرقًا كبيرًا في مستقبلك. ابدأ بما تستطيع، واستمر بثبات.',fr:'Chaque petit pas que vous faites aujourd’hui peut faire une grande différence dans votre avenir. Commencez par ce que vous pouvez faire et avancez avec constance.',en:'Every small step you take today can make a big difference in your future. Start with what you can do and keep moving forward.'},
-    {ar:'لا تنتظر الوقت المثالي للتعلم. أفضل وقت لتبدأ هو الآن، وأفضل طريقة للتقدم هي الاستمرار.',fr:'N’attendez pas le moment parfait pour apprendre. Le meilleur moment pour commencer, c’est maintenant, et la meilleure façon de progresser, c’est de continuer.',en:'Don’t wait for the perfect time to learn. The best time to start is now, and the best way to progress is to keep going.'},
-    {ar:'الخطأ لا يقلل من قدرتك؛ بل يكشف لك ما تحتاج إلى تعلمه. جرّب، صحّح، ثم حاول من جديد.',fr:'L’erreur ne diminue pas vos capacités ; elle vous montre ce que vous devez encore apprendre. Essayez, corrigez, puis recommencez.',en:'A mistake does not reduce your ability; it shows you what you still need to learn. Try, correct, and try again.'},
-    {ar:'لا تقارن بدايتك بنهاية غيرك. قارن نفسك بما كنت عليه بالأمس، واجعل هدفك أن تتقدم خطوة كل يوم.',fr:'Ne comparez pas votre début au résultat des autres. Comparez-vous à la personne que vous étiez hier et cherchez à avancer d’un pas chaque jour.',en:'Don’t compare your beginning with someone else’s finish. Compare yourself with who you were yesterday and aim to move one step forward every day.'},
-    {ar:'ما تتعلمه اليوم قد يصبح غدًا مفتاح فرصة كبيرة. لا تستهِن بأي كلمة أو مهارة جديدة.',fr:'Ce que vous apprenez aujourd’hui peut devenir demain la clé d’une grande opportunité. Ne sous-estimez aucun nouveau mot ni aucune nouvelle compétence.',en:'What you learn today may become the key to a great opportunity tomorrow. Never underestimate a new word or a new skill.'},
-    {ar:'القليل المنتظم أقوى من الكثير المتقطع. خصص وقتًا للتعلم كل يوم، وستندهش من أثر الاستمرار.',fr:'Un petit effort régulier est plus puissant qu’un grand effort occasionnel. Consacrez chaque jour un peu de temps à apprendre et vous serez surpris par les résultats.',en:'Small, consistent effort is more powerful than occasional bursts of effort. Give learning some time every day and you will be amazed by the results.'},
-    {ar:'آمن بقدرتك على التعلم. قد لا تعرف الإجابة الآن، لكنك قادر على الوصول إليها بالمحاولة والممارسة.',fr:'Croyez en votre capacité d’apprendre. Vous ne connaissez peut-être pas la réponse maintenant, mais vous pouvez la trouver grâce à l’effort et à la pratique.',en:'Believe in your ability to learn. You may not know the answer now, but you can find it through effort and practice.'},
-    {ar:'النجاح ليس لحظة واحدة؛ إنه مجموعة من العادات الصغيرة التي تكررها حتى تصبح جزءًا منك.',fr:'La réussite n’est pas un seul moment ; c’est un ensemble de petites habitudes que vous répétez jusqu’à ce qu’elles deviennent une partie de vous.',en:'Success is not a single moment; it is a collection of small habits you repeat until they become part of you.'},
-    {ar:'تعلم الفرنسية رحلة ممتعة. كل كلمة جديدة تضيف إلى قدرتك على الفهم والتواصل والثقة.',fr:'Apprendre le français est un beau voyage. Chaque nouveau mot renforce votre capacité à comprendre, communiquer et prendre confiance.',en:'Learning French is a rewarding journey. Every new word strengthens your ability to understand, communicate, and grow in confidence.'},
-    {ar:'تحدث، حتى لو لم تكن جملك مثالية. الطلاقة تبدأ بالشجاعة، ثم تنمو بالممارسة.',fr:'Parlez, même si vos phrases ne sont pas parfaites. L’aisance commence par le courage, puis grandit avec la pratique.',en:'Speak, even if your sentences are not perfect. Fluency begins with courage and grows through practice.'},
-    {ar:'اجعل درس اليوم استثمارًا في نفسك. ما تبنيه بالمعرفة اليوم سيخدمك في المستقبل.',fr:'Faites de la leçon d’aujourd’hui un investissement en vous-même. Ce que vous construisez par le savoir aujourd’hui vous servira demain.',en:'Make today’s lesson an investment in yourself. What you build through knowledge today will serve you in the future.'},
-    {ar:'إذا كان الهدف كبيرًا، قسّمه إلى خطوات. لا تحتاج إلى إنهاء الطريق اليوم؛ تحتاج فقط إلى أن تبدأ.',fr:'Si l’objectif est grand, divisez-le en étapes. Vous n’avez pas besoin de terminer le chemin aujourd’hui ; vous devez simplement commencer.',en:'If the goal is big, break it into steps. You do not need to finish the journey today; you only need to begin.'},
-    {ar:'حين تشعر أن التقدم بطيء، تذكّر أن الاستمرار نفسه تقدم. لا تتوقف بسبب يوم صعب.',fr:'Lorsque les progrès semblent lents, rappelez-vous que continuer est déjà un progrès. Ne vous arrêtez pas à cause d’une journée difficile.',en:'When progress feels slow, remember that continuing is progress itself. Don’t stop because of a difficult day.'},
-    {ar:'كل إنجاز يبدأ بقرار بسيط: سأحاول. اجعل هذا القرار بداية جديدة لك اليوم.',fr:'Toute réussite commence par une décision simple : je vais essayer. Faites de cette décision un nouveau départ aujourd’hui.',en:'Every achievement begins with a simple decision: I will try. Let that decision become a fresh start for you today.'},
-    {ar:'مستقبلك لا يُبنى في يوم واحد، لكنه يتشكل كل يوم بما تتعلمه وما تفعله وما تختار أن تستمر فيه.',fr:'Votre avenir ne se construit pas en un seul jour, mais il se façonne chaque jour par ce que vous apprenez, faites et choisissez de poursuivre.',en:'Your future is not built in one day, but it takes shape every day through what you learn, do, and choose to keep pursuing.'},
-    {ar:'لا تبحث عن الكمال؛ ابحث عن نسخة أفضل منك كل يوم. التقدم المستمر هو طريق الإتقان.',fr:'Ne cherchez pas la perfection ; cherchez à devenir une meilleure version de vous-même chaque jour. Le progrès constant mène à la maîtrise.',en:'Don’t chase perfection; aim to become a better version of yourself every day. Consistent progress leads to mastery.'},
-    {ar:'خذ نفسًا، ركّز على مهمتك، وابدأ. خطوة واحدة منجزة أفضل من عشر خطوات مؤجلة.',fr:'Respirez, concentrez-vous sur votre tâche et commencez. Une étape accomplie vaut mieux que dix étapes reportées.',en:'Take a breath, focus on your task, and begin. One completed step is better than ten postponed steps.'},
-    {ar:'أنت لا تتعلم من أجل الامتحان فقط؛ أنت تبني مهارة ستبقى معك. تعلّم بإتقان، وستظهر النتيجة.',fr:'Vous n’apprenez pas seulement pour un examen ; vous construisez une compétence qui restera avec vous. Apprenez avec soin et les résultats suivront.',en:'You are not learning only for an exam; you are building a skill that will stay with you. Learn well, and the results will follow.'}
-  ];
-  function pick(){const key='hm_motivation_history_v3';let history=[];try{history=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}const recent=new Set(history.slice(-12));let pool=messages.map((_,i)=>i).filter(i=>!recent.has(i));if(!pool.length){history=[];pool=messages.map((_,i)=>i)}const i=pool[Math.floor(Math.random()*pool.length)];history.push(i);if(history.length>12)history=history.slice(-12);localStorage.setItem(key,JSON.stringify(history));return messages[i]}
-  function getLang(){return window.HMLanguage&&typeof HMLanguage.get==='function'?HMLanguage.get():(document.documentElement.lang||'ar').slice(0,2)}
-  function ttsLang(lang){return lang==='ar'?'ar':lang==='en'?'en':'fr'}
-  function onlineSpeak(text,lang,button){return new Promise(resolve=>{const value=String(text||'').trim();if(!value){resolve(false);return}const parts=value.match(/.{1,180}(?:\s+|$)/g)||[value];let index=0,failed=false,currentAudio=null;const finish=ok=>{if(button)button.classList.toggle('playing',false);resolve(ok)};const next=()=>{if(index>=parts.length){finish(!failed);return}const q=encodeURIComponent(parts[index++].trim());const url='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl='+encodeURIComponent(ttsLang(lang))+'&q='+q;const audio=new Audio(url);currentAudio=audio;audio.preload='auto';audio.onended=next;audio.onerror=()=>{failed=true;finish(false)};if(button)button.classList.add('playing');const p=audio.play();if(p&&typeof p.catch==='function')p.catch(()=>{failed=true;finish(false)});};next();})}
-  async function speak(text,lang,button){if(!text)return false;const ok=await onlineSpeak(text,lang,button);if(ok)return true;if(window.HMSpeech&&typeof window.HMSpeech.speak==='function'){return !!(await window.HMSpeech.speak(text,{button,lang:lang||'fr-FR',rate:.86}))}return false}
-  function addSpeakButton(parent,text,lang,label){const b=document.createElement('button');b.type='button';b.className='hm-motivation-speak';b.textContent='🔊 '+label;b.setAttribute('aria-label',label);b.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();speak(text,lang,b)});parent.appendChild(b)}
-  function mount(){const host=document.getElementById('hm-motivation');if(!host)return;const m=pick();host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">ومضة اليوم · L’Éclat du jour · Today’s Spark</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><p class="hm-motivation-en">'+m.en+'</p><div class="hm-motivation-audio" aria-label="تشغيل صوت الكبسولة"></div></div>';const audio=host.querySelector('.hm-motivation-audio');const lang=getLang();const primary=lang==='ar'?'ar-EG':lang==='en'?'en-US':'fr-FR';const example=lang==='ar'?m.ar:lang==='en'?m.en:m.fr;addSpeakButton(audio,example,primary,'تشغيل الكبسولة');addSpeakButton(audio,m.fr,'fr-FR','Français');host.dataset.language=lang;}
-  function ensureSpeechAndMount(){
-    if(window.HMSpeech){mount();return}
-    const existing=document.querySelector('script[src*="scripts/speech-runtime.js"]');
-    if(existing){let tries=0;const wait=setInterval(()=>{if(window.HMSpeech||++tries>60){clearInterval(wait);mount()}},50);return;}
-    const script=document.createElement('script');script.src='scripts/speech-runtime.js?v=20260818-speech-home1';script.async=false;script.onload=mount;script.onerror=mount;document.head.appendChild(script);
-  }
   function mountMobileQuickNav(){
     const grid=document.querySelector('.home-index-grid');
     if(!grid)return;
-    const mobileItems=[
-      ['dashboard.html','🎓','الطالب'],
-      ['language-courses.html','📚','الكورسات'],
-      ['library.html','📖','المكتبة'],
-      ['academy-map.html','🗺️','الخريطة'],
-      ['exam.html','🎯','التقييم'],
-      ['dashboard.html#progress','📈','التقدم']
-    ];
-    const apply=()=>{
-      if(window.innerWidth>600){
-        if(grid.dataset.mobileNavApplied==='1'){grid.innerHTML=grid.dataset.desktopMarkup;delete grid.dataset.mobileNavApplied}
-        return;
+    const items=[['dashboard.html','🎓','الطالب'],['language-courses.html','📚','الكورسات'],['library.html','📖','المكتبة'],['academy-map.html','🗺️','الخريطة'],['exam.html','🎯','التقييم'],['dashboard.html#progress','📈','التقدم']];
+    const render=()=>{
+      if(window.innerWidth<=600){
+        grid.classList.add('home-mobile-quick-grid');
+        grid.innerHTML=items.map(x=>'<a class="home-mobile-quick-action" href="'+x[0]+'"><span aria-hidden="true">'+x[1]+'</span><strong>'+x[2]+'</strong></a>').join('');
+      }else if(grid.classList.contains('home-mobile-quick-grid')){
+        location.reload();
       }
-      if(grid.dataset.mobileNavApplied==='1')return;
-      grid.dataset.desktopMarkup=grid.innerHTML;
-      grid.innerHTML=mobileItems.map(([href,icon,label])=>`<a class="home-mobile-quick-action" href="${href}"><span>${icon}</span>${label}</a>`).join('');
-      grid.dataset.mobileNavApplied='1';
     };
-    apply();
-    window.addEventListener('resize',apply,{passive:true});
+    render();
+    window.addEventListener('resize',render,{passive:true});
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{ensureSpeechAndMount();mountMobileQuickNav()},{once:true});else{ensureSpeechAndMount();mountMobileQuickNav()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mountMobileQuickNav,{once:true});else mountMobileQuickNav();
 })();
