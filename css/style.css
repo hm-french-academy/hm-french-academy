@@ -69,3 +69,17 @@ input,select,textarea{font:inherit}
   .home-hero h1{font-size:clamp(30px,9vw,42px);line-height:1.2}
   .home-hero p{font-size:15px;line-height:1.8}
 }
+
+/* HM Academy: mobile home quick-access grid. Keep desktop layout unchanged and make the six primary actions a clean 2x3 touch-friendly grid on phones. */
+@media(max-width:600px){
+  .home-index{padding:14px;border-radius:20px}
+  .home-index-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .home-index a{min-height:82px;padding:13px 8px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:14px;line-height:1.35;box-shadow:0 5px 14px rgba(20,38,74,.05)}
+  .home-index a span{font-size:27px;line-height:1;margin:0}
+}
+@media(max-width:360px){
+  .home-index{padding:12px}
+  .home-index-grid{gap:8px}
+  .home-index a{min-height:76px;font-size:13px;padding:11px 6px}
+  .home-index a span{font-size:24px}
+}
