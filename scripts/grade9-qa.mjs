@@ -4,9 +4,11 @@ import path from 'node:path';
 const root = path.resolve(process.cwd());
 const base = path.join(root, 'data', 'lessons', 'grade-9', 'semester-1');
 const registryPath = path.join(base, 'lesson-registry.json');
+const studioPath = path.join(root, 'grade-9-lesson-studio.html');
 const stages = ['start','vocabulary','pronunciation','grammar','conversation','practice','video','games','smart-review','evaluation','progress'];
 const requiredArrays = ['vocabulary','pronunciation','grammar','conversation','practice','assessment'];
 const failures = [];
+const arabic = /[\u0600-\u06FF]/;
 
 if (!fs.existsSync(registryPath)) {
   console.error('Grade 9 QA FAILED\n- lesson-registry.json: missing');
@@ -20,6 +22,14 @@ catch { console.error('Grade 9 QA FAILED\n- lesson-registry.json: invalid JSON')
 const lessons = registry.units?.flatMap(unit => unit.lessons ?? []) ?? [];
 if (lessons.length !== 12) failures.push(`registry: expected 12 lessons, found ${lessons.length}`);
 if (JSON.stringify(registry.lessonJourney) !== JSON.stringify(stages)) failures.push('registry: lessonJourney mismatch');
+if (!fs.existsSync(studioPath)) failures.push('grade-9-lesson-studio.html: missing');
+else {
+  const studio = fs.readFileSync(studioPath, 'utf8');
+  for (const stage of stages) if (!studio.includes(`'${stage}'`)) failures.push(`studio: stage '${stage}' is not wired`);
+  for (const marker of ['vocabulary','pronunciation','grammar','conversation','practice','games','smart-review','evaluation','progress']) {
+    if (!studio.includes(marker)) failures.push(`studio: ${marker} renderer missing`);
+  }
+}
 
 const registeredFiles = new Set();
 for (const lesson of lessons) {
@@ -35,6 +45,14 @@ for (const lesson of lessons) {
   for (const key of requiredArrays) {
     if (!Array.isArray(data.journey?.[key]) || data.journey[key].length === 0) failures.push(`${relative}: journey.${key} empty/missing`);
   }
+  for (const key of ['pronunciation','grammar','conversation','practice','assessment']) {
+    for (const item of data.journey?.[key] ?? []) {
+      if (typeof item === 'string' && arabic.test(item)) failures.push(`${relative}: journey.${key} contains Arabic text: ${item}`);
+    }
+  }
+  for (const item of data.journey?.vocabulary ?? []) {
+    if (typeof item === 'object' && typeof item.fr === 'string' && arabic.test(item.fr)) failures.push(`${relative}: vocabulary.fr contains Arabic text: ${item.fr}`);
+  }
 }
 
 const actualLessonFiles = fs.readdirSync(base).filter(name => /^u\d+-l\d+\.json$/.test(name));
@@ -47,4 +65,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
-console.log(`Grade 9 QA PASS: ${lessons.length} registered lesson files, valid JSON, IDs, required content fields, registry coverage, and 11-stage journey verified.`);
+console.log(`Grade 9 QA PASS: ${lessons.length} registered lesson files, valid JSON, IDs, required content fields, 11-stage studio wiring, registry coverage, and French-field language integrity verified.`);
