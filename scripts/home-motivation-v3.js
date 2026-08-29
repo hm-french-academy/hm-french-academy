@@ -27,10 +27,34 @@
   function addSpeakButton(parent,text,lang,label){const b=document.createElement('button');b.type='button';b.className='hm-motivation-speak';b.textContent='🔊 '+label;b.setAttribute('aria-label',label);b.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();speak(text,lang,b)});parent.appendChild(b)}
   function mount(){const host=document.getElementById('hm-motivation');if(!host)return;const m=pick();host.innerHTML='<div class="hm-motivation-mark">✦</div><div class="hm-motivation-content"><span class="hm-motivation-kicker">ومضة اليوم · L’Éclat du jour · Today’s Spark</span><p class="hm-motivation-ar">'+m.ar+'</p><p class="hm-motivation-fr">'+m.fr+'</p><p class="hm-motivation-en">'+m.en+'</p><div class="hm-motivation-audio" aria-label="تشغيل صوت الكبسولة"></div></div>';const audio=host.querySelector('.hm-motivation-audio');const lang=getLang();const primary=lang==='ar'?'ar-EG':lang==='en'?'en-US':'fr-FR';const example=lang==='ar'?m.ar:lang==='en'?m.en:m.fr;addSpeakButton(audio,example,primary,'تشغيل الكبسولة');addSpeakButton(audio,m.fr,'fr-FR','Français');host.dataset.language=lang;}
   function ensureSpeechAndMount(){
-    if(window.HMSpeech){mount();return;}
+    if(window.HMSpeech){mount();return}
     const existing=document.querySelector('script[src*="scripts/speech-runtime.js"]');
     if(existing){let tries=0;const wait=setInterval(()=>{if(window.HMSpeech||++tries>60){clearInterval(wait);mount()}},50);return;}
     const script=document.createElement('script');script.src='scripts/speech-runtime.js?v=20260818-speech-home1';script.async=false;script.onload=mount;script.onerror=mount;document.head.appendChild(script);
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ensureSpeechAndMount,{once:true});else ensureSpeechAndMount();
+  function mountMobileQuickNav(){
+    const grid=document.querySelector('.home-index-grid');
+    if(!grid)return;
+    const mobileItems=[
+      ['dashboard.html','🎓','الطالب'],
+      ['language-courses.html','📚','الكورسات'],
+      ['library.html','📖','المكتبة'],
+      ['academy-map.html','🗺️','الخريطة'],
+      ['exam.html','🎯','التقييم'],
+      ['dashboard.html#progress','📈','التقدم']
+    ];
+    const apply=()=>{
+      if(window.innerWidth>600){
+        if(grid.dataset.mobileNavApplied==='1'){grid.innerHTML=grid.dataset.desktopMarkup;delete grid.dataset.mobileNavApplied}
+        return;
+      }
+      if(grid.dataset.mobileNavApplied==='1')return;
+      grid.dataset.desktopMarkup=grid.innerHTML;
+      grid.innerHTML=mobileItems.map(([href,icon,label])=>`<a class="home-mobile-quick-action" href="${href}"><span>${icon}</span>${label}</a>`).join('');
+      grid.dataset.mobileNavApplied='1';
+    };
+    apply();
+    window.addEventListener('resize',apply,{passive:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{ensureSpeechAndMount();mountMobileQuickNav()},{once:true});else{ensureSpeechAndMount();mountMobileQuickNav()}
 })();
