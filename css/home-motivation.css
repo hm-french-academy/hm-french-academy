@@ -2,3 +2,6 @@
 
 /* Mobile header fix: prevent the global nav column rule from stacking HM Academy navigation vertically. */
 @media(max-width:600px){.hm-header .hm-nav{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-width:0!important;overflow-x:auto!important;overflow-y:hidden!important;gap:6px!important;margin:0!important;padding:3px 2px 5px!important;scrollbar-width:none!important}.hm-header .hm-nav::-webkit-scrollbar{display:none}.hm-header .hm-nav a{flex:0 0 auto!important;white-space:nowrap!important}}
+
+/* Practical home hierarchy: reduce visual competition without changing page behavior. */
+.home-pro .home-hero-actions a.alt[href="academy-map.html"]{display:none}.home-pro .home-index{display:none}.home-pro .home-search{margin-top:4px}.home-pro .home-section:has(.home-tools-grid){margin-top:22px}.home-pro .home-tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-pro .home-tool:first-child{border-color:#cbdaf8;box-shadow:0 14px 34px rgba(37,99,235,.10)}.home-pro .home-tool a{font-size:14px}.home-pro .home-curriculum{grid-template-columns:repeat(2,minmax(0,1fr))}.home-pro .home-footer-note{opacity:.9}@media(max-width:560px){.home-pro .home-tools-grid,.home-pro .home-curriculum{grid-template-columns:1fr}}
