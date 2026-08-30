@@ -1,131 +1,21 @@
 {
-  "id": "grade-9-revision-readiness",
-  "version": "2026-08-28-v1",
-  "status": "draft-content-ready",
-  "targetGrade": 9,
-  "targetTitleAr": "الصف الثالث الإعدادي",
-  "reviewOfGrade": 8,
-  "reviewOfTitleAr": "الصف الثاني الإعدادي",
-  "sourceCurriculum": "data/curriculum/grade-8.json",
-  "sourceRegistry": "data/lessons/grade-8/lesson-registry.json",
-  "sourceCourse": "Le Français Simple 2",
-  "purpose": "Pre-course diagnostic and readiness review before the Grade 9 current curriculum.",
-  "delivery": {
-    "print": true,
-    "digital": true,
-    "studentBook": true,
-    "teacherAnswerKey": true
-  },
-  "designSystem": {
-    "paper": "A4",
-    "direction": "ltr-with-arabic-support",
-    "brand": "HM Academy",
-    "sections": [
-      "cover",
-      "diagnostic",
-      "unit-review",
-      "grammar-lab",
-      "vocabulary-bank",
-      "communication-bank",
-      "reading",
-      "writing",
-      "final-readiness",
-      "answer-key"
-    ]
-  },
-  "sourceUnits": [
-    {
-      "id": "unit-1",
-      "titleFr": "À l'école",
-      "titleAr": "في المدرسة",
-      "lessons": [
-        "grade8-u1-l1",
-        "grade8-u1-l2",
-        "grade8-u1-l3",
-        "grade8-u1-l4"
-      ],
-      "reviewFocus": [
-        "school vocabulary",
-        "school supplies",
-        "pencil case and backpack",
-        "school subjects",
-        "basic verb conjugation",
-        "professions",
-        "il y a"
-      ]
-    },
-    {
-      "id": "unit-2",
-      "titleFr": "La maison",
-      "titleAr": "المنزل",
-      "lessons": [
-        "grade8-u2-l1",
-        "grade8-u2-l2",
-        "grade8-u2-l3",
-        "grade8-u2-l4"
-      ],
-      "reviewFocus": [
-        "rooms of the house",
-        "bedroom",
-        "living room",
-        "kitchen",
-        "bathroom",
-        "general home vocabulary",
-        "avoir and être",
-        "prepositions of place",
-        "possessive adjectives"
-      ]
-    },
-    {
-      "id": "unit-3",
-      "titleFr": "Le voyage",
-      "titleAr": "السفر",
-      "lessons": [
-        "grade8-u3-l1",
-        "grade8-u3-l2",
-        "grade8-u3-l3",
-        "grade8-u3-l4"
-      ],
-      "reviewFocus": [
-        "means of transport",
-        "travel places",
-        "travel objects",
-        "travel people",
-        "travel expressions",
-        "conjugation",
-        "demonstrative adjectives",
-        "prepositions",
-        "à vs en",
-        "interrogative words"
-      ]
-    }
-  ],
-  "assessmentBlueprint": {
-    "diagnostic": {
-      "targetMinutes": 30,
-      "skills": ["vocabulary", "grammar", "communication", "reading"]
-    },
-    "unitChecks": {
-      "perUnit": ["recall", "recognition", "controlled-production", "free-production"]
-    },
-    "final": {
-      "targetMinutes": 40,
-      "readinessThreshold": 0.70,
-      "skills": ["vocabulary", "grammar", "reading", "writing", "communication"]
-    }
-  },
-  "qualityRules": [
-    "Do not reproduce textbook pages verbatim.",
-    "Do not invent prerequisite topics that are absent from the reviewed Grade 8 curriculum without labeling them as enrichment.",
-    "Keep all core review claims traceable to the Grade 8 registry/content.",
-    "Use external books such as Bravo or Génial only as supplementary exercise-design references, not as curriculum authority.",
-    "Keep answer key separate from the student print section."
-  ],
-  "nextBuild": [
-    "Populate exact vocabulary and grammar inventory from all Grade 8 lesson content files.",
-    "Build original exercises mapped to every inventory item.",
-    "Add prerequisite-to-Grade-9 bridge mapping against Grade 9 units.",
-    "Generate final A4 print-ready PDF and teacher key.",
-    "Register the pack in the platform review library without modifying Grade 8 or Grade 9 lesson runtime files."
-  ]
-}
+  "id":"grade-9-revision-readiness",
+  "version":"2026-08-31-v2",
+  "status":"content-ready-source-scope-verified",
+  "targetGrade":9,
+  "targetTitleAr":"الصف الثالث الإعدادي",
+  "reviewOfGrade":8,
+  "reviewOfTitleAr":"الصف الثاني الإعدادي",
+  "sourceCurriculum":"data/curriculum/grade-8.json",
+  "sourceRegistry":"data/lessons/grade-8/lesson-registry.json",
+  "sourceCourse":"Le Français Simple 2",
+  "purpose":"Pre-course diagnostic and readiness review before the Grade 9 current curriculum.",
+  "delivery":{"print":true,"digital":true,"studentBook":true,"teacherAnswerKey":true},
+  "studentEntry":"grade-9-review.html",
+  "contentPackage":"data/reviews/grade-9/review-content.json",
+  "designSystem":{"paper":"A4","direction":"ltr-with-arabic-support","brand":"HM Academy","sections":["cover","diagnostic","unit-review","grammar-lab","vocabulary-bank","communication-bank","reading","writing","final-readiness","answer-key"]},
+  "verifiedSourceScope":{"includedUnits":3,"includedLessons":12,"units":["À l'école","La maison","Le voyage"],"excludedUnits":["La fête"],"scopeNote":"The current repository Grade 8 curriculum is explicitly term-1 and excludes Unit 4. No unsupported second-semester content was invented."},
+  "assessmentBlueprint":{"diagnosticMinutes":30,"finalMinutes":40,"readinessThreshold":0.70,"skills":["vocabulary","grammar","communication","reading","writing"]},
+  "qualityRules":["Grade 8 registry/content is authoritative for the current platform scope.","Do not reproduce textbook pages verbatim.","External books are supplementary only.","Every core review item maps to the verified Grade 8 scope.","Do not modify Grade 8 or Grade 9 lesson runtime files.","Do not label the package as full two-semester coverage until second-semester Grade 8 source content is present and verified."],
+  "release":{"contentJson":true,"interactivePage":true,"answerKeyIncluded":true,"runtimeUntouched":true},
+  "nextRequiredForFullYear":"Add and verify Grade 8 second-semester source content, then extend this same package without replacing the existing review."}
