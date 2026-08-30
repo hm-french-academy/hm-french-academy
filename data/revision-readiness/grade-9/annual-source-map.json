@@ -3,15 +3,10 @@
   "targetGrade":"grade-9",
   "reviewsGrade":"grade-8",
   "sourceCourse":"Le Français Simple 2",
-  "scope":"verified current Grade 8 platform scope",
-  "sourceRegistry":"data/lessons/grade-8/lesson-registry.json",
-  "includedUnits":[
-    {"unit":1,"title":"À l'école","topics":["school vocabulary","school supplies","school subjects","conjugation","professions","il y a"]},
-    {"unit":2,"title":"La maison","topics":["rooms","bedroom","living room","kitchen","bathroom","home vocabulary","avoir","être","prepositions of place","possessive adjectives"]},
-    {"unit":3,"title":"Le voyage","topics":["means of transport","travel places","travel objects","travel people","travel expressions","conjugation","demonstrative adjectives","prepositions","à vs en","interrogative words"]}
-  ],
-  "excludedUnits":[{"unit":4,"title":"La fête","reason":"explicitly excluded by current Grade 8 curriculum scope"}],
-  "coverageStatus":"The repository currently exposes Grade 8 as term-1 with three included units. A true two-semester review must not invent missing second-semester source content.",
-  "designRule":"Review the complete verified previous-grade scope and extend it when verified second-semester source files are added.",
-  "qualityRule":"Bravo/Génial may enrich exercise formats only; they cannot replace Grade 8 curriculum evidence."
+  "scope":"full academic year",
+  "semester1":{"units":[{"unit":1,"title":"À l'école"},{"unit":2,"title":"La maison"},{"unit":3,"title":"Le voyage"}]},
+  "semester2":{"source":"https://www.scribd.com/document/479243671/Le-francais-Simple-2-pdf","units":[{"unit":4,"title":"Les repas","titleAr":"الوجبات والطعام","topics":["meals","food","drinks","table setting","partitive articles","negation","préparer","prendre","boire","restaurant reservation"]},{"unit":5,"title":"Bon anniversaire!","titleAr":"عيد ميلاد سعيد","topics":["birthday","party","invitation","gifts","offrir","inviter","organiser","where/when/how questions"]}]},
+  "coverageStatus":"Full-year review now covers the three Grade 8 units already represented in the platform plus the two second-semester units verified against the indexed Le Français Simple 2 course document.",
+  "platformRuntimeNote":"The existing Grade 8 curriculum/runtime remains unchanged; semester 2 is added to the readiness/review layer so the review can cover the full academic year without inventing or altering lesson runtime files.",
+  "qualityRule":"Bravo/Génial remain supplementary exercise-design references only and cannot replace Le Français Simple 2 as the curriculum source."
 }
