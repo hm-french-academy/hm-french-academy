@@ -1,43 +1,36 @@
 # HM Academy — Grade 9 Revision & Readiness
 
-## Purpose
+## Current result
 
-This package is the pre-course revision layer for **الصف الثالث الإعدادي**, reviewing the learning foundations of **الصف الثاني الإعدادي / Le Français Simple 2** before the learner starts the Grade 9 current curriculum.
+The Grade 9 readiness layer is now implemented as a digital review page plus source-grounded review data and answer key for the **verified Grade 8 scope currently present in the platform**.
 
-## Source-grounded scope
+**Student page:** `grade-9-review.html`
 
-The reviewed Grade 8 curriculum currently contains three included units and twelve lessons:
+**Review data:** `data/reviews/grade-9/review-content.json`
 
-1. **À l'école** — school, supplies, school subjects, conjugation, professions, `il y a`.
+## Verified source scope
+
+The current Grade 8 registry contains 3 included units / 12 lessons:
+
+1. **À l'école** — school vocabulary, supplies, school subjects, conjugation, professions, `il y a`.
 2. **La maison** — rooms, home vocabulary, `avoir` / `être`, prepositions of place, possessive adjectives.
-3. **Le voyage** — transport, places, travel objects and people, conjugation, demonstratives, prepositions, `à` / `en`, interrogatives.
+3. **Le voyage** — transport, travel places/objects/people, conjugation, demonstratives, prepositions, `à` / `en`, interrogatives.
 
-Unit 4 **La fête** is explicitly excluded from the current Grade 8 scope and is therefore not included in this readiness pack unless the curriculum scope changes.
+`La fête` is explicitly excluded by the current Grade 8 curriculum scope.
 
-## Student experience
+## Student journey
 
-The intended printable journey is:
+**Diagnostic → Unit Review → Grammar Lab → Vocabulary Bank → Communication → Reading/Writing → Final Readiness**
 
-**Diagnostic → Targeted Unit Review → Grammar Lab → Vocabulary Bank → Communication → Reading → Writing → Final Readiness → Answer Key**
+The package includes a 30-minute diagnostic, targeted unit checks, a 40-minute final readiness assessment, and a 70% readiness threshold.
 
-The diagnostic is designed to identify gaps rather than punish the learner. The final assessment uses a readiness threshold of 70% as a practical starting point; teachers may adjust it.
+## Important source-integrity note
+
+The repository's current `data/curriculum/grade-8.json` is explicitly marked `term-1` and contains only the three units above. Therefore the package does **not** falsely claim two-semester coverage and does not invent a second-semester syllabus. Once verified Grade 8 second-semester source content is added, this package can be extended without replacing the existing work.
 
 ## Editorial rules
 
-- The current curriculum/registry is the authority for what the learner was expected to study.
-- External series such as **Bravo** or **Génial** may be consulted for exercise variety, but they are not treated as curriculum authority.
-- Exercises are original and should not reproduce textbook pages.
-- Every core review item should be traceable to the Grade 8 content inventory before release.
-- The review pack is additive: it must not alter existing Grade 8 or Grade 9 lesson runtime files.
-
-## Release checklist
-
-- [ ] Exact content inventory completed for all 12 Grade 8 lessons.
-- [ ] Diagnostic mapped to inventory.
-- [ ] Unit review exercises cover all priority prerequisites.
-- [ ] Grade 8 → Grade 9 prerequisite bridge completed.
-- [ ] Answer key verified.
-- [ ] A4 print PDF generated.
-- [ ] Student and teacher versions separated.
-- [ ] Review library registration completed.
-- [ ] Final QA completed.
+- Grade 8 registry/content is the curriculum authority for the current platform scope.
+- Bravo/Génial are supplementary exercise-design references only.
+- Exercises are original and do not reproduce textbook pages.
+- Grade 8/Grade 9 lesson runtime files were not modified.
