@@ -1,46 +1,53 @@
 {
   "id":"grade-9-revision-readiness-content",
-  "version":"2026-08-31-v1",
+  "version":"2026-08-31-v2",
   "targetGrade":9,
   "reviewOfGrade":8,
   "source":"Le Français Simple 2",
-  "scope":"Grade 8 Units 1-3, 12 lessons, both semesters as represented by the current Grade 8 curriculum registry",
+  "scope":"Full academic year: Units 1-5, including semester 2 Units 4-5",
   "titleAr":"مراجعة الصف الثاني الإعدادي للمتقدمين إلى الصف الثالث الإعدادي",
   "titleFr":"Révision de 2ème préparatoire – Préparation à la 3ème préparatoire",
   "units":[
-    {"id":"u1","titleFr":"À l'école","titleAr":"في المدرسة","lessons":["grade8-u1-l1","grade8-u1-l2","grade8-u1-l3","grade8-u1-l4"],"vocabulary":["l'école","la classe","le professeur","l'élève","le livre","le cahier","le stylo","le crayon","la gomme","la règle","la trousse","le sac à dos","les mathématiques","le français","l'anglais","les sciences","l'histoire","le médecin","le professeur","le journaliste"],"grammar":["conjugaison des verbes étudiés","il y a"],"communication":["parler de l'école","identifier les fournitures","parler des matières scolaires","présenter une profession"],"bridge":"Réactiver le vocabulaire scolaire et la conjugaison avant les nouvelles situations de 3ème préparatoire."},
-    {"id":"u2","titleFr":"La maison","titleAr":"المنزل","lessons":["grade8-u2-l1","grade8-u2-l2","grade8-u2-l3","grade8-u2-l4"],"vocabulary":["la maison","la chambre","le salon","la cuisine","la salle de bains","la porte","la fenêtre","le lit","l'armoire","la table","la chaise","le canapé","le réfrigérateur","la douche"],"grammar":["avoir","être","prépositions de lieu","adjectifs possessifs"],"communication":["décrire une maison","situer un objet","parler de sa chambre","dire à qui appartient un objet"],"bridge":"Maîtriser lieu et possession pour produire des phrases plus longues en 3ème préparatoire."},
-    {"id":"u3","titleFr":"Le voyage","titleAr":"السفر","lessons":["grade8-u3-l1","grade8-u3-l2","grade8-u3-l3","grade8-u3-l4"],"vocabulary":["le train","le bus","l'avion","la voiture","la gare","l'aéroport","l'hôtel","la valise","le billet","le passeport","le voyageur","le touriste","bon voyage"],"grammar":["conjugaison étudiée","adjectifs démonstratifs","prépositions","à ou en","mots interrogatifs"],"communication":["parler d'un voyage","choisir un moyen de transport","demander une information","poser une question sur un lieu ou un trajet"],"bridge":"Réutiliser les prépositions et les mots interrogatifs dans des situations nouvelles."}
+    {"id":"u1","titleFr":"À l'école","titleAr":"في المدرسة","semester":1,"vocabulary":["l'école","la classe","le professeur","l'élève","le livre","le cahier","le stylo","le crayon","la gomme","la règle","la trousse","le sac à dos","les matières scolaires","les professions"],"grammar":["être","faire","aimer","préférer","présent des verbes étudiés","il y a"],"communication":["parler de l'école","identifier les fournitures","parler des matières","présenter une profession"]},
+    {"id":"u2","titleFr":"La maison","titleAr":"المنزل","semester":1,"vocabulary":["la maison","la chambre","le salon","la cuisine","la salle de bains","la salle à manger","le garage","le lit","l'armoire","la table","la chaise","le canapé","le réfrigérateur","la douche","la baignoire","le lavabo"],"grammar":["avoir","être","prépositions de lieu","adjectifs possessifs"],"communication":["décrire une maison","situer un objet","parler de sa chambre","exprimer la possession"]},
+    {"id":"u3","titleFr":"Le voyage","titleAr":"السفر","semester":1,"vocabulary":["le train","le bus","l'avion","la voiture","la gare","l'aéroport","l'hôtel","la valise","le billet","le passeport","le voyageur","le touriste","le bateau","le taxi","la bicyclette"],"grammar":["aller","prépositions de destination","à / au / à la / à l'","en","adjectifs démonstratifs","mots interrogatifs"],"communication":["parler d'un voyage","choisir un moyen de transport","demander une information","parler d'une destination"]},
+    {"id":"u4","titleFr":"Les repas","titleAr":"الوجبات والطعام","semester":2,"sourceBasis":"Le Français Simple 2, Unité 4","vocabulary":["le petit-déjeuner","le déjeuner","le dîner","le pain","le fromage","la confiture","le croissant","le thé","le café","le lait","le poulet","le poisson","la viande","la salade","le jus","les fruits","le yaourt","le sandwich","la pizza","le couteau","la fourchette","la cuillère","le plat"],"grammar":["articles partitifs: du / de la / de l' / des","négation: ne ... pas","préparer","prendre","boire"],"communication":["parler des repas","dire ce qu'on mange et boit","commander au restaurant","réserver une table"]},
+    {"id":"u5","titleFr":"Bon anniversaire!","titleAr":"عيد ميلاد سعيد","semester":2,"sourceBasis":"Le Français Simple 2, Unité 5","vocabulary":["l'anniversaire","la fête","l'invitation","un cadeau","un gâteau","une montre","une cravate","un parfum","un stylo","une robe","des bracelets","une bague","un sac","les bougies"],"grammar":["offrir","inviter","organiser","mots interrogatifs: où / quand / comment / à quelle occasion"],"communication":["inviter quelqu'un","accepter ou refuser une invitation","parler d'un anniversaire","choisir et offrir un cadeau"]}
   ],
-  "diagnostic":{"minutes":30,"questions":[
-    {"id":"D1","type":"mcq","skill":"vocabulary","q":"Dans la trousse, on trouve…","options":["un crayon","un avion","un canapé","un passeport"],"answer":0},
-    {"id":"D2","type":"mcq","skill":"vocabulary","q":"Pour voyager en avion, on va à…","options":["la cuisine","l'aéroport","la chambre","la classe"],"answer":1},
-    {"id":"D3","type":"mcq","skill":"grammar","q":"___ y a un livre sur la table.","options":["Il","Elle","Ils","Nous"],"answer":0},
-    {"id":"D4","type":"mcq","skill":"grammar","q":"C'est ___ chambre.","options":["mon","ma","mes","ton"],"answer":1},
-    {"id":"D5","type":"mcq","skill":"grammar","q":"Le livre est ___ la table.","options":["sur","avec","pour","chez"],"answer":0},
-    {"id":"D6","type":"mcq","skill":"grammar","q":"___ est ton professeur ?","options":["Qui","Quand","Comment","Pourquoi"],"answer":0},
-    {"id":"D7","type":"mcq","skill":"grammar","q":"Je vais ___ France.","options":["à","en","au","aux"],"answer":1},
-    {"id":"D8","type":"mcq","skill":"communication","q":"Pour demander une information, on peut dire…","options":["Où est… ?","Bonjour la maison.","C'est une trousse.","J'ai quinze ans."],"answer":0},
-    {"id":"D9","type":"transform","skill":"grammar","q":"Transforme avec il y a : Un ordinateur est dans la classe.","answer":"Il y a un ordinateur dans la classe."},
-    {"id":"D10","type":"writing","skill":"writing","q":"Écris 4 phrases pour décrire ta chambre ou une pièce de ta maison.","rubric":["vocabulaire","préposition de lieu","adjectif possessif","phrase correcte"]}
+  "diagnostic":{"minutes":35,"questions":[
+    {"id":"D1","skill":"vocabulary","q":"Dans la trousse, on trouve…","options":["un crayon","un avion","un canapé","un passeport"],"answer":0},
+    {"id":"D2","skill":"vocabulary","q":"Pour voyager en avion, on va à…","options":["la cuisine","l'aéroport","la chambre","la classe"],"answer":1},
+    {"id":"D3","skill":"grammar","q":"___ y a un livre sur la table.","options":["Il","Elle","Ils","Nous"],"answer":0},
+    {"id":"D4","skill":"grammar","q":"C'est ___ chambre.","options":["mon","ma","mes","ton"],"answer":1},
+    {"id":"D5","skill":"grammar","q":"Je vais ___ France.","options":["à","en","au","aux"],"answer":1},
+    {"id":"D6","skill":"grammar","q":"Au petit-déjeuner, je bois ___ lait.","options":["du","de la","des","le"],"answer":0},
+    {"id":"D7","skill":"grammar","q":"Nous ne mangeons pas ___ viande.","options":["de","du","de la","des"],"answer":0},
+    {"id":"D8","skill":"communication","q":"Pour accepter une invitation, on dit…","options":["Avec plaisir !","Désolé !","Où est-il ?","Je vais en bus."],"answer":0},
+    {"id":"D9","skill":"communication","q":"Pour demander la date d'une fête, on dit…","options":["Quand ?","Où ?","Comment ?","Qui ?"],"answer":0},
+    {"id":"D10","skill":"grammar","q":"Transforme: Je bois du lait.","options":["Je ne bois pas de lait.","Je ne bois pas du lait.","Je bois ne lait pas.","Je pas bois du lait."],"answer":0},
+    {"id":"D11","skill":"writing","q":"Écris 4 phrases sur ce que tu manges et bois dans une journée.","rubric":["vocabulaire","partitif","conjugaison","cohérence"]},
+    {"id":"D12","skill":"writing","q":"Écris une courte invitation à ton anniversaire.","rubric":["date/occasion","invitation","formule correcte","cohérence"]}
   ]},
   "reviewChecks":[
-    {"id":"C1","unit":"u1","title":"Je maîtrise l'école","tasks":["Associer 8 mots scolaires à leur sens","Compléter 5 phrases sur les matières","Conjuguer 4 verbes étudiés au présent","Produire 3 phrases avec il y a","Écrire 4 phrases sur l'école"]},
-    {"id":"C2","unit":"u2","title":"Je maîtrise la maison","tasks":["Nommer 10 pièces/objets","Choisir entre être et avoir","Compléter 6 phrases avec mon/ma/mes/ton/ta/tes","Situer 5 objets avec des prépositions","Décrire une chambre en 5 phrases"]},
-    {"id":"C3","unit":"u3","title":"Je maîtrise le voyage","tasks":["Identifier 10 mots du voyage","Choisir la bonne préposition","Utiliser ce/cet/cette/ces","Choisir à ou en dans des phrases de transport/destination","Former 6 questions","Écrire un mini-dialogue de voyage"]}
+    {"id":"C1","unit":"u1","title":"Je maîtrise l'école","tasks":["Réviser le vocabulaire scolaire","Conjuguer les verbes étudiés","Produire des phrases avec il y a","Parler des matières et professions"]},
+    {"id":"C2","unit":"u2","title":"Je maîtrise la maison","tasks":["Nommer les pièces et objets","Utiliser être et avoir","Utiliser les prépositions de lieu","Utiliser mon/ma/mes/ton/ta/tes","Décrire une chambre"]},
+    {"id":"C3","unit":"u3","title":"Je maîtrise le voyage","tasks":["Réviser transport et destinations","Utiliser aller","Choisir à/au/à la/à l'/en","Utiliser ce/cet/cette/ces","Former des questions"]},
+    {"id":"C4","unit":"u4","title":"Je maîtrise les repas","tasks":["Classer les aliments par repas","Choisir du/de la/de l'/des","Transformer une phrase à la négation","Conjuguer prendre/boire/préparer","Commander au restaurant"]},
+    {"id":"C5","unit":"u5","title":"Je maîtrise l'anniversaire","tasks":["Réviser le vocabulaire de la fête","Inviter et répondre à une invitation","Utiliser offrir/inviter/organiser","Choisir un cadeau","Former des questions avec où/quand/comment"]}
   ],
-  "finalReadiness":{"minutes":40,"threshold":0.70,"sections":["vocabulary","grammar","reading","writing","communication"],"questions":[
-    {"id":"F1","q":"Complète : Dans mon sac, il y a ___ cahier et ___ trousse.","answer":"un / une"},
-    {"id":"F2","q":"Complète : ___ chambre est grande et ___ fenêtres sont ouvertes.","answer":"Ma / mes"},
-    {"id":"F3","q":"Complète : Le canapé est ___ le salon.","answer":"dans"},
-    {"id":"F4","q":"Choisis : Je vais ___ bus.","answer":"en"},
-    {"id":"F5","q":"Choisis : ___ billet est à moi.","answer":"Ce"},
-    {"id":"F6","q":"Pose une question avec « où » pour demander l'emplacement de la gare.","answer":"Où est la gare ?"},
-    {"id":"F7","q":"Écris 5 phrases sur ton école en utilisant au moins un vocabulaire scolaire et il y a.","rubric":["vocabulaire","il y a","grammaire","cohérence"]},
-    {"id":"F8","q":"Écris 5 phrases pour parler d'un voyage en utilisant un moyen de transport et une préposition.","rubric":["vocabulaire","prépositions","grammaire","cohérence"]},
-    {"id":"F9","type":"reading","text":"Paul prépare son voyage. Il met son passeport et son billet dans sa valise. Il va à l'aéroport en bus. À l'aéroport, il demande : « Où est la porte d'embarquement ? »","questions":["Où va Paul ?","Comment va-t-il à l'aéroport ?","Que met-il dans sa valise ?"],"answers":["à l'aéroport","en bus","son passeport et son billet"]},
-    {"id":"F10","type":"communication","q":"Réponds en 4 répliques à un ami qui te demande où tu vas et comment tu voyages.","rubric":["question/réponse","moyen de transport","préposition","intelligibilité"]}
+  "finalReadiness":{"minutes":50,"threshold":0.70,"sections":["vocabulary","grammar","communication","reading","writing"],"questions":[
+    {"id":"F1","q":"Dans mon sac, il y a ___ cahier et ___ trousse.","answer":"un / une"},
+    {"id":"F2","q":"___ chambre est grande et ___ fenêtres sont ouvertes.","answer":"Ma / mes"},
+    {"id":"F3","q":"Je vais ___ France et je voyage ___ avion.","answer":"en / en"},
+    {"id":"F4","q":"Au petit-déjeuner, je bois ___ café et je mange ___ pain.","answer":"du / du"},
+    {"id":"F5","q":"Transforme: Nous mangeons de la salade.","answer":"Nous ne mangeons pas de salade."},
+    {"id":"F6","q":"Choisis: ___ billet est à moi.","answer":"Ce"},
+    {"id":"F7","q":"Pose une question pour demander la date d'un anniversaire.","answer":"Quand est l'anniversaire ?"},
+    {"id":"F8","q":"Écris 5 phrases pour parler d'un repas.","rubric":["vocabulaire","articles partitifs","verbes","cohérence"]},
+    {"id":"F9","q":"Écris une invitation de 5 phrases pour ton anniversaire.","rubric":["occasion","invitation","date/lieu","formule","cohérence"]},
+    {"id":"F10","type":"reading","text":"Samedi, Lina organise une fête pour son anniversaire. Elle invite ses amis. Sa mère prépare un gâteau et des sandwiches. Lina offre un parfum à sa sœur. Les invités arrivent à six heures.","questions":["Pourquoi Lina organise-t-elle une fête ?","Que prépare sa mère ?","À quelle heure arrivent les invités ?"],"answers":["pour son anniversaire","un gâteau et des sandwiches","à six heures"]}
   ]},
-  "answerKey":{"diagnostic":{"D1":"un crayon","D2":"l'aéroport","D3":"Il","D4":"ma","D5":"sur","D6":"Qui","D7":"en","D8":"Où est… ?","D9":"Il y a un ordinateur dans la classe."},"final":{"F1":"un / une","F2":"Ma / mes","F3":"dans","F4":"en","F5":"Ce","F6":"Où est la gare ?","F9":["à l'aéroport","en bus","son passeport et son billet"]}},
-  "quality":{"coreSource":"data/lessons/grade-8/lesson-registry.json","sourceLessons":12,"externalReferences":"supplementary exercise design only","textbookVerbatim":false}
+  "answerKey":{"diagnostic":{"D1":"un crayon","D2":"l'aéroport","D3":"Il","D4":"ma","D5":"en","D6":"du","D7":"de","D8":"Avec plaisir !","D9":"Quand ?","D10":"Je ne bois pas de lait."},"final":{"F1":"un / une","F2":"Ma / mes","F3":"en / en","F4":"du / du","F5":"Nous ne mangeons pas de salade.","F6":"Ce","F7":"Quand est l'anniversaire ?","F10":["pour son anniversaire","un gâteau et des sandwiches","à six heures"]}},
+  "sources":{"core":"Le Français Simple 2","semester2Reference":"https://www.scribd.com/document/479243671/Le-francais-Simple-2-pdf","semester2Units":[4,5],"note":"Semester 2 Units 4-5 are now represented from the indexed course document; existing platform Grade 8 runtime remains unchanged."},
+  "quality":{"coreSource":"Le Français Simple 2","semester1PlatformLessons":12,"semester2SourceUnits":2,"fullYear":true,"externalReferences":"supplementary exercise design only","textbookVerbatim":false}
 }
