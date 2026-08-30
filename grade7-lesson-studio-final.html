@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | الصف الأول الإعدادي</title>
+<style>
+:root{--nav:#173a82;--blue:#2563eb;--teal:#0f9f91;--pink:#e92d83;--bg:#f3f6fb;--ink:#16213e;--mut:#68758d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Arabic",sans-serif}.wrap{max-width:1180px;margin:auto;padding:12px}.hero,.box{background:#fff;border-radius:20px;padding:16px;margin:10px 0;box-shadow:0 6px 24px #173a8212}.hero{color:#fff;background:linear-gradient(135deg,var(--nav),var(--blue),var(--teal))}.hero h1{margin:8px 0;font-size:clamp(22px,5vw,34px)}.hero p{margin:4px 0}.nav{display:flex;gap:7px;overflow:auto}.nav a{padding:10px 12px;border-radius:11px;background:#edf2fb;color:var(--nav);text-decoration:none;font-weight:800;white-space:nowrap}.nav a.on{background:var(--blue);color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.card{background:#fff;border:1px solid #dfe6f0;border-radius:15px;padding:14px}.source{border-right:5px solid var(--teal)}.enrich{border-right:5px solid var(--pink)}.fr{direction:ltr;text-align:center;font-size:21px;font-weight:900}.ar{text-align:center;color:#315aa4;margin:6px 0}.btn{border:0;border-radius:10px;padding:9px 12px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}.notice{padding:12px;border-radius:11px;background:#fff8e8;border-right:4px solid #f59e0b;line-height:1.8}.ok{padding:12px;border-radius:11px;background:#eefbf3;border-right:4px solid #21a366}.small{font-size:13px;color:var(--mut);line-height:1.8}.list{display:grid;gap:8px}.item{padding:11px;border:1px solid #e1e7f0;border-radius:11px;background:#fafbfd}.stage{padding:10px;border-radius:10px;background:#f6f8fc;margin:6px 0}.done{background:#eefbf3}.q{margin-top:10px}.opt{margin:4px;padding:9px;border:1px solid #dbe2ee;border-radius:9px;background:#f7f9fd;cursor:pointer}.good{background:#e9f9ef}.bad{background:#fff0f2}@media(max-width:560px){.wrap{padding:8px}.hero,.box{border-radius:16px;padding:13px}}
+</style></head><body><div class="wrap">
+<section class="hero"><div>🇫🇷 HM Academy · Learning Studio · الصف الأول الإعدادي</div><h1 id="title">جاري تحميل الدرس…</h1><p id="goal"></p></section>
+<div class="box nav" id="lessons"></div><div class="box nav" id="tabs"></div><main id="panel" class="box"></main><div class="box"><b>📈 تقدم الرحلة</b><div id="progress" class="small"></div></div>
+</div>
+<script>
+const STAGES=[['introduction','🚀 البداية'],['vocabulary','🖼️ المفردات'],['pronunciation','🎧 النطق'],['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','✍️ التدريب'],['video','🎬 الفيديو'],['games','🎮 الألعاب'],['smart-review','🧠 المراجعة الذكية'],['assessment','🏆 التقييم'],['progress','📈 التقدم']];
+const IDS=['grade7-u1-l1','grade7-u1-l2','grade7-u1-l3','grade7-u1-l4','grade7-u1-l5','grade7-u1-l6','grade7-u2-l1','grade7-u2-l2','grade7-u3-l1','grade7-u3-l2','grade7-u3-l3'];
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const params=new URLSearchParams(location.search);let id=params.get('id')||'grade7-u1-l1';let section=params.get('section')||'introduction';let source=null;
+const titles={
+'grade7-u1-l1':['L’alphabet et les mots transparents','الأبجدية والكلمات الشفافة'],
+'grade7-u1-l2':['Les salutations','التحيات'],'grade7-u1-l3':['Les pronoms sujets et les verbes du 1er groupe','ضمائر الفاعل وأفعال المجموعة الأولى'],'grade7-u1-l4':['Le verbe être et la présentation','فعل être والتقديم'],'grade7-u1-l5':['Les nombres (0-20)','الأعداد من 0 إلى 20'],'grade7-u1-l6':['L’heure','الساعة'],'grade7-u2-l1':['Tu as quel âge ?','كم عمرك؟'],'grade7-u2-l2':['Qu’est-ce que c’est ? Les objets de la classe','ما هذا؟ أدوات الفصل'],'grade7-u3-l1':['Les couleurs','الألوان'],'grade7-u3-l2':['Les articles définis et les jours de la semaine','أدوات المعرفة وأيام الأسبوع'],'grade7-u3-l3':['Les mois de l’année et les saisons','شهور السنة والفصول']};
+const enrich={
+'grade7-u1-l1':[['A','حرف A'],['E','حرف E'],['I','حرف I'],['O','حرف O'],['U','حرف U'],['Un téléphone','هاتف'],['Une guitare','جيتار'],['Un cinéma','سينما']],
+'grade7-u1-l2':[['Salut !','مرحبًا'],['Bonjour','صباح الخير / مرحبًا'],['Bonsoir','مساء الخير'],['Ça va ?','كيف حالك؟'],['Ça va bien.','أنا بخير'],['Comme ci, comme ça.','هكذا هكذا']],
+'grade7-u1-l3':[['Je','أنا'],['Tu','أنت'],['Il','هو'],['Elle','هي'],['Nous','نحن'],['Vous','أنتم'],['Ils','هم'],['Elles','هنّ']],
+'grade7-u1-l4':[['Je suis','أنا'],['Tu es','أنت'],['Il est','هو'],['Elle est','هي'],['Nous sommes','نحن'],['Vous êtes','أنتم'],['Ils sont','هم']],
+'grade7-u1-l5':[['zéro','0'],['un','1'],['deux','2'],['trois','3'],['quatre','4'],['cinq','5'],['six','6'],['sept','7'],['huit','8'],['neuf','9'],['dix','10'],['onze','11'],['douze','12'],['treize','13'],['quatorze','14'],['quinze','15'],['seize','16'],['dix-sept','17'],['dix-huit','18'],['dix-neuf','19'],['vingt','20']],
+'grade7-u1-l6':[['Il est une heure','الساعة الواحدة'],['Il est deux heures','الساعة الثانية'],['Il est midi','الظهر'],['Il est minuit','منتصف الليل']],
+'grade7-u2-l1':[['avoir','يمتلك / عنده'],['J’ai','لديّ'],['Tu as','لديك'],['Quel âge as-tu ?','كم عمرك؟'],['J’ai … ans.','عمري … سنة']],
+'grade7-u2-l2':[['un livre','كتاب'],['un cahier','كراسة'],['un stylo','قلم'],['une trousse','مقلمة'],['un sac à dos','حقيبة ظهر'],['une règle','مسطرة']],
+'grade7-u3-l1':[['rouge','أحمر'],['bleu','أزرق'],['vert','أخضر'],['jaune','أصفر'],['noir','أسود'],['blanc','أبيض'],['rose','وردي'],['orange','برتقالي']],
+'grade7-u3-l2':[['le','أداة معرفة للمذكر'],['la','أداة معرفة للمؤنث'],['les','أداة معرفة للجمع'],['lundi','الاثنين'],['mardi','الثلاثاء'],['mercredi','الأربعاء'],['jeudi','الخميس'],['vendredi','الجمعة'],['samedi','السبت'],['dimanche','الأحد']],
+'grade7-u3-l3':[['janvier','يناير'],['février','فبراير'],['mars','مارس'],['avril','أبريل'],['mai','مايو'],['juin','يونيو'],['juillet','يوليو'],['août','أغسطس'],['septembre','سبتمبر'],['octobre','أكتوبر'],['novembre','نوفمبر'],['décembre','ديسمبر'],['le printemps','الربيع'],['l’été','الصيف'],['l’automne','الخريف'],['l’hiver','الشتاء']]
+};
+function key(s){return 'hm-g7-final:'+id+':'+s}function done(s){return localStorage.getItem(key(s))==='1'}function mark(s){localStorage.setItem(key(s),'1')}
+function speak(t){if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';speechSynthesis.speak(u)}}
+function cards(a){return '<div class="grid">'+a.map(x=>'<article class="card"><div class="fr">'+esc(x[0])+'</div><div class="ar">'+esc(x[1])+'</div><button class="btn" onclick="speak('+JSON.stringify(String(x[0]))+')">🔊 استمع</button></article>').join('')+'</div>'}
+function list(a){return '<div class="list">'+a.map(x=>'<div class="item">'+esc(typeof x==='string'?x:(Array.isArray(x)?x.join(' — '):(x.title||x.name||JSON.stringify(x))))+'</div>').join('')+'</div>'}
+function meta(){return titles[id]||['درس غير معروف','درس غير معروف']}
+function nav(){lessonsEl.innerHTML=IDS.map((x,i)=>'<a class="'+(x===id?'on':'')+'" href="?id='+x+'&section='+section+'">الدرس '+(i+1)+'</a>').join('');tabsEl.innerHTML=STAGES.map(x=>'<a class="'+(x[0]===section?'on':'')+'" href="?id='+id+'&section='+x[0]+'">'+x[1]+'</a>').join('')}
+function render(){const m=meta();title.textContent=m[0]+' — '+m[1];goal.textContent='منهج الصف الأول الإعدادي · رحلة الدرس';nav();let secs=(source?.lessons?.find(x=>x.id===id)?.sections)||[];let v=enrich[id]||[];let h='';
+if(section==='introduction')h='<div class="card source"><h2>🚀 بداية الدرس</h2><p>سنبدأ خطوة بخطوة في '+esc(m[1])+'، مع الحفاظ على معرف الدرس الحالي.</p><div class="ok">المعرف الصحيح: <b>'+esc(id)+'</b> · الصف الأول الإعدادي</div><h3>مكونات المصدر المسجلة</h3>'+list(secs)+'</div>';
+else if(section==='vocabulary')h='<div class="card source"><h2>🖼️ المفردات</h2>'+cards(v)+'</div>';
+else if(section==='pronunciation')h='<div class="card source"><h2>🎧 النطق</h2><p>اضغط «استمع» لسماع النطق الفرنسي.</p>'+cards(v)+'</div>';
+else if(section==='grammar')h='<div class="card enrich"><h2>📘 القواعد</h2><p>محور تدريبي مرتبط بموضوع الدرس: <b>'+esc(m[1])+'</b>.</p>'+list(secs.filter(x=>/verbe|pronoms|articles|adjectifs|règle|avoir|être/i.test(x)))+'</div>';
+else if(section==='conversation')h='<div class="card enrich"><h2>💬 المحادثة</h2><div class="item">طبّق جملة قصيرة باستخدام مفردات الدرس، ثم استمع وكرر النطق.</div>'+cards(v.slice(0,Math.min(6,v.length)))+'</div>';
+else if(section==='practice')h='<div class="card enrich"><h2>✍️ التدريب</h2>'+list(secs.length?secs:['تدريب المفردات','تدريب النطق','تطبيق ما تعلمته'])+'</div>';
+else if(section==='video')h='<div class="card source"><h2>🎬 الفيديو</h2><div class="notice">سيتم تشغيل ملف الفيديو الأصلي فقط عند توفر رابط asset موثق لهذا الدرس. لا يوجد تحويل تلقائي إلى درس آخر.</div></div>';
+else if(section==='games')h='<div class="card enrich"><h2>🎮 مركز الألعاب</h2><p>مركز الألعاب الآن مرتبط بالدرس المحدد: <b>'+esc(id)+'</b>.</p>'+list(['تحدي المفردات','اختبار سريع','استمع واختر'])+'</div>';
+else if(section==='smart-review')h='<div class="card enrich"><h2>🧠 المراجعة الذكية</h2><p>مراجعة مركزة لعناصر الدرس الحالي.</p>'+cards(v.slice(0,8))+'</div>';
+else if(section==='assessment')h='<div class="card source"><h2>🏆 التقييم</h2>'+list(['اختر الإجابة الصحيحة من مفردات الدرس.','استمع إلى الكلمة وحدد معناها.','استخدم عنصرًا من الدرس في جملة.'])+'</div>';
+else if(section==='progress')h='<div class="card"><h2>📈 تقدم الرحلة</h2>'+STAGES.map(x=>'<div class="stage '+(done(x[0])?'done':'')+'">'+(done(x[0])?'✓':'○')+' '+x[1]+'</div>').join('')+'</div>';
+panel.innerHTML=h;if(section!=='progress')mark(section);progress.textContent=STAGES.filter(x=>done(x[0])).length+' / '+STAGES.length+' مراحل مكتملة.'}
+async function boot(){try{let r=await fetch('data/lessons/grade-7/grade7-source-content.json',{cache:'no-store'});let raw=await r.json();source=typeof raw.content==='string'?JSON.parse(raw.content):raw;if(!IDS.includes(id))throw Error('invalid grade7 lesson id');render()}catch(e){panel.innerHTML='<div class="notice"><b>تعذر تحميل بيانات الصف الأول الإعدادي.</b><br>تم منع أي fallback إلى الصف الثاني الإعدادي.</div>'}}
+boot();
+</script></body></html>
