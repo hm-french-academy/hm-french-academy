@@ -1,38 +1,17 @@
 {
-  "id": "grade-9-french-annual-readiness",
-  "targetGrade": "grade-9",
-  "reviewsGrade": "grade-8",
-  "sourceCourse": "Le Français Simple 1",
-  "scope": "full academic year",
-  "semesters": {
-    "semester1": [
-      {"unit":1,"title":"Présente-toi","topics":["mots transparents","alphabet","voyelles","salutations","pronoms sujets","présentation","s'appeler","nombres","heure"]},
-      {"unit":2,"title":"Tu as quel âge ?","topics":["âge","avoir","objets de la classe","articles indéfinis"]},
-      {"unit":3,"title":"Les couleurs","topics":["couleurs","jours de la semaine","mois","saisons","prépositions au/en"]}
-    ],
-    "semester2": [
-      {"unit":4,"title":"Les nationalités","topics":["pays","nationalités","être"]},
-      {"unit":5,"title":"La famille","topics":["famille","articles définis","mots interrogatifs","qui","qu'est-ce que","quel/quelle","comment"]},
-      {"unit":6,"title":"Les vêtements","topics":["vêtements","couleurs","porter","vêtements selon la saison"]}
-    ]
-  },
-  "sourceEvidence": [
-    {
-      "type":"course-content",
-      "description":"Published/indexed Le Français Simple 1 content lists Units 1–6 and their vocabulary/grammar/cahier sections, including Units 4–6.",
-      "source":"https://fr.scribd.com/document/722735383/Le-Francais-Simple-1"
-    },
-    {
-      "type":"annual-distribution",
-      "description":"Annual distribution places Units 1–3 before the first-semester exam and Units 4–6 in the second semester, followed by the end-of-year exam.",
-      "source":"https://daafoor.com/assets/dropzone/uploads/solutions/5c66855b3db35/%D9%83%D8%B4%D9%83%D8%B4%D9%88%D9%84%20%D8%AA%D8%AD%D8%B6%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D8%A7%D9%88%D9%84%20%D8%A7%D9%84%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%D9%89%20%D9%84%D8%BA%D9%87%20%D9%81%D8%B1%D9%86%D8%B3%D9%8A%D9%87%20le%20francais%20simple.pdf"
-    },
-    {
-      "type":"external-teaching-material",
-      "description":"External material explicitly labels Unit 4 Les nationalités as Le Français Simple 1, first preparatory, second semester; used for cross-checking only.",
-      "source":"https://talbonline.com/p/34067"
-    }
+  "id":"grade-9-french-annual-readiness",
+  "targetGrade":"grade-9",
+  "reviewsGrade":"grade-8",
+  "sourceCourse":"Le Français Simple 2",
+  "scope":"verified current Grade 8 platform scope",
+  "sourceRegistry":"data/lessons/grade-8/lesson-registry.json",
+  "includedUnits":[
+    {"unit":1,"title":"À l'école","topics":["school vocabulary","school supplies","school subjects","conjugation","professions","il y a"]},
+    {"unit":2,"title":"La maison","topics":["rooms","bedroom","living room","kitchen","bathroom","home vocabulary","avoir","être","prepositions of place","possessive adjectives"]},
+    {"unit":3,"title":"Le voyage","topics":["means of transport","travel places","travel objects","travel people","travel expressions","conjugation","demonstrative adjectives","prepositions","à vs en","interrogative words"]}
   ],
-  "designRule":"The readiness pack must cover the complete previous academic year. Current-year/next-grade content is used only to determine prerequisite importance, not to replace previous-year source content.",
-  "qualityRule":"External general French books such as Bravo/Génial may enrich exercise formats and language practice, but cannot introduce unsupported curriculum topics into the prerequisite map."
+  "excludedUnits":[{"unit":4,"title":"La fête","reason":"explicitly excluded by current Grade 8 curriculum scope"}],
+  "coverageStatus":"The repository currently exposes Grade 8 as term-1 with three included units. A true two-semester review must not invent missing second-semester source content.",
+  "designRule":"Review the complete verified previous-grade scope and extend it when verified second-semester source files are added.",
+  "qualityRule":"Bravo/Génial may enrich exercise formats only; they cannot replace Grade 8 curriculum evidence."
 }
