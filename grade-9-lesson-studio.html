@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-store">
 <title>HM Academy | Grade 9 Learning Studio</title>
-<link rel="stylesheet" href="css/premium-shell.css?v=20260828-g9-studio-v3">
+<link rel="stylesheet" href="css/premium-shell.css?v=20260830-g9-studio-final1">
 </head>
 <body class="g9-body">
 <header class="hm-header"><a class="hm-brand" href="index.html"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy <small class="hm-tagline">تعليم اللغة الفرنسية</small></span></a></header>
@@ -15,16 +15,18 @@
 </main>
 <script>
 const steps=[['start','🚀','البداية'],['vocabulary','🖼️','المفردات'],['pronunciation','🎧','النطق'],['grammar','📘','القواعد'],['conversation','💬','المحادثة'],['practice','✍️','التدريب'],['video','🎬','الفيديو'],['games','🎮','الألعاب'],['smart-review','🧠','المراجعة الذكية'],['evaluation','🏆','التقييم'],['progress','📈','التقدم']];
-const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1',fileId=id.replace(/^g9-/,'');let d=null,idx=Math.max(0,steps.findIndex(x=>x[0]===(q.get('section')||'start'))),mastered=new Set();
+const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1',fileId=id.replace(/^g9-/,'');let d=null,idx=Math.max(0,steps.findIndex(x=>x[0]===(q.get('section')||'start'))),mastered=new Set(JSON.parse(localStorage.getItem('hm-g9-mastered-'+id)||'[]')),results=JSON.parse(localStorage.getItem('hm-g9-results-'+id)||'{}');
 const panel=document.getElementById('panel'),nav=document.getElementById('journey'),bar=document.getElementById('bar');
 const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
 const speak=t=>{if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)};
 const arr=x=>Array.isArray(x)?x:[];
-function go(i){idx=Math.max(0,Math.min(steps.length-1,i));render();window.scrollTo({top:0,behavior:'smooth'})}
+function save(){localStorage.setItem('hm-g9-mastered-'+id,JSON.stringify([...mastered]));localStorage.setItem('hm-g9-results-'+id,JSON.stringify(results))}
+function go(i){idx=Math.max(0,Math.min(steps.length-1,i));save();render();window.scrollTo({top:0,behavior:'smooth'})}
 function vocabCard(x,i){const fr=typeof x==='string'?x:(x.fr||x.word||'');const ar=typeof x==='string'?'':(x.ar||'');return `<article class="g9-vocab-card"><div class="g9-vocab-art">${x.icon||'🏅'}</div><div class="g9-vocab-text"><span>${esc(fr)}</span><strong>${esc(ar)}</strong></div><button class="g9-audio" aria-label="نطق ${esc(fr)}" onclick="speak(${JSON.stringify(fr)})">🔊</button><button class="g9-star ${mastered.has(i)?'done':''}" onclick="toggleMaster(${i})">${mastered.has(i)?'✓':'☆'}</button></article>`}
-function toggleMaster(i){mastered.has(i)?mastered.delete(i):mastered.add(i);render()}
+function toggleMaster(i){mastered.has(i)?mastered.delete(i):mastered.add(i);save();render()}
 function simpleList(title,items,voice=false){if(!items?.length)return `<div class="g9-empty">لا توجد بيانات لهذه المرحلة.</div>`;return `<section class="g9-section"><div class="g9-section-head"><div><span class="g9-eyebrow">HM ACADEMY</span><h2>${esc(title)}</h2></div><span class="g9-count">${items.length}</span></div><div class="g9-list">${items.map((x,i)=>{const t=typeof x==='string'?x:(x.fr||x.word||'');return `<div class="g9-list-row"><span class="g9-index">${String(i+1).padStart(2,'0')}</span><span>${esc(t)}</span>${voice?`<button class="g9-mini-audio" onclick="speak(${JSON.stringify(t)})">🔊</button>`:''}</div>`}).join('')}</div></section>`}
-function quiz(items,title){if(!items?.length)return `<div class="g9-empty">لا توجد عناصر لهذه المرحلة.</div>`;return `<section class="g9-section"><div class="g9-section-head"><div><span class="g9-eyebrow">INTERACTIVE</span><h2>${esc(title)}</h2></div></div><div class="g9-quiz">${items.slice(0,8).map((x,i)=>{const t=typeof x==='string'?x:(x.fr||x.word||'');return `<div class="g9-question"><div class="g9-q-no">${i+1}</div><div class="g9-q-body"><b>${esc(t)}</b><div class="g9-q-actions"><button onclick="this.classList.add('chosen');this.textContent='✓ أتقنتها'">✓ أتقنتها</button><button onclick="this.classList.add('chosen');this.textContent='↻ أحتاج مراجعة'">↻ أحتاج مراجعة</button></div></div></div>`}).join('')}</div></section>`}
+function quiz(items,title,key){if(!items?.length)return `<div class="g9-empty">لا توجد عناصر لهذه المرحلة.</div>`;return `<section class="g9-section"><div class="g9-section-head"><div><span class="g9-eyebrow">INTERACTIVE</span><h2>${esc(title)}</h2><p>اختر «أتقنتها» أو «أحتاج مراجعة» لكل مهمة، وسيتم حفظ تقدمك على هذا الجهاز.</p></div><span class="g9-count">${items.length}</span></div><div class="g9-quiz">${items.slice(0,8).map((x,i)=>{const t=typeof x==='string'?x:(x.fr||x.word||'');const r=results[key+'-'+i]||'';return `<div class="g9-question"><div class="g9-q-no">${i+1}</div><div class="g9-q-body"><b>${esc(t)}</b><div class="g9-q-actions"><button class="${r==='done'?'chosen':''}" onclick="setResult(${JSON.stringify(key)},${i},'done')">${r==='done'?'✓ تم إتقانها':'✓ أتقنتها'}</button><button class="${r==='review'?'chosen':''}" onclick="setResult(${JSON.stringify(key)},${i},'review')">${r==='review'?'↻ ستُراجع':'↻ أحتاج مراجعة'}</button></div></div></div>`}).join('')}</div></section>`}
+function setResult(key,i,value){results[key+'-'+i]=value;save();render()}
 function render(){
  if(!d)return;
  nav.innerHTML=steps.map((s,i)=>`<button class="g9-step ${i===idx?'active':''} ${i<idx?'visited':''}" onclick="go(${i})"><span>${s[1]}</span><b>${s[2]}</b></button>`).join('');
@@ -35,17 +37,15 @@ function render(){
  else if(k==='pronunciation')b=simpleList('تدريب النطق',j.pronunciation||j.vocabulary,true);
  else if(k==='grammar')b=simpleList('القواعد',j.grammar,true);
  else if(k==='conversation')b=`<div class="g9-dialog"><span class="g9-eyebrow">DIALOGUE</span><h2>💬 المحادثة</h2>${arr(j.conversation).map((x,i)=>`<div class="g9-bubble ${i%2?'student':''}"><span>${i%2?'👤':'🧑‍🏫'}</span><div><small>${i%2?'Élève':'Professeur'}</small><p dir="ltr">${esc(x)}</p><button class="g9-mini-audio" onclick="speak(${JSON.stringify(x)})">🔊 استمع</button></div></div>`).join('')}</div>`;
- else if(k==='practice')b=quiz(j.practice,'✍️ التدريب التفاعلي');
- else if(k==='video')b=`<div class="g9-media"><div class="g9-play">▶</div><span class="g9-eyebrow">VIDEO</span><h2>🎬 فيديو الدرس</h2><p>مكان الفيديو محفوظ داخل رحلة الدرس، وسيُستخدم مصدر الفيديو المرتبط بالدرس عند توفره.</p></div>`;
- else if(k==='games')b=quiz(j.practice,'🎮 تحدي الدرس');
- else if(k==='smart-review')b=quiz([...(j.vocabulary||[]).slice(0,6),...(j.grammar||[])],'🧠 المراجعة الذكية');
- else if(k==='evaluation')b=`<div class="g9-eval"><div class="g9-trophy">🏆</div><span class="g9-eyebrow">FINAL CHECK</span><h2>التقييم النهائي</h2><p>اختبر ما أتقنته في هذا الدرس.</p>${quiz(d.assessment||j.evaluation,'التقييم')}</div>`;
- else b=`<div class="g9-complete"><div>🎉</div><h2>أحسنت! اكتملت رحلة الدرس.</h2><p>يمكنك إعادة أي مرحلة أو العودة إلى بداية الرحلة.</p></div>`;
+ else if(k==='practice')b=quiz(j.practice,'✍️ التدريب التفاعلي','practice');
+ else if(k==='video'){const v=d.video||d.videoUrl||j.video||j.videoUrl;if(v)b=`<div class="g9-media"><video controls playsinline preload="metadata" src="${esc(v)}"></video><span class="g9-eyebrow">VIDEO</span><h2>🎬 فيديو الدرس</h2></div>`;else b=`<div class="g9-media"><div class="g9-play">🎬</div><span class="g9-eyebrow">MEDIA</span><h2>فيديو الدرس</h2><p>لا يوجد مصدر فيديو معتمد لهذا الدرس في المحتوى الحالي، لذلك لن يتم عرض فيديو وهمي أو رابط غير موثوق.</p></div>`;}
+ else if(k==='games')b=quiz(j.practice,'🎮 تحدي الدرس','games');
+ else if(k==='smart-review')b=quiz([...(j.vocabulary||[]).slice(0,6),...(j.grammar||[])],'🧠 المراجعة الذكية','review');
+ else if(k==='evaluation')b=`<div class="g9-eval"><div class="g9-trophy">🏆</div><span class="g9-eyebrow">FINAL CHECK</span><h2>التقييم النهائي</h2><p>اختبر ما أتقنته في هذا الدرس.</p>${quiz(d.assessment||j.evaluation,'التقييم','evaluation')}</div>`;
+ else {const done=[...Object.values(results)].filter(x=>x==='done').length; b=`<div class="g9-complete"><div>🎉</div><h2>أحسنت! وصلت إلى نهاية الرحلة.</h2><p>تم حفظ تقدمك على هذا الجهاز. يمكنك إعادة أي مرحلة أو العودة إلى بداية الرحلة.</p><div class="g9-goals"><span>⭐ مفردات متقنة: ${mastered.size}</span><span>✓ مهام مكتملة: ${done}</span><span>📚 11 مرحلة</span></div></div>`;}
  panel.innerHTML=`${b}<div class="g9-nav-buttons">${idx?`<button onclick="go(${idx-1})">→ السابق</button>`:''}${idx<steps.length-1?`<button class="primary" onclick="go(${idx+1})">التالي ←</button>`:''}</div>`;
 }
-async function load(){
- try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(fileId)+'.json?v=20260829-g9-fix1',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render();}
- catch(e){document.getElementById('title').textContent='تعذر تحميل الدرس';document.getElementById('subtitle').textContent='تحقق من اتصال الصفحة أو ملف المحتوى';document.getElementById('meta').textContent=id;panel.innerHTML=`<div class="g9-error"><h2>تعذر تحميل محتوى الدرس</h2><p>معرّف الدرس: ${esc(id)}</p><small>${esc(e.message)}</small></div>`}}
+async function load(){try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(fileId)+'.json?v=20260830-g9-final1',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render()}catch(e){document.getElementById('title').textContent='تعذر تحميل الدرس';document.getElementById('subtitle').textContent='تحقق من اتصال الصفحة أو ملف المحتوى';document.getElementById('meta').textContent=id;panel.innerHTML=`<div class="g9-error"><h2>تعذر تحميل محتوى الدرس</h2><p>معرّف الدرس: ${esc(id)}</p><small>${esc(e.message)}</small></div>`}}
 load();
 </script>
 </body></html>
