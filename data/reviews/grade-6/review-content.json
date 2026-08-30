@@ -1,0 +1,56 @@
+{
+  "id":"grade-6-revision-readiness-content",
+  "version":"2026-08-31-v1",
+  "targetGrade":6,
+  "reviewOfGrade":5,
+  "source":"Uploaded Grade 5 French curriculum — semester 1 + semester 2",
+  "scope":"Full uploaded Grade 5 material",
+  "sourceNote":"The uploaded PDFs are image-based. The review is mapped from the visible source pages; no unsupported lesson names or external textbook content are introduced.",
+  "journey":["diagnostic","vocabulary","pronunciation","grammar","communication","practice","reading","writing","smart-review","final-assessment","progress"],
+  "units":[
+    {"id":"s1-foundations","semester":1,"titleFr":"Fondations de la phrase","titleAr":"أساسيات الجملة الفرنسية","focus":["phrase simple","sujet / verbe / complément","pronoms personnels sujets","nom propre et nom commun","articles"],"activities":["حدد الفاعل والفعل والمفعول به في جمل بسيطة.","راجع je, tu, il, elle, nous, vous, ils, elles.","ميّز بين nom propre و nom commun.","اختر أداة التعريف أو التنكير المناسبة."]},
+    {"id":"s1-time-calendar","semester":1,"titleFr":"Le temps et le calendrier","titleAr":"الوقت والتقويم","focus":["nombres","jours","mois","saisons","heure"],"activities":["اقرأ الأعداد واكتبها بالحروف.","رتّب أيام الأسبوع وشهور السنة.","اربط الشهور بالفصول.","اقرأ الساعة بالفرنسية."]},
+    {"id":"s1-description","semester":1,"titleFr":"Décrire et identifier","titleAr":"الوصف والتعرّف على الأشياء","focus":["couleurs","adjectifs","articles","vocabulaire courant"],"activities":["طابق الاسم مع اللون أو الصفة المناسبة.","راجع التوافق الأساسي للصفة.","كوّن جمل وصف قصيرة."]},
+    {"id":"s1-school-food-body","semester":1,"titleFr":"Objets, fruits et corps","titleAr":"الأدوات والفواكه وأجزاء الجسم","focus":["objets scolaires","fruits","parties du corps","vocabulaire"],"activities":["سمّ الأدوات المدرسية.","راجع أسماء الفواكه.","سمّ أجزاء الجسم الظاهرة في المصدر.","استخدم المفردات في جمل قصيرة."]},
+    {"id":"s2-clothes","semester":2,"titleFr":"Les vêtements","titleAr":"الملابس","focus":["robe","jupe","pantalon","chemise","pull","chaussures","gants","vêtements"],"activities":["طابق صورة الملابس مع الاسم.","استخدم أداة التعريف أو التنكير الصحيحة.","صف ما يرتديه شخص بجمل بسيطة."]},
+    {"id":"s2-verbs-adjectives","semester":2,"titleFr":"Verbes et adjectifs","titleAr":"الأفعال والصفات","focus":["être","avoir","aller","venir","verbes du cours","adjectifs"],"activities":["صرّف الأفعال الواردة في المصدر.","اختر الفعل المناسب حسب الضمير.","استخدم صفات مثل petit/grand, jeune/vieux, joli وغيرها كما وردت في التدريبات."]},
+    {"id":"s2-colors-nationalities","semester":2,"titleFr":"Couleurs, pays et nationalités","titleAr":"الألوان والدول والجنسيات","focus":["couleurs","pays","continents","nationalités","masculin/féminin"],"activities":["اربط الدولة بالجنسية المناسبة.","راجع صيغة المذكر والمؤنث للجنسيات الواردة.","استخدم الألوان في جمل وصفية."]},
+    {"id":"s2-places-communication","semester":2,"titleFr":"Lieux et communication","titleAr":"الأماكن والتواصل","focus":["pays","villes","monuments","questions","dialogue"],"activities":["تعرّف على الأماكن والمعالم الواردة في المصدر.","تدرّب على أسئلة أين؟ من؟ ماذا؟ كما وردت.","كوّن حوارًا قصيرًا عن مكان أو دولة."]},
+    {"id":"s2-festivals-interrogation","semester":2,"titleFr":"Fêtes et questions","titleAr":"المناسبات والأسئلة","focus":["fêtes","Noël","invitation","interrogation","réponses"],"activities":["راجع مفردات المناسبات الواردة.","أكمل السؤال بالإجابة المناسبة.","اكتب دعوة قصيرة أو ردًا عليها."]}
+  ],
+  "diagnostic":{"minutes":30,"questions":[
+    {"q":"Dans « Mona parle français », le sujet est…","options":["Mona","parle","français"],"answer":0},
+    {"q":"Quel pronom remplace « Ali et Mona » ?","options":["Ils","Elles","Nous"],"answer":1},
+    {"q":"Quel article convient : ___ robe ?","options":["un","une","des"],"answer":1},
+    {"q":"Quel mois vient après mars ?","options":["février","avril","mai"],"answer":1},
+    {"q":"Quelle saison vient après l'hiver ?","options":["le printemps","l'été","l'automne"],"answer":0},
+    {"q":"Pour parler de l'heure, on utilise…","options":["Il est…","J'ai…","Je suis…"],"answer":0},
+    {"q":"Quel mot désigne un vêtement ?","options":["une chemise","une pomme","un stylo"],"answer":0},
+    {"q":"Une personne de France est…","options":["française","françaises","france"],"answer":0},
+    {"q":"Quel verbe complète : « Nous ___ à l'école. » ?","options":["allons","allez","va"],"answer":0},
+    {"q":"Quel mot est une partie du corps ?","options":["la main","la robe","la règle"],"answer":0}
+  ]},
+  "reviewActivities":[
+    "بطاقات المفردات: الأدوات المدرسية، الفواكه، أجزاء الجسم، الملابس، الألوان.",
+    "تدريب الزمن: الأعداد، أيام الأسبوع، الشهور، الفصول، الساعة.",
+    "مختبر القواعد: الجملة البسيطة، الضمائر، أدوات التعريف والتنكير، تصريف الأفعال الواردة.",
+    "مختبر الوصف: الألوان والصفات والجنسيات مع التذكير والتأنيث.",
+    "التواصل: حوارات قصيرة عن المدرسة والملابس والدول والمناسبات.",
+    "الإملاء والكتابة: كتابة كلمات وجمل قصيرة من مفردات المنهج."
+  ],
+  "finalAssessment":{"minutes":45,"threshold":0.70,"questions":[
+    {"q":"Dans « Elle aime la robe », le verbe est…","options":["Elle","aime","robe"],"answer":1},
+    {"q":"___ sommes élèves.","options":["Nous","Vous","Ils"],"answer":0},
+    {"q":"C'est ___ pantalon.","options":["une","un","des"],"answer":1},
+    {"q":"Quel jour vient après lundi ?","options":["dimanche","mardi","mercredi"],"answer":1},
+    {"q":"Quel mois vient avant juin ?","options":["mai","juillet","avril"],"answer":0},
+    {"q":"Pour dire 8:00, on dit…","options":["Il est huit heures.","J'ai huit ans.","Je suis huit."],"answer":0},
+    {"q":"La couleur de l'herbe est généralement…","options":["verte","rouge","noire"],"answer":0},
+    {"q":"Quel mot est un vêtement ?","options":["une jupe","une pomme","un crayon"],"answer":0},
+    {"q":"Une femme de France est…","options":["française","français","France"],"answer":0},
+    {"q":"Nous ___ à l'école.","options":["allons","allez","va"],"answer":0},
+    {"q":"Écris 5 phrases pour te présenter et décrire ce que tu portes.","type":"writing"},
+    {"q":"Écris un mini-dialogue de 4 lignes sur une fête ou une invitation.","type":"writing"}
+  ]},
+  "quality":{"sourceSemesters":2,"sourceFiles":["fr awaïl 5 ème prim.pdf","5ème prim 2ème semestre.pdf"],"externalBooks":"not used","textbookVerbatim":false,"answerOptionsAreBalanced":true}
+}
