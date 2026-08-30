@@ -4,7 +4,7 @@
   "independent":true,
   "contentSource":"uploaded-authoritative-package",
   "sourcePackage":"Curriculum_Complet_Hatem_ElMorsi_avec_videos.zip",
-  "lessonRoute":"grade7-lesson-studio-source-aligned.html?id={lessonId}&section={section}",
+  "lessonRoute":"grade7-lesson-studio.html?id={lessonId}&section={section}",
   "journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],
   "lessons":[
     {"id":"grade7-u1-l1","sourceLesson":1,"titleFr":"L'alphabet et les mots transparents","titleAr":"الأبجدية والكلمات الشفافة","qaStatus":"source-audited"},
