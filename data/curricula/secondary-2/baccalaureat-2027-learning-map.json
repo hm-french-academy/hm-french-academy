@@ -1,0 +1,19 @@
+{
+  "grade": "الصف الثاني الثانوي - البكالوريا المصرية",
+  "academic_year": "2026/2027",
+  "subject": "French",
+  "book": "Le français : Clé d’avenir",
+  "student_ui_policy": {"show_sources": false, "show_internal_metadata": false},
+  "units": [
+    {"id":"u1","term":1,"title_fr":"Les repas et les habitudes alimentaires","title_ar":"الوجبات والعادات الغذائية","lessons":["Les repas de la journée","Les aliments et les boissons","Au supermarché","Au restaurant"],"evaluation":true,"culture":"Magazine culturel"},
+    {"id":"u2","term":1,"title_fr":"Le look quotidien","title_ar":"المظهر اليومي","lessons":["Au magasin de vêtements","Mon style préféré","Les vêtements et les saisons","Les vêtements et la fête"],"evaluation":true,"culture":"Magazine culturel"},
+    {"id":"u3","term":1,"title_fr":"Mon temps libre","title_ar":"وقت فراغي","lessons":["Mes loisirs préférés","Mes sports préférés","Les vacances et les voyages","Ma routine quotidienne"],"evaluation":true,"culture":"Magazine culturel"},
+    {"id":"u4","term":2,"title_fr":"À la découverte de mon pays","title_ar":"اكتشاف بلدي","lessons":["Bienvenue en Égypte","À l’hôtel","Dans ma ville","À la découverte de nos villes"],"evaluation":true,"culture":"Magazine culturel"},
+    {"id":"u5","term":2,"title_fr":"À la rencontre des saisons","title_ar":"التعرف على الفصول","lessons":["Bonjour, la météo","Salut, les quatre saisons","Les saisons et les activités","Ensemble, protégeons notre planète"],"evaluation":true,"culture":"Magazine culturel"},
+    {"id":"u6","term":2,"title_fr":"La technologie dans notre vie","title_ar":"التكنولوجيا في حياتنا","lessons":["Ma vie numérique","Les dangers de la technologie","Les bonnes pratiques sur Internet","Mon futur métier"],"evaluation":true,"culture":"Magazine culturel"}
+  ],
+  "lesson_journey": ["Comprendre","Écouter","Lire","Vocabulaire","Grammaire","Activités phonétiques","Parler","Interagir","Écrire","Tâche","Auto-évaluation","Entraînement"],
+  "assessment_policy": {"question_types":["multiple_choice","matching","ordering","completion","short_response","reading_comprehension","listening_comprehension"],"randomize_options":true,"avoid_fixed_correct_option":true,"require_explanation_after_mistake":true},
+  "mastery": {"lesson_pass":0.8,"unit_pass":0.8,"readiness_pass":0.85,"allow_retry":true},
+  "annual_review": {"scope":"term1+term2","units":6,"lessons":24,"includes_diagnostic":true,"includes_remediation":true,"includes_readiness_test":true}
+}
