@@ -1,56 +1,43 @@
 {
-  "id":"grade-5-revision-readiness-content",
-  "version":"2026-08-31-v1",
-  "targetGrade":5,
-  "reviewOfGrade":4,
-  "source":"Uploaded Grade 4 French curriculum — semester 1 + semester 2",
-  "scope":"Full uploaded Grade 4 material",
-  "sourceNote":"Mapped to the previously extracted visible curriculum topics from the two image-based PDFs; no external textbook content introduced.",
-  "journey":["diagnostic","vocabulary","pronunciation","grammar","communication","practice","challenge","smart-review","final-assessment","progress"],
+  "id":"grade-5-readiness-from-grade-4","version":"2026-08-31-v2","targetGrade":5,"reviewOfGrade":4,
+  "source":"Grade 4 annual review files already prepared in HM Academy","journey":["diagnostic","targeted-review","practice","smart-review","final-assessment","progress"],
   "units":[
-    {"id":"u1-seasons-weather","semester":1,"titleFr":"Les 4 saisons","titleAr":"الفصول الأربعة","focus":["printemps","été","automne","hiver","météo","au/en"],"activities":["راجع أسماء الفصول.","اربط كل فصل بالأشهر والطقس الوارد.","تدرّب على au printemps و en été و en automne و en hiver."]},
-    {"id":"u2-numbers-time","semester":1,"titleFr":"Les chiffres + L'heure","titleAr":"الأعداد والساعة","focus":["nombres","heure","et quart","et demie","moins le quart","moins cinq","moins dix","moins vingt"],"activities":["راجع الأعداد.","اقرأ الساعة بجمل كاملة.","ميّز et quart و et demie و moins."]},
-    {"id":"u3-face-articles","semester":1,"titleFr":"Mon visage","titleAr":"وجهي","focus":["cheveux","front","sourcils","yeux","cils","oreilles","nez","bouche","dents","menton","le/la/les"],"activities":["سمّ أجزاء الوجه.","اختر أداة التعريف الصحيحة.","تدرّب على النطق لكل مفردة."]},
-    {"id":"u4-body-possessives","semester":1,"titleFr":"Le corps","titleAr":"الجسم","focus":["tête","cou","poitrine","ventre","bras","main","doigt","jambe","genou","pied","possessifs"],"activities":["سمّ أجزاء الجسم.","طابق الجزء مع الأداة.","راجع الملكية كما وردت في المنهج."]},
-    {"id":"u5-clothes-colors-avoir","semester":2,"titleFr":"Les vêtements","titleAr":"الملابس","focus":["robe","jupe","pantalon","chemise","pull","chaussures","gants","couleurs","avoir"],"activities":["راجع مفردات الملابس.","صف لون قطعة ملابس.","استخدم avoir في الجمل الواردة."]},
-    {"id":"u6-adjectives-etre","semester":2,"titleFr":"Les adjectifs","titleAr":"الصفات","focus":["petit","grand","jeune","vieux","joli","être","accord"],"activities":["طابق الصفة مع الاسم.","راجع التوافق الأساسي.","كوّن جمل وصف قصيرة باستخدام être."]},
-    {"id":"u7-family-negation","semester":2,"titleFr":"Décris ta famille","titleAr":"صف عائلتك","focus":["famille","description","être","avoir","ne...pas"],"activities":["راجع أفراد الأسرة.","صف فردًا من الأسرة.","حوّل الجمل إلى النفي باستخدام ne...pas."]}
+    {"id":"u1-seasons-weather","semester":1,"titleFr":"Les 4 saisons et la météo","titleAr":"الفصول الأربعة والطقس","focus":["saisons","météo","au/en"]},
+    {"id":"u2-numbers-time","semester":1,"titleFr":"Les chiffres et l'heure","titleAr":"الأعداد والساعة","focus":["nombres","heure","et quart","et demie","moins"]},
+    {"id":"u3-face-articles","semester":1,"titleFr":"Mon visage et les articles","titleAr":"الوجه وأدوات التعريف","focus":["visage","le","la","les"]},
+    {"id":"u4-body-possessives","semester":1,"titleFr":"Le corps et les possessifs","titleAr":"الجسم والملكية","focus":["corps","possessifs"]},
+    {"id":"u5-clothes-colors-avoir","semester":2,"titleFr":"Les vêtements, les couleurs et avoir","titleAr":"الملابس والألوان و avoir","focus":["vêtements","couleurs","avoir"]},
+    {"id":"u6-adjectives-etre","semester":2,"titleFr":"Les adjectifs et être","titleAr":"الصفات و être","focus":["adjectifs","accord","être"]},
+    {"id":"u7-family-negation","semester":2,"titleFr":"La famille et la négation","titleAr":"العائلة والنفي","focus":["famille","description","ne...pas"]}
   ],
-  "diagnostic":{"minutes":30,"questions":[
-    {"q":"Combien de saisons y a-t-il ?","options":["2","3","4"],"answer":2,"unit":"u1-seasons-weather"},
-    {"q":"___ printemps, il fait beau.","options":["Au","En","À la"],"answer":0,"unit":"u1-seasons-weather"},
-    {"q":"2:30 se dit…","options":["deux heures et quart","deux heures et demie","trois heures moins cinq"],"answer":1,"unit":"u2-numbers-time"},
-    {"q":"2:45 se dit…","options":["trois heures moins quart","deux heures vingt","deux heures et demie"],"answer":0,"unit":"u2-numbers-time"},
-    {"q":"Quel mot désigne une partie du visage ?","options":["le nez","la robe","la famille"],"answer":0,"unit":"u3-face-articles"},
-    {"q":"___ bouche est une partie du visage.","options":["Le","La","Les"],"answer":1,"unit":"u3-face-articles"},
-    {"q":"Quel mot désigne une partie du corps ?","options":["le genou","la jupe","le pull"],"answer":0,"unit":"u4-body-possessives"},
-    {"q":"Quel mot est un vêtement ?","options":["une chemise","un nez","une saison"],"answer":0,"unit":"u5-clothes-colors-avoir"},
-    {"q":"Choisis le verbe : J'___ une robe.","options":["ai","suis","est"],"answer":0,"unit":"u5-clothes-colors-avoir"},
-    {"q":"Choisis le verbe : Elle ___ jolie.","options":["a","est","ont"],"answer":1,"unit":"u6-adjectives-etre"},
-    {"q":"Quel mot est une personne de la famille ?","options":["la mère","la chaussure","le menton"],"answer":0,"unit":"u7-family-negation"},
-    {"q":"Quelle forme est négative ?","options":["Il est grand.","Il n'est pas grand.","Il a grand."],"answer":1,"unit":"u7-family-negation"}
+  "diagnostic":{"minutes":20,"purpose":"قياس المهارات الأساسية قبل المراجعة","questions":[
+    {"id":"D01","q":"Quelle saison vient après le printemps ?","options":["L'été","L'hiver","L'automne"],"answer":0,"unit":"u1-seasons-weather"},
+    {"id":"D02","q":"___ hiver, il fait froid.","options":["En","Au","À la"],"answer":0,"unit":"u1-seasons-weather"},
+    {"id":"D03","q":"2 h 30, c'est…","options":["deux heures et quart","deux heures et demie","trois heures moins cinq"],"answer":1,"unit":"u2-numbers-time"},
+    {"id":"D04","q":"2 h 45, c'est…","options":["trois heures moins le quart","deux heures et demie","deux heures et quart"],"answer":0,"unit":"u2-numbers-time"},
+    {"id":"D05","q":"Quelle partie du visage sert à sentir ?","options":["Le nez","Les yeux","La bouche"],"answer":0,"unit":"u3-face-articles"},
+    {"id":"D06","q":"Choisis l'article correct : ___ oreilles.","options":["Le","La","Les"],"answer":2,"unit":"u3-face-articles"},
+    {"id":"D07","q":"Quel mot désigne une partie du corps ?","options":["Le genou","La jupe","La chemise"],"answer":0,"unit":"u4-body-possessives"},
+    {"id":"D08","q":"Quel mot est un vêtement ?","options":["Une veste","Un menton","Une saison"],"answer":0,"unit":"u5-clothes-colors-avoir"},
+    {"id":"D09","q":"J'___ une robe rouge.","options":["ai","suis","est"],"answer":0,"unit":"u5-clothes-colors-avoir"},
+    {"id":"D10","q":"Elle ___ jolie.","options":["a","est","ont"],"answer":1,"unit":"u6-adjectives-etre"},
+    {"id":"D11","q":"Quelle phrase décrit un membre de la famille ?","options":["Mon frère est grand.","Ma veste est bleue.","Mon nez est petit."],"answer":0,"unit":"u7-family-negation"},
+    {"id":"D12","q":"Choisis la phrase négative.","options":["Il est grand.","Il n'est pas grand.","Il a grand."],"answer":1,"unit":"u7-family-negation"}
   ]},
-  "reviewActivities":[
-    "بطاقات تفاعلية للفصول والطقس والأعداد والساعة.",
-    "بطاقات نطق لأجزاء الوجه والجسم والملابس.",
-    "مختبر القواعد: articles، possessifs، avoir، être، ne...pas.",
-    "تدريب الوصف: الألوان والصفات والعائلة.",
-    "تحديات مختلطة تربط المفردات بالقواعد والتواصل.",
-    "مراجعة ذكية تعيد المهارات التي يخطئ فيها الطالب."
-  ],
-  "finalAssessment":{"minutes":45,"threshold":0.70,"questions":[
-    {"q":"En hiver, il peut y avoir…","options":["de la neige","des fleurs seulement","du soleil seulement"],"answer":0,"unit":"u1-seasons-weather"},
-    {"q":"___ été, il fait chaud.","options":["Au","En","À la"],"answer":1,"unit":"u1-seasons-weather"},
-    {"q":"2:15 se dit…","options":["deux heures et quart","deux heures et demie","trois heures moins quart"],"answer":0,"unit":"u2-numbers-time"},
-    {"q":"2:55 se dit…","options":["deux heures cinquante","trois heures moins cinq","trois heures et cinq"],"answer":1,"unit":"u2-numbers-time"},
-    {"q":"___ yeux sont une partie du visage.","options":["Le","La","Les"],"answer":2,"unit":"u3-face-articles"},
-    {"q":"Quel mot est une partie du corps ?","options":["la main","la jupe","la chemise"],"answer":0,"unit":"u4-body-possessives"},
-    {"q":"J'___ des chaussures.","options":["ai","suis","est"],"answer":0,"unit":"u5-clothes-colors-avoir"},
-    {"q":"Une robe peut être…","options":["rouge","genou","hiver"],"answer":0,"unit":"u5-clothes-colors-avoir"},
-    {"q":"Mon frère ___ grand.","options":["est","a","ont"],"answer":0,"unit":"u6-adjectives-etre"},
-    {"q":"Choisis la forme négative :","options":["Elle est jeune.","Elle n'est pas jeune.","Elle a jeune."],"answer":1,"unit":"u7-family-negation"},
-    {"q":"Écris 4 phrases pour décrire un membre de ta famille.","type":"writing","unit":"u7-family-negation"},
-    {"q":"Écris 3 phrases sur une saison et le temps qu'il fait.","type":"writing","unit":"u1-seasons-weather"}
+  "finalAssessment":{"minutes":30,"purpose":"تطبيق جديد لا يكرر أسئلة التشخيص","threshold":0.70,"questions":[
+    {"id":"F01","q":"Quelle saison est entre l'été et l'hiver ?","options":["Le printemps","L'automne","L'été"],"answer":1,"unit":"u1-seasons-weather"},
+    {"id":"F02","q":"Il fait chaud ___ été.","options":["en","au","à la"],"answer":0,"unit":"u1-seasons-weather"},
+    {"id":"F03","q":"Le cours commence à 8 h 15. Quelle heure est-ce ?","options":["huit heures et demie","huit heures et quart","neuf heures moins le quart"],"answer":1,"unit":"u2-numbers-time"},
+    {"id":"F04","q":"Le film finit à 6 h 55. Quelle heure est-ce ?","options":["six heures et quart","sept heures moins cinq","sept heures et demie"],"answer":1,"unit":"u2-numbers-time"},
+    {"id":"F05","q":"Complète : ___ yeux sont bleus.","options":["La","Le","Les"],"answer":2,"unit":"u3-face-articles"},
+    {"id":"F06","q":"Pour écouter, j'utilise…","options":["les oreilles","le nez","les dents"],"answer":0,"unit":"u3-face-articles"},
+    {"id":"F07","q":"Pour marcher, j'utilise surtout…","options":["les pieds","les sourcils","les lèvres"],"answer":0,"unit":"u4-body-possessives"},
+    {"id":"F08","q":"La fille porte une veste. La veste est…","options":["un vêtement","une partie du corps","une saison"],"answer":0,"unit":"u5-clothes-colors-avoir"},
+    {"id":"F09","q":"Paul et Marie ___ des chaussures noires.","options":["ont","sont","a"],"answer":0,"unit":"u5-clothes-colors-avoir"},
+    {"id":"F10","q":"Choisis la phrase correcte.","options":["Ma sœur est petite.","Ma sœur a petite.","Ma sœur sont petite."],"answer":0,"unit":"u6-adjectives-etre"},
+    {"id":"F11","q":"Quelle phrase décrit correctement une personne ?","options":["Mon père est grand et il a les cheveux noirs.","Mon père est cheveux noir.","Mon père a grand."],"answer":0,"unit":"u7-family-negation"},
+    {"id":"F12","q":"Transforme : « Elle est jeune. » en phrase négative.","options":["Elle n'est pas jeune.","Elle ne est jeune.","Elle pas est jeune."],"answer":0,"unit":"u7-family-negation"}
   ]},
-  "quality":{"sourceSemesters":2,"sourceFiles":["fr awaïl 4 ème prim.pdf","4ème prim 2ème semestre.pdf"],"externalBooks":"not used","textbookVerbatim":false,"answerOptionsAreBalanced":true}
+  "reviewActivities":["بطاقات الفصول والطقس والأعداد والساعة","بطاقات نطق للوجه والجسم والملابس","مختبر القواعد: articles و possessifs و avoir و être و ne...pas","تدريب الوصف والألوان والعائلة","مراجعة ذكية حسب نقاط الضعف"],
+  "quality":{"multipleCorrectAnswers":false,"duplicateQuestionIdsAcrossAssessments":false,"ambiguousColorQuestions":false,"diagnosticCount":12,"finalCount":12,"note":"تم استبعاد أسئلة الألوان التي تحتاج صورة أو سياق بصري من التشخيص والجاهزية؛ وتبقى الألوان ضمن أنشطة المراجعة السياقية."}
 }
