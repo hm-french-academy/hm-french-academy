@@ -1,0 +1,60 @@
+{
+  "id":"grade-8-readiness-normalized","version":"2026-08-31-v1","targetGrade":8,"reviewOfGrade":7,
+  "mode":"readiness-review","source":"Le Français Simple 1","titleAr":"مراجعة الصف الأول الإعدادي استعدادًا للثاني الإعدادي","titleFr":"Révision de 1ère préparatoire – Préparation à la 2ème préparatoire",
+  "journey":["diagnostic","targeted-review","lesson-practice","smart-review","final-readiness","progress"],
+  "units":[{"id":"u1","titleFr":"Premiers pas en français","titleAr":"البدايات الأولى في الفرنسية","lessons":["l1","l2","l3","l4","l5","l6"]},{"id":"u2","titleFr":"Je communique","titleAr":"أتواصل بالفرنسية","lessons":["l7","l8"]},{"id":"u3","titleFr":"Je décris le monde autour de moi","titleAr":"أصف العالم من حولي","lessons":["l9","l10","l11"]}],
+  "lessons":[
+    {"id":"l1","unit":"u1","titleFr":"L'alphabet et les mots transparents","titleAr":"الأبجدية والكلمات الشفافة","grammar":"التعرف على الحروف والأصوات والتمييز بين voyelles وconsonnes.","examples":["a, e, i, o, u","Paris, taxi, radio"]},
+    {"id":"l2","unit":"u1","titleFr":"Les salutations","titleAr":"التحيات","grammar":"اختيار التحية حسب الموقف والوقت.","examples":["Bonjour ! Comment ça va ?","Ça va bien, merci."]},
+    {"id":"l3","unit":"u1","titleFr":"Les pronoms sujets et les verbes en -er","titleAr":"ضمائر الفاعل وأفعال -er","grammar":"تصريف أفعال المجموعة الأولى في المضارع: -e, -es, -e, -ons, -ez, -ent.","examples":["Je parle français.","Nous aimons le français."]},
+    {"id":"l4","unit":"u1","titleFr":"Le verbe être et la présentation","titleAr":"être والتقديم","grammar":"تصريف être واستخدامه للتعريف بالهوية والصفة.","examples":["Je suis élève.","Elle est française."]},
+    {"id":"l5","unit":"u1","titleFr":"Les nombres 0–20","titleAr":"الأعداد 0–20","grammar":"قراءة وكتابة الأعداد واستخدامها في العمر والعد.","examples":["J'ai douze ans.","J'ai quatorze ans."]},
+    {"id":"l6","unit":"u1","titleFr":"L'heure","titleAr":"الساعة","grammar":"التعبير عن الوقت باستخدام Il est + heure(s).","examples":["Il est huit heures.","Il est deux heures et quart."]},
+    {"id":"l7","unit":"u2","titleFr":"Tu as quel âge ?","titleAr":"كم عمرك؟","grammar":"السؤال عن العمر بـ Quel âge as-tu ? والإجابة بـ J'ai … ans.","examples":["Quel âge as-tu ? — J'ai 13 ans."]},
+    {"id":"l8","unit":"u2","titleFr":"Qu'est-ce que c'est ?","titleAr":"أدوات الفصل","grammar":"un / une / des مع السؤال Qu'est-ce que c'est ?","examples":["C'est un stylo.","C'est une gomme.","Ce sont des cahiers."]},
+    {"id":"l9","unit":"u3","titleFr":"Les couleurs","titleAr":"الألوان","grammar":"استخدام الألوان كصفات ومراعاة التوافق الأساسي.","examples":["La pomme est rouge.","Le livre est bleu."]},
+    {"id":"l10","unit":"u3","titleFr":"Les articles définis et les jours","titleAr":"أدوات المعرفة وأيام الأسبوع","grammar":"le / la / les، مع أسماء الأيام.","examples":["Le livre.","La maison.","Les cahiers.","Lundi, je vais à l'école."]},
+    {"id":"l11","unit":"u3","titleFr":"Les mois et les saisons","titleAr":"الشهور والفصول","grammar":"ربط الشهور بالفصول والتحدث عن الموسم.","examples":["Mars est au printemps.","En été, il fait chaud."]}
+  ],
+  "diagnostic":{"minutes":25,"purpose":"تشخيص مستقل لمهارات الصف الأول الإعدادي قبل التدريب","questions":[
+    {"id":"D01","q":"Bonjour ! Comment ça va ?","options":["Ça va bien.","J'ai douze ans.","Il est huit heures."],"answer":0,"lesson":"l2"},
+    {"id":"D02","q":"Je ___ français.","options":["parle","parles","parlons"],"answer":0,"lesson":"l3"},
+    {"id":"D03","q":"Je ___ élève.","options":["suis","es","est"],"answer":0,"lesson":"l4"},
+    {"id":"D04","q":"J'ai ___ ans.","options":["douze","rouge","lundi"],"answer":0,"lesson":"l5"},
+    {"id":"D05","q":"Il est huit ___.","options":["heures","ans","mois"],"answer":0,"lesson":"l6"},
+    {"id":"D06","q":"Tu ___ quel âge ?","options":["as","ai","a"],"answer":0,"lesson":"l7"},
+    {"id":"D07","q":"C'est ___ stylo.","options":["un","une","des"],"answer":0,"lesson":"l8"},
+    {"id":"D08","q":"___ maison est grande.","options":["La","Le","Les"],"answer":0,"lesson":"l10"},
+    {"id":"D09","q":"La pomme est ___.","options":["rouge","lundi","huit"],"answer":0,"lesson":"l9"},
+    {"id":"D10","q":"Quel mois vient après mars ?","options":["avril","décembre","janvier"],"answer":0,"lesson":"l11"}
+  ]},
+  "practiceQuestions":[
+    {"id":"P01","q":"في المساء نقول…","options":["Bonsoir","Bonjour","Merci"],"answer":0,"lesson":"l2"},
+    {"id":"P02","q":"Nous ___ français.","options":["parlons","parlez","parlent"],"answer":0,"lesson":"l3"},
+    {"id":"P03","q":"Vous ___ élèves.","options":["êtes","sommes","sont"],"answer":0,"lesson":"l4"},
+    {"id":"P04","q":"20 بالفرنسية؟","options":["douze","vingt","dix"],"answer":1,"lesson":"l5"},
+    {"id":"P05","q":"2:30 =","options":["deux heures et quart","deux heures et demie","trois heures"],"answer":1,"lesson":"l6"},
+    {"id":"P06","q":"J'___ treize ans.","options":["ai","as","a"],"answer":0,"lesson":"l7"},
+    {"id":"P07","q":"C'est ___ gomme.","options":["une","un","des"],"answer":0,"lesson":"l8"},
+    {"id":"P08","q":"Le livre est ___.","options":["bleue","bleu","bleus"],"answer":1,"lesson":"l9"},
+    {"id":"P09","q":"___ cahiers","options":["Le","La","Les"],"answer":2,"lesson":"l10"},
+    {"id":"P10","q":"Mars est au ___.","options":["printemps","hiver","été"],"answer":0,"lesson":"l11"}
+  ],
+  "reviewActivities":[
+    {"id":"a-u1","title":"استكشف أساسيات الفرنسية","lessonIds":["l1","l2","l3","l4","l5","l6"],"questions":[{"q":"Nous ___ français.","options":["parlons","parlez","parlent"],"answer":0},{"q":"Vous ___ élèves.","options":["êtes","sommes","sont"],"answer":0}]},
+    {"id":"a-u2","title":"تواصل: العمر وأدوات الفصل","lessonIds":["l7","l8"],"questions":[{"q":"J'___ treize ans.","options":["ai","as","a"],"answer":0},{"q":"C'est ___ gomme.","options":["une","un","des"],"answer":0}]},
+    {"id":"a-u3","title":"الألوان والأيام والفصول","lessonIds":["l9","l10","l11"],"questions":[{"q":"La pomme est ___.","options":["rouge","lundi","douze"],"answer":0},{"q":"Mars est au ___.","options":["printemps","hiver","été"],"answer":0}]}
+  ],
+  "finalReadiness":{"minutes":35,"threshold":0.70,"purpose":"اختبار جاهزية مستقل لا يعيد أسئلة التشخيص أو التدريب","questions":[
+    {"id":"F01","q":"Tu ___ français.","options":["parles","parle","parlons"],"answer":0,"lesson":"l3"},
+    {"id":"F02","q":"Elle ___ élève.","options":["est","suis","es"],"answer":0,"lesson":"l4"},
+    {"id":"F03","q":"14 بالفرنسية؟","options":["douze","quatorze","vingt"],"answer":1,"lesson":"l5"},
+    {"id":"F04","q":"Il est ___ heures. (8:00)","options":["huit","douze","deux"],"answer":0,"lesson":"l6"},
+    {"id":"F05","q":"Quel âge as-tu ? — J'___ 13 ans.","options":["ai","as","a"],"answer":0,"lesson":"l7"},
+    {"id":"F06","q":"Ce sont ___ livres.","options":["un","une","des"],"answer":2,"lesson":"l8"},
+    {"id":"F07","q":"La pomme est ___.","options":["rouge","rouges","rouger"],"answer":0,"lesson":"l9"},
+    {"id":"F08","q":"___ maison est grande.","options":["La","Le","Les"],"answer":0,"lesson":"l10"},
+    {"id":"F09","q":"Quelle saison vient après l'hiver ?","options":["le printemps","l'été","l'automne"],"answer":0,"lesson":"l11"},
+    {"id":"F10","q":"Comment répond-on à Bonjour ?","options":["Bonjour !","J'ai douze ans.","Il est midi."],"answer":0,"lesson":"l2"}
+  ]
+}
