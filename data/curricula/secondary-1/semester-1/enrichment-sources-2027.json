@@ -25,11 +25,17 @@
   ],
   "implementation_order": [
     "Audit each Club @dos lesson against the current JSON content",
-    "Map Merci 2027 enrichment to the same lesson objective",
-    "Map Bravo 2027 enrichment to the same lesson objective",
+    "Map enrichment to the same lesson objective",
     "Add only relevant enrichment to each Learning Studio section",
     "Author original interactive questions rather than reproducing copyrighted exercise pages",
     "Add cumulative Smart Review across both units",
     "Run final source-alignment QA and mark each lesson complete only after coverage is checked"
-  ]
+  ],
+  "ui_policy": {
+    "student_visible_source_label": "Club @dos Plus 1",
+    "hide_enrichment_source_names": true,
+    "hide_internal_content_policy": true,
+    "hide_source_status": true,
+    "hide_implementation_order": true
+  }
 }
