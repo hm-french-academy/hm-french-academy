@@ -1,0 +1,18 @@
+{
+  "version":"2026-08-31-v1",
+  "scope":"annual revision content layer",
+  "uiRule":"Do not modify annual-revision-stage.html for content ingestion.",
+  "requiredPipeline":["source-units","lessons","vocabulary","grammar","examples","lesson-practice","diagnostic","smart-review","final-readiness","progress"],
+  "separation":{"diagnostic":"baseline only","lessonPractice":"independent per lesson","smartReview":"weakness-driven follow-up","finalReadiness":"independent gate"},
+  "grades":{
+    "4":{"source":"data/reviews/grade-3/review-content-normalized.json","status":"content-backed"},
+    "5":{"source":"data/reviews/grade-5/review-content.json","status":"content-backed"},
+    "6":{"source":"data/reviews/grade-6/review-content.json","status":"content-backed-no-empty-units-fallback","knownGap":"existing reviewActivities list is not yet one-to-one with all lesson ids; lesson-level practice remains defined in lessons.practice"},
+    "8":{"source":"data/reviews/grade-8/review-content.json","status":"content-backed"},
+    "9":{"source":"data/reviews/grade-9/review-content.json","status":"content-backed"},
+    "secondary-1":{"source":"data/reviews/secondary-1/review-content.json","status":"structured-content-layer-added"}
+  },
+  "grade6Policy":"Use the uploaded Grade 5 semester material as the source for preparation for Grade 6; never emit a no-units fallback when source-derived units exist.",
+  "prep1Policy":"Grade 7 / first preparatory is an introductory Le Français Simple course, not a transition review.",
+  "qaRules":["every lesson has vocabulary, grammar, examples and practice","answers are value-based and option order may be shuffled","diagnostic questions are not reused verbatim as final-readiness questions","final readiness has its own threshold","missing source content must be marked rather than invented"]
+}
