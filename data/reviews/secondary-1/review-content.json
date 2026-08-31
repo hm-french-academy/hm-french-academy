@@ -1,0 +1,23 @@
+{
+  "id":"secondary-1-annual-review-content",
+  "version":"2026-08-31-v1",
+  "targetGrade":"secondary-2",
+  "reviewOfGrade":"secondary-1",
+  "source":"Club @dos Plus 1 + existing secondary-1 curriculum mapping",
+  "journey":["diagnostic","targeted-review","lesson-practice","smart-review","final-readiness","progress"],
+  "units":[
+    {"id":"u1","titleFr":"Le Club de ma classe","titleAr":"نادي فصلي","semester":1,"pages":"6-19","skills":["saluer","se présenter","présenter ses copains","décrire le caractère","compter 0-50"],"vocabulary":["salutations","alphabet","couleurs","copain/copine","ami/amie","sympathique","intelligent(e)","bavard(e)","timide"],"grammar":["pronoms sujets","s'appeler","être","un/une/des","féminin et accord des adjectifs"],"examples":["Je m'appelle Lina.","Nous sommes des élèves sympathiques.","Elle est timide."]},
+    {"id":"u2","titleFr":"Le Club des artistes","titleAr":"نادي الفنانين","semester":1,"pages":"20-35","skills":["identifier et décrire des objets","dire l'âge","dire la date d'anniversaire","exprimer ses goûts","utiliser la négation"],"vocabulary":["fournitures scolaires","mois","nombres 50-100","objets","loisirs"],"grammar":["le/la/l'/les","avoir","verbes en -er","ne...pas","pluriel des adjectifs"],"examples":["J'ai quinze ans.","J'aime les BD.","Je n'aime pas le tennis."]},
+    {"id":"u3","titleFr":"Le Club des lecteurs","titleAr":"نادي القرّاء","semester":2,"skills":["décrire son lycée","identifier les objets","dire l'heure","parler de l'emploi du temps"],"vocabulary":["espaces du lycée","classe","matières","jours","heures","CDI","roman","BD"],"grammar":["il y a / il n'y a pas","combien de/d'","l'heure","quel/quelle/quels/quelles","adjectifs possessifs"],"examples":["Il y a vingt élèves.","Quelle heure est-il ?","C'est mon livre."]},
+    {"id":"u4","titleFr":"Le Club des athlètes","titleAr":"نادي الرياضيين","semester":2,"skills":["décrire des personnes","présenter sa famille","parler des activités et loisirs"],"vocabulary":["parties du corps","famille","animaux de compagnie","sports"],"grammar":["adjectifs physiques","féminin/pluriel","négation","on = nous","pronoms toniques","au/aux","aller"],"examples":["Ma sœur est sportive.","Nous allons au club.","Je parle avec elle."]}
+  ],
+  "lessonPractice":[
+    {"lessonId":"u1","questions":[{"q":"Je ___ Lina.","options":["m'appelle","t'appelles","s'appelle"],"answer":0},{"q":"Nous ___ sympathiques.","options":["sommes","êtes","sont"],"answer":0},{"q":"Elle est ___.","options":["timide","timides","timid"],"answer":0}]},
+    {"lessonId":"u2","questions":[{"q":"Paul ___ quinze ans.","options":["a","as","ai"],"answer":0},{"q":"J'___ le football.","options":["aime","aimes","aimons"],"answer":0},{"q":"Je n'aime ___ le tennis.","options":["pas","ne","au"],"answer":0}]},
+    {"lessonId":"u3","questions":[{"q":"Il y ___ vingt élèves.","options":["a","ont","est"],"answer":0},{"q":"___ heure est-il ?","options":["Quelle","Quel","Quels"],"answer":0},{"q":"C'est ___ livre.","options":["mon","ma","mes"],"answer":0}]},
+    {"lessonId":"u4","questions":[{"q":"Ma sœur est ___.","options":["sportive","sportif","sportives"],"answer":0},{"q":"Nous ___ au club.","options":["allons","allez","vont"],"answer":0},{"q":"Je parle avec ___.","options":["elle","il","ils"],"answer":0}]}
+  ],
+  "diagnostic":{"purpose":"قياس نقطة البداية فقط؛ لا يحدد الجاهزية النهائية","questions":[{"id":"D1","q":"Je ___ Lina.","options":["m'appelle","t'appelles","s'appelle"],"answer":0,"unit":"u1"},{"id":"D2","q":"Paul ___ quinze ans.","options":["a","as","ai"],"answer":0,"unit":"u2"},{"id":"D3","q":"Il y ___ vingt élèves.","options":["a","ont","est"],"answer":0,"unit":"u3"},{"id":"D4","q":"Nous ___ au club.","options":["allons","allez","vont"],"answer":0,"unit":"u4"}]},
+  "finalReadiness":{"threshold":0.70,"purpose":"قياس الاستعداد للصف الثاني الثانوي بعد المراجعة","questions":[{"id":"F1","q":"Nous ___ des élèves sympathiques.","options":["sommes","êtes","sont"],"answer":0,"unit":"u1"},{"id":"F2","q":"J'ai ___ crayons.","options":["des","la","le"],"answer":0,"unit":"u2"},{"id":"F3","q":"Il n'y ___ pas de CDI.","options":["a","ont","est"],"answer":0,"unit":"u3"},{"id":"F4","q":"Demain, nous allons ___ club de sport.","options":["au","à la","aux"],"answer":0,"unit":"u4"}]},
+  "separation":{"diagnostic":"diagnostic","practice":"lessonPractice","readiness":"finalReadiness","rule":"لا يعاد استخدام نتيجة التشخيص كاختبار جاهزية ولا تخلط أسئلة التدريب مع التشخيص."}
+}
