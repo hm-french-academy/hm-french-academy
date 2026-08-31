@@ -1,0 +1,21 @@
+name: Annual Review Question Quality Gate
+on:
+  push:
+    paths:
+      - 'data/reviews/**'
+      - 'scripts/review-question-quality-gate.mjs'
+      - '.github/workflows/review-question-quality-gate.yml'
+  pull_request:
+    paths:
+      - 'data/reviews/**'
+      - 'scripts/review-question-quality-gate.mjs'
+      - '.github/workflows/review-question-quality-gate.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/review-question-quality-gate.mjs
