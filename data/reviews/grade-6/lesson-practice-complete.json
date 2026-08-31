@@ -1,0 +1,16 @@
+{
+  "version":"2026-08-31-v1",
+  "grade":6,
+  "source":"data/reviews/grade-6/review-content.json",
+  "purpose":"One independent corrected practice set for every lesson in the source-derived review.",
+  "activities":[
+    {"lessonId":"l1","title":"Les vêtements + avoir","questions":[{"q":"Tu ___ une robe.","options":["as","ai","a"],"answer":0},{"q":"Nous ___ des chaussures.","options":["avons","avez","ont"],"answer":0}]},
+    {"lessonId":"l2","title":"Les couleurs","questions":[{"q":"La chemise est ___.","options":["bleue","bleu","bleus"],"answer":0},{"q":"Les livres sont ___.","options":["verts","verte","vert"],"answer":0}]},
+    {"lessonId":"l3","title":"Être et les adjectifs","questions":[{"q":"Elle ___ grande.","options":["est","es","sont"],"answer":0},{"q":"Nous ___ grands.","options":["sommes","êtes","sont"],"answer":0}]},
+    {"lessonId":"l4","title":"Féminin et pluriel","questions":[{"q":"gros au féminin =","options":["grosse","grose","grosses"],"answer":0},{"q":"courte au pluriel =","options":["courtes","courte","courts"],"answer":0}]},
+    {"lessonId":"l5","title":"La négation","questions":[{"q":"Je suis grand → Je ___.","options":["ne suis pas grand","n'ai pas grand","ne est pas grand"],"answer":0},{"q":"J'ai un pull → Je n'ai pas ___ pull.","options":["de","un","des"],"answer":0}]},
+    {"lessonId":"l6","title":"Aller","questions":[{"q":"Je ___ au club.","options":["vais","vas","va"],"answer":0},{"q":"Ils ___ au cinéma.","options":["vont","va","vas"],"answer":0}]},
+    {"lessonId":"l7","title":"Vivre et le tourisme en Égypte","questions":[{"q":"Nous ___ en Égypte.","options":["vivons","vivez","vivent"],"answer":0},{"q":"Elle ___ en France.","options":["vit","vis","vivez"],"answer":0}]},
+    {"lessonId":"l8","title":"Les nationalités","questions":[{"q":"Elle est ___. (français)","options":["française","français","françaises"],"answer":0},{"q":"Ils sont ___. (canadien)","options":["canadiens","canadienne","canadien"],"answer":0}]}
+  ]
+}
