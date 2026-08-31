@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // HM Academy student UI guard: internal curriculum/source metadata is never student-facing.
+  // HM Academy: internal curriculum/source metadata must never appear in student UI.
   const INTERNAL_SOURCE_PATTERNS = [
+    /المصدر\s*الأساسي\s*هو\s*Club\s*@dos\s*Plus\s*1\s*،?\s*مع\s*طبقة\s*إثراء[^.\n<]*/gi,
+    /المصدر\s*الأساسي\s*هو[^.\n<]*Merci\s*2027[^.\n<]*Bravo\s*2027[^.\n<]*/gi,
+    /المصدر\s*(?:الأساسي|الرئيسي)\s*[:：][^|؛;\n<]+/gi,
+    /مصادر\s*الإثراء\s*[:：][^|؛;\n<]+/gi,
+    /طبقة\s*(?:الإثراء|إثراء)\s*[:：][^|؛;\n<]+/gi,
+    /مصدر\s*المحتوى\s*[:：][^|؛;\n<]+/gi,
+    /المصدر\s*الأساسي\s*هو[^.\n<]*/gi,
     /\bMerci\s*2027\b/gi,
     /\bBravo\s*2027\b/gi,
     /\bElMoasser\s*2027\b/gi,
@@ -8,20 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     /\bsource\s*primaire\s*:\s*[^|;\n<]+/gi,
     /\bprimary\s*source\s*:\s*[^|;\n<]+/gi,
     /\bmain\s*source\s*:\s*[^|;\n<]+/gi,
-    /\bمصدر\s*(?:أساسي|رئيسي)\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bالمصدر\s*(?:الأساسي|الرئيسي)\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bمصادر\s*الإثراء\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bطبقة\s*الإثراء\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bطبقة\s*إثراء\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bمصدر\s*المحتوى\s*[:：]\s*[^|؛;\n<]+/gi,
-    /\bcontent\s*source\s*[:：]\s*[^|;\n<]+/gi,
-    /\bsource\s*status\s*[:：]\s*[^|;\n<]+/gi
+    /\bcontent\s*source\s*[:：][^|;\n<]+/gi,
+    /\bsource\s*status\s*[:：][^|;\n<]+/gi
   ];
 
   const sanitizeText = (value) => {
     let result = String(value || '');
     INTERNAL_SOURCE_PATTERNS.forEach(pattern => { result = result.replace(pattern, ''); });
-    return result.replace(/[ \t]{2,}/g, ' ').replace(/\s+([|·•])/g, ' $1').trim();
+    return result.replace(/[ \t]{2,}/g, ' ').replace(/\s+([|·•،])/g, ' $1').trim();
   };
 
   const sanitizeStudentUi = (root = document.body) => {
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
     ['scripts/lesson-i18n-bind.js','scripts/lesson-finalizer.js','scripts/lesson-quick-i18n.js'].forEach(src => {
       if (!document.querySelector(`script[src="${src}"]`)) {
-        const s=document.createElement('script'); s.src=src; document.head.appendChild(s);
+        const s = document.createElement('script'); s.src = src; document.head.appendChild(s);
       }
     });
   }
@@ -70,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!(location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html'))) return;
   const scripts = ['scripts/learning-progress.js','scripts/lesson-audio-bind.js','scripts/lesson-media-runtime.js','scripts/lesson-runtime-init.js','scripts/lesson-complete.js'];
   (async function loadLessonRuntime(){
-    if (!window.HMSpeech) await new Promise(resolve => { const started=Date.now(); const timer=setInterval(()=>{ if(window.HMSpeech || Date.now()-started>1200){clearInterval(timer);resolve();}},30); });
+    if (!window.HMSpeech) await new Promise(resolve => { const started = Date.now(); const timer = setInterval(() => { if (window.HMSpeech || Date.now() - started > 1200) { clearInterval(timer); resolve(); } }, 30); });
     for (const src of scripts) {
       if (document.querySelector(`script[src="${src}"]`)) continue;
-      await new Promise(resolve => { const script=document.createElement('script'); script.src=src; script.onload=resolve; script.onerror=resolve; document.body.appendChild(script); });
+      await new Promise(resolve => { const script = document.createElement('script'); script.src = src; script.onload = resolve; script.onerror = resolve; document.body.appendChild(script); });
     }
   })();
 });
