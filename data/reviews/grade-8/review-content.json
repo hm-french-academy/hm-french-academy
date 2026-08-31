@@ -1,54 +1,11 @@
 {
-  "id":"grade-8-revision-readiness-content","version":"2026-08-31-v1","targetGrade":8,"reviewOfGrade":7,"source":"Le Français Simple 1","scope":"full available Grade 7 curriculum","lessons":[
-    {"id":"grade7-u1-l1","titleFr":"L'alphabet et les mots transparents","titleAr":"الأبجدية والكلمات الشفافة","focus":["alphabet","vowels","transparent words"]},
-    {"id":"grade7-u1-l2","titleFr":"Les salutations","titleAr":"التحيات","focus":["greetings","morning/evening","dialogue"]},
-    {"id":"grade7-u1-l3","titleFr":"Les pronoms sujets et les verbes en -er","titleAr":"ضمائر الفاعل وأفعال المجموعة الأولى","focus":["subject pronouns","first-group verbs","present tense"]},
-    {"id":"grade7-u1-l4","titleFr":"Le verbe être et la présentation","titleAr":"فعل être والتقديم","focus":["être","self introduction","introducing someone"]},
-    {"id":"grade7-u1-l5","titleFr":"Les nombres (0-20)","titleAr":"الأعداد 0–20","focus":["numbers 0-20"]},
-    {"id":"grade7-u1-l6","titleFr":"L'heure","titleAr":"الساعة","focus":["telling time"]},
-    {"id":"grade7-u2-l1","titleFr":"Tu as quel âge ?","titleAr":"كم عمرك؟","focus":["avoir","age"]},
-    {"id":"grade7-u2-l2","titleFr":"Qu'est-ce que c'est ? Les objets de la classe","titleAr":"ما هذا؟ أدوات الفصل","focus":["indefinite articles","classroom objects"]},
-    {"id":"grade7-u3-l1","titleFr":"Les couleurs","titleAr":"الألوان","focus":["colors","color adjectives"]},
-    {"id":"grade7-u3-l2","titleFr":"Les articles définis et les jours de la semaine","titleAr":"أدوات المعرفة وأيام الأسبوع","focus":["definite articles","days"]},
-    {"id":"grade7-u3-l3","titleFr":"Les mois de l'année et les saisons","titleAr":"شهور السنة والفصول","focus":["months","seasons","weather"]}
-  ],
+  "id":"grade-8-revision-readiness-content","version":"2026-08-31-v2","targetGrade":8,"reviewOfGrade":7,"source":"Le Français Simple 1","scope":"full available Grade 7 curriculum",
+  "titleAr":"مراجعة الاستعداد للصف الثاني الإعدادي","titleFr":"Révision de 1ère préparatoire – Préparation à la 2ème préparatoire",
+  "lessons":[{"id":"grade7-u1-l1","titleFr":"L'alphabet et les mots transparents","titleAr":"الأبجدية والكلمات الشفافة","focus":["alphabet","vowels","transparent words"]},{"id":"grade7-u1-l2","titleFr":"Les salutations","titleAr":"التحيات","focus":["greetings","dialogue"]},{"id":"grade7-u1-l3","titleFr":"Les pronoms sujets et les verbes en -er","titleAr":"ضمائر الفاعل وأفعال المجموعة الأولى","focus":["pronouns","-er","present"]},{"id":"grade7-u1-l4","titleFr":"Le verbe être et la présentation","titleAr":"être والتقديم","focus":["être","presentation"]},{"id":"grade7-u1-l5","titleFr":"Les nombres (0-20)","titleAr":"الأعداد 0–20","focus":["numbers"]},{"id":"grade7-u1-l6","titleFr":"L'heure","titleAr":"الساعة","focus":["time"]},{"id":"grade7-u2-l1","titleFr":"Tu as quel âge ?","titleAr":"كم عمرك؟","focus":["avoir","age"]},{"id":"grade7-u2-l2","titleFr":"Qu'est-ce que c'est ?","titleAr":"أدوات الفصل","focus":["articles","classroom objects"]},{"id":"grade7-u3-l1","titleFr":"Les couleurs","titleAr":"الألوان","focus":["colors"]},{"id":"grade7-u3-l2","titleFr":"Les articles définis et les jours","titleAr":"أدوات المعرفة وأيام الأسبوع","focus":["articles","days"]},{"id":"grade7-u3-l3","titleFr":"Les mois et les saisons","titleAr":"الشهور والفصول","focus":["months","seasons"]}],
   "journey":["diagnostic","vocabulary","pronunciation","grammar","communication","practice","reading","writing","smart-review","final-assessment","progress"],
-  "diagnostic":{"minutes":30,"questions":[
-    {"q":"Bonjour ! Comment ça va ?","options":["Ça va bien.","J'ai douze ans.","Il est huit heures."],"answer":0},
-    {"q":"Je ___ français.","options":["parle","parles","parlons"],"answer":0},
-    {"q":"Je ___ élève.","options":["suis","es","est"],"answer":0},
-    {"q":"J'ai ___ ans.","options":["douze","rouge","lundi"],"answer":0},
-    {"q":"Il est huit ___.","options":["heures","ans","mois"],"answer":0},
-    {"q":"Tu ___ quel âge ?","options":["as","ai","a"],"answer":0},
-    {"q":"C'est ___ stylo.","options":["un","une","des"],"answer":0},
-    {"q":"___ maison est grande.","options":["La","Le","Les"],"answer":0},
-    {"q":"La pomme est ___.","options":["rouge","lundi","huit"],"answer":0},
-    {"q":"Quel jour sommes-nous ?","options":["Lundi.","Rouge.","Douze."],"answer":0}
-  ]},
-  "reviewActivities":[
-    {"title":"Alphabet & prononciation","tasks":["اقرأ الحروف الفرنسية بصوت واضح.","ميّز بين voyelles والحروف الأخرى.","اقرأ كلمات شفافة بسيطة."]},
-    {"title":"Salutations & communication","tasks":["كوّن حوار تحية من 4 أسطر.","فرّق بين Bonjour و Bonsoir و Salut.","رتّب حوارًا قصيرًا."]},
-    {"title":"Pronoms & -er","tasks":["اختر الضمير المناسب.","صرّف parler / aimer في المضارع.","أكمل الجمل بالفعل الصحيح."]},
-    {"title":"Être & présentation","tasks":["صرّف être.","قدّم نفسك في 5 جمل.","قدّم شخصًا آخر في 4 جمل."]},
-    {"title":"Nombres & heure","tasks":["اكتب الأعداد 0–20 بالحروف.","اقرأ الوقت بالفرنسية.","طابق الوقت مع العبارة المناسبة."]},
-    {"title":"Âge & avoir","tasks":["صرّف avoir.","اسأل عن العمر وأجب.","اكتب 4 جمل عن أعمار أشخاص."]},
-    {"title":"Objets de la classe","tasks":["راجع un / une / des.","سمّ أدوات الفصل.","أجب عن Qu'est-ce que c'est ?"]},
-    {"title":"Couleurs","tasks":["راجع أسماء الألوان.","طابق الاسم مع الصفة.","استخدم اللون في جمل بسيطة."]},
-    {"title":"Articles & jours","tasks":["راجع le / la / les.","اكتب أيام الأسبوع.","اسأل وأجب عن اليوم."]},
-    {"title":"Mois & saisons","tasks":["اكتب شهور السنة.","اربط كل شهر بالفصل المناسب.","تحدث عن فصل تحبه."]}
-  ],
-  "finalAssessment":{"minutes":40,"threshold":0.70,"questions":[
-    {"q":"Nous ___ français.","options":["parlons","parlez","parlent"],"answer":0},
-    {"q":"Vous ___ élèves.","options":["êtes","sommes","sont"],"answer":0},
-    {"q":"Elle ___ treize ans.","options":["a","as","ai"],"answer":0},
-    {"q":"C'est ___ gomme.","options":["une","un","des"],"answer":0},
-    {"q":"___ livre est intéressant.","options":["Le","La","Les"],"answer":0},
-    {"q":"Quel est le contraire de bonsoir ?","options":["bonjour","merci","salut"],"answer":0},
-    {"q":"Quel mois vient après mars ?","options":["avril","mai","février"],"answer":0},
-    {"q":"Quelle saison vient après l'hiver ?","options":["le printemps","l'été","l'automne"],"answer":0},
-    {"q":"Écris une présentation de 5 phrases.","type":"writing"},
-    {"q":"Écris un mini-dialogue de 4 lignes pour saluer un ami.","type":"writing"}
-  ]},
-  "answerKey":{"diagnostic":[0,0,0,0,0,0,0,0,0,0],"final":[0,0,0,0,0,0,0,0]},
-  "quality":{"sourceLessons":11,"fullAvailableCurriculum":true,"externalBooks":"supplementary only","textbookVerbatim":false}
+  "diagnostic":{"minutes":30,"questions":[{"id":"D01","q":"Bonjour ! Comment ça va ?","options":["Ça va bien.","J'ai douze ans.","Il est huit heures."],"answer":0,"skill":"communication"},{"id":"D02","q":"Je ___ français.","options":["parle","parles","parlons"],"answer":0,"skill":"grammar"},{"id":"D03","q":"Je ___ élève.","options":["suis","es","est"],"answer":0,"skill":"grammar"},{"id":"D04","q":"J'ai ___ ans.","options":["douze","rouge","lundi"],"answer":0,"skill":"numbers"},{"id":"D05","q":"Il est huit ___.","options":["heures","ans","mois"],"answer":0,"skill":"time"},{"id":"D06","q":"Tu ___ quel âge ?","options":["as","ai","a"],"answer":0,"skill":"grammar"},{"id":"D07","q":"C'est ___ stylo.","options":["un","une","des"],"answer":0,"skill":"articles"},{"id":"D08","q":"___ maison est grande.","options":["La","Le","Les"],"answer":0,"skill":"articles"},{"id":"D09","q":"La pomme est ___.","options":["rouge","lundi","huit"],"answer":0,"skill":"colors"},{"id":"D10","q":"Quel jour sommes-nous ?","options":["Lundi.","Rouge.","Douze."],"answer":0,"skill":"days"}]},
+  "reviewActivities":[{"title":"Alphabet & prononciation","tasks":["اقرأ الحروف الفرنسية بصوت واضح.","ميّز بين voyelles والحروف الأخرى.","اقرأ كلمات شفافة بسيطة."]},{"title":"Salutations & communication","tasks":["كوّن حوار تحية من 4 أسطر.","فرّق بين Bonjour و Bonsoir و Salut.","رتّب حوارًا قصيرًا."]},{"title":"Pronoms & -er","tasks":["اختر الضمير المناسب.","صرّف parler / aimer في المضارع.","أكمل الجمل بالفعل الصحيح."]},{"title":"Être & présentation","tasks":["صرّف être.","قدّم نفسك في 5 جمل.","قدّم شخصًا آخر في 4 جمل."]},{"title":"Nombres & heure","tasks":["اكتب الأعداد 0–20 بالحروف.","اقرأ الوقت بالفرنسية.","طابق الوقت مع العبارة المناسبة."]},{"title":"Âge & avoir","tasks":["صرّف avoir.","اسأل عن العمر وأجب.","اكتب 4 جمل عن أعمار أشخاص."]},{"title":"Objets de la classe","tasks":["راجع un / une / des.","سمّ أدوات الفصل.","أجب عن Qu'est-ce que c'est ?"]},{"title":"Couleurs","tasks":["راجع أسماء الألوان.","طابق الاسم مع الصفة.","استخدم اللون في جمل بسيطة."]},{"title":"Articles & jours","tasks":["راجع le / la / les.","اكتب أيام الأسبوع.","اسأل وأجب عن اليوم."]},{"title":"Mois & saisons","tasks":["اكتب شهور السنة.","اربط كل شهر بالفصل المناسب.","تحدث عن فصل تحبه."]}],
+  "finalAssessment":{"minutes":40,"threshold":0.70,"questions":[{"id":"F01","q":"Nous ___ français.","options":["parlons","parlez","parlent"],"answer":0,"skill":"grammar"},{"id":"F02","q":"Vous ___ élèves.","options":["êtes","sommes","sont"],"answer":0,"skill":"grammar"},{"id":"F03","q":"Elle ___ treize ans.","options":["a","as","ai"],"answer":0,"skill":"grammar"},{"id":"F04","q":"C'est ___ gomme.","options":["une","un","des"],"answer":0,"skill":"articles"},{"id":"F05","q":"___ livre est intéressant.","options":["Le","La","Les"],"answer":0,"skill":"articles"},{"id":"F06","q":"Quel est le contraire de bonsoir ?","options":["bonjour","merci","salut"],"answer":0,"skill":"communication"},{"id":"F07","q":"Quel mois vient après mars ?","options":["avril","mai","février"],"answer":0,"skill":"months"},{"id":"F08","q":"Quelle saison vient après l'hiver ?","options":["le printemps","l'été","l'automne"],"answer":0,"skill":"seasons"},{"id":"F09","q":"Tu rencontres un nouvel ami. Choisis la réponse appropriée : « Comment tu t'appelles ? »","options":["Je m'appelle Sami.","J'ai treize ans.","Il est lundi."],"answer":0,"skill":"communication"},{"id":"F10","q":"Tu as 14 ans. Quelle phrase est correcte ?","options":["J'ai quatorze ans.","Je suis quatorze ans.","J'ai quatorze."],"answer":0,"skill":"age"},{"id":"F11","q":"Écris une présentation de 5 phrases.","type":"writing","skill":"writing"},{"id":"F12","q":"Écris un mini-dialogue de 4 lignes pour saluer un ami.","type":"writing","skill":"writing"}]},
+  "answerKey":{"diagnostic":[0,0,0,0,0,0,0,0,0,0],"final":[0,0,0,0,0,0,0,0,0,0]},
+  "quality":{"sourceLessons":11,"fullAvailableCurriculum":true,"multipleCorrectAnswers":false,"duplicateQuestionIdsAcrossAssessments":false,"diagnosticAndFinalUseDistinctPrompts":true,"ambiguousVisualQuestionsExcluded":true,"answerPositionDistribution":"balanced by runtime shuffle; source keys intentionally validated","textbookVerbatim":false}
 }
