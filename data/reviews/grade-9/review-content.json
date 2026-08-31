@@ -1,7 +1,31 @@
 {
-  "id":"grade-9-revision-readiness-content","version":"2026-08-31-v3","targetGrade":9,"reviewOfGrade":8,"source":"Le Français Simple 2","scope":"Full academic year: Units 1-5",
-  "titleAr":"مراجعة الاستعداد للصف الثالث الإعدادي","titleFr":"Révision de 2ème préparatoire – Préparation à la 3ème préparatoire",
-  "units":[{"id":"u1","titleFr":"À l'école","titleAr":"في المدرسة","semester":1},{"id":"u2","titleFr":"La maison","titleAr":"المنزل","semester":1},{"id":"u3","titleFr":"Le voyage","titleAr":"السفر","semester":1},{"id":"u4","titleFr":"Les repas","titleAr":"الوجبات والطعام","semester":2},{"id":"u5","titleFr":"Bon anniversaire!","titleAr":"عيد ميلاد سعيد","semester":2}],
+  "id":"grade-9-revision-readiness-content",
+  "version":"2026-08-31-v4",
+  "targetGrade":9,
+  "reviewOfGrade":8,
+  "source":"Le Français Simple 2",
+  "scope":"Full academic year: Units 1-5",
+  "titleAr":"مراجعة الاستعداد للصف الثالث الإعدادي",
+  "titleFr":"Révision de 2ème préparatoire – Préparation à la 3ème préparatoire",
+  "units":[
+    {"id":"u1","titleFr":"À l'école","titleAr":"في المدرسة","semester":1},
+    {"id":"u2","titleFr":"La maison","titleAr":"المنزل","semester":1},
+    {"id":"u3","titleFr":"Le voyage","titleAr":"السفر","semester":1},
+    {"id":"u4","titleFr":"Les repas","titleAr":"الوجبات والطعام","semester":2},
+    {"id":"u5","titleFr":"Bon anniversaire!","titleAr":"عيد ميلاد سعيد","semester":2}
+  ],
+  "lessons":[
+    {"id":"l1","unit":"u1","titleFr":"À l'école : le matériel scolaire","titleAr":"في المدرسة: أدوات الدراسة","vocabulary":["un cahier","une trousse","un crayon","un stylo"],"grammar":"أدوات التنكير un / une / des مع أدوات المدرسة.","examples":["J'ai un cahier.","C'est une trousse."]},
+    {"id":"l2","unit":"u1","titleFr":"Décrire sa classe","titleAr":"وصف الفصل الدراسي","vocabulary":["la classe","la table","la chaise","le tableau"],"grammar":"استخدام il y a للتعبير عن وجود الأشياء.","examples":["Il y a un tableau dans la classe.","Il y a des chaises."]},
+    {"id":"l3","unit":"u2","titleFr":"La maison et les pièces","titleAr":"المنزل والغرف","vocabulary":["la maison","la chambre","la cuisine","le salon"],"grammar":"أدوات الملكية mon / ma / mes و ton / ta / tes.","examples":["Ma chambre est grande.","Mes fenêtres sont ouvertes."]},
+    {"id":"l4","unit":"u2","titleFr":"Décrire la maison","titleAr":"وصف المنزل","vocabulary":["grand","petit","beau","propre"],"grammar":"مطابقة الصفة مع الاسم في الجنس والعدد.","examples":["La maison est grande.","Les chambres sont propres."]},
+    {"id":"l5","unit":"u3","titleFr":"Voyager et les destinations","titleAr":"السفر والوجهات","vocabulary":["voyager","l'aéroport","le billet","la France"],"grammar":"حروف الجر مع البلدان ووسائل السفر: en France, en avion.","examples":["Je vais en France.","Je voyage en avion."]},
+    {"id":"l6","unit":"u3","titleFr":"Les transports et le billet","titleAr":"وسائل النقل والتذكرة","vocabulary":["le train","le bus","l'avion","le billet"],"grammar":"استخدام ce / cette / ces للإشارة إلى الأشياء.","examples":["Ce billet est à moi.","Cette valise est lourde."]},
+    {"id":"l7","unit":"u4","titleFr":"Les repas et les aliments","titleAr":"الوجبات والأطعمة","vocabulary":["le pain","le lait","le café","la salade","la viande"],"grammar":"أدوات التجزئة du / de la / des مع الطعام والشراب.","examples":["Je bois du café.","Je mange de la salade."]},
+    {"id":"l8","unit":"u4","titleFr":"La négation avec les aliments","titleAr":"النفي مع الأطعمة","vocabulary":["manger","boire","du","de la","des"],"grammar":"بعد النفي تتحول أدوات التجزئة إلى de / d'.","examples":["Je ne bois pas de lait.","Nous ne mangeons pas de viande."]},
+    {"id":"l9","unit":"u5","titleFr":"Inviter pour un anniversaire","titleAr":"الدعوة إلى عيد الميلاد","vocabulary":["un anniversaire","une fête","inviter","un cadeau"],"grammar":"صياغة دعوة وتحديد المناسبة والتاريخ والمكان.","examples":["Je t'invite à mon anniversaire.","La fête est samedi."]},
+    {"id":"l10","unit":"u5","titleFr":"Parler d'une fête","titleAr":"التحدث عن حفلة","vocabulary":["un gâteau","des sandwiches","les invités","arriver"],"grammar":"طرح أسئلة عن المناسبة باستخدام Quand ? Où ? Qui ?","examples":["Quand est l'anniversaire ?","Les invités arrivent à six heures."]}
+  ],
   "journey":["diagnostic","targeted-review","practice","smart-review","final-readiness","progress"],
   "diagnostic":{"minutes":35,"purpose":"تشخيص الأساسيات قبل المراجعة","questions":[
     {"id":"D1","skill":"vocabulary","q":"Dans la trousse, on trouve…","options":["un crayon","un avion","un canapé","un passeport"],"answer":0,"unit":"u1"},
@@ -17,6 +41,25 @@
     {"id":"D11","skill":"writing","q":"Écris 4 phrases sur ce que tu manges et bois dans une journée.","type":"writing","unit":"u4"},
     {"id":"D12","skill":"writing","q":"Écris une courte invitation à ton anniversaire.","type":"writing","unit":"u5"}
   ]},
+  "reviewActivities":[
+    {"id":"a-u1","title":"في المدرسة: أدوات الدراسة ووصف الفصل","lessonIds":["l1","l2"],"vocabulary":["un cahier","une trousse","un crayon","un stylo","la classe","le tableau"],"grammar":"un / une / des و il y a.","examples":["J'ai un cahier.","Il y a un tableau dans la classe."],"questions":[{"q":"Dans la trousse, on trouve…","options":["un crayon","un avion","un canapé"],"answer":0},{"q":"___ y a trois chaises.","options":["Il","Elle","Ils"],"answer":0}]},
+    {"id":"a-u2","title":"المنزل: الملكية ووصف الغرف","lessonIds":["l3","l4"],"vocabulary":["la maison","la chambre","la cuisine","le salon","grand","petit"],"grammar":"mon / ma / mes ومطابقة الصفة مع الاسم.","examples":["Ma chambre est grande.","Les chambres sont propres."],"questions":[{"q":"___ chambre est grande.","options":["Ma","Mon","Mes"],"answer":0},{"q":"Les chambres sont ___.","options":["propre","propres","proprees"],"answer":1}]},
+    {"id":"a-u3","title":"السفر: الوجهات ووسائل النقل","lessonIds":["l5","l6"],"vocabulary":["l'aéroport","le billet","la France","le train","l'avion"],"grammar":"en France / en avion و ce / cette / ces.","examples":["Je vais en France.","Ce billet est à moi."],"questions":[{"q":"Je vais ___ France.","options":["en","au","aux"],"answer":0},{"q":"___ billet est à moi.","options":["Ce","Cette","Ces"],"answer":0}]},
+    {"id":"a-u4","title":"الوجبات: الطعام والشراب والنفي","lessonIds":["l7","l8"],"vocabulary":["le pain","le lait","le café","la salade","la viande"],"grammar":"du / de la / des وبعد النفي de / d'.","examples":["Je bois du café.","Je ne bois pas de lait."],"questions":[{"q":"Je bois ___ café.","options":["du","de la","des"],"answer":0},{"q":"Nous ne mangeons pas ___ viande.","options":["de","du","de la"],"answer":0}]},
+    {"id":"a-u5","title":"عيد الميلاد: الدعوة والحفلة","lessonIds":["l9","l10"],"vocabulary":["un anniversaire","une fête","un cadeau","un gâteau","les invités"],"grammar":"صياغة الدعوة وأسئلة Quand ? Où ? Qui ?","examples":["Je t'invite à mon anniversaire.","Quand est l'anniversaire ?"],"questions":[{"q":"Pour demander la date, on dit…","options":["Quand ?","Où ?","Qui ?"],"answer":0},{"q":"Les invités arrivent à…","options":["six heures","six ans","six mois"],"answer":0}]}
+  ],
+  "practiceQuestions":[
+    {"id":"P01","skill":"articles","q":"Dans ma classe, j'ai ___ cahier et ___ trousse.","options":["un / une","une / un","des / une"],"answer":0,"lesson":"l1"},
+    {"id":"P02","skill":"existence","q":"___ y a une table dans la classe.","options":["Il","Elle","Ils"],"answer":0,"lesson":"l2"},
+    {"id":"P03","skill":"possessives","q":"___ chambre est petite.","options":["Ma","Mon","Mes"],"answer":0,"lesson":"l3"},
+    {"id":"P04","skill":"agreement","q":"Les chambres sont ___.","options":["propre","propres","proprees"],"answer":1,"lesson":"l4"},
+    {"id":"P05","skill":"destination","q":"Nous allons ___ France.","options":["en","au","aux"],"answer":0,"lesson":"l5"},
+    {"id":"P06","skill":"demonstratives","q":"___ valise est lourde.","options":["Cette","Ce","Ces"],"answer":0,"lesson":"l6"},
+    {"id":"P07","skill":"partitives","q":"Je mange ___ salade.","options":["de la","du","des"],"answer":0,"lesson":"l7"},
+    {"id":"P08","skill":"negation","q":"Je ne bois pas ___ lait.","options":["de","du","de la"],"answer":0,"lesson":"l8"},
+    {"id":"P09","skill":"invitation","q":"Je t'___ à mon anniversaire.","options":["invite","invites","inviter"],"answer":0,"lesson":"l9"},
+    {"id":"P10","skill":"questions","q":"Pour demander la date, on dit…","options":["Quand ?","Où ?","Qui ?"],"answer":0,"lesson":"l10"}
+  ],
   "finalReadiness":{"minutes":50,"threshold":0.70,"purpose":"اختبار تطبيق مستقل لا يعيد أسئلة التشخيص","questions":[
     {"id":"F1","skill":"articles","q":"Dans mon sac, il y a ___ cahier et ___ trousse.","options":["un / une","une / un","des / une","un / des"],"answer":0,"unit":"u1"},
     {"id":"F2","skill":"possessives","q":"___ chambre est grande et ___ fenêtres sont ouvertes.","options":["Ma / mes","Mon / ma","Mes / mon","Ta / tes"],"answer":0,"unit":"u2"},
@@ -29,5 +72,5 @@
     {"id":"F9","skill":"writing","q":"Écris une invitation de 5 phrases pour ton anniversaire.","type":"writing","unit":"u5","rubric":["occasion","invitation","date/lieu","formule","cohérence"]},
     {"id":"F10","skill":"reading","text":"Samedi, Lina organise une fête pour son anniversaire. Elle invite ses amis. Sa mère prépare un gâteau et des sandwiches. Lina offre un parfum à sa sœur. Les invités arrivent à six heures.","questions":["Pourquoi Lina organise-t-elle une fête ?","Que prépare sa mère ?","À quelle heure arrivent les invités ?"],"answers":["pour son anniversaire","un gâteau et des sandwiches","à six heures"],"unit":"u5"}
   ]},
-  "quality":{"multipleCorrectAnswers":false,"duplicateQuestionIdsAcrossAssessments":false,"duplicatePromptsAcrossAssessments":false,"ambiguousVisualQuestionsExcluded":true,"writingExcludedFromObjectiveScore":true,"allFinalObjectiveItemsHaveOptionsAndKeys":true,"diagnosticCount":10,"finalObjectiveCount":7,"finalWritingAndReadingCount":3,"note":"تم تحويل أسئلة الجاهزية إلى اختيارات محددة حيث يلزم ذلك، مع إبقاء الكتابة والقراءة ضمن التقييم النوعي."}
+  "quality":{"multipleCorrectAnswers":false,"duplicateQuestionIdsAcrossAssessments":false,"duplicatePromptsAcrossAssessments":false,"ambiguousVisualQuestionsExcluded":true,"writingExcludedFromObjectiveScore":true,"allFinalObjectiveItemsHaveOptionsAndKeys":true,"diagnosticCount":10,"finalObjectiveCount":7,"finalWritingAndReadingCount":3,"note":"تمت إضافة محتوى مراجعة درس-بدرس للصف الثالث الإعدادي حتى لا تظهر بطاقات ثابتة أو عامة."}
 }
