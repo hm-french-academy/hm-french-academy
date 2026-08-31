@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Student-facing content must never expose internal source/enrichment metadata.
+  // Keep source data intact for authoring/QA, but sanitize any accidental render.
+  const INTERNAL_SOURCE_PATTERNS = [
+    /\bMerci\s*2027\b/gi,
+    /\bBravo\s*2027\b/gi,
+    /\bEnrichment\s*:\s*[^|;\n<]+/gi,
+    /\bsource\s*primaire\s*:\s*[^|;\n<]+/gi,
+    /\bمصدر\s*(?:أساسي|رئيسي)\s*[:：]\s*[^|؛;\n<]+/gi,
+    /\bمصادر\s*الإثراء\s*[:：]\s*[^|؛;\n<]+/gi,
+    /\bطبقة\s*الإثراء\s*[:：]\s*[^|؛;\n<]+/gi
+  ];
+
+  const sanitizeText = (value) => {
+    let result = String(value || '');
+    INTERNAL_SOURCE_PATTERNS.forEach(pattern => { result = result.replace(pattern, ''); });
+    return result.replace(/\s{2,}/g, ' ').replace(/\s+([|·•])/g, ' $1').trim();
+  };
+
+  const sanitizeStudentUi = (root = document.body) => {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const parent = node.parentElement;
+      if (!parent || /^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/.test(parent.tagName)) return;
+      const next = sanitizeText(node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    });
+  };
+
+  sanitizeStudentUi();
+  const sourceSanitizer = new MutationObserver(() => sanitizeStudentUi());
+  sourceSanitizer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
   if (!document.querySelector('script[src="scripts/i18n-runtime.js"]')) {
     const i18n = document.createElement('script');
     i18n.src = 'scripts/i18n-runtime.js';
@@ -46,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   (async function loadLessonRuntime(){
-    // Wait briefly for the speech engine so lesson audio binding can use it.
     if (!window.HMSpeech) {
       await new Promise(resolve => {
         const started=Date.now();
