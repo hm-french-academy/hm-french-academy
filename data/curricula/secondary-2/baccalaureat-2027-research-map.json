@@ -1,0 +1,72 @@
+{
+  "level": "secondary-2-baccalaureat",
+  "academic_year": "2026/2027",
+  "subject": "French",
+  "official_method": "Le français — Clé d'avenir",
+  "official_source": "Ministry of Education Egyptian Baccalaureate electronic library",
+  "official_semester_1_pages": 138,
+  "official_semester_2_pages": 144,
+  "research_basis": {
+    "official": [
+      "وزارة التربية والتعليم / المكتبة الإلكترونية للبكالوريا المصرية",
+      "Le français — Clé d'avenir — semester 1",
+      "Le français — Clé d'avenir — semester 2"
+    ],
+    "external_2027": [
+      "Merci 2027 — secondary 2 French — semester 1",
+      "Merci 2027 — secondary 2 French — semester 2",
+      "Bravo 2027 — secondary 2 French",
+      "Al Moasser 2027 — secondary 2 French — semester 1"
+    ]
+  },
+  "student_visibility": {
+    "show_external_book_names": false,
+    "show_internal_source_metadata": false,
+    "show_source_comparison": false,
+    "show_methodology_notes": false
+  },
+  "content_building_policy": {
+    "official_curriculum_is_authoritative": true,
+    "external_sources_are_enrichment_only": true,
+    "do_not_reproduce_protected_text_verbatim": true,
+    "author_original_hm_academy_activities": true,
+    "align_every_activity_to_official_lesson_objective": true
+  },
+  "learning_studio_required_sections": [
+    "start",
+    "vocabulary",
+    "pronunciation",
+    "grammar",
+    "examples_and_communication",
+    "guided_practice",
+    "independent_practice",
+    "instant_correction",
+    "lesson_assessment",
+    "mastery_status"
+  ],
+  "assessment_policy": {
+    "avoid_fixed_first_option": true,
+    "vary_correct_answer_position": true,
+    "use_multiple_question_types": true,
+    "include_distractors_based_on_common_errors": true,
+    "score_after_completion": true,
+    "do_not_mark_unanswered_as_correct": true
+  },
+  "current_unit_map": [
+    {"unit":1,"title":"Les repas et les habitudes alimentaires","themes":["repas","aliments","boissons","supermarché","restaurant"]},
+    {"unit":2,"title":"Le look quotidien","themes":["vêtements","style","saisons","fêtes","goûts"]},
+    {"unit":3,"title":"Mon temps libre","themes":["loisirs","sports","vacances","voyages","routine"]},
+    {"unit":4,"title":"À la découverte de mon pays","themes":["Égypte","hôtel","ville","services","tourisme"]},
+    {"unit":5,"title":"À la rencontre des saisons","themes":["météo","saisons","activités","environnement","écologie"]},
+    {"unit":6,"title":"La technologie dans notre vie","themes":["vie numérique","dangers","sécurité Internet","bonnes pratiques","futur métier"]}
+  ],
+  "qa": {
+    "source_alignment_required": true,
+    "lesson_count_expected": 24,
+    "semester_count": 2,
+    "mobile_test_required": true,
+    "404_link_test_required": true,
+    "empty_lesson_test_required": true,
+    "internal_metadata_leak_test_required": true
+  }
+}
