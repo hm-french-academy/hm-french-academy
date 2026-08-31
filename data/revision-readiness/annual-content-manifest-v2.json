@@ -1,0 +1,33 @@
+{
+  "version":"2026-08-31-v2",
+  "policy":"Content-first annual revision. The stage UI remains unchanged.",
+  "intro":{
+    "target":7,
+    "route":"french-simple-intro.html",
+    "mode":"intro-course",
+    "label":"كورس تمهيدي لاستكشاف Le Français Simple"
+  },
+  "stages":{
+    "4":{"reviewOf":3,"source":"data/reviews/grade-3/review-content-normalized.json","mode":"annual-revision"},
+    "5":{"reviewOf":4,"source":"data/reviews/grade-5/review-content.json","mode":"annual-revision"},
+    "6":{"reviewOf":5,"source":"data/reviews/grade-6/review-content.json","mode":"annual-revision"},
+    "8":{"reviewOf":7,"source":"data/reviews/grade-8/review-content.json","mode":"annual-revision"},
+    "9":{"reviewOf":8,"source":"data/reviews/grade-9/review-content.json","mode":"annual-revision"},
+    "secondary-1":{"reviewOf":"secondary-1","source":"data/reviews/secondary-1/review-content.json","mode":"annual-revision","route":"secondary-1-review.html"}
+  },
+  "lessonContract":["unit","titleFr","titleAr","vocabulary","grammar","examples","practice"],
+  "assessmentContract":{
+    "diagnostic":"baseline only",
+    "lessonPractice":"independent per lesson",
+    "smartReview":"weakness-driven follow-up",
+    "finalReadiness":"independent gate"
+  },
+  "grade6Rule":"Never display an empty-units fallback when source-derived units exist.",
+  "qualityRules":[
+    "Every published lesson must expose vocabulary, grammar, examples and practice.",
+    "Practice answers are value-based and must remain correct after option shuffling.",
+    "Diagnostic and final-readiness item IDs must not overlap.",
+    "Final-readiness must have an explicit threshold.",
+    "Missing source material is reported; content is never invented as a substitute."
+  ]
+}
