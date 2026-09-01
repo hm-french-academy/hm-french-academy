@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HM Academy - تسجيل الدخول</title>
 <link rel="stylesheet" href="css/style.css?v=20260807">
+<style>
+.auth-status{margin:12px 0;padding:11px 14px;border-radius:12px;display:none;font-weight:700}
+.auth-status.error{display:block;background:#fff1f2;color:#b42318;border:1px solid #fecdd3}
+.auth-status.success{display:block;background:#ecfdf3;color:#067647;border:1px solid #a7f3d0}
+.auth-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.auth-actions button,.auth-actions a{border:0;cursor:pointer;text-decoration:none}
+</style>
 </head>
 <body>
 <header>
@@ -21,11 +28,15 @@
 <h1>🎓 أهلاً بك في HM Academy</h1>
 <p>ادخل إلى حسابك لمتابعة المستوى والدروس والاختبارات.</p>
 <div class="course" style="max-width:540px;margin:18px auto 0;text-align:right;">
-<label>البريد الإلكتروني</label>
-<input placeholder="example@email.com" style="width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;margin:8px 0 16px;">
-<label>كلمة المرور</label>
-<input placeholder="********" type="password" style="width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;margin:8px 0 16px;">
-<a class="btn" href="dashboard.html">دخول الطالب</a>
+<label for="email">البريد الإلكتروني</label>
+<input id="email" type="email" autocomplete="email" placeholder="example@email.com" style="width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;margin:8px 0 16px;box-sizing:border-box;">
+<label for="password">كلمة المرور</label>
+<input id="password" type="password" autocomplete="current-password" placeholder="********" style="width:100%;padding:14px 16px;border:1px solid #d1d5db;border-radius:14px;margin:8px 0 12px;box-sizing:border-box;">
+<div id="authStatus" class="auth-status" role="alert"></div>
+<div class="auth-actions">
+<button id="loginBtn" class="btn" type="button">دخول الطالب</button>
+<button id="resetBtn" class="btn secondary" type="button">نسيت كلمة المرور؟</button>
+</div>
 </div>
 </section>
 
@@ -44,5 +55,77 @@
 </main>
 
 <footer>HM Academy © 2026</footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './js/supabase-config.js';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const loginBtn = document.getElementById('loginBtn');
+const resetBtn = document.getElementById('resetBtn');
+const status = document.getElementById('authStatus');
+
+function showStatus(message, type='error') {
+  status.textContent = message;
+  status.className = `auth-status ${type}`;
+}
+
+async function checkExistingSession() {
+  const { data } = await supabase.auth.getSession();
+  if (data.session) window.location.href = 'dashboard.html';
+}
+
+loginBtn.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  if (!email || !password) {
+    showStatus('من فضلك أدخل البريد الإلكتروني وكلمة المرور.');
+    return;
+  }
+
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'جارٍ تسجيل الدخول…';
+  status.className = 'auth-status';
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) {
+    showStatus('تعذر تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.');
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'دخول الطالب';
+    return;
+  }
+
+  showStatus('تم تسجيل الدخول بنجاح، جارٍ فتح منطقة الطالب…', 'success');
+  window.location.href = 'dashboard.html';
+});
+
+resetBtn.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  if (!email) {
+    showStatus('اكتب بريدك الإلكتروني أولًا ثم اضغط «نسيت كلمة المرور؟».');
+    emailInput.focus();
+    return;
+  }
+
+  resetBtn.disabled = true;
+  const redirectTo = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '/') }reset-password.html`;
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  resetBtn.disabled = false;
+
+  if (error) {
+    showStatus('تعذر إرسال رسالة استعادة كلمة المرور. حاول مرة أخرى.');
+    return;
+  }
+  showStatus('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني إذا كان الحساب موجودًا.', 'success');
+});
+
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) window.location.href = 'dashboard.html';
+});
+
+checkExistingSession();
+</script>
 </body>
 </html>
