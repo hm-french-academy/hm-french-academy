@@ -18,3 +18,4 @@ export async function logout(redirect = 'login.html') {
 }
 
 // HM Academy: account-based access repair trigger.
+// v2026-09-03
