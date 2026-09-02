@@ -49,4 +49,4 @@ renderQuiz(practice,'practiceQuiz');$('practiceBtn').onclick=()=>{const n=score(
 renderQuiz(fin,'finalQuiz');$('finalBtn').onclick=()=>{const n=score(fin,'finalQuiz');$('finalResult').innerHTML='<div class="result">النتيجة: '+n+' / '+fin.length+'</div>'};
 document.querySelectorAll('[data-target]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.section').forEach(s=>s.hidden=true);$(b.dataset.target).hidden=false;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.target===b.dataset.target));scrollTo(0,0)}));
 })()
-</script></body></html>
+</script><script type="module" src="js/diagnostic-persistence.js?v=20260903"></script></body></html>

@@ -1,0 +1,24 @@
+name: Review content QA
+
+on:
+  push:
+    branches: [secure-content-integration, main]
+    paths:
+      - 'data/reviews/**'
+      - 'scripts/review-question-quality-gate.mjs'
+  pull_request:
+    paths:
+      - 'data/reviews/**'
+      - 'scripts/review-question-quality-gate.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-content-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate review question banks
+        run: node scripts/review-question-quality-gate.mjs

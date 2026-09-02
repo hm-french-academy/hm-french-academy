@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | درس خاص</title>
+<link rel="stylesheet" href="css/premium-shell.css?v=20260901-revision-v22">
+<style>
+main{max-width:900px;margin:auto;padding:24px 16px 60px}.card{border:1px solid #dce4ef;border-radius:20px;background:#fff;padding:24px}.muted{color:#52627a;line-height:1.8}.btn{display:inline-block;text-decoration:none;font:inherit;font-weight:800;border-radius:14px;padding:12px 16px;background:#2563eb;color:#fff}.error{background:#fff4f4;border:1px solid #f0caca}.lesson{line-height:2}.lesson pre{white-space:pre-wrap;font:inherit}
+</style>
+</head>
+<body>
+<header class="hm-header"><a class="hm-brand" href="index.html"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy <small class="hm-tagline">تعليم اللغة الفرنسية</small></span></a></header>
+<main><section id="app" class="card"><h1>🔒 درس خاص</h1><p class="muted">جارٍ التحقق من صلاحية الحساب...</p></section></main>
+<script type="module">
+import { supabase } from './js/auth-guard.js';
+const app=document.getElementById('app');
+const params=new URLSearchParams(location.search); const lessonId=params.get('lesson');
+if(!lessonId){app.className='card error';app.innerHTML='<h1>⚠️ رابط الدرس غير مكتمل</h1><p class="muted">يجب فتح الدرس من خلال الرابط المخصص له.</p>';throw new Error('missing lesson');}
+const {data:{session}}=await supabase.auth.getSession();
+if(!session){const next=location.href;location.replace('login.html?next='+encodeURIComponent(next));}
+else{
+ const {data,error}=await supabase.from('private_lessons').select('lesson_id,grade,title,content').eq('lesson_id',lessonId).maybeSingle();
+ if(error||!data){app.className='card error';app.innerHTML='<h1>🔒 لا تملك صلاحية هذا الدرس</h1><p class="muted">تسجيل الدخول وحده لا يمنح صلاحية الوصول. إذا كان الدرس مخصصًا لك، تأكد من استخدام الحساب الصحيح.</p><a class="btn" href="student-profile.html">العودة إلى حساب الطالب</a>';}
+ else{
+  const c=data.content||{}; const body=typeof c==='string'?c:(c.html||c.text||JSON.stringify(c,null,2));
+  app.innerHTML='<div class="lesson"><span class="muted">الصف '+String(data.grade)+'</span><h1>'+esc(data.title)+'</h1><div>'+body+'</div></div>';
+ }
+}
+function esc(v){return String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
+</script>
+</body>
+</html>

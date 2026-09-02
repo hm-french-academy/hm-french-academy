@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | إدارة صلاحيات الدروس</title>
+<link rel="stylesheet" href="css/style.css?v=20260807">
+<style>
+.box{max-width:620px;margin:24px auto}.status{margin:14px 0;padding:12px 14px;border-radius:12px;display:none;line-height:1.8;font-weight:700}.status.show{display:block}.status.ok{background:#ecfdf3;color:#067647;border:1px solid #a7f3d0}.status.err{background:#fff1f2;color:#b42318;border:1px solid #fecdd3}.hint{color:#64748b;font-size:13px;line-height:1.8}.box input{width:100%;box-sizing:border-box;padding:13px 15px;border:1px solid #d1d5db;border-radius:12px;margin:7px 0 14px}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{cursor:pointer}.btn{border:0}
+</style>
+</head>
+<body>
+<header><h2>🇫🇷 HM Academy</h2><p>إدارة صلاحيات المحتوى الخاص</p><nav><a href="index.html">الرئيسية</a><a href="instructor.html">لوحة المدرس</a></nav></header>
+<main><section class="hero"><div class="course box">
+<h1>🔐 منح صلاحية درس خاص</h1>
+<p class="hint">هذه الصفحة لا تمنح الصلاحية لمجرد فتحها. الخادم يتحقق أولًا من أن الحساب الحالي موجود ضمن مسؤولي HM Academy.</p>
+<label for="email">بريد الطالب</label>
+<input id="email" type="email" autocomplete="off" placeholder="student@example.com">
+<label for="grade">الصف</label>
+<input id="grade" type="number" min="1" max="12" placeholder="4">
+<label for="lesson">معرّف الدرس الخاص</label>
+<input id="lesson" type="text" autocomplete="off" placeholder="demo-private-lesson-1">
+<div id="status" class="status" role="alert"></div>
+<div class="actions"><button id="grant" class="btn" type="button">منح الصلاحية</button><a class="btn secondary" href="private-lesson.html?lesson=demo-private-lesson-1">اختبار الدرس التجريبي</a></div>
+</div></section></main>
+<footer>HM Academy © 2026</footer>
+<script type="module">
+import { supabase } from './js/auth-guard.js';
+const $=id=>document.getElementById(id), status=$('status'), button=$('grant');
+function show(text,ok=false){status.textContent=text;status.className='status show '+(ok?'ok':'err')}
+const {data:{session}}=await supabase.auth.getSession();
+if(!session){location.replace('login.html?next='+encodeURIComponent(location.href));}
+button.addEventListener('click',async()=>{
+ const email=$('email').value.trim(),grade=Number($('grade').value),lesson_id=$('lesson').value.trim();
+ if(!email||!Number.isInteger(grade)||!lesson_id)return show('أدخل بريد الطالب والصف ومعرّف الدرس بشكل صحيح.');
+ button.disabled=true;button.textContent='جارٍ منح الصلاحية…';status.className='status';
+ try{
+  const {data:{session:current}}=await supabase.auth.getSession();
+  if(!current)return location.replace('login.html?next='+encodeURIComponent(location.href));
+  const res=await fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/admin-grant-lesson-access',{method:'POST',headers:{Authorization:'Bearer '+current.access_token,'Content-Type':'application/json'},body:JSON.stringify({email,grade,lesson_id})});
+  const body=await res.json().catch(()=>({}));
+  if(!res.ok){const messages={403:'هذا الحساب ليس ضمن مسؤولي المنصة.',404:'لم يتم العثور على حساب طالب بهذا البريد الإلكتروني.',400:'تعذر منح الصلاحية. راجع الصف ومعرّف الدرس.'};return show(messages[res.status]||'تعذر تنفيذ العملية الآن.');}
+  show('تم منح صلاحية الدرس للحساب المحدد بنجاح. يمكن للطالب الآن فتح رابط الدرس بعد تسجيل الدخول.',true);
+ }catch(e){console.error(e);show('تعذر الاتصال بخدمة الصلاحيات. حاول مرة أخرى.')}finally{button.disabled=false;button.textContent='منح الصلاحية'}
+});
+</script>
+</body>
+</html>
