@@ -1,4 +1,4 @@
-name: Patch annual revision auth
+name: Repair annual revision directly
 on:
   push:
     paths:
@@ -7,45 +7,46 @@ on:
 permissions:
   contents: write
 jobs:
-  patch:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch annual revision auth persistence
+      - name: Restore known-good page and apply auth policy
         shell: bash
         run: |
-          python - <<'PY'
+          set -euo pipefail
+          git show 65cf65f586c1da9d4111dfd893fdb7eaa00a4230:annual-revision-stage.html > annual-revision-stage.html
+          python3 - <<'PY'
           from pathlib import Path
-          p = Path('annual-revision-stage.html')
-          s = p.read_text(encoding='utf-8')
-          old = "const key='hmAnnualRevisionAttempt:v1:'+g;\nconst saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}})();"
-          new = """let authUser=null,supabase=null,accountAttempts={};
+          p=Path('annual-revision-stage.html')
+          s=p.read_text(encoding='utf-8')
+          old="const key='hmAnnualRevisionAttempt:v1:'+g;\nconst saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}})();"
+          new="""let authUser=null,supabase=null,accountAttempts={};
 try{const {createClient}=await import('https://esm.sh/@supabase/supabase-js@2');const cfg=await import('./js/supabase-config.js');supabase=createClient(cfg.SUPABASE_URL,cfg.SUPABASE_PUBLISHABLE_KEY);const session=await supabase.auth.getSession();authUser=session.data?.session?.user||null;accountAttempts=authUser?.user_metadata?.hmAnnualRevisionAttempts||{}}catch(e){}
 const key='hmAnnualRevisionAttempt:v2:'+g;
 const saved=authUser?(accountAttempts[String(g)]||null):(()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}})();"""
-          if old not in s:
-              raise SystemExit('target auth block not found')
-          s = s.replace(old, new, 1)
-          old2 = "localStorage.setItem(key,JSON.stringify(record));location.reload()"
-          new2 = """if(authUser&&supabase){const attempts={...(authUser.user_metadata?.hmAnnualRevisionAttempts||{})};attempts[String(g)]=record;const {error}=await supabase.auth.updateUser({data:{hmAnnualRevisionAttempts:attempts}});if(error){$('diagResult').innerHTML='<div class=\"result\">⚠️ تعذر حفظ النتيجة في الحساب. حاول مرة أخرى.</div>';return}}else{localStorage.setItem(key,JSON.stringify(record))}location.reload()"""
-          if old2 not in s:
-              raise SystemExit('target save block not found')
-          s = s.replace(old2, new2, 1)
-          marker = "if(!lockScreen()){renderQuiz(diag,'diag');$('diagLock').insertAdjacentHTML('beforeend','<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار.</div>')}"
-          replacement = "if(!lockScreen()){renderQuiz(diag,'diag');$('diagLock').insertAdjacentHTML('beforeend',authUser?'<div class=\"tip\">☁️ أنت مسجل الدخول. بعد إنهاء التشخيص سيتم حفظ نتيجتك في حسابك لتظهر معك من أي جهاز.</div>':'<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار. <a href=\"login.html\">تسجيل الدخول</a> يحفظ النتيجة على حسابك.</div>')}"
-          if marker not in s:
-              raise SystemExit('target notice block not found')
-          s = s.replace(marker, replacement, 1)
-          p.write_text(s, encoding='utf-8')
+          if old not in s: raise SystemExit('auth block not found')
+          s=s.replace(old,new,1)
+          old2="localStorage.setItem(key,JSON.stringify(record));location.reload()"
+          new2="""if(authUser&&supabase){const attempts={...(authUser.user_metadata?.hmAnnualRevisionAttempts||{})};attempts[String(g)]=record;const {error}=await supabase.auth.updateUser({data:{hmAnnualRevisionAttempts:attempts}});if(error){$('diagResult').innerHTML='<div class=\"result\">⚠️ تعذر حفظ النتيجة في الحساب. حاول مرة أخرى.</div>';return}}else{localStorage.setItem(key,JSON.stringify(record))}location.reload()"""
+          if old2 not in s: raise SystemExit('save block not found')
+          s=s.replace(old2,new2,1)
+          marker="if(!lockScreen()){renderQuiz(diag,'diag');$('diagLock').insertAdjacentHTML('beforeend','<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار.</div>')}"
+          replacement="if(!lockScreen()){renderQuiz(diag,'diag');$('diagLock').insertAdjacentHTML('beforeend',authUser?'<div class=\"tip\">☁️ أنت مسجل الدخول. بعد إنهاء التشخيص سيتم حفظ نتيجتك في حسابك لتظهر معك من أي جهاز.</div>':'<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار. <a href=\"login.html\">تسجيل الدخول</a> يحفظ النتيجة على حسابك.</div>')}"
+          if marker not in s: raise SystemExit('notice block not found')
+          s=s.replace(marker,replacement,1)
+          p.write_text(s,encoding='utf-8')
           PY
-      - name: Validate and commit
-        shell: bash
-        run: |
           grep -q "hmAnnualRevisionAttempts" annual-revision-stage.html
           ! grep -q "\.\.\. (truncated)" annual-revision-stage.html
+          grep -q "function openReview" annual-revision-stage.html
+      - name: Commit repaired page
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name "HM Academy Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add annual-revision-stage.html
           git rm .github/workflows/patch-annual-auth.yml
-          git commit -m "feat: persist annual revision results for signed-in students"
+          git commit -m "feat: repair annual revision and persist signed-in results"
           git push
