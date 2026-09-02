@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restore known-good page and apply auth policy
+      - name: Restore known-good page and apply auth and access policy
         shell: bash
         run: |
           set -euo pipefail
@@ -35,9 +35,28 @@ const saved=authUser?(accountAttempts[String(g)]||null):(()=>{try{return JSON.pa
           replacement="if(!lockScreen()){renderQuiz(diag,'diag');$('diagLock').insertAdjacentHTML('beforeend',authUser?'<div class=\"tip\">☁️ أنت مسجل الدخول. بعد إنهاء التشخيص سيتم حفظ نتيجتك في حسابك لتظهر معك من أي جهاز.</div>':'<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار. <a href=\"login.html\">تسجيل الدخول</a> يحفظ النتيجة على حسابك.</div>')}"
           if marker not in s: raise SystemExit('notice block not found')
           s=s.replace(marker,replacement,1)
+          access_marker="const paths={"
+          access_pos=s.find(access_marker)
+          if access_pos<0: raise SystemExit('paths marker not found')
+          access_end=s.find(";\nconst titles=",access_pos)
+          if access_end<0: raise SystemExit('paths end not found')
+          access_end+=2
+          gate="""const accessPrivate=new URLSearchParams(location.search).get('private')==='1';
+if(accessPrivate){
+  const access=authUser?.user_metadata?.hmAcademyAccess||{};
+  const grades=Array.isArray(access.grades)?access.grades.map(Number):[];
+  const allowed=access.all===true||grades.includes(g)||grades.includes(Number(g));
+  if(!authUser||!allowed){
+    document.querySelector('main').innerHTML='<section class=\"section locked\"><h2>🔒 هذا المحتوى مخصص للطلاب المصرح لهم</h2><p class=\"muted\">الرابط وحده لا يمنح صلاحية الدخول. سجّل الدخول بالحساب المخصص لك، ثم افتح الرابط مرة أخرى.</p><a class=\"btn\" href=\"login.html?next='+encodeURIComponent(location.href)+'\">تسجيل الدخول</a></section>';
+    return;
+  }
+}
+"""
+          s=s[:access_end]+gate+s[access_end:]
           p.write_text(s,encoding='utf-8')
           PY
           grep -q "hmAnnualRevisionAttempts" annual-revision-stage.html
+          grep -q "accessPrivate" annual-revision-stage.html
           ! grep -q "\.\.\. (truncated)" annual-revision-stage.html
           grep -q "function openReview" annual-revision-stage.html
       - name: Commit repaired page
@@ -48,5 +67,5 @@ const saved=authUser?(accountAttempts[String(g)]||null):(()=>{try{return JSON.pa
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add annual-revision-stage.html
           git rm .github/workflows/patch-annual-auth.yml
-          git commit -m "feat: repair annual revision and persist signed-in results"
+          git commit -m "feat: add account-based private revision access"
           git push
