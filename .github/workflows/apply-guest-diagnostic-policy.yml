@@ -1,0 +1,38 @@
+name: Apply guest diagnostic policy
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: !contains(github.event.head_commit.message, 'Apply guest diagnostic policy')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch annual revision
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('annual-revision-stage.html')
+          s=p.read_text(encoding='utf-8')
+          old="const key='hmAnnualRevisionAttempt:v1:'+g;\nconst saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}})();"
+          new="const key='hmAnnualRevisionAttempt:v1:'+g;\nconst saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}})();\nconst isGuest=(()=>{try{const s=window.HMSupabase?.getSession?.();return !s}catch{return true}})();"
+          if old not in s: raise SystemExit('state block not found')
+          s=s.replace(old,new,1)
+          old2="function lockScreen(){if(!saved)return false;const pct=Math.round(saved.score/saved.total*100);$('diagWrap').hidden=true;$('diagLock').innerHTML='<div class=\"locked\"><h2>🔒 سبق لك إتمام هذه المراجعة</h2><p>هذه المراجعة تسمح <b>بمحاولة واحدة فقط</b> على هذا الجهاز لهذا الصف.</p>"
+          new2="function lockScreen(){if(!saved)return false;const pct=Math.round(saved.score/saved.total*100);$('diagWrap').hidden=true;$('diagLock').innerHTML='<div class=\"locked\"><h2>🔒 سبق لك إتمام هذه المراجعة</h2><p>هذه المراجعة تسمح <b>بمحاولة واحدة فقط</b> على هذا الجهاز لهذا الصف.</p>"
+          if old2 not in s: raise SystemExit('lock block not found')
+          # Keep the existing one-attempt rule for guests; make the lock text explicit.
+          s=s.replace("هذه المراجعة تسمح <b>بمحاولة واحدة فقط</b> على هذا الجهاز لهذا الصف.","هذه المراجعة تسمح <b>بمحاولة واحدة فقط</b> على هذا الجهاز لهذا الصف للزائر، وتُحفظ محاولة الطالب المسجل في حسابه.",1)
+          s=s.replace("if(!lockScreen())renderQuiz(diag,'diag');","if(!lockScreen())renderQuiz(diag,'diag');\n$('diagLock').insertAdjacentHTML('beforeend','<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. بعد النتيجة يمكنك إنشاء حساب لحفظ تقدمك ومتابعته من أي جهاز.</div>');",1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'HM Academy Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add annual-revision-stage.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Apply guest diagnostic policy'
+          git push
