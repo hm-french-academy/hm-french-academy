@@ -7,15 +7,29 @@
   if (!btn || !root) return;
 
   // French questions/options are LTR even though the page shell is Arabic RTL.
+  // The grid prevents the RTL flex context from visually swapping the number/text.
   const style = document.createElement('style');
   style.textContent = `
     #diag .q { direction:ltr !important; }
-    #diag .qHead { direction:ltr !important; justify-content:flex-start !important; }
-    #diag .qNum { direction:ltr !important; unicode-bidi:isolate; }
-    #diag .qText { direction:ltr !important; unicode-bidi:plaintext; text-align:left !important; }
+    #diag .qHead { direction:ltr !important; display:grid !important; grid-template-columns:auto minmax(0,1fr) !important; justify-content:initial !important; align-items:start !important; }
+    #diag .qNum { direction:ltr !important; unicode-bidi:isolate; grid-column:1 !important; grid-row:1 !important; }
+    #diag .qText { direction:ltr !important; unicode-bidi:plaintext; text-align:left !important; grid-column:2 !important; grid-row:1 !important; min-width:0; }
     #diag .q label { direction:ltr !important; text-align:left !important; }
   `;
   document.head.appendChild(style);
+
+  // Make the two reported questions explicitly single-answer and remove any
+  // possible visual ambiguity caused by the Arabic page direction.
+  const clarify = () => {
+    const questions = root.querySelectorAll('.q');
+    const d8 = questions[7]?.querySelector('.qText');
+    const d22 = questions[21]?.querySelector('.qText');
+    if (d8) d8.textContent = 'À 8h00, quelle heure est-il ? — Il est ___ heures exactement.';
+    if (d22) d22.textContent = 'Je parle avec Paul. Je parle avec ___.';
+  };
+  const observer = new MutationObserver(clarify);
+  observer.observe(root, { childList:true, subtree:true });
+  clarify();
 
   const { supabase } = await import('./auth-guard.js');
   const { data: sessionData } = await supabase.auth.getSession();
