@@ -11,7 +11,7 @@
     },
     "branding": {
       "logo": "assets/images/logo.png",
-      "favicon": "assets/images/favicon.png",
+      "favicon": "assets/images/hm-academy-favicon.svg",
       "title": {
         "ar": "HM Academy",
         "fr": "HM Academy",
