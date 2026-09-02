@@ -1,0 +1,34 @@
+name: Repair annual revision
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'Repair annual revision complete'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore and patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show e6edcb843fa28f5f88e9f8cb1aaf5604c7644ccb:annual-revision-stage.html > annual-revision-stage.html
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('annual-revision-stage.html')
+          s=p.read_text(encoding='utf-8')
+          marker="if(!lockScreen())renderQuiz(diag,'diag');"
+          insert=marker+"\n$('diagLock').insertAdjacentHTML('beforeend','<div class=\"tip\">👤 يمكنك إجراء التشخيص كزائر دون إنشاء حساب. التشخيص محاولة واحدة فقط لهذا الصف على هذا الجهاز، بينما التدريب والجاهزية متاحان للتكرار.</div>');"
+          if marker not in s:
+              raise SystemExit('diagnostic marker not found')
+          s=s.replace(marker,insert,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm .github/workflows/repair-annual-revision.yml
+          git config user.name 'HM Academy Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add annual-revision-stage.html .github/workflows/repair-annual-revision.yml
+          git commit -m 'Repair annual revision complete'
+          git push
