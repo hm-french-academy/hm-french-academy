@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/patch-annual-auth.yml
+      - js/auth-guard.js
   workflow_dispatch:
 permissions:
   contents: write
@@ -37,15 +38,14 @@ const saved=authUser?(accountAttempts[String(g)]||null):(()=>{try{return JSON.pa
           s=s.replace(marker,replacement,1)
           access_marker="const paths={"
           access_pos=s.find(access_marker)
-          if access_pos<0: raise SystemExit('paths marker not found')
           access_end=s.find(";\nconst titles=",access_pos)
-          if access_end<0: raise SystemExit('paths end not found')
+          if access_pos<0 or access_end<0: raise SystemExit('paths marker not found')
           access_end+=2
           gate="""const accessPrivate=new URLSearchParams(location.search).get('private')==='1';
 if(accessPrivate){
   const access=authUser?.user_metadata?.hmAcademyAccess||{};
   const grades=Array.isArray(access.grades)?access.grades.map(Number):[];
-  const allowed=access.all===true||grades.includes(g)||grades.includes(Number(g));
+  const allowed=access.all===true||grades.includes(g);
   if(!authUser||!allowed){
     document.querySelector('main').innerHTML='<section class=\"section locked\"><h2>🔒 هذا المحتوى مخصص للطلاب المصرح لهم</h2><p class=\"muted\">الرابط وحده لا يمنح صلاحية الدخول. سجّل الدخول بالحساب المخصص لك، ثم افتح الرابط مرة أخرى.</p><a class=\"btn\" href=\"login.html?next='+encodeURIComponent(location.href)+'\">تسجيل الدخول</a></section>';
     return;
