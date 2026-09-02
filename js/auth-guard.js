@@ -16,3 +16,5 @@ export async function logout(redirect = 'login.html') {
   await supabase.auth.signOut();
   window.location.replace(redirect);
 }
+
+// HM Academy: account-based access repair trigger.
