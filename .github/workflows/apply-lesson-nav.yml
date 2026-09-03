@@ -17,29 +17,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject contextual navigation loader
+      - name: Fix contextual menu event handling and cache busting
         shell: python
         run: |
           from pathlib import Path
-          path = Path('data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html')
-          text = path.read_text(encoding='utf-8')
-          tag = '<script src="../../../../scripts/lesson-context-nav.js?v=20260814-context-nav"></script>'
-          if tag not in text:
-              marker = '</body></html>'
-              if marker not in text:
-                  raise SystemExit('lesson file marker not found')
-              text = text.replace(marker, tag + marker, 1)
-              path.write_text(text, encoding='utf-8')
+
+          script = Path('scripts/lesson-context-nav.js')
+          text = script.read_text(encoding='utf-8')
+          old = "document.addEventListener('click',e=>{if(!menu.contains(e.target)&&!home.contains(e.target))setMenuOpen(false)},true);"
+          new = "document.addEventListener('click',e=>{if(!menu.contains(e.target)&&!home.contains(e.target))setMenuOpen(false)});"
+          if old in text:
+              text = text.replace(old, new, 1)
+          script.write_text(text, encoding='utf-8')
+
+          lesson = Path('data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html')
+          text = lesson.read_text(encoding='utf-8')
+          import re
+          text, count = re.subn(
+              r'scripts/lesson-context-nav\\.js\\?v=[^"\\']+',
+              'scripts/lesson-context-nav.js?v=20260904-context-nav3',
+              text,
+              count=1,
+          )
+          if count == 0:
+              raise SystemExit('context navigation script tag not found in lesson file')
+          lesson.write_text(text, encoding='utf-8')
 
       - name: Commit patch
         shell: bash
         run: |
           git config user.name 'HM Academy Bot'
           git config user.email 'actions@github.com'
-          git add data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html
+          git add scripts/lesson-context-nav.js data/lessons/grade-8/unit-1/lesson-1-interactive-v2.html
           if git diff --cached --quiet; then
             echo 'No changes needed.'
             exit 0
           fi
-          git commit -m 'feat: add contextual navigation to lesson 1'
+          git commit -m 'fix: make contextual menu toggle close reliably'
           git push
