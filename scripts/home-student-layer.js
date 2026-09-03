@@ -21,19 +21,28 @@
   function normalizeProgress(p) {
     if (!p || typeof p !== 'object') return null;
     const student = p.student && typeof p.student === 'object' ? p.student : p;
-    const grade = student.grade || student.currentGrade || student.stage || student.gradeId || p.grade || p.currentGrade;
-    const lesson = student.currentLesson || student.lesson || student.lessonId || p.currentLesson || p.lesson || p.lessonId;
+    let grade = student.grade || student.currentGrade || student.stage || student.gradeId || p.grade || p.currentGrade;
+    const lesson = student.currentLesson || student.currentLessonId || student.lesson || student.lessonId || p.currentLesson || p.currentLessonId || p.lesson || p.lessonId;
     const title = student.currentLessonTitle || student.lessonTitle || student.title || p.currentLessonTitle || p.lessonTitle || p.title;
+    const section = student.currentSection || p.currentSection || null;
+    if (!grade && lesson) {
+      const m = String(lesson).match(/^grade(\d+)/i);
+      if (m) grade = Number(m[1]);
+    }
     const percent = Number.isFinite(Number(student.percent)) ? Math.max(0, Math.min(100, Number(student.percent))) :
       (Number.isFinite(Number(student.progress)) ? Math.max(0, Math.min(100, Number(student.progress))) :
       (Number.isFinite(Number(p.percent)) ? Math.max(0, Math.min(100, Number(p.percent))) :
       (Number.isFinite(Number(p.progress)) ? Math.max(0, Math.min(100, Number(p.progress))) : null)));
     if (!grade && !lesson && !title && percent === null) return null;
-    return { grade, lesson, title, percent };
+    return { grade, lesson, title, section, percent };
   }
 
-  function lessonUrl(lesson) {
-    return lesson ? `lesson.html?id=${encodeURIComponent(lesson)}` : 'dashboard.html';
+  function lessonUrl(lesson, section) {
+    if (!lesson) return 'dashboard.html';
+    const q = new URLSearchParams();
+    q.set('id', lesson);
+    if (section && section !== 'lesson') q.set('section', section);
+    return `lesson.html?${q.toString()}`;
   }
 
   function ensureCard() {
@@ -59,8 +68,9 @@
     const action = section.querySelector('.hm-resume-action');
     title.textContent = data.title || (data.lesson ? `آخر درس: ${data.lesson}` : 'استكمل رحلتك التعليمية');
     const gradeText = gradeNames[data.grade] || (data.grade ? `الصف ${data.grade}` : 'آخر نشاط محفوظ');
-    meta.textContent = data.percent !== null ? `${gradeText} · التقدم ${data.percent}%` : gradeText;
-    action.href = lessonUrl(data.lesson);
+    const sectionText = data.section && data.section !== 'lesson' ? ` · آخر قسم: ${data.section}` : '';
+    meta.textContent = data.percent !== null ? `${gradeText} · التقدم ${data.percent}%${sectionText}` : `${gradeText}${sectionText}`;
+    action.href = lessonUrl(data.lesson, data.section);
   }
 
   async function init() {
