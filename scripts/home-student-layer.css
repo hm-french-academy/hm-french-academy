@@ -3,3 +3,8 @@
 /* Homepage background refinement — Egypt × France, without the vertical white stripe */
 body[data-page-title="home"]:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(circle at 12% 18%,rgba(206,17,38,.055),transparent 27%),radial-gradient(circle at 88% 18%,rgba(0,114,187,.06),transparent 29%),radial-gradient(circle at 75% 82%,rgba(206,17,38,.035),transparent 30%)}
 @media(max-width:560px){body[data-page-title="home"]:before{background:radial-gradient(circle at 8% 16%,rgba(206,17,38,.04),transparent 30%),radial-gradient(circle at 92% 18%,rgba(0,114,187,.045),transparent 32%),radial-gradient(circle at 70% 82%,rgba(206,17,38,.025),transparent 34%)}body[data-page-title="home"]:after{opacity:.055;background-size:720px 400px}}
+
+/* Explore menu: explicit open state so a second tap always closes it. */
+.hm-nav-menu:not(.open) .hm-explore-menu{display:none!important}
+.hm-nav-menu.open .hm-explore-menu{display:block!important}
+@media(max-width:700px){.hm-nav-menu:not(.open) .hm-explore-menu{display:none!important}.hm-nav-menu.open .hm-explore-menu{display:block!important}}
