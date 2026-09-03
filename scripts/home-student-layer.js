@@ -1,5 +1,5 @@
 /* HM Academy — homepage student layer
- * Reads the authenticated Supabase session and the existing local HMProgress state.
+ * Reads the authenticated Supabase session and the existing HMProgress state.
  * It never fabricates progress and remains hidden for guests.
  */
 (function () {
@@ -12,7 +12,7 @@
 
   function findProgress() {
     try {
-      if (window.HMProgress && typeof window.HMProgress.getState === 'function') return window.HMProgress.getState();
+      if (window.HMProgress && typeof window.HMProgress.get === 'function') return window.HMProgress.get();
       const raw = localStorage.getItem('hm_progress') || localStorage.getItem('HMProgress');
       return raw ? JSON.parse(raw) : null;
     } catch (_) { return null; }
@@ -20,13 +20,20 @@
 
   function normalizeProgress(p) {
     if (!p || typeof p !== 'object') return null;
-    const grade = p.grade || p.currentGrade || p.stage || p.gradeId;
-    const lesson = p.lesson || p.currentLesson || p.lessonId;
-    const title = p.lessonTitle || p.title || p.currentLessonTitle;
-    const percent = Number.isFinite(Number(p.percent)) ? Math.max(0, Math.min(100, Number(p.percent))) :
-      (Number.isFinite(Number(p.progress)) ? Math.max(0, Math.min(100, Number(p.progress))) : null);
+    const student = p.student && typeof p.student === 'object' ? p.student : p;
+    const grade = student.grade || student.currentGrade || student.stage || student.gradeId || p.grade || p.currentGrade;
+    const lesson = student.currentLesson || student.lesson || student.lessonId || p.currentLesson || p.lesson || p.lessonId;
+    const title = student.currentLessonTitle || student.lessonTitle || student.title || p.currentLessonTitle || p.lessonTitle || p.title;
+    const percent = Number.isFinite(Number(student.percent)) ? Math.max(0, Math.min(100, Number(student.percent))) :
+      (Number.isFinite(Number(student.progress)) ? Math.max(0, Math.min(100, Number(student.progress))) :
+      (Number.isFinite(Number(p.percent)) ? Math.max(0, Math.min(100, Number(p.percent))) :
+      (Number.isFinite(Number(p.progress)) ? Math.max(0, Math.min(100, Number(p.progress))) : null)));
     if (!grade && !lesson && !title && percent === null) return null;
     return { grade, lesson, title, percent };
+  }
+
+  function lessonUrl(lesson) {
+    return lesson ? `lesson.html?id=${encodeURIComponent(lesson)}` : 'dashboard.html';
   }
 
   function ensureCard() {
@@ -50,10 +57,10 @@
     const meta = section.querySelector('.hm-resume-meta');
     const title = section.querySelector('.hm-resume-title');
     const action = section.querySelector('.hm-resume-action');
-    title.textContent = data.title || (data.lesson ? 'الدرس المحفوظ' : 'استكمل رحلتك التعليمية');
+    title.textContent = data.title || (data.lesson ? `آخر درس: ${data.lesson}` : 'استكمل رحلتك التعليمية');
     const gradeText = gradeNames[data.grade] || (data.grade ? `الصف ${data.grade}` : 'آخر نشاط محفوظ');
     meta.textContent = data.percent !== null ? `${gradeText} · التقدم ${data.percent}%` : gradeText;
-    action.href = data.lesson ? `dashboard.html?lesson=${encodeURIComponent(data.lesson)}` : 'dashboard.html';
+    action.href = lessonUrl(data.lesson);
   }
 
   async function init() {
@@ -63,7 +70,10 @@
       const { data } = await window.HMSupabase.auth.getSession();
       if (!data || !data.session || !data.session.user) return;
       render(findProgress());
-      window.addEventListener('hm:progresschange', function () { render(findProgress()); });
+      const refresh = function () { render(findProgress()); };
+      window.addEventListener('hm:progresschange', refresh);
+      window.addEventListener('hm:progress-updated', refresh);
+      window.addEventListener('hm:activity-completed', refresh);
       window.HMSupabase.auth.onAuthStateChange(function (event, session) {
         if (session && session.user) render(findProgress());
         else { const card = document.getElementById('hm-resume-learning'); if (card) card.remove(); }
