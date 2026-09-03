@@ -7,6 +7,6 @@
   }
   add('link',{rel:'stylesheet',href:'scripts/home-student-layer.css?v=20260903'});
   add('script',{src:'scripts/supabase-client.js?v=20260903'}).addEventListener('load',function(){
-    add('script',{src:'scripts/home-student-layer.js?v=20260903'});
+    add('script',{src:'scripts/home-student-layer.js?v=20260903b'});
   });
 })();
