@@ -12,8 +12,45 @@
   }
   window.hmNormalizeLessonWord=function(x){x=x||{};return{w:x.fr||x.word||x.term||x.french||'',ar:x.ar||x.translation||x.meaning||x.arabic||'',im:x.image||x.icon||'🖼️',ex:x.example||x.exampleFr||''};};
   function currentLessonId(){return new URLSearchParams(location.search).get('id')||'grade8-u1-l1';}
-  function markCurrentLesson(){if(window.HMProgress){var id=currentLessonId();if(id)HMProgress.startLesson(id);}}
-  function bindCompletion(){var button=document.querySelector('#completeBtn,[data-complete-lesson],#complete');if(!button||button.__hmCompletionBound)return;button.__hmCompletionBound=true;button.addEventListener('click',function(){window.markLessonComplete(currentLessonId());});}
+  function markCurrentLesson(){
+    if(!window.HMProgress)return;
+    var id=currentLessonId();
+    if(!id)return;
+    // Migrate the old standard-lesson completion flag without awarding XP again.
+    var legacyKey='hm_completed_'+id;
+    try{
+      if(localStorage.getItem(legacyKey)){
+        var state=HMProgress.get(),done=Array.isArray(state.completedLessons)&&state.completedLessons.includes(id);
+        if(!done){
+          state.completedLessons=Array.isArray(state.completedLessons)?state.completedLessons.concat([id]):[id];
+          state.currentLessonId=id;
+          state.currentSection='lesson';
+          HMProgress.save(state);
+        }
+        localStorage.removeItem(legacyKey);
+      }
+    }catch(e){console.warn('HM Academy: legacy completion migration skipped.',e);}
+    var current=HMProgress.get(),completed=Array.isArray(current.completedLessons)&&current.completedLessons.includes(id);
+    if(!completed)HMProgress.startLesson(id);
+  }
+  function bindCompletion(){
+    var button=document.querySelector('#completeBtn,[data-complete-lesson],#complete');
+    if(!button||button.__hmCompletionBound)return;
+    // Disable the legacy inline onclick used by the standard lesson page.
+    button.onclick=null;
+    button.__hmCompletionBound=true;
+    button.addEventListener('click',function(){window.markLessonComplete(currentLessonId());});
+    if(window.HMProgress){
+      var state=HMProgress.get(),id=currentLessonId(),completed=Array.isArray(state.completedLessons)&&state.completedLessons.includes(id);
+      if(completed){
+        button.textContent='✅ تم إكمال الدرس';
+        button.disabled=true;
+        button.setAttribute('aria-pressed','true');
+        var message=document.querySelector('#completionMessage,#completion-message,#status');
+        if(message)message.textContent='ℹ️ هذا الدرس مكتمل بالفعل وتم الحفاظ على تقدمك.';
+      }
+    }
+  }
   window.markLessonComplete=function(lessonId,achievementId,skill){if(!window.HMProgress)return false;var id=lessonId||currentLessonId(),before=HMProgress.get(),already=Array.isArray(before.completedLessons)&&before.completedLessons.includes(id);HMProgress.completeLesson(id,50);if(!already){if(achievementId&&window.HMProgress.addAchievement)HMProgress.addAchievement(achievementId);if(window.HMActivity?.add)HMActivity.add('lesson','إكمال الدرس: '+id);if(window.HMSkills?.add)HMSkills.add(skill||'grammar',10);if(window.HMStreak?.checkIn)HMStreak.checkIn();if(window.HMRewards?.unlock)HMRewards.unlock('lesson-finish');}var button=document.querySelector('#completeBtn,[data-complete-lesson],#complete');if(button){button.textContent='✅ تم إكمال الدرس';button.disabled=true;button.setAttribute('aria-pressed','true');}var message=document.querySelector('#completionMessage,#completion-message,#status');if(message)message.textContent=already?'ℹ️ هذا الدرس مكتمل بالفعل وتم الحفاظ على تقدمك.':'🎉 تم إكمال الدرس وحفظ التقدم وإضافة 50 XP.';window.dispatchEvent(new CustomEvent('hm:activity-completed',{detail:{lessonId:id,activityId:'lesson-complete',xp:already?0:50}}));window.dispatchEvent(new CustomEvent('hm:lesson-completed',{detail:{lessonId:id,alreadyCompleted:already}}));return true;};
   function init(){markCurrentLesson();bindCompletion();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
