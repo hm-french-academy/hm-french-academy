@@ -42,23 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const sourceSanitizer = new MutationObserver(() => sanitizeStudentUi());
   sourceSanitizer.observe(document.body, { childList: true, subtree: true, characterData: true });
 
-  if (!document.querySelector('script[src="scripts/i18n-runtime.js"]')) {
-    const i18n = document.createElement('script');
-    i18n.src = 'scripts/i18n-runtime.js';
-    document.head.appendChild(i18n);
+  const hasScript = (src) => {
+    const base = src.split('?')[0];
+    return Array.from(document.scripts).some(s => ((s.getAttribute('src') || '').split('?')[0] === base));
+  };
+
+  const loadScript = (src, parent = document.head) => {
+    if (hasScript(src)) return null;
+    const s = document.createElement('script');
+    s.src = src;
+    parent.appendChild(s);
+    return s;
+  };
+
+  loadScript('scripts/i18n-runtime.js');
+  loadScript('scripts/speech-runtime.js');
+
+  const isLessonPage = location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html');
+  if (isLessonPage) {
+    ['scripts/lesson-i18n-bind.js','scripts/lesson-finalizer.js','scripts/lesson-quick-i18n.js'].forEach(src => loadScript(src));
   }
-  if (!document.querySelector('script[src="scripts/speech-runtime.js"]')) {
-    const speech = document.createElement('script');
-    speech.src = 'scripts/speech-runtime.js';
-    document.head.appendChild(speech);
-  }
-  if (location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html')) {
-    ['scripts/lesson-i18n-bind.js','scripts/lesson-finalizer.js','scripts/lesson-quick-i18n.js'].forEach(src => {
-      if (!document.querySelector(`script[src="${src}"]`)) {
-        const s = document.createElement('script'); s.src = src; document.head.appendChild(s);
-      }
-    });
-  }
+
   document.querySelectorAll('[data-progress]').forEach((bar) => {
     const value = Number(bar.getAttribute('data-progress') || '0');
     bar.style.width = `${Math.max(0, Math.min(100, value))}%`;
@@ -68,13 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
     theme.rel = 'stylesheet'; theme.href = 'css/theme-refresh.css?v=20260809'; theme.dataset.hmTheme = 'true';
     document.head.appendChild(theme);
   }
-  if (!(location.pathname.endsWith('/lesson.html') || location.pathname.endsWith('lesson.html'))) return;
-  const scripts = ['scripts/learning-progress.js','scripts/lesson-audio-bind.js','scripts/lesson-media-runtime.js','scripts/lesson-runtime-init.js','scripts/lesson-complete.js'];
+  if (!isLessonPage) return;
+
+  // Supabase must be available before learning-progress initializes so lesson progress
+  // can restore from / sync to the authenticated student's cloud record.
+  const scripts = ['scripts/supabase-client.js','scripts/learning-progress.js','scripts/lesson-audio-bind.js','scripts/lesson-media-runtime.js','scripts/lesson-runtime-init.js','scripts/lesson-complete.js'];
   (async function loadLessonRuntime(){
     if (!window.HMSpeech) await new Promise(resolve => { const started = Date.now(); const timer = setInterval(() => { if (window.HMSpeech || Date.now() - started > 1200) { clearInterval(timer); resolve(); } }, 30); });
     for (const src of scripts) {
-      if (document.querySelector(`script[src="${src}"]`)) continue;
-      await new Promise(resolve => { const script = document.createElement('script'); script.src = src; script.onload = resolve; script.onerror = resolve; document.body.appendChild(script); });
+      if (hasScript(src)) continue;
+      await new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = resolve;
+        document.body.appendChild(script);
+      });
     }
   })();
 });
