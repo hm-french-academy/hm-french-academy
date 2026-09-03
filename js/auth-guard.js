@@ -13,6 +13,11 @@ export async function requireAuth(redirect = 'login.html') {
 }
 
 export async function logout(redirect = 'login.html') {
+  try {
+    if (window.HMProgress?.flush) await window.HMProgress.flush();
+  } catch (e) {
+    console.warn('HM Academy: progress flush before logout failed.', e);
+  }
   await supabase.auth.signOut();
   window.location.replace(redirect);
 }
