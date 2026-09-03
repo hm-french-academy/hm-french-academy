@@ -18,7 +18,7 @@ export async function logout(redirect = 'login.html') {
   } catch (e) {
     console.warn('HM Academy: progress flush before logout failed.', e);
   }
-  await supabase.auth.signOut();
+  await supabase.auth.signOut({ scope: 'local' });
   window.location.replace(redirect);
 }
 
