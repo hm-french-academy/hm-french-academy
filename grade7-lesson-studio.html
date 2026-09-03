@@ -1,80 +1,77 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=2">
-<link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=2">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=3">
 <title>HM Academy | الصف الأول الإعدادي</title>
 <style>
-body{margin:0;background:#f4f7fb;color:#16213e;font-family:Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:14px}.hero,.panel,.progress{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 8px 28px #14264a12}.hero{color:#fff;background:linear-gradient(135deg,#173a82,#2563eb,#0f9f91)}h1{margin:8px 0;line-height:1.35}.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0;flex-wrap:wrap}.tabs a,.btn{border:0;border-radius:11px;padding:10px 13px;text-decoration:none;font-weight:800;background:#edf2fb;color:#173a82;white-space:nowrap}.tabs a.on,.btn{background:#2563eb;color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.card{background:#fff;border:1px solid #dfe6f1;border-radius:16px;padding:14px}.source{border-right:5px solid #0f9f91}.enrich{border-right:5px solid #e92d83}.fr{direction:ltr;text-align:center;font-size:20px;font-weight:900}.ar{text-align:center;color:#315aa4}.notice{padding:13px;border-radius:12px;background:#fff8e8;border-right:4px solid #f59e0b;line-height:1.8}.ok{padding:13px;border-radius:12px;background:#eefbf3;border-right:4px solid #21a366}.small{font-size:13px;color:#68758d;line-height:1.8}.stage{padding:9px;border-radius:10px;background:#f6f8fc;margin:5px 0}.done{background:#eefbf3}.section-title{margin-top:0}.muted{color:#68758d}@media(max-width:560px){.wrap{padding:9px}.hero,.panel,.progress{border-radius:17px;padding:13px}.grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="wrap">
+body{margin:0;background:#f4f7fb;color:#16213e;font-family:Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:14px}.hero,.panel,.progress{background:#fff;border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 8px 28px #14264a12}.hero{color:#fff;background:linear-gradient(135deg,#173a82,#2563eb,#0f9f91)}h1{margin:8px 0;line-height:1.35}.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0;flex-wrap:wrap}.tabs a,.btn{border:0;border-radius:11px;padding:10px 13px;text-decoration:none;font-weight:800;background:#edf2fb;color:#173a82;white-space:nowrap}.tabs a.on,.btn{background:#2563eb;color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.card{background:#fff;border:1px solid #dfe6f1;border-radius:16px;padding:14px}.source{border-right:5px solid #0f9f91}.enrich{border-right:5px solid #e92d83}.fr{direction:ltr;text-align:center;font-size:20px;font-weight:900}.ar{text-align:center;color:#315aa4;margin-top:6px}.notice{padding:13px;border-radius:12px;background:#fff8e8;border-right:4px solid #f59e0b;line-height:1.8}.ok{padding:13px;border-radius:12px;background:#eefbf3;border-right:4px solid #21a366}.small{font-size:13px;color:#68758d;line-height:1.8}.stage{padding:9px;border-radius:10px;background:#f6f8fc;margin:5px 0}.done{background:#eefbf3}.muted{color:#68758d}@media(max-width:560px){.wrap{padding:9px}.hero,.panel,.progress{border-radius:17px;padding:13px}.grid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
 <section class="hero"><div>🇫🇷 HM Academy · الصف الأول الإعدادي</div><h1 id="title">جاري التحميل…</h1><div id="goal"></div></section>
-<div class="tabs" id="tabs"></div>
-<main class="panel" id="panel"></main>
+<div class="tabs" id="tabs"></div><main class="panel" id="panel"></main>
 <section class="progress"><b>📈 تقدم الرحلة</b><div id="progressText" class="small"></div></section>
 </div>
 <script>
 const STAGES=[['introduction','🚀 البداية'],['vocabulary','🖼️ المفردات'],['pronunciation','🎧 النطق'],['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','✍️ التدريب'],['video','🎬 الفيديو'],['games','🎮 الألعاب'],['smart-review','🧠 المراجعة الذكية'],['assessment','🏆 التقييم'],['progress','📈 التقدم']];
 const IDS=['grade7-u1-l1','grade7-u1-l2','grade7-u1-l3','grade7-u1-l4','grade7-u1-l5','grade7-u1-l6','grade7-u2-l1','grade7-u2-l2','grade7-u3-l1','grade7-u3-l2','grade7-u3-l3'];
-const PATH=id=>{const m=/^grade7-u(\d+)-l(\d+)$/.exec(id);return m?`data/lessons/grade-7/unit-${Number(m[1])}/lesson-${Number(m[2])}.json`:null};
+const PATH=id=>{const m=/^grade7-u(\d+)-l(\d+)$/.exec(id);return m?`data/lessons/grade-7/unit-${m[1]}/lesson-${m[2]}.json`:null};
 const SOURCE_PATH='data/lessons/grade-7/grade7-source-content.json';
 const q=new URLSearchParams(location.search);let id=q.get('id')||'grade7-u1-l1';let currentSection=q.get('section')||'introduction';let data=null;
 const titleEl=document.getElementById('title'),goalEl=document.getElementById('goal'),tabsEl=document.getElementById('tabs'),panelEl=document.getElementById('panel'),progressEl=document.getElementById('progressText');
 const esc=x=>String(x??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
 const speak=t=>{if(window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t));u.lang='fr-FR';speechSynthesis.speak(u)}};
-const mark=()=>localStorage.setItem('hm-g7:'+id+':'+currentSection,'1');
-const done=s=>localStorage.getItem('hm-g7:'+id+':'+s)==='1';
+const mark=()=>localStorage.setItem('hm-g7:'+id+':'+currentSection,'1');const done=s=>localStorage.getItem('hm-g7:'+id+':'+s)==='1';
 function links(){tabsEl.innerHTML=STAGES.map(x=>`<a class="${x[0]===currentSection?'on':''}" href="?id=${encodeURIComponent(id)}&section=${encodeURIComponent(x[0])}">${x[1]}</a>`).join('')}
-function list(a){const arr=Array.isArray(a)?a:[];if(!arr.length)return '<div class="notice">لا توجد عناصر إضافية في هذا القسم حاليًا.</div>';return `<div class="grid">${arr.map(x=>`<div class="card">${esc(Array.isArray(x)?x.join(' — '):x)}</div>`).join('')}</div>`}
-function cards(a){const arr=Array.isArray(a)?a:[];if(!arr.length)return '<div class="notice">لا توجد مفردات أو عناصر معروضة في هذا القسم حاليًا.</div>';return `<div class="grid">${arr.map(x=>{const fr=Array.isArray(x)?x[0]:x;const ar=Array.isArray(x)?(x[1]||''):'';return `<div class="card"><div class="fr">${esc(fr)}</div>${ar?`<div class="ar">${esc(ar)}</div>`:''}<button class="btn" type="button" onclick='speak(${JSON.stringify(String(fr))})'>🔊 استمع</button></div>`}).join('')}</div>`}
-function sourceObjects(){return Array.isArray(data.sourceSections)?data.sourceSections:[]}
-function sourceItems(){return sourceObjects().flatMap(x=>Array.isArray(x?.items)?x.items:[])}
-function normalize(){
- if(!data||typeof data!=='object')throw Error('invalid-data');
- const jc=data.journeyContent&&typeof data.journeyContent==='object'?data.journeyContent:{};
- const jcV=jc.vocabulary||{};
- if(!Array.isArray(jcV.items)||!jcV.items.length)jc.vocabulary={...jcV,items:sourceItems().length?sourceItems():(Array.isArray(data.sourceAtoms)?data.sourceAtoms:[])};
- const jp=jc.pronunciation||{};
- if(!Array.isArray(jp.items)||!jp.items.length)jc.pronunciation={...jp,items:sourceItems().map(x=>Array.isArray(x)?x[0]:x).filter(Boolean).concat(Array.isArray(data.sourceAtoms)?data.sourceAtoms:[])};
- const jpr=jc.practice||{};
- if(!Array.isArray(jpr.sourceTasks)||!jpr.sourceTasks.length)jc.practice={...jpr,sourceTasks:Array.isArray(data.sourceActivities)?data.sourceActivities:[]};
- if(!jc.introduction)jc.introduction={goal:data.goal||'التعرف على موضوع الدرس ومخرجاته'};
- data.journeyContent=jc;
+function list(a){const arr=Array.isArray(a)?a:[];if(!arr.length)return '<div class="notice">لا توجد عناصر معروضة في هذا القسم حاليًا.</div>';return `<div class="grid">${arr.map(x=>`<div class="card">${esc(Array.isArray(x)?x.join(' — '):x)}</div>`).join('')}</div>`}
+function cards(a){const arr=Array.isArray(a)?a:[];if(!arr.length)return '<div class="notice">لا توجد مفردات أو عناصر معروضة في هذا القسم حاليًا.</div>';return `<div class="grid">${arr.map(x=>{let fr='',ar='';if(Array.isArray(x)){fr=x[0]??'';ar=x.length>2?x[2]:(x[1]??'')}else fr=x;return `<div class="card"><div class="fr">${esc(fr)}</div>${ar?`<div class="ar">${esc(ar)}</div>`:''}<button class="btn" type="button" onclick='speak(${JSON.stringify(String(fr))})'>🔊 استمع</button></div>`}).join('')}</div>`}
+function sections(){return Array.isArray(data?.sourceSections)?data.sourceSections:[]}
+function allSourceItems(){return sections().flatMap(s=>Array.isArray(s?.items)?s.items:[])}
+function sourceAtoms(){return Array.isArray(data?.sourceAtoms)?data.sourceAtoms:[]}
+function vocabularyItems(){
+ const v=data?.journeyContent?.vocabulary?.items;
+ if(Array.isArray(v)&&v.length)return v;
+ const items=allSourceItems();
+ return items.length?items:sourceAtoms();
 }
+function pronunciationItems(){
+ const p=data?.journeyContent?.pronunciation?.items;
+ if(Array.isArray(p)&&p.length)return p;
+ const items=allSourceItems();
+ if(items.length)return items.map(x=>Array.isArray(x)?x[0]:x).filter(Boolean);
+ return sourceAtoms();
+}
+function practiceItems(){
+ const p=data?.journeyContent?.practice?.sourceTasks;
+ if(Array.isArray(p)&&p.length)return p;
+ return Array.isArray(data?.sourceActivities)?data.sourceActivities:[];
+}
+function grammarEnabled(){return data?.journeyConfig?.grammar?.enabled!==false && data?.journeyConfig?.grammar?.mode!=='not-applicable'}
+function conversationItems(){const c=data?.journeyContent?.conversation?.sourcePreserved;return Array.isArray(c)?c:[]}
 function render(){
- const jc=data.journeyContent||{},cfg=data.journeyConfig||{};
- if(currentSection==='introduction')return `<div class="card source"><h2 class="section-title">🚀 بداية الدرس</h2><p>${esc(data.titleAr||'')}</p><p>${esc(jc.introduction?.goal||data.goal||'التعرف على أهداف الدرس ومحتواه.')}</p>${sourceObjects().length?'<h3>مكونات الدرس</h3>'+list(sourceObjects().map(x=>typeof x==='string'?x:x.title)):''}</div>`;
- if(currentSection==='vocabulary')return `<div class="card source"><h2 class="section-title">🖼️ المفردات</h2>${cards(jc.vocabulary?.items)}</div>`;
- if(currentSection==='pronunciation')return `<div class="card source"><h2 class="section-title">🎧 النطق</h2><p class="muted">استمع إلى الكلمات والعبارات ثم كررها.</p>${cards(jc.pronunciation?.items)}</div>`;
- if(currentSection==='grammar'){if(jc.grammar?.mode==='not-applicable'||cfg.grammar?.enabled===false)return '<div class="notice"><b>لا يوجد محور قواعد مستقل في هذا الدرس.</b><br>لن نضيف قاعدة مصطنعة غير موجودة في المصدر.</div>';return `<div class="card enrich"><h2 class="section-title">📘 القواعد</h2>${list(jc.grammar?.notes)}</div>`}
- if(currentSection==='conversation'){const c=jc.conversation?.sourcePreserved;return `<div class="card source"><h2 class="section-title">💬 المحادثة</h2>${Array.isArray(c)&&c.length?list(c):'<div class="notice">لا يوجد حوار مستقل في هذا الدرس.</div>'}</div>`}
- if(currentSection==='practice'){const p=jc.practice?.sourceTasks||data.sourceActivities||[];const checks=Array.isArray(data.embeddedPractice)?data.embeddedPractice:[];return `<div class="card source"><h2 class="section-title">✍️ التدريب</h2>${list(p)}</div>${checks.length?'<div class="card enrich"><h3>تدريب تفاعلي</h3>'+checks.map((x,i)=>`<div class="card"><b>${i+1}. ${esc(x.q)}</b>${list(x.options)}</div>`).join('')+'</div>':''}`}
- if(currentSection==='video')return `<div class="card source"><h2 class="section-title">🎬 الفيديو</h2><div class="ok">سيظهر الفيديو هنا عند توفره ضمن محتوى هذا الدرس.</div></div>`;
- if(currentSection==='games'){const g=Array.isArray(jc.games)?jc.games:(Array.isArray(cfg.games?.games)?cfg.games.games:[]);return `<div class="card enrich"><h2 class="section-title">🎮 مركز الألعاب</h2><p>أنشطة وألعاب مرتبطة بالدرس الحالي.</p>${list(g)}</div>`}
- if(currentSection==='smart-review'){const r=jc.smartReview?.targets;return `<div class="card enrich"><h2 class="section-title">🧠 المراجعة الذكية</h2><p>مراجعة مركزة على محتوى هذا الدرس.</p>${list(r)}</div>`}
- if(currentSection==='assessment'){const a=data.formalAssessment;return `<div class="card source"><h2 class="section-title">🏆 التقييم</h2>${a?`<div class="ok">${a.sourceDeclaredTotal?`إجمالي الأسئلة: <b>${esc(a.sourceDeclaredTotal)}</b>`:'تقييم الدرس'}</div>${Array.isArray(a.sourceExerciseStructure)?list(a.sourceExerciseStructure.map(x=>x.title)):''}`:'<div class="notice">التقييم الخاص بهذا الدرس غير متاح حاليًا.</div>'}</div>`}
- if(currentSection==='progress'){const n=STAGES.filter(x=>done(x[0])).length;return `<div class="card"><h2 class="section-title">📈 التقدم</h2><p>${n}/${STAGES.length} مراحل مكتملة.</p>${STAGES.map(x=>`<div class="stage ${done(x[0])?'done':''}">${done(x[0])?'✓':'○'} ${x[1]}</div>`).join('')}</div>`}
+ const jc=data?.journeyContent||{},cfg=data?.journeyConfig||{};
+ if(currentSection==='introduction')return `<div class="card source"><h2>🚀 بداية الدرس</h2><p>${esc(data.titleAr||'')}</p><p>${esc(jc.introduction?.goal||cfg.introduction?.goal||data.goal||'التعرف على موضوع الدرس ومحتواه.')}</p>${sections().length?'<h3>مكونات المصدر</h3>'+list(sections().map(x=>x.title)):''}</div>`;
+ if(currentSection==='vocabulary')return `<div class="card source"><h2>🖼️ المفردات</h2><p class="muted">مفردات الدرس من المصدر المعتمد.</p>${cards(vocabularyItems())}</div>`;
+ if(currentSection==='pronunciation')return `<div class="card source"><h2>🎧 النطق</h2><p class="muted">استمع إلى الكلمات والعبارات ثم كررها.</p>${cards(pronunciationItems())}</div>`;
+ if(currentSection==='grammar')return grammarEnabled()?`<div class="card enrich"><h2>📘 القواعد</h2>${list(jc.grammar?.notes)}</div>`:'<div class="notice"><b>لا يوجد محور قواعد مستقل في هذا الدرس.</b><br>لن نضيف قاعدة مصطنعة غير موجودة في المصدر.</div>';
+ if(currentSection==='conversation'){const c=conversationItems();return `<div class="card source"><h2>💬 المحادثة</h2>${c.length?list(c):'<div class="notice">لا يوجد حوار مستقل في هذا الدرس.</div>'}</div>`}
+ if(currentSection==='practice'){const p=practiceItems(),checks=Array.isArray(data.embeddedPractice)?data.embeddedPractice:[];return `<div class="card source"><h2>✍️ التدريب</h2>${list(p)}</div>${checks.length?'<div class="card enrich"><h3>تدريب تفاعلي</h3>'+checks.map((x,i)=>`<div class="card"><b>${i+1}. ${esc(x.q)}</b>${list(x.options)}</div>`).join('')+'</div>':''}`}
+ if(currentSection==='video')return `<div class="card source"><h2>🎬 الفيديو</h2><div class="ok">الفيديو مرتبط بالمصدر: ${esc(data.sourceFiles?.interactive||cfg.video?.source||'غير محدد')}.</div></div>`;
+ if(currentSection==='games')return `<div class="card enrich"><h2>🎮 مركز الألعاب</h2>${list(jc.games||cfg.games?.games)}</div>`;
+ if(currentSection==='smart-review')return `<div class="card enrich"><h2>🧠 المراجعة الذكية</h2>${list(jc.smartReview?.targets)}</div>`;
+ if(currentSection==='assessment'){const a=data.formalAssessment;return `<div class="card source"><h2>🏆 التقييم</h2>${a?`<div class="ok">إجمالي الأسئلة المعلن في المصدر: <b>${esc(a.sourceDeclaredTotal)}</b></div>${list((a.sourceExerciseStructure||[]).map(x=>x.title))}`:'<div class="notice">التقييم الخاص بهذا الدرس غير متاح حاليًا.</div>'}</div>`}
+ if(currentSection==='progress'){const n=STAGES.filter(x=>done(x[0])).length;return `<div class="card"><h2>📈 التقدم</h2><p>${n}/${STAGES.length} مراحل مكتملة.</p>${STAGES.map(x=>`<div class="stage ${done(x[0])?'done':''}">${done(x[0])?'✓':'○'} ${x[1]}</div>`).join('')}</div>`}
  return '<div class="notice">القسم المطلوب غير متاح.</div>';
 }
-async function jsonAt(url){const r=await fetch(new URL(url,document.baseURI).href,{cache:'no-store'});if(!r.ok)throw Error('fetch-failed');let raw=await r.json();for(let i=0;i<4&&raw&&typeof raw.content==='string';i++)raw=JSON.parse(raw.content);return raw}
+async function jsonAt(url){const r=await fetch(new URL(url,document.baseURI).href,{cache:'no-store'});if(!r.ok)throw Error('fetch-failed:'+r.status);const text=await r.text();let raw;try{raw=JSON.parse(text)}catch(e){throw Error('invalid-json')};for(let i=0;i<4&&raw&&typeof raw.content==='string';i++){try{raw=JSON.parse(raw.content)}catch(e){break}}return raw}
 async function load(){
  if(!IDS.includes(id))throw Error('lesson');
- const path=PATH(id);
- try{data=await jsonAt(path)}catch(primaryError){const source=await jsonAt(SOURCE_PATH);const lessons=Array.isArray(source.lessons)?source.lessons:[];const wanted=lessons.find(x=>x.id===id);if(!wanted)throw Error('lesson');data={...wanted,grade:'grade-7',sourceData:wanted,journeyContent:{introduction:{goal:`محتوى الصف الأول الإعدادي — الدرس ${wanted.sourceLesson}`},practice:{sourceTasks:wanted.sections||[]},smartReview:{targets:wanted.sections||[]}},sourceSections:(wanted.sections||[]).map(title=>({title})),journeyConfig:{grammar:{enabled:false,mode:'not-applicable'},conversation:{enabled:false,mode:'not-applicable'},games:{games:[]}}}}
- if(data.id!==id||data.grade!=='grade-7')throw Error('lesson');
- normalize();
- titleEl.textContent=`${data.titleFr||''} — ${data.titleAr||''}`;
- goalEl.textContent='منهج الصف الأول الإعدادي';
- links();
- panelEl.innerHTML=render();
- if(currentSection!=='progress')mark();
- progressEl.textContent=STAGES.filter(x=>done(x[0])).length+' / '+STAGES.length+' مراحل مكتملة';
+ try{data=await jsonAt(PATH(id))}catch(primary){
+   const source=await jsonAt(SOURCE_PATH);const wanted=(source.lessons||[]).find(x=>x.id===id);if(!wanted)throw primary;
+   data={...wanted,grade:'grade-7',sourceSections:(wanted.sections||[]).map(title=>({title})),sourceAtoms:[],sourceActivities:wanted.sections||[],journeyConfig:{grammar:{enabled:false,mode:'not-applicable'},conversation:{enabled:false,mode:'not-applicable'}}};
+ }
+ if(!data||data.id!==id||data.grade!=='grade-7')throw Error('lesson-integrity');
+ titleEl.textContent=`${data.titleFr||''} — ${data.titleAr||''}`;goalEl.textContent='منهج الصف الأول الإعدادي';links();panelEl.innerHTML=render();if(currentSection!=='progress')mark();progressEl.textContent=STAGES.filter(x=>done(x[0])).length+' / '+STAGES.length+' مراحل مكتملة';
 }
-load().catch(()=>{panelEl.innerHTML='<div class="notice"><b>تعذر تحميل محتوى هذا الدرس.</b><br>يرجى المحاولة مرة أخرى.</div>'});
-</script>
-</body>
-</html>
+load().catch(e=>{console.error(e);panelEl.innerHTML='<div class="notice"><b>تعذر تحميل محتوى هذا الدرس.</b><br>تحقق من اتصال الإنترنت ثم أعد المحاولة.</div>'});
+</script></body></html>
