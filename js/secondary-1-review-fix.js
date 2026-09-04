@@ -1,13 +1,24 @@
 // HM Academy — fixes for 1ère secondaire → 2ème secondaire diagnostic
-// Keeps the existing visual design, but makes numbering/question flow LTR and
-// persists the one diagnostic attempt to the authenticated student's account.
+// Keeps the existing visual design, makes numbering/question flow LTR,
+// persists the one diagnostic attempt, and isolates the review page from global navigation.
 (async () => {
+  const isolateReview = () => {
+    const header = document.querySelector('.hm-header');
+    if (header) header.remove();
+    const style = document.createElement('style');
+    style.id = 'hm-secondary1-review-isolation';
+    style.textContent = `
+      .hm-header { display:none !important; }
+      .hm-nav, .global-nav, .site-nav, nav:not(#tabs) { display:none !important; }
+    `;
+    if (!document.getElementById(style.id)) document.head.appendChild(style);
+  };
+  isolateReview();
+
   const btn = document.getElementById('diagBtn');
   const root = document.getElementById('diag');
   if (!btn || !root) return;
 
-  // French questions/options are LTR even though the page shell is Arabic RTL.
-  // The grid prevents the RTL flex context from visually swapping the number/text.
   const style = document.createElement('style');
   style.textContent = `
     #diag .q { direction:ltr !important; }
@@ -18,8 +29,6 @@
   `;
   document.head.appendChild(style);
 
-  // Make the two reported questions explicitly single-answer and remove any
-  // possible visual ambiguity caused by the Arabic page direction.
   const clarify = () => {
     const questions = root.querySelectorAll('.q');
     const d8 = questions[7]?.querySelector('.qText');
@@ -63,7 +72,6 @@
 
   if (existing) { showLock(existing); return; }
 
-  // Capture the click so the original inline handler cannot race this module.
   btn.addEventListener('click', async event => {
     event.preventDefault();
     event.stopImmediatePropagation();
