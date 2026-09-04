@@ -4,6 +4,7 @@
   "source":"Grade 4 review and Grade 4 curriculum lesson files already published in the repository",
   "reviewOfGrade":4,
   "targetGrade":5,
+  "diagnostic":{"questions":[]},
   "units":[
     {"id":"u1-seasons-weather","semester":1,"titleFr":"Les 4 saisons et la météo","titleAr":"الفصول الأربعة والطقس"},
     {"id":"u2-numbers-time","semester":1,"titleFr":"Les chiffres et l'heure","titleAr":"الأعداد والساعة"},
