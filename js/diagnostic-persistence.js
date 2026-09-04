@@ -15,6 +15,38 @@ async function loadBank(path){for(const u of ['./'+path,'https://raw.githubuserc
   const user=sessionData?.session?.user||null;
   const lock=document.getElementById('diagLock'),wrap=document.getElementById('diagWrap'),result=document.getElementById('diagResult'),btn=document.getElementById('diagBtn');
   if(!lock||!wrap||!result||!btn)return;
+
+  // Grade 3 diagnostic writing tasks need a real, comfortable answer area.
+  let writingObserver;
+  const addWritingAreas=()=>{
+    if(target!==9)return;
+    let found=0;
+    wrap.querySelectorAll('.q').forEach(box=>{
+      if(box.querySelector('.writingAnswer'))return;
+      const text=box.querySelector('.qText')?.textContent?.trim()||'';
+      const isFourPhrases=/^Écris 4 phrases/i.test(text);
+      const isInvitation=/^Écris une courte invitation/i.test(text);
+      if(!isFourPhrases&&!isInvitation)return;
+      const area=document.createElement('textarea');
+      area.className='writingAnswer';
+      area.rows=isFourPhrases?6:5;
+      area.placeholder='اكتب إجابتك هنا…';
+      area.setAttribute('aria-label','مساحة الإجابة');
+      Object.assign(area.style,{display:'block',width:'100%',boxSizing:'border-box',minHeight:isFourPhrases?'170px':'145px',margin:'14px 0 4px',padding:'14px',border:'1px solid #cbd5e1',borderRadius:'14px',background:'#fff',font:'inherit',lineHeight:'1.8',direction:'ltr',textAlign:'left',resize:'vertical'});
+      const label=document.createElement('div');
+      label.textContent='✍️ مساحة الإجابة';
+      Object.assign(label.style,{fontWeight:'800',color:'#173a82',marginTop:'10px'});
+      box.append(label,area);
+      found++;
+    });
+    if(found>=2)writingObserver?.disconnect();
+  };
+  if(target===9){
+    writingObserver=new MutationObserver(addWritingAreas);
+    writingObserver.observe(wrap,{childList:true,subtree:true});
+    addWritingAreas();
+  }
+
   let existing=null;
   if(user){const {data,error}=await supabase.from('student_diagnostic_attempts').select('grade,result,created_at').eq('user_id',user.id).eq('grade',target).maybeSingle();if(!error)existing=data}
   else{try{existing=JSON.parse(localStorage.getItem(key)||'null')}catch{}}
