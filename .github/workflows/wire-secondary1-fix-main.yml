@@ -1,0 +1,41 @@
+name: Wire secondary-2 annual review training
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/secondary-1-review-fix.js'
+      - '.github/workflows/wire-secondary1-fix-main.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  wire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Inject fix module into published review page
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('secondary-1-review.html')
+          s = p.read_text(encoding='utf-8')
+          tag = '<script type="module" src="js/secondary-1-review-fix.js?v=20260904"></script>'
+          if tag not in s:
+              s = s.replace('</body>', tag + '</body>', 1)
+              p.write_text(s, encoding='utf-8')
+      - name: Commit wiring change
+        run: |
+          git config user.name 'HM Academy Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add secondary-1-review.html
+          if git diff --cached --quiet; then
+            echo 'Already wired.'
+          else
+            git commit -m 'fix(secondary2): wire training tab into annual review'
+            git push origin HEAD:main
+          fi
