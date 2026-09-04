@@ -1,0 +1,19 @@
+{
+  "id":"grade-4-foundation-for-grade-5-review",
+  "version":"2026-09-04-v1",
+  "source":"Grade 4 review and Grade 4 curriculum lesson files already published in the repository",
+  "reviewOfGrade":4,
+  "targetGrade":5,
+  "units":[
+    {"id":"u1-seasons-weather","semester":1,"titleFr":"Les 4 saisons et la météo","titleAr":"الفصول الأربعة والطقس"},
+    {"id":"u2-numbers-time","semester":1,"titleFr":"Les chiffres et l'heure","titleAr":"الأعداد والساعة"},
+    {"id":"u3-face-articles","semester":1,"titleFr":"Mon visage et les articles","titleAr":"الوجه وأدوات التعريف"},
+    {"id":"u4-body-possessives","semester":1,"titleFr":"Le corps et les possessifs","titleAr":"الجسم والملكية"}
+  ],
+  "lessons":[
+    {"id":"g4-u1-l1","unit":"u1-seasons-weather","titleFr":"Les 4 saisons et la météo","titleAr":"الفصول الأربعة والطقس","vocabulary":[["le printemps","الربيع"],["l'été","الصيف"],["l'automne","الخريف"],["l'hiver","الشتاء"],["la météo","الطقس"],["le soleil","الشمس"],["les feuilles","الأوراق"]],"grammar":"au printemps / en été / en automne / en hiver + il fait ...","examples":["Au printemps, il fait chaud.","En hiver, il fait froid.","Les feuilles sont jaunes en automne."],"practice":[{"q":"Au …, il fait chaud.","options":["printemps","été","hiver"],"answer":0},{"q":"Les feuilles sont jaunes en…","options":["été","automne","printemps"],"answer":1}]},
+    {"id":"g4-u2-l1","unit":"u2-numbers-time","titleFr":"Les chiffres et l'heure","titleAr":"الأعداد والساعة","vocabulary":[["zéro","صفر"],["seize","ستة عشر"],["vingt","عشرون"],["midi","الظهر"],["minuit","منتصف الليل"],["et quart","والربع"],["et demie","والنصف"],["moins le quart","إلا ربعًا"]],"grammar":"كتابة الأعداد بالحروف والتعبير عن الساعة: et quart / et demie / moins le quart.","examples":["20 = vingt.","2:15 = deux heures et quart.","4:30 = quatre heures et demie.","11:45 = onze heures moins le quart."],"practice":[{"q":"20 en lettres =","options":["vingt","vingt-deux","douze"],"answer":0},{"q":"2:15 =","options":["deux heures et quart","deux heures et demie","deux heures moins le quart"],"answer":0}]},
+    {"id":"g4-u3-l1","unit":"u3-face-articles","titleFr":"Le visage et les articles","titleAr":"الوجه وأدوات التعريف","vocabulary":[["la tête","الرأس"],["le front","الجبهة"],["les cheveux","الشعر"],["les sourcils","الحاجبان"],["les yeux","العينان"],["le nez","الأنف"],["la bouche","الفم"],["les dents","الأسنان"],["les oreilles","الأذنان"],["le menton","الذقن"]],"grammar":"le / la / l' / les للأسماء، و un / une / des عند التنكير.","examples":["le nez","la bouche","les cheveux","les yeux"],"practice":[{"q":"… nez.","options":["la","les","le"],"answer":2},{"q":"… bouche.","options":["le","la","les"],"answer":1}]},
+    {"id":"g4-u4-l1","unit":"u4-body-possessives","titleFr":"Le corps et les possessifs","titleAr":"الجسم والملكية","vocabulary":[["le cou","الرقبة"],["le bras","الذراع"],["la poitrine","الصدر"],["le ventre","البطن"],["la main","اليد"],["les doigts","الأصابع"],["la jambe","الساق"],["le genou","الركبة"],["les pieds","القدمان"]],"grammar":"mon / ma / mes · ton / ta / tes · son / sa / ses حسب جنس وعدد الاسم.","examples":["C'est mon nez.","C'est ma tête.","Ce sont mes oreilles.","C'est ta main.","Ce sont tes bras."],"practice":[{"q":"C'est … front.","options":["mon","ma","mes"],"answer":0},{"q":"Ce sont … dents.","options":["mon","ma","mes"],"answer":2},{"q":"C'est … main.","options":["ton","ta","tes"],"answer":1}]}
+  ]
+}
