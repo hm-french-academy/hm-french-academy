@@ -1,5 +1,5 @@
 // HM Academy — fixes for 1ère secondaire → 2ème secondaire diagnostic
-// Keeps the existing visual design, but makes numbering/question flow LTR and
+// Keeps the existing visual design, fixes RTL/LTR question flow, and
 // persists the one diagnostic attempt to the authenticated student's account.
 (async () => {
   const btn = document.getElementById('diagBtn');
@@ -7,7 +7,6 @@
   if (!btn || !root) return;
 
   // French questions/options are LTR even though the page shell is Arabic RTL.
-  // The grid prevents the RTL flex context from visually swapping the number/text.
   const style = document.createElement('style');
   style.textContent = `
     #diag .q { direction:ltr !important; }
@@ -18,18 +17,15 @@
   `;
   document.head.appendChild(style);
 
-  // Make the two reported questions explicitly single-answer and remove any
-  // possible visual ambiguity caused by the Arabic page direction.
-  const clarify = () => {
-    const questions = root.querySelectorAll('.q');
-    const d8 = questions[7]?.querySelector('.qText');
-    const d22 = questions[21]?.querySelector('.qText');
-    if (d8) d8.textContent = 'À 8h00, quelle heure est-il ? — Il est ___ heures exactement.';
-    if (d22) d22.textContent = 'Je parle avec Paul. Je parle avec ___.';
-  };
-  const observer = new MutationObserver(clarify);
-  observer.observe(root, { childList:true, subtree:true });
-  clarify();
+  // Make the two previously reported questions explicitly unambiguous.
+  // Do this once after the original quiz has rendered. A MutationObserver
+  // must not be used here because changing textContent would retrigger it
+  // indefinitely and freeze the page.
+  const questions = root.querySelectorAll('.q');
+  const d8 = questions[7]?.querySelector('.qText');
+  const d22 = questions[21]?.querySelector('.qText');
+  if (d8) d8.textContent = 'À 8h00, quelle heure est-il ? — Il est ___ heures exactement.';
+  if (d22) d22.textContent = 'Je parle avec Paul. Je parle avec ___.';
 
   const { supabase } = await import('./auth-guard.js');
   const { data: sessionData } = await supabase.auth.getSession();
