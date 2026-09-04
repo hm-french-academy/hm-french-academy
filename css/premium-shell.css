@@ -4,3 +4,6 @@
 
 /* HM Academy — header platform icon */
 .hm-logo{font-size:0;background:var(--hm-surface) url('../assets/images/hm-academy-favicon.svg?v=3') center/contain no-repeat;border:1px solid var(--hm-border);box-shadow:0 8px 20px rgba(20,38,74,.12)}
+
+/* Annual revision — hide internal/debug success labels while keeping useful status details. */
+#summary>b{display:none}
