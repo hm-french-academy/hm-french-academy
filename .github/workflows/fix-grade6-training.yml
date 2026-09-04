@@ -1,0 +1,92 @@
+name: Fix Grade 6 annual revision training
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-grade6-training.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add practice question bank from existing lesson content
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          p = Path('data/reviews/grade-6/review-content.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+
+          if not isinstance(d.get('practiceQuestions'), list) or not d['practiceQuestions']:
+              questions = []
+              seen = set()
+              lessons = d.get('lessons') or []
+              for lesson in lessons:
+                  for q in lesson.get('practice') or []:
+                      text = q.get('q') or q.get('question')
+                      options = q.get('options')
+                      answer = q.get('answer')
+                      if not text or not isinstance(options, list) or len(options) < 2 or answer is None:
+                          continue
+                      key = (text, tuple(options), int(answer))
+                      if key in seen:
+                          continue
+                      seen.add(key)
+                      questions.append({
+                          'id': f'P{len(questions)+1:02d}',
+                          'q': text,
+                          'options': options,
+                          'answer': int(answer),
+                          'lesson': lesson.get('id')
+                      })
+
+              # Include activity questions that are not already represented.
+              for activity in d.get('reviewActivities') or []:
+                  for q in activity.get('questions') or []:
+                      text = q.get('q') or q.get('question')
+                      options = q.get('options')
+                      answer = q.get('answer')
+                      if not text or not isinstance(options, list) or len(options) < 2 or answer is None:
+                          continue
+                      key = (text, tuple(options), int(answer))
+                      if key in seen:
+                          continue
+                      seen.add(key)
+                      questions.append({
+                          'id': f'P{len(questions)+1:02d}',
+                          'q': text,
+                          'options': options,
+                          'answer': int(answer),
+                          'lesson': activity.get('lessonId')
+                      })
+
+              if not questions:
+                  raise SystemExit('No valid training questions found in Grade 6 source content')
+
+              d['practiceQuestions'] = questions
+              d.setdefault('quality', {})
+              d['quality']['multipleCorrectAnswers'] = False
+              d['quality']['practiceQuestionsSource'] = 'derived from existing lesson.practice and reviewActivities; no page logic change'
+              p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              print(f'Added {len(questions)} practice questions')
+          else:
+              print(f'practiceQuestions already present: {len(d["practiceQuestions"])}')
+      - name: Commit data fix and remove one-time workflow
+        shell: bash
+        run: |
+          set -e
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fix-grade6-training.yml
+          git add data/reviews/grade-6/review-content.json
+          if git diff --cached --quiet; then
+            echo 'No data changes needed'
+            exit 0
+          fi
+          git commit -m 'Fix Grade 6 annual revision training questions'
+          git push
