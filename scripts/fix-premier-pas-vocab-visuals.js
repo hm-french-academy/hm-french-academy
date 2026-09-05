@@ -15,3 +15,4 @@ const replacement=`function visualFor(term){const m=${mapLiteral};return m[term]
 html=html.slice(0,start)+replacement+html.slice(end);
 fs.writeFileSync(path,html,'utf8');
 console.log('Premier Pas vocabulary visuals injected into '+path);
+require('./fix-grade7-vocabulary-pronunciation-separation.js');
