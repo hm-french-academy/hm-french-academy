@@ -5,7 +5,7 @@ const css=`.vocab-visual{height:92px;border-radius:14px;margin-bottom:9px;displa
 if(!html.includes('.vocab-visual{')) html=html.replace('</style>',css+'</style>');
 const visuals={
 'Bonjour':'👋','Salut':'👋','Merci':'🙏','Bonsoir':'🌙','français':'🇫🇷','famille':'👨‍👩‍👧‍👦','école':'🏫','ami':'🧑‍🤝‍🧑','gâteau':'🍰','piscine':'🏊','croissant':'🥐','café':'☕',
-'algèbre':'➗','zéro':'0️⃣','alcool':'🥂','café':'☕','Bonjour !':'👋','Comment ça va ?':'💬','Ça va bien.':'😊','Je m’appelle…':'🙋','J’ai 11 ans.':'🎂','J’aime le français.':'❤️🇫🇷','Au revoir !':'👋'
+'algèbre':'➗','zéro':'0️⃣','alcool':'🥂','Bonjour !':'👋','Comment ça va ?':'💬','Ça va bien.':'😊','Je m’appelle…':'🙋','J’ai 11 ans.':'🎂','J’aime le français.':'❤️🇫🇷','Au revoir !':'👋'
 };
 const mapLiteral=JSON.stringify(visuals);
 const start=html.indexOf('function wordsHtml(ws){');
@@ -15,4 +15,3 @@ const replacement=`function visualFor(term){const m=${mapLiteral};return m[term]
 html=html.slice(0,start)+replacement+html.slice(end);
 fs.writeFileSync(path,html,'utf8');
 console.log('Premier Pas vocabulary visuals injected into '+path);
-require('./fix-grade7-vocabulary-pronunciation-separation.js');
