@@ -22,6 +22,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Apply Premier Pas interactive vocabulary visuals
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/fix-premier-pas-vocab-visuals.js
+
+      - name: Verify Premier Pas visuals
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f preparatory-french-starter-v2.html
+          grep -q "vocab-visual" preparatory-french-starter-v2.html
+          grep -q "function visualFor(term)" preparatory-french-starter-v2.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
