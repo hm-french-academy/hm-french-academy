@@ -52,6 +52,7 @@ const visualFor=term=>{
   return {icon:'🇫🇷',label:'Français'};
 };
 
-html = html.slice(0, start) + visualFor.toString() + html.slice(end);
+const embedded = `const illustrations=${JSON.stringify(illustrations)};\n${visualFor.toString()}`;
+html = html.slice(0, start) + embedded + html.slice(end);
 fs.writeFileSync(file, html, 'utf8');
 console.log('Patched grade7-lesson-studio.html vocabulary visuals for grade7-u1-l1.');
