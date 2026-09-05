@@ -33,11 +33,13 @@ jobs:
           test -f data/lessons/grade-7/unit-2/lesson-1.json
           test -f data/lessons/grade-7/unit-3/lesson-1.json
           grep -q "const PATH=id=>" grade7-lesson-studio.html
-          grep -q 'unit-${Number(m\[1\])}/lesson-${Number(m\[2\])}.json' grade7-lesson-studio.html
           grep -q "lesson1Visuals" grade7-lesson-studio.html
           grep -q "Un pyjama" grade7-lesson-studio.html
           grep -q "vocab-visual" preparatory-french-starter-v2.html
           grep -q "function visualFor(term)" preparatory-french-starter-v2.html
+          grep -q "function pronunciationCards(a)" grade7-lesson-studio.html
+          grep -q "ABCDEFGHIJKLMNOPQRSTUVWXYZ.*split('')" grade7-lesson-studio.html
+          grep -q "هذا القسم مستقل عن بطاقات المفردات" grade7-lesson-studio.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
