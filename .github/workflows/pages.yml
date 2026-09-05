@@ -22,11 +22,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Enrich Grade 1 Lesson 1 learning sections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/enrich-grade7-lesson1-pages.py
+
       - name: Apply Premier Pas interactive vocabulary visuals
         shell: bash
         run: |
           set -euo pipefail
           node scripts/fix-premier-pas-vocab-visuals.js
+
+      - name: Verify lesson pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f grade7-lesson-studio.html
+          grep -q "نطق الحرف" grade7-lesson-studio.html
+          grep -q "نطق المثال" grade7-lesson-studio.html
+          grep -q "Les mots transparents" grade7-lesson-studio.html
+          grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
 
       - name: Verify Premier Pas visuals
         shell: bash
