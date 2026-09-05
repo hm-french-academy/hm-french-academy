@@ -1,6 +1,6 @@
 /* HM Academy — Premier Pas vocabulary enhancement
  * Scoped enhancement: activates only on preparatory-french-starter.html.
- * Does not alter curriculum data or other HM Academy pages.
+ * Adds visual vocabulary cards, pronunciation, flashcards and local smart review.
  */
 (function(){'use strict';
   if(location.pathname.split('/').pop()!=='preparatory-french-starter.html') return;
@@ -14,36 +14,27 @@
   .hm-vocab-visual{min-height:118px;display:grid;place-items:center;background:linear-gradient(135deg,#eef5ff,#f8fbff);font-size:58px;position:relative}
   .hm-vocab-visual small{position:absolute;top:8px;right:8px;padding:4px 7px;border-radius:999px;background:#ffffffdd;color:#315aa4;font-size:9px;font-weight:900}
   .hm-vocab-body{padding:12px}.hm-vocab-body strong{display:block;font-size:20px;direction:ltr}.hm-vocab-body small{display:block;color:#66758c;margin:5px 0 10px}
-  .hm-vocab-speak{border:0;border-radius:10px;padding:8px 11px;background:#2563eb;color:#fff;font:inherit;font-weight:900;cursor:pointer}
-  .hm-vocab-reveal{border:0;background:#eef4ff;color:#245bd7;border-radius:10px;padding:8px 11px;margin-inline-start:5px;font:inherit;font-weight:900;cursor:pointer}
-  .hm-vocab-ar.hidden{visibility:hidden;filter:blur(5px)}
+  .hm-vocab-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.hm-vocab-speak,.hm-vocab-reveal,.hm-vocab-review{border:0;border-radius:10px;padding:8px 10px;font:inherit;font-weight:900;cursor:pointer}.hm-vocab-speak{background:#2563eb;color:#fff}.hm-vocab-reveal,.hm-vocab-review{background:#eef4ff;color:#245bd7}.hm-vocab-ar.hidden{visibility:hidden;filter:blur(5px)}
+  .hm-vocab-toolbar{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:4px 0 2px;padding:10px 12px;border:1px solid #dce5f2;border-radius:15px;background:#f8fbff}.hm-vocab-toolbar button{border:0;border-radius:10px;padding:9px 12px;background:#173f8a;color:#fff;font:inherit;font-weight:900;cursor:pointer}.hm-vocab-stats{font-size:13px;color:#53647c;font-weight:800}
+  .hm-vocab-modal{position:fixed;inset:0;z-index:99999;background:rgba(10,22,45,.62);display:none;place-items:center;padding:18px}.hm-vocab-modal.open{display:grid}.hm-vocab-dialog{width:min(520px,100%);background:#fff;border-radius:24px;padding:20px;box-shadow:0 25px 70px rgba(0,0,0,.25);text-align:center}.hm-vocab-dialog .hm-fc-visual{font-size:82px;padding:20px;border-radius:18px;background:linear-gradient(135deg,#eef5ff,#f8fbff)}.hm-vocab-dialog h3{font-size:32px;margin:14px 0 4px;direction:ltr}.hm-vocab-dialog p{font-size:19px;color:#52627a;min-height:30px}.hm-fc-buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:15px}.hm-fc-buttons button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:900;cursor:pointer}.hm-fc-close{background:#eef2f7}.hm-fc-speak{background:#2563eb;color:#fff}.hm-fc-known{background:#16845b;color:#fff}.hm-fc-review{background:#b45309;color:#fff}
   @media(max-width:850px){.hm-vocab-enhanced{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:560px){.hm-vocab-enhanced{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hm-vocab-visual{min-height:100px;font-size:48px}.hm-vocab-body{padding:10px}}
+  @media(max-width:560px){.hm-vocab-enhanced{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hm-vocab-visual{min-height:100px;font-size:48px}.hm-vocab-body{padding:10px}.hm-vocab-body strong{font-size:17px}.hm-vocab-toolbar{padding:9px}.hm-vocab-dialog{padding:15px}.hm-vocab-dialog h3{font-size:27px}}
   `; document.head.appendChild(style);
+  const STORE='hm_premier_pas_vocab_progress_v1';
   const visuals=[
-    [/bonjour|salut|bonsoir|bienvenue/i,'👋','تحية'],[/ami|amie|garçon|fille|homme|femme|famille/i,'🧑‍🤝‍🧑','أشخاص'],
-    [/école|classe|professeur|élève|livre|cahier|stylo|crayon|règle|cartable/i,'🎒','مدرسة'],[/maison|chambre|porte|fenêtre|table|chaise|lit/i,'🏠','منزل'],
-    [/rouge|orange|blanc|gris|bleu|violet|jaune|vert|marron|rose|noir/i,'🎨','ألوان'],[/zéro|un|deux|trois|quatre|cinq|six|sept|huit|neuf|dix/i,'🔢','أرقام'],
-    [/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/i,'📅','شهور'],[/lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche/i,'🗓️','أيام'],
-    [/printemps|été|automne|hiver/i,'🌦️','فصول'],[/chat|chien|oiseau|poisson|animal/i,'🐾','حيوانات'],
-    [/pomme|banane|orange|fraise|fruit|pain|lait|eau|café|fromage/i,'🍎','طعام'],[/soleil|pluie|neige|vent|mer|montagne/i,'🌤️','طبيعة'],
-    [/heure|minute|matin|soir|aujourd|demain|hier/i,'⏰','وقت'],[/merci|pardon|au revoir|oui|non/i,'💬','تواصل']
+    [/bonjour|salut|bonsoir|bienvenue/i,'👋','تحية'],[/ami|amie|garçon|fille|homme|femme|famille/i,'🧑‍🤝‍🧑','أشخاص'],[/école|classe|professeur|élève|livre|cahier|stylo|crayon|règle|cartable/i,'🎒','مدرسة'],[/maison|chambre|porte|fenêtre|table|chaise|lit/i,'🏠','منزل'],[/rouge|orange|blanc|gris|bleu|violet|jaune|vert|marron|rose|noir/i,'🎨','ألوان'],[/zéro|un|deux|trois|quatre|cinq|six|sept|huit|neuf|dix/i,'🔢','أرقام'],[/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/i,'📅','شهور'],[/lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche/i,'🗓️','أيام'],[/printemps|été|automne|hiver/i,'🌦️','فصول'],[/chat|chien|oiseau|poisson|animal/i,'🐾','حيوانات'],[/pomme|banane|orange|fraise|fruit|pain|lait|eau|café|fromage/i,'🍎','طعام'],[/soleil|pluie|neige|vent|mer|montagne/i,'🌤️','طبيعة'],[/heure|minute|matin|soir|aujourd|demain|hier/i,'⏰','وقت'],[/merci|pardon|au revoir|oui|non/i,'💬','تواصل']
   ];
-  function visual(term){for(const r of visuals) if(r[0].test(term)) return [r[1],r[2]]; return ['🇫🇷','Français'];}
+  function visual(term){for(const r of visuals) if(r[0].test(term)) return [r[1],r[2]]; return ['🇫🇷','Français']}
   function speak(text){if(!window.speechSynthesis)return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';speechSynthesis.speak(u)}
-  function enhance(){
-    const root=document.querySelector('.words'); if(!root||root.dataset.hmEnhanced==='1') return;
-    const items=[...root.children]; if(!items.length)return;
-    root.dataset.hmEnhanced='1'; root.classList.add('hm-vocab-enhanced');
-    items.forEach(card=>{
-      const strong=card.querySelector('strong'); if(!strong)return; const fr=strong.textContent.trim();
-      const smalls=[...card.querySelectorAll('small')]; const ar=smalls[0]?.textContent.trim()||''; const vis=visual(fr);
-      card.className='hm-vocab-card'; card.innerHTML=`<div class="hm-vocab-visual"><small>${vis[1]}</small><span aria-hidden="true">${vis[0]}</span></div><div class="hm-vocab-body"><strong>${fr}</strong><small class="hm-vocab-ar">${ar}</small><button class="hm-vocab-speak" type="button">🔊 استمع</button><button class="hm-vocab-reveal" type="button">إخفاء المعنى</button></div>`;
-      card.querySelector('.hm-vocab-speak').addEventListener('click',()=>speak(fr));
-      const meaning=card.querySelector('.hm-vocab-ar'), reveal=card.querySelector('.hm-vocab-reveal');
-      reveal.addEventListener('click',()=>{const hidden=meaning.classList.toggle('hidden');reveal.textContent=hidden?'إظهار المعنى':'إخفاء المعنى'});
-    });
-  }
-  const obs=new MutationObserver(enhance); obs.observe(document.body,{childList:true,subtree:true});
-  enhance();
+  function load(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){return {}}}
+  function save(data){try{localStorage.setItem(STORE,JSON.stringify(data))}catch(e){}}
+  function mark(fr,status){const d=load();d[fr]=status;save(d);updateStats()}
+  function updateStats(){const d=load();const all=Object.values(d);const known=all.filter(x=>x==='known').length,review=all.filter(x=>x==='review').length;document.querySelectorAll('.hm-vocab-stats').forEach(x=>x.textContent=`محفوظ: ${known} • يحتاج مراجعة: ${review}`)}
+  let flashcards=[];
+  let modal;
+  function ensureModal(){if(modal)return;modal=document.createElement('div');modal.className='hm-vocab-modal';modal.innerHTML=`<div class="hm-vocab-dialog" role="dialog" aria-modal="true"><div class="hm-fc-visual"></div><h3></h3><p></p><div class="hm-fc-buttons"><button class="hm-fc-speak">🔊 استمع</button><button class="hm-fc-review">🔁 أحتاج مراجعة</button><button class="hm-fc-known">✓ أعرفها</button><button class="hm-fc-close">إغلاق</button></div></div>`;document.body.appendChild(modal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});modal.querySelector('.hm-fc-close').onclick=closeModal}
+  function closeModal(){if(modal)modal.classList.remove('open')}
+  function openFlashcards(reviewOnly){ensureModal();const data=load();const source=flashcards.filter(x=>!reviewOnly||data[x.fr]==='review');if(!source.length){alert(reviewOnly?'لا توجد كلمات تحتاج إلى مراجعة حاليًا. أحسنت!':'لا توجد مفردات متاحة بعد. افتح محطة المفردات أولًا.');return}let i=0;const v=modal.querySelector('.hm-fc-visual'),h=modal.querySelector('h3'),p=modal.querySelector('p');const render=()=>{const x=source[i];v.textContent=x.visual;h.textContent=x.fr;p.textContent=x.ar||'اضغط على أحتاج مراجعة أو أعرفها';modal.querySelector('.hm-fc-speak').onclick=()=>speak(x.fr);modal.querySelector('.hm-fc-review').onclick=()=>{mark(x.fr,'review');i=(i+1)%source.length;render()};modal.querySelector('.hm-fc-known').onclick=()=>{mark(x.fr,'known');i=(i+1)%source.length;render()}};render();modal.classList.add('open')}
+  function enhance(){document.querySelectorAll('.words').forEach(root=>{if(root.dataset.hmEnhanced==='1')return;const items=[...root.children];if(!items.length)return;const data=[];items.forEach(card=>{const strong=card.querySelector('strong');if(!strong)return;const fr=strong.textContent.trim();const smalls=[...card.querySelectorAll('small')];const ar=smalls[0]?.textContent.trim()||'';const vis=visual(fr);data.push({fr,ar,visual:vis[0]});card.className='hm-vocab-card';card.innerHTML=`<div class="hm-vocab-visual"><small>${vis[1]}</small><span aria-hidden="true">${vis[0]}</span></div><div class="hm-vocab-body"><strong>${fr}</strong><small class="hm-vocab-ar">${ar}</small><div class="hm-vocab-actions"><button class="hm-vocab-speak" type="button">🔊 استمع</button><button class="hm-vocab-reveal" type="button">إخفاء المعنى</button><button class="hm-vocab-review" type="button">🔁 مراجعة</button></div></div>`;card.querySelector('.hm-vocab-speak').addEventListener('click',()=>speak(fr));const meaning=card.querySelector('.hm-vocab-ar'),reveal=card.querySelector('.hm-vocab-reveal');reveal.addEventListener('click',()=>{const hidden=meaning.classList.toggle('hidden');reveal.textContent=hidden?'إظهار المعنى':'إخفاء المعنى'});card.querySelector('.hm-vocab-review').addEventListener('click',()=>{mark(fr,'review');openFlashcards(true)})});root.dataset.hmEnhanced='1';root.classList.add('hm-vocab-enhanced');flashcards.push(...data.filter(x=>!flashcards.some(y=>y.fr===x.fr)));const toolbar=document.createElement('div');toolbar.className='hm-vocab-toolbar';toolbar.innerHTML=`<span class="hm-vocab-stats">محفوظ: 0 • يحتاج مراجعة: 0</span><span><button class="hm-fc-open">🃏 بطاقات المفردات</button> <button class="hm-fc-review-open">🔁 مراجعة أخطائي</button></span>`;root.prepend(toolbar);toolbar.querySelector('.hm-fc-open').onclick=()=>openFlashcards(false);toolbar.querySelector('.hm-fc-review-open').onclick=()=>openFlashcards(true)});updateStats()}
+  const obs=new MutationObserver(enhance);obs.observe(document.body,{childList:true,subtree:true});enhance();
 })();
