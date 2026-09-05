@@ -35,6 +35,7 @@ jobs:
           test -f preparatory-french-starter-v2.html
           grep -q "vocab-visual" preparatory-french-starter-v2.html
           grep -q "function visualFor(term)" preparatory-french-starter-v2.html
+          grep -q "has-visual" preparatory-french-starter-v2.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
