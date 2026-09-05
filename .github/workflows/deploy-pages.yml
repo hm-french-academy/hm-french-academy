@@ -17,11 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Apply Premier Pas interactive vocabulary visuals
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/fix-premier-pas-vocab-visuals.js
       - name: Verify source files before deployment
         shell: bash
         run: |
           set -euo pipefail
           test -f grade7-lesson-studio.html
+          test -f preparatory-french-starter-v2.html
           test -f data/lessons/grade-7/grade7-source-content.json
           test -f data/lessons/grade-7/unit-1/lesson-1.json
           test -f data/lessons/grade-7/unit-2/lesson-1.json
@@ -30,6 +36,8 @@ jobs:
           grep -q 'unit-${Number(m\[1\])}/lesson-${Number(m\[2\])}.json' grade7-lesson-studio.html
           grep -q "lesson1Visuals" grade7-lesson-studio.html
           grep -q "Un pyjama" grade7-lesson-studio.html
+          grep -q "vocab-visual" preparatory-french-starter-v2.html
+          grep -q "function visualFor(term)" preparatory-french-starter-v2.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
