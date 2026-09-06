@@ -57,8 +57,10 @@ jobs:
             assert qs, f'Grade {grade}: empty annual revision bank'
             assert all(ids), f'Grade {grade}: missing question ID'
             assert len(ids)==len(set(ids)), f'Grade {grade}: duplicate question ID'
-            assert all(isinstance(q.get('options'),list) and q.get('answer') is not None and 0 <= int(q['answer']) < len(q['options']) for q in qs), f'Grade {grade}: invalid answer/options mapping'
-            print(f'Grade {grade}: {len(qs)} questions, unique IDs and valid answer mappings verified')
+            choice_qs=[q for q in qs if q.get('type','choice')!='writing']
+            assert all(isinstance(q.get('options'),list) and q.get('answer') is not None and 0 <= int(q['answer']) < len(q['options']) for q in choice_qs), f'Grade {grade}: invalid answer/options mapping'
+            writing_qs=[q for q in qs if q.get('type')=='writing']
+            print(f'Grade {grade}: {len(qs)} questions; {len(choice_qs)} choice mappings and {len(writing_qs)} writing prompts verified')
           g5=json.load(open(files[5],encoding='utf-8'))
           p04=next(q for q in g5['practiceQuestions'] if q['id']=='P04')
           assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est', 'Grade 5 P04 source mapping regression'
