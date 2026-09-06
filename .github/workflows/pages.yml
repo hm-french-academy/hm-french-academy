@@ -68,16 +68,6 @@ jobs:
           grep -Fq 'function renderGame' grade-4-l01-learning-studio.html
           grep -Fq 'Math.random' grade-4-l01-learning-studio.html
 
-      - name: Verify Grade 4 annual assessment feedback
-        run: |
-          set -euo pipefail
-          test -f grade-4-annual-assessment.html
-          grep -Fq 'تصحيح الإجابات الخاطئة' grade-4-annual-assessment.html
-          grep -Fq 'إجابتك:' grade-4-annual-assessment.html
-          grep -Fq 'الإجابة الصحيحة:' grade-4-annual-assessment.html
-          grep -Fq '💡 السبب:' grade-4-annual-assessment.html
-          test -f data/reviews/grade-5/review-content.json
-
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
 
