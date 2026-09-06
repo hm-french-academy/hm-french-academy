@@ -26,6 +26,8 @@ jobs:
         run: node scripts/fix-grade4-l01-games.js
       - name: Patch annual revision feedback by stable question ID
         run: python3 scripts/fix-annual-revision-feedback.py
+      - name: Add source-specific feedback to Grade 4 readiness review
+        run: python3 scripts/enrich-grade4-readiness-feedback.py
       - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
@@ -40,32 +42,24 @@ jobs:
           grep -Fq "grade(fin,'finalQuiz','finalResult')" annual-revision-stage.html
           python3 - <<'PY'
           import json
-          files = {
-            4:'data/reviews/grade-3/review-content-normalized.json',
-            5:'data/reviews/grade-5/review-content.json',
-            6:'data/reviews/grade-6/review-content.json',
-            8:'data/reviews/grade-8/review-content.json',
-            9:'data/reviews/grade-9/review-content.json',
-          }
+          files = {4:'data/reviews/grade-3/review-content-normalized.json',5:'data/reviews/grade-5/review-content.json',6:'data/reviews/grade-6/review-content.json',8:'data/reviews/grade-8/review-content.json',9:'data/reviews/grade-9/review-content.json'}
           for grade,path in files.items():
-            d=json.load(open(path,encoding='utf-8'))
-            diag=d.get('diagnostic',{}).get('questions',[])
-            practice=d.get('practiceQuestions',[])
-            final=d.get('finalReadiness',{}).get('questions',d.get('finalAssessment',{}).get('questions',[]))
-            qs=diag+practice+final
+            raw=json.load(open(path,encoding='utf-8'))
+            d=json.loads(raw['content']) if 'content' in raw else raw
+            diag=d.get('diagnostic',{}).get('questions',[]); practice=d.get('practiceQuestions',[]); final=d.get('finalReadiness',{}).get('questions',d.get('finalAssessment',{}).get('questions',[])); qs=diag+practice+final
             ids=[str(q.get('id','')) for q in qs]
             assert qs, f'Grade {grade}: empty annual revision bank'
             assert all(ids), f'Grade {grade}: missing question ID'
             assert len(ids)==len(set(ids)), f'Grade {grade}: duplicate question ID'
             choice_qs=[q for q in qs if isinstance(q.get('options'),list) and len(q.get('options',[]))>=2]
             assert all(q.get('answer') is not None and 0 <= int(q['answer']) < len(q['options']) for q in choice_qs), f'Grade {grade}: invalid answer/options mapping'
-            writing_qs=[q for q in qs if q.get('type')=='writing' or not isinstance(q.get('options'),list) or len(q.get('options',[]))<2]
-            print(f'Grade {grade}: {len(qs)} questions; {len(choice_qs)} choice mappings and {len(writing_qs)} non-choice/writing prompts verified')
-          g5=json.load(open(files[5],encoding='utf-8'))
+            missing=[q.get('id') for q in qs if not str(q.get('explanation','')).strip()]
+            assert not missing, f'Grade {grade}: missing question-specific explanations: {missing}'
+            print(f'Grade {grade}: {len(qs)} questions verified with question-specific explanations')
+          g5raw=json.load(open(files[5],encoding='utf-8')); g5=json.loads(g5raw['content']) if 'content' in g5raw else g5raw
           p04=next(q for q in g5['practiceQuestions'] if q['id']=='P04')
           assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est', 'Grade 5 P04 source mapping regression'
-          assert 'explainQuestion' in open('annual-revision-stage.html',encoding='utf-8').read(), 'Universal contextual explanation engine missing'
-          print('Grade 5 P04 verified: Elle ___ petite. -> est; explanation is generated from the question itself when no stored explanation exists')
+          print('Grade 5 P04 verified: Elle ___ petite. -> est')
           PY
       - name: Verify lesson pages
         run: |
