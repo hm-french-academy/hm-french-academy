@@ -10,12 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Each push gets its own deployment slot. This prevents an older/stuck Pages
-# run from holding the production deployment queue indefinitely.
-concurrency:
-  group: pages-${{ github.run_id }}
-  cancel-in-progress: false
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
