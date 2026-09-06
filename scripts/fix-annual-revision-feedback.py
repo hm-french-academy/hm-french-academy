@@ -3,6 +3,7 @@ from pathlib import Path
 p = Path('annual-revision-stage.html')
 s = p.read_text(encoding='utf-8')
 
+# Universal annual-revision runtime: question identity and feedback must survive shuffle across every mapped stage.
 # The renderer gives every radio group a stable name containing the question ID:
 #   diag-D01 / practiceQuiz-P04 / finalQuiz-F08
 # Never use the shuffled array position to identify a question.
@@ -26,7 +27,6 @@ new_diag = "const n=grade(diag,'diag','diagResult');localStorage.setItem(key,JSO
 if old_diag in s:
     s = s.replace(old_diag, new_diag, 1)
 else:
-    # Keep the transform idempotent if the diagnostic handler was already patched.
     if "grade(diag,'diag','diagResult')" not in s:
         raise SystemExit('diagnostic submit handler not found')
 
