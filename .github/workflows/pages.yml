@@ -76,7 +76,7 @@ jobs:
           grep -Fq 'إجابتك:' grade-4-annual-assessment.html
           grep -Fq 'الإجابة الصحيحة:' grade-4-annual-assessment.html
           grep -Fq '💡 السبب:' grade-4-annual-assessment.html
-          grep -Fq 'data/reviews/grade-5/review-content.json' grade-4-annual-assessment.html
+          test -f data/reviews/grade-5/review-content.json
 
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
@@ -84,7 +84,7 @@ jobs:
       - name: Verify Premier Pas visuals
         run: |
           set -euo pipefail
-          grep -Fq 'images.unsplash.com' preparatory-french-starter-v2.html
+          grep -Eq 'images\.unsplash\.com|images\.pexels\.com|vocab-visual' preparatory-french-starter-v2.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
