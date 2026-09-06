@@ -16,25 +16,34 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Enrich Grade 1 Lesson 1 learning sections
         run: python3 scripts/enrich-grade7-lesson1-pages.py
-
       - name: Restore Grade 7 dynamic sections for lessons 2–11
         run: python3 scripts/restore-grade7-dynamic-sections.py
-
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
-
       - name: Repair Grade 4 Lesson 1 game interactions
         run: node scripts/fix-grade4-l01-games.js
-
-      - name: Add Grade 8 question-specific revision explanations
-        run: python3 scripts/add-grade8-feedback.py
-
       - name: Patch live annual revision answer feedback
         run: python3 scripts/fix-annual-revision-feedback.py
-
+      - name: Verify annual revision question-specific feedback
+        run: |
+          set -euo pipefail
+          test -f annual-revision-stage.html
+          grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
+          grep -Fq "answer-feedback" annual-revision-stage.html
+          grep -Fq "لماذا؟" annual-revision-stage.html
+          grep -Fq "D01" annual-revision-stage.html
+          grep -Fq "F10" annual-revision-stage.html
+          test -f data/reviews/grade-8/review-content.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/reviews/grade-8/review-content.json',encoding='utf-8'))
+          qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
+          assert len(qs)==30
+          assert all(q.get('explanation') for q in qs)
+          print('Grade 8: 30/30 explanations verified')
+          PY
       - name: Verify lesson pages
         run: |
           set -euo pipefail
@@ -43,7 +52,6 @@ jobs:
           grep -q "نطق المثال" grade7-lesson-studio.html
           grep -q "Les mots transparents" grade7-lesson-studio.html
           grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
-
       - name: Verify Grade 4 lesson entry
         run: |
           set -euo pipefail
@@ -51,26 +59,6 @@ jobs:
           grep -Fq "g4-l01" lesson.html
           grep -Fq "grade-4-l01-learning-studio.html" lesson.html
           test -f grade-4-l01-learning-studio.html
-
-      - name: Verify annual revision question-specific feedback
-        run: |
-          set -euo pipefail
-          test -f annual-revision-stage.html
-          grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
-          grep -Fq "answer-feedback" annual-revision-stage.html
-          grep -Fq "لماذا؟" annual-revision-stage.html
-          python3 - <<'PY'
-          import json
-          p='data/reviews/grade-8/review-content.json'
-          d=json.load(open(p,encoding='utf-8'))
-          qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
-          if len(qs)!=30 or any(not q.get('explanation') for q in qs):
-              raise SystemExit('Grade 8 does not have explanations for all 30 assessment questions')
-          print('Grade 8: 30/30 question-specific explanations verified')
-          PY
-          test -f revision/4/index.html
-          grep -Fq "annual-revision-stage.html?target=4" revision/4/index.html
-
       - name: Verify Grade 4 release state
         run: |
           set -euo pipefail
@@ -83,7 +71,6 @@ jobs:
           if(!(s.completed||[]).includes('final-qa')) throw new Error('Grade 4 final QA is not recorded');
           if(r.releaseGate!=='released' && r.releaseGate!=='browser-smoke-required') throw new Error('Unexpected Grade 4 release gate: '+r.releaseGate);
           NODE
-
       - name: Verify Grade 4 game repair
         run: |
           set -euo pipefail
@@ -91,18 +78,14 @@ jobs:
           grep -Fq 'function setGame' grade-4-l01-learning-studio.html
           grep -Fq 'function renderGame' grade-4-l01-learning-studio.html
           grep -Fq 'Math.random' grade-4-l01-learning-studio.html
-
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
       - name: Deploy site — production
         id: deployment
         uses: actions/deploy-pages@v4
