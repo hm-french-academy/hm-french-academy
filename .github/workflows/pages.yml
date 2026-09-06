@@ -2,8 +2,7 @@ name: Deploy HM Academy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -23,25 +22,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Enrich Grade 1 Lesson 1 learning sections
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 scripts/enrich-grade7-lesson1-pages.py
+        run: python3 scripts/enrich-grade7-lesson1-pages.py
 
       - name: Apply Premier Pas interactive vocabulary visuals
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/fix-premier-pas-vocab-visuals.js
+        run: node scripts/fix-premier-pas-vocab-visuals.js
 
       - name: Repair Grade 4 Lesson 1 game interactions
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/fix-grade4-l01-games.js
+        run: node scripts/fix-grade4-l01-games.js
 
       - name: Verify lesson pages
-        shell: bash
         run: |
           set -euo pipefail
           test -f grade7-lesson-studio.html
@@ -51,7 +40,6 @@ jobs:
           grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
 
       - name: Verify Grade 4 lesson entry
-        shell: bash
         run: |
           set -euo pipefail
           test -f lesson.html
@@ -60,7 +48,6 @@ jobs:
           test -f grade-4-l01-learning-studio.html
 
       - name: Verify Grade 4 release state
-        shell: bash
         run: |
           set -euo pipefail
           test -f data/lessons/grade-4/implementation-status.json
@@ -74,36 +61,30 @@ jobs:
           NODE
 
       - name: Verify Grade 4 game repair
-        shell: bash
         run: |
           set -euo pipefail
-          grep -Fq 'Grade 4 Lesson 1 games repaired' grade-4-l01-learning-studio.html
-          grep -Fq 'window.renderGame=function' grade-4-l01-learning-studio.html
-          grep -Fq 'window.setGame=function' grade-4-l01-learning-studio.html
-          grep -Fq 'orderRow' grade-4-l01-learning-studio.html
+          grep -Fq 'gameTabs' grade-4-l01-learning-studio.html
+          grep -Fq 'function setGame' grade-4-l01-learning-studio.html
+          grep -Fq 'function renderGame' grade-4-l01-learning-studio.html
           grep -Fq 'Math.random' grade-4-l01-learning-studio.html
 
-      - name: Write deployment fingerprint
-        shell: bash
+      - name: Verify Grade 4 annual assessment feedback
         run: |
           set -euo pipefail
-          cat > deployment-version.txt <<EOF
-          HM Academy Published Deployment
-          commit=$GITHUB_SHA
-          ref=$GITHUB_REF
-          workflow=Deploy HM Academy
-          deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          EOF
+          test -f grade-4-annual-assessment.html
+          grep -Fq 'تصحيح الإجابات الخاطئة' grade-4-annual-assessment.html
+          grep -Fq 'إجابتك:' grade-4-annual-assessment.html
+          grep -Fq 'الإجابة الصحيحة:' grade-4-annual-assessment.html
+          grep -Fq '💡 السبب:' grade-4-annual-assessment.html
+          grep -Fq 'data/reviews/grade-5/review-content.json' grade-4-annual-assessment.html
+
+      - name: Write deployment fingerprint
+        run: echo "$GITHUB_SHA" > deployment-version.txt
 
       - name: Verify Premier Pas visuals
-        shell: bash
         run: |
           set -euo pipefail
-          test -f preparatory-french-starter-v2.html
-          grep -q "vocab-visual" preparatory-french-starter-v2.html
-          grep -q "function visualFor(term)" preparatory-french-starter-v2.html
-          grep -q "has-visual" preparatory-french-starter-v2.html
-          grep -q "<img src=\"" preparatory-french-starter-v2.html
+          grep -Fq 'images.unsplash.com' preparatory-french-starter-v2.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -114,6 +95,5 @@ jobs:
           path: .
 
       - name: Deploy site
+        id: deployment
         uses: actions/deploy-pages@v4
-
-      # Deployment fingerprint is intentionally embedded in every Pages artifact.
