@@ -29,6 +29,9 @@ jobs:
       - name: Repair Grade 4 Lesson 1 game interactions
         run: node scripts/fix-grade4-l01-games.js
 
+      - name: Patch live annual revision answer feedback
+        run: python3 scripts/fix-annual-revision-feedback.py
+
       - name: Verify lesson pages
         run: |
           set -euo pipefail
@@ -45,6 +48,17 @@ jobs:
           grep -Fq "g4-l01" lesson.html
           grep -Fq "grade-4-l01-learning-studio.html" lesson.html
           test -f grade-4-l01-learning-studio.html
+
+      - name: Verify Grade 4 annual revision feedback
+        run: |
+          set -euo pipefail
+          test -f annual-revision-stage.html
+          grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
+          grep -Fq "answer-feedback" annual-revision-stage.html
+          grep -Fq "الإجابة الصحيحة" annual-revision-stage.html
+          grep -Fq "لماذا؟" annual-revision-stage.html
+          test -f revision/4/index.html
+          grep -Fq "annual-revision-stage.html?target=4" revision/4/index.html
 
       - name: Verify Grade 4 release state
         run: |
