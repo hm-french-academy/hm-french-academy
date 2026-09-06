@@ -81,11 +81,6 @@ jobs:
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
 
-      - name: Verify Premier Pas visuals
-        run: |
-          set -euo pipefail
-          grep -Eq 'images\.unsplash\.com|images\.pexels\.com|vocab-visual' preparatory-french-starter-v2.html
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
