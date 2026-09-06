@@ -28,6 +28,8 @@ jobs:
         run: python3 scripts/fix-annual-revision-feedback.py
       - name: Add source-specific feedback to Grade 4 readiness review
         run: python3 scripts/enrich-grade4-readiness-feedback.py
+      - name: Add source-specific feedback to Grade 9 readiness review
+        run: python3 scripts/enrich-grade9-readiness-feedback.py
       - name: Prefer enriched production-local annual revision data
         run: python3 scripts/fix-annual-revision-source-order.py
       - name: Verify annual revision question-specific feedback for all mapped stages
@@ -56,10 +58,10 @@ jobs:
             assert len(ids)==len(set(ids)), f'Grade {grade}: duplicate question ID'
             choice_qs=[q for q in qs if isinstance(q.get('options'),list) and len(q.get('options',[]))>=2]
             assert all(q.get('answer') is not None and 0 <= int(q['answer']) < len(q['options']) for q in choice_qs), f'Grade {grade}: invalid answer/options mapping'
-            if grade == 4:
+            if grade in (4,9):
               missing=[q.get('id') for q in qs if not str(q.get('explanation','')).strip()]
-              assert not missing, f'Grade 4: missing question-specific explanations: {missing}'
-              print(f'Grade 4: {len(qs)} questions verified with question-specific explanations')
+              assert not missing, f'Grade {grade}: missing question-specific explanations: {missing}'
+              print(f'Grade {grade}: {len(qs)} questions verified with question-specific explanations')
             else:
               print(f'Grade {grade}: {len(qs)} questions and answer mappings verified')
           g5raw=json.load(open(files[5],encoding='utf-8')); g5=json.loads(g5raw['content']) if 'content' in g5raw else g5raw
