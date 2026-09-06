@@ -97,6 +97,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Keep this workflow change intentionally harmless; it forces a fresh Pages run for the traceable release.
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
