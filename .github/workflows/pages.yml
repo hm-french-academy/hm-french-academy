@@ -31,9 +31,13 @@ jobs:
           set -euo pipefail
           test -f annual-revision-stage.html
           grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
+          grep -Fq "function questionForBox" annual-revision-stage.html
+          grep -Fq "function explainQuestion" annual-revision-stage.html
           grep -Fq "answer-feedback" annual-revision-stage.html
           grep -Fq "لماذا؟" annual-revision-stage.html
-          grep -Fq "arr.find(x=>String(x?.id||'')===questionId)" annual-revision-stage.html
+          grep -Fq "arr.find(q=>String(q?.id||'')===questionId)" annual-revision-stage.html
+          grep -Fq "grade(practice,'practiceQuiz','practiceResult')" annual-revision-stage.html
+          grep -Fq "grade(fin,'finalQuiz','finalResult')" annual-revision-stage.html
           python3 - <<'PY'
           import json
           files = {
@@ -53,14 +57,13 @@ jobs:
             assert qs, f'Grade {grade}: empty annual revision bank'
             assert all(ids), f'Grade {grade}: missing question ID'
             assert len(ids)==len(set(ids)), f'Grade {grade}: duplicate question ID'
-            assert all(q.get('options') is not None and q.get('answer') is not None for q in qs), f'Grade {grade}: missing answer/options'
-            print(f'Grade {grade}: {len(qs)} questions, stable IDs and answer mappings verified')
-          g8=json.load(open(files[8],encoding='utf-8'))
-          g8qs=g8['diagnostic']['questions']+g8['practiceQuestions']+g8['finalReadiness']['questions']
-          assert all(q.get('explanation') for q in g8qs), 'Grade 8: missing question-specific explanations'
-          p04=next(q for q in g8['practiceQuestions'] if q['id']=='P04')
-          assert p04['answer']==1 and 'vingt' in p04['explanation'], 'Grade 8 P04 mapping regression'
-          print('Grade 8: 30/30 explanations and P04 mapping verified')
+            assert all(isinstance(q.get('options'),list) and q.get('answer') is not None and 0 <= int(q['answer']) < len(q['options']) for q in qs), f'Grade {grade}: invalid answer/options mapping'
+            print(f'Grade {grade}: {len(qs)} questions, unique IDs and valid answer mappings verified')
+          g5=json.load(open(files[5],encoding='utf-8'))
+          p04=next(q for q in g5['practiceQuestions'] if q['id']=='P04')
+          assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est', 'Grade 5 P04 source mapping regression'
+          assert 'explainQuestion' in open('annual-revision-stage.html',encoding='utf-8').read(), 'Universal contextual explanation engine missing'
+          print('Grade 5 P04 verified: Elle ___ petite. -> est; explanation is generated from the question itself when no stored explanation exists')
           PY
       - name: Verify lesson pages
         run: |
