@@ -1,0 +1,2 @@
+HM Academy deployment test — 2026-09-06 18:00 Egypt
+If this file appears on the public GitHub Pages site, the deployment pipeline is publishing main correctly.
