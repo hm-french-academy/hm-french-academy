@@ -52,7 +52,7 @@ jobs:
           grep -Fq "g4-l01" lesson.html
           grep -Fq "g4-l02" lesson.html
           grep -Fq "g4-l03" lesson.html
-          grep -Fq "g4-l0[4-7]" lesson.html
+          grep -Fq "target='grade-4-lessons-03-07-live.html'" lesson.html
           test -f grade-4-l01-learning-studio.html
           test -f grade-4-l02-learning-studio.html
           test -f grade-4-lesson-studio-v2.html
