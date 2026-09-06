@@ -44,6 +44,46 @@ jobs:
           grep -q "Les mots transparents" grade7-lesson-studio.html
           grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
 
+      - name: Verify Grade 4 published entry routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f lesson.html
+          grep -q "g4-l01" lesson.html
+          grep -q "g4-l02" lesson.html
+          grep -q "g4-l03" lesson.html
+          grep -q "g4-l0\[4-7\]" lesson.html
+          test -f grade-4-l01-learning-studio.html
+          test -f grade-4-l02-learning-studio.html
+          test -f grade-4-lesson-studio-v2.html
+          test -f grade-4-lessons-03-07-live.html
+
+      - name: Verify Grade 4 release state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f data/lessons/grade-4/implementation-status.json
+          test -f data/lessons/grade-4/premium-runtime-manifest.json
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=JSON.parse(fs.readFileSync('data/lessons/grade-4/implementation-status.json','utf8'));
+          const r=JSON.parse(fs.readFileSync('data/lessons/grade-4/premium-runtime-manifest.json','utf8'));
+          if(!(s.completed||[]).includes('final-qa')) throw new Error('Grade 4 final QA is not recorded');
+          if(r.releaseGate!=='released' && r.releaseGate!=='browser-smoke-required') throw new Error('Unexpected Grade 4 release gate: '+r.releaseGate);
+          NODE
+
+      - name: Write deployment fingerprint
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > deployment-version.txt <<EOF
+          HM Academy Published Deployment
+          commit=$GITHUB_SHA
+          ref=$GITHUB_REF
+          workflow=Deploy HM Academy
+          deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          EOF
+
       - name: Verify Premier Pas visuals
         shell: bash
         run: |
