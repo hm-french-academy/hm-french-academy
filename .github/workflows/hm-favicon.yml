@@ -16,21 +16,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Apply Premier Pas vocabulary visuals
+      - name: Rebuild and publish Premier Pas vocabulary visuals
         shell: bash
         run: |
           set -euo pipefail
-          if ! grep -q 'vocab-visual' preparatory-french-starter-v2.html; then
-            node scripts/fix-premier-pas-vocab-visuals.js
-          else
-            echo 'Premier Pas visuals already embedded; no rebuild needed.'
-          fi
+          node scripts/fix-premier-pas-vocab-visuals.js
 
       - name: Add favicon links to HTML pages
         shell: bash
         run: |
           set -euo pipefail
-          changed=0
           while IFS= read -r -d '' file; do
             if grep -q 'hm-academy-favicon.svg' "$file"; then
               continue
@@ -39,10 +34,7 @@ jobs:
               sed -i 's#<head>#<head><link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=2"><link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=2">#' "$file"
             elif grep -q '<head ' "$file"; then
               sed -i '0,/<head /s#<head #<head><link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=2"><link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=2"> #' "$file"
-            else
-              continue
             fi
-            changed=1
           done < <(find . -type f -name '*.html' -not -path './.git/*' -print0)
 
           git config user.name 'HM Academy Bot'
