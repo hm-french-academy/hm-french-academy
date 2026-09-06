@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import re
 
 path = Path('secondary-1-review.html')
@@ -55,7 +56,6 @@ E = {
 'F24':'«Marie» مؤنث مفرد، لذلك الصفة «sportif» تأخذ صيغة المؤنث «sportive».',
 }
 
-# Ensure every embedded scored question has a dedicated explanation.
 ids = re.findall(r"\['([DF]\d+)'", s)
 missing = sorted(set(ids) - set(E))
 if missing:
@@ -65,9 +65,7 @@ marker = "const finalQ=["
 if marker not in s:
     raise SystemExit('finalQ marker not found')
 
-feedback_js = "const hmQuestionFeedback=" + repr(E).replace("'", '"') + ";\n"
-# repr is safe for the current Arabic/ASCII values after JSON-like conversion; normalize JS quotes.
-feedback_js = "const hmQuestionFeedback=" + __import__('json').dumps(E, ensure_ascii=False) + ";\n"
+feedback_js = "const hmQuestionFeedback=" + json.dumps(E, ensure_ascii=False) + ";\n"
 if 'const hmQuestionFeedback=' not in s:
     s = s.replace(marker, feedback_js + marker, 1)
 
@@ -80,4 +78,3 @@ new = '''function grade(arr,id,out){let score=0;const rows=[];arr.forEach((q,i)=
 s = s[:old.start()] + new + s[old.end():]
 path.write_text(s, encoding='utf-8')
 print(f'Applied {len(E)} question-specific explanations to secondary-1 review')
-'''
