@@ -104,3 +104,5 @@ jobs:
 
       - name: Deploy site
         uses: actions/deploy-pages@v4
+
+      # Deployment fingerprint is intentionally embedded in every Pages artifact.
