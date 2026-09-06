@@ -77,9 +77,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq 'data-game="${x[0]}"' grade-4-l01-learning-studio.html
-          grep -Fq 'const opts=[...x[1]].sort' grade-4-l01-learning-studio.html
-          grep -Fq 'function moveOrder' grade-4-l01-learning-studio.html
+          grep -Fq 'Grade 4 Lesson 1 games repaired' grade-4-l01-learning-studio.html
+          grep -Fq 'window.renderGame=function' grade-4-l01-learning-studio.html
+          grep -Fq 'window.setGame=function' grade-4-l01-learning-studio.html
+          grep -Fq 'orderRow' grade-4-l01-learning-studio.html
+          grep -Fq 'Math.random' grade-4-l01-learning-studio.html
 
       - name: Write deployment fingerprint
         shell: bash
