@@ -49,10 +49,10 @@ jobs:
         run: |
           set -euo pipefail
           test -f lesson.html
-          grep -q "g4-l01" lesson.html
-          grep -q "g4-l02" lesson.html
-          grep -q "g4-l03" lesson.html
-          grep -q "g4-l0\[4-7\]" lesson.html
+          grep -Fq "g4-l01" lesson.html
+          grep -Fq "g4-l02" lesson.html
+          grep -Fq "g4-l03" lesson.html
+          grep -Fq "g4-l0[4-7]" lesson.html
           test -f grade-4-l01-learning-studio.html
           test -f grade-4-l02-learning-studio.html
           test -f grade-4-lesson-studio-v2.html
@@ -97,7 +97,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Keep this workflow change intentionally harmless; it forces a fresh Pages run for the traceable release.
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
