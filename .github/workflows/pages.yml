@@ -28,6 +28,8 @@ jobs:
         run: python3 scripts/fix-annual-revision-feedback.py
       - name: Add source-specific feedback to Grade 4 readiness review
         run: python3 scripts/enrich-grade4-readiness-feedback.py
+      - name: Prefer enriched production-local annual revision data
+        run: python3 scripts/fix-annual-revision-source-order.py
       - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
@@ -40,6 +42,7 @@ jobs:
           grep -Fq "arr.find(q=>String(q?.id||'')===questionId)" annual-revision-stage.html
           grep -Fq "grade(practice,'practiceQuiz','practiceResult')" annual-revision-stage.html
           grep -Fq "grade(fin,'finalQuiz','finalResult')" annual-revision-stage.html
+          grep -Fq "for(const u of ['./'+p,'https://raw.githubusercontent.com/hm-french-academy/hm-french-academy/main/'+p" annual-revision-stage.html
           python3 - <<'PY'
           import json
           files = {4:'data/reviews/grade-3/review-content-normalized.json',5:'data/reviews/grade-5/review-content.json',6:'data/reviews/grade-6/review-content.json',8:'data/reviews/grade-8/review-content.json',9:'data/reviews/grade-9/review-content.json'}
