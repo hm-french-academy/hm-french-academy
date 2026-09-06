@@ -1,15 +1,13 @@
 from pathlib import Path
-import re
 
 p = Path('annual-revision-stage.html')
 s = p.read_text(encoding='utf-8')
-
-start = s.find('function explainQuestion(q){')
+start = s.find('function grade(arr,id,resultId){')
 end = s.find('function lockScreen(){', start)
 if start < 0 or end < 0:
-    raise SystemExit('Could not locate annual feedback functions')
+    raise SystemExit('Could not locate grade()')
 
-replacement = r'''function explainQuestion(q){const id=String(q.id||'');const reasons={
+fn = r'''function grade(arr,id,resultId){const root=$(id),out=$(resultId);const grade8Reasons={
 'D01':'السؤال «Comment ça va ?» يسأل عن الحال، لذلك «Ça va bien.» هي الإجابة المناسبة، وليست إجابة عن العمر أو الوقت.',
 'D02':'مع الضمير «Je» يكون تصريف الفعل parler هو «parle»، لذلك نقول «Je parle français».',
 'D03':'مع الضمير «Je» يكون تصريف الفعل être هو «suis»، لذلك نقول «Je suis élève».',
@@ -39,10 +37,8 @@ replacement = r'''function explainQuestion(q){const id=String(q.id||'');const re
 'F07':'«La pomme» فاكهة، لذلك «rouge» هي الصفة التي تصف لونها، وليست يومًا أو عددًا.',
 'F08':'«maison» اسم مؤنث مفرد، لذلك نستخدم «La»: «La maison est grande».',
 'F09':'«mars» يأتي في فصل الربيع، لذلك «printemps» هو الاختيار الصحيح.',
-'F10':'عندما يقول شخص «Bonjour»، تكون الإجابة المناسبة تحية مقابلة مثل «Bonjour !»، وليس إجابة عن العمر أو الوقت.'};return reasons[id]||'هذا السبب مرتبط مباشرة بمهارة السؤال واختياره الصحيح.'}
-function grade(arr,id,resultId){const root=$(id),out=$(resultId);let n=0,total=arr.length;root.querySelectorAll('.q').forEach((box,i)=>{const q=arr[i]||{},selected=box.querySelector('input:checked'),correct=!!selected&&Number(selected.value)===Number(q.answer);box.querySelectorAll('.answer-feedback').forEach(x=>x.remove());box.querySelectorAll('.option').forEach(x=>x.classList.remove('is-correct','is-wrong'));if(selected)selected.closest('.option')?.classList.add(correct?'is-correct':'is-wrong');if(correct){n++;return}const opts=Array.isArray(q.options)?q.options:[],answer=opts[q.answer]??q.answer,reason=q.explanation||q.reason||q.feedback||q.why||explainQuestion(q),div=document.createElement('div');div.className='answer-feedback';div.innerHTML='<div class="feedback-title">'+(selected?'❌ إجابتك غير صحيحة':'⚠️ لم تتم الإجابة')+'</div><div><b>✅ الإجابة الصحيحة:</b> '+esc(answer)+'</div><div><b>💡 لماذا؟</b> '+esc(reason)+'</div>';box.appendChild(div)});const pct=total?Math.round(n/total*100):0;out.innerHTML='<div class="result"><b>النتيجة: '+n+' / '+total+' ('+pct+'%)</b><br>تم تصحيح الإجابات، ويظهر أسفل كل إجابة غير صحيحة السبب المرتبط بالسؤال نفسه.</div>';root.querySelectorAll('input,button').forEach(x=>x.disabled=true);return n}
+'F10':'عندما يقول شخص «Bonjour»، تكون الإجابة المناسبة تحية مقابلة مثل «Bonjour !»، وليس إجابة عن العمر أو الوقت.'};let n=0,total=arr.length;root.querySelectorAll('.q').forEach((box,i)=>{const q=arr[i]||{},selected=box.querySelector('input:checked'),correct=!!selected&&Number(selected.value)===Number(q.answer);box.querySelectorAll('.answer-feedback').forEach(x=>x.remove());box.querySelectorAll('.option').forEach(x=>x.classList.remove('is-correct','is-wrong'));if(selected)selected.closest('.option')?.classList.add(correct?'is-correct':'is-wrong');if(correct){n++;return}const opts=Array.isArray(q.options)?q.options:[],answer=opts[q.answer]??q.answer,reason=g===8?(q.explanation||grade8Reasons[String(q.id||'')]):(q.explanation||q.reason||q.feedback||q.why||explainQuestion(q)),div=document.createElement('div');div.className='answer-feedback';div.innerHTML='<div class="feedback-title">'+(selected?'❌ إجابتك غير صحيحة':'⚠️ لم تتم الإجابة')+'</div><div><b>✅ الإجابة الصحيحة:</b> '+esc(answer)+'</div><div><b>💡 لماذا؟</b> '+esc(reason||'هذا السبب مرتبط مباشرة بمهارة السؤال واختياره الصحيح.')+'</div>';box.appendChild(div)});const pct=total?Math.round(n/total*100):0;out.innerHTML='<div class="result"><b>النتيجة: '+n+' / '+total+' ('+pct+'%)</b><br>تم تصحيح الإجابات، ويظهر أسفل كل إجابة غير صحيحة السبب المرتبط بالسؤال نفسه.</div>';root.querySelectorAll('input,button').forEach(x=>x.disabled=true);return n}
 '''
-
-s = s[:start] + replacement + s[end:]
+s = s[:start] + fn + s[end:]
 p.write_text(s, encoding='utf-8')
-print('Grade 8 annual feedback linking fixed')
+print('Grade 8 feedback linking fixed; other grades retain existing fallback')
