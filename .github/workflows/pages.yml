@@ -26,6 +26,8 @@ jobs:
         run: node scripts/fix-grade4-l01-games.js
       - name: Patch live annual revision answer feedback
         run: python3 scripts/fix-annual-revision-feedback.py
+      - name: Fix Grade 8 annual revision feedback linking
+        run: python3 scripts/fix-grade8-annual-feedback-linking.py
       - name: Verify annual revision question-specific feedback
         run: |
           set -euo pipefail
@@ -33,6 +35,8 @@ jobs:
           grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
           grep -Fq "answer-feedback" annual-revision-stage.html
           grep -Fq "لماذا؟" annual-revision-stage.html
+          grep -Fq "P04" annual-revision-stage.html
+          grep -Fq "العدد 20 بالفرنسية هو" annual-revision-stage.html
           grep -Fq "D01" annual-revision-stage.html
           grep -Fq "F10" annual-revision-stage.html
           test -f data/reviews/grade-8/review-content.json
@@ -42,7 +46,9 @@ jobs:
           qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
           assert len(qs)==30
           assert all(q.get('explanation') for q in qs)
-          print('Grade 8: 30/30 explanations verified')
+          assert next(q for q in d['practiceQuestions'] if q['id']=='P04')['answer']==1
+          assert 'vingt' in next(q for q in d['practiceQuestions'] if q['id']=='P04')['explanation']
+          print('Grade 8: 30/30 explanations and P04 mapping verified')
           PY
       - name: Verify lesson pages
         run: |
