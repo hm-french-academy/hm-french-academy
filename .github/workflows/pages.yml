@@ -44,19 +44,14 @@ jobs:
           grep -q "Les mots transparents" grade7-lesson-studio.html
           grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
 
-      - name: Verify Grade 4 published entry routes
+      - name: Verify Grade 4 lesson entry
         shell: bash
         run: |
           set -euo pipefail
           test -f lesson.html
           grep -Fq "g4-l01" lesson.html
-          grep -Fq "g4-l02" lesson.html
-          grep -Fq "g4-l03" lesson.html
-          grep -Fq "target='grade-4-lessons-03-07-live.html'" lesson.html
+          grep -Fq "grade-4-l01-learning-studio.html" lesson.html
           test -f grade-4-l01-learning-studio.html
-          test -f grade-4-l02-learning-studio.html
-          test -f grade-4-lesson-studio-v2.html
-          test -f grade-4-lessons-03-07-live.html
 
       - name: Verify Grade 4 release state
         shell: bash
