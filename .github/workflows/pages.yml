@@ -32,6 +32,8 @@ jobs:
         run: python3 scripts/enrich-grade9-readiness-feedback.py
       - name: Prefer enriched production-local annual revision data
         run: python3 scripts/fix-annual-revision-source-order.py
+      - name: Add question-specific feedback to Secondary 1 annual review
+        run: python3 scripts/fix-secondary-1-review-feedback.py
       - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
@@ -68,6 +70,26 @@ jobs:
           p04=next(q for q in g5['practiceQuestions'] if q['id']=='P04')
           assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est', 'Grade 5 P04 source mapping regression'
           print('Grade 5 P04 verified: Elle ___ petite. -> est')
+          PY
+      - name: Verify Secondary 1 review question-specific feedback
+        run: |
+          set -euo pipefail
+          test -f secondary-1-review.html
+          grep -Fq "const hmQuestionFeedback=" secondary-1-review.html
+          grep -Fq "answer-feedback" secondary-1-review.html
+          grep -Fq "💡 لماذا؟" secondary-1-review.html
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          s=Path('secondary-1-review.html').read_text(encoding='utf-8')
+          ids=re.findall(r"\['([DF]\d+)'",s)
+          assert len(ids)==48 and len(set(ids))==48, f'Unexpected Secondary 1 scored question IDs: {len(ids)}'
+          m=re.search(r'const hmQuestionFeedback=(\{.*?\});\s*const finalQ=',s,re.S)
+          assert m, 'Secondary 1 feedback map missing'
+          fb=json.loads(m.group(1))
+          assert set(ids)==set(fb), 'Secondary 1 feedback map does not cover all scored questions'
+          assert all(str(v).strip() for v in fb.values()), 'Secondary 1 contains empty explanations'
+          print('Secondary 1: 48 scored questions verified with question-specific explanations')
           PY
       - name: Verify lesson pages
         run: |
