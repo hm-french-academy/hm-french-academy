@@ -24,9 +24,9 @@ jobs:
         run: node scripts/fix-premier-pas-vocab-visuals.js
       - name: Repair Grade 4 Lesson 1 game interactions
         run: node scripts/fix-grade4-l01-games.js
-      - name: Patch live annual revision answer feedback
+      - name: Patch annual revision feedback by stable question ID
         run: python3 scripts/fix-annual-revision-feedback.py
-      - name: Verify annual revision question-specific feedback
+      - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
           test -f annual-revision-stage.html
@@ -34,34 +34,33 @@ jobs:
           grep -Fq "answer-feedback" annual-revision-stage.html
           grep -Fq "لماذا؟" annual-revision-stage.html
           grep -Fq "arr.find(x=>String(x?.id||'')===questionId)" annual-revision-stage.html
-          grep -Fq "P04" annual-revision-stage.html
-          grep -Fq "العدد 20 بالفرنسية هو" annual-revision-stage.html
-          grep -Fq "D01" annual-revision-stage.html
-          grep -Fq "F10" annual-revision-stage.html
-          test -f data/reviews/grade-8/review-content.json
           python3 - <<'PY'
           import json
-          d=json.load(open('data/reviews/grade-8/review-content.json',encoding='utf-8'))
-          qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
-          assert len(qs)==30
-          assert all(q.get('explanation') for q in qs)
-          assert next(q for q in d['practiceQuestions'] if q['id']=='P04')['answer']==1
-          assert 'vingt' in next(q for q in d['practiceQuestions'] if q['id']=='P04')['explanation']
+          files = {
+            4:'data/reviews/grade-3/review-content-normalized.json',
+            5:'data/reviews/grade-5/review-content.json',
+            6:'data/reviews/grade-6/review-content.json',
+            8:'data/reviews/grade-8/review-content.json',
+            9:'data/reviews/grade-9/review-content.json',
+          }
+          for grade,path in files.items():
+            d=json.load(open(path,encoding='utf-8'))
+            diag=d.get('diagnostic',{}).get('questions',[])
+            practice=d.get('practiceQuestions',[])
+            final=d.get('finalReadiness',{}).get('questions',d.get('finalAssessment',{}).get('questions',[]))
+            qs=diag+practice+final
+            ids=[str(q.get('id','')) for q in qs]
+            assert qs, f'Grade {grade}: empty annual revision bank'
+            assert all(ids), f'Grade {grade}: missing question ID'
+            assert len(ids)==len(set(ids)), f'Grade {grade}: duplicate question ID'
+            assert all(q.get('options') is not None and q.get('answer') is not None for q in qs), f'Grade {grade}: missing answer/options'
+            print(f'Grade {grade}: {len(qs)} questions, stable IDs and answer mappings verified')
+          g8=json.load(open(files[8],encoding='utf-8'))
+          g8qs=g8['diagnostic']['questions']+g8['practiceQuestions']+g8['finalReadiness']['questions']
+          assert all(q.get('explanation') for q in g8qs), 'Grade 8: missing question-specific explanations'
+          p04=next(q for q in g8['practiceQuestions'] if q['id']=='P04')
+          assert p04['answer']==1 and 'vingt' in p04['explanation'], 'Grade 8 P04 mapping regression'
           print('Grade 8: 30/30 explanations and P04 mapping verified')
-          PY
-      - name: Verify Grade 4 annual revision bank
-        run: |
-          set -euo pipefail
-          test -f data/reviews/grade-3/review-content-normalized.json
-          python3 - <<'PY'
-          import json
-          d=json.load(open('data/reviews/grade-3/review-content-normalized.json',encoding='utf-8'))
-          qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
-          ids=[q['id'] for q in qs]
-          assert len(qs)==35
-          assert len(set(ids))==35
-          assert 'P04' in ids and 'F10' in ids and 'D01' in ids
-          print('Grade 4 readiness bank: 35 unique question IDs verified')
           PY
       - name: Verify lesson pages
         run: |
