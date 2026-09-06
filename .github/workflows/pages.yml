@@ -34,6 +34,12 @@ jobs:
           set -euo pipefail
           node scripts/fix-premier-pas-vocab-visuals.js
 
+      - name: Repair Grade 4 Lesson 1 game interactions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/fix-grade4-l01-games.js
+
       - name: Verify lesson pages
         shell: bash
         run: |
@@ -66,6 +72,14 @@ jobs:
           if(!(s.completed||[]).includes('final-qa')) throw new Error('Grade 4 final QA is not recorded');
           if(r.releaseGate!=='released' && r.releaseGate!=='browser-smoke-required') throw new Error('Unexpected Grade 4 release gate: '+r.releaseGate);
           NODE
+
+      - name: Verify Grade 4 game repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'data-game="${x[0]}"' grade-4-l01-learning-studio.html
+          grep -Fq 'const opts=[...x[1]].sort' grade-4-l01-learning-studio.html
+          grep -Fq 'function moveOrder' grade-4-l01-learning-studio.html
 
       - name: Write deployment fingerprint
         shell: bash
