@@ -20,6 +20,9 @@ jobs:
       - name: Enrich Grade 1 Lesson 1 learning sections
         run: python3 scripts/enrich-grade7-lesson1-pages.py
 
+      - name: Restore Grade 7 dynamic sections for lessons 2–11
+        run: python3 scripts/restore-grade7-dynamic-sections.py
+
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
 
