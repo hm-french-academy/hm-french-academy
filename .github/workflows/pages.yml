@@ -29,6 +29,9 @@ jobs:
       - name: Repair Grade 4 Lesson 1 game interactions
         run: node scripts/fix-grade4-l01-games.js
 
+      - name: Add Grade 8 question-specific revision explanations
+        run: python3 scripts/add-grade8-feedback.py
+
       - name: Patch live annual revision answer feedback
         run: python3 scripts/fix-annual-revision-feedback.py
 
@@ -49,14 +52,22 @@ jobs:
           grep -Fq "grade-4-l01-learning-studio.html" lesson.html
           test -f grade-4-l01-learning-studio.html
 
-      - name: Verify Grade 4 annual revision feedback
+      - name: Verify annual revision question-specific feedback
         run: |
           set -euo pipefail
           test -f annual-revision-stage.html
           grep -Fq "function grade(arr,id,resultId)" annual-revision-stage.html
           grep -Fq "answer-feedback" annual-revision-stage.html
-          grep -Fq "الإجابة الصحيحة" annual-revision-stage.html
           grep -Fq "لماذا؟" annual-revision-stage.html
+          python3 - <<'PY'
+          import json
+          p='data/reviews/grade-8/review-content.json'
+          d=json.load(open(p,encoding='utf-8'))
+          qs=d['diagnostic']['questions']+d['practiceQuestions']+d['finalReadiness']['questions']
+          if len(qs)!=30 or any(not q.get('explanation') for q in qs):
+              raise SystemExit('Grade 8 does not have explanations for all 30 assessment questions')
+          print('Grade 8: 30/30 question-specific explanations verified')
+          PY
           test -f revision/4/index.html
           grep -Fq "annual-revision-stage.html?target=4" revision/4/index.html
 
@@ -95,5 +106,3 @@ jobs:
       - name: Deploy site — production
         id: deployment
         uses: actions/deploy-pages@v4
-
-# Production trigger verification: force a fresh main push after the recovery investigation.
