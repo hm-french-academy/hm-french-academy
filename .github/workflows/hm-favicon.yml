@@ -16,10 +16,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Apply Premier Pas vocabulary visuals
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! grep -q 'vocab-visual' preparatory-french-starter-v2.html; then
+            node scripts/fix-premier-pas-vocab-visuals.js
+          else
+            echo 'Premier Pas visuals already embedded; no rebuild needed.'
+          fi
+
       - name: Add favicon links to HTML pages
         shell: bash
         run: |
-          set -e
+          set -euo pipefail
           changed=0
           while IFS= read -r -d '' file; do
             if grep -q 'hm-academy-favicon.svg' "$file"; then
@@ -35,17 +45,12 @@ jobs:
             changed=1
           done < <(find . -type f -name '*.html' -not -path './.git/*' -print0)
 
-          if [ "$changed" -eq 0 ]; then
-            echo 'No HTML files needed favicon changes.'
-            exit 0
-          fi
-
           git config user.name 'HM Academy Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add '*.html'
           if git diff --cached --quiet; then
-            echo 'No staged changes.'
+            echo 'No HTML changes to commit.'
             exit 0
           fi
-          git commit -m 'fix: add HM Academy favicon links'
+          git commit -m 'fix: publish Premier Pas vocabulary visuals'
           git push
