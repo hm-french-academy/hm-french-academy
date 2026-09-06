@@ -79,6 +79,6 @@ jobs:
         with:
           path: .
 
-      - name: Deploy site
+      - name: Deploy site — production
         id: deployment
         uses: actions/deploy-pages@v4
