@@ -18,10 +18,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Enrich Grade 1 Lesson 1 learning sections
-        run: python3 scripts/enrich-grade7-lesson1-pages.py
       - name: Restore Grade 7 dynamic sections for lessons 2–11
         run: python3 scripts/restore-grade7-dynamic-sections.py
+      - name: Enrich Grade 1 Lesson 1 learning sections
+        run: python3 scripts/enrich-grade7-lesson1-pages.py
       - name: Repair Grade 7 Lesson 1 game interactions
         run: node scripts/fix-grade7-games.js
       - name: Apply Premier Pas interactive vocabulary visuals
