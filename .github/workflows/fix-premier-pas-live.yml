@@ -1,0 +1,40 @@
+name: Fix Premier Pas live page
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.event.head_commit.message != 'fix: premier pas runtime and title'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply safe runtime and title fix
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('preparatory-french-starter-final.html')
+          s = p.read_text(encoding='utf-8')
+          original = s
+          s = s.replace('<h1>استكشف Le Français Simple</h1>', '<h1>استكشف la langue française</h1>')
+          s = s.replace("KEY='hmPremierPasFinalV10';", "KEY='hmPremierPasFinalV11';")
+          old = "let i=+localStorage.getItem(KEY+'Step')||0,known=JSON.parse(localStorage.getItem(KEY+'Known')||'[]'),review=JSON.parse(localStorage.getItem(KEY+'Review')||'[]'),xp=+localStorage.getItem(KEY+'XP')||0,cat='all';"
+          new = "function safeJSON(key,fallback){try{const raw=localStorage.getItem(key);if(!raw)return fallback;const v=JSON.parse(raw);return Array.isArray(v)?v:fallback}catch(e){localStorage.removeItem(key);return fallback}}let i=Number(localStorage.getItem(KEY+'Step'))||0,known=safeJSON(KEY+'Known',[]),review=safeJSON(KEY+'Review',[]),xp=Number(localStorage.getItem(KEY+'XP'))||0,cat='all';"
+          s = s.replace(old, new)
+          old_end = "$('closeFlash').onclick=()=>$('flash').classList.remove('open');render()})();"
+          new_end = "$('closeFlash').onclick=()=>$('flash').classList.remove('open');try{render()}catch(e){console.error(e);$('content').innerHTML='<div class=\"panel\"><h2>تعذر تشغيل محتوى الرحلة</h2><p>حدث خطأ مؤقت في تشغيل المحتوى. أعد فتح الصفحة وسيتم تحميل النسخة الآمنة.</p></div>'}})();"
+          s = s.replace(old_end, new_end)
+          if s == original:
+              raise SystemExit('No expected Premier Pas patterns were found; refusing to overwrite the file.')
+          p.write_text(s, encoding='utf-8')
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add preparatory-french-starter-final.html
+          git diff --cached --quiet || git commit -m 'fix: premier pas runtime and title'
+          git push
