@@ -1,7 +1,7 @@
 const fs=require('fs');
 const path='grade7-lesson-studio.html';
 let s=fs.readFileSync(path,'utf8');
-if(s.includes('function renderGames()') && s.includes("if(currentSection==='games')return renderGames();")){
+if(s.includes('function renderGames()')){
   console.log('Grade 7 interactive games patch already present');
   process.exit(0);
 }
