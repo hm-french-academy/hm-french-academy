@@ -109,6 +109,22 @@ jobs:
           grep -Fq 'function setGame' grade-4-l01-learning-studio.html
           grep -Fq 'function renderGame' grade-4-l01-learning-studio.html
           grep -Fq 'Math.random' grade-4-l01-learning-studio.html
+      - name: Isolate Premier Pas navigation in production artifact
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('<a class="hm-brand" href="index.html">','<div class="hm-brand">',1)
+          s=s.replace('</a><nav class="hm-nav">','</div><nav class="hm-nav">',1)
+          s=re.sub(r'<nav class="hm-nav">.*?</nav>','',s,count=1,flags=re.S)
+          s=re.sub(r'<div class="actions"><a class="btn" href="course\.html">🚀 ابدأ منهج الصف الأول الإعدادي</a></div>','<div class="actions"><span class="btn" aria-label="تمهيد إلى المنهج">🎓 تمهيد إلى منهج الصف الأول الإعدادي</span></div>',s,count=1)
+          p.write_text(s,encoding='utf-8')
+          assert '<nav class="hm-nav">' not in s
+          assert '<a class="hm-brand" href="index.html">' not in s
+          assert 'href="course.html">🚀 ابدأ منهج الصف الأول الإعدادي' not in s
+          PY
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
       - name: Setup Pages
