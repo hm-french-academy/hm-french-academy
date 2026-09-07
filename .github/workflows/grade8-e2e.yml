@@ -3,8 +3,22 @@ name: Grade 8 E2E Smoke Test
 on:
   push:
     branches: [main]
+    paths:
+      - 'grade-8.html'
+      - 'lesson.html'
+      - 'data/lessons/grade-8/**'
+      - 'tests/grade8-smoke.mjs'
+      - 'tests/grade8.e2e.spec.mjs'
+      - '.github/workflows/grade8-e2e.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'grade-8.html'
+      - 'lesson.html'
+      - 'data/lessons/grade-8/**'
+      - 'tests/grade8-smoke.mjs'
+      - 'tests/grade8.e2e.spec.mjs'
+      - '.github/workflows/grade8-e2e.yml'
   workflow_dispatch:
 
 env:
