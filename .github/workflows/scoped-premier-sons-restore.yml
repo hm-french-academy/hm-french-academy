@@ -1,0 +1,56 @@
+name: Scoped Premier Sons restore
+on:
+  push:
+    branches: [main]
+
+jobs:
+  patch:
+    if: github.actor == 'hm-french-academy'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore last stable Premier Pas and patch only Premiers sons
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout 154f5a1123ebfa1c35c53c0434f567699782588e -- preparatory-french-starter-final.html
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('preparatory-french-starter-final.html')
+          s = p.read_text(encoding='utf-8')
+          old = "const sounds=[['A','ا / أ'],['E','أُ / اِ'],['I','إي'],['O','أو'],['U','صوت فرنسي خاص'],['OU','أُو'],['OI','وا'],['AI','إي مفتوحة'],['É','إي مغلقة'],['AN','أنفية'],['ON','أنفية'],['CH','ش']];"
+          new = "const sounds=[['A','/a/','ami','صوت A في ami'],['E','/ə/ أو /ɛ/','petit','يتغير حسب السياق'],['I','/i/','livre','صوت I في livre'],['O','/ɔ/ أو /o/','rose','يتغير حسب السياق'],['U','/y/','lune','صوت فرنسي خاص'],['OU','/u/','rouge','تركيبة OU = صوت واحد، وليست O + U'],['OI','/wa/','moi','تركيبة OI = «وا» تقريبًا، وليست O + I'],['AI','/ɛ/','maison','تركيبة AI تعطي غالبًا /ɛ/'],['EI','/ɛ/','seize','تركيبة EI تعطي غالبًا /ɛ/'],['AU','/o/','jaune','تركيبة AU = صوت /o/'],['EAU','/o/','eau','ثلاثة أحرف لصوت واحد /o/'],['É','/e/','été','صوت /e/'],['ER','/e/','parler','في نهاية الفعل غالبًا /e/'],['EZ','/e/','parlez','في نهاية الفعل غالبًا /e/'],['CH','/ʃ/','chat','CH = ش، صوت واحد'],['PH','/f/','photo','PH = ف، صوت واحد'],['GN','/ɲ/','montagne','صوت فرنسي واحد مميز'],['AN','/ɑ̃/','enfant','صوت أنفي في السياق المناسب'],['EN','/ɑ̃/','enfant','صوت أنفي في السياق المناسب'],['ON','/ɔ̃/','bonjour','صوت أنفي في السياق المناسب'],['IN','/ɛ̃/','vin','صوت أنفي في السياق المناسب'],['UN','/œ̃/','un','صوت أنفي خاص'],['QU','/k/','qui','QU = /k/']];"
+          if old not in s:
+              raise SystemExit('sounds block not found; refusing to modify other content')
+          s = s.replace(old, new, 1)
+          old_render = "if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><button class=\"speak\" data-speak=\"'+x[0]+'\">🔊 استمع</button></div>').join('')+'</div>';"
+          new_render = "if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b><p>هنا نتعلم الصوت الناتج عن الحروف عندما تجتمع، وليس أسماء الحروف منفصلة.</p></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><div class=\"example\">'+x[2]+'</div><div class=\"note\">'+x[3]+'</div><button class=\"speak\" data-speak=\"'+x[2]+'\">🔊 استمع إلى المثال</button></div>').join('')+'</div><div class=\"tip\">🎧 مثال: <b>OI</b> في <b>moi</b> = /wa/ تقريبًا «وا»، وليس O + I. و<b>OU</b> = /u/، و<b>CH</b> = /ʃ/.</div>';"
+          if old_render in s:
+              s = s.replace(old_render, new_render, 1)
+          else:
+              marker = "if(step===5)"
+              pos = s.find(marker)
+              if pos == -1:
+                  raise SystemExit('Premiers sons render block not found; refusing to modify other content')
+              # Targeted fallback: replace only the step-5 branch through its terminating semicolon.
+              end = s.find(';', pos)
+              if end == -1:
+                  raise SystemExit('Premiers sons branch boundary not found')
+              branch = s[pos:end+1]
+              if 'sounds.map' not in branch:
+                  raise SystemExit('Unexpected Premiers sons branch; refusing to modify other content')
+              s = s[:pos] + new_render + s[end+1:]
+          p.write_text(s, encoding='utf-8')
+          PY
+          git diff -- preparatory-french-starter-final.html
+          git status --short
+          rm -f .github/workflows/scoped-premier-sons-restore.yml
+          git config user.name 'hm-french-academy'
+          git config user.email '313761858+hm-french-academy@users.noreply.github.com'
+          git add preparatory-french-starter-final.html
+          git commit -m 'Scoped fix: Premiers sons only, preserve prior Premier Pas content'
+          git push origin main
