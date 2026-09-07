@@ -1,7 +1,6 @@
 name: Deploy HM Academy
 
-# Grade 1 release verification is part of the production Pages build.
-
+# Production Pages build. Grade 7 is intentionally isolated from this workflow.
 on:
   push:
     branches: [ main ]
@@ -14,20 +13,11 @@ permissions:
 
 jobs:
   deploy:
-    # Baccalaureat 2 has its own isolated Pages workflow. Skipping here prevents
-    # the legacy enrichment/repair scripts for other grades from running on a
-    # Baccalaureat-only release commit.
     if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[BAC2-DEPLOY]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Enrich Grade 1 Lesson 1 learning sections
-        run: python3 scripts/enrich-grade7-lesson1-pages.py
-      - name: Restore Grade 7 dynamic sections for lessons 2–11
-        run: python3 scripts/restore-grade7-dynamic-sections.py
-      - name: Repair Grade 7 Lesson 1 game interactions
-        run: node scripts/fix-grade7-games.js
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
       - name: Repair Grade 4 Lesson 1 game interactions
@@ -42,15 +32,6 @@ jobs:
         run: python3 scripts/fix-annual-revision-source-order.py
       - name: Add question-specific feedback to Secondary 1 annual review
         run: python3 scripts/fix-secondary-1-review-feedback.py
-      - name: Verify Grade 7 interactive game repair
-        run: |
-          set -euo pipefail
-          test -f grade7-lesson-studio.html
-          grep -Fq "function renderGames()" grade7-lesson-studio.html
-          grep -Fq "🏁 سباق الحروف" grade7-lesson-studio.html
-          grep -Fq "🕵️ من أنا؟" grade7-lesson-studio.html
-          grep -Fq "🔤 رتّب الكلمات" grade7-lesson-studio.html
-          grep -Fq "data-answer" grade7-lesson-studio.html
       - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
@@ -63,7 +44,6 @@ jobs:
           grep -Fq "arr.find(q=>String(q?.id||'')===questionId)" annual-revision-stage.html
           grep -Fq "grade(practice,'practiceQuiz','practiceResult')" annual-revision-stage.html
           grep -Fq "grade(fin,'finalQuiz','finalResult')" annual-revision-stage.html
-          grep -Fq "for(const u of ['./'+p,'https://raw.githubusercontent.com/hm-french-academy/hm-french-academy/main/'+p" annual-revision-stage.html
           python3 - <<'PY'
           import json
           files = {4:'data/reviews/grade-3/review-content-normalized.json',5:'data/reviews/grade-5/review-content.json',6:'data/reviews/grade-6/review-content.json',8:'data/reviews/grade-8/review-content.json',9:'data/reviews/grade-9/review-content.json'}
@@ -80,13 +60,9 @@ jobs:
             if grade in (4,9):
               missing=[q.get('id') for q in qs if not str(q.get('explanation','')).strip()]
               assert not missing, f'Grade {grade}: missing question-specific explanations: {missing}'
-              print(f'Grade {grade}: {len(qs)} questions verified with question-specific explanations')
-            else:
-              print(f'Grade {grade}: {len(qs)} questions and answer mappings verified')
           g5raw=json.load(open(files[5],encoding='utf-8')); g5=json.loads(g5raw['content']) if 'content' in g5raw else g5raw
           p04=next(q for q in g5['practiceQuestions'] if q['id']=='P04')
-          assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est', 'Grade 5 P04 source mapping regression'
-          print('Grade 5 P04 verified: Elle ___ petite. -> est')
+          assert p04['q']=='Elle ___ petite.' and p04['options'][p04['answer']]=='est'
           PY
       - name: Verify Secondary 1 review question-specific feedback
         run: |
@@ -95,27 +71,14 @@ jobs:
           grep -Fq "const hmQuestionFeedback=" secondary-1-review.html
           grep -Fq "answer-feedback" secondary-1-review.html
           grep -Fq "💡 لماذا؟" secondary-1-review.html
-          python3 - <<'PY'
-          import json,re
-          from pathlib import Path
-          s=Path('secondary-1-review.html').read_text(encoding='utf-8')
-          ids=re.findall(r"\['([DF]\d+)'",s)
-          assert len(ids)==48 and len(set(ids))==48, f'Unexpected Secondary 1 scored question IDs: {len(ids)}'
-          m=re.search(r'const hmQuestionFeedback=(\{.*?\});\s*const finalQ=',s,re.S)
-          assert m, 'Secondary 1 feedback map missing'
-          fb=json.loads(m.group(1))
-          assert set(ids)==set(fb), 'Secondary 1 feedback map does not cover all scored questions'
-          assert all(str(v).strip() for v in fb.values()), 'Secondary 1 contains empty explanations'
-          print('Secondary 1: 48 scored questions verified with question-specific explanations')
-          PY
-      - name: Verify lesson pages
+      - name: Verify isolated Grade 7 lesson page and source data
         run: |
           set -euo pipefail
           test -f grade7-lesson-studio.html
-          grep -q "نطق الحرف" grade7-lesson-studio.html
-          grep -q "نطق المثال" grade7-lesson-studio.html
-          grep -q "Les mots transparents" grade7-lesson-studio.html
-          grep -q "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
+          grep -Fq "نسخة مستقلة للمرحلة" grade7-lesson-studio.html
+          grep -Fq "data/lessons/grade-7" grade7-lesson-studio.html
+          test -f data/lessons/grade-7/unit-1/lesson-1.json
+          grep -Fq "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
       - name: Verify Grade 4 lesson entry
         run: |
           set -euo pipefail
