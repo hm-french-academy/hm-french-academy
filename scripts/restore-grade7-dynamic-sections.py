@@ -4,7 +4,7 @@ p=Path('grade7-lesson-studio.html')
 s=p.read_text(encoding='utf-8')
 def block(section,next_section,replacement):
     global s
-    pat=rf"if\(currentSection==='({section})'\).*?(?=if\(currentSection==='({next_section})'\))"
+    pat=rf"if\((?:currentSection|section)==='({section})'\).*?(?=if\((?:currentSection|section)==='({next_section})'\))"
     s,n=re.subn(pat,replacement,s,count=1,flags=re.S)
     if n != 1: raise SystemExit(f'Could not restore {section}')
 block('introduction','vocabulary',"if(currentSection==='introduction'){if(id!=='grade7-u1-l1')return `<div class=\"card source\"><h2>🚀 بداية الدرس</h2><p>${esc(data.titleAr||'')}</p><div class=\"section-lead\"><b>${esc(data.titleFr||'')}</b><br>${esc(jc.introduction?.goal||data.goal||'ابدأ بالتعرف على التحيات الفرنسية واختيار التحية المناسبة حسب الموقف والوقت.')}</div>${sections().length?'<h3>مكونات الدرس</h3>'+list(sections().map(x=>x.title)):''}</div>`;return `<div class=\"card source\"><h2>🚀 بداية الدرس</h2><p>${esc(data.titleAr||'')}</p><p>${esc(jc.introduction?.goal||cfg.introduction?.goal||data.goal||'التعرف على موضوع الدرس ومحتواه.')}</p>${sections().length?'<h3>مكونات المصدر</h3>'+list(sections().map(x=>x.title)):''}</div>`}")
