@@ -125,6 +125,19 @@ jobs:
           assert '<a class="hm-brand" href="index.html">' not in s
           assert 'href="course.html">🚀 ابدأ منهج الصف الأول الإعدادي' not in s
           PY
+      - name: Inject platform analytics into published artifact only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in Path('.').rglob('*.html'):
+            if '.git' in p.parts: continue
+            s=p.read_text(encoding='utf-8',errors='ignore')
+            if 'scripts/platform-analytics.js' in s: continue
+            marker='</head>'
+            if marker in s:
+              s=s.replace(marker,'<script src="scripts/platform-analytics.js?v=20260908" defer></script>\n'+marker,1)
+              p.write_text(s,encoding='utf-8')
+          PY
       - name: Write deployment fingerprint
         run: echo "$GITHUB_SHA" > deployment-version.txt
       - name: Setup Pages
