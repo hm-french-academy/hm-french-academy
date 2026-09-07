@@ -1,0 +1,55 @@
+name: Isolate Premier Pas navigation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  isolate:
+    if: github.actor == 'hm-french-academy' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove outbound navigation from Premier Pas only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          original=s
+          # Keep HM branding, but make it non-navigational.
+          s=s.replace('<a class="hm-brand" href="index.html">','<div class="hm-brand">',1)
+          s=s.replace('</a><nav class="hm-nav">','</div><nav class="hm-nav">',1)
+          # Remove the entire global navigation from this page only.
+          s=re.sub(r'<nav class="hm-nav">.*?</nav>','',s,count=1,flags=re.S)
+          if s==original:
+              raise SystemExit('Expected Premier Pas header structure was not found; refusing to modify file.')
+          p.write_text(s,encoding='utf-8')
+          print('Premier Pas navigation isolated.')
+          PY
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('preparatory-french-starter-final.html').read_text(encoding='utf-8')
+          assert '<nav class="hm-nav">' not in s
+          assert '<a class="hm-brand" href="index.html">' not in s
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          assert scripts
+          Path('/tmp/premier-pas.js').write_text(scripts[-1],encoding='utf-8')
+          PY
+          node --check /tmp/premier-pas.js
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add preparatory-french-starter-final.html
+          if git diff --cached --quiet; then
+            echo 'No Premier Pas navigation changes needed.'
+          else
+            git commit -m 'fix: isolate Premier Pas from global navigation'
+            git push origin main
+          fi
