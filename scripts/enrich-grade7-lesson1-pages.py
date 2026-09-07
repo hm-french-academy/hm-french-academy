@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 p = Path('grade7-lesson-studio.html')
 s = p.read_text(encoding='utf-8')
@@ -60,3 +61,21 @@ if "closest('.opt')" not in s:
     s = s.replace("load().catch(e=>{console.error(e);", "document.addEventListener('click',e=>{let b=e.target.closest('.opt');if(!b)return;let box=b.closest('.qbox'),out=box.querySelector('.result');let ok=b.dataset.value===b.dataset.answer;out.textContent=ok?'✅ إجابة صحيحة':'❌ ليست الإجابة الصحيحة — حاول مرة أخرى';out.style.color=ok?'#17854a':'#b42318'});load().catch(e=>{console.error(e);", 1)
 
 p.write_text(s, encoding='utf-8')
+
+# 2) Published-only content correction: replace the stale generic practice bank
+# with questions built directly from Lesson 1's verified alphabet/vowel/transparent-word content.
+lesson_path = Path('data/lessons/grade-7/unit-1/lesson-1.json')
+raw = json.loads(lesson_path.read_text(encoding='utf-8'))
+data = json.loads(raw['content']) if isinstance(raw, dict) and isinstance(raw.get('content'), str) else raw
+
+data['publishedBuild'] = '2026-09-07-grade7-l1-published-content-v4'
+data['status'] = 'gold-standard-v4-published-verified'
+data['embeddedPractice'] = [
+    {'q': "ما الحرف المرتبط بكلمة «arbre»؟", 'options': ['A', 'E', 'O'], 'answer': 'A'},
+    {'q': "ما الحرف المرتبط بكلمة «éléphant»؟", 'options': ['A', 'E', 'I'], 'answer': 'E'},
+    {'q': "اختر الكلمة الفرنسية الصحيحة لمعنى «تليفون».", 'options': ['Un taxi', 'Un téléphone', 'Un piano'], 'answer': 'Un téléphone'},
+    {'q': "اختر الكلمة الفرنسية الصحيحة لمعنى «جيتار».", 'options': ['Une radio', 'Une guitare', 'Un vase'], 'answer': 'Une guitare'},
+    {'q': "أي كلمة تعني «أوتوبيس»؟", 'options': ['Un autobus', 'Un balcon', 'Un bouquet'], 'answer': 'Un autobus'},
+    {'q': "اختر الكلمة الشفافة الصحيحة لمعنى «سينما».", 'options': ['Un cinéma', 'Un domino', 'Un garage'], 'answer': 'Un cinéma'}
+]
+lesson_path.write_text(json.dumps({'content': json.dumps(data, ensure_ascii=False, separators=(',', ':')), 'encoding': 'utf-8'}, ensure_ascii=False, indent=2), encoding='utf-8')
