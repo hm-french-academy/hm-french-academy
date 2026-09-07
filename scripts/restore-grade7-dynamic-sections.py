@@ -16,3 +16,4 @@ block('games','smart-review',"if(currentSection==='games'){if(id!=='grade7-u1-l1
 block('smart-review','assessment',"if(currentSection==='smart-review'){if(id!=='grade7-u1-l1')return `<div class=\"card enrich\"><h2>🧠 المراجعة الذكية</h2>${list(jc.smartReview?.targets)}</div>`;return `<div class=\"card enrich\"><h2>🧠 المراجعة الذكية</h2>${list(jc.smartReview?.targets)}</div>`}")
 block('assessment','progress',"if(currentSection==='assessment'){let a=data.formalAssessment;return `<div class=\"card source\"><h2>🏆 التقييم</h2>${a?`<div class=\"ok\">إجمالي الأسئلة المعلن في المصدر: <b>${esc(a.sourceDeclaredTotal)}</b></div>${list((a.sourceExerciseStructure||[]).map(x=>x.title))}`:'<div class=\"notice\">التقييم الخاص بهذا الدرس غير متاح حاليًا.</div>'}</div>`}")
 p.write_text(s,encoding='utf-8')
+# compatibility marker for the Grade 7 production Pages pipeline
