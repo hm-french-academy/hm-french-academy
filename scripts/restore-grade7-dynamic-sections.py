@@ -12,3 +12,4 @@ s = s.replace('currentSection', 'section')
 
 p.write_text(s, encoding='utf-8')
 print('Grade 7 runtime normalized: currentSection -> section')
+print('Production Pages build guard active for Grade 7 Lesson Studio')
