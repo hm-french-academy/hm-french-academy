@@ -4,16 +4,23 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>HM Academy - التحليلات</title>
 <link rel="stylesheet" href="css/style.css?v=20260808">
-<style>.wrap{padding:24px}.nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}.nav a{padding:10px 14px;background:#f1f5f9;border-radius:12px;text-decoration:none;color:inherit}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.bar{height:14px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}.empty{color:#666;text-align:center}</style>
+<style>.wrap{padding:24px}.nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}.nav a{padding:10px 14px;background:#f1f5f9;border-radius:12px;text-decoration:none;color:inherit}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #0001}.bar{height:14px;background:#eee;border-radius:10px;overflow:hidden}.fill{height:100%;background:#2563eb}.empty{color:#666;text-align:center}.muted{color:#64748b;font-size:.9rem}</style>
 </head>
 <body>
 <header><h2>🇫🇷 HM Academy</h2><p>لوحة التحليلات الإدارية</p></header>
 <main class="wrap">
 <nav class="nav"><a href="admin-center.html">مركز الإدارة</a><a href="admin-dashboard.html">لوحة الإدارة</a><a href="admin-students.html">المتعلمين</a><a href="admin-assessments.html">التقييمات</a><a href="admin-activity.html">النشاط</a><a href="admin-notifications.html">الإشعارات</a><a href="admin-settings.html">الإعدادات</a></nav>
 <h1>📊 تحليلات المنصة</h1>
-<div class="grid"><div class="card">الطلاب النشطون<h2 id="active">0</h2></div><div class="card">متوسط التقييم<h2 id="avg">0%</h2></div></div>
-<div class="card"><h2>توزيع المستويات</h2><div id="levels"></div></div>
-<div class="card"><h2>الدروس الأكثر نشاطًا</h2><ul id="lessons"></ul></div>
+<p class="muted">إحصائيات الزيارات الحقيقية للمنصة — دون تعديل ملفات الدروس.</p>
+<div class="grid"><div class="card">إجمالي الزيارات<h2 id="totalViews">0</h2></div><div class="card">الجلسات الفريدة<h2 id="uniqueSessions">0</h2></div><div class="card">زيارات اليوم<h2 id="todayViews">0</h2></div></div>
+<div class="card"><h2>أكثر الصفحات زيارة</h2><div id="topPages"></div></div>
+<div class="card"><h2>الزيارات خلال آخر 7 أيام</h2><div id="days"></div></div>
+<div id="status" class="muted"></div>
 </main><footer>HM Academy © 2026</footer>
-<script>(async()=>{try{const d=await(await fetch('data/admin-analytics.json')).json();active.textContent=d.activeStudents||0;avg.textContent=(d.averageAssessmentScore||0)+'%';levels.innerHTML=Object.entries(d.studentsByLevel||{}).map(([k,v])=>`<p>${k}: ${v}<div class="bar"><div class="fill" style="width:${v*20}%"></div></div></p>`).join('')||'<p class="empty">لا توجد بيانات</p>';lessons.innerHTML=(d.topLessons||[]).map(x=>`<li>${x}</li>`).join('')||'<li class="empty">لا توجد بيانات بعد</li>'}catch(e){}})()</script>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './js/supabase-config.js';
+const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY); const $=id=>document.getElementById(id);
+(async()=>{try{const {data:{user}}=await supabase.auth.getUser();if(!user){$('status').textContent='يجب تسجيل الدخول بحساب الإدارة لعرض الإحصائيات.';return;}const {data,error}=await supabase.rpc('get_platform_analytics');if(error)throw error;const d=data||{};$('totalViews').textContent=d.totalViews||0;$('uniqueSessions').textContent=d.uniqueSessions||0;$('todayViews').textContent=d.todayViews||0;const pages=d.topPages||[],max=Math.max(1,...pages.map(x=>Number(x.views)||0));$('topPages').innerHTML=pages.length?pages.map(x=>`<p><strong>${x.page}</strong> — ${x.views} زيارة<div class="bar"><div class="fill" style="width:${Math.round((Number(x.views)||0)*100/max)}%"></div></div></p>`).join(''):'<p class="empty">لا توجد بيانات بعد</p>';const days=d.last7Days||[],maxDay=Math.max(1,...days.map(x=>Number(x.views)||0));$('days').innerHTML=days.length?days.map(x=>`<p>${x.day} — ${x.views} زيارة<div class="bar"><div class="fill" style="width:${Math.round((Number(x.views)||0)*100/maxDay)}%"></div></div></p>`).join(''):'<p class="empty">لا توجد بيانات بعد</p>';$('status').textContent='تم تحديث الإحصائيات بنجاح.';}catch(e){$('status').textContent='تعذر تحميل الإحصائيات الآن.';console.error(e)}})();
+</script>
 </body></html>
