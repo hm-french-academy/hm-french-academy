@@ -75,10 +75,13 @@ jobs:
         run: |
           set -euo pipefail
           test -f grade7-lesson-studio.html
-          grep -Fq "نسخة مستقلة للمرحلة" grade7-lesson-studio.html
+          grep -Fq "مسار مستقل · مصدر أصلي + إثراء" grade7-lesson-studio.html
           grep -Fq "data/lessons/grade-7" grade7-lesson-studio.html
+          ! grep -Fq "currentSection" grade7-lesson-studio.html
           test -f data/lessons/grade-7/unit-1/lesson-1.json
-          grep -Fq "embeddedPractice" data/lessons/grade-7/unit-1/lesson-1.json
+          test -f data/lessons/grade-7/unit-1/lessons-7-11-source-extracted.json
+          grep -Fq "grade7-u1-l1" data/lessons/grade-7/unit-1/lesson-1.json
+          grep -Fq "verified-from-original-interactive-html" data/lessons/grade-7/unit-1/lessons-7-11-source-extracted.json
       - name: Verify Grade 4 lesson entry
         run: |
           set -euo pipefail
