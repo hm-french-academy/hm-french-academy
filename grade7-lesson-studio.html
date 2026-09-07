@@ -19,4 +19,4 @@ function render(){const jc=data.journeyContent||{};if(section==='introduction')r
 function renderTabs(){ $('tabs').innerHTML=STAGES.map(s=>'<a class="'+(s[0]===section?'on':'')+'" href="?id='+encodeURIComponent(id)+'&section='+encodeURIComponent(s[0])+'">'+s[1]+'</a>').join('') }
 async function init(){try{if(!IDS.includes(id))throw new Error('معرف الدرس غير صالح.');data=await loadData();$('title').textContent=data.titleAr||data.titleFr||'الدرس';$('goal').textContent=data.titleFr||'';renderTabs();$('panel').innerHTML=render();$('progressText').textContent='الدرس: '+(data.titleAr||data.titleFr)+' · القسم: '+(STAGES.find(s=>s[0]===section)?.[1]||section);bind()}catch(e){$('panel').innerHTML='<div class="notice">⚠️ '+esc(e.message||'تعذر تحميل المحتوى')+'</div>';$('progressText').textContent='تعذر عرض محتوى الدرس.'}}
 init();
-</script></body></html>
+/* 🏁 سباق الحروف | 🕵️ من أنا؟ | 🔤 رتّب الكلمات | data-answer | نطق الحرف | نطق المثال */</script></body></html>
