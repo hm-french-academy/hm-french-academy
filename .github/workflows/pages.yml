@@ -1,6 +1,7 @@
 name: Deploy HM Academy
 
 # Production Pages build. Grade 7 is intentionally isolated from this workflow.
+# Force production publication after scoped page fixes.
 on:
   push:
     branches: [ main ]
