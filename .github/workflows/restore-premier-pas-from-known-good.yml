@@ -1,0 +1,44 @@
+name: Restore Premier Pas and apply scoped Premiers sons visual update
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.actor == 'hm-french-academy' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore known-good page then patch Premiers sons only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout d73ed3d208779a64b8ff08583f32e7efa10a94bc -- preparatory-french-starter-final.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          pattern=r"if\(step===5\)h\+='.*?';"
+          m=re.search(pattern,s,re.S)
+          if not m:
+              raise SystemExit('step 5 render not found')
+          replacement="""if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b><p>استمع إلى الصوت، وشاهد مثالًا بصريًا للكلمة التي يظهر فيها هذا الصوت.</p></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"visual\" aria-label=\"'+x[2]+'\">'+({'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤','maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬','chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'👶','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'}[x[2]]||'🖼️')+'</div><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><div class=\"example\" dir=\"ltr\">'+x[2]+'</div><div class=\"note\">'+x[3]+'</div><button class=\"speak\" data-speak=\"'+x[2]+'\">🔊 استمع إلى المثال</button></div>').join('')+'</div><div class=\"tip\">🎧 كل الأمثلة الموجودة في هذه المحطة تظهر هنا، مع الكلمة نفسها والنطق والشرح والصورة البصرية.</div>';"""
+          s=s[:m.start()]+replacement+s[m.end():]
+          p.write_text(s,encoding='utf-8')
+          blocks=re.findall(r'<script[^>]*>(.*?)</script>',s,re.S)
+          Path('/tmp/page.js').write_text('\n'.join(blocks),encoding='utf-8')
+          PY
+          node --check /tmp/page.js
+          git add preparatory-french-starter-final.html
+          git diff --cached --quiet && { echo 'No repair change'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: restore Premier Pas and upgrade all Premiers sons examples'
+          git pull --rebase origin main
+          git push origin main
