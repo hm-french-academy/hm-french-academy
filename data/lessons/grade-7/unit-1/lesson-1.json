@@ -6,16 +6,16 @@
   "unit": "unit-1",
   "sourceLesson": 1,
   "status": "published-runtime-clean",
-  "publishedBuild": "2026-09-07-grade7-l1-runtime-fix-v1",
+  "publishedBuild": "2026-09-07-grade7-l1-runtime-fix-v2",
   "sourceSections": [
     {"id":"alphabet","title":"L'alphabet français","content":"ABCDEFGHIJKLMNOPQRSTUVWXYZ","interaction":"click-to-hear","verified":true},
-    {"id":"vowels","title":"Les voyelles","items":[["A","arbre","شجرة","A comme arbre"],["E","éléphant","فيل","E comme éléphant"],["I","image","صورة","I comme image"],["O","orange","برتقالة","O comme orange"],["U","uniforme","زي مدرسي","U comme uniforme"],["Y","yoyo","يويو","Y comme yoyo"]],"verified":true},
+    {"id":"vowels","title":"Les voyelles","items":[["A","arbre","شجرة","A comme arbre"],["E","éléphant","فيل","E comme éléphant"],["I","image","صورة","I comme image"],["O","orange","برتقالة","O comme orange"],["U","uniforme","زي مدرسي","U comme uniforme"],["Y","yoyo","يويو"]],"verified":true},
     {"id":"transparent-1","title":"Les mots transparents (1)","items":[["Un pyjama","بيجاما"],["Un pantalon","بنطلون"],["Un taxi","تاكسي"],["Un domino","دومينو"],["Un canapé","كنبة"],["Un téléphone","تليفون"],["Un biscuit","بسكويت"],["Un balcon","بلكونة"],["Un vase","فازة"]],"verified":true},
     {"id":"transparent-2","title":"Les mots transparents (2)","items":[["Un ascenseur","أسانسير"],["Une caméra","كاميرا"],["Un autobus","أوتوبيس"],["Un gilet","جيلية"],["Une écharpe","إيشارب"],["Un bouquet","باقة ورد"],["Une guitare","جيتار"],["Une télévision","تليفزيون"],["Une plage","شاطئ"],["Une lampe","لمبة"],["Une raquette","مضرب"],["Une radio","راديو"],["Un piano","بيانو"],["Un garage","جراج"],["Un cinéma","سينما"],["Un journal","جورنال"]],"verified":true}
   ],
   "journeyContent": {
     "introduction": {"goal":"في هذا الدرس نتعرف إلى الأبجدية الفرنسية، نميز الحروف المتحركة، ثم نكتشف الكلمات الشفافة التي تساعدنا على فهم كلمات مألوفة.","learningPath":["أرى الحرف","أسمع النطق","أميز الحرف المتحرك","أكتشف الكلمة الشفافة","أطبق وأتحقق من إجابتي"]},
-    "vocabulary": {"items":[["A","arbre","شجرة","A comme arbre"],["E","éléphant","فيل","E comme éléphant"],["I","image","صورة","I comme image"],["O","orange","برتقالة","O comme orange"],["U","uniforme","زي مدرسي","U comme uniforme"],["Y","yoyo","يويو","Y comme yoyo"],["Un téléphone","تليفون"],["Une guitare","جيتار"],["Un cinéma","سينما"],["Un taxi","تاكسي"],["Un autobus","أوتوبيس"]],"instruction":"استمع إلى الكلمة، اقرأها، ثم اربطها بمعناها."},
+    "vocabulary": {"items":[["A","arbre","شجرة","A comme arbre"],["E","éléphant","فيل","E comme éléphant"],["I","image","صورة","I comme image"],["O","orange","برتقالة","O comme orange"],["U","uniforme","زي مدرسي","U comme uniforme"],["Y","yoyo","يويو"],["Un téléphone","تليفون"],["Une guitare","جيتار"],["Un cinéma","سينما"],["Un taxi","تاكسي"],["Un autobus","أوتوبيس"]],"instruction":"استمع إلى الكلمة، اقرأها، ثم اربطها بمعناها."},
     "pronunciation": {"items":["A","E","I","O","U","Y","B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Z"],"instruction":"ابدأ بالحرف منفردًا ثم انتقل إلى أمثلة الكلمات."},
     "grammar": {"title":"Comment reconnaître un mot transparent ?","explanation":"نبحث عن كلمة فرنسية تشبه كلمة نعرفها، ثم نتحقق من النطق والمعنى. التشابه وسيلة للاكتشاف وليس بديلًا عن الاستماع."},
     "conversation": {"prompts":["A comme arbre.","E comme éléphant.","Un téléphone.","Une guitare.","Un cinéma."]},
