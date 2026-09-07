@@ -1,0 +1,37 @@
+name: Premier Pas static fallback
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/premier-pas-static-fallback.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject static Premier Pas fallback
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          old='<div id="journey" class="journey"></div><section id="content" class="content"></section>'
+          new='''<div id="journey" class="journey">\n<button class="step active" type="button">🧭 البداية<br><small>ابدأ بدون خوف</small></button>\n<button class="step" type="button">🇫🇷 Bienvenue<br><small>ما هي الفرنسية؟</small></button>\n<button class="step" type="button">🌉 Français ↔ عربي<br><small>كلمات مألوفة</small></button>\n<button class="step" type="button">🔤 Alphabet<br><small>الحروف الفرنسية</small></button>\n<button class="step" type="button">🔊 Premiers sons<br><small>الأصوات الأولى</small></button>\n<button class="step" type="button">💬 Premières phrases<br><small>أول جمل</small></button>\n<button class="step" type="button">🎮 Entraînement<br><small>تدريب</small></button>\n<button class="step" type="button">🏆 Défi final<br><small>التحدي النهائي</small></button>\n</div><section id="content" class="content">\n<h2>👋 ابدأ رحلتك في الفرنسية</h2>\n<p class="lead">هذا الكورس التمهيدي مصمم لتدخل منهج الصف الأول الإعدادي بثقة: اسمع، انطق، واكتشف كلمات فرنسية تعرف بعضها بالفعل.</p>\n<div class="grid">\n<div class="box"><h3>🇫🇷 Bienvenue</h3><p>تعرف على الفرنسية وكيف تبدو في حياتك اليومية.</p><button class="btn" type="button" onclick="try{document.querySelector('.step:nth-child(2)').click()}catch(e){}">ابدأ</button></div>\n<div class="box"><h3>🃏 كلمات تعرفها</h3><p>Bonjour · Merci · café · pizza · bus · taxi وغيرها.</p><button class="btn" type="button" onclick="try{document.querySelector('.step:nth-child(3)').click()}catch(e){}">اكتشف</button></div>\n<div class="box"><h3>🔊 Premiers sons</h3><p>تعرف على أصوات فرنسية أساسية مثل OU وOI وCH وPH.</p></div>\n<div class="box"><h3>🎮 تدريب وتحدي</h3><p>بعد التعرف على الكلمات والأصوات، انتقل للتدريب والتحدي النهائي.</p></div>\n</div><div class="tip">💡 <b>نصيحة:</b> لا تحاول حفظ كل شيء من أول مرة. اسمع الكلمة، انطقها، ثم ارجع إليها مرة أخرى.</div>\n</section>'''
+          if old not in s:
+              raise SystemExit('Premier Pas target container not found')
+          if 'هذا الكورس التمهيدي مصمم لتدخل منهج الصف الأول الإعدادي بثقة' in s:
+              print('Fallback already present; no change needed')
+          else:
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+              print('Static fallback injected')
+          PY
+      - name: Commit fallback
+        run: |
+          git config user.name 'hm-french-academy'
+          git config user.email 'hf.toma@gmail.com'
+          git add preparatory-french-starter-final.html
+          if git diff --cached --quiet; then echo 'No changes'; exit 0; fi
+          git commit -m 'Fix Premier Pas visible course content'
+          git push origin main
