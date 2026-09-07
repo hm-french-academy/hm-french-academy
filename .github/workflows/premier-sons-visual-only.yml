@@ -1,0 +1,53 @@
+name: Premier Pas — Premiers sons visual-only
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor == 'hm-french-academy' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch only Premiers sons rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          visual={
+            'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤','maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬','chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'👶','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'
+          }
+          # Only replace the step-5 rendering expression. Nothing else in the page is edited.
+          pattern=r"if\(step===5\)h\+='.*?';"
+          m=re.search(pattern,s,re.S)
+          if not m:
+              raise SystemExit('Premiers sons render block not found')
+          replacement="""if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b><p>استمع إلى الصوت، وشاهد مثالًا بصريًا للكلمة التي يظهر فيها هذا الصوت.</p></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"visual\" aria-label=\"'+x[2]+'\">'+({'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤','maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬','chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'👶','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'}[x[2]]||'🖼️')+'</div><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><div class=\"example\" dir=\"ltr\">'+x[2]+'</div><div class=\"note\">'+x[3]+'</div><button class=\"speak\" data-speak=\"'+x[2]+'\">🔊 استمع إلى المثال</button></div>').join('')+'</div>';"""
+          s=s[:m.start()]+replacement+s[m.end():]
+          p.write_text(s,encoding='utf-8')
+          PY
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('preparatory-french-starter-final.html').read_text(encoding='utf-8')
+          blocks=re.findall(r'<script[^>]*>(.*?)</script>',s,re.S)
+          Path('/tmp/page.js').write_text('\n'.join(blocks),encoding='utf-8')
+          PY
+          node --check /tmp/page.js
+          git add preparatory-french-starter-final.html
+          git diff --cached --quiet && { echo 'No scoped change'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: add visual examples to Premiers sons only'
+          git push origin main
