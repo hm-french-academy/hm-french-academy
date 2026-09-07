@@ -1,4 +1,4 @@
-name: Restore and repair Premier Pas
+name: Scoped Premier Pas sounds repair
 
 on:
   push:
@@ -15,33 +15,57 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Restore stable Premier Pas and apply safe fixes
+
+      - name: Patch only Premiers sons
         shell: bash
         run: |
           set -euo pipefail
-          git checkout 154f5a1123ebfa1c35c53c0434f567699782588e -- preparatory-french-starter-final.html
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p = Path('preparatory-french-starter-final.html')
           s = p.read_text(encoding='utf-8')
-          old = "const sounds=[['A','ا / أ'],['E','أُ / اِ'],['I','إي'],['O','أو'],['U','صوت فرنسي خاص'],['OU','أُو'],['OI','وا'],['AI','إي مفتوحة'],['É','إي مغلقة'],['AN','أنفية'],['ON','أنفية'],['CH','ش']];"
-          new = "const sounds=[['A','/a/','ami','صوت A في ami'],['E','/ə/ أو /ɛ/','petit','يتغير حسب السياق'],['I','/i/','livre','صوت I في livre'],['O','/ɔ/ أو /o/','rose','يتغير حسب السياق'],['U','/y/','lune','صوت فرنسي خاص'],['OU','/u/','rouge','تركيبة OU = صوت واحد، وليست O + U'],['OI','/wa/','moi','تركيبة OI = «وا» تقريبًا، وليست O + I'],['AI','/ɛ/','maison','تركيبة AI تعطي غالبًا /ɛ/'],['EI','/ɛ/','seize','تركيبة EI تعطي غالبًا /ɛ/'],['AU','/o/','jaune','تركيبة AU = صوت /o/'],['EAU','/o/','eau','ثلاثة أحرف لصوت واحد /o/'],['É','/e/','été','صوت /e/'],['ER','/e/','parler','في نهاية الفعل غالبًا /e/'],['EZ','/e/','parlez','في نهاية الفعل غالبًا /e/'],['CH','/ʃ/','chat','CH = ش، صوت واحد'],['PH','/f/','photo','PH = ف، صوت واحد'],['GN','/ɲ/','montagne','صوت فرنسي واحد مميز'],['AN','/ɑ̃/','enfant','صوت أنفي في السياق المناسب'],['EN','/ɑ̃/','enfant','صوت أنفي في السياق المناسب'],['ON','/ɔ̃/','bonjour','صوت أنفي في السياق المناسب'],['IN','/ɛ̃/','vin','صوت أنفي في السياق المناسب'],['UN','/œ̃/','un','صوت أنفي خاص'],['QU','/k/','qui','QU = /k/']];"
-          if old not in s:
-              raise SystemExit('Stable sounds block not found')
-          s = s.replace(old, new, 1)
-          old_render = "if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><button class=\"speak\" data-speak=\"'+x[0]+'\">🔊 استمع</button></div>').join('')+'</div>';"
-          new_render = "if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b><p>هنا نتعلم الصوت الناتج عن الحروف عندما تجتمع، وليس أسماء الحروف منفصلة.</p></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><div class=\"example\">'+x[2]+'</div><div class=\"note\">'+x[3]+'</div><button class=\"speak\" data-speak=\"'+x[2]+'\">🔊 استمع إلى المثال</button></div>').join('')+'</div><div class=\"tip\">🎧 مثال: <b>OI</b> في <b>moi</b> = /wa/ تقريبًا «وا»، وليس O + I. و<b>OU</b> = /u/، و<b>CH</b> = /ʃ/.</div>';"
-          if old_render in s:
-              s = s.replace(old_render, new_render, 1)
-          s = s.replace('<h1>استكشف Le Français Simple</h1>', '<h1>استكشف Le Français Simple</h1>', 1)
+          old = s
+          visuals = {
+            'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤',
+            'maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬',
+            'chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'🧒','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'
+          }
+          visual_js = repr(visuals).replace("'", "'")
+          visual_js = visual_js.replace('{', '{').replace('}', '}')
+          block = '''if(step===5)h+='<div class="box"><b>🔊 Premiers sons</b><p>هنا نتعلم الصوت داخل الكلمة، مع مثال بصري وكلمة فرنسية ونطقها.</p></div><div class="sounds">'+sounds.map(x=>{const v={ami:'👦',petit:'🧒',livre:'📖',rose:'🌹',lune:'🌙',rouge:'🔴',moi:'👤',maison:'🏠',seize:'🔢',jaune:'🟡',eau:'💧',été:'☀️',parler:'🗣️',parlez:'💬',chat:'🐱',photo:'📷',montagne:'🏔️',enfant:'🧒',bonjour:'👋',vin:'🍇',un:'1️⃣',qui:'❓'}[x[2]]||'🔤';return '<div class="sound"><div class="visual" data-speak="'+esc(x[2])+'">'+v+'</div><b style="font-size:30px;direction:ltr">'+x[0]+'</b><div style="direction:ltr;font-size:20px;font-weight:800">'+x[2]+'</div><div>'+x[1]+'</div><div class="note">'+x[3]+'</div><button class="speak" data-speak="'+esc(x[2])+'">🔊 استمع إلى المثال</button></div>}).join('')+'</div><div class="tip">🎧 استمع إلى الكلمة وشاهد الصورة، ثم لاحظ الصوت المستهدف داخل المثال.</div>';'''
+          # Replace only the Premiers sons branch, regardless of the malformed older version.
+          pattern = r"if\(step===5\)h\+='.*?';if\(step===6\)"
+          m = re.search(pattern, s, re.S)
+          if not m:
+              raise SystemExit('Premiers sons render branch not found')
+          s = s[:m.start()] + block + 'if(step===6)' + s[m.end():]
+          if s == old:
+              print('NO_CHANGES')
+              raise SystemExit(0)
           p.write_text(s, encoding='utf-8')
+          print('PATCHED_ONLY_TARGET_BRANCH')
           PY
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('preparatory-french-starter-final.html').read_text(encoding='utf-8')
+          js='\n'.join(re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',s,re.S))
+          Path('/tmp/premier-pas.js').write_text(js,encoding='utf-8')
+          PY
+          node --check /tmp/premier-pas.js
+
+          git diff --name-only
+          test "$(git diff --name-only | wc -l | tr -d ' ')" = "1"
+          test "$(git diff --name-only)" = "preparatory-french-starter-final.html"
+
           git add preparatory-french-starter-final.html
           if git diff --cached --quiet; then
-            echo 'No changes produced'
-            exit 1
+            echo 'No HTML changes; nothing to commit.'
+            exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'fix: restore and repair Premier Pas published content'
+          git commit -m 'fix: add visual examples to Premier Pas Premiers sons'
           git push origin main
