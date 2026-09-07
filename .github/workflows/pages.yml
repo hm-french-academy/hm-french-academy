@@ -20,6 +20,8 @@ jobs:
         run: python3 scripts/enrich-grade7-lesson1-pages.py
       - name: Restore Grade 7 dynamic sections for lessons 2–11
         run: python3 scripts/restore-grade7-dynamic-sections.py
+      - name: Repair Grade 7 Lesson 1 game interactions
+        run: node scripts/fix-grade7-games.js
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
       - name: Repair Grade 4 Lesson 1 game interactions
@@ -34,6 +36,15 @@ jobs:
         run: python3 scripts/fix-annual-revision-source-order.py
       - name: Add question-specific feedback to Secondary 1 annual review
         run: python3 scripts/fix-secondary-1-review-feedback.py
+      - name: Verify Grade 7 interactive game repair
+        run: |
+          set -euo pipefail
+          test -f grade7-lesson-studio.html
+          grep -Fq "function renderGames()" grade7-lesson-studio.html
+          grep -Fq "🏁 سباق الحروف" grade7-lesson-studio.html
+          grep -Fq "🕵️ من أنا؟" grade7-lesson-studio.html
+          grep -Fq "🔤 رتّب الكلمات" grade7-lesson-studio.html
+          grep -Fq "data-answer" grade7-lesson-studio.html
       - name: Verify annual revision question-specific feedback for all mapped stages
         run: |
           set -euo pipefail
