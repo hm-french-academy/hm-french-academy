@@ -1,0 +1,53 @@
+name: Deploy Baccalaureat 2 — Isolated
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'baccalaureat-2.html'
+      - 'baccalaureat-2-lesson-studio*.html'
+      - 'data/curricula/secondary-2/**'
+      - 'data/lessons/secondary-2/**'
+      - '.github/workflows/baccalaureat-2-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-baccalaureat-2
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify Baccalaureat 2 release files
+        run: |
+          set -euo pipefail
+          test -f baccalaureat-2.html
+          test -f baccalaureat-2-lesson-studio-final.html
+          test -f data/curricula/secondary-2/baccalaureat-2027-research-map.json
+          grep -Fq '6</b> وحدات' baccalaureat-2.html
+          grep -Fq '24</b> درسًا' baccalaureat-2.html
+          grep -Fq '12</b> مرحلة تعلم' baccalaureat-2.html
+          grep -Fq 'Comprendre → Écouter → Lire → Vocabulaire → Grammaire → Phonétique → Parler → Interagir → Écrire → Tâche → Auto-évaluation → Entraînement' baccalaureat-2.html
+          grep -Fq 'official_curriculum_is_authoritative' data/curricula/secondary-2/baccalaureat-2027-research-map.json
+          grep -Fq 'vary_correct_answer_position' data/curricula/secondary-2/baccalaureat-2027-research-map.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy site — Baccalaureat 2
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -14,6 +14,10 @@ permissions:
 
 jobs:
   deploy:
+    # Baccalaureat 2 has its own isolated Pages workflow. Skipping here prevents
+    # the legacy enrichment/repair scripts for other grades from running on a
+    # Baccalaureat-only release commit.
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[BAC2-DEPLOY]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
