@@ -1,0 +1,32 @@
+name: Isolate Premier Pas page
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  isolate:
+    if: ${{ !contains(github.event.head_commit.message, 'isolate: Premier Pas navigation') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove outbound navigation from Premier Pas only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          old='<header class="hm-header"><a class="hm-brand" href="index.html"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy <small>تعليم اللغة الفرنسية</small></span></a><nav class="hm-nav"><a href="index.html">الرئيسية</a><a href="course.html">المناهج الدراسية</a><a href="levels.html">مستويات اللغة</a><a href="language-courses.html">مسارات اللغة والكورسات</a><a href="library.html">المكتبة</a></nav></header>'
+          new='<header class="hm-header"><div class="hm-brand"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy <small>تعليم اللغة الفرنسية</small></span></div></header>'
+          if old not in s:
+              raise SystemExit('Expected Premier Pas header not found; stopping without changes.')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add preparatory-french-starter-final.html
+          git diff --cached --quiet && exit 0
+          git commit -m "isolate: Premier Pas navigation"
+          git push
