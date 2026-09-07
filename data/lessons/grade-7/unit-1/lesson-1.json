@@ -5,8 +5,8 @@
   "grade":"grade-7",
   "unit":"unit-1",
   "sourceLesson":1,
-  "status":"gold-standard-v2-qa-complete",
-  "publishedBuild":"2026-09-07-grade7-l1-l2-final",
+  "status":"gold-standard-v3-published-verified",
+  "publishedBuild":"2026-09-07-grade7-l1-l2-published-refresh",
   "sourceFiles":{"interactive":"Leçon_1/lesson1_interactive.html","reference":"Leçon_1/lesson1_reference.pdf","assessment":"Leçon_1/lesson1_assessment.pdf","quiz":"Leçon_1/lesson1_quiz_secure.html"},
   "sourceSections":[
     {"id":"alphabet","title":"L'alphabet français","content":"ABCDEFGHIJKLMNOPQRSTUVWXYZ","interaction":"click-to-hear","verified":true},
