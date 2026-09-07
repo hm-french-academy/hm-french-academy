@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Apply safe runtime and title fix
-        shell: python
         run: |
+          python3 - <<'PY'
           from pathlib import Path
           p = Path('preparatory-french-starter-final.html')
           s = p.read_text(encoding='utf-8')
@@ -31,10 +31,12 @@ jobs:
           if s == original:
               raise SystemExit('No expected Premier Pas patterns were found; refusing to overwrite the file.')
           p.write_text(s, encoding='utf-8')
+          PY
       - name: Commit and push
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add preparatory-french-starter-final.html
-          git diff --cached --quiet || git commit -m 'fix: premier pas runtime and title'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'fix: premier pas runtime and title'
           git push
