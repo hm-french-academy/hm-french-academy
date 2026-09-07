@@ -1,5 +1,7 @@
 name: Deploy HM Academy
 
+# Grade 1 release verification is part of the production Pages build.
+
 on:
   push:
     branches: [ main ]
