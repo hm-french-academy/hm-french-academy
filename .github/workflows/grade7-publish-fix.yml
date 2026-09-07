@@ -1,0 +1,30 @@
+name: Grade 7 publish repair
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+      - name: Apply Grade 7 interactive game repair
+        run: node scripts/fix-grade7-games.js
+      - name: Commit repaired Grade 7 studio
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- grade7-lesson-studio.html; then
+            echo "Grade 7 studio already repaired"
+          else
+            git add grade7-lesson-studio.html
+            git commit -m "Repair Grade 7 Lesson 1 interactive games"
+            git push
+          fi
