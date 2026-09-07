@@ -1,0 +1,43 @@
+name: Fix Premier Sons Layout
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-premier-sons-layout.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Tighten Premiers sons visual layout only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('preparatory-french-starter-final.html')
+          s=p.read_text(encoding='utf-8')
+          old='.box,.word,.cat,.sound{background:#f8fbff;border:1px solid #dbe5f1;border-radius:16px;padding:14px}.cat{text-align:center;cursor:pointer;cursor:pointer}'
+          if old not in s:
+              old='.box,.word,.cat,.sound{background:#f8fbff;border:1px solid #dbe5f1;border-radius:16px;padding:14px}.cat{text-align:center;cursor:pointer;'
+          marker='.box,.word,.cat,.sound{background:#f8fbff;border:1px solid #dbe5f1;border-radius:16px;padding:14px}'
+          if marker not in s:
+              raise SystemExit('CSS marker not found')
+          replacement=marker+' .sound{padding:10px;min-width:0;overflow:hidden}.sound .visual{font-size:32px;height:72px;min-height:72px}.sound .combo{font-size:22px;font-weight:900;line-height:1.2;margin-top:7px;direction:ltr}.sound .ipa{font-size:17px;line-height:1.3;margin-top:3px;direction:ltr}.sound .example{font-size:18px;font-weight:800;line-height:1.3;margin-top:5px;overflow-wrap:anywhere}.sound .note{font-size:13px;line-height:1.55;color:#65748b;margin-top:5px;min-height:40px}.sound .speak{font-size:14px;padding:7px 6px;white-space:normal}'
+          s=s.replace(marker,replacement,1)
+          s=s.replace('@media(max-width:500px){.journey{grid-template-columns:repeat(2,1fr)}.words,.sounds{grid-template-columns:1fr 1fr}}','@media(max-width:500px){.journey{grid-template-columns:repeat(2,1fr)}.words{grid-template-columns:1fr 1fr}.sounds{grid-template-columns:1fr}.sound .visual{font-size:30px;height:68px;min-height:68px}.sound .note{min-height:0}}',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add preparatory-french-starter-final.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix: improve Premiers sons card layout'
+          git pull --rebase origin main
+          git push origin HEAD:main
