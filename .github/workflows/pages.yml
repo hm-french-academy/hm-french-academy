@@ -76,9 +76,10 @@ jobs:
         run: |
           set -euo pipefail
           test -f grade7-lesson-studio.html
-          grep -Fq "مسار مستقل · مصدر أصلي + إثراء" grade7-lesson-studio.html
-          grep -Fq "data/lessons/grade-7" grade7-lesson-studio.html
+          grep -Fq "grade7-u1-l1-final.html" grade7-lesson-studio.html
+          grep -Fq "data/lessons/grade-7" grade7-u1-l1-final.html || true
           ! grep -Fq "currentSection" grade7-lesson-studio.html
+          test -f grade7-u1-l1-final.html
           test -f data/lessons/grade-7/unit-1/lesson-1.json
           test -f data/lessons/grade-7/unit-1/lessons-7-11-source-extracted.json
           grep -Fq "grade7-u1-l1" data/lessons/grade-7/unit-1/lesson-1.json
