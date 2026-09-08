@@ -46,3 +46,4 @@ jobs:
           git rm .github/workflows/fix-grade7-l1-labels-video.yml
           git commit -m "chore: remove one-time Grade 7 Lesson 1 fix workflow"
           git push
+# trigger second evaluation pass
