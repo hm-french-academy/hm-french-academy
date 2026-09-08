@@ -1,0 +1,26 @@
+{
+  "lessonId": "grade8-u1-l1",
+  "page": "lesson-studio-standard.html",
+  "section": "lesson",
+  "status": "FROZEN",
+  "freezeScope": "The Grade 8 Unit 1 Lesson 1 experience is frozen as the approved reference version.",
+  "changePolicy": "DIRECT_USER_REQUEST_ONLY",
+  "authorizedRequester": "user",
+  "doNotModifyFor": [
+    "bug fixes",
+    "cleanup",
+    "refactoring",
+    "design consistency",
+    "template improvements",
+    "content normalization",
+    "cross-grade replication",
+    "automated scripts",
+    "bulk updates",
+    "media updates",
+    "future platform-wide changes"
+  ],
+  "protectedReferenceCommit": "88946664e61034286bc7520e1c4ecb9182be3e96",
+  "protectedUrl": "lesson-studio-standard.html?id=grade8-u1-l1&section=lesson&v=20260831-content-polish",
+  "rule": "No agent, script, migration, refactor, or other platform work may alter this lesson or its approved presentation unless the user explicitly requests a change to grade8-u1-l1.",
+  "note": "This lock is intentionally specific to Grade 8 Unit 1 Lesson 1 and must not be generalized to other lessons."
+}
