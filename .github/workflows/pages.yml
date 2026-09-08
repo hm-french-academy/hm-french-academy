@@ -19,6 +19,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Publish real Ensemble interactive book layer
+        run: |
+          set -euo pipefail
+          test -f scripts/enhance-ensemble-lesson.js
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('ensemble-lesson.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="scripts/enhance-ensemble-lesson.js?v=20260908" defer></script>'
+          if tag not in s:
+              s=s.replace('</head>',tag+'\n</head>',1)
+          p.write_text(s,encoding='utf-8')
+          assert 'enhance-ensemble-lesson.js' in s
+          PY
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
       - name: Repair Grade 4 Lesson 1 game interactions
