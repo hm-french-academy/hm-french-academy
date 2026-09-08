@@ -82,10 +82,9 @@ jobs:
           for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Interactive Book', 'Video Lab', 'speechText', 'Math.random', 'Maîtrise']:
               if marker not in lesson_html:
                   errors.append(f'ensemble-lesson.html missing enriched runtime marker: {marker}')
-
           if 'replace(/[—–]/g' not in lesson_html:
               errors.append('Speech cleanup for dash punctuation is missing')
-          if 'replace(/[.,!?;:()[\\]{}' not in lesson_html:
+          if "replace(/[.,!?;:()[\\]{}\"“”«»]/g" not in lesson_html:
               errors.append('Speech punctuation cleanup is missing')
 
           if errors:
