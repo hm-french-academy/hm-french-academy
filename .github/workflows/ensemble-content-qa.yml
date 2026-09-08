@@ -1,0 +1,83 @@
+name: Ensemble Content QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/ensemble-curriculum.json'
+      - 'data/ensemble-lesson-bank.json'
+      - 'data/ensemble-content-manifest.json'
+      - 'ensemble-grade.html'
+      - 'ensemble-lesson.html'
+      - '.github/workflows/ensemble-content-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate Ensemble structure and lesson bank
+        run: |
+          python3 - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+
+          curriculum = json.loads(Path('data/ensemble-curriculum.json').read_text(encoding='utf-8'))
+          bank = json.loads(Path('data/ensemble-lesson-bank.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('data/ensemble-content-manifest.json').read_text(encoding='utf-8'))
+
+          grades = curriculum.get('grades', [])
+          if len(grades) != 3:
+              raise SystemExit(f'Expected 3 grades, found {len(grades)}')
+
+          expected = set(manifest['lessons'])
+          actual = set()
+          errors = []
+
+          if len(expected) != manifest['expectedLessonCount']:
+              errors.append('Manifest lesson count is inconsistent')
+
+          for grade_no, grade in enumerate(grades, 1):
+              if grade.get('id') != f'ensemble-{grade_no}':
+                  errors.append(f'Unexpected grade id: {grade.get("id")}')
+              modules = grade.get('modules', [])
+              if len(modules) != manifest['modulesPerGrade']:
+                  errors.append(f'{grade.get("id")}: expected 6 modules, found {len(modules)}')
+              for module_no, module in enumerate(modules, 1):
+                  key = f'ensemble-{grade_no}-m{module_no}'
+                  if module.get('id') != f'm{module_no}':
+                      errors.append(f'{key}: curriculum module id mismatch')
+                  lessons = bank.get('modules', {}).get(key, {}).get('l', [])
+                  if len(lessons) != manifest['lessonsPerModule']:
+                      errors.append(f'{key}: expected 3 lessons, found {len(lessons)}')
+                  for lesson_no, lesson in enumerate(lessons, 1):
+                      lesson_id = f'{key}-l{lesson_no}'
+                      actual.add(lesson_id)
+                      required = ['title','target','vocab','model','dialogue','grammar','practice','oral','writing','challenge']
+                      missing = [k for k in required if not lesson.get(k)]
+                      if missing:
+                          errors.append(f'{lesson_id}: missing {", ".join(missing)}')
+                      if not isinstance(lesson.get('vocab'), list) or len(lesson.get('vocab', [])) < 2:
+                          errors.append(f'{lesson_id}: insufficient vocabulary')
+
+          missing_ids = sorted(expected - actual)
+          extra_ids = sorted(actual - expected)
+          if missing_ids:
+              errors.append('Missing lesson IDs: ' + ', '.join(missing_ids))
+          if extra_ids:
+              errors.append('Unexpected lesson IDs: ' + ', '.join(extra_ids))
+
+          lesson_html = Path('ensemble-lesson.html').read_text(encoding='utf-8')
+          for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Diagnostic', 'Maîtrise']:
+              if marker not in lesson_html:
+                  errors.append(f'ensemble-lesson.html missing runtime marker: {marker}')
+
+          if errors:
+              print('\n'.join('ERROR: ' + e for e in errors))
+              sys.exit(1)
+
+          print(f'PASS: {len(actual)} Ensemble lessons validated across 3 grades × 6 modules × 3 lessons.')
+          print('PASS: lesson runtime markers present.')
+          PY
