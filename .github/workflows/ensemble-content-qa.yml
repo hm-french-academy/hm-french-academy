@@ -89,4 +89,4 @@ jobs:
           print('PASS: lesson runtime markers present.')
           PY
 
-# Re-run the complete Ensemble QA automatically whenever the validator itself changes.
+# Force a fresh push-triggered validation after the vocabulary parser fix.
