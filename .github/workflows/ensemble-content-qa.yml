@@ -65,8 +65,10 @@ jobs:
                       vocab = lesson.get('vocab')
                       if not isinstance(vocab, list) or not vocab:
                           errors.append(f'{lesson_id}: vocabulary is empty')
-                      elif len(vocab) < 2 and not any(any(ch.isdigit() for ch in str(x)) or ' à ' in str(x) for x in vocab):
-                          errors.append(f'{lesson_id}: vocabulary should contain at least 2 entries unless a range/sequence entry is used')
+                      elif len(vocab) < 2:
+                          grouped = any(any(sep in str(x) for sep in [',',';','/','|','—','–']) for x in vocab)
+                          if not grouped:
+                              errors.append(f'{lesson_id}: vocabulary should contain at least 2 entries unless a grouped vocabulary entry is used')
 
           missing_ids = sorted(expected - actual)
           extra_ids = sorted(actual - expected)
@@ -95,7 +97,7 @@ jobs:
           print(f'PASS: {len(actual)} Ensemble lessons validated across 3 grades × 6 modules × 3 lessons.')
           print('PASS: official curriculum coverage fields are present for every module.')
           print('PASS: every lesson has the required content package.')
-          print('PASS: range/sequence vocabulary entries are accepted where pedagogically valid.')
+          print('PASS: grouped vocabulary entries are accepted where pedagogically valid.')
           print('PASS: interactive book, video lab, speech, feedback and persistence runtime markers are present.')
           print('PASS: interactive answer position is randomized.')
           PY
