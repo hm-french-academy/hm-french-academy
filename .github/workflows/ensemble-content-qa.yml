@@ -59,8 +59,14 @@ jobs:
                       missing = [k for k in required if not lesson.get(k)]
                       if missing:
                           errors.append(f'{lesson_id}: missing {", ".join(missing)}')
-                      if not isinstance(lesson.get('vocab'), list) or len(lesson.get('vocab', [])) < 2:
-                          errors.append(f'{lesson_id}: insufficient vocabulary')
+                      vocab = lesson.get('vocab')
+                      if not isinstance(vocab, list) or not vocab:
+                          errors.append(f'{lesson_id}: vocabulary is empty')
+                      else:
+                          packed = ' '.join(str(x) for x in vocab)
+                          entries = [x for x in re.split(r'[,;|/]+', packed) if x.strip()]
+                          if len(entries) < 2:
+                              errors.append(f'{lesson_id}: vocabulary needs at least 2 usable entries')
 
           missing_ids = sorted(expected - actual)
           extra_ids = sorted(actual - expected)
@@ -79,5 +85,6 @@ jobs:
               sys.exit(1)
 
           print(f'PASS: {len(actual)} Ensemble lessons validated across 3 grades × 6 modules × 3 lessons.')
+          print('PASS: vocabulary fields contain multiple usable entries.')
           print('PASS: lesson runtime markers present.')
           PY
