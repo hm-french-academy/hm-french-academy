@@ -1,0 +1,48 @@
+name: Fix Grade 7 Lesson 1 labels and video
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor == 'hm-french-academy' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix only Grade 7 Lesson 1
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('grade7-u1-l1-final.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("['grammar','📘 الأساسيات']", "['grammar','📘 القواعد']")
+          s = s.replace("['conversation','💬 التطبيق']", "['conversation','💬 المحادثة']")
+          old = '''<h2>🎬 الفيديو التكميلي</h2><div class="video-box"><p>الفيديو الأصلي للدرس يُحمّل من ملف الوسائط الخاص بالدرس.</p><video controls preload="metadata"><source src="assets/video/grade7-u1-l1.mp4" type="video/mp4"><source src="assets/videos/grade7-u1-l1.mp4" type="video/mp4"></video><div class="video-missing" id="videoMissing">لم يتم العثور على ملف الفيديو في مسار النشر الحالي.</div></div>'''
+          new = '''<h2>🎬 الفيديو التكميلي</h2><div class="video-box"><p>الفيديو الأصلي للدرس.</p><div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:12px;background:#020617"><iframe src="https://www.youtube-nocookie.com/embed/akKplmnr01M?rel=0" title="Vidéo complémentaire" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div><a class="video-fallback" href="https://www.youtube.com/watch?v=akKplmnr01M" target="_blank" rel="noopener">↗️ مشاهدة الفيديو مباشرة على YouTube</a></div>'''
+          if old not in s:
+              raise SystemExit('Expected Grade 7 Lesson 1 video block was not found; no change made.')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+      - name: Validate scope
+        shell: bash
+        run: |
+          git diff --name-only
+          test "$(git diff --name-only | tr '\n' ' ')" = "grade7-u1-l1-final.html "
+          grep -q "📘 القواعد" grade7-u1-l1-final.html
+          grep -q "💬 المحادثة" grade7-u1-l1-final.html
+          grep -q "youtube-nocookie.com/embed/akKplmnr01M" grade7-u1-l1-final.html
+      - name: Commit target only and remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add grade7-u1-l1-final.html
+          git commit -m "fix: restore Grade 7 Lesson 1 labels and original video"
+          git rm .github/workflows/fix-grade7-l1-labels-video.yml
+          git commit -m "chore: remove one-time Grade 7 Lesson 1 fix workflow"
+          git push
