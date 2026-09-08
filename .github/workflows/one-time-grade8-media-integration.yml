@@ -1,0 +1,42 @@
+name: One-time Grade 8 media integration
+on:
+  push:
+    branches: [main]
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, 'Restore Grade 8 dedicated')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrate dedicated pronunciation and video pages
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('lesson-studio-standard.html')
+          s=p.read_text(encoding='utf-8')
+          old="let d={};"
+          new="let d={};let pronunciationNotes={};\nfetch('data/lessons/grade-8/pronunciation-notes.json',{cache:'no-store'}).then(r=>r.json()).then(x=>{pronunciationNotes=x}).catch(()=>{});"
+          if old not in s: raise SystemExit('anchor let d not found')
+          s=s.replace(old,new,1)
+          old_items="const items=[['introduction','🚀 ضربة البداية'],['vocabulary','🖼️ المفردات'],['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','🎯 التدريب'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['files','📁 الملفات']];"
+          new_items="const items=[['introduction','🚀 ضربة البداية'],['vocabulary','🖼️ المفردات'],['pronunciation','🎧 النطق'],['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','🎯 التدريب'],['video','🎬 الفيديو'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['files','📁 الملفات']];"
+          if old_items not in s: raise SystemExit('items anchor not found')
+          s=s.replace(old_items,new_items,1)
+          anchor="function section(n){if(n==='introduction')return intro();"
+          if anchor not in s: raise SystemExit('section anchor not found')
+          media="""function pronunciation(){const words=d.vocabulary||[],notes=pronunciationNotes[id]||{};return `<h2>🎧 النطق</h2><p>صفحة النطق المخصصة لهذا الدرس: استمع إلى كل كلمة ثم اقرأ ملاحظة النطق المرتبطة بها.</p><div class=\"goal\"><a class=\"btn primary\" target=\"_blank\" rel=\"noopener\" href=\"grade8-pronunciation.html?id=${encodeURIComponent(id)}\">فتح صفحة النطق المستقلة ↗</a></div><div class=\"cards\">${words.map(v=>`<article class=\"card\"><div class=\"fr\">${esc(v.word||'')}</div><div class=\"ar\">${esc(v.translation||'')}</div><div class=\"goal\"><b>💡 ملاحظة النطق:</b><br>${esc(notes[v.word]||'استمع إلى الكلمة وركز على الأصوات المميزة والحروف النهائية.')}</div><button class=\"btn primary\" onclick='speak(${JSON.stringify(v.word||'')})'>🔊 استمع</button></article>`).join('')}</div>`}
+function video(){const videos={'grade8-u1-l1':['BJF_g-nNyfY'],'grade8-u1-l2':['BJF_g-nNyfY'],'grade8-u1-l3':['Yq-BPKVN41g'],'grade8-u1-l4':['h5UP6DdXnJU','jn7DT8pE16U'],'grade8-u2-l1':['k2Foos7xZPw'],'grade8-u2-l2':['n9K4dMCxqiE'],'grade8-u2-l3':['9PbElhYEimo'],'grade8-u2-l4':['m9t19Btamx8'],'grade8-u3-l1':['RCB6RQrTY78'],'grade8-u3-l2':['h56H5M8sQUM'],'grade8-u3-l3':['BISbaFN1TIQ'],'grade8-u3-l4':['RCB6RQrTY78']};const ids=videos[id]||[];return `<h2>🎬 فيديو الدرس</h2><p>الفيديوهات المعتمدة المرتبطة بهذا الدرس.</p><div class=\"goal\"><a class=\"btn primary\" target=\"_blank\" rel=\"noopener\" href=\"grade8-video.html?id=${encodeURIComponent(id)}\">فتح صفحة الفيديو المستقلة ↗</a></div><div class=\"cards\">${ids.map((v,i)=>`<article class=\"card\"><div style=\"aspect-ratio:16/9\"><iframe src=\"https://www.youtube.com/embed/${v}?rel=0&modestbranding=1\" title=\"فيديو الدرس ${i+1}\" style=\"width:100%;height:100%;border:0;border-radius:14px\" allow=\"accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share\" allowfullscreen></iframe></div><p><b>🎬 فيديو ${ids.length>1?i+1:''}</b></p></article>`).join('')||'<div class=\"empty\">لا يوجد فيديو معتمد مسجل لهذا الدرس.</div>'}</div>`}
+"""
+          s=s.replace(anchor,media+anchor,1)
+          s=s.replace("function section(n){if(n==='introduction')return intro();if(n==='vocabulary')return vocab();if(n==='grammar')return grammar();", "function section(n){if(n==='introduction')return intro();if(n==='vocabulary')return vocab();if(n==='pronunciation')return pronunciation();if(n==='grammar')return grammar();if(n==='video')return video();",1)
+          p.write_text(s,encoding='utf-8')
+      - name: Commit and remove one-time workflow
+        run: |
+          rm -f .github/workflows/one-time-grade8-media-integration.yml
+          git config user.name 'HM Academy Automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add lesson-studio-standard.html .github/workflows/one-time-grade8-media-integration.yml
+          git commit -m 'Integrate Grade 8 dedicated pronunciation and video pages'
+          git push
