@@ -84,7 +84,7 @@ jobs:
                   errors.append(f'ensemble-lesson.html missing enriched runtime marker: {marker}')
           if 'replace(/[—–]/g' not in lesson_html:
               errors.append('Speech cleanup for dash punctuation is missing')
-          if "replace(/[.,!?;:()[\\]{}\"“”«»]/g" not in lesson_html:
+          if 'replace(/[.,!?;:()[\\]{}\"“”«»]/g' not in lesson_html:
               errors.append('Speech punctuation cleanup is missing')
 
           if errors:
@@ -99,3 +99,4 @@ jobs:
           PY
 
 # Fresh validation covers curriculum coverage and the enriched interactive runtime.
+# Release gate: every Ensemble content/runtime change must pass this check before production.
