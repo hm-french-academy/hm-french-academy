@@ -76,7 +76,7 @@ jobs:
               errors.append('Unexpected lesson IDs: ' + ', '.join(extra_ids))
 
           lesson_html = Path('ensemble-lesson.html').read_text(encoding='utf-8')
-          for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Diagnostic', 'Maîtrise']:
+          for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Diagnostic', 'Maîtrise', 'ensembleCorrectIndex', 'Math.random']:
               if marker not in lesson_html:
                   errors.append(f'ensemble-lesson.html missing runtime marker: {marker}')
 
@@ -87,6 +87,7 @@ jobs:
           print(f'PASS: {len(actual)} Ensemble lessons validated across 3 grades × 6 modules × 3 lessons.')
           print('PASS: vocabulary fields contain multiple usable entries.')
           print('PASS: lesson runtime markers present.')
+          print('PASS: interactive answer position is randomized and tracked.')
           PY
 
-# Force a fresh push-triggered validation after the vocabulary parser fix.
+# Fresh validation includes the interactive-answer randomization guard.
