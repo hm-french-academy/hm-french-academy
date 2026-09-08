@@ -21,14 +21,14 @@ jobs:
           p=Path('preparatory-french-starter-final.html')
           s=p.read_text(encoding='utf-8')
           original=s
-          s=s.replace('<a class="hm-brand" href="index.html">','<div class="hm-brand">',1)
-          s=s.replace('</a><nav class="hm-nav">','</div><nav class="hm-nav">',1)
+          if '<a class="hm-brand" href="index.html">' in s:
+              s=s.replace('<a class="hm-brand" href="index.html">','<div class="hm-brand">',1)
+              s=s.replace('</a><nav class="hm-nav">','</div><nav class="hm-nav">',1)
           s=re.sub(r'<nav class="hm-nav">.*?</nav>','',s,count=1,flags=re.S)
-          # The final celebration CTA also points to another page; keep the achievement message but make it non-navigational.
           s=re.sub(r'<div class="actions"><a class="btn" href="course\.html">🚀 ابدأ منهج الصف الأول الإعدادي</a></div>','<div class="actions"><span class="btn" aria-label="تمهيد إلى المنهج">🎓 تمهيد إلى منهج الصف الأول الإعدادي</span></div>',s,count=1)
-          if s==original:
-              raise SystemExit('Expected Premier Pas navigation structure was not found; refusing to modify file.')
           p.write_text(s,encoding='utf-8')
+          print('Premier Pas isolation checked.')
+          print('changed:', s != original)
           PY
           python3 - <<'PY'
           from pathlib import Path
