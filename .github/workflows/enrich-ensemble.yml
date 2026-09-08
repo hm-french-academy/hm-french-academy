@@ -1,0 +1,32 @@
+name: Enrich Ensemble published lessons
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject Ensemble content enrichment
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("ensemble-lesson.html")
+          s=p.read_text(encoding="utf-8")
+          tag='<script src="scripts/enrich-ensemble-content.js?v=20260908" defer></script>'
+          if tag not in s:
+              s=s.replace("</head>",tag+"\n</head>",1)
+              p.write_text(s,encoding="utf-8")
+          PY
+      - name: Commit enrichment injection
+        run: |
+          git config user.name "HM Academy Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ensemble-lesson.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(ensemble): inject lesson content enrichment layer"
+          git push
