@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Validate Ensemble structure and lesson bank
+      - name: Validate Ensemble structure, coverage and enriched runtime
         run: |
           python3 - <<'PY'
           import json, re, sys
@@ -49,6 +49,9 @@ jobs:
                   key = f'ensemble-{grade_no}-m{module_no}'
                   if module.get('id') != f'm{module_no}':
                       errors.append(f'{key}: curriculum module id mismatch')
+                  for field in ['title','objectives','vocab','grammar','phonetics','culture','task']:
+                      if not module.get(field):
+                          errors.append(f'{key}: missing curriculum coverage field {field}')
                   lessons = bank.get('modules', {}).get(key, {}).get('l', [])
                   if len(lessons) != manifest['lessonsPerModule']:
                       errors.append(f'{key}: expected 3 lessons, found {len(lessons)}')
@@ -64,7 +67,7 @@ jobs:
                           errors.append(f'{lesson_id}: vocabulary is empty')
                       else:
                           packed = ' '.join(str(x) for x in vocab)
-                          entries = [x for x in re.split(r'[,;|/]+', packed) if x.strip()]
+                          entries = [x for x in re.split(r'[,;|/—–]+', packed) if x.strip()]
                           if len(entries) < 2:
                               errors.append(f'{lesson_id}: vocabulary needs at least 2 usable entries')
 
@@ -76,18 +79,24 @@ jobs:
               errors.append('Unexpected lesson IDs: ' + ', '.join(extra_ids))
 
           lesson_html = Path('ensemble-lesson.html').read_text(encoding='utf-8')
-          for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Diagnostic', 'Maîtrise', 'ensembleCorrectIndex', 'Math.random']:
+          for marker in ['ensemble-lesson-bank.json', 'bank.modules', 'Interactive Book', 'Video Lab', 'speechText', 'Math.random', 'Maîtrise']:
               if marker not in lesson_html:
-                  errors.append(f'ensemble-lesson.html missing runtime marker: {marker}')
+                  errors.append(f'ensemble-lesson.html missing enriched runtime marker: {marker}')
+
+          if 'replace(/[—–]/g' not in lesson_html:
+              errors.append('Speech cleanup for dash punctuation is missing')
+          if 'replace(/[.,!?;:()[\\]{}' not in lesson_html:
+              errors.append('Speech punctuation cleanup is missing')
 
           if errors:
               print('\n'.join('ERROR: ' + e for e in errors))
               sys.exit(1)
 
           print(f'PASS: {len(actual)} Ensemble lessons validated across 3 grades × 6 modules × 3 lessons.')
+          print('PASS: official curriculum coverage fields are present for every module.')
           print('PASS: vocabulary fields contain multiple usable entries.')
-          print('PASS: lesson runtime markers present.')
-          print('PASS: interactive answer position is randomized and tracked.')
+          print('PASS: interactive book, video lab and speech-cleanup runtime markers are present.')
+          print('PASS: interactive answer position is randomized.')
           PY
 
-# Fresh validation includes the interactive-answer randomization guard.
+# Fresh validation covers curriculum coverage and the enriched interactive runtime.
