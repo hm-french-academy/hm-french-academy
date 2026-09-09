@@ -1,0 +1,25 @@
+/* HM Academy — Grade Theme Layer v1 */
+/* Visual-only layer: preserves lesson content, logic, routes and UX. */
+body[data-hm-grade-theme]{--hm-theme-bg:#f5f8fc;--hm-theme-primary:#245bd7;--hm-theme-accent:#6f42d9;--hm-theme-soft:#edf3ff;--hm-theme-text:#14264a;--hm-theme-border:#dfe6f0;background:var(--hm-theme-bg)!important;color:var(--hm-theme-text)}
+body[data-hm-grade-theme] .hero,body[data-hm-grade-theme] .hm-hero,body[data-hm-grade-theme] .g9-hero{background:linear-gradient(135deg,var(--hm-theme-primary),var(--hm-theme-accent))!important}
+body[data-hm-grade-theme] .head,body[data-hm-grade-theme] .header,body[data-hm-grade-theme] .student-header,body[data-hm-grade-theme] .hm-header{background:color-mix(in srgb,var(--hm-theme-primary) 94%,#111827 6%)!important}
+body[data-hm-grade-theme] .tabs button.active,body[data-hm-grade-theme] .nav button.active,body[data-hm-grade-theme] .btn.primary,body[data-hm-grade-theme] .home-btn{background:var(--hm-theme-primary)!important;border-color:var(--hm-theme-primary)!important;color:#fff!important}
+body[data-hm-grade-theme] .card,body[data-hm-grade-theme] .panel,body[data-hm-grade-theme] .hm-card{border-color:var(--hm-theme-border)!important}
+body[data-hm-grade-theme] .progress .bar,body[data-hm-grade-theme] .bar{background:linear-gradient(90deg,var(--hm-theme-primary),var(--hm-theme-accent))!important}
+body[data-hm-grade-theme] .unit-btn,body[data-hm-grade-theme] .step.active,body[data-hm-grade-theme] .g9-step.active{background:var(--hm-theme-soft)!important;border-color:color-mix(in srgb,var(--hm-theme-primary) 22%,#fff)!important;color:var(--hm-theme-primary)!important}
+body[data-hm-grade-theme] .badge,body[data-hm-grade-theme] .status{border-color:var(--hm-theme-border)!important}
+body[data-hm-grade-theme] a{accent-color:var(--hm-theme-primary)}
+/* Primary */
+body[data-hm-grade-theme="primary-3"]{--hm-theme-primary:#2497d8;--hm-theme-accent:#25b7a5;--hm-theme-soft:#eaf8ff;--hm-theme-bg:#f5fbfe;--hm-theme-border:#d9edf7}
+body[data-hm-grade-theme="primary-4"]{--hm-theme-primary:#d85c78;--hm-theme-accent:#ef9b5d;--hm-theme-soft:#fff0f4;--hm-theme-bg:#fff9fa;--hm-theme-border:#f2dbe1}
+body[data-hm-grade-theme="primary-5"]{--hm-theme-primary:#3f63c9;--hm-theme-accent:#24a99a;--hm-theme-soft:#edf2ff;--hm-theme-bg:#f7f9ff;--hm-theme-border:#dce4f7}
+body[data-hm-grade-theme="primary-6"]{--hm-theme-primary:#16866f;--hm-theme-accent:#28a9c1;--hm-theme-soft:#eaf8f4;--hm-theme-bg:#f5fbfa;--hm-theme-border:#d8ece7}
+/* Preparatory */
+body[data-hm-grade-theme="prep-2"]{--hm-theme-primary:#315fc1;--hm-theme-accent:#6f55d9;--hm-theme-soft:#eef1ff;--hm-theme-bg:#f7f8fd;--hm-theme-border:#dfe3f5}
+body[data-hm-grade-theme="prep-3"]{--hm-theme-primary:#5b4bc4;--hm-theme-accent:#e4a93a;--hm-theme-soft:#f0edff;--hm-theme-bg:#f7f6fc;--hm-theme-border:#e3def7}
+/* Secondary */
+body[data-hm-grade-theme="secondary-1"]{--hm-theme-primary:#7a2f4d;--hm-theme-accent:#c79b3b;--hm-theme-soft:#faeef3;--hm-theme-bg:#fbf8fa;--hm-theme-border:#eadbe1}
+body[data-hm-grade-theme="secondary-2"]{--hm-theme-primary:#183f72;--hm-theme-accent:#b88a2e;--hm-theme-soft:#eef4fb;--hm-theme-bg:#f6f9fc;--hm-theme-border:#dce5ef}
+body[data-hm-grade-theme="secondary-3"]{--hm-theme-primary:#176b73;--hm-theme-accent:#3e9f9a;--hm-theme-soft:#eaf8f7;--hm-theme-bg:#f5fbfb;--hm-theme-border:#d9eceb}
+/* Semantic section accents remain consistent across grades. */
+body[data-hm-grade-theme][data-lesson-section="vocabulary"]{--hm-theme-accent:#239b7d}body[data-hm-grade-theme][data-lesson-section="pronunciation"]{--hm-theme-accent:#1686a8}body[data-hm-grade-theme][data-lesson-section="grammar"]{--hm-theme-accent:#315fc1}body[data-hm-grade-theme][data-lesson-section="conversation"]{--hm-theme-accent:#c77a25}body[data-hm-grade-theme][data-lesson-section="practice"]{--hm-theme-accent:#d05b75}body[data-hm-grade-theme][data-lesson-section="video"]{--hm-theme-accent:#795cc8}body[data-hm-grade-theme][data-lesson-section="games"]{--hm-theme-accent:#a24bb9}body[data-hm-grade-theme][data-lesson-section="smart-review"]{--hm-theme-accent:#1c8c82}body[data-hm-grade-theme][data-lesson-section="evaluation"]{--hm-theme-accent:#b48612}body[data-hm-grade-theme][data-lesson-section="progress"]{--hm-theme-accent:#258467}
