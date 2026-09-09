@@ -1,13 +1,17 @@
-/* HM Academy — Grade Theme Layer v1 */
+/* HM Academy — Grade Theme Layer v2 */
 /* Visual-only layer: preserves lesson content, logic, routes and UX. */
 body[data-hm-grade-theme]{--hm-theme-bg:#f5f8fc;--hm-theme-primary:#245bd7;--hm-theme-accent:#6f42d9;--hm-theme-soft:#edf3ff;--hm-theme-text:#14264a;--hm-theme-border:#dfe6f0;background:var(--hm-theme-bg)!important;color:var(--hm-theme-text)}
 body[data-hm-grade-theme] .hero,body[data-hm-grade-theme] .hm-hero,body[data-hm-grade-theme] .g9-hero{background:linear-gradient(135deg,var(--hm-theme-primary),var(--hm-theme-accent))!important}
 body[data-hm-grade-theme] .head,body[data-hm-grade-theme] .header,body[data-hm-grade-theme] .student-header,body[data-hm-grade-theme] .hm-header{background:color-mix(in srgb,var(--hm-theme-primary) 94%,#111827 6%)!important}
-body[data-hm-grade-theme] .tabs button.active,body[data-hm-grade-theme] .nav button.active,body[data-hm-grade-theme] .btn.primary,body[data-hm-grade-theme] .home-btn{background:var(--hm-theme-primary)!important;border-color:var(--hm-theme-primary)!important;color:#fff!important}
+body[data-hm-grade-theme] .tabs button.active,body[data-hm-grade-theme] .nav button.active,body[data-hm-grade-theme] .btn.primary,body[data-hm-grade-theme] .start,body[data-hm-grade-theme] .lesson-action.primary,body[data-hm-grade-theme] .home-btn{background:var(--hm-theme-primary)!important;border-color:var(--hm-theme-primary)!important;color:#fff!important}
 body[data-hm-grade-theme] .card,body[data-hm-grade-theme] .panel,body[data-hm-grade-theme] .hm-card{border-color:var(--hm-theme-border)!important}
 body[data-hm-grade-theme] .progress .bar,body[data-hm-grade-theme] .bar{background:linear-gradient(90deg,var(--hm-theme-primary),var(--hm-theme-accent))!important}
 body[data-hm-grade-theme] .unit-btn,body[data-hm-grade-theme] .step.active,body[data-hm-grade-theme] .g9-step.active{background:var(--hm-theme-soft)!important;border-color:color-mix(in srgb,var(--hm-theme-primary) 22%,#fff)!important;color:var(--hm-theme-primary)!important}
 body[data-hm-grade-theme] .badge,body[data-hm-grade-theme] .status{border-color:var(--hm-theme-border)!important}
+body[data-hm-grade-theme] .lesson-number,body[data-hm-grade-theme] .num,body[data-hm-grade-theme] .eyebrow{color:var(--hm-theme-primary)!important}
+body[data-hm-grade-theme] .btn:not(.primary),body[data-hm-grade-theme] .lesson-action:not(.primary),body[data-hm-grade-theme] .review{border-color:var(--hm-theme-border)!important;color:var(--hm-theme-primary)!important;background:var(--hm-theme-soft)!important}
+body[data-hm-grade-theme] .unit-card{border-top-color:var(--hm-theme-primary)!important}
+body[data-hm-grade-theme] .unit-icon,body[data-hm-grade-theme] .lesson-visual,body[data-hm-grade-theme] .icon{background:linear-gradient(145deg,var(--hm-theme-soft),#fff)!important}
 body[data-hm-grade-theme] a{accent-color:var(--hm-theme-primary)}
 /* Primary */
 body[data-hm-grade-theme="primary-3"]{--hm-theme-primary:#2497d8;--hm-theme-accent:#25b7a5;--hm-theme-soft:#eaf8ff;--hm-theme-bg:#f5fbfe;--hm-theme-border:#d9edf7}
@@ -15,6 +19,7 @@ body[data-hm-grade-theme="primary-4"]{--hm-theme-primary:#d85c78;--hm-theme-acce
 body[data-hm-grade-theme="primary-5"]{--hm-theme-primary:#3f63c9;--hm-theme-accent:#24a99a;--hm-theme-soft:#edf2ff;--hm-theme-bg:#f7f9ff;--hm-theme-border:#dce4f7}
 body[data-hm-grade-theme="primary-6"]{--hm-theme-primary:#16866f;--hm-theme-accent:#28a9c1;--hm-theme-soft:#eaf8f4;--hm-theme-bg:#f5fbfa;--hm-theme-border:#d8ece7}
 /* Preparatory */
+body[data-hm-grade-theme="prep-1"]{--hm-theme-primary:#178b83;--hm-theme-accent:#58c7b9;--hm-theme-soft:#eaf9f7;--hm-theme-bg:#f5fbfa;--hm-theme-border:#d8ece8}
 body[data-hm-grade-theme="prep-2"]{--hm-theme-primary:#315fc1;--hm-theme-accent:#6f55d9;--hm-theme-soft:#eef1ff;--hm-theme-bg:#f7f8fd;--hm-theme-border:#dfe3f5}
 body[data-hm-grade-theme="prep-3"]{--hm-theme-primary:#5b4bc4;--hm-theme-accent:#e4a93a;--hm-theme-soft:#f0edff;--hm-theme-bg:#f7f6fc;--hm-theme-border:#e3def7}
 /* Secondary */
