@@ -71,12 +71,20 @@ jobs:
             old="function speak(t){if(!t||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)}"
             if old in s:
               s=s.replace(old,robust,1)
-              standard.write_text(s,encoding='utf-8')
-              print('UPDATED pronunciation runtime: lesson-studio-standard.html')
-            elif robust in s:
-              print('ALREADY hardened: lesson-studio-standard.html')
-            else:
+            elif robust not in s:
               raise SystemExit('Expected Grade 8 pronunciation function not found')
+            old_word="onclick='speak(${JSON.stringify(v.word||'')})'"
+            new_word="onclick=\"speak(this.dataset.text)\" data-text=\"${esc(v.word||'')}\""
+            old_example="onclick='speak(${JSON.stringify(v.example)})'"
+            new_example="onclick=\"speak(this.dataset.text)\" data-text=\"${esc(v.example)}\""
+            if old_word in s:
+              s=s.replace(old_word,new_word)
+              print('UPDATED word pronunciation handlers: lesson-studio-standard.html')
+            if old_example in s:
+              s=s.replace(old_example,new_example)
+              print('UPDATED example pronunciation handlers: lesson-studio-standard.html')
+            standard.write_text(s,encoding='utf-8')
+            print('READY pronunciation runtime: lesson-studio-standard.html')
           independent=Path('grade8-pronunciation.html')
           if independent.exists():
             s=independent.read_text(encoding='utf-8')
