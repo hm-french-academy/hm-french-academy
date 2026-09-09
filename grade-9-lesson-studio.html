@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-store">
 <title>HM Academy | Grade 9 Learning Studio</title>
-<link rel="stylesheet" href="css/premium-shell.css?v=20260830-g9-studio-final1">
+<link rel="stylesheet" href="css/premium-shell.css?v=20260909-lesson-themes">
 </head>
 <body class="g9-body">
 <header class="hm-header"><a class="hm-brand" href="index.html"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy <small class="hm-tagline">تعليم اللغة الفرنسية</small></span></a></header>
@@ -28,6 +28,7 @@ function simpleList(title,items,voice=false){if(!items?.length)return `<div clas
 function quiz(items,title,key){if(!items?.length)return `<div class="g9-empty">لا توجد عناصر لهذه المرحلة.</div>`;return `<section class="g9-section"><div class="g9-section-head"><div><span class="g9-eyebrow">INTERACTIVE</span><h2>${esc(title)}</h2><p>اختر «أتقنتها» أو «أحتاج مراجعة» لكل مهمة، وسيتم حفظ تقدمك على هذا الجهاز.</p></div><span class="g9-count">${items.length}</span></div><div class="g9-quiz">${items.slice(0,8).map((x,i)=>{const t=typeof x==='string'?x:(x.fr||x.word||'');const r=results[key+'-'+i]||'';return `<div class="g9-question"><div class="g9-q-no">${i+1}</div><div class="g9-q-body"><b>${esc(t)}</b><div class="g9-q-actions"><button class="${r==='done'?'chosen':''}" onclick="setResult(${JSON.stringify(key)},${i},'done')">${r==='done'?'✓ تم إتقانها':'✓ أتقنتها'}</button><button class="${r==='review'?'chosen':''}" onclick="setResult(${JSON.stringify(key)},${i},'review')">${r==='review'?'↻ ستُراجع':'↻ أحتاج مراجعة'}</button></div></div></div>`}).join('')}</div></section>`}
 function setResult(key,i,value){results[key+'-'+i]=value;save();render()}
 function render(){
+ document.body.dataset.lessonSection=steps[idx][0];
  if(!d)return;
  nav.innerHTML=steps.map((s,i)=>`<button class="g9-step ${i===idx?'active':''} ${i<idx?'visited':''}" onclick="go(${i})"><span>${s[1]}</span><b>${s[2]}</b></button>`).join('');
  bar.style.width=(idx/(steps.length-1)*100)+'%';document.getElementById('progressText').textContent=`${idx+1} من ${steps.length}`;
@@ -45,7 +46,7 @@ function render(){
  else {const done=[...Object.values(results)].filter(x=>x==='done').length; b=`<div class="g9-complete"><div>🎉</div><h2>أحسنت! وصلت إلى نهاية الرحلة.</h2><p>تم حفظ تقدمك على هذا الجهاز. يمكنك إعادة أي مرحلة أو العودة إلى بداية الرحلة.</p><div class="g9-goals"><span>⭐ مفردات متقنة: ${mastered.size}</span><span>✓ مهام مكتملة: ${done}</span><span>📚 11 مرحلة</span></div></div>`;}
  panel.innerHTML=`${b}<div class="g9-nav-buttons">${idx?`<button onclick="go(${idx-1})">→ السابق</button>`:''}${idx<steps.length-1?`<button class="primary" onclick="go(${idx+1})">التالي ←</button>`:''}</div>`;
 }
-async function load(){try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(fileId)+'.json?v=20260830-g9-final1',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render()}catch(e){document.getElementById('title').textContent='تعذر تحميل الدرس';document.getElementById('subtitle').textContent='تحقق من اتصال الصفحة أو ملف المحتوى';document.getElementById('meta').textContent=id;panel.innerHTML=`<div class="g9-error"><h2>تعذر تحميل محتوى الدرس</h2><p>معرّف الدرس: ${esc(id)}</p><small>${esc(e.message)}</small></div>`}}
+async function load(){try{const r=await fetch('data/lessons/grade-9/semester-1/'+encodeURIComponent(fileId)+'.json?v=20260909-lesson-themes',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);d=await r.json();if(!d||d.id!==id)throw Error('معرّف المحتوى غير مطابق');document.getElementById('title').textContent=d.titleAr||d.titleFr||id;document.getElementById('subtitle').textContent=`${d.titleFr||''} · محتوى الدرس التفاعلي`;document.getElementById('meta').textContent=`${d.unit||''} · الصفحات ${d.sourcePages||''}`;render()}catch(e){document.getElementById('title').textContent='تعذر تحميل الدرس';document.getElementById('subtitle').textContent='تحقق من اتصال الصفحة أو ملف المحتوى';document.getElementById('meta').textContent=id;panel.innerHTML=`<div class="g9-error"><h2>تعذر تحميل محتوى الدرس</h2><p>معرّف الدرس: ${esc(id)}</p><small>${esc(e.message)}</small></div>`}}
 load();
 </script>
 </body></html>
