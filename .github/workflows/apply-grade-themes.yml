@@ -1,0 +1,58 @@
+name: Apply HM Academy Grade Themes
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply centralized theme to lesson runtimes
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          targets = {
+            'grade-3-lesson-journey.html':'primary-3',
+            'grade-4-lesson-journey.html':'primary-4',
+            'grade-5-lesson-v3.html':'primary-5',
+            'grade6-lesson-v2.html':'primary-6',
+            'grade7-lesson-studio-final.html':'prep-1',
+            'lesson-studio-standard.html':'prep-2',
+            'grade-9-lesson-studio.html':'prep-3',
+            'secondary-1-lesson-studio.html':'secondary-1',
+            'baccalaureat-2-lesson-studio-v3.html':'secondary-2',
+          }
+          css='css/hm-academy-grade-themes.css'
+          marker='hm-academy-grade-themes.css'
+          for name, grade in targets.items():
+            p=Path(name)
+            if not p.exists():
+              print('SKIP missing', name); continue
+            s=p.read_text(encoding='utf-8')
+            if marker not in s:
+              if '</head>' in s:
+                s=s.replace('</head>', f'<link rel="stylesheet" href="{css}?v=20260909-grade-themes"></head>', 1)
+              else:
+                print('SKIP no head', name); continue
+            # Add/update the theme attribute without disturbing existing body classes.
+            pat=r'<body([^>]*)>'
+            m=re.search(pat,s,re.I)
+            if m:
+              attrs=m.group(1)
+              attrs=re.sub(r'\sdata-hm-grade-theme="[^"]*"','',attrs,flags=re.I)
+              repl=f'<body{attrs} data-hm-grade-theme="{grade}">'
+              s=s[:m.start()]+repl+s[m.end():]
+            p.write_text(s,encoding='utf-8')
+            print('UPDATED',name,grade)
+      - name: Commit theme rollout
+        run: |
+          git config user.name "HM Academy Theme Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add css/hm-academy-grade-themes.css .github/workflows/apply-grade-themes.yml *.html
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Apply premium grade themes across lesson runtimes"
+          git push
