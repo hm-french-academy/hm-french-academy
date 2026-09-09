@@ -10,19 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply centralized theme to lesson runtimes
+      - name: Apply centralized theme across grade portals and lesson runtimes
         shell: python
         run: |
           from pathlib import Path
           import re
           targets = {
+            # Primary portals
+            'grade-3.html':'primary-3',
+            'grade-4.html':'primary-4',
+            'grade-5.html':'primary-5',
+            'grade-6.html':'primary-6',
+            # Primary lesson runtimes
             'grade-3-lesson-journey.html':'primary-3',
             'grade-4-lesson-journey.html':'primary-4',
+            'grade-4-l01-learning-studio.html':'primary-4',
+            'grade-4-l02-learning-studio.html':'primary-4',
+            'grade-4-lesson-studio-v2.html':'primary-4',
+            'grade-4-lessons-03-07-live.html':'primary-4',
             'grade-5-lesson-v3.html':'primary-5',
             'grade6-lesson-v2.html':'primary-6',
+            # Preparatory
             'grade7-lesson-studio-final.html':'prep-1',
             'lesson-studio-standard.html':'prep-2',
             'grade-9-lesson-studio.html':'prep-3',
+            # Secondary
             'secondary-1-lesson-studio.html':'secondary-1',
             'baccalaureat-2-lesson-studio-v3.html':'secondary-2',
           }
@@ -35,10 +47,9 @@ jobs:
             s=p.read_text(encoding='utf-8')
             if marker not in s:
               if '</head>' in s:
-                s=s.replace('</head>', f'<link rel="stylesheet" href="{css}?v=20260909-grade-themes"></head>', 1)
+                s=s.replace('</head>', f'<link rel="stylesheet" href="{css}?v=20260909-grade-themes-v2"></head>', 1)
               else:
                 print('SKIP no head', name); continue
-            # Add/update the theme attribute without disturbing existing body classes.
             pat=r'<body([^>]*)>'
             m=re.search(pat,s,re.I)
             if m:
@@ -54,5 +65,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add css/hm-academy-grade-themes.css .github/workflows/apply-grade-themes.yml *.html
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
-          git commit -m "Apply premium grade themes across lesson runtimes"
+          git commit -m "Apply premium grade themes across portals and lesson runtimes"
           git push
