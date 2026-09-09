@@ -16,12 +16,10 @@ jobs:
           from pathlib import Path
           import re
           targets = {
-            # Primary portals
             'grade-3.html':'primary-3',
             'grade-4.html':'primary-4',
             'grade-5.html':'primary-5',
             'grade-6.html':'primary-6',
-            # Primary lesson runtimes
             'grade-3-lesson-journey.html':'primary-3',
             'grade-4-lesson-journey.html':'primary-4',
             'grade-4-l01-learning-studio.html':'primary-4',
@@ -30,11 +28,9 @@ jobs:
             'grade-4-lessons-03-07-live.html':'primary-4',
             'grade-5-lesson-v3.html':'primary-5',
             'grade6-lesson-v2.html':'primary-6',
-            # Preparatory
             'grade7-lesson-studio-final.html':'prep-1',
             'lesson-studio-standard.html':'prep-2',
             'grade-9-lesson-studio.html':'prep-3',
-            # Secondary
             'secondary-1-lesson-studio.html':'secondary-1',
             'baccalaureat-2-lesson-studio-v3.html':'secondary-2',
           }
@@ -63,6 +59,7 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
+          import re
 
           robust = """function speak(t){const text=String(t??'').trim();if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;const synth=window.speechSynthesis;let attempts=0;const play=()=>{attempts++;try{synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.84;u.pitch=1;const voices=synth.getVoices();const voice=voices.find(v=>String(v.lang).toLowerCase()==='fr-fr')||voices.find(v=>String(v.lang).toLowerCase().startsWith('fr'));if(voice)u.voice=voice;u.onerror=()=>{if(attempts<3)setTimeout(play,140)};try{synth.resume()}catch(_){}synth.speak(u)}catch(_){if(attempts<3)setTimeout(play,140)}};play()}"""
           standard=Path('lesson-studio-standard.html')
@@ -73,16 +70,11 @@ jobs:
               s=s.replace(old,robust,1)
             elif robust not in s:
               raise SystemExit('Expected Grade 8 pronunciation function not found')
-            old_word="onclick='speak(${JSON.stringify(v.word||'')})'"
-            new_word="onclick=\"speak(this.dataset.text)\" data-text=\"${esc(v.word||'')}\""
-            old_example="onclick='speak(${JSON.stringify(v.example)})'"
-            new_example="onclick=\"speak(this.dataset.text)\" data-text=\"${esc(v.example)}\""
-            if old_word in s:
-              s=s.replace(old_word,new_word)
-              print('UPDATED word pronunciation handlers: lesson-studio-standard.html')
-            if old_example in s:
-              s=s.replace(old_example,new_example)
-              print('UPDATED example pronunciation handlers: lesson-studio-standard.html')
+            pattern=r"onclick='speak\(\$\{JSON\.stringify\((.*?)\)\}\)'"
+            def safe_handler(m):
+              return 'onclick="speak(this.dataset.text)" data-text="${esc(' + m.group(1) + ')}"'
+            s,n=re.subn(pattern,safe_handler,s)
+            print(f'SAFE pronunciation handlers rewritten: {n}')
             standard.write_text(s,encoding='utf-8')
             print('READY pronunciation runtime: lesson-studio-standard.html')
           independent=Path('grade8-pronunciation.html')
