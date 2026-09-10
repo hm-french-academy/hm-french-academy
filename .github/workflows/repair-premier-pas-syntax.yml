@@ -28,6 +28,22 @@ jobs:
           else:
               print('Malformed fragment not found; leaving file unchanged.')
           PY
+      - name: Fix Grade 9 French speech engine
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('grade9-u1-l1-standard.html')
+          s = p.read_text(encoding='utf-8')
+          start = s.index('function speak(text){')
+          end = s.index('\nfunction go(', start)
+          new = '''function speechSafeText(text){return String(text||'').normalize('NFC').replace(/l[’']equitation/gi,'l équitation').replace(/l[’']escrime/gi,'l escrime').replace(/[’‘]/g,"'").trim()}
+function speak(text){text=String(text||'').trim();if(!text||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;const value=speechSafeText(text);const fallback=speechSafeText(text);const run=(spoken,retry=false)=>{synth.cancel();try{synth.resume()}catch(e){};const u=new SpeechSynthesisUtterance(spoken);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;u.onerror=()=>{if(!retry&&fallback!==spoken){setTimeout(()=>run(fallback,true),80)}};synth.speak(u)};run(value)}'''
+          if 'function speechSafeText(text)' not in s:
+              p.write_text(s[:start] + new + s[end:], encoding='utf-8')
+              print('Grade 9 speech engine patched.')
+          else:
+              print('Grade 9 speech engine already patched.')
+          PY
       - name: Validate page JavaScript
         run: |
           python3 - <<'PY'
@@ -37,16 +53,21 @@ jobs:
           scripts = re.findall(r'<script>(.*?)</script>', s, flags=re.S)
           assert scripts, 'No inline script found'
           Path('/tmp/premier-pas.js').write_text(scripts[-1], encoding='utf-8')
+          g = Path('grade9-u1-l1-standard.html').read_text(encoding='utf-8')
+          assert 'function speechSafeText(text)' in g
+          assert "u.lang='fr-FR'" in g
+          assert 'const vs=synth.getVoices' not in g
           PY
           node --check /tmp/premier-pas.js
+          node --check <(sed -n '/<script>/,/<\/script>/p' grade9-u1-l1-standard.html | sed '1d;$d')
       - name: Commit and push
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add preparatory-french-starter-final.html
+          git add preparatory-french-starter-final.html grade9-u1-l1-standard.html
           if git diff --cached --quiet; then
             echo 'No changes to commit.'
           else
-            git commit -m 'fix: repair Premier Pas JavaScript syntax'
+            git commit -m 'fix: repair French pronunciation in Grade 9 lesson'
             git push origin main
           fi
