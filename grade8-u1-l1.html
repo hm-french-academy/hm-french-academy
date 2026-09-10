@@ -1,36 +1,50 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>HM Academy | الصف الثاني الإعدادي — الدرس الأول</title>
-  <style>
-    html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}
-    iframe{display:block;width:100%;height:100%;border:0}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | الصف الثاني الإعدادي — الدرس الأول</title>
+<style>
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}
+iframe{display:block;width:100%;height:100%;border:0}
+</style>
 </head>
 <body>
-  <iframe id="lesson" src="lesson-studio-standard.html?id=grade8-u1-l1&section=introduction" title="الدرس الأول — الصف الثاني الإعدادي"></iframe>
-  <script>
-    const frame=document.getElementById('lesson');
-    function cleanLesson(){
-      try{
-        const doc=frame.contentDocument;
-        if(!doc)return;
-        const style=doc.createElement('style');
-        style.textContent=`
-          .hm-header,.hm-nav,.hm-brand[href="index.html"],
-          header nav,a[href="index.html"]{display:none!important}
-        `;
-        (doc.head||doc.documentElement).appendChild(style);
-      }catch(e){}
+<iframe id="lesson" src="lesson-studio-standard.html?id=grade8-u1-l1&section=introduction" title="الدرس الأول — الصف الثاني الإعدادي"></iframe>
+<script>
+const frame=document.getElementById('lesson');
+function cleanLesson(){
+  try{
+    const doc=frame.contentDocument;
+    if(!doc)return;
+    if(!doc.getElementById('direct-lesson-clean-style')){
+      const style=doc.createElement('style');
+      style.id='direct-lesson-clean-style';
+      style.textContent=`
+        header.student-header,
+        .student-header,
+        .hm-header,
+        .hm-nav,
+        header nav,
+        a[href="index.html"],
+        a[href="./index.html"],
+        a[href="../index.html"]{display:none!important}
+      `;
+      (doc.head||doc.documentElement).appendChild(style);
     }
-    frame.addEventListener('load',()=>{
-      cleanLesson();
-      setTimeout(cleanLesson,100);
-      setTimeout(cleanLesson,500);
-      setTimeout(cleanLesson,1200);
+    doc.querySelectorAll('a').forEach(a=>{
+      const href=(a.getAttribute('href')||'').trim();
+      const text=(a.textContent||'').trim();
+      if(href==='index.html'||href==='./index.html'||href==='../index.html'||text==='الرئيسية'||text.includes('الرئيسية')){
+        a.style.setProperty('display','none','important');
+      }
     });
-  </script>
+  }catch(e){}
+}
+frame.addEventListener('load',()=>{
+  cleanLesson();
+  [100,300,700,1200,2000].forEach(t=>setTimeout(cleanLesson,t));
+});
+</script>
 </body>
 </html>
