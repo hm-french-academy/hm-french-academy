@@ -1,0 +1,37 @@
+name: Apply Grade 9 speech fix
+on:
+  push:
+    paths:
+      - '.github/workflows/grade9-speech-fix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch speech engine
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('grade9-u1-l1-standard.html')
+          s=p.read_text(encoding='utf-8')
+          start=s.index('function speak(text){')
+          end=s.index('\nfunction go(', start)
+          new='''function speechSafeText(text){return String(text||'').normalize('NFC').replace(/l[’']equitation/gi,'l équitation').replace(/l[’']escrime/gi,'l escrime').replace(/[’‘]/g,"'").trim()}
+function speak(text){text=String(text||'').trim();if(!text||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;const value=speechSafeText(text);const fallback=speechSafeText(text);const run=(spoken,retry=false)=>{synth.cancel();try{synth.resume()}catch(e){};const u=new SpeechSynthesisUtterance(spoken);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;u.onerror=()=>{if(!retry&&fallback!==spoken){setTimeout(()=>run(fallback,true),80)}};synth.speak(u)};run(value)}'''
+          p.write_text(s[:start]+new+s[end:],encoding='utf-8')
+          PY
+      - name: Verify patch
+        run: |
+          grep -q "function speechSafeText" grade9-u1-l1-standard.html
+          grep -q "u.lang='fr-FR'" grade9-u1-l1-standard.html
+          ! grep -q "const vs=synth.getVoices" grade9-u1-l1-standard.html
+      - name: Commit and remove workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/grade9-speech-fix.yml
+          git add grade9-u1-l1-standard.html .github/workflows/grade9-speech-fix.yml
+          git commit -m 'Fix Grade 9 French speech pronunciation' || exit 0
+          git push
