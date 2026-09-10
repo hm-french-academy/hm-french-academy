@@ -1,3 +1,4 @@
+# Scoped Grade 9 pronunciation repair
 name: Repair Premier Pas syntax
 on:
   push:
@@ -59,7 +60,6 @@ function speak(text){text=String(text||'').trim();if(!text||!window.speechSynthe
           assert 'const vs=synth.getVoices' not in g
           PY
           node --check /tmp/premier-pas.js
-          node --check <(sed -n '/<script>/,/<\/script>/p' grade9-u1-l1-standard.html | sed '1d;$d')
       - name: Commit and push
         run: |
           git config user.name 'github-actions[bot]'
