@@ -3,14 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="refresh" content="0;url=lesson-studio-standard.html?id=grade8-u1-l1&section=introduction">
   <title>HM Academy | الصف الثاني الإعدادي — الدرس الأول</title>
-  <link rel="canonical" href="https://hm-french-academy.github.io/hm-french-academy/lesson-studio-standard.html?id=grade8-u1-l1&section=introduction">
+  <style>
+    html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}
+    iframe{display:block;width:100%;height:100%;border:0}
+  </style>
 </head>
 <body>
-  <p>جاري فتح الدرس الأول...</p>
+  <iframe id="lesson" src="lesson-studio-standard.html?id=grade8-u1-l1&section=introduction" title="الدرس الأول — الصف الثاني الإعدادي"></iframe>
   <script>
-    window.location.replace('lesson-studio-standard.html?id=grade8-u1-l1&section=introduction');
+    const frame=document.getElementById('lesson');
+    function cleanLesson(){
+      try{
+        const doc=frame.contentDocument;
+        if(!doc)return;
+        const style=doc.createElement('style');
+        style.textContent=`
+          .hm-header,.hm-nav,.hm-brand[href="index.html"],
+          header nav,a[href="index.html"]{display:none!important}
+        `;
+        (doc.head||doc.documentElement).appendChild(style);
+      }catch(e){}
+    }
+    frame.addEventListener('load',()=>{
+      cleanLesson();
+      setTimeout(cleanLesson,100);
+      setTimeout(cleanLesson,500);
+      setTimeout(cleanLesson,1200);
+    });
   </script>
 </body>
 </html>
