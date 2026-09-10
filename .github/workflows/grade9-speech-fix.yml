@@ -1,4 +1,4 @@
-name: Apply Grade 9 speech fix
+name: Repair Grade 9 Lesson 1 runtime
 on:
   push:
     paths:
@@ -6,32 +6,36 @@ on:
 permissions:
   contents: write
 jobs:
-  fix:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch speech engine
+      - name: Repair lesson runtime and speech
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('grade9-u1-l1-standard.html')
           s=p.read_text(encoding='utf-8')
-          start=s.index('function speak(text){')
-          end=s.index('\nfunction go(', start)
+          if 'const nav=document.getElementById(\'nav\')' not in s:
+              s=s.replace("let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;", "let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;\nconst nav=document.getElementById('nav');\nconst panel=document.getElementById('panel');")
+          start=s.index('function speechText(text){') if 'function speechText(text){' in s else s.index('function speak(text){')
+          end=s.index('\nfunction shuffle(', start) if 'function shuffle(' in s else s.index('\nfunction go(', start)
           new='''function speechSafeText(text){return String(text||'').normalize('NFC').replace(/l[’']equitation/gi,'l équitation').replace(/l[’']escrime/gi,'l escrime').replace(/[’‘]/g,"'").trim()}
-function speak(text){text=String(text||'').trim();if(!text||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;const value=speechSafeText(text);const fallback=speechSafeText(text);const run=(spoken,retry=false)=>{synth.cancel();try{synth.resume()}catch(e){};const u=new SpeechSynthesisUtterance(spoken);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;u.onerror=()=>{if(!retry&&fallback!==spoken){setTimeout(()=>run(fallback,true),80)}};synth.speak(u)};run(value)}'''
-          p.write_text(s[:start]+new+s[end:],encoding='utf-8')
+function speak(text){text=String(text||'').trim();if(!text||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;const value=speechSafeText(text);const run=(spoken,retry=false)=>{synth.cancel();try{synth.resume()}catch(e){};const u=new SpeechSynthesisUtterance(spoken);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;u.onerror=()=>{if(!retry&&spoken!==text){setTimeout(()=>run(text,true),80)}};synth.speak(u)};run(value)}'''
+          s=s[:start]+new+s[end:]
+          p.write_text(s,encoding='utf-8')
           PY
-      - name: Verify patch
+      - name: Verify
         run: |
+          grep -q "const nav=document.getElementById('nav')" grade9-u1-l1-standard.html
+          grep -q "const panel=document.getElementById('panel')" grade9-u1-l1-standard.html
           grep -q "function speechSafeText" grade9-u1-l1-standard.html
           grep -q "u.lang='fr-FR'" grade9-u1-l1-standard.html
-          ! grep -q "const vs=synth.getVoices" grade9-u1-l1-standard.html
-      - name: Commit and remove workflow
+      - name: Commit repair
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           rm -f .github/workflows/grade9-speech-fix.yml
           git add grade9-u1-l1-standard.html .github/workflows/grade9-speech-fix.yml
-          git commit -m 'Fix Grade 9 French speech pronunciation' || exit 0
+          git commit -m 'Repair Grade 9 Lesson 1 runtime and speech' || exit 0
           git push
