@@ -2,6 +2,14 @@
 (function(){
   'use strict';
   try {
+    /* Grade 9 standard lesson: its legacy renderer uses the DOM ids as globals.
+       Define them explicitly before the lesson's inline script runs. */
+    if (/\/grade9-u1-l1-standard\.html$/i.test(location.pathname)) {
+      const lessonNav=document.getElementById('nav');
+      const lessonPanel=document.getElementById('panel');
+      if (lessonNav) window.nav=lessonNav;
+      if (lessonPanel) window.panel=lessonPanel;
+    }
     const SUPABASE_URL='https://yvoprtjyxmurvcsaqsny.supabase.co';
     const SUPABASE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
     const STORAGE_KEY='hm_analytics_session_id';
