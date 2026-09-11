@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Sync Grade 8 games and files sections
+        run: node scripts/fix-grade8-games-files-sync.js
       - name: Publish real Ensemble interactive book layer
         run: |
           set -euo pipefail
