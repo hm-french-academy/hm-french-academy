@@ -30,11 +30,16 @@ jobs:
           from pathlib import Path
           p=Path('grade9-u1-l1-standard.html')
           s=p.read_text(encoding='utf-8')
-          tag='<script src="scripts/grade9-u1-l1-recovery.js?v=20260911" defer></script>'
-          if tag not in s:
-              s=s.replace('</body>',tag+'\n</body>',1)
+          old='scripts/grade9-u1-l1-recovery.js?v=20260911'
+          new='scripts/grade9-u1-l1-recovery.js?v=20260911-6'
+          if old in s:
+              s=s.replace(old,new,1)
+          else:
+              tag=f'<script src="{new}" defer></script>'
+              if tag not in s:
+                  s=s.replace('</body>',tag+'\n</body>',1)
           p.write_text(s,encoding='utf-8')
-          assert tag in s
+          assert new in s
           PY
 
       - name: Validate Grade 9 lesson and recovery runtime
@@ -42,7 +47,7 @@ jobs:
           set -euo pipefail
           grep -Fq 'id="nav"' grade9-u1-l1-standard.html
           grep -Fq 'id="panel"' grade9-u1-l1-standard.html
-          grep -Fq 'grade9-u1-l1-recovery.js' grade9-u1-l1-standard.html
+          grep -Fq 'grade9-u1-l1-recovery.js?v=20260911-6' grade9-u1-l1-standard.html
           grep -Fq 'function boot()' scripts/grade9-u1-l1-recovery.js
           grep -Fq "document.getElementById('nav')" scripts/grade9-u1-l1-recovery.js
           grep -Fq "document.getElementById('panel')" scripts/grade9-u1-l1-recovery.js
