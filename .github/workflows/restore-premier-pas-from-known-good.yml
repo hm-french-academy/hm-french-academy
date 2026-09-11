@@ -1,6 +1,5 @@
-name: Restore Premier Pas and apply scoped Premiers sons visual update
+name: Scoped lesson runtime repair
 on:
-  workflow_dispatch:
   push:
     branches: [main]
 permissions:
@@ -13,32 +12,39 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Restore known-good page then patch Premiers sons only
+      - name: Fix Grade 9 standard lesson runtime only
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin main
-          git checkout d73ed3d208779a64b8ff08583f32e7efa10a94bc -- preparatory-french-starter-final.html
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('grade9-u1-l1-standard.html')
+          s=p.read_text(encoding='utf-8')
+          needle="let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;"
+          decl="const nav=document.getElementById('nav');\nconst panel=document.getElementById('panel');"
+          if decl not in s:
+              if needle not in s:
+                  raise SystemExit('Grade 9 runtime insertion point not found')
+              s=s.replace(needle,needle+'\n'+decl,1)
+              p.write_text(s,encoding='utf-8')
+              print('PATCHED_GRADE9_RUNTIME')
+          else:
+              print('GRADE9_RUNTIME_ALREADY_FIXED')
+          PY
           python3 - <<'PY'
           from pathlib import Path
           import re
-          p=Path('preparatory-french-starter-final.html')
-          s=p.read_text(encoding='utf-8')
-          pattern=r"if\(step===5\)h\+='.*?';"
-          m=re.search(pattern,s,re.S)
-          if not m:
-              raise SystemExit('step 5 render not found')
-          replacement="""if(step===5)h+='<div class=\"box\"><b>🔊 Premiers sons</b><p>استمع إلى الصوت، وشاهد مثالًا بصريًا للكلمة التي يظهر فيها هذا الصوت.</p></div><div class=\"sounds\">'+sounds.map(x=>'<div class=\"sound\"><div class=\"visual\" aria-label=\"'+x[2]+'\">'+({'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤','maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬','chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'👶','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'}[x[2]]||'🖼️')+'</div><div class=\"combo\">'+x[0]+'</div><div class=\"ipa\">'+x[1]+'</div><div class=\"example\" dir=\"ltr\">'+x[2]+'</div><div class=\"note\">'+x[3]+'</div><button class=\"speak\" data-speak=\"'+x[2]+'\">🔊 استمع إلى المثال</button></div>').join('')+'</div><div class=\"tip\">🎧 كل الأمثلة الموجودة في هذه المحطة تظهر هنا، مع الكلمة نفسها والنطق والشرح والصورة البصرية.</div>';"""
-          s=s[:m.start()]+replacement+s[m.end():]
-          p.write_text(s,encoding='utf-8')
-          blocks=re.findall(r'<script[^>]*>(.*?)</script>',s,re.S)
-          Path('/tmp/page.js').write_text('\n'.join(blocks),encoding='utf-8')
+          s=Path('grade9-u1-l1-standard.html').read_text(encoding='utf-8')
+          js='\n'.join(re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',s,re.S))
+          Path('/tmp/grade9-standard.js').write_text(js,encoding='utf-8')
           PY
-          node --check /tmp/page.js
-          git add preparatory-french-starter-final.html
-          git diff --cached --quiet && { echo 'No repair change'; exit 1; }
+          node --check /tmp/grade9-standard.js
+          if git diff --quiet -- grade9-u1-l1-standard.html; then
+            echo 'NO_GRADE9_SOURCE_CHANGE'
+            exit 0
+          fi
+          git add grade9-u1-l1-standard.html
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'fix: restore Premier Pas and upgrade all Premiers sons examples'
-          git pull --rebase origin main
+          git commit -m 'fix: define Grade 9 lesson DOM elements explicitly'
           git push origin main
