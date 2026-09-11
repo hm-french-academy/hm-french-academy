@@ -20,6 +20,8 @@ const data={vocab:[['le football','كرة القدم','⚽','Je joue au football
 const steps=[['intro','🚀','البداية'],['vocab','🖼️','المفردات'],['pron','🎧','النطق'],['grammar','📘','القواعد'],['conv','💬','المحادثة'],['video','🎬','الفيديو'],['practice','🎯','التدريب'],['games','🎮','الألعاب'],['review','🧠','المراجعة الذكية'],['assessment','🏆','التقييم'],['files','📁','ملفات الدرس'],['progress','📈','التقدم']];
 let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nav=document.getElementById('nav');
+const panel=document.getElementById('panel');
 function speechText(text){const s=String(text||'').trim();if(/^l[’']équitation$/i.test(s))return 'léquitation';if(/^l[’']escrime$/i.test(s))return 'lescrime';if(/^Qu'est-ce que tu préfères \?$/i.test(s))return 'Quest-ce que tu preferes ?';if(/^Où pratiques-tu ton sport préféré \?$/i.test(s))return 'Ou pratiques-tu ton sport prefere ?';return s}
 function speak(text){const s=speechText(text);if(!s||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(s);u.lang='fr-FR';u.rate=.78;u.pitch=1;u.volume=1;const vs=speechSynthesis.getVoices();const v=vs.find(x=>/^fr[-_]FR$/i.test(x.lang))||vs.find(x=>/^fr[-_]/i.test(x.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}}
 function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
