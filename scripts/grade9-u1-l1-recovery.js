@@ -1,48 +1,51 @@
 (function(){
   'use strict';
+  function speakDirect(text){
+    var s=String(text||'').trim();
+    if(!s)return;
+    var synth=window.speechSynthesis;
+    if(!synth||!window.SpeechSynthesisUtterance)return;
+    try{
+      synth.cancel();
+      if(synth.paused)synth.resume();
+      var u=new SpeechSynthesisUtterance(s);
+      u.lang='fr-FR';
+      u.rate=.78;
+      u.pitch=1;
+      u.volume=1;
+      var voices=synth.getVoices();
+      var v=voices.find(function(x){return /^fr[-_]FR$/i.test(x.lang)})||voices.find(function(x){return /^fr[-_]/i.test(x.lang)});
+      if(v)u.voice=v;
+      synth.speak(u);
+    }catch(e){}
+  }
   function patchSpeech(){
     if(!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;
-    window.speak=function(text){
-      var s=String(text||'').trim();
-      if(!s)return;
-      var synth=window.speechSynthesis;
-      function play(){
-        try{
-          synth.cancel();
-          if(synth.paused)synth.resume();
-          var u=new SpeechSynthesisUtterance(s);
-          u.lang='fr-FR';
-          u.rate=.78;
-          u.pitch=1;
-          u.volume=1;
-          var voices=synth.getVoices();
-          var v=voices.find(function(x){return /^fr[-_]FR$/i.test(x.lang)})||voices.find(function(x){return /^fr[-_]/i.test(x.lang)});
-          if(v)u.voice=v;
-          synth.speak(u);
-        }catch(e){}
-      }
-      var voices=synth.getVoices();
-      if(voices.length){play();return;}
-      var once=function(){synth.removeEventListener('voiceschanged',once);play();};
+    window.speak=speakDirect;
+    var synth=window.speechSynthesis;
+    if(!synth.getVoices().length){
+      var once=function(){synth.removeEventListener('voiceschanged',once);};
       synth.addEventListener('voiceschanged',once);
-      setTimeout(function(){synth.removeEventListener('voiceschanged',once);play();},250);
-    };
+    }
   }
+  patchSpeech();
   function loadEnhancements(){
     if(document.querySelector('script[data-grade9-enhancements]')) return;
     var s=document.createElement('script');
-    s.src='scripts/grade9-u1-l1-enhancements.js?v=20260911-4';
+    s.src='scripts/grade9-u1-l1-enhancements.js?v=20260911-5';
     s.defer=false;
     s.setAttribute('data-grade9-enhancements','1');
-    s.onload=function(){setTimeout(patchSpeech,120);setTimeout(patchSpeech,700);};
+    s.onload=function(){setTimeout(patchSpeech,50);setTimeout(patchSpeech,300);setTimeout(patchSpeech,900);};
     document.head.appendChild(s);
   }
   function boot(){
+    patchSpeech();
     var nav=document.getElementById('nav'), panel=document.getElementById('panel');
     if(!nav||!panel) return;
     if(typeof window.go==='function' && typeof window.speak==='function'){
       loadEnhancements();
-      setTimeout(patchSpeech,900);
+      setTimeout(patchSpeech,500);
+      setTimeout(patchSpeech,1500);
       return;
     }
     if(nav.children.length && panel.innerHTML.trim()) return;
@@ -50,7 +53,7 @@
     var vocab=[['le football','كرة القدم','⚽','Je joue au football.'],['le ping-pong','تنس الطاولة','🏓','Je joue au ping-pong.'],['le karaté','الكاراتيه','🥋','Je pratique le karaté.'],['le cyclisme / le vélo','ركوب الدراجات','🚴','Je fais du vélo.'],['la boxe','الملاكمة','🥊','Je pratique la boxe.'],['la natation','السباحة','🏊','Je fais de la natation.'],['le tennis','التنس','🎾','Je joue au tennis.'],['le basket-ball','كرة السلة','🏀','Je joue au basket-ball.'],['le volley-ball','الكرة الطائرة','🏐','Je joue au volley-ball.'],["l'équitation",'الفروسية','🏇',"Je fais de l'équitation."],["l'escrime",'المبارزة','🤺',"Je pratique l'escrime."],['le ski','التزلج','⛷️','Je fais du ski.'],['le judo','الجودو','🥋','Je pratique le judo.'],['le rugby','الرجبي','🏉','Je joue au rugby.'],['la pêche','صيد السمك','🎣','Je pratique la pêche.'],['la voile','الإبحار','⛵','Je fais de la voile.'],['la gymnastique','الجمباز','🤸','Je fais de la gymnastique.'],['les échecs','الشطرنج','♟️','Je joue aux échecs.'],['la marche','المشي','🚶','Je fais de la marche.'],['la randonnée','التنزه','🥾','Je fais de la randonnée.']];
     var idx=0;
     function esc(s){return String(s).replace(/[&<>\"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]});}
-    function speak(t){patchSpeech();if(typeof window.speak==='function')window.speak(t)}
+    function speak(t){patchSpeech();speakDirect(t)}
     function render(){
       nav.innerHTML=steps.map(function(s,i){return '<button class="'+(i===idx?'active':'')+'" data-step="'+i+'">'+s[0]+' '+s[1]+'</button>'}).join('');
       nav.querySelectorAll('button').forEach(function(b){b.onclick=function(){idx=Number(b.dataset.step);render()}});
