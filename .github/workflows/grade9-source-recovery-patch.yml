@@ -1,4 +1,4 @@
-name: Persist Grade 9 Recovery Runtime
+name: Persist Grade 9 Lesson Audio Fix
 
 on:
   push:
@@ -10,43 +10,78 @@ permissions:
 
 jobs:
   patch:
-    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[GRADE9-RECOVERY]')
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[GRADE9-AUDIO]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Persist recovery script reference
+      - name: Make Grade 9 lesson audio self-contained
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
           p=Path('grade9-u1-l1-standard.html')
           s=p.read_text(encoding='utf-8')
-          tag='<script src="scripts/grade9-u1-l1-recovery.js?v=20260911" defer></script>'
-          if tag not in s:
-              if '</body>' not in s:
-                  raise SystemExit('Grade 9 lesson has no closing body tag')
-              s=s.replace('</body>',tag+'\n</body>',1)
-              p.write_text(s,encoding='utf-8')
-          assert tag in p.read_text(encoding='utf-8')
+
+          import re
+          s=re.sub(r'\s*<script\s+src=["\']scripts/grade9-u1-l1-recovery\.js\?v=[^"\']+["\']\s+defer></script>', '', s, count=0)
+
+          old=re.search(r'function speechText\(t\)\{.*?\nwindow\.speak=speak;', s, flags=re.S)
+          if not old:
+              raise SystemExit('Inline speech block not found')
+
+          new="""function speechText(t){return String(t||'').trim();}
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)) return;
+    const text=speechText(t);
+    if(!text) return;
+    const synth=window.speechSynthesis;
+    synth.cancel();
+    const play=()=>{
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang='fr-FR';u.rate=.78;u.pitch=1;u.volume=1;
+      const voices=synth.getVoices();
+      const v=voices.find(x=>/^fr[-_]FR$/i.test(x.lang))||voices.find(x=>/^fr[-_]/i.test(x.lang));
+      if(v) u.voice=v;
+      synth.speak(u);
+    };
+    const voices=synth.getVoices();
+    if(voices.length) play(); else {
+      const once=()=>{synth.removeEventListener('voiceschanged',once);play();};
+      synth.addEventListener('voiceschanged',once,{once:true});
+      setTimeout(()=>{synth.removeEventListener('voiceschanged',once);if(!synth.speaking)play();},250);
+    }
+  }catch(e){}
+}
+window.speak=speak;"""
+          s=s[:old.start()]+new+s[old.end():]
+          p.write_text(s,encoding='utf-8')
+          assert 'grade9-u1-l1-recovery.js' not in s
+          assert 'function speechText(t){return String(t||' in s
+          assert "u.lang='fr-FR'" in s
+          assert 'window.speak=speak' in s
           PY
 
-      - name: Validate persisted recovery reference
+      - name: Validate Grade 9 lesson audio
         run: |
           set -euo pipefail
-          grep -Fq 'grade9-u1-l1-recovery.js?v=20260911' grade9-u1-l1-standard.html
-          test -f scripts/grade9-u1-l1-recovery.js
+          grep -Fq 'id="nav"' grade9-u1-l1-standard.html
+          grep -Fq 'id="panel"' grade9-u1-l1-standard.html
+          grep -Fq "u.lang='fr-FR'" grade9-u1-l1-standard.html
+          grep -Fq 'window.speak=speak' grade9-u1-l1-standard.html
+          ! grep -Fq 'grade9-u1-l1-recovery.js' grade9-u1-l1-standard.html
 
-      - name: Commit source patch
+      - name: Commit source audio fix
         run: |
           set -euo pipefail
           if git diff --quiet; then
-            echo 'Grade 9 recovery reference already persisted.'
+            echo 'Grade 9 lesson audio is already self-contained.'
             exit 0
           fi
           git config user.name 'hm-french-academy'
           git config user.email 'hf.toma@gmail.com'
           git add grade9-u1-l1-standard.html
-          git commit -m '[GRADE9-RECOVERY] Persist isolated runtime reference'
+          git commit -m '[GRADE9-AUDIO] Make lesson pronunciation self-contained'
           git push origin HEAD:main
