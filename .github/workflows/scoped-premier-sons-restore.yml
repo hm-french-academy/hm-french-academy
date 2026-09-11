@@ -1,4 +1,4 @@
-name: Scoped Premier Pas sounds repair
+name: Scoped lesson runtime repair
 
 on:
   push:
@@ -16,56 +16,41 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Patch only Premiers sons
+      - name: Fix Grade 9 standard lesson runtime only
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import re
-          p = Path('preparatory-french-starter-final.html')
+          p = Path('grade9-u1-l1-standard.html')
           s = p.read_text(encoding='utf-8')
-          old = s
-          visuals = {
-            'ami':'👦','petit':'🧒','livre':'📖','rose':'🌹','lune':'🌙','rouge':'🔴','moi':'👤',
-            'maison':'🏠','seize':'🔢','jaune':'🟡','eau':'💧','été':'☀️','parler':'🗣️','parlez':'💬',
-            'chat':'🐱','photo':'📷','montagne':'🏔️','enfant':'🧒','bonjour':'👋','vin':'🍇','un':'1️⃣','qui':'❓'
-          }
-          visual_js = repr(visuals).replace("'", "'")
-          visual_js = visual_js.replace('{', '{').replace('}', '}')
-          block = '''if(step===5)h+='<div class="box"><b>🔊 Premiers sons</b><p>هنا نتعلم الصوت داخل الكلمة، مع مثال بصري وكلمة فرنسية ونطقها.</p></div><div class="sounds">'+sounds.map(x=>{const v={ami:'👦',petit:'🧒',livre:'📖',rose:'🌹',lune:'🌙',rouge:'🔴',moi:'👤',maison:'🏠',seize:'🔢',jaune:'🟡',eau:'💧',été:'☀️',parler:'🗣️',parlez:'💬',chat:'🐱',photo:'📷',montagne:'🏔️',enfant:'🧒',bonjour:'👋',vin:'🍇',un:'1️⃣',qui:'❓'}[x[2]]||'🔤';return '<div class="sound"><div class="visual" data-speak="'+esc(x[2])+'">'+v+'</div><b style="font-size:30px;direction:ltr">'+x[0]+'</b><div style="direction:ltr;font-size:20px;font-weight:800">'+x[2]+'</div><div>'+x[1]+'</div><div class="note">'+x[3]+'</div><button class="speak" data-speak="'+esc(x[2])+'">🔊 استمع إلى المثال</button></div>}).join('')+'</div><div class="tip">🎧 استمع إلى الكلمة وشاهد الصورة، ثم لاحظ الصوت المستهدف داخل المثال.</div>';'''
-          # Replace only the Premiers sons branch, regardless of the malformed older version.
-          pattern = r"if\(step===5\)h\+='.*?';if\(step===6\)"
-          m = re.search(pattern, s, re.S)
-          if not m:
-              raise SystemExit('Premiers sons render branch not found')
-          s = s[:m.start()] + block + 'if(step===6)' + s[m.end():]
-          if s == old:
-              print('NO_CHANGES')
-              raise SystemExit(0)
-          p.write_text(s, encoding='utf-8')
-          print('PATCHED_ONLY_TARGET_BRANCH')
+          needle = "let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;"
+          declaration = "const nav=document.getElementById('nav');\nconst panel=document.getElementById('panel');"
+          if declaration not in s:
+              if needle not in s:
+                  raise SystemExit('Grade 9 runtime insertion point not found')
+              s = s.replace(needle, needle + "\n" + declaration, 1)
+              p.write_text(s, encoding='utf-8')
+              print('PATCHED_GRADE9_RUNTIME')
+          else:
+              print('GRADE9_RUNTIME_ALREADY_FIXED')
           PY
 
           python3 - <<'PY'
           from pathlib import Path
           import re
-          s=Path('preparatory-french-starter-final.html').read_text(encoding='utf-8')
+          s=Path('grade9-u1-l1-standard.html').read_text(encoding='utf-8')
           js='\n'.join(re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',s,re.S))
-          Path('/tmp/premier-pas.js').write_text(js,encoding='utf-8')
+          Path('/tmp/grade9-standard.js').write_text(js,encoding='utf-8')
           PY
-          node --check /tmp/premier-pas.js
+          node --check /tmp/grade9-standard.js
 
-          git diff --name-only
-          test "$(git diff --name-only | wc -l | tr -d ' ')" = "1"
-          test "$(git diff --name-only)" = "preparatory-french-starter-final.html"
-
-          git add preparatory-french-starter-final.html
-          if git diff --cached --quiet; then
-            echo 'No HTML changes; nothing to commit.'
+          if git diff --quiet -- grade9-u1-l1-standard.html; then
+            echo 'NO_GRADE9_SOURCE_CHANGE'
             exit 0
           fi
+          git add grade9-u1-l1-standard.html
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'fix: add visual examples to Premier Pas Premiers sons'
+          git commit -m 'fix: define Grade 9 lesson DOM elements explicitly'
           git push origin main
