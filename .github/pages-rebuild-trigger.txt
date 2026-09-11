@@ -1,2 +1,3 @@
-Production Pages rebuild trigger for grade9-u1-l1-standard.html.
-The lesson source already contains the navEl/panelEl runtime fix; this file intentionally triggers the Pages deployment workflow so the corrected lesson is republished.
+Production Pages rebuild trigger for grade9-u1-l1-standard.html runtime fix.
+The lesson source uses explicit runtime globals supplied by the published analytics bootstrap; this file intentionally triggers the Pages deployment workflow so the corrected lesson is republished.
+2026-09-11T17:00Z
