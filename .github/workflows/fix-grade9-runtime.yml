@@ -1,0 +1,56 @@
+name: Fix Grade 9 Lesson Runtime
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject explicit DOM references into Grade 9 lesson
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('grade9-u1-l1-standard.html')
+          s = p.read_text(encoding='utf-8')
+          marker = "let idx=0,assessmentScore=0,assessmentDone=0,reviewScore=0,reviewDone=0;"
+          fix = marker + "\nconst nav=document.getElementById('nav');\nconst panel=document.getElementById('panel');"
+          if "const nav=document.getElementById('nav');" not in s:
+              if marker not in s:
+                  raise SystemExit('Grade 9 lesson marker not found')
+              s = s.replace(marker, fix, 1)
+              p.write_text(s, encoding='utf-8')
+              print('Grade 9 runtime fix injected')
+          else:
+              print('Grade 9 runtime fix already present')
+          PY
+
+      - name: Validate lesson runtime bindings
+        run: |
+          set -euo pipefail
+          grep -Fq "const nav=document.getElementById('nav');" grade9-u1-l1-standard.html
+          grep -Fq "const panel=document.getElementById('panel');" grade9-u1-l1-standard.html
+          grep -Fq "function renderNav()" grade9-u1-l1-standard.html
+          grep -Fq "panel.innerHTML=h" grade9-u1-l1-standard.html
+
+      - name: Commit fix when needed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- grade9-u1-l1-standard.html; then
+            echo 'No change required.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add grade9-u1-l1-standard.html
+          git commit -m 'Fix Grade 9 lesson runtime DOM bindings'
+          git push
