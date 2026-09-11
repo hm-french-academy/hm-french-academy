@@ -1,0 +1,52 @@
+name: Persist Grade 9 Recovery Runtime
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[GRADE9-RECOVERY]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Persist recovery script reference
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('grade9-u1-l1-standard.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="scripts/grade9-u1-l1-recovery.js?v=20260911" defer></script>'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('Grade 9 lesson has no closing body tag')
+              s=s.replace('</body>',tag+'\n</body>',1)
+              p.write_text(s,encoding='utf-8')
+          assert tag in p.read_text(encoding='utf-8')
+          PY
+
+      - name: Validate persisted recovery reference
+        run: |
+          set -euo pipefail
+          grep -Fq 'grade9-u1-l1-recovery.js?v=20260911' grade9-u1-l1-standard.html
+          test -f scripts/grade9-u1-l1-recovery.js
+
+      - name: Commit source patch
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'Grade 9 recovery reference already persisted.'
+            exit 0
+          fi
+          git config user.name 'hm-french-academy'
+          git config user.email 'hf.toma@gmail.com'
+          git add grade9-u1-l1-standard.html
+          git commit -m '[GRADE9-RECOVERY] Persist isolated runtime reference'
+          git push origin HEAD:main
