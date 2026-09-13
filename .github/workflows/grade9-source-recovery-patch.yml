@@ -15,15 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Restore Grade 4 Lesson 1 stable version
-        run: |
-          set -euo pipefail
-          git checkout ecd7964c31ddeca00f479cc8f3f987498b498f00 -- grade-4-l01-learning-studio.html
-          rm -f scripts/fix-grade4-l01-games.js
-          rm -f .github/workflows/restore-g4-l01-stable.yml
 
       - name: Make Grade 9 lesson audio self-contained
         run: |
@@ -32,11 +23,14 @@ jobs:
           from pathlib import Path
           p=Path('grade9-u1-l1-standard.html')
           s=p.read_text(encoding='utf-8')
+
           import re
           s=re.sub(r'\s*<script\s+src=["\']scripts/grade9-u1-l1-recovery\.js\?v=[^"\']+["\']\s+defer></script>', '', s, count=0)
+
           old=re.search(r'function speechText\(t\)\{.*?\nwindow\.speak=speak;', s, flags=re.S)
           if not old:
               raise SystemExit('Inline speech block not found')
+
           new="""function speechText(t){return String(t||'').trim();}
 function speak(t){
   try{
@@ -79,15 +73,15 @@ window.speak=speak;"""
           grep -Fq 'window.speak=speak' grade9-u1-l1-standard.html
           ! grep -Fq 'grade9-u1-l1-recovery.js' grade9-u1-l1-standard.html
 
-      - name: Commit restored Grade 4 and source audio fix
+      - name: Commit source audio fix
         run: |
           set -euo pipefail
-          git config user.name 'hm-french-academy'
-          git config user.email 'hf.toma@gmail.com'
-          git add grade-4-l01-learning-studio.html grade9-u1-l1-standard.html scripts/fix-grade4-l01-games.js .github/workflows/restore-g4-l01-stable.yml
-          if git diff --cached --quiet; then
-            echo 'No source changes required.'
+          if git diff --quiet; then
+            echo 'Grade 9 lesson audio is already self-contained.'
             exit 0
           fi
-          git commit -m '[GRADE9-AUDIO] Restore Grade 4 Lesson 1 stable version'
+          git config user.name 'hm-french-academy'
+          git config user.email 'hf.toma@gmail.com'
+          git add grade9-u1-l1-standard.html
+          git commit -m '[GRADE9-AUDIO] Make lesson pronunciation self-contained'
           git push origin HEAD:main
