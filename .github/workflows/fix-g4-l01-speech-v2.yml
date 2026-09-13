@@ -1,0 +1,33 @@
+name: Fix g4-l01 speech v2
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-g4-l01-speech-v2.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch speech engine
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('grade-4-l01-learning-studio.html')
+          s=p.read_text(encoding='utf-8')
+          old="window.speak=function(t){if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;synth.cancel();const u=new window.SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;synth.speak(u)}"
+          new="window.speak=function(t){if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance)return;const synth=window.speechSynthesis;const play=()=>{synth.cancel();synth.resume();const u=new window.SpeechSynthesisUtterance(String(t));u.lang='fr-FR';u.rate=.82;u.pitch=1;synth.speak(u)};if(synth.getVoices().length)play();else{window.speechSynthesis.onvoiceschanged=()=>{window.speechSynthesis.onvoiceschanged=null;play()};setTimeout(play,150)}}"
+          if old not in s: raise SystemExit('target speech function not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add grade-4-l01-learning-studio.html
+          git commit -m 'fix(g4-l01): make speech playback robust' || true
+          git rm .github/workflows/fix-g4-l01-speech-v2.yml
+          git commit -m 'chore: remove temporary g4-l01 speech workflow'
+          git push
