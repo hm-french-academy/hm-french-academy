@@ -1,0 +1,70 @@
+name: Fix Grade 6 pronunciation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-g6-pronunciation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch pronunciation handler
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('grade6-lesson-v2.html')
+          s = p.read_text(encoding='utf-8')
+          start = s.find('function say(t){')
+          if start < 0:
+              raise SystemExit('say() not found')
+          depth = 0
+          end = None
+          for i in range(start, len(s)):
+              if s[i] == '{': depth += 1
+              elif s[i] == '}':
+                  depth -= 1
+                  if depth == 0:
+                      end = i + 1
+                      break
+          if end is None:
+              raise SystemExit('say() end not found')
+          new = r'''function say(t){
+  if(!t)return;
+  const text=String(t).trim(),status=document.getElementById('pronStatus');
+  if(!text)return;
+  if(status)status.textContent='🔊 جاري تشغيل النطق الفرنسي…';
+  try{
+    if('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window){
+      const synth=window.speechSynthesis;
+      synth.cancel();
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;
+      const voices=synth.getVoices();
+      const v=voices.find(x=>/^fr(-|_)/i.test(x.lang))||voices.find(x=>/french|français/i.test(x.name));
+      if(v)u.voice=v;
+      u.onstart=()=>{if(status)status.textContent='🔊 جاري تشغيل النطق الفرنسي…'};
+      u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
+      u.onerror=()=>{if(status)status.textContent='⚠️ تعذر تشغيل النطق من الجهاز.'};
+      synth.resume();
+      synth.speak(u);
+      return;
+    }
+  }catch(e){}
+  if(status)status.textContent='⚠️ خدمة النطق غير متاحة على هذا الجهاز.';
+}'''
+          p.write_text(s[:start] + new + s[end:], encoding='utf-8')
+      - name: Remove one-time workflow and commit
+        shell: bash
+        run: |
+          rm -f .github/workflows/fix-g6-pronunciation.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add grade6-lesson-v2.html .github/workflows/fix-g6-pronunciation.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix Grade 6 pronunciation handler [skip ci]'
+          git push
