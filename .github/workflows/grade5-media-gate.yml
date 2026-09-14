@@ -54,3 +54,5 @@ jobs:
           git commit -m "fix: restore grade 6 lesson and repair pronunciation"
           git push origin "$branch"
           gh pr create --base main --head "$branch" --title "Fix Grade 6 pronunciation buttons" --body "Restore grade6-lesson-v2.html from the known-good commit and change only the speechSynthesis click path so Android browsers do not wait for voiceschanged before speaking."
+
+# Triggered intentionally to repair Grade 6 pronunciation.
