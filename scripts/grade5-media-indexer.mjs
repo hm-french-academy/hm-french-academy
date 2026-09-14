@@ -10,3 +10,4 @@ const result={grade:'primary-5',term:'term-1',source:'lesson-media-manifest.json
 fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n');
 if(!result.complete){console.error(JSON.stringify(result,null,2));process.exit(1)}
 console.log(`Grade 5 media gate: ${ready}/11 videos validated.`);
+// Intentional no-op touch to trigger the existing Grade 6 repair workflow.
