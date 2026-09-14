@@ -1,1 +1,1 @@
-Trigger Grade 6 pronunciation repair workflow - final retry.
+Run isolated Grade 6 pronunciation repair now.
