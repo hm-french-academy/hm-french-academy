@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   repair:
-    if: github.actor == 'hm-french-academy'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
