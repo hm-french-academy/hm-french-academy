@@ -16,84 +16,72 @@ jobs:
           from pathlib import Path
           import re
           targets = {
-            'grade-3.html':'primary-3',
-            'grade-4.html':'primary-4',
-            'grade-5.html':'primary-5',
-            'grade-6.html':'primary-6',
-            'grade-3-lesson-journey.html':'primary-3',
-            'grade-4-lesson-journey.html':'primary-4',
-            'grade-4-l01-learning-studio.html':'primary-4',
-            'grade-4-l02-learning-studio.html':'primary-4',
-            'grade-4-lesson-studio-v2.html':'primary-4',
-            'grade-4-lessons-03-07-live.html':'primary-4',
-            'grade-5-lesson-v3.html':'primary-5',
-            'grade6-lesson-v2.html':'primary-6',
-            'grade7-lesson-studio-final.html':'prep-1',
-            'lesson-studio-standard.html':'prep-2',
-            'grade-9-lesson-studio.html':'prep-3',
-            'secondary-1-lesson-studio.html':'secondary-1',
-            'baccalaureat-2-lesson-studio-v3.html':'secondary-2',
+            'grade-3.html':'primary-3','grade-4.html':'primary-4','grade-5.html':'primary-5','grade-6.html':'primary-6','grade-3-lesson-journey.html':'primary-3','grade-4-lesson-journey.html':'primary-4','grade-4-l01-learning-studio.html':'primary-4','grade-4-l02-learning-studio.html':'primary-4','grade-4-lesson-studio-v2.html':'primary-4','grade-4-lessons-03-07-live.html':'primary-4','grade-5-lesson-v3.html':'primary-5','grade6-lesson-v2.html':'primary-6','grade7-lesson-studio-final.html':'prep-1','lesson-studio-standard.html':'prep-2','grade-9-lesson-studio.html':'prep-3','secondary-1-lesson-studio.html':'secondary-1','baccalaureat-2-lesson-studio-v3.html':'secondary-2',
           }
-          css='css/hm-academy-grade-themes.css'
-          marker='hm-academy-grade-themes.css'
+          css='css/hm-academy-grade-themes.css'; marker='hm-academy-grade-themes.css'
           for name, grade in targets.items():
             p=Path(name)
-            if not p.exists():
-              print('SKIP missing', name); continue
+            if not p.exists(): print('SKIP missing',name); continue
             s=p.read_text(encoding='utf-8')
-            if marker not in s:
-              if '</head>' in s:
-                s=s.replace('</head>', f'<link rel="stylesheet" href="{css}?v=20260909-grade-themes-v2"></head>', 1)
-              else:
-                print('SKIP no head', name); continue
-            pat=r'<body([^>]*)>'
-            m=re.search(pat,s,re.I)
+            if marker not in s and '</head>' in s: s=s.replace('</head>',f'<link rel="stylesheet" href="{css}?v=20260909-grade-themes-v2"></head>',1)
+            m=re.search(r'<body([^>]*)>',s,re.I)
             if m:
-              attrs=m.group(1)
-              attrs=re.sub(r'\sdata-hm-grade-theme="[^"]*"','',attrs,flags=re.I)
-              repl=f'<body{attrs} data-hm-grade-theme="{grade}">'
-              s=s[:m.start()]+repl+s[m.end():]
+              attrs=re.sub(r'\sdata-hm-grade-theme="[^"]*"','',m.group(1),flags=re.I); s=s[:m.start()]+f'<body{attrs} data-hm-grade-theme="{grade}">'+s[m.end():]
             p.write_text(s,encoding='utf-8')
-            print('UPDATED',name,grade)
       - name: Harden Grade 8 pronunciation playback only
         shell: python
         run: |
           from pathlib import Path
           import re
-
           robust = """function speak(t){const text=String(t??'').trim();if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined')return;const synth=window.speechSynthesis;let attempts=0;const play=()=>{attempts++;try{synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.84;u.pitch=1;const voices=synth.getVoices();const voice=voices.find(v=>String(v.lang).toLowerCase()==='fr-fr')||voices.find(v=>String(v.lang).toLowerCase().startsWith('fr'));if(voice)u.voice=voice;u.onerror=()=>{if(attempts<3)setTimeout(play,140)};try{synth.resume()}catch(_){}synth.speak(u)}catch(_){if(attempts<3)setTimeout(play,140)}};play()}"""
           standard=Path('lesson-studio-standard.html')
           if standard.exists():
-            s=standard.read_text(encoding='utf-8')
-            old="function speak(t){if(!t||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)}"
-            if old in s:
-              s=s.replace(old,robust,1)
-            elif robust not in s:
-              raise SystemExit('Expected Grade 8 pronunciation function not found')
-            pattern=r"onclick='speak\(\$\{JSON\.stringify\((.*?)\)\}\)'"
-            def safe_handler(m):
-              return 'onclick="speak(this.dataset.text)" data-text="${esc(' + m.group(1) + ')}"'
-            s,n=re.subn(pattern,safe_handler,s)
-            print(f'SAFE pronunciation handlers rewritten: {n}')
+            s=standard.read_text(encoding='utf-8'); old="function speak(t){if(!t||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)}"
+            if old in s: s=s.replace(old,robust,1)
+            elif robust not in s: raise SystemExit('Expected Grade 8 pronunciation function not found')
             standard.write_text(s,encoding='utf-8')
-            print('READY pronunciation runtime: lesson-studio-standard.html')
           independent=Path('grade8-pronunciation.html')
           if independent.exists():
-            s=independent.read_text(encoding='utf-8')
-            old="function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}"
-            if old in s:
-              s=s.replace(old,robust,1)
-              independent.write_text(s,encoding='utf-8')
-              print('UPDATED pronunciation runtime: grade8-pronunciation.html')
-            elif robust in s:
-              print('ALREADY hardened: grade8-pronunciation.html')
-            else:
-              raise SystemExit('Expected independent Grade 8 pronunciation function not found')
+            s=independent.read_text(encoding='utf-8'); old="function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}"
+            if old in s: s=s.replace(old,robust,1); independent.write_text(s,encoding='utf-8')
+            elif robust not in s: raise SystemExit('Expected independent Grade 8 pronunciation function not found')
+      - name: Fix Grade 6 pronunciation with direct audio activation
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('grade6-lesson-v2.html')
+          s=p.read_text(encoding='utf-8')
+          if 'client=gtx' in s:
+              print('GRADE6_PRONUNCIATION_ALREADY_FIXED'); raise SystemExit(0)
+          start=s.find('function say(t){')
+          if start<0: raise SystemExit('Grade 6 say() not found')
+          depth=0; end=None
+          for i in range(start,len(s)):
+              if s[i]=='{': depth+=1
+              elif s[i]=='}':
+                  depth-=1
+                  if depth==0: end=i+1; break
+          if end is None: raise SystemExit('Grade 6 say() end not found')
+          new=r'''function say(t){
+  if(!t)return;
+  const text=String(t).trim(),status=document.getElementById('pronStatus');
+  if(!text)return;
+  if(status)status.textContent='🔊 جاري تشغيل النطق الفرنسي…';
+  try{
+    const audio=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&tl=fr&client=gtx&q='+encodeURIComponent(text));
+    audio.preload='auto';audio.volume=1;
+    audio.onended=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
+    audio.onerror=()=>{try{if('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window){const synth=window.speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;synth.speak(u);u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};return}}catch(e){}if(status)status.textContent='⚠️ تعذر تشغيل النطق.'};
+    const p=audio.play();if(p&&p.catch)p.catch(()=>{if(status)status.textContent='⚠️ تعذر تشغيل النطق.'});
+  }catch(e){if(status)status.textContent='⚠️ تعذر تشغيل النطق.'}
+}'''
+          p.write_text(s[:start]+new+s[end:],encoding='utf-8')
+          print('PATCHED_GRADE6_PRONUNCIATION')
       - name: Commit theme rollout
         run: |
           git config user.name "HM Academy Theme Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add css/hm-academy-grade-themes.css .github/workflows/apply-grade-themes.yml *.html
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
-          git commit -m "Apply premium grade themes across portals and lesson runtimes"
+          git commit -m "Fix Grade 6 pronunciation playback"
           git push
