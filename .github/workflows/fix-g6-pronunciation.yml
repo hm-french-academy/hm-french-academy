@@ -48,22 +48,10 @@ jobs:
   if(status)status.textContent='🔊 جاري تشغيل النطق الفرنسي…';
   try{
     const audio=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&tl=fr&client=gtx&q='+encodeURIComponent(text));
-    audio.preload='auto';
-    audio.volume=1;
-    const playNow=audio.play();
-    if(playNow&&playNow.catch)playNow.catch(()=>{});
+    audio.preload='auto';audio.volume=1;
     audio.onended=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
-    audio.onerror=()=>{
-      try{
-        if('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window){
-          const synth=window.speechSynthesis;synth.cancel();
-          const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;synth.speak(u);
-          u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
-          return;
-        }
-      }catch(e){}
-      if(status)status.textContent='⚠️ تعذر تشغيل النطق.';
-    };
+    audio.onerror=()=>{try{if('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window){const synth=window.speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;synth.speak(u);u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};return}}catch(e){}if(status)status.textContent='⚠️ تعذر تشغيل النطق.'};
+    const p=audio.play();if(p&&p.catch)p.catch(()=>{if(status)status.textContent='⚠️ تعذر تشغيل النطق.'});
   }catch(e){if(status)status.textContent='⚠️ تعذر تشغيل النطق.'}
 }'''
           p.write_text(s[:start] + new + s[end:], encoding='utf-8')
