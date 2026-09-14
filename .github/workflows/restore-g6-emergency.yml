@@ -11,23 +11,28 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Patch Grade 6 pronunciation
-        shell: python
+      - name: Patch Grade 6 pronunciation only
+        shell: bash
         run: |
+          set -euo pipefail
+          python3 - <<'PY'
           from pathlib import Path
           p=Path('grade6-lesson-v2.html')
           s=p.read_text(encoding='utf-8')
-          if 'client=gtx' in s:
-              print('ALREADY_FIXED'); raise SystemExit(0)
           start=s.find('function say(t){')
-          if start<0: raise SystemExit('say() not found')
-          depth=0; end=None
+          if start < 0:
+              raise SystemExit('say() not found')
+          depth=0
+          end=None
           for i in range(start,len(s)):
               if s[i]=='{': depth+=1
               elif s[i]=='}':
                   depth-=1
-                  if depth==0: end=i+1; break
-          if end is None: raise SystemExit('say() end not found')
+                  if depth==0:
+                      end=i+1
+                      break
+          if end is None:
+              raise SystemExit('say() end not found')
           new=r'''function say(t){
   if(!t)return;
   const text=String(t).trim(),status=document.getElementById('pronStatus');
@@ -37,17 +42,35 @@ jobs:
     const audio=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&tl=fr&client=gtx&q='+encodeURIComponent(text));
     audio.preload='auto';audio.volume=1;
     audio.onended=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
-    audio.onerror=()=>{try{if('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window){const synth=window.speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;synth.speak(u);u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};return}}catch(e){}if(status)status.textContent='⚠️ تعذر تشغيل النطق.'};
-    const p=audio.play();if(p&&p.catch)p.catch(()=>{if(status)status.textContent='⚠️ تعذر تشغيل النطق.'});
+    audio.onerror=()=>{
+      try{
+        if('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window){
+          const synth=window.speechSynthesis;synth.cancel();
+          const u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.82;u.pitch=1;u.volume=1;
+          u.onend=()=>{if(status)status.textContent='اضغط على زر الاستماع لتشغيل النطق الفرنسي.'};
+          synth.speak(u);return;
+        }
+      }catch(e){}
+      if(status)status.textContent='⚠️ تعذر تشغيل النطق.';
+    };
+    const p=audio.play();
+    if(p&&p.catch)p.catch(()=>{if(status)status.textContent='⚠️ تعذر تشغيل النطق.'});
   }catch(e){if(status)status.textContent='⚠️ تعذر تشغيل النطق.'}
 }'''
           p.write_text(s[:start]+new+s[end:],encoding='utf-8')
+          print('GRADE6_PRONUNCIATION_PATCHED')
+          PY
+          grep -Fq 'client=gtx' grade6-lesson-v2.html
       - name: Commit pronunciation fix
         shell: bash
         run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add grade6-lesson-v2.html
-          if git diff --cached --quiet; then echo "No Grade 6 changes"; exit 0; fi
-          git commit -m "Fix Grade 6 pronunciation audio"
+          if git diff --cached --quiet; then
+            echo 'No Grade 6 changes'
+            exit 0
+          fi
+          git commit -m 'fix: Grade 6 pronunciation playback'
           git push origin main
