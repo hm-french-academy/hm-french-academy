@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | Les repas de la journée</title>
+<link rel="stylesheet" href="css/premium-shell.css">
+<style>
+:root{--ink:#14213d;--muted:#66758d;--line:#dce5f2;--soft:#f6f8fc;--brand:#245bd7;--ok:#eaf9f2;--bad:#fff0f0}
+body{background:linear-gradient(135deg,#f7f9ff,#eef4ff);color:var(--ink)}
+.wrap{max-width:1120px;margin:auto}.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;margin:14px 0;box-shadow:0 12px 30px rgba(20,33,61,.07)}
+.hero{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.pill{background:#edf3ff;color:var(--brand);padding:8px 13px;border-radius:99px;font-weight:900}.muted{color:var(--muted);line-height:1.9}.progress{height:9px;background:#e8edf6;border-radius:99px;overflow:hidden;margin-top:15px}.progress i{display:block;height:100%;width:8%;background:var(--brand);transition:.25s}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.tab{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px;font-weight:900;cursor:pointer}.tab.on{background:var(--brand);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px}.v{border:1px solid var(--line);border-radius:17px;padding:14px;background:#fbfcff}.v b{font-size:20px;direction:ltr;display:block}.v span{color:var(--muted);display:block;margin:4px 0 10px}.speak{border:0;border-radius:10px;padding:7px 10px;background:#edf3ff;color:var(--brand);font-weight:900;cursor:pointer}
+.rule,.reading,.dialogue,.mission{background:var(--soft);border:1px solid #e5ebf3;border-radius:17px;padding:16px;line-height:2;margin-top:11px}.model{font-size:19px;font-weight:800;background:#fff;border-right:4px solid var(--brand);padding:13px;border-radius:13px;margin:10px 0;direction:ltr;text-align:left}
+.q{border:1px solid var(--line);border-radius:17px;padding:15px;margin:11px 0}.opts{display:grid;gap:8px;margin-top:9px}.opt{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px;text-align:right;cursor:pointer}.opt.ok{background:var(--ok);border-color:#2d9b70}.opt.bad{background:var(--bad);border-color:#d35b5b}.feedback{margin-top:8px;font-weight:800;line-height:1.8}.write{width:100%;min-height:125px;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;box-sizing:border-box}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.metric b{display:block;font-size:24px}.btn{border:0;border-radius:13px;padding:11px 15px;background:var(--brand);color:#fff;text-decoration:none;font-weight:900;cursor:pointer}.btn.alt{background:#edf3ff;color:var(--brand)}.actions{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:700px){.tabs{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column}.metrics{grid-template-columns:1fr}.card{padding:15px}.wrap{width:min(100% - 14px,1120px)}}
+</style></head>
+<body>
+<main class="hm-main wrap">
+<section class="hm-hero card"><div class="hero"><div><div class="eyebrow">HM ACADEMY · BACCALAURÉAT 2 · UNITÉ 1</div><h1>Les repas de la journée</h1><p class="muted">الوجبات اليومية · الدرس الأول · تعلّم ثم طبّق ثم أتقن</p></div><span class="pill">Unité 1 · Le français</span></div><div class="progress"><i id="bar"></i></div></section>
+<div id="tabs" class="tabs"></div><section id="view"></section>
+<section class="card actions"><a class="btn alt" href="baccalaureat-2.html">← العودة للمنهج</a><button class="btn alt" id="prev">السابق</button><button class="btn" id="next">التالي</button></section>
+</main>
+<script>
+const stages=[
+['Comprendre','🧠','ابدأ من المعنى: الوجبات تتغير خلال اليوم، ولكل وجبة اسم ووقت.'],
+['Écouter','🎧','استمع إلى الجملة ثم كررها بصوت واضح.'],
+['Lire','📖','اقرأ الحوار القصير وحدد الوجبات والأوقات.'],
+['Vocabulaire','🗂️','تعلم الكلمات الأساسية مع نطق منفصل لكل كلمة.'],
+['Grammaire','📘','تدرب على prendre / manger / boire في المضارع.'],
+['Phonétique','🔊','ركز على النطق المتصل في petit-déjeuner و déjeuner.'],
+['Parler','🗣️','تحدث عن وجبتك المفضلة ووقتها.'],
+['Interagir','💬','اسأل زميلك عن الوجبات التي يتناولها ومتى.'],
+['Écrire','✍️','اكتب روتينًا غذائيًا بسيطًا من 3 جمل.'],
+['Tâche','🎯','أنشئ بطاقة يومية لوجباتك باللغة الفرنسية.'],
+['Auto-évaluation','☑️','قيّم ما تستطيع فعله قبل الانتقال للتدريب.'],
+['Entraînement','🏆','تدريب مختلط وتصحيح فوري ونتيجة نهائية.']
+];
+const vocab=[['le petit-déjeuner','الإفطار'],['le déjeuner','الغداء'],['le goûter','الوجبة الخفيفة'],['le dîner','العشاء'],['manger','يأكل'],['boire','يشرب'],['prendre','يتناول'],['à quelle heure ?','في أي ساعة؟']];
+const questions=[
+['Je ___ le petit-déjeuner à sept heures.',['prends','prend','prendre'],0,'مع Je نستخدم prends من الفعل prendre.'],
+['Le déjeuner, c’est…',['الغداء','العشاء','الإفطار'],0,'Le déjeuner تعني الغداء.'],
+['Le soir, je ___ le dîner.',['prends','prend','prendre'],0,'مع Je: je prends.'],
+['Je ___ de l’eau au déjeuner.',['bois','boit','boire'],0,'الفعل boire مع Je يصبح bois.'],
+['Quelle phrase est correcte ?',['Je mange à midi.','Je mange midi.','Je manger à midi.'],0,'التركيب الصحيح: Je mange à midi.'],
+['Le goûter est généralement…',['une petite prise alimentaire','une ville','une boisson uniquement'],0,'Le goûter هو وجبة خفيفة.']
+];
+let idx=0,score=0,answered=0;
+function speak(t){if('speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';speechSynthesis.speak(u)}}
+function qBlock(q,i){return `<div class="q"><b>${i+1}. ${q[0]}</b><div class="opts">${q[1].map((x,j)=>`<button class="opt" data-q="${i}" data-a="${j}">${x}</button>`).join('')}</div><div class="feedback" id="f${i}"></div></div>`}
+function render(){
+ document.getElementById('tabs').innerHTML=stages.map((s,i)=>`<button class="tab ${i===idx?'on':''}" data-i="${i}">${s[1]} ${s[0]}</button>`).join('');
+ document.getElementById('bar').style.width=((idx+1)/stages.length*100)+'%';
+ let h='';
+ if(idx===0)h=`<section class="card"><h2>اكتشف قبل أن تحفظ</h2><p class="muted">خلال اليوم نمر بوجبات مختلفة. الهدف هنا أن تفهم العلاقة بين اسم الوجبة ووقتها قبل حفظ الكلمات.</p><div class="model">Le matin, je prends le petit-déjeuner. À midi, je prends le déjeuner. Le soir, je prends le dîner.</div><div class="dialogue"><b>Observe → Notice → Rule → Try</b><br>لاحظ تكرار <b>je prends</b> مع أسماء الوجبات، ثم جرّب تكوين جملة عن وجبتك.</div></section>`;
+ if(idx===1)h=`<section class="card"><h2>🎧 استمع وانطق</h2><p class="muted">اضغط على كل جملة، استمع مرة، ثم كررها.</p>${['Je prends le petit-déjeuner à sept heures.','Je mange à midi.','Je bois de l’eau.','Je prends le dîner le soir.'].map(x=>`<div class="model">${x} <button class="speak" onclick="speak('${x.replaceAll("'","\\'")}')">🔊 نطق</button></div>`).join('')}</section>`;
+ if(idx===2)h=`<section class="card"><h2>📖 اقرأ</h2><div class="reading"><b>Ma journée</b><br>Le matin, Salma prend son petit-déjeuner à sept heures. À midi, elle prend le déjeuner avec sa famille. Après l’école, elle prend le goûter. Le soir, elle prend le dîner.</div><div class="model">Question : À quelle heure Salma prend-elle le petit-déjeuner ?</div><p class="muted">الإجابة: À sept heures.</p></section>`;
+ if(idx===3)h=`<section class="card"><h2>🗂️ المفردات الأساسية</h2><div class="grid">${vocab.map(v=>`<article class="v"><b>${v[0]}</b><span>${v[1]}</span><button class="speak" onclick="speak('${v[0].replaceAll("'","\\'")}')">🔊 نطق الكلمة</button></article>`).join('')}</div></section>`;
+ if(idx===4)h=`<section class="card"><h2>📘 القاعدة</h2><div class="rule"><b>Prendre</b>: je prends · tu prends · il/elle prend<br><b>Manger</b>: je mange · tu manges · il/elle mange<br><b>Boire</b>: je bois · tu bois · il/elle boit</div><div class="model">Je prends le déjeuner à midi.</div><div class="model">Je mange à midi et je bois de l’eau.</div></section>`;
+ if(idx===5)h=`<section class="card"><h2>🔊 نشاط النطق</h2><p class="muted">انتبه إلى النطق الطبيعي للمقاطع في أسماء الوجبات.</p>${['petit-déjeuner','déjeuner','dîner'].map(x=>`<div class="model">${x} <button class="speak" onclick="speak('${x}')">🔊 استمع</button></div>`).join('')}<div class="rule">لا تحفظ النطق من الكتابة العربية؛ اسمع النموذج الفرنسي ثم كرره.</div></section>`;
+ if(idx===6)h=`<section class="card"><h2>🗣️ تحدث</h2><p class="muted">استخدم النموذج ثم بدّل المعلومات لتتحدث عن نفسك.</p><div class="model">Je prends le petit-déjeuner à … heures.</div><div class="model">À midi, je prends …</div><div class="model">Le soir, je prends …</div><button class="speak" onclick="speak('Je prends le petit-déjeuner à sept heures. À midi, je prends le déjeuner.')">🔊 نموذج صوتي</button></section>`;
+ if(idx===7)h=`<section class="card"><h2>💬 تفاعل</h2><div class="dialogue"><b>A:</b> À quelle heure prends-tu le petit-déjeuner ?<br><b>B:</b> Je le prends à sept heures.<br><b>A:</b> Et le dîner ?<br><b>B:</b> Je le prends à huit heures.</div><p class="muted">بدّل الأوقات والوجبات وكرر الحوار بصوتك.</p></section>`;
+ if(idx===8)h=`<section class="card"><h2>✍️ اكتب</h2><p class="muted">اكتب 3 جمل عن وجباتك خلال اليوم.</p><textarea class="write" placeholder="Le matin, je…&#10;À midi, je…&#10;Le soir, je…"></textarea><div class="model">نموذج: Le matin, je prends le petit-déjeuner à sept heures.</div></section>`;
+ if(idx===9)h=`<section class="card"><h2>🎯 المهمة</h2><div class="mission"><b>Ma journée alimentaire</b><br>أنشئ بطاقة صغيرة تحتوي على: 1) ثلاث وجبات، 2) وقت كل وجبة، 3) جملة واحدة باستخدام manger أو boire.</div><div class="model">07:00 → petit-déjeuner · 13:00 → déjeuner · 20:00 → dîner</div></section>`;
+ if(idx===10)h=`<section class="card"><h2>☑️ تقييم ذاتي</h2><div class="grid"><div class="v"><b>أستطيع</b><span>تسمية الوجبات الأساسية.</span></div><div class="v"><b>أستطيع</b><span>ذكر وقت الوجبة.</span></div><div class="v"><b>أستطيع</b><span>استخدام prends / mange / bois في جملة بسيطة.</span></div></div><p class="muted">إذا كنت مترددًا في نقطة، ارجع إلى المرحلة المناسبة قبل التدريب.</p></section>`;
+ if(idx===11)h=`<section class="card"><h2>🏆 التدريب والإتقان</h2><p class="muted">6 أسئلة متنوعة. لا تُحسب الإجابة قبل اختيارك، ومكان الإجابة الصحيحة يتغير.</p>${questions.map(qBlock).join('')}<div class="metrics"><div class="metric"><b id="sc">${score}</b>صحيح</div><div class="metric"><b id="an">${answered}</b>تمت الإجابة</div><div class="metric"><b id="pct">0%</b>نتيجة</div></div></section>`;
+ document.getElementById('view').innerHTML=h;
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{idx=+b.dataset.i;render()});
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.q,+b.dataset.a,b));
+}
+function answer(q,a,btn){if(btn.parentElement.dataset.done)return;btn.parentElement.dataset.done='1';answered++;const correct=questions[q][2]===a;if(correct)score++;document.querySelectorAll(`[data-q="${q}"]`).forEach(x=>x.disabled=true);btn.classList.add(correct?'ok':'bad');document.getElementById('f'+q).textContent=correct?'✓ إجابة صحيحة — أحسنت.':'✗ ليست الإجابة الصحيحة. '+questions[q][3];document.getElementById('sc').textContent=score;document.getElementById('an').textContent=answered;document.getElementById('pct').textContent=Math.round(score/questions.length*100)+'%'}
+document.getElementById('next').onclick=()=>{if(idx<stages.length-1){idx++;render()}else{alert('أكملت رحلة الدرس. راجع نتيجتك في التدريب.')}};document.getElementById('prev').onclick=()=>{if(idx>0){idx--;render()}};render();
+</script></body></html>
