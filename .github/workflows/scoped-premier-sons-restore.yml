@@ -17,6 +17,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Restore Grade 6 lesson from known-good commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin cc3513b2b69a4c3ce28b851f65f8894628e2f2fd
+          git show cc3513b2b69a4c3ce28b851f65f8894628e2f2fd:grade6-lesson-v2.html > grade6-lesson-v2.html
+          git add grade6-lesson-v2.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --cached --quiet; then
+            echo 'GRADE6_ALREADY_RESTORED'
+          else
+            git commit -m 'restore: Grade 6 lesson page'
+            git push origin main
+          fi
+
       - name: Fix Grade 9 standard lesson runtime only
         shell: bash
         run: |
