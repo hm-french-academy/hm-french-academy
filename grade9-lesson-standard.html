@@ -20,7 +20,7 @@
 <body>
 <div class="wrap">
 <header class="student-header"><a class="brand" href="index.html"><span class="brand-logo">HM</span><span>🇫🇷 HM Academy</span></a><div class="header-actions"><a class="unit-btn" href="grade-9.html">📚 دروس الصف الثالث</a><a class="home-btn" href="index.html">⌂ الرئيسية</a></div></header>
-<section class="hero"><h1 id="titleAr">جارٍ تحميل الدرس...</h1><p id="subtitle"></p><div class="journey"><span>🚀 استكشف</span><span>🖼️ تعلم</span><span>🎧 انطق</span><span>📘 افهم</span><span>💬 تواصل</span><span>🎯 تدرب</span><span>🎮 العب</span><span>🧠 راجع</span><span>🏆 قيّم</span><span>📈 تقدم</span></div></section>
+<section class="hero"><h1 id="titleAr">جارٍ تحميل الدرس...</h1><p id="subtitle"></p><div class="journey"><span>🚀 استكشف</span><span>🖼️ تعلم</span><span>📍 الأماكن والأشخاص</span><span>📘 افهم</span><span>💬 تواصل</span><span>🎯 تدرب</span><span>🎮 العب</span><span>🧠 راجع</span><span>🏆 قيّم</span><span>📈 تقدم</span></div></section>
 <nav class="nav" id="nav"></nav><section class="panel" id="panel"></section>
 <section class="complete"><div><b>🏁 رحلة التعلم</b><div id="status">تقدمك محفوظ على هذا الجهاز.</div></div><button class="btn primary" id="complete">إكمال الدرس</button></section>
 </div>
@@ -35,9 +35,9 @@ const iconMap={
 };
 function vocabIcon(fr){return iconMap[String(fr||'').toLowerCase()]||'⚽'}
 const icons=['⚽','🏟️','🏃','💬','🏥','🩺','💊','👕','🛍️','🎨','🎒','🏆'];
-const steps=[['intro','🚀','استكشف'],['vocab','🖼️','تعلم'],['pron','🎧','انطق'],['grammar','📘','افهم'],['conv','💬','تواصل'],['practice','🎯','تدرب'],['games','🎮','العب'],['review','🧠','راجع'],['assessment','🏆','قيّم'],['progress','📈','تقدم']];
+const steps=[['intro','🚀','استكشف'],['vocab','🖼️','تعلم'],['pron','📍','الأماكن والأشخاص'],['grammar','📘','افهم'],['conv','💬','تواصل'],['practice','🎯','تدرب'],['games','🎮','العب'],['review','🧠','راجع'],['assessment','🏆','قيّم'],['progress','📈','تقدم']];
 const nav=document.getElementById('nav'),panel=document.getElementById('panel'),status=document.getElementById('status');
-function safeJSON(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){localStorage.removeItem(key);return fallback}}
+function safeJSON(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){return fallback}}
 let data=null,idx=0,scores=safeJSON('hm_'+id+'_scores',{}),completed=safeJSON('hm_'+id+'_completed',false);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function speak(t){if(!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}catch(e){}}
