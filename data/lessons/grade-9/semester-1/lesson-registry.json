@@ -16,32 +16,28 @@
           "number": 1,
           "titleFr": "Les sports",
           "titleAr": "الرياضات",
-          "contentFile": "data/lessons/grade-9/semester-1/u1-l1.json",
-          "files": "lesson-files-v2.html?lesson=g9-u1-l1&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u1-l1.json"
         },
         {
           "id": "g9-u1-l2",
           "number": 2,
           "titleFr": "Les lieux, les personnages et les objets sportifs",
           "titleAr": "أماكن الرياضة والشخصيات والأدوات الرياضية",
-          "contentFile": "data/lessons/grade-9/semester-1/u1-l2.json",
-          "files": "lesson-files-v2.html?lesson=g9-u1-l2&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u1-l2.json"
         },
         {
           "id": "g9-u1-l3",
           "number": 3,
           "titleFr": "Jouer, faire, pratiquer et les verbes du 2e groupe",
           "titleAr": "استخدام jouer وfaire وpratiquer وأفعال المجموعة الثانية",
-          "contentFile": "data/lessons/grade-9/semester-1/u1-l3.json",
-          "files": "lesson-files-v2.html?lesson=g9-u1-l3&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u1-l3.json"
         },
         {
           "id": "g9-u1-l4",
           "number": 4,
           "titleFr": "Dialogue et exercices sur le sport",
           "titleAr": "الحوار والتدريبات على الرياضة",
-          "contentFile": "data/lessons/grade-9/semester-1/u1-l4.json",
-          "files": "lesson-files-v2.html?lesson=g9-u1-l4&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u1-l4.json"
         }
       ]
     },
@@ -56,32 +52,28 @@
           "number": 1,
           "titleFr": "Être malade et le vocabulaire de la santé",
           "titleAr": "المرض ومفردات الصحة",
-          "contentFile": "data/lessons/grade-9/semester-1/u2-l1.json",
-          "files": "lesson-files-v2.html?lesson=g9-u2-l1&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u2-l1.json"
         },
         {
           "id": "g9-u2-l2",
           "number": 2,
           "titleFr": "Le corps humain et avoir mal",
           "titleAr": "أجزاء الجسم والتعبير عن الألم",
-          "contentFile": "data/lessons/grade-9/semester-1/u2-l2.json",
-          "files": "lesson-files-v2.html?lesson=g9-u2-l2&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u2-l2.json"
         },
         {
           "id": "g9-u2-l3",
           "number": 3,
           "titleFr": "L'impératif et les conseils de santé",
           "titleAr": "صيغة الأمر والنصائح الصحية",
-          "contentFile": "data/lessons/grade-9/semester-1/u2-l3.json",
-          "files": "lesson-files-v2.html?lesson=g9-u2-l3&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u2-l3.json"
         },
         {
           "id": "g9-u2-l4",
           "number": 4,
           "titleFr": "Les adjectifs possessifs et dialogues de santé",
           "titleAr": "صفات الملكية وحوارات الصحة",
-          "contentFile": "data/lessons/grade-9/semester-1/u2-l4.json",
-          "files": "lesson-files-v2.html?lesson=g9-u2-l4&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u2-l4.json"
         }
       ]
     },
@@ -96,32 +88,28 @@
           "number": 1,
           "titleFr": "Les vêtements et les personnes du magasin",
           "titleAr": "الملابس وأشخاص متجر الملابس",
-          "contentFile": "data/lessons/grade-9/semester-1/u3-l1.json",
-          "files": "lesson-files-v2.html?lesson=g9-u3-l1&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u3-l1.json"
         },
         {
           "id": "g9-u3-l2",
           "number": 2,
           "titleFr": "La matière, le prix et la taille",
           "titleAr": "الخامة والسعر والمقاس",
-          "contentFile": "data/lessons/grade-9/semester-1/u3-l2.json",
-          "files": "lesson-files-v2.html?lesson=g9-u3-l2&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u3-l2.json"
         },
         {
           "id": "g9-u3-l3",
           "number": 3,
           "titleFr": "Les couleurs et les verbes porter, mettre, choisir",
           "titleAr": "الألوان وأفعال porter وmettre وchoisir",
-          "contentFile": "data/lessons/grade-9/semester-1/u3-l3.json",
-          "files": "lesson-files-v2.html?lesson=g9-u3-l3&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u3-l3.json"
         },
         {
           "id": "g9-u3-l4",
           "number": 4,
           "titleFr": "Dialogue, compréhension et évaluation des vêtements",
           "titleAr": "الحوار والفهم والتقييم في الملابس",
-          "contentFile": "data/lessons/grade-9/semester-1/u3-l4.json",
-          "files": "lesson-files-v2.html?lesson=g9-u3-l4&v=20260919-files-v8"
+          "contentFile": "data/lessons/grade-9/semester-1/u3-l4.json"
         }
       ]
     }
@@ -145,9 +133,9 @@
     "sourceGrounded": true,
     "ocrReviewed": true,
     "visualSourceCheckRequired": true,
-    "lessonFilesPresent": true,
-    "lessonFileCount": 12,
+    "lessonFilesPresent": false,
+    "lessonFileCount": 0,
     "lessonJourneyConsistent": true
   },
-  "note": "Four learning modules per unit are an instructional packaging of the source sections; source wording remains authoritative and is not replaced by invented curriculum content."
+  "note": "External lesson-files pages are removed. Students open lesson content directly from the lesson pages."
 }
