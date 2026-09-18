@@ -29,8 +29,8 @@
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
 const file=id.replace(/^g9-/,'')+'.json';
 const iconMap={
-'au club':'🏟️','à la piscine':'🏊','au stade':'🏟️','à l'école':'🏫',
-'les supporters':'📣','l'arbitre':'🧑‍⚖️','les joueurs':'⚽','l'entraîneur':'🧑‍🏫',
+'au club':'🏟️','à la piscine':'🏊','au stade':'🏟️',"à l'école":'🏫',
+'les supporters':'📣',"l'arbitre":'🧑‍⚖️','les joueurs':'⚽',"l'entraîneur":'🧑‍🏫',
 'un maillot de bain':'🩱','des gants':'🧤','un maillot sportif':'👕','des chaussures de sport':'👟'
 };
 function vocabIcon(fr){return iconMap[String(fr||'').toLowerCase()]||'⚽'}
