@@ -37,7 +37,8 @@ function vocabIcon(fr){return iconMap[String(fr||'').toLowerCase()]||'⚽'}
 const icons=['⚽','🏟️','🏃','💬','🏥','🩺','💊','👕','🛍️','🎨','🎒','🏆'];
 const steps=[['intro','🚀','استكشف'],['vocab','🖼️','تعلم'],['pron','🎧','انطق'],['grammar','📘','افهم'],['conv','💬','تواصل'],['practice','🎯','تدرب'],['games','🎮','العب'],['review','🧠','راجع'],['assessment','🏆','قيّم'],['progress','📈','تقدم']];
 const nav=document.getElementById('nav'),panel=document.getElementById('panel'),status=document.getElementById('status');
-let data=null,idx=0,scores=JSON.parse(localStorage.getItem('hm_'+id+'_scores')||'{}'),completed=JSON.parse(localStorage.getItem('hm_'+id+'_completed')||'false');
+function safeJSON(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){localStorage.removeItem(key);return fallback}}
+let data=null,idx=0,scores=safeJSON('hm_'+id+'_scores',{}),completed=safeJSON('hm_'+id+'_completed',false);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function speak(t){if(!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}catch(e){}}
 function audio(t,label='🔊 استمع'){return '<button class="btn secondary" type="button" onclick="speak(this.dataset.text)" data-text="'+esc(t)+'">'+label+'</button>'}
