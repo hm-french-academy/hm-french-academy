@@ -28,6 +28,12 @@
 'use strict';
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
 const file=id.replace(/^g9-/,'')+'.json';
+const iconMap={
+'au club':'🏟️','à la piscine':'🏊','au stade':'🏟️','à l'école':'🏫',
+'les supporters':'📣','l'arbitre':'🧑‍⚖️','les joueurs':'⚽','l'entraîneur':'🧑‍🏫',
+'un maillot de bain':'🩱','des gants':'🧤','un maillot sportif':'👕','des chaussures de sport':'👟'
+};
+function vocabIcon(fr){return iconMap[String(fr||'').toLowerCase()]||'⚽'}
 const icons=['⚽','🏟️','🏃','💬','🏥','🩺','💊','👕','🛍️','🎨','🎒','🏆'];
 const steps=[['intro','🚀','استكشف'],['vocab','🖼️','تعلم'],['pron','🎧','انطق'],['grammar','📘','افهم'],['conv','💬','تواصل'],['practice','🎯','تدرب'],['games','🎮','العب'],['review','🧠','راجع'],['assessment','🏆','قيّم'],['progress','📈','تقدم']];
 const nav=document.getElementById('nav'),panel=document.getElementById('panel'),status=document.getElementById('status');
@@ -45,7 +51,7 @@ nav.innerHTML=steps.map((s,i)=>'<button class="'+(i===idx?'active':'')+'" onclic
 const v=data.journey?.vocabulary||[],g=data.journey?.grammar||[],c=data.journey?.conversation||[],p=data.journey?.practice||[],pr=data.journey?.pronunciation||[],vis=data.journey?.visual||[],a=data.journey?.assessment||[];
 let h='';
 if(idx===0)h=head('🚀 ضربة البداية',data.titleAr+' · '+data.titleFr+' · الصف الثالث الإعدادي')+'<div class="grid2"><div class="box"><h3>🎯 أهداف الدرس</h3><ul><li>فهم المفردات والتعبيرات الأساسية للدرس.</li><li>استخدام القواعد المرتبطة بالموضوع في جمل حقيقية.</li><li>التدرب على النطق والتواصل والتطبيق.</li><li>الانتقال من الفهم إلى الإنتاج ثم التقييم.</li></ul></div><div class="box"><h3>🧭 خريطة الدرس</h3><p>استكشف ← تعلم ← انطق ← افهم ← تواصل ← تدرب ← العب ← راجع ← قيّم.</p><div class="note"><b>المصدر:</b> الصفحات '+esc(data.sourcePages||'')+' من منهج Français simple 3.</div></div></div>';
-if(idx===1)h=head('🖼️ تعلم المفردات','مفردات هذا الدرس مرتبة في بطاقات مستقلة، مع المعنى والنطق.')+'<div class="cards">'+v.map((x,i)=>'<article class="card"><div class="visual">'+icons[i%icons.length]+'</div><div class="fr">'+esc(x.fr)+'</div><div class="ar">'+esc(x.ar)+'</div>'+audio(x.fr,'🔊 نطق الكلمة')+'</article>').join('')+'</div>';
+if(idx===1)h=head('🖼️ تعلم المفردات','مفردات هذا الدرس مرتبة في بطاقات مستقلة، مع المعنى والنطق.')+'<div class="cards">'+v.map((x,i)=>'<article class="card"><div class="visual">'+vocabIcon(x.fr)+'</div><div class="fr">'+esc(x.fr)+'</div><div class="ar">'+esc(x.ar)+'</div>'+audio(x.fr,'🔊 نطق الكلمة')+'</article>').join('')+'</div>';
 if(idx===2)h=head('🎧 انطق','استمع إلى العناصر الأساسية وكررها بصوت واضح.')+listCards(pr,'تدريب النطق');
 if(idx===3)h=head('📘 افهم القاعدة','القواعد الخاصة بهذا الدرس معروضة في وحدات قصيرة قابلة للمراجعة.')+'<div class="cards">'+g.map((x,i)=>'<article class="box"><div class="formula"><b>'+esc(x)+'</b></div><p>طبّق هذه القاعدة في جملة من موضوع الدرس، ثم راجعها بصوت مرتفع.</p></article>').join('')+'</div>';
 if(idx===4)h=head('💬 تواصل','حوارات الدرس في صورة مواقف قصيرة للتكرار والإنتاج.')+'<div>'+c.map((x,i)=>{const parts=String(x).split('—');return '<article class="dialogue"><b>🗣️ موقف '+(i+1)+'</b><div class="line-fr">'+esc(parts[0]||x)+'</div>'+audio(parts[0]||x,'🔊 السؤال / الموقف')+(parts[1]?'<hr><div class="line-fr">'+esc(parts[1])+'</div>'+audio(parts[1],'▶ نطق الإجابة'):'')+'</article>'}).join('')+'</div>';
