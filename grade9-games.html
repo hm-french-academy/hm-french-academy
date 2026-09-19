@@ -46,8 +46,20 @@ card('⚡','Quiz Express','اختبار سريع متنوع من مفردات ا
 '<article class="card"><div class="icon">↩️</div><h2>العودة إلى الدرس</h2><p>ارجع مباشرة إلى قسم الألعاب داخل الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=games">← العودة إلى الدرس</a></article>';
 
 let current='';
-function startGame(type){current=type;hub.hidden=true;game.hidden=false;renderGame();}
-function closeGame(){hub.hidden=false;game.hidden=true;game.innerHTML=''}
+function startGame(type){
+  current=type;
+  hub.style.display='none';
+  game.hidden=false;
+  game.style.display='block';
+  renderGame();
+  game.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeGame(){
+  game.hidden=true;
+  game.style.display='none';
+  game.innerHTML='';
+  hub.style.display='grid';
+}
 function renderGame(){
 let html='<div class="game-head"><h2>'+({memory:'🧩 Memory · صورة ↔ معنى',catch:'🎯 Word Catch · التقاط الكلمات',sort:'🧲 Drag & Drop · التصنيف',pron:'🎤 Pronunciation Challenge',vocab:'📚 Vocabulary Challenge',quiz:'⚡ Quiz Express'}[current]||'🎮 اللعبة')+'</h2><button class="btn secondary" type="button" data-close-game>← مركز الألعاب</button></div>';
 if(current==='memory'||current==='catch'||current==='vocab'||current==='pron'){let i=Math.floor(Math.random()*d.v.length),x=d.v[i],opts=pick([x,...d.v.filter((_,j)=>j!==i).sort(()=>Math.random()-.5)],4);let prompt=current==='memory'?'<div class="visual">'+x[2]+'</div><div>اختر المعنى العربي الصحيح</div>':current==='catch'?'<div class="ar">'+x[1]+'</div><div>اختر الكلمة الفرنسية الصحيحة</div>':current==='pron'?'<div class="fr">'+x[0]+'</div><button class="btn" data-speak="'+esc(x[0]).replace(/'/g,"\\'")+'">🔊 استمع</button><div>اختر الكلمة التي سمعتها</div>':'<div class="fr">'+x[0]+'</div><div>اختر المعنى العربي الصحيح</div>';html+='<div class="question">'+prompt+'<div class="options">'+opts.map(o=>{let val=current==='catch'||current==='pron'?o[0]:o[1];let ok=o[0]===x[0];return '<button type="button" class="option" data-ok="'+ok+'">'+esc(val)+'</button>'}).join('')+'</div><div class="feedback"></div></div><button class="btn" type="button" data-new-game>سؤال جديد</button>'}
