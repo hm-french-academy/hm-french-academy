@@ -46,7 +46,7 @@ card('⚡','Quiz Express','اختبار سريع متنوع من مفردات ا
 '<article class="card"><div class="icon">↩️</div><h2>العودة إلى الدرس</h2><p>ارجع مباشرة إلى قسم الألعاب داخل الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=games">← العودة إلى الدرس</a></article>';
 
 let current='';
-function startGame(type){current=type;hub.hidden=true;game.hidden=false;renderGame();window.scrollTo({top:0,behavior:'smooth'})}
+function startGame(type){current=type;hub.hidden=true;game.hidden=false;renderGame();}
 function closeGame(){hub.hidden=false;game.hidden=true;game.innerHTML=''}
 function renderGame(){
 let html='<div class="game-head"><h2>'+({memory:'🧩 Memory · صورة ↔ معنى',catch:'🎯 Word Catch · التقاط الكلمات',sort:'🧲 Drag & Drop · التصنيف',pron:'🎤 Pronunciation Challenge',vocab:'📚 Vocabulary Challenge',quiz:'⚡ Quiz Express'}[current]||'🎮 اللعبة')+'</h2><button class="btn secondary" type="button" data-close-game>← مركز الألعاب</button></div>';
