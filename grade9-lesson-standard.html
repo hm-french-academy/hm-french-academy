@@ -58,6 +58,7 @@ const G9V=[["au club","في النادي","🏟️"],["à la piscine","في حم
  }
  function g9Answer(btn,ok){btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);btn.style.outline=ok?'3px solid #16a34a':'3px solid #e92d83';btn.parentElement.nextElementSibling.textContent=ok?'✅ صحيح! أحسنت.':'❌ ليست الإجابة الصحيحة.'}
  function g9Speak(t){if(window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.8;speechSynthesis.speak(u)}}
+ window.g9Start=g9Start;window.g9Answer=g9Answer;window.g9Speak=g9Speak;
 function render(){
 nav.innerHTML=steps.map((s,i)=>'<button class="'+(i===idx?'active':'')+'" onclick="go('+i+')">'+s[1]+' '+s[2]+'</button>').join('');
 const v=data.journey?.vocabulary||[],g=data.journey?.grammar||[],c=data.journey?.conversation||[],p=data.journey?.practice||[],pr=data.journey?.pronunciation||[],vis=data.journey?.visual||[],a=data.journey?.assessment||[];
