@@ -35,8 +35,8 @@ const hub=document.getElementById('hub'),game=document.getElementById('game');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle=arr=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=(arr,n=4)=>shuffle(arr).slice(0,n);
-const answerMix=(correct,others)=>{const a=shuffle([correct,...others]);return a};
-function card(icon,title,text,type){return '<article class="card"><div class="icon">'+icon+'</div><h2>'+title+'</h2><p>'+text+'</p><a class="btn" href="grade9-games.html?id='+encodeURIComponent(id)+'&game='+encodeURIComponent(type)+'&v=20260919-games-v8#game">ابدأ اللعبة</a></article>'}
+let answerMixIndex=0;const answerMix=(correct,others)=>{const wrong=shuffle(others).slice(0,3);const pos=answerMixIndex++%4;const a=wrong.slice();a.splice(pos,0,correct);return a};
+function card(icon,title,text,type){return '<article class="card"><div class="icon">'+icon+'</div><h2>'+title+'</h2><p>'+text+'</p><a class="btn" href="grade9-games.html?id='+encodeURIComponent(id)+'&game='+encodeURIComponent(type)+'&v=20260919-games-v10#game">ابدأ اللعبة</a></article>'}
 hub.innerHTML=
 card('🧩','Memory · صورة ↔ معنى','طابق صورة المفردة مع معناها العربي.','memory')+
 card('🎯','Word Catch · التقاط الكلمات','تظهر صورة أو معنى، ثم تلتقط الكلمة الفرنسية الصحيحة.','catch')+
@@ -44,7 +44,7 @@ card('🧲','Drag & Drop · التصنيف','صنّف المفردات حسب ا
 card('🎤','Pronunciation Challenge','استمع إلى المفردة ثم اخترها من بين الخيارات.','pron')+
 card('📚','Vocabulary Challenge','تظهر المفردة أو معناها، ثم تختار المطابقة الصحيحة.','vocab')+
 card('⚡','Quiz Express','اختبار سريع متنوع من مفردات الدرس.','quiz')+
-'<article class="card"><div class="icon">📝</div><h2>التقييم الرسمي</h2><p>التقييم الأكاديمي منفصل عن الألعاب لقياس مدى إتقان الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=evaluation">فتح الاختبار</a></article>'+
+'<article class="card"><div class="icon">📝</div><h2>التقييم الرسمي</h2><p>التقييم الأكاديمي منفصل عن الألعاب لقياس مدى إتقان الدرس.</p><a class="btn secondary" href="'+(id==='g9-u1-l1'?'grade9-u1-l1-standard.html':'grade9-lesson-standard.html')+'?id='+encodeURIComponent(id)+'&section=evaluation">فتح الاختبار</a></article>'+
 '<article class="card"><div class="icon">↩️</div><h2>العودة إلى الدرس</h2><p>ارجع مباشرة إلى قسم الألعاب داخل الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=games">← العودة إلى الدرس</a></article>';
 
 let current='';
