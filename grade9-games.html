@@ -21,7 +21,7 @@
 <section id="game" hidden></section>
 </div>
 <script>
-const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1';
+const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1',requestedGame=q.get('game')||'';
 const data={
 'g9-u1-l1':{title:'مركز الألعاب · Leçon 1',desc:'Les sports · تعلّم الرياضات من خلال ألعاب وتحديات مرتبطة بمحتوى الدرس.',v:[['le football','كرة القدم','⚽'],['le ping-pong','تنس الطاولة','🏓'],['le karaté','الكاراتيه','🥋'],['le cyclisme / le vélo','ركوب الدراجات','🚴'],['la boxe','الملاكمة','🥊'],['la natation','السباحة','🏊'],['le tennis','التنس','🎾'],['le basket-ball','كرة السلة','🏀'],['le volley-ball','الكرة الطائرة','🏐'],["l'équitation",'الفروسية','🏇'],["l'escrime",'المبارزة','🤺'],['le ski','التزلج','⛷️'],['le judo','الجودو','🥋'],['le rugby','الرجبي','🏉'],['la pêche','صيد السمك','🎣'],['la voile','الإبحار','⛵'],['la gymnastique','الجمباز','🤸'],['les échecs','الشطرنج','♟️'],['la marche','المشي','🚶'],['la randonnée','التنزه','🥾']]},
 'g9-u1-l2':{title:'مركز الألعاب · Leçon 2',desc:'Les lieux, les personnages et les objets sportifs · أماكن الرياضة والشخصيات والأدوات الرياضية.',v:[['au club','في النادي','🏟️'],['à la piscine','في حمام السباحة','🏊'],['au stade','في الملعب','🏟️'],["à l'école",'في المدرسة','🏫'],['les supporters','المشجعون','📣'],["l'arbitre",'الحكم','🧑‍⚖️'],['les joueurs','اللاعبون','⚽'],["l'entraîneur",'المدرب','🧑‍🏫'],['un maillot de bain','ملابس السباحة','🩱'],['des gants','قفازات','🧤'],['un maillot sportif','زي رياضي','👕'],['des chaussures de sport','حذاء رياضي','👟']]}
@@ -34,7 +34,7 @@ document.getElementById('back').href='grade9-lesson-standard.html?id='+encodeURI
 const hub=document.getElementById('hub'),game=document.getElementById('game');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pick=(arr,n=4)=>arr.slice(0,n);
-function card(icon,title,text,type){return '<article class="card"><div class="icon">'+icon+'</div><h2>'+title+'</h2><p>'+text+'</p><button class="btn" type="button" data-start-game="'+type+'">ابدأ اللعبة</button></article>'}
+function card(icon,title,text,type){return '<article class="card"><div class="icon">'+icon+'</div><h2>'+title+'</h2><p>'+text+'</p><a class="btn" href="grade9-games.html?id='+encodeURIComponent(id)+'&game='+encodeURIComponent(type)+'&v=20260919-games-v8#game">ابدأ اللعبة</a></article>'}
 hub.innerHTML=
 card('🧩','Memory · صورة ↔ معنى','طابق صورة المفردة مع معناها العربي.','memory')+
 card('🎯','Word Catch · التقاط الكلمات','تظهر صورة أو معنى، ثم تلتقط الكلمة الفرنسية الصحيحة.','catch')+
@@ -52,7 +52,6 @@ function startGame(type){
   game.hidden=false;
   game.style.display='block';
   renderGame();
-  game.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function closeGame(){
   game.hidden=true;
@@ -73,7 +72,7 @@ function bindGameControls(){
     btn.addEventListener('click',function(e){e.preventDefault();startGame(this.dataset.startGame);});
   });
 }
-bindGameControls();
+if(requestedGame){startGame(requestedGame);}else{bindGameControls();}
 function bindRenderedControls(){
   game.querySelectorAll('[data-close-game]').forEach(btn=>btn.addEventListener('click',function(e){e.preventDefault();closeGame();}));
   game.querySelectorAll('[data-new-game]').forEach(btn=>btn.addEventListener('click',function(e){e.preventDefault();renderGame();}));
