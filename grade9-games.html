@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | مركز الألعاب</title>
+<style>
+:root{--ink:#17223b;--muted:#66738a;--blue:#2563eb;--navy:#173a82;--pink:#e92d83;--line:#dfe6f2;--soft:#f7f9fd;--green:#16a34a}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,"Cairo",sans-serif}.wrap{max-width:1120px;margin:auto;padding:16px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#0f1b33;color:#fff;padding:12px 14px;border-radius:18px;margin-bottom:14px}.brand{font-weight:900}.back{background:#2563eb;color:#fff;text-decoration:none;padding:10px 13px;border-radius:12px;font-weight:900}
+.hero{background:linear-gradient(135deg,#173a82,#2563eb,#14b8a6);color:#fff;border-radius:28px;padding:24px}.hero h1{margin:0;font-size:clamp(28px,6vw,44px)}.hero p{line-height:1.8;margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px;margin-top:16px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 8px 24px #14264a10}.icon{height:100px;border-radius:16px;background:linear-gradient(135deg,#f4f7ff,#fff7fb);display:grid;place-items:center;font-size:58px;margin-bottom:12px}.card h2{margin:0;color:var(--navy);font-size:21px}.card p{color:var(--muted);line-height:1.75}.btn{display:inline-block;border:0;border-radius:12px;padding:11px 15px;background:var(--blue);color:#fff;text-decoration:none;font-weight:900;cursor:pointer}.secondary{background:#eef3ff;color:var(--navy)}
+#game{margin-top:16px;background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 30px #14264a12}.game-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.game-head h2{margin:0;color:var(--navy)}.question{background:var(--soft);border-radius:16px;padding:18px;margin:14px 0;text-align:center}.visual{font-size:76px}.fr{direction:ltr;text-align:center;font-size:24px;font-weight:900}.ar{text-align:center;color:#315aa4;font-weight:800;margin-top:5px}.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px}.option{border:1px solid #dbe1eb;background:#fff;border-radius:12px;padding:12px;font-weight:800;cursor:pointer}.option.correct{border-color:var(--green);background:#ecfdf3}.option.wrong{border-color:var(--pink);background:#fff2f8}.feedback{text-align:center;font-weight:900;min-height:26px;margin-top:10px}.note{background:#fffaf0;border:1px solid #f2d58b;border-radius:15px;padding:14px;line-height:1.8}
+@media(max-width:650px){.wrap{padding:10px}.header{border-radius:14px}.hero{border-radius:20px;padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header"><div class="brand">🇫🇷 HM Academy · الصف الثالث الإعدادي</div><a id="back" class="back" href="#">← العودة إلى الدرس</a></header>
+<section class="hero"><h1 id="title">🎮 مركز الألعاب</h1><p id="desc">تعلّم مفردات الدرس من خلال أنشطة متنوعة تجمع بين الصورة والمعنى والاستماع والتحدي.</p></section>
+<section id="hub" class="grid"></section>
+<section id="game" hidden></section>
+</div>
+<script>
+const q=new URLSearchParams(location.search),id=q.get('id')||'g9-u1-l1';
+const data={
+'g9-u1-l1':{title:'مركز الألعاب · Leçon 1',desc:'Les sports · تعلّم الرياضات من خلال ألعاب وتحديات مرتبطة بمحتوى الدرس.',v:[['le football','كرة القدم','⚽'],['le ping-pong','تنس الطاولة','🏓'],['le karaté','الكاراتيه','🥋'],['le cyclisme / le vélo','ركوب الدراجات','🚴'],['la boxe','الملاكمة','🥊'],['la natation','السباحة','🏊'],['le tennis','التنس','🎾'],['le basket-ball','كرة السلة','🏀'],['le volley-ball','الكرة الطائرة','🏐'],["l'équitation",'الفروسية','🏇'],["l'escrime",'المبارزة','🤺'],['le ski','التزلج','⛷️'],['le judo','الجودو','🥋'],['le rugby','الرجبي','🏉'],['la pêche','صيد السمك','🎣'],['la voile','الإبحار','⛵'],['la gymnastique','الجمباز','🤸'],['les échecs','الشطرنج','♟️'],['la marche','المشي','🚶'],['la randonnée','التنزه','🥾']]},
+'g9-u1-l2':{title:'مركز الألعاب · Leçon 2',desc:'Les lieux, les personnages et les objets sportifs · أماكن الرياضة والشخصيات والأدوات الرياضية.',v:[['au club','في النادي','🏟️'],['à la piscine','في حمام السباحة','🏊'],['au stade','في الملعب','🏟️'],["à l'école",'في المدرسة','🏫'],['les supporters','المشجعون','📣'],["l'arbitre",'الحكم','🧑‍⚖️'],['les joueurs','اللاعبون','⚽'],["l'entraîneur",'المدرب','🧑‍🏫'],['un maillot de bain','ملابس السباحة','🩱'],['des gants','قفازات','🧤'],['un maillot sportif','زي رياضي','👕'],['des chaussures de sport','حذاء رياضي','👟']]}
+};
+const d=data[id]||data['g9-u1-l1'];
+document.title='HM Academy | '+d.title;
+document.getElementById('title').textContent='🎮 '+d.title;
+document.getElementById('desc').textContent=d.desc;
+document.getElementById('back').href='grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=games';
+const hub=document.getElementById('hub'),game=document.getElementById('game');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pick=(arr,n=4)=>arr.slice(0,n);
+function card(icon,title,text,fn){return '<article class="card"><div class="icon">'+icon+'</div><h2>'+title+'</h2><p>'+text+'</p><button class="btn" onclick="'+fn+'">ابدأ اللعبة</button></article>'}
+hub.innerHTML=
+card('🧩','Memory · صورة ↔ معنى','طابق صورة المفردة مع معناها العربي.','startGame("memory")')+
+card('🎯','Word Catch · التقاط الكلمات','تظهر صورة أو معنى، ثم تلتقط الكلمة الفرنسية الصحيحة.','startGame("catch")')+
+card('🧲','Drag & Drop · التصنيف','صنّف المفردات حسب الفئة المناسبة.','startGame("sort")')+
+card('🎤','Pronunciation Challenge','استمع إلى المفردة ثم اخترها من بين الخيارات.','startGame("pron")')+
+card('📚','Vocabulary Challenge','تظهر المفردة أو معناها، ثم تختار المطابقة الصحيحة.','startGame("vocab")')+
+card('⚡','Quiz Express','اختبار سريع متنوع من مفردات الدرس.','startGame("quiz")')+
+'<article class="card"><div class="icon">📝</div><h2>التقييم الرسمي</h2><p>التقييم الأكاديمي منفصل عن الألعاب لقياس مدى إتقان الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=evaluation">فتح الاختبار</a></article>'+
+'<article class="card"><div class="icon">↩️</div><h2>العودة إلى الدرس</h2><p>ارجع مباشرة إلى قسم الألعاب داخل الدرس.</p><a class="btn secondary" href="grade9-lesson-standard.html?id='+encodeURIComponent(id)+'&section=games">← العودة إلى الدرس</a></article>';
+
+let current='';
+function startGame(type){current=type;hub.hidden=true;game.hidden=false;renderGame();window.scrollTo({top:0,behavior:'smooth'})}
+function closeGame(){hub.hidden=false;game.hidden=true;game.innerHTML=''}
+function renderGame(){
+let html='<div class="game-head"><h2>'+({memory:'🧩 Memory · صورة ↔ معنى',catch:'🎯 Word Catch · التقاط الكلمات',sort:'🧲 Drag & Drop · التصنيف',pron:'🎤 Pronunciation Challenge',vocab:'📚 Vocabulary Challenge',quiz:'⚡ Quiz Express'}[current]||'🎮 اللعبة')+'</h2><button class="btn secondary" onclick="closeGame()">← مركز الألعاب</button></div>';
+if(current==='memory'||current==='catch'||current==='vocab'||current==='pron'){let i=Math.floor(Math.random()*d.v.length),x=d.v[i],opts=pick([x,...d.v.filter((_,j)=>j!==i).sort(()=>Math.random()-.5)],4);let prompt=current==='memory'?'<div class="visual">'+x[2]+'</div><div>اختر المعنى العربي الصحيح</div>':current==='catch'?'<div class="ar">'+x[1]+'</div><div>اختر الكلمة الفرنسية الصحيحة</div>':current==='pron'?'<div class="fr">'+x[0]+'</div><button class="btn" onclick="speak(\''+esc(x[0]).replace(/'/g,"\\'")+'\')">🔊 استمع</button><div>اختر الكلمة التي سمعتها</div>':'<div class="fr">'+x[0]+'</div><div>اختر المعنى العربي الصحيح</div>';html+='<div class="question">'+prompt+'<div class="options">'+opts.map(o=>{let val=current==='catch'||current==='pron'?o[0]:o[1];let ok=o[0]===x[0];return '<button class="option" data-ok="'+ok+'" onclick="check(this)">'+esc(val)+'</button>'}).join('')+'</div><div class="feedback"></div></div><button class="btn" onclick="renderGame()">سؤال جديد</button>'}
+else if(current==='sort'){let cats=id==='g9-u1-l2'?['أماكن','أشخاص','أدوات وملابس']:['رياضات فردية','رياضات جماعية'];let x=d.v[Math.floor(Math.random()*d.v.length)];let opts=pick(cats,cats.length);let correct=id==='g9-u1-l2'?(x[0].includes('club')||x[0].includes('piscine')||x[0].includes('stade')||x[0].includes('école')?'أماكن':x[0].includes('supporters')||x[0].includes('arbitre')||x[0].includes('joueurs')||x[0].includes('entraîneur')?'أشخاص':'أدوات وملابس'):(['le football','le ping-pong','le karaté','la boxe','la natation','le tennis','le basket-ball','le volley-ball','le rugby','les échecs'].includes(x[0])?'رياضات جماعية':'رياضات فردية');html+='<div class="question"><div class="visual">'+x[2]+'</div><div class="fr">'+esc(x[0])+'</div><p>ضع المفردة في الفئة الصحيحة:</p><div class="options">'+opts.map(o=>'<button class="option" data-ok="'+(o===correct)+'" onclick="check(this)">'+o+'</button>').join('')+'</div><div class="feedback"></div></div>'}
+else{let qs=id==='g9-u1-l2'?[['Quel mot signifie « الحكم » ?',["l'arbitre",'les joueurs','les supporters'],0],['Où pratique-t-on la natation ?',['au stade','à la piscine','à l’école'],1],['Que porte-t-on pour la natation ?',['des gants','un maillot de bain','un maillot sportif'],1]]:[['Que signifie « la voile » ?',['الإبحار','الفروسية','المشي'],0],['Quelle structure est correcte ?',['Je joue aux échecs.','Je fais du échecs.','Je pratique au échecs.'],0],['Que signifie « l’escrime » ?',['المبارزة','السباحة','الشطرنج'],0]];let qx=qs[Math.floor(Math.random()*qs.length)];html+='<div class="question"><h3>'+qx[0]+'</h3><div class="options">'+qx[1].map((o,i)=>'<button class="option" data-ok="'+(i===qx[2])+'" onclick="check(this)">'+o+'</button>').join('')+'</div><div class="feedback"></div></div><button class="btn" onclick="renderGame()">سؤال جديد</button>'}
+game.innerHTML=html}
+function check(b){let ok=b.dataset.ok==='true';b.classList.add(ok?'correct':'wrong');b.closest('.question').querySelector('.feedback').textContent=ok?'✅ صحيح! أحسنت.':'🔁 حاول مرة أخرى.';if(ok)b.closest('.question').querySelectorAll('.option').forEach(x=>x.disabled=true)}
+function speak(t){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;window.speechSynthesis.speak(u)}
+</script>
+</body></html>
