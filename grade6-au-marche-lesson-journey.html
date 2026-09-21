@@ -12,7 +12,7 @@
 .journey{display:flex;gap:7px;overflow:auto;padding:12px 2px;position:sticky;top:55px;z-index:4;background:#ffffffed}.step{border:0;border-radius:999px;padding:10px 14px;background:#f2f6fa;color:#536078;font-weight:900;white-space:nowrap;cursor:pointer}.step.active{background:var(--ink);color:#fff}
 .page{margin-top:8px;background:var(--paper);border-radius:28px;padding:22px;min-height:580px;box-shadow:0 18px 55px #17324d18}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 9px 25px #17324d0c;line-height:1.85}.tag{display:inline-block;padding:6px 11px;border-radius:999px;background:#e7f4ff;color:#1260a8;font-weight:900}.fr{direction:ltr;text-align:left;font-size:22px;font-weight:900}.ar{font-weight:800;color:var(--muted)}button{font-family:inherit}.btn{border:0;border-radius:13px;padding:11px 15px;margin:5px 3px;font-weight:900;background:var(--ink);color:#fff;cursor:pointer}.speak{background:var(--blue)}.quiz button{display:block;width:100%;margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:900;cursor:pointer;text-align:right}.ok{background:#eafff2!important;border-color:#27a35c!important}.bad{background:#fff0f6!important;border-color:#e72b82!important}
 @media(max-width:650px){.wrap{padding:7px 9px 25px}.hero{padding:23px 18px}.page{padding:15px}}
-</style>
+ .word-image{height:150px;border-radius:18px;background:#f7f9fc;display:grid;place-items:center;margin-bottom:12px;border:1px solid #e6edf5}.word-image img{width:115px;height:115px;object-fit:contain}.pron-note{margin:10px 0;padding:10px 12px;background:#f5f8ff;border-radius:13px;color:#536078;line-height:1.7;font-size:14px}</style>
 </head>
 <body>
 <div class="wrap">
@@ -45,6 +45,8 @@ var vocab=[
  ['La carotte','الجزر','Je prends des carottes.'],
  ['La tomate','الطماطم','Je prends des tomates.']
 ];
+var pronNotes=["ch في البداية تُنطق «ش» تقريبًا، والنهاية خفيفة.","الـ a مفتوحة، وs في البداية واضحة.","c قبل a تُنطق «ك»، وe الأخيرة لا تُبرز.","p في البداية واضحة، وier في النهاية خفيفة.","ch تُنطق «ش»، وt في النهاية لا تُنطق.","ba تُنطق بوضوح، وgu تعطي صوت g فرنسيًا.","p في البداية واضحة، وain في النهاية صوت أنفي.","vi قصيرة، وr فرنسية، وe الأخيرة خفيفة.","g قبل e تُنطق «ژ» فرنسية، وe الأخيرة خفيفة.","lait ينتهي بصوت قريب من «é»، وt لا تُنطق.","pomme فيها o مفتوحة، وe الأخيرة لا تُنطق.","banane: المقطع الأخير خفيف، وe النهائية لا تُبرز.","c قبل a تُنطق «ك»، وe الأخيرة لا تُنطق.","tomate: الـ o واضحة، وe الأخيرة خفيفة."];
+var vocabImages=["1f6d2","2696-fe0f","1f4b3","1f9fa","1f6cd-fe0f","1f956","1f35e","1f9c0","1f95b","1f95b","1f34e","1f34c","1f955","1f345"];
 var rules=[
  ['du','مذكر مفرد','du pain · du fromage'],
  ['de la','مؤنث مفرد','de la viande · de la farine'],
@@ -84,8 +86,9 @@ function speak(text){
  window.speechSynthesis.resume();window.speechSynthesis.speak(u);
 }
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-function card(v){
- return '<article class="card"><div class="fr">'+esc(v[0])+'</div><div class="ar">'+esc(v[1])+'</div><p>'+esc(v[2])+'</p><button class="btn speak" data-speak="'+esc(v[0])+'">🔊 اسمع الكلمة</button><button class="btn" data-speak="'+esc(v[2])+'">🔊 اسمع الجملة</button></article>';
+function imageFor(index){return 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/'+vocabImages[index]+'.svg';}
+function card(v,index){
+ return '<article class="card vocab-card"><div class="word-image"><img src="'+imageFor(index)+'" alt="'+esc(v[1])+'" loading="lazy"></div><div class="fr">'+esc(v[0])+'</div><div class="ar">'+esc(v[1])+'</div><p>'+esc(v[2])+'</p><button class="btn speak" data-speak="'+esc(v[0])+'">🔊 اسمع الكلمة</button><button class="btn" data-speak="'+esc(v[2])+'">🔊 اسمع الجملة</button></article>';
 }
 function render(section){
  current=section;
@@ -94,9 +97,9 @@ function render(section){
  if(section==='lesson'){
   html='<span class="tag">01 · البداية</span><h2>Au marché</h2><p>في السوق</p><div class="grid"><article class="card"><h3>رحلة الدرس</h3><p>ابدأ بالمفردات، ثم النطق، القاعدة، المحادثة، التدريب، الألعاب والتقييم.</p><button class="btn" data-go="vocabulary">ابدأ الدرس</button></article><article class="card"><h3>الهدف</h3><p>استخدام مفردات السوق وعبارات الكمية في مواقف بسيطة باللغة الفرنسية.</p></article></div>';
  }else if(section==='vocabulary'){
-  html='<span class="tag">02 · المفردات</span><h2>المفردات</h2><p>الكلمة + معناها + جملة قابلة للاستخدام.</p><div class="grid">'+vocab.map(card).join('')+'</div>';
+  html='<span class="tag">02 · المفردات</span><h2>المفردات</h2><p>الكلمة + معناها + جملة قابلة للاستخدام.</p><div class="grid">'+vocab.map(function(v,i){return card(v,i);}).join('')+'</div>';
  }else if(section==='pronunciation'){
-  html='<span class="tag">03 · النطق</span><h2>اسمع وانطق</h2><p>استمع للكلمة والجملة ثم كرر بصوتك.</p><div class="grid">'+vocab.map(card).join('')+'</div>';
+  html='<span class="tag">03 · النطق</span><h2>اسمع وانطق</h2><p>ملاحظة نطق لكل كلمة، مع نطق الكلمة فقط دون المثال.</p><div class="grid">'+vocab.map(function(v,i){return '<article class="card"><div class="word-image"><img src="'+imageFor(i)+'" alt="'+esc(v[1])+'" loading="lazy"></div><div class="fr">'+esc(v[0])+'</div><div class="ar">'+esc(v[1])+'</div><div class="pron-note"><b>ملاحظة النطق:</b> '+esc(pronNotes[i])+'</div><button class="btn speak" data-speak="'+esc(v[0])+'">🔊 نطق الكلمة</button></article>';}).join('')+'</div>';
  }else if(section==='grammar'){
   html='<span class="tag">04 · القواعد</span><h2>افهم القاعدة</h2><p>لاحظ أدوات الكمية مع الأسماء.</p><div class="grid">'+rules.map(function(r){return '<article class="card"><div class="fr">'+esc(r[0])+'</div><h3>'+esc(r[1])+'</h3><p>'+esc(r[2])+'</p></article>';}).join('')+'</div>';
  }else if(section==='conversation'){
