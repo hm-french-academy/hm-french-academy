@@ -168,7 +168,7 @@ function render(section){
  }else if(section==='practice'){
   html='<span class="tag">06 · التدريب</span><h2>تدرب</h2><p>اختر الإجابة ثم راجع التصحيح.</p><div class="grid">'+questions.map(function(q,i){return '<article class="card"><b>'+(i+1)+'. '+esc(q[0])+'</b><div class="quiz">'+q[1].map(function(o){return '<button data-answer="'+esc(o)+'" data-correct="'+esc(q[2])+'">'+esc(o)+'</button>';}).join('')+'</div><div id="feedback'+i+'"></div></article>';}).join('')+'</div>';
  }else if(section==='media'){
-  html='<span class="tag">07 · الوسائط</span><h2>وسائط الدرس</h2><article class="card"><h3>Au marché</h3><p>هذه الصفحة مخصصة لوسائط الدرس. لا يوجد رابط فيديو خارجي موثّق داخل المصدر الحالي، لذلك لن يتم اختراع رابط غير موجود.</p></article>';
+  html='<span class="tag">07 · الوسائط</span><h2>وسائط الدرس</h2><article class="card"><h3>Les fruits en français</h3><p>فيديو مرتبط بمحتوى درس Au marché كما هو موجود في الملف الأصلي.</p><a class="btn" href="https://www.youtube.com/watch?v=i_lMrFx-SFQ" target="_blank" rel="noopener">▶️ مشاهدة الفيديو</a></article>';
  }else if(section==='games'){
   html='<span class="tag">08 · الألعاب</span><h2>🎮 لعبة الصورة → الكلمة الفرنسية</h2><article class="card"><p id="gamePrompt">اضغط «جولة جديدة» لبدء اللعبة.</p><div id="gameAnswers" class="quiz"></div><button class="btn" id="newGame">جولة جديدة</button></article>';
  }else if(section==='assessment'){
