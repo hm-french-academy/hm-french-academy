@@ -128,10 +128,16 @@ var dialogue=[
 ];
 var questions=[
  ['Je voudrais ___ fromage.',['du','de la','des'] ,'du'],
- ["Elle boit ___ eau.",['du',"de l'","des"],"de l'"],
- ['___ carottes sont fraîches.',['Du','Des','De la'],'Des'],
- ['Il achète ___ viande.',['du','de la','des'],'de la'],
- ['Nous prenons ___ pain.',['du','de l',"des"],'du']
+ ["Elle boit ___ eau.",['du','de la',"de l'"],"de l'"],
+ ['___ carottes sont fraîches.',['Du','Des'],'Des'],
+ ['Il achète ___ orange.',["de l'",'du'],"de l'"],
+ ['Nous achetons ___ pain.',['du','de la'],'du']
+];
+var assessmentQuestions=[
+ ['Une cliente achète deux ___ et trois ___.',['pommes,bananes','livres'],'pommes,bananes'],
+ ['Quel produit est laitier ?',['fromage','carotte'],'fromage'],
+ ['Quel légume est orange ?',['carotte','raisin'],'carotte'],
+ ['Le marchand met les fruits dans le ___.',['panier','livre'],'panier']
 ];
 var current=new URLSearchParams(location.search).get('section')||'lesson';
 var viewer=document.getElementById('viewer');
@@ -172,7 +178,7 @@ function render(section){
  }else if(section==='games'){
   html='<span class="tag">08 · الألعاب</span><h2>🎮 لعبة الصورة → الكلمة الفرنسية</h2><article class="card"><p id="gamePrompt">اضغط «جولة جديدة» لبدء اللعبة.</p><div id="gameAnswers" class="quiz"></div><button class="btn" id="newGame">جولة جديدة</button></article>';
  }else if(section==='assessment'){
-  html='<span class="tag">09 · التقييم</span><h2>🏆 قيّم نفسك</h2><p>اختبر فهمك للمفردات والقواعد.</p><div class="grid">'+questions.slice(0,3).map(function(q,i){return '<article class="card"><b>'+(i+1)+'. '+esc(q[0])+'</b><div class="quiz">'+q[1].map(function(o){return '<button data-assess="'+esc(o)+'" data-correct="'+esc(q[2])+'">'+esc(o)+'</button>';}).join('')+'</div><div id="assess'+i+'"></div></article>';}).join('')+'</div>';
+  html='<span class="tag">09 · التقييم</span><h2>🏆 التقييم النهائي</h2><p>أسئلة التقييم الأصلية للدرس، وهي مختلفة عن صفحة التدريب.</p><div class="grid">'+assessmentQuestions.map(function(q,i){return '<article class="card"><b>'+(i+1)+'. '+esc(q[0])+'</b><div class="quiz">'+q[1].map(function(o){return '<button data-assess="'+esc(o)+'" data-correct="'+esc(q[2])+'">'+esc(o)+'</button>';}).join('')+'</div><div id="assess'+i+'"></div></article>';}).join('')+'</div>';
  }else{
   var done=localStorage.getItem('hm-g6-au-marche-complete')==='1';
   html='<span class="tag">10 · التقدم</span><h2>📈 تقدمك</h2><article class="card"><h3>'+ (done?'✅ مكتمل':'⏳ قيد الدراسة')+'</h3><p>يُحفظ التقدم على هذا الجهاز.</p><button class="btn" id="toggleProgress">'+(done?'إلغاء الإكمال':'تم إكمال الدرس')+'</button></article>';
@@ -195,15 +201,42 @@ function bind(){
   var f=parent.querySelector('[id^="assess"]');f.textContent=ok?'✓ صحيح':'✗ غير صحيح';
  });});
  var ng=document.getElementById('newGame');if(ng)ng.addEventListener('click',newGame);
+ var g1s=document.getElementById('g1start');if(g1s)g1s.addEventListener('click',game1);
+ var g2s=document.getElementById('g2start');if(g2s)g2s.addEventListener('click',game2);
+ var g3s=document.getElementById('g3start');if(g3s)g3s.addEventListener('click',game3);
+ var g4s=document.getElementById('g4start');if(g4s)g4s.addEventListener('click',game4);
  var tp=document.getElementById('toggleProgress');if(tp)tp.addEventListener('click',function(){var done=localStorage.getItem('hm-g6-au-marche-complete')==='1';localStorage.setItem('hm-g6-au-marche-complete',done?'0':'1');render('progress');});
 }
-function newGame(){
- var item=vocab[Math.floor(Math.random()*vocab.length)], choices=[item[0]];
- while(choices.length<3){var x=vocab[Math.floor(Math.random()*vocab.length)][0];if(choices.indexOf(x)<0)choices.push(x);}
- choices.sort(function(){return Math.random()-.5;});
- document.getElementById('gamePrompt').textContent='المعنى: '+item[1];
- document.getElementById('gameAnswers').innerHTML=choices.map(function(x){return '<button data-game="'+esc(x)+'" data-right="'+esc(item[0])+'">'+esc(x)+'</button>';}).join('');
- document.querySelectorAll('[data-game]').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('[data-game]').forEach(function(x){x.disabled=true;});this.classList.add(this.dataset.game===this.dataset.right?'ok':'bad');});});
+function newGame(){game1();}
+function gamePick(b,ok,right){
+ var box=b.parentElement;if(box.dataset.done)return;box.dataset.done='1';
+ box.querySelectorAll('button').forEach(function(x){x.disabled=true;});
+ b.classList.add(ok?'ok':'bad');
+ var f=document.createElement('div');f.style.fontWeight='900';f.textContent=ok?'✓ إجابة صحيحة':'✗ الإجابة الصحيحة: '+right;box.appendChild(f);
+}
+function randomItem(){return vocab[Math.floor(Math.random()*vocab.length)];}
+function uniqueChoices(correct,count){var a=[correct];while(a.length<count){var x=randomItem()[0];if(a.indexOf(x)<0)a.push(x);}return a.sort(function(){return Math.random()-.5;});}
+function game1(){
+ var item=randomItem(),box=document.getElementById('g1a');
+ document.getElementById('g1q').textContent='المعنى: '+item[1];
+ box.innerHTML='<button class="btn" id="showG1">أظهر الكلمة</button>';
+ document.getElementById('showG1').addEventListener('click',function(){this.disabled=true;var f=document.createElement('div');f.className='fr';f.textContent=item[0];box.appendChild(f);});
+}
+function game2(){
+ var item=randomItem(),choices=uniqueChoices(item[0],3),box=document.getElementById('g2');
+ box.dataset.done='';box.innerHTML='<b>المعنى: '+esc(item[1])+'</b>'+choices.map(function(x){return '<button data-game-choice="'+esc(x)+'" class="btn">'+esc(x)+'</button>';}).join('');
+ box.querySelectorAll('[data-game-choice]').forEach(function(b){b.addEventListener('click',function(){gamePick(this,this.dataset.gameChoice===item[0],item[0]);});});
+}
+function game3(){
+ var left=30,tm=document.getElementById('tm'),item=randomItem(),choices=uniqueChoices(item[0],4),box=document.getElementById('g3a');
+ clearInterval(window.hmGameTimer);tm.textContent=left;box.dataset.done='';box.innerHTML='<b>المعنى: '+esc(item[1])+'</b>'+choices.map(function(x){return '<button data-game-choice="'+esc(x)+'" class="btn">'+esc(x)+'</button>';}).join('');
+ box.querySelectorAll('[data-game-choice]').forEach(function(b){b.addEventListener('click',function(){gamePick(this,this.dataset.gameChoice===item[0],item[0]);clearInterval(window.hmGameTimer);});});
+ window.hmGameTimer=setInterval(function(){left--;tm.textContent=left;if(left<=0){clearInterval(window.hmGameTimer);if(!box.dataset.done){box.dataset.done='1';box.querySelectorAll('button').forEach(function(x){x.disabled=true;});var f=document.createElement('div');f.textContent='⏱ انتهى الوقت — الإجابة الصحيحة: '+item[0];f.style.fontWeight='900';box.appendChild(f);}}},1000);
+}
+function game4(){
+ var groups=[['🛒 أدوات السوق',['Le chariot','La balance','La caisse','La vitrine','Le panier','Le sachet',"L'argent",'Le vendeur']],['🥖 المخبوزات والألبان',['La baguette','Le pain','Le croissant','Le gâteau','Le fromage','Le lait','Le beurre','La farine',"L'œuf",'La crème']],['🥩 الأطعمة',['La viande','Le poulet','Le poisson','Le sucre','Le sel','Le vinaigre']],['🍎 الفواكه',['La pomme','La banane','La fraise',"L'orange",'La poire','La cerise','Le raisin','Le citron']],['🥕 الخضروات',['La carotte','La tomate','Le concombre','La pomme de terre',"L'aubergine",'Le chou','Le chou-fleur']]],g=groups[Math.floor(Math.random()*groups.length)],w=g[1][Math.floor(Math.random()*g[1].length)],box=document.getElementById('g4');
+ box.dataset.done='';box.innerHTML='<b>الكلمة: '+esc(w)+'</b>'+groups.map(function(x){return '<button data-game-group="'+esc(x[0])+'" class="btn">'+esc(x[0])+'</button>';}).join('');
+ box.querySelectorAll('[data-game-group]').forEach(function(b){b.addEventListener('click',function(){gamePick(this,this.dataset.gameGroup===g[0],g[0]);});});
 }
 function go(section){history.replaceState(null,'',location.pathname+'?id=g6-l01&section='+section);render(section);window.scrollTo({top:0,behavior:'smooth'});}
 journey.addEventListener('click',function(e){var b=e.target.closest('.step');if(b)go(b.dataset.section);});
