@@ -27,6 +27,7 @@
 <script>
 'use strict';
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
+if(id==='g9-u1-l2'){document.querySelector('.student-header').style.display='none';}
 const file=id.replace(/^g9-/,'')+'.json';
 const iconMap={
 'au club':'🏟️','à la piscine':'🏊','au stade':'🏟️',"à l&#39;école":'🏫',
