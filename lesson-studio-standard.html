@@ -10,7 +10,7 @@ body{margin:0;background:#f5f7fb;color:#17223b;font-family:Arial,"Cairo",sans-se
 <link rel="stylesheet" href="css/hm-academy-grade-themes.css?v=20260909-grade-themes"></head>
 <body data-hm-grade-theme="prep-2">
 <div class="wrap">
-<header class="student-header" aria-label="تنقل الطالب">
+<header class="student-header" id="studentHeader" aria-label="تنقل الطالب">
 <a class="brand" href="index.html" aria-label="العودة إلى الصفحة الرئيسية"><span class="brand-logo">HM</span><span class="brand-text">🇫🇷 HM Academy</span></a>
 <div class="header-actions"><a class="unit-btn" id="unitLink" href="unit-map.html">🧭 خريطة الوحدة</a><a class="home-btn" href="index.html">⌂ الرئيسية</a></div>
 </header>
@@ -22,6 +22,7 @@ body{margin:0;background:#f5f7fb;color:#17223b;font-family:Arial,"Cairo",sans-se
 </div>
 <script>
 const qs=new URLSearchParams(location.search),id=qs.get('id')||'grade8-u1-l1',requested=qs.get('section')||'introduction';
+if(id==='grade8-u1-l2'){document.getElementById('studentHeader').style.display='none';document.querySelector('.student-note').style.display='none';}
 const unitMatch=id.match(/u(\d+)/);if(unitMatch)document.getElementById('unitLink').href='unit-map.html?unit=unit-'+unitMatch[1];
 const map={
 'grade8-u1-l1':'data/lessons/grade-8/unit-1/lesson-1.json','grade8-u1-l2':'data/lessons/grade-8/unit-1/lesson-2.json','grade8-u1-l3':'data/lessons/grade-8/unit-1/lesson-3.json','grade8-u1-l4':'data/lessons/grade-8/unit-1/lesson-4.json',
