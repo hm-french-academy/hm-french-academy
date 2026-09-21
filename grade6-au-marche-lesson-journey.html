@@ -1,1 +1,150 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy | الصف السادس | Au marché</title><style>:root{--ink:#17324d;--muted:#64748b;--line:#e6edf5;--paper:#fffdf8}*{box-sizing:border-box}body{margin:0;font-family:Arial,Cairo,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eaf8ff,#fff0f7 55%,#f5ffe9);min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:10px 14px 36px}.top{display:flex;justify-content:space-between;padding:12px 15px;background:#ffffffef;border-radius:0 0 22px 22px;position:sticky;top:0;z-index:5}.top a{color:var(--ink);font-weight:900;text-decoration:none}.hero{margin-top:14px;padding:30px;border-radius:30px;background:linear-gradient(135deg,#8fe0ff,#ffd6ea 55%,#fff0b5);box-shadow:0 16px 45px #17324d18}.hero h1{margin:7px 0;font-size:clamp(28px,6vw,46px)}.hero p{margin:0;font-weight:800}.journey{display:flex;gap:7px;overflow:auto;padding:12px 2px;position:sticky;top:55px;z-index:4;background:#ffffffed}.step{border:0;border-radius:999px;padding:10px 14px;background:#f2f6fa;color:#536078;font-weight:900;white-space:nowrap;cursor:pointer}.step.active{background:var(--ink);color:#fff}.page{margin-top:8px;background:var(--paper);border-radius:28px;padding:22px;min-height:580px;box-shadow:0 18px 55px #17324d18}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 9px 25px #17324d0c;line-height:1.85}.tag{display:inline-block;padding:6px 11px;border-radius:999px;background:#e7f4ff;color:#1260a8;font-weight:900}.fr{direction:ltr;text-align:left;font-size:22px;font-weight:900}.ar{font-weight:800;color:var(--muted)}.btn{display:inline-block;border:0;border-radius:13px;padding:11px 15px;margin:5px 3px;text-decoration:none;font-weight:900;background:var(--ink);color:#fff;cursor:pointer}.source{white-space:pre-wrap;max-height:520px;overflow:auto}.games-frame{width:100%;height:720px;border:0;border-radius:20px}.quiz button{display:block;width:100%;margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:900;cursor:pointer;text-align:right}.ok{background:#eafff2!important;border-color:#27a35c!important}.bad{background:#fff0f6!important;border-color:#e72b82!important}@media(max-width:650px){.wrap{padding:7px 9px 25px}.hero{padding:23px 18px}.page{padding:15px}}</style></head><body><div class="wrap"><header class="top"><a href="grade-6.html">← الصف السادس</a><a href="index.html">HM Academy · الرئيسية</a></header><section class="hero"><div>Le français pour vous · 6e année · PREMIUM</div><h1>Au marché</h1><p>في السوق · رحلة درس كاملة</p></section><nav id="journey" class="journey"></nav><main id="viewer" class="page">يتم تحميل الدرس…</main></div><script>(async()=>{const p=new URLSearchParams(location.search),section=p.get('section')||'lesson';const src='grade6-au-marche-premium.html';let html='';try{html=await fetch(src+'?v=20260921',{cache:'no-store'}).then(r=>r.text())}catch(e){html=''}const d=new DOMParser().parseFromString(html,'text/html');d.querySelectorAll('script,style,header,footer,nav').forEach(x=>x.remove());const body=d.body;const sections=[...d.querySelectorAll('.section')];const allText=body?.innerText||'';const clean=s=>String(s).replace(/\n{3,}/g,'\n\n').trim();const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const blocks=(terms)=>{const out=[];for(const e of [...d.querySelectorAll('section,article,div')]){const h=(e.querySelector('h1,h2,h3,h4,.k,.tag,.block-head')?.textContent||'').toLowerCase();if(terms.some(t=>h.includes(t))){const t=clean(e.innerText||'');if(t.length>30&&!out.includes(t))out.push(t.slice(0,1800))}}return out.slice(0,10)};const S=[['lesson','🚀 البداية'],['vocabulary','🖼️ المفردات'],['pronunciation','🎧 النطق'],['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','✍️ التدريب'],['media','🎬 الفيديو'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['progress','📈 التقدم']];journey.innerHTML=S.map(x=>'<button class="step" data-s="'+x[0]+'">'+x[1]+'</button>').join('');journey.onclick=e=>{const b=e.target.closest('.step');if(!b)return;history.replaceState(null,'',location.pathname+'?id=g6-l01&section='+b.dataset.s);render(b.dataset.s)};function cards(a){return a.length?'<div class="grid">'+a.map(x=>'<article class="card"><div class="source">'+esc(x)+'</div></article>').join('')+'</div>':'<article class="card">المحتوى محفوظ داخل المصدر الأصلي للدرس.</article>'}function render(s){document.querySelectorAll('.step').forEach(b=>b.classList.toggle('active',b.dataset.s===s));if(s==='lesson')viewer.innerHTML='<div class="grid"><article class="card"><span class="tag">01 · البداية</span><h2>Au marché</h2><p class="ar">في السوق</p><p>ابدأ باكتشاف موضوع الدرس، ثم انتقل بالتدريج إلى المفردات والنطق والقواعد والمحادثة والتدريب والألعاب والتقييم.</p><button class="btn" onclick="render(\'vocabulary\')">ابدأ الدرس</button></article><article class="card"><span class="tag">المصدر الأصلي</span><h3>Premium Lesson</h3><p>المحتوى الأساسي للدرس محفوظ في ملفه الأصلي، وهذه الواجهة تنظمه في رحلة مستقلة للطالب.</p></article></div>';else if(s==='vocabulary')viewer.innerHTML='<span class="tag">02 · المفردات</span><h2>المفردات</h2>'+cards(blocks(['vocab','mots','الكلمات','المفردات']));else if(s==='pronunciation')viewer.innerHTML='<span class="tag">03 · النطق</span><h2>اسمع وانطق</h2>'+cards(blocks(['écoutez','répétez','النطق','اسمع','pronon']));else if(s==='grammar')viewer.innerHTML='<span class="tag">04 · القواعد</span><h2>افهم القاعدة</h2>'+cards(blocks(['règle','grammaire','القاعدة','القواعد']));else if(s==='conversation')viewer.innerHTML='<span class="tag">05 · المحادثة</span><h2>تواصل</h2>'+cards(blocks(['dialogue','conversation','حوار','المحادثة']));else if(s==='practice')viewer.innerHTML='<span class="tag">06 · التدريب</span><h2>تدرب</h2>'+cards(blocks(['quiz','تمرين','تدرب','practice','activité']));else if(s==='media')viewer.innerHTML='<span class="tag">07 · الفيديو</span><h2>شاهد</h2><article class="card"><p>صفحة الوسائط الخاصة بالدرس.</p><p>'+esc(allText.slice(0,2500))+'</p></article>';else if(s==='games')viewer.innerHTML='<span class="tag">08 · الألعاب</span><h2>🎮 ألعاب المفردات</h2><div class="grid"><article class="card"><h3>اختر الكلمة الفرنسية</h3><p id="gq"></p><div id="ga" class="quiz"></div><button class="btn" onclick="game()">جولة جديدة</button></article><article class="card"><h3>طابق المعنى</h3><p>اختبر نفسك في كلمات السوق.</p><button class="btn" onclick="game()">ابدأ اللعبة</button></article></div>';else if(s==='assessment')viewer.innerHTML='<span class="tag">09 · التقييم</span><h2>قيّم نفسك</h2><div id="assessment" class="grid"></div>';else{const key='hm-g6-au-marche-complete',done=localStorage.getItem(key)==='1';viewer.innerHTML='<span class="tag">10 · التقدم</span><h2>تقدمك</h2><article class="card"><h3>'+(done?'✅ مكتمل':'⏳ قيد الدراسة')+'</h3><p>يُحفظ تقدم هذا الدرس على هذا الجهاز.</p><button class="btn" onclick="localStorage.setItem(\'hm-g6-au-marche-complete\','+(done?'0':'1')+');render(\'progress\')">'+(done?'إلغاء الإكمال':'تم إكمال الدرس')+'</button></article>');}}const vocab=[['Le panier','السلة'],['La baguette','الخبز الفرنسي'],['Le fromage','الجبن'],['Le lait','اللبن'],['La pomme','التفاحة'],['La banane','الموز'],['La carotte','الجزر'],['La tomate','الطماطم']];function game(){const w=vocab[Math.floor(Math.random()*vocab.length)],a=[w[0],vocab[Math.floor(Math.random()*vocab.length)][0],vocab[Math.floor(Math.random()*vocab.length)][0]].filter((x,i,z)=>z.indexOf(x)===i).sort(()=>Math.random()-.5);gq.textContent='المعنى: '+w[1];ga.innerHTML=a.map(x=>'<button onclick="this.className=x===\''+w[0]+'\'?\'ok\':\'bad\';this.disabled=true">'+x+'</button>').join('')}const qs=[['ما معنى Le panier؟',['السلة','الميزان','الخبز'],'السلة'],['اختر الكلمة التي تعني الجبن.',['Le fromage','Le lait','La pomme'],'Le fromage'],['ما معنى La carotte؟',['الجزر','الموز','التفاحة'],'الجزر']];function assessment(){assessmentEl.innerHTML=qs.map((q,i)=>'<article class="card"><b>'+(i+1)+'. '+q[0]+'</b><div class="quiz">'+q[1].map(o=>'<button onclick="this.className=o===\''+q[2]+'\'?\'ok\':\'bad\';this.parentElement.querySelectorAll(\'button\').forEach(b=>b.disabled=true)">'+o+'</button>').join('')+'</div></article>').join('')}const assessmentEl=document.getElementById('assessment');render(section);if(section==='assessment')assessment()})()</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | الصف السادس | Au marché</title>
+<style>
+:root{--ink:#17324d;--muted:#64748b;--line:#e6edf5;--paper:#fffdf8;--blue:#2556d8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Cairo,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eaf8ff,#fff0f7 55%,#f5ffe9);min-height:100vh}
+.wrap{max-width:1120px;margin:auto;padding:10px 14px 36px}.top{display:flex;justify-content:space-between;gap:12px;padding:12px 15px;background:#ffffffef;border-radius:0 0 22px 22px;position:sticky;top:0;z-index:5}.top a{color:var(--ink);font-weight:900;text-decoration:none}
+.hero{margin-top:14px;padding:30px;border-radius:30px;background:linear-gradient(135deg,#8fe0ff,#ffd6ea 55%,#fff0b5);box-shadow:0 16px 45px #17324d18}.hero h1{margin:7px 0;font-size:clamp(28px,6vw,46px)}.hero p{margin:0;font-weight:800}
+.journey{display:flex;gap:7px;overflow:auto;padding:12px 2px;position:sticky;top:55px;z-index:4;background:#ffffffed}.step{border:0;border-radius:999px;padding:10px 14px;background:#f2f6fa;color:#536078;font-weight:900;white-space:nowrap;cursor:pointer}.step.active{background:var(--ink);color:#fff}
+.page{margin-top:8px;background:var(--paper);border-radius:28px;padding:22px;min-height:580px;box-shadow:0 18px 55px #17324d18}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 9px 25px #17324d0c;line-height:1.85}.tag{display:inline-block;padding:6px 11px;border-radius:999px;background:#e7f4ff;color:#1260a8;font-weight:900}.fr{direction:ltr;text-align:left;font-size:22px;font-weight:900}.ar{font-weight:800;color:var(--muted)}button{font-family:inherit}.btn{border:0;border-radius:13px;padding:11px 15px;margin:5px 3px;font-weight:900;background:var(--ink);color:#fff;cursor:pointer}.speak{background:var(--blue)}.quiz button{display:block;width:100%;margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:900;cursor:pointer;text-align:right}.ok{background:#eafff2!important;border-color:#27a35c!important}.bad{background:#fff0f6!important;border-color:#e72b82!important}
+@media(max-width:650px){.wrap{padding:7px 9px 25px}.hero{padding:23px 18px}.page{padding:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a href="grade-6.html">← الصف السادس</a><a href="index.html">HM Academy · الرئيسية</a></header>
+<section class="hero"><div>Le français pour vous · 6e année · PREMIUM</div><h1>Au marché</h1><p>في السوق · رحلة درس كاملة</p></section>
+<nav id="journey" class="journey"></nav>
+<main id="viewer" class="page"></main>
+</div>
+<script>
+(function(){
+'use strict';
+var tabs=[
+ ['lesson','🚀 البداية'],['vocabulary','🖼️ المفردات'],['pronunciation','🎧 النطق'],
+ ['grammar','📘 القواعد'],['conversation','💬 المحادثة'],['practice','✍️ التدريب'],
+ ['media','🎬 الوسائط'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['progress','📈 التقدم']
+];
+var vocab=[
+ ['Le chariot','عربة التسوق','Je prends le chariot.'],
+ ['La balance','الميزان','La balance est ici.'],
+ ['La caisse','صندوق الدفع','Je vais à la caisse.'],
+ ['Le panier','السلة','Je prends le panier.'],
+ ['Le sachet','الكيس','Un sachet, s’il vous plaît.'],
+ ['La baguette','الخبز الفرنسي','Je voudrais une baguette.'],
+ ['Le pain','الخبز','Je voudrais du pain.'],
+ ['La viande','اللحوم','Je voudrais de la viande.'],
+ ['Le fromage','الجبن','Je voudrais du fromage.'],
+ ['Le lait','اللبن','Je bois du lait.'],
+ ['La pomme','التفاح','Je voudrais des pommes.'],
+ ['La banane','الموز','Je voudrais des bananes.'],
+ ['La carotte','الجزر','Je prends des carottes.'],
+ ['La tomate','الطماطم','Je prends des tomates.']
+];
+var rules=[
+ ['du','مذكر مفرد','du pain · du fromage'],
+ ['de la','مؤنث مفرد','de la viande · de la farine'],
+ ["de l'","قبل حرف متحرك","de l’eau · de l’œuf"],
+ ['des','جمع','des pommes · des bananes']
+];
+var dialogue=[
+ ['seller','Bonjour monsieur, vous désirez quoi ?','صباح الخير يا سيدي، ماذا تريد؟'],
+ ['client','Bonjour ! Je voudrais des pommes et des bananes, s’il vous plaît.','مرحبًا! أريد بعض التفاح والموز، من فضلك.'],
+ ['seller','Combien de pommes voulez-vous ?','كم تفاحة تريد؟'],
+ ['client','Je voudrais six pommes et deux kilos de bananes.','أريد ست تفاحات واثنين من كيلوغرامات الموز.'],
+ ['seller','Très bien. Vous voulez autre chose ?','حسنًا. هل تريد شيئًا آخر؟'],
+ ['client','Oui, du fromage, du pain et une bouteille de lait.','نعم، أريد بعض الجبن والخبز وزجاجة من الحليب.'],
+ ['seller','Voilà. Ça fait vingt euros.','تفضل. الحساب عشرون يورو.'],
+ ['client','Tenez. Merci beaucoup !','تفضل. شكرًا جزيلاً!'],
+ ['seller','Merci à vous. Bonne journée !','شكرًا لك. يوم سعيد!'],
+ ['client','Au revoir !','إلى اللقاء!']
+];
+var questions=[
+ ['Je voudrais ___ fromage.',['du','de la','des'] ,'du'],
+ ["Elle boit ___ eau.",['du',"de l'","des"],"de l'"],
+ ['___ carottes sont fraîches.',['Du','Des','De la'],'Des'],
+ ['Il achète ___ viande.',['du','de la','des'],'de la'],
+ ['Nous prenons ___ pain.',['du','de l',"des"],'du']
+];
+var current=new URLSearchParams(location.search).get('section')||'lesson';
+var viewer=document.getElementById('viewer');
+var journey=document.getElementById('journey');
+journey.innerHTML=tabs.map(function(t){return '<button class="step" data-section="'+t[0]+'">'+t[1]+'</button>';}).join('');
+
+function speak(text){
+ if(!window.speechSynthesis){return;}
+ window.speechSynthesis.cancel();
+ var u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';u.rate=.84;
+ var voices=window.speechSynthesis.getVoices?window.speechSynthesis.getVoices():[];
+ for(var i=0;i<voices.length;i++){if(/^fr(-|_)/i.test(voices[i].lang)){u.voice=voices[i];break;}}
+ window.speechSynthesis.resume();window.speechSynthesis.speak(u);
+}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function card(v){
+ return '<article class="card"><div class="fr">'+esc(v[0])+'</div><div class="ar">'+esc(v[1])+'</div><p>'+esc(v[2])+'</p><button class="btn speak" data-speak="'+esc(v[0])+'">🔊 اسمع الكلمة</button><button class="btn" data-speak="'+esc(v[2])+'">🔊 اسمع الجملة</button></article>';
+}
+function render(section){
+ current=section;
+ document.querySelectorAll('.step').forEach(function(b){b.classList.toggle('active',b.dataset.section===section);});
+ var html='';
+ if(section==='lesson'){
+  html='<span class="tag">01 · البداية</span><h2>Au marché</h2><p>في السوق</p><div class="grid"><article class="card"><h3>رحلة الدرس</h3><p>ابدأ بالمفردات، ثم النطق، القاعدة، المحادثة، التدريب، الألعاب والتقييم.</p><button class="btn" data-go="vocabulary">ابدأ الدرس</button></article><article class="card"><h3>الهدف</h3><p>استخدام مفردات السوق وعبارات الكمية في مواقف بسيطة باللغة الفرنسية.</p></article></div>';
+ }else if(section==='vocabulary'){
+  html='<span class="tag">02 · المفردات</span><h2>المفردات</h2><p>الكلمة + معناها + جملة قابلة للاستخدام.</p><div class="grid">'+vocab.map(card).join('')+'</div>';
+ }else if(section==='pronunciation'){
+  html='<span class="tag">03 · النطق</span><h2>اسمع وانطق</h2><p>استمع للكلمة والجملة ثم كرر بصوتك.</p><div class="grid">'+vocab.map(card).join('')+'</div>';
+ }else if(section==='grammar'){
+  html='<span class="tag">04 · القواعد</span><h2>افهم القاعدة</h2><p>لاحظ أدوات الكمية مع الأسماء.</p><div class="grid">'+rules.map(function(r){return '<article class="card"><div class="fr">'+esc(r[0])+'</div><h3>'+esc(r[1])+'</h3><p>'+esc(r[2])+'</p></article>';}).join('')+'</div>';
+ }else if(section==='conversation'){
+  html='<span class="tag">05 · المحادثة</span><h2>تحدث داخل السوق</h2>'+dialogue.map(function(d){return '<article class="card"><strong>'+ (d[0]==='seller'?'🧑‍💼 البائع':'🧑‍🛒 العميل')+'</strong><p class="fr">'+esc(d[1])+'</p><p class="ar">'+esc(d[2])+'</p><button class="btn speak" data-speak="'+esc(d[1])+'">🔊 اسمع</button></article>';}).join('');
+ }else if(section==='practice'){
+  html='<span class="tag">06 · التدريب</span><h2>تدرب</h2><p>اختر الإجابة ثم راجع التصحيح.</p><div class="grid">'+questions.map(function(q,i){return '<article class="card"><b>'+(i+1)+'. '+esc(q[0])+'</b><div class="quiz">'+q[1].map(function(o){return '<button data-answer="'+esc(o)+'" data-correct="'+esc(q[2])+'">'+esc(o)+'</button>';}).join('')+'</div><div id="feedback'+i+'"></div></article>';}).join('')+'</div>';
+ }else if(section==='media'){
+  html='<span class="tag">07 · الوسائط</span><h2>وسائط الدرس</h2><article class="card"><h3>Au marché</h3><p>هذه الصفحة مخصصة لوسائط الدرس. لا يوجد رابط فيديو خارجي موثّق داخل المصدر الحالي، لذلك لن يتم اختراع رابط غير موجود.</p></article>';
+ }else if(section==='games'){
+  html='<span class="tag">08 · الألعاب</span><h2>🎮 لعبة الصورة → الكلمة الفرنسية</h2><article class="card"><p id="gamePrompt">اضغط «جولة جديدة» لبدء اللعبة.</p><div id="gameAnswers" class="quiz"></div><button class="btn" id="newGame">جولة جديدة</button></article>';
+ }else if(section==='assessment'){
+  html='<span class="tag">09 · التقييم</span><h2>🏆 قيّم نفسك</h2><p>اختبر فهمك للمفردات والقواعد.</p><div class="grid">'+questions.slice(0,3).map(function(q,i){return '<article class="card"><b>'+(i+1)+'. '+esc(q[0])+'</b><div class="quiz">'+q[1].map(function(o){return '<button data-assess="'+esc(o)+'" data-correct="'+esc(q[2])+'">'+esc(o)+'</button>';}).join('')+'</div><div id="assess'+i+'"></div></article>';}).join('')+'</div>';
+ }else{
+  var done=localStorage.getItem('hm-g6-au-marche-complete')==='1';
+  html='<span class="tag">10 · التقدم</span><h2>📈 تقدمك</h2><article class="card"><h3>'+ (done?'✅ مكتمل':'⏳ قيد الدراسة')+'</h3><p>يُحفظ التقدم على هذا الجهاز.</p><button class="btn" id="toggleProgress">'+(done?'إلغاء الإكمال':'تم إكمال الدرس')+'</button></article>';
+ }
+ viewer.innerHTML=html;
+ bind();
+}
+function bind(){
+ document.querySelectorAll('[data-speak]').forEach(function(b){b.addEventListener('click',function(){speak(this.dataset.speak);});});
+ document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(this.dataset.go);});});
+ document.querySelectorAll('[data-answer]').forEach(function(b){b.addEventListener('click',function(){
+  var parent=this.closest('.card'), buttons=parent.querySelectorAll('[data-answer]');
+  buttons.forEach(function(x){x.disabled=true;});
+  var ok=this.dataset.answer===this.dataset.correct;this.classList.add(ok?'ok':'bad');
+  parent.querySelector('[id^="feedback"]').textContent=ok?'✓ ممتاز — إجابة صحيحة':'✗ راجع الإجابة ثم أعد المحاولة في تدريب آخر.';
+ });});
+ document.querySelectorAll('[data-assess]').forEach(function(b){b.addEventListener('click',function(){
+  var parent=this.closest('.card'),buttons=parent.querySelectorAll('[data-assess]');buttons.forEach(function(x){x.disabled=true;});
+  var ok=this.dataset.assess===this.dataset.correct;this.classList.add(ok?'ok':'bad');
+  var f=parent.querySelector('[id^="assess"]');f.textContent=ok?'✓ صحيح':'✗ غير صحيح';
+ });});
+ var ng=document.getElementById('newGame');if(ng)ng.addEventListener('click',newGame);
+ var tp=document.getElementById('toggleProgress');if(tp)tp.addEventListener('click',function(){var done=localStorage.getItem('hm-g6-au-marche-complete')==='1';localStorage.setItem('hm-g6-au-marche-complete',done?'0':'1');render('progress');});
+}
+function newGame(){
+ var item=vocab[Math.floor(Math.random()*vocab.length)], choices=[item[0]];
+ while(choices.length<3){var x=vocab[Math.floor(Math.random()*vocab.length)][0];if(choices.indexOf(x)<0)choices.push(x);}
+ choices.sort(function(){return Math.random()-.5;});
+ document.getElementById('gamePrompt').textContent='المعنى: '+item[1];
+ document.getElementById('gameAnswers').innerHTML=choices.map(function(x){return '<button data-game="'+esc(x)+'" data-right="'+esc(item[0])+'">'+esc(x)+'</button>';}).join('');
+ document.querySelectorAll('[data-game]').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('[data-game]').forEach(function(x){x.disabled=true;});this.classList.add(this.dataset.game===this.dataset.right?'ok':'bad');});});
+}
+function go(section){history.replaceState(null,'',location.pathname+'?id=g6-l01&section='+section);render(section);window.scrollTo({top:0,behavior:'smooth'});}
+journey.addEventListener('click',function(e){var b=e.target.closest('.step');if(b)go(b.dataset.section);});
+render(current);
+})();
+</script>
+</body>
+</html>
