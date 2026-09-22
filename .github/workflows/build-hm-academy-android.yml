@@ -67,9 +67,9 @@ jobs:
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><linearGradient id="b" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1264e8"/><stop offset="1" stop-color="#08d9d6"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".28"/></filter></defs><rect x="34" y="34" width="956" height="956" rx="170" fill="#061b4f"/><g filter="url(#s)"><path fill="#fff" d="M238 265c91 13 165 39 221 89v408c-66-51-140-73-221-76V265Z"/><path fill="#f8fbff" d="M786 265c-91 13-165 39-221 89v408c66-51 140-73 221-76V265Z"/><path fill="none" stroke="#061b4f" stroke-width="22" stroke-linecap="round" d="M512 354v409M238 265c91 13 165 39 221 89M786 265c-91 13-165 39-221 89"/><path fill="none" stroke="url(#b)" stroke-width="34" stroke-linecap="round" d="M168 728c128-20 250 4 344 77 94-73 216-97 344-77"/><path fill="none" stroke="#1467ee" stroke-width="42" stroke-linecap="round" d="M160 792c138-29 255-4 352 69 97-73 214-98 352-69"/><path fill="none" stroke="url(#b)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" d="M278 612c112-79 205-66 282 8l292-293"/><path fill="none" stroke="#fff" stroke-width="82" stroke-linecap="round" stroke-linejoin="round" d="M278 612c112-79 205-66 282 8l292-293"/><path fill="none" stroke="url(#b)" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" d="M278 612c112-79 205-66 282 8l292-293"/><path fill="url(#b)" d="m846 214 18 178-64-49-66 22 112-151Z"/></g></svg>
 EOF
           if command -v rsvg-convert >/dev/null 2>&1; then
-            rsvg-convert -w 1024 -h 1024 android-app/app/src/main/res/drawable/hm_academy_logo.svg -o android-app/app/src/main/res/drawable/hm_academy_logo.png
+            rsvg-convert -w 1024 -h 1024 android-app/app/src/main/res/drawable/hm_academy_logo.svg -o android-app/app/src/main/res/drawable/hm_academy_logo_png.png
           elif command -v convert >/dev/null 2>&1; then
-            convert -background none android-app/app/src/main/res/drawable/hm_academy_logo.svg -resize 1024x1024 android-app/app/src/main/res/drawable/hm_academy_logo.png
+            convert -background none android-app/app/src/main/res/drawable/hm_academy_logo.svg -resize 1024x1024 android-app/app/src/main/res/drawable/hm_academy_logo_png.png
           else
             echo "No SVG rasterizer available"; exit 1
           fi
@@ -122,7 +122,7 @@ EOF
 
           for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
             mkdir -p android-app/app/src/main/res/mipmap-$d
-            cp android-app/app/src/main/res/drawable/hm_academy_logo.png android-app/app/src/main/res/mipmap-$d/ic_launcher.png
+            cp android-app/app/src/main/res/drawable/hm_academy_logo_png.png android-app/app/src/main/res/mipmap-$d/ic_launcher.png
           done
 
           cat > android-app/app/src/main/res/values/strings.xml <<'EOF'
@@ -142,7 +142,7 @@ EOF
           cat > android-app/app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
-              <application android:theme="@style/AppTheme" android:label="@string/app_name" android:icon="@drawable/hm_academy_logo" android:roundIcon="@drawable/hm_academy_logo"
+              <application android:theme="@style/AppTheme" android:label="@string/app_name" android:icon="@drawable/hm_academy_logo_png" android:roundIcon="@drawable/hm_academy_logo_png"
                   android:hardwareAccelerated="true" android:usesCleartextTraffic="false"
                   android:resizeableActivity="true">
                   <activity android:name=".MainActivity" android:screenOrientation="unspecified"
