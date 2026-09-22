@@ -40,11 +40,13 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Prepare Android SDK
         shell: bash
         run: |
           set -e
-          yes | sdkmanager --licenses >/dev/null 2>&1 || true
           sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Create Android project
@@ -53,32 +55,22 @@ jobs:
           mkdir -p android-app/app/src/main/java/com/hmacademy/offline
           mkdir -p android-app/app/src/main/assets
           mkdir -p android-app/app/src/main/res/values
-
           rsync -a --exclude='.git' --exclude='.github' --exclude='android-app' ./ android-app/app/src/main/assets/
 
           cat > android-app/settings.gradle <<'EOF'
           pluginManagement {
-              repositories {
-                  google()
-                  mavenCentral()
-                  gradlePluginPortal()
-              }
+              repositories { google(); mavenCentral(); gradlePluginPortal() }
           }
           dependencyResolutionManagement {
               repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-              repositories {
-                  google()
-                  mavenCentral()
-              }
+              repositories { google(); mavenCentral() }
           }
           rootProject.name = "HMAcademyAndroid"
           include(":app")
           EOF
 
           cat > android-app/build.gradle <<'EOF'
-          plugins {
-              id 'com.android.application' version '8.6.1' apply false
-          }
+          plugins { id 'com.android.application' version '8.6.1' apply false }
           EOF
 
           cat > android-app/gradle.properties <<'EOF'
@@ -88,14 +80,10 @@ jobs:
           EOF
 
           cat > android-app/app/build.gradle <<'EOF'
-          plugins {
-              id 'com.android.application'
-          }
-
+          plugins { id 'com.android.application' }
           android {
               namespace 'com.hmacademy.offline'
               compileSdk 35
-
               defaultConfig {
                   applicationId 'com.hmacademy.offline'
                   minSdk 23
@@ -103,14 +91,8 @@ jobs:
                   versionCode 1
                   versionName '1.0'
               }
-
-              buildTypes {
-                  release {
-                      minifyEnabled false
-                  }
-              }
+              buildTypes { release { minifyEnabled false } }
           }
-
           dependencies {
               implementation 'androidx.appcompat:appcompat:1.7.0'
               implementation 'androidx.webkit:webkit:1.12.1'
@@ -118,23 +100,16 @@ jobs:
           EOF
 
           cat > android-app/app/src/main/res/values/strings.xml <<'EOF'
-          <resources>
-              <string name="app_name">HM Academy</string>
-          </resources>
+          <resources><string name="app_name">HM Academy</string></resources>
           EOF
 
           cat > android-app/app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
-              <application
-                  android:theme="@style/AppTheme"
-                  android:label="@string/app_name"
-                  android:hardwareAccelerated="true"
-                  android:usesCleartextTraffic="true"
+              <application android:theme="@style/AppTheme" android:label="@string/app_name"
+                  android:hardwareAccelerated="true" android:usesCleartextTraffic="true"
                   android:resizeableActivity="true">
-                  <activity
-                      android:name=".MainActivity"
-                      android:screenOrientation="unspecified"
+                  <activity android:name=".MainActivity" android:screenOrientation="unspecified"
                       android:exported="true">
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
@@ -170,56 +145,34 @@ jobs:
 
           public class MainActivity extends Activity {
               private WebView webView;
-
-              @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
-              @Override
-              protected void onCreate(Bundle savedInstanceState) {
+              @SuppressLint("SetJavaScriptEnabled")
+              @Override protected void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
-
                   webView = new WebView(this);
                   setContentView(webView);
-
-                  WebView.setWebContentsDebuggingEnabled(false);
-
                   webView.getSettings().setJavaScriptEnabled(true);
                   webView.getSettings().setDomStorageEnabled(true);
-                  webView.getSettings().setDatabaseEnabled(true);
                   webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
                   webView.getSettings().setAllowFileAccess(false);
                   webView.getSettings().setAllowContentAccess(true);
-                  webView.getSettings().setBuiltInZoomControls(false);
-                  webView.getSettings().setDisplayZoomControls(false);
-
-                  final WebViewAssetLoader assetLoader =
-                      new WebViewAssetLoader.Builder()
-                          .setDomain("appassets.androidplatform.net")
-                          .addPathHandler("/", new WebViewAssetLoader.AssetsPathHandler(this))
-                          .build();
-
+                  final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()
+                      .setDomain("appassets.androidplatform.net")
+                      .addPathHandler("/", new WebViewAssetLoader.AssetsPathHandler(this))
+                      .build();
                   webView.setWebViewClient(new WebViewClient() {
-                      @Override
-                      public WebResourceResponse shouldInterceptRequest(
-                              WebView view, WebResourceRequest request) {
-                          return assetLoader.shouldInterceptRequest(request.getUrl());
+                      @Override public WebResourceResponse shouldInterceptRequest(WebView v, WebResourceRequest r) {
+                          return loader.shouldInterceptRequest(r.getUrl());
                       }
-
                       @SuppressWarnings("deprecation")
-                      @Override
-                      public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                          return assetLoader.shouldInterceptRequest(android.net.Uri.parse(url));
+                      @Override public WebResourceResponse shouldInterceptRequest(WebView v, String url) {
+                          return loader.shouldInterceptRequest(android.net.Uri.parse(url));
                       }
                   });
-
                   webView.loadUrl("https://appassets.androidplatform.net/index.html");
               }
-
-              @Override
-              public void onBackPressed() {
-                  if (webView != null && webView.canGoBack()) {
-                      webView.goBack();
-                  } else {
-                      super.onBackPressed();
-                  }
+              @Override public void onBackPressed() {
+                  if (webView != null && webView.canGoBack()) webView.goBack();
+                  else super.onBackPressed();
               }
           }
           EOF
