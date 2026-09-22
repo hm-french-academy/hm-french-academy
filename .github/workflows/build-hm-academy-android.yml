@@ -35,8 +35,17 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Prepare Android SDK
+        shell: bash
+        run: |
+          set -e
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Create Android project
         shell: bash
@@ -191,8 +200,7 @@ jobs:
                       @Override
                       public WebResourceResponse shouldInterceptRequest(
                               WebView view, WebResourceRequest request) {
-                          WebResourceResponse response = assetLoader.shouldInterceptRequest(request.getUrl());
-                          return response;
+                          return assetLoader.shouldInterceptRequest(request.getUrl());
                       }
 
                       @SuppressWarnings("deprecation")
@@ -216,14 +224,9 @@ jobs:
           }
           EOF
 
-      - name: Install Android platform
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-
       - name: Build APK
         working-directory: android-app
-        run: |
-          gradle --version
-          gradle assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
