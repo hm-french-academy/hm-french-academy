@@ -239,8 +239,7 @@ jobs:
               private int dp(int v){return Math.round(v*getResources().getDisplayMetrics().density);}
               private static class AccessProfile{final String name;final String url;AccessProfile(String name,String url){this.name=name;this.url=url;}}
           }
-          EOF  EOF
-
+          EOF
       - name: Build APK
         working-directory: android-app
         run: gradle assembleDebug --no-daemon
