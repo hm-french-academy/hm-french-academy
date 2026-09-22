@@ -1,0 +1,233 @@
+name: Build HM Academy Android APK
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/build-hm-academy-android.yml'
+      - '**.html'
+      - '**.js'
+      - '**.css'
+      - '**.json'
+      - '**.svg'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.webp'
+      - '**.mp3'
+      - '**.wav'
+      - '**.mp4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout HM Academy
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Create Android project
+        shell: bash
+        run: |
+          mkdir -p android-app/app/src/main/java/com/hmacademy/offline
+          mkdir -p android-app/app/src/main/assets
+          mkdir -p android-app/app/src/main/res/values
+
+          rsync -a --exclude='.git' --exclude='.github' --exclude='android-app' ./ android-app/app/src/main/assets/
+
+          cat > android-app/settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+          rootProject.name = "HMAcademyAndroid"
+          include(":app")
+          EOF
+
+          cat > android-app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.6.1' apply false
+          }
+          EOF
+
+          cat > android-app/gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+          android.useAndroidX=true
+          android.nonTransitiveRClass=true
+          EOF
+
+          cat > android-app/app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.hmacademy.offline'
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.hmacademy.offline'
+                  minSdk 23
+                  targetSdk 35
+                  versionCode 1
+                  versionName '1.0'
+              }
+
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                  }
+              }
+          }
+
+          dependencies {
+              implementation 'androidx.appcompat:appcompat:1.7.0'
+              implementation 'androidx.webkit:webkit:1.12.1'
+          }
+          EOF
+
+          cat > android-app/app/src/main/res/values/strings.xml <<'EOF'
+          <resources>
+              <string name="app_name">HM Academy</string>
+          </resources>
+          EOF
+
+          cat > android-app/app/src/main/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission android:name="android.permission.INTERNET" />
+              <application
+                  android:theme="@style/AppTheme"
+                  android:label="@string/app_name"
+                  android:hardwareAccelerated="true"
+                  android:usesCleartextTraffic="true"
+                  android:resizeableActivity="true">
+                  <activity
+                      android:name=".MainActivity"
+                      android:screenOrientation="unspecified"
+                      android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+
+          cat > android-app/app/src/main/res/values/styles.xml <<'EOF'
+          <resources>
+              <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+                  <item name="android:fontFamily">sans</item>
+                  <item name="android:windowActionModeOverlay">true</item>
+                  <item name="android:colorAccent">#1f5d9b</item>
+                  <item name="android:windowNoTitle">true</item>
+              </style>
+          </resources>
+          EOF
+
+          cat > android-app/app/src/main/java/com/hmacademy/offline/MainActivity.java <<'EOF'
+          package com.hmacademy.offline;
+
+          import android.annotation.SuppressLint;
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebResourceRequest;
+          import android.webkit.WebResourceResponse;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import androidx.webkit.WebViewAssetLoader;
+
+          public class MainActivity extends Activity {
+              private WebView webView;
+
+              @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+
+                  webView = new WebView(this);
+                  setContentView(webView);
+
+                  WebView.setWebContentsDebuggingEnabled(false);
+
+                  webView.getSettings().setJavaScriptEnabled(true);
+                  webView.getSettings().setDomStorageEnabled(true);
+                  webView.getSettings().setDatabaseEnabled(true);
+                  webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+                  webView.getSettings().setAllowFileAccess(false);
+                  webView.getSettings().setAllowContentAccess(true);
+                  webView.getSettings().setBuiltInZoomControls(false);
+                  webView.getSettings().setDisplayZoomControls(false);
+
+                  final WebViewAssetLoader assetLoader =
+                      new WebViewAssetLoader.Builder()
+                          .setDomain("appassets.androidplatform.net")
+                          .addPathHandler("/", new WebViewAssetLoader.AssetsPathHandler(this))
+                          .build();
+
+                  webView.setWebViewClient(new WebViewClient() {
+                      @Override
+                      public WebResourceResponse shouldInterceptRequest(
+                              WebView view, WebResourceRequest request) {
+                          WebResourceResponse response = assetLoader.shouldInterceptRequest(request.getUrl());
+                          return response;
+                      }
+
+                      @SuppressWarnings("deprecation")
+                      @Override
+                      public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                          return assetLoader.shouldInterceptRequest(android.net.Uri.parse(url));
+                      }
+                  });
+
+                  webView.loadUrl("https://appassets.androidplatform.net/index.html");
+              }
+
+              @Override
+              public void onBackPressed() {
+                  if (webView != null && webView.canGoBack()) {
+                      webView.goBack();
+                  } else {
+                      super.onBackPressed();
+                  }
+              }
+          }
+          EOF
+
+      - name: Install Android platform
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Build APK
+        working-directory: android-app
+        run: |
+          gradle --version
+          gradle assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: HM-Academy-Android
+          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
