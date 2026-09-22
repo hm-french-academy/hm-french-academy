@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1736">
+<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=3">
+<link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=3">
+<title>HM Academy | إدارة أكواد الطلاب</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#0b1736;--blue:#2457a6;--gold:#d9a441;--ink:#172033;--muted:#667085;--line:#e4e9f2;--bg:#f5f7fb;--ok:#067647;--danger:#b42318}
+body{margin:0;background:linear-gradient(145deg,#f8faff,#f3f6fb);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink)}
+header{background:linear-gradient(135deg,var(--navy),#1b3569);color:#fff;padding:22px 18px;box-shadow:0 8px 30px #0b17361c}
+.head{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:48px;height:48px;border-radius:14px}.brand strong{font-size:21px}.brand small{display:block;opacity:.7;margin-top:2px}.logout{border:1px solid #ffffff35;background:#ffffff12;color:#fff;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
+main{max-width:1180px;margin:24px auto;padding:0 14px 50px}.grid{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 35px #0b17360a}.card h2{margin:0 0 5px;color:var(--navy);font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.7;margin:0 0 16px}
+label{display:block;font-size:13px;font-weight:850;color:#344054;margin:12px 0 7px}input,textarea,select{width:100%;border:1px solid #d8dfeb;border-radius:12px;padding:11px 12px;font:inherit;background:#fbfcfe;outline:none}input:focus,textarea:focus,select:focus{border-color:#90a7d2;box-shadow:0 0 0 4px #2457a612}textarea{min-height:100px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:12px;padding:11px 15px;font:inherit;font-weight:850;cursor:pointer}.primary{background:linear-gradient(135deg,var(--navy),#2457a6);color:#fff}.secondary{background:#eef2f8;color:#23385f;border:1px solid #dce3ef}.danger{background:#fff1f2;color:var(--danger);border:1px solid #fecdd3}.success{background:#ecfdf3;color:var(--ok);border:1px solid #a7f3d0}
+.status{display:none;margin:12px 0;padding:11px 13px;border-radius:12px;font-size:13px;font-weight:750;line-height:1.6}.status.show{display:block}.status.ok{background:#ecfdf3;color:var(--ok);border:1px solid #a7f3d0}.status.err{background:#fff1f2;color:var(--danger);border:1px solid #fecdd3}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.toolbar h2{margin:0}.count{color:var(--muted);font-size:13px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:12px 10px;border-bottom:1px solid #edf0f5;text-align:right;vertical-align:top;font-size:13px}th{background:#f8faff;color:#475467;font-size:12px}tr:last-child td{border-bottom:0}.code{font-family:ui-monospace,monospace;font-weight:900;letter-spacing:.4px;color:#173d7a;white-space:nowrap}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900}.active{background:#ecfdf3;color:#067647}.inactive{background:#fff1f2;color:#b42318}.bound{background:#eef4ff;color:#2457a6}.free{background:#f2f4f7;color:#667085}.lesson-list{display:flex;flex-wrap:wrap;gap:5px;max-width:260px}.lesson{background:#f4f6fa;border:1px solid #e2e7ef;border-radius:8px;padding:3px 7px;font-family:ui-monospace,monospace;font-size:10px}.row-actions{display:flex;gap:5px;flex-wrap:wrap}.mini{border:1px solid #d9e0eb;background:#fff;border-radius:8px;padding:6px 8px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.mini:hover{background:#f5f8fc}.empty{padding:35px;text-align:center;color:var(--muted)}.hint{font-size:11px;color:#7b8494;line-height:1.7;margin-top:7px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.card.form-card{order:1}.card.list-card{order:2}}
+@media(max-width:520px){main{padding:0 10px 35px}.row{grid-template-columns:1fr}.head{align-items:flex-start}.brand small{font-size:10px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="brand"><img src="assets/images/hm-academy-favicon.svg?v=3" alt="HM Academy"><div><strong>HM Academy</strong><small>إدارة أكواد الطلاب</small></div></div><button id="logout" class="logout">تسجيل الخروج</button></div></header>
+<main>
+<div id="status" class="status"></div>
+<div class="grid">
+<section class="card form-card">
+<h2 id="formTitle">➕ إنشاء كود طالب</h2>
+<p class="sub">أنشئ كودًا مرتبطًا بالطالب، وحدد الدروس التي يستطيع تطبيق HM Academy v1.3 فتحها.</p>
+<input id="editCode" type="hidden">
+<label for="studentName">اسم الطالب</label><input id="studentName" placeholder="مثال: أحمد محمد">
+<div class="row"><div><label for="grade">الصف</label><input id="grade" type="number" min="1" max="12" placeholder="8"></div><div><label for="expires">تاريخ الانتهاء</label><input id="expires" type="date"></div></div>
+<label for="lessons">الدروس المسموحة</label><textarea id="lessons" placeholder="كل معرّف في سطر مستقل، مثل:
+grade8-u1-l1
+grade8-u1-l2"></textarea>
+<div class="hint">الكود يمكنه فتح الدروس الموجودة في هذه القائمة فقط. ترك تاريخ الانتهاء فارغًا يعني بدون انتهاء.</div>
+<div class="actions"><button id="save" class="btn primary">إنشاء الكود</button><button id="cancel" class="btn secondary" style="display:none">إلغاء التعديل</button></div>
+</section>
+
+<section class="card list-card">
+<div class="toolbar"><div><h2>👨‍🎓 أكواد الطلاب</h2><span id="count" class="count">جارٍ التحميل…</span></div><button id="refresh" class="btn secondary">↻ تحديث</button></div>
+<div class="table-wrap"><table><thead><tr><th>الطالب</th><th>الكود</th><th>الصف</th><th>الدروس</th><th>الحالة</th><th>الجهاز</th><th>الانتهاء</th><th>إجراءات</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" style="display:none">لا توجد أكواد بعد.</div></div>
+</section>
+</div>
+</main>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './js/supabase-config.js';
+
+const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const API=SUPABASE_URL+'/functions/v1/admin-student-codes';
+const $=id=>document.getElementById(id);
+let codes=[];
+
+function show(message,ok=false){$('status').textContent=message;$('status').className='status show '+(ok?'ok':'err');setTimeout(()=>{$('status').className='status'},4200)}
+function lines(v){return v.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean)}
+function dateOnly(v){return v?new Date(v).toLocaleDateString('ar-EG'): '—'}
+function apiError(body){return body?.error==='forbidden'?'هذا الحساب ليس ضمن مسؤولي HM Academy.':body?.error==='unauthorized'?'انتهت جلسة الدخول.':'تعذر تنفيذ العملية الآن.'}
+
+async function call(action,payload={}){
+ const {data:{session}}=await supabase.auth.getSession();
+ if(!session){location.replace('login.html?next='+encodeURIComponent(location.href));return null}
+ const res=await fetch(API,{method:'POST',headers:{Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({action,...payload})});
+ const body=await res.json().catch(()=>({}));
+ if(res.status===401){await supabase.auth.signOut();location.replace('login.html?next='+encodeURIComponent(location.href));return null}
+ if(!res.ok){show(apiError(body));return null}
+ return body
+}
+
+async function load(){
+ const body=await call('list'); if(!body)return;
+ codes=body.codes||[]; render();
+}
+function render(){
+ $('count').textContent=codes.length+' كود';
+ $('empty').style.display=codes.length?'none':'block';
+ $('rows').innerHTML=codes.map(c=>{
+  const lessons=(c.allowed_lessons||[]).map(x=>'<span class="lesson">'+escapeHtml(x)+'</span>').join('');
+  return '<tr>'+
+  '<td><strong>'+escapeHtml(c.student_name)+'</strong></td>'+
+  '<td><span class="code">'+escapeHtml(c.code)+'</span></td>'+
+  '<td>'+escapeHtml(String(c.grade??'—'))+'</td>'+
+  '<td><div class="lesson-list">'+lessons+'</div></td>'+
+  '<td><span class="pill '+(c.active?'active':'inactive')+'">'+(c.active?'مفعل':'موقوف')+'</span></td>'+
+  '<td><span class="pill '+(c.bound_device_id?'bound':'free')+'">'+(c.bound_device_id?'مرتبط بجهاز':'غير مرتبط')+'</span></td>'+
+  '<td>'+dateOnly(c.expires_at)+'</td>'+
+  '<td><div class="row-actions">'+
+  '<button class="mini" data-act="copy" data-code="'+escapeAttr(c.code)+'">نسخ</button>'+
+  '<button class="mini" data-act="edit" data-code="'+escapeAttr(c.code)+'">تعديل</button>'+
+  '<button class="mini" data-act="toggle" data-code="'+escapeAttr(c.code)+'">'+(c.active?'تعطيل':'تفعيل')+'</button>'+
+  (c.bound_device_id?'<button class="mini" data-act="unbind" data-code="'+escapeAttr(c.code)+'">فك الجهاز</button>':'')+
+  '</div></td></tr>';
+ }).join('');
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function escapeAttr(s){return escapeHtml(s)}
+function resetForm(){ $('editCode').value='';$('studentName').value='';$('grade').value='';$('expires').value='';$('lessons').value='';$('formTitle').textContent='➕ إنشاء كود طالب';$('save').textContent='إنشاء الكود';$('cancel').style.display='none'}
+function edit(c){$('editCode').value=c.code;$('studentName').value=c.student_name||'';$('grade').value=c.grade||'';$('expires').value=c.expires_at?new Date(c.expires_at).toISOString().slice(0,10):'';$('lessons').value=(c.allowed_lessons||[]).join('\n');$('formTitle').textContent='✏️ تعديل كود '+c.code;$('save').textContent='حفظ التعديلات';$('cancel').style.display='inline-block';window.scrollTo({top:0,behavior:'smooth'})}
+
+$('save').addEventListener('click',async()=>{
+ const student_name=$('studentName').value.trim(),grade=Number($('grade').value),allowed_lessons=lines($('lessons').value),expires_at=$('expires').value?$('expires').value+'T23:59:59':null,code=$('editCode').value;
+ if(!student_name||!Number.isInteger(grade)||grade<1||grade>12||!allowed_lessons.length)return show('أدخل اسم الطالب والصف ودروسًا مسموحة على الأقل.');
+ $('save').disabled=true;
+ const body=await call(code?'update':'create',{code,student_name,grade,allowed_lessons,expires_at});
+ $('save').disabled=false;
+ if(body?.ok){show(code?'تم حفظ تعديلات الكود.':'تم إنشاء الكود: '+body.code.code,true);resetForm();await load();}
+});
+$('cancel').addEventListener('click',resetForm);
+$('refresh').addEventListener('click',load);
+$('logout').addEventListener('click',async()=>{await supabase.auth.signOut();location.replace('login.html?next='+encodeURIComponent(location.href))});
+
+$('rows').addEventListener('click',async e=>{
+ const b=e.target.closest('button');if(!b)return;
+ const c=codes.find(x=>x.code===b.dataset.code);if(!c)return;
+ const act=b.dataset.act;
+ if(act==='copy'){await navigator.clipboard?.writeText(c.code);show('تم نسخ الكود '+c.code,true);return}
+ if(act==='edit'){edit(c);return}
+ if(act==='toggle'){const body=await call('toggle',{code:c.code,active:!c.active});if(body?.ok){show(c.active?'تم تعطيل الكود.':'تم تفعيل الكود.',true);load()}return}
+ if(act==='unbind'){if(!confirm('فك ارتباط هذا الكود بالجهاز الحالي؟'))return;const body=await call('unbind',{code:c.code});if(body?.ok){show('تم فك ارتباط الجهاز. يمكن ربط الكود بجهاز آخر عند أول دخول.',true);load()}}
+});
+
+supabase.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'&&!location.pathname.endsWith('login.html'))location.replace('login.html?next='+encodeURIComponent(location.href))});
+const {data:{session}}=await supabase.auth.getSession();
+if(!session){location.replace('login.html?next='+encodeURIComponent(location.href))}
+else{load()}
+</script>
+</body>
+</html>
