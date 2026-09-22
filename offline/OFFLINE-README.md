@@ -1,21 +1,42 @@
 # HM Academy — USB Offline Edition
 
-This folder adds a Windows launcher for running the existing HM Academy repository locally without internet access.
+## تم التنفيذ
 
-## How to use it
+تم تجهيز وضع Offline يعمل من USB على Windows عبر خادم محلي على 127.0.0.1:8765. استخدام localhost مهم لأن المتصفح يتعامل معه كـ secure context مناسب لـ Service Worker، بدل فتح ملفات HTML مباشرة. citeturn1search0turn0search7
 
-1. Copy the complete HM Academy repository folder to a USB flash drive.
-2. Keep the `offline` folder inside the repository root.
-3. On a Windows computer, double-click:
-   `offline/START-HM-ACADEMY-OFFLINE.bat`
-4. The launcher starts a local HTTP server and opens HM Academy in the default browser.
-5. Internet access is not required for local HTML/CSS/JavaScript/assets that are already present in the repository.
-6. Close the PowerShell server window when finished.
+### التشغيل
 
-## Important
+1. انسخ مجلد HM Academy كاملًا إلى الفلاشة.
+2. لا تحذف مجلد offline.
+3. افتح offline/START-HM-ACADEMY-OFFLINE.bat.
+4. سيبدأ السيرفر المحلي ويفتح المنصة تلقائيًا.
+5. لا تغلق نافذة HM Academy Offline Server أثناء الاستخدام.
 
-This launcher does not modify the Online HM Academy pages or GitHub Pages behavior.
+## ما تم إضافته
 
-External resources (for example YouTube videos, remote APIs, remote fonts, or other absolute HTTPS resources) still require internet access unless a local copy is added. The offline package therefore needs a resource audit before it can honestly be called 100% self-contained.
+- server.ps1 — خادم HTTP محلي.
+- START-HM-ACADEMY-OFFLINE.bat — تشغيل بضغطة واحدة.
+- sw.js — طبقة Offline تعترض الطلبات الخارجية وتمنع انتظارها عند انقطاع الإنترنت.
+- OFFLINE-VIDEO.html — شاشة واضحة بدل فيديوهات YouTube الخارجية عند عدم توفر الإنترنت.
 
-The local server is used instead of opening HTML files directly with `file://`, so JavaScript modules and other browser features that expect an HTTP origin have a proper local origin.
+Service Workers يمكنها اعتراض طلبات الصفحات والموارد والطلبات الخارجية للصفحة الخاضعة للتحكم، وإرجاع Response محلي مخصص. citeturn2search0turn2search1
+
+## حدود النسخة الحالية
+
+المحتوى المحلي — HTML/CSS/JS/JSON/SVG والصوتيات/الفيديوهات الموجودة فعلًا داخل المستودع — يمكن تشغيله من USB.
+
+لكن توجد خدمات خارجية في النسخة الأصلية، وتم اكتشافها بالفعل:
+- YouTube في بيانات الفيديوهات؛ لذلك فيديوهات YouTube الخارجية لا تعمل بدون الإنترنت.
+- Google Fonts؛ وضع Offline يتجاهل تحميلها ويستخدم خطوط النظام البديلة.
+- Supabase؛ وضع Offline يعطل الاتصال الخارجي ويستخدم طبقة محلية مبسطة حتى لا تتوقف الصفحات بسبب غياب الخدمة.
+- بعض مكتبات CDN الخارجية؛ يتم منع انتظارها في وضع Offline.
+
+مهم: هذا لا يحول حسابات الطلاب أو المصادقة أو البيانات السحابية إلى نظام محلي حقيقي. النسخة Offline مخصصة لتشغيل محتوى المنصة محليًا؛ المزايا التي تعتمد على الخادم السحابي تحتاج الإنترنت.
+
+## ما لم يتم تغييره
+
+التغييرات الخاصة بالـOffline محصورة في مجلد offline/، ولم يتم تعديل تصميم أو محتوى صفحات HM Academy الأصلية لهذا الغرض.
+
+### لتشغيل الفيديوهات بدون إنترنت
+
+يجب توفير ملفات فيديو محلية تملك حق استخدامها ووضعها داخل الحزمة، ثم ربطها بالدرس. لا يتم تنزيل أو نسخ فيديوهات YouTube تلقائيًا.
