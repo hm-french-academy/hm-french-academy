@@ -58,6 +58,7 @@ try {
             $ctx.Response.ContentType = if ($mime.ContainsKey($ext)) { $mime[$ext] } else { "application/octet-stream" }
             $ctx.Response.ContentLength64 = $bytes.Length
             $ctx.Response.Headers["Cache-Control"] = "no-cache"
+            if ($ext -eq ".js" -and $full -ieq ([System.IO.Path]::GetFullPath((Join-Path $Root "offline/sw.js")))) { $ctx.Response.Headers["Service-Worker-Allowed"] = "/" }
             $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
             $ctx.Response.Close()
         } catch {
