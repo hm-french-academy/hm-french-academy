@@ -95,8 +95,8 @@ jobs:
                   applicationId 'com.hmacademy.student'
                   minSdk 23
                   targetSdk 35
-                  versionCode 2
-                  versionName '1.1'
+                  versionCode 3
+                  versionName '1.2'
               }
               buildTypes { release { minifyEnabled false } }
           }
@@ -155,167 +155,90 @@ jobs:
           import android.widget.LinearLayout;
           import android.widget.TextView;
           import android.widget.Toast;
-          import java.util.HashMap;
-          import java.util.Map;
+          import android.provider.Settings;
+          import org.json.JSONArray;
+          import org.json.JSONObject;
+          import java.io.BufferedReader;
+          import java.io.InputStreamReader;
+          import java.io.OutputStream;
+          import java.net.HttpURLConnection;
+          import java.net.URL;
 
           public class MainActivity extends Activity {
               private static final String HOST = "hm-french-academy.github.io";
+              private static final String ACCESS_API = "https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login";
               private static final String PREFS = "hm_student_access";
               private static final String PREF_CODE = "student_code";
-              private static final Map<String, AccessProfile> ACCESS = new HashMap<>();
-
-              static {
-                  ACCESS.put("HM-DEMO-G8L1", new AccessProfile(
-                      "الصف الثاني الإعدادي — الدرس الأول",
-                      "https://hm-french-academy.github.io/hm-french-academy/lesson-studio-standard.html?id=grade8-u1-l1&v=20260831-content-polish&section=lesson"
-                  ));
-              }
-
               private WebView webView;
               private AccessProfile activeProfile;
 
               @Override protected void onCreate(Bundle state) {
                   super.onCreate(state);
                   String saved = getSharedPreferences(PREFS, MODE_PRIVATE).getString(PREF_CODE, null);
-                  AccessProfile profile = saved == null ? null : ACCESS.get(saved);
-                  if (profile == null) showLogin();
-                  else { activeProfile = profile; showLesson(); }
+                  if (saved == null) showLogin(); else validateCodeOnline(saved, null, null, true);
               }
 
               private void showLogin() {
                   LinearLayout root = new LinearLayout(this);
-                  root.setOrientation(LinearLayout.VERTICAL);
-                  root.setGravity(Gravity.CENTER_HORIZONTAL);
-                  root.setPadding(dp(28), dp(28), dp(28), dp(28));
-                  root.setBackgroundColor(Color.WHITE);
+                  root.setOrientation(LinearLayout.VERTICAL); root.setGravity(Gravity.CENTER_HORIZONTAL);
+                  root.setPadding(dp(28), dp(28), dp(28), dp(28)); root.setBackgroundColor(Color.WHITE);
+                  TextView brand=new TextView(this); brand.setText("HM Academy"); brand.setTextSize(30); brand.setTextColor(Color.rgb(31,93,155)); brand.setGravity(Gravity.CENTER); brand.setTypeface(null,android.graphics.Typeface.BOLD);
+                  TextView title=new TextView(this); title.setText("دخول الطالب"); title.setTextSize(22); title.setGravity(Gravity.CENTER); title.setTextColor(Color.DKGRAY); title.setPadding(0,dp(18),0,dp(8));
+                  TextView hint=new TextView(this); hint.setText("أدخل كود الطالب المخصص لك"); hint.setTextSize(16); hint.setGravity(Gravity.CENTER); hint.setTextColor(Color.GRAY); hint.setPadding(0,0,0,dp(18));
+                  EditText code=new EditText(this); code.setSingleLine(true); code.setHint("كود الطالب"); code.setTextSize(18); code.setGravity(Gravity.CENTER); code.setAllCaps(true); code.setPadding(dp(14),dp(12),dp(14),dp(12));
+                  Button enter=new Button(this); enter.setText("دخول"); enter.setAllCaps(false); enter.setTextSize(17);
+                  LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT); p.setMargins(0,dp(8),0,dp(8));
+                  root.addView(brand,p); root.addView(title,p); root.addView(hint,p); root.addView(code,p); root.addView(enter,p); setContentView(root);
+                  enter.setOnClickListener(v->{String value=code.getText().toString().trim().toUpperCase(); if(value.isEmpty()){Toast.makeText(this,"اكتب كود الطالب أولاً.",Toast.LENGTH_SHORT).show();return;} enter.setEnabled(false); validateCodeOnline(value,enter,code,false);});
+              }
 
-                  TextView brand = new TextView(this);
-                  brand.setText("HM Academy");
-                  brand.setTextSize(30);
-                  brand.setTextColor(Color.rgb(31,93,155));
-                  brand.setGravity(Gravity.CENTER);
-                  brand.setTypeface(null, android.graphics.Typeface.BOLD);
-
-                  TextView title = new TextView(this);
-                  title.setText("دخول الطالب");
-                  title.setTextSize(22);
-                  title.setTextColor(Color.DKGRAY);
-                  title.setGravity(Gravity.CENTER);
-                  title.setPadding(0, dp(18), 0, dp(8));
-
-                  TextView hint = new TextView(this);
-                  hint.setText("أدخل كود الطالب المخصص لك");
-                  hint.setTextSize(16);
-                  hint.setTextColor(Color.GRAY);
-                  hint.setGravity(Gravity.CENTER);
-                  hint.setPadding(0, 0, 0, dp(18));
-
-                  EditText code = new EditText(this);
-                  code.setSingleLine(true);
-                  code.setHint("كود الطالب");
-                  code.setTextSize(18);
-                  code.setGravity(Gravity.CENTER);
-                  code.setAllCaps(true);
-                  code.setPadding(dp(14), dp(12), dp(14), dp(12));
-
-                  Button enter = new Button(this);
-                  enter.setText("دخول");
-                  enter.setAllCaps(false);
-                  enter.setTextSize(17);
-
-                  LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
-                      ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                  p.setMargins(0, dp(8), 0, dp(8));
-                  root.addView(brand, p);
-                  root.addView(title, p);
-                  root.addView(hint, p);
-                  root.addView(code, p);
-                  root.addView(enter, p);
-                  setContentView(root);
-
-                  enter.setOnClickListener(v -> {
-                      String value = code.getText().toString().trim().toUpperCase();
-                      AccessProfile profile = ACCESS.get(value);
-                      if (profile == null) {
-                          Toast.makeText(this, "كود الطالب غير صحيح أو غير مفعل.", Toast.LENGTH_SHORT).show();
-                          return;
-                      }
-                      activeProfile = profile;
-                      getSharedPreferences(PREFS, MODE_PRIVATE).edit().putString(PREF_CODE, value).apply();
-                      InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                      if (imm != null) imm.hideSoftInputFromWindow(code.getWindowToken(), 0);
-                      showLesson();
-                  });
+              private void validateCodeOnline(String code, Button enter, EditText field, boolean silent) {
+                  new Thread(() -> {
+                      HttpURLConnection c=null;
+                      try {
+                          URL u=new URL(ACCESS_API); c=(HttpURLConnection)u.openConnection(); c.setRequestMethod("POST"); c.setConnectTimeout(12000); c.setReadTimeout(12000); c.setDoOutput(true); c.setRequestProperty("Content-Type","application/json");
+                          JSONObject body=new JSONObject(); body.put("code",code); body.put("device_id",Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID));
+                          try(OutputStream os=c.getOutputStream()){os.write(body.toString().getBytes("UTF-8"));}
+                          int status=c.getResponseCode(); BufferedReader br=new BufferedReader(new InputStreamReader(status>=400?c.getErrorStream():c.getInputStream(),"UTF-8"));
+                          StringBuilder out=new StringBuilder(); String line; while((line=br.readLine())!=null)out.append(line);
+                          JSONObject result=new JSONObject(out.toString());
+                          runOnUiThread(()->{
+                              if(enter!=null)enter.setEnabled(true);
+                              if(!result.optBoolean("ok",false)){ if(enter!=null)Toast.makeText(this,result.optString("error","invalid_code").equals("expired")?"انتهت صلاحية الكود.":result.optString("error","").equals("device_mismatch")?"هذا الكود مرتبط بجهاز آخر.":"كود الطالب غير صحيح أو غير مفعل.",Toast.LENGTH_LONG).show(); getSharedPreferences(PREFS,MODE_PRIVATE).edit().remove(PREF_CODE).apply(); if(silent)showLogin(); return; }
+                              JSONArray lessons=result.optJSONArray("allowed_lessons"); String lesson=lessons==null?"":lessons.optString(0,"");
+                              if(lesson.isEmpty()){if(!silent)Toast.makeText(this,"الكود صحيح ولكن لا توجد دروس مسموحة.",Toast.LENGTH_LONG).show();if(silent)showLogin();return;}
+                              activeProfile=new AccessProfile(result.optString("student_name","طالب"),"https://"+HOST+"/hm-french-academy/lesson-studio-standard.html?id="+Uri.encode(lesson)+"&v=20260831-content-polish&section=lesson");
+                              getSharedPreferences(PREFS,MODE_PRIVATE).edit().putString(PREF_CODE,code).apply();
+                              if(field!=null){InputMethodManager imm=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);if(imm!=null)imm.hideSoftInputFromWindow(field.getWindowToken(),0);}
+                              showLesson();
+                          });
+                      }catch(Exception ex){runOnUiThread(()->{if(enter!=null)enter.setEnabled(true);if(silent)showLogin();else Toast.makeText(this,"تعذر الاتصال بالخدمة. تحقق من الإنترنت ثم حاول مرة أخرى.",Toast.LENGTH_LONG).show();});}
+                      finally{if(c!=null)c.disconnect();}
+                  }).start();
               }
 
               @SuppressLint("SetJavaScriptEnabled")
-              private void showLesson() {
-                  webView = new WebView(this);
-                  setContentView(webView);
-                  webView.getSettings().setJavaScriptEnabled(true);
-                  webView.getSettings().setDomStorageEnabled(true);
-                  webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
-                  webView.getSettings().setAllowFileAccess(false);
-                  webView.getSettings().setAllowContentAccess(false);
-                  webView.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
-                  webView.getSettings().setSupportMultipleWindows(false);
-
-                  webView.setWebViewClient(new WebViewClient() {
-                      @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                          if (!request.isForMainFrame()) return false;
-                          if (isAllowed(request.getUrl())) return false;
-                          Toast.makeText(MainActivity.this, "هذا الرابط غير متاح لهذا الطالب.", Toast.LENGTH_SHORT).show();
-                          return true;
-                      }
-                      @SuppressWarnings("deprecation")
-                      @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                          if (isAllowed(Uri.parse(url))) return false;
-                          Toast.makeText(MainActivity.this, "هذا الرابط غير متاح لهذا الطالب.", Toast.LENGTH_SHORT).show();
-                          return true;
-                      }
+              private void showLesson(){
+                  webView=new WebView(this); setContentView(webView);
+                  webView.getSettings().setJavaScriptEnabled(true); webView.getSettings().setDomStorageEnabled(true); webView.getSettings().setMediaPlaybackRequiresUserGesture(false); webView.getSettings().setAllowFileAccess(false); webView.getSettings().setAllowContentAccess(false); webView.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE); webView.getSettings().setSupportMultipleWindows(false);
+                  webView.setWebViewClient(new WebViewClient(){
+                      @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){if(!request.isForMainFrame())return false;if(isAllowed(request.getUrl()))return false;Toast.makeText(MainActivity.this,"هذا الرابط غير متاح لهذا الطالب.",Toast.LENGTH_SHORT).show();return true;}
+                      @SuppressWarnings("deprecation") @Override public boolean shouldOverrideUrlLoading(WebView view,String url){if(isAllowed(Uri.parse(url)))return false;Toast.makeText(MainActivity.this,"هذا الرابط غير متاح لهذا الطالب.",Toast.LENGTH_SHORT).show();return true;}
                   });
-
-                  String url = activeProfile.url + "&hmapp=" + System.currentTimeMillis();
-                  webView.loadUrl(url);
+                  webView.loadUrl(activeProfile.url+"&hmapp="+System.currentTimeMillis());
               }
 
-              private boolean isAllowed(Uri uri) {
-                  if (activeProfile == null || uri == null) return false;
-                  if (!"https".equalsIgnoreCase(uri.getScheme())) return false;
-                  if (!HOST.equalsIgnoreCase(uri.getHost())) return false;
-                  Uri allowed = Uri.parse(activeProfile.url);
-                  if (!allowed.getPath().equals(uri.getPath())) return false;
-                  String id = allowed.getQueryParameter("id");
-                  return id != null && id.equals(uri.getQueryParameter("id"));
+              private boolean isAllowed(Uri uri){
+                  if(activeProfile==null||uri==null||!"https".equalsIgnoreCase(uri.getScheme())||!HOST.equalsIgnoreCase(uri.getHost()))return false;
+                  Uri allowed=Uri.parse(activeProfile.url); if(!allowed.getPath().equals(uri.getPath()))return false;
+                  String id=allowed.getQueryParameter("id"); return id!=null&&id.equals(uri.getQueryParameter("id"));
               }
-
-              @Override public void onBackPressed() {
-                  if (webView != null && webView.canGoBack()) webView.goBack();
-                  else super.onBackPressed();
-              }
-
-              @Override protected void onDestroy() {
-                  if (webView != null) {
-                      if (webView.getParent() instanceof ViewGroup) ((ViewGroup)webView.getParent()).removeView(webView);
-                      webView.stopLoading();
-                      webView.clearHistory();
-                      webView.destroy();
-                      webView = null;
-                  }
-                  super.onDestroy();
-              }
-
-              private int dp(int v) {
-                  return Math.round(v * getResources().getDisplayMetrics().density);
-              }
-
-              private static class AccessProfile {
-                  final String name;
-                  final String url;
-                  AccessProfile(String name, String url) { this.name = name; this.url = url; }
-              }
+              @Override public void onBackPressed(){if(webView!=null&&webView.canGoBack())webView.goBack();else super.onBackPressed();}
+              @Override protected void onDestroy(){if(webView!=null){if(webView.getParent() instanceof ViewGroup)((ViewGroup)webView.getParent()).removeView(webView);webView.stopLoading();webView.clearHistory();webView.destroy();webView=null;}super.onDestroy();}
+              private int dp(int v){return Math.round(v*getResources().getDisplayMetrics().density);}
+              private static class AccessProfile{final String name;final String url;AccessProfile(String name,String url){this.name=name;this.url=url;}}
           }
-          EOF
+          EOF  EOF
 
       - name: Build APK
         working-directory: android-app
@@ -324,6 +247,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: HM-Academy-Android
+          name: HM-Academy-Android-v1.2
           path: android-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
