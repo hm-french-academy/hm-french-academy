@@ -224,16 +224,38 @@ jobs:
                           runOnUiThread(()->{
                               if(enter!=null)enter.setEnabled(true);
                               if(!result.optBoolean("ok",false)){ if(enter!=null)Toast.makeText(this,result.optString("error","invalid_code").equals("expired")?"انتهت صلاحية الكود.":result.optString("error","").equals("device_mismatch")?"هذا الكود مرتبط بجهاز آخر.":"كود الطالب غير صحيح أو غير مفعل.",Toast.LENGTH_LONG).show(); getSharedPreferences(PREFS,MODE_PRIVATE).edit().remove(PREF_CODE).apply(); if(silent)showLogin(); return; }
-                              JSONArray lessons=result.optJSONArray("allowed_lessons"); String lesson=lessons==null?"":lessons.optString(0,"");
-                              if(lesson.isEmpty()){if(!silent)Toast.makeText(this,"الكود صحيح ولكن لا توجد دروس مسموحة.",Toast.LENGTH_LONG).show();if(silent)showLogin();return;}
-                              activeProfile=new AccessProfile(result.optString("student_name","طالب"),"https://"+HOST+"/hm-french-academy/lesson-studio-standard.html?id="+Uri.encode(lesson)+"&v=20260831-content-polish&section=lesson");
+                              JSONArray lessons=result.optJSONArray("allowed_lessons");
+                              if(lessons==null || lessons.length()==0){if(!silent)Toast.makeText(this,"الكود صحيح ولكن لا توجد دروس مسموحة.",Toast.LENGTH_LONG).show();if(silent)showLogin();return;}
                               getSharedPreferences(PREFS,MODE_PRIVATE).edit().putString(PREF_CODE,code).apply();
                               if(field!=null){InputMethodManager imm=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);if(imm!=null)imm.hideSoftInputFromWindow(field.getWindowToken(),0);}
-                              showLesson();
+                              if(lessons.length()==1) openLesson(result.optString("student_name","طالب"),lessons.optString(0,""));
+                              else showLessonPicker(result.optString("student_name","طالب"),lessons);
                           });
                       }catch(Exception ex){runOnUiThread(()->{if(enter!=null)enter.setEnabled(true);if(silent)showLogin();else Toast.makeText(this,"تعذر الاتصال بالخدمة. تحقق من الإنترنت ثم حاول مرة أخرى.",Toast.LENGTH_LONG).show();});}
                       finally{if(c!=null)c.disconnect();}
                   }).start();
+              }
+
+              private void openLesson(String studentName,String lesson){
+                  activeProfile=new AccessProfile(studentName,"https://"+HOST+"/hm-french-academy/lesson-studio-standard.html?id="+Uri.encode(lesson)+"&v=20260831-content-polish&section=lesson");
+                  showLesson();
+              }
+
+              private void showLessonPicker(String studentName, JSONArray lessons){
+                  LinearLayout root=new LinearLayout(this);
+                  root.setOrientation(LinearLayout.VERTICAL); root.setGravity(Gravity.CENTER_HORIZONTAL);
+                  root.setPadding(dp(24),dp(24),dp(24),dp(24)); root.setBackgroundColor(Color.WHITE);
+                  TextView brand=new TextView(this); brand.setText("HM Academy"); brand.setTextSize(30); brand.setTextColor(Color.rgb(31,93,155)); brand.setGravity(Gravity.CENTER); brand.setTypeface(null,android.graphics.Typeface.BOLD);
+                  TextView title=new TextView(this); title.setText("مرحبًا "+studentName+"\nاختر الدرس المسموح لك"); title.setTextSize(21); title.setGravity(Gravity.CENTER); title.setTextColor(Color.DKGRAY); title.setPadding(0,dp(16),0,dp(18));
+                  root.addView(brand,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+                  root.addView(title,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+                  for(int i=0;i<lessons.length();i++){
+                      final String lesson=lessons.optString(i,"").trim(); if(lesson.isEmpty()) continue;
+                      Button b=new Button(this); b.setText("فتح الدرس: "+lesson); b.setAllCaps(false); b.setTextSize(16);
+                      LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT); p.setMargins(0,dp(5),0,dp(5));
+                      root.addView(b,p); b.setOnClickListener(v->openLesson(studentName,lesson));
+                  }
+                  setContentView(root);
               }
 
               @SuppressLint("SetJavaScriptEnabled")
