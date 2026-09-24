@@ -1,3 +1,479 @@
 {
-  "id":"grade7-u1-l2","grade":"grade-7","unit":"unit-1","sourceLesson":2,"titleFr":"Les salutations","titleAr":"التحيات","status":"gold-standard-v2","publishedBuild":"2026-09-07-grade7-l1-l2-final","sourceTruth":"authoritative-source-package/Leçon_2","journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],"sourceSections":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !","Le matin ou le soir ?","Formules à retenir","Remets le dialogue en ordre","Vérifie-toi !","Vidéo complémentaire"],"sourceAtoms":["Salut !","Comment ça va ?","Bonjour madame !","Bonjour monsieur !","Le matin","Le soir","Bonjour","Bonsoir","Ça va bien.","Ça va mal.","Comme ci, comme ça."],"sourceActivities":["recognize and listen to greetings","choose greeting by context","retain formulas","reorder the source dialogue","complete Vérifie-toi !"],"journeyContent":{"introduction":{"goal":"تمييز التحيات الفرنسية واختيار التعبير المناسب حسب الموقف."},"vocabulary":{"items":[["Salut !","مرحبًا/أهلًا","Salut ! Comment ça va ?"],["Bonjour","صباح الخير/مرحبًا","Bonjour madame !"],["Bonsoir","مساء الخير","Bonsoir !"],["Bonjour madame !","مرحبًا سيدتي!","Bonjour madame !"],["Bonjour monsieur !","مرحبًا سيدي!","Bonjour monsieur !"],["Ça va bien.","أنا بخير.","Ça va bien, merci."],["Ça va mal.","أنا لست بخير.","Ça va mal aujourd'hui."],["Comme ci, comme ça.","هكذا هكذا.","Comme ci, comme ça."]],"interactions":["audio cards","meaning match","context quick-check"]},"pronunciation":{"items":["Salut","Bonjour","Bonsoir","Ça va bien","Ça va mal","Comme ci, comme ça"],"interactions":["listen","repeat","discriminate","retry"]},"grammar":{"mode":"enrichment","notes":["Bonjour/Bonsoir يرتبطان بسياق الوقت","Salut تعبير تحية غير رسمي","Ça va? سؤال شائع عن الحال"],"sourceBoundary":"هذه ملاحظات إثرائية ولا تُعرض كدرس قواعد مستقل من المصدر."},"conversation":{"sourcePreserved":["Salut ! Comment ça va ?","Bonjour madame ! Bonjour monsieur !"],"enrichment":["choose greeting","complete short exchange","role-play"],"sourceBoundary":"الحوار الأصلي مميز عن الإثراء."},"practice":{"sourceTasks":["dialogue ordering","Vérifie-toi !"],"enrichment":["context choice","audio recall","retry"]},"games":["morning-or-evening","greeting-match","choose-the-right-greeting","dialogue-order"],"smartReview":{"targets":["Salut vs Bonjour","Bonjour vs Bonsoir","response formulas","dialogue sequencing"]},"assessment":{"source":"Vérifie-toi !","sourceBoundary":"التقييم الأصلي هو المرجع."}},"qualityGate":["source sections represented","source atoms represented","source activities represented","source dialogue preserved","official assessment preserved","enrichment labeled","mobile-first","mastery evidence required"]
+  "id": "grade7-u1-l2",
+  "grade": "grade-7",
+  "unit": "unit-1",
+  "sourceLesson": 2,
+  "titleFr": "Les salutations",
+  "titleAr": "التحيات",
+  "status": "published-runtime-enriched-v3",
+  "publishedBuild": "2026-09-25-grade7-l2-visual-enriched-v3",
+  "sourceTruth": "authoritative-source-package/Leçon_2",
+  "journey": [
+    "introduction",
+    "vocabulary",
+    "pronunciation",
+    "grammar",
+    "conversation",
+    "practice",
+    "video",
+    "games",
+    "smart-review",
+    "assessment",
+    "progress"
+  ],
+  "sourceSections": [
+    "Salut ! Comment ça va ?",
+    "Bonjour madame ! Bonjour monsieur !",
+    "Le matin ou le soir ?",
+    "Formules à retenir",
+    "Remets le dialogue en ordre",
+    "Vérifie-toi !",
+    "Vidéo complémentaire"
+  ],
+  "sourceAtoms": [
+    "Salut !",
+    "Comment ça va ?",
+    "Bonjour madame !",
+    "Bonjour monsieur !",
+    "Le matin",
+    "Le soir",
+    "Bonjour",
+    "Bonsoir",
+    "Ça va bien.",
+    "Ça va mal.",
+    "Comme ci, comme ça."
+  ],
+  "sourceActivities": [
+    "recognize and listen to greetings",
+    "choose greeting by context",
+    "retain formulas",
+    "reorder the source dialogue",
+    "complete Vérifie-toi !"
+  ],
+  "journeyContent": {
+    "introduction": {
+      "goal": "تمييز التحيات الفرنسية واختيار التعبير المناسب حسب الموقف.",
+      "learningPath": [
+        "أتعرف إلى التحيات الأساسية",
+        "أربط كل تحية بالموقف المناسب",
+        "أستمع وأكرر النطق الفرنسي",
+        "أميز Bonjour وBonsoir وSalut",
+        "أبني حوارًا قصيرًا وأرتبه",
+        "أطبق في التدريب والألعاب والمراجعة",
+        "أخوض التقييم ثم أراجع أخطائي"
+      ]
+    },
+    "vocabulary": {
+      "items": [
+        [
+          "Salut !",
+          "مرحبًا/أهلًا",
+          "Salut ! Comment ça va ?"
+        ],
+        [
+          "Bonjour",
+          "صباح الخير/مرحبًا",
+          "Bonjour madame !"
+        ],
+        [
+          "Bonsoir",
+          "مساء الخير",
+          "Bonsoir !"
+        ],
+        [
+          "Bonjour madame !",
+          "مرحبًا سيدتي!",
+          "Bonjour madame !"
+        ],
+        [
+          "Bonjour monsieur !",
+          "مرحبًا سيدي!",
+          "Bonjour monsieur !"
+        ],
+        [
+          "Ça va bien.",
+          "أنا بخير.",
+          "Ça va bien, merci."
+        ],
+        [
+          "Ça va mal.",
+          "أنا لست بخير.",
+          "Ça va mal aujourd'hui."
+        ],
+        [
+          "Comme ci, comme ça.",
+          "هكذا هكذا.",
+          "Comme ci, comme ça."
+        ]
+      ],
+      "interactions": [
+        "audio cards",
+        "meaning match",
+        "context quick-check"
+      ],
+      "instruction": "انظر إلى الرمز البصري، اقرأ التعبير، استمع إليه، ثم اربطه بالموقف المناسب.",
+      "visuals": {
+        "Salut !": "👋",
+        "Bonjour": "☀️",
+        "Bonsoir": "🌙",
+        "Bonjour madame !": "👩‍🏫",
+        "Bonjour monsieur !": "👨‍🏫",
+        "Ça va bien.": "😊",
+        "Ça va mal.": "😟",
+        "Comme ci, comme ça.": "🤷"
+      }
+    },
+    "pronunciation": {
+      "items": [
+        "Salut",
+        "Bonjour",
+        "Bonsoir",
+        "Ça va bien",
+        "Ça va mal",
+        "Comme ci, comme ça"
+      ],
+      "interactions": [
+        "listen",
+        "repeat",
+        "discriminate",
+        "retry"
+      ],
+      "instruction": "استمع إلى التعبير، كرره، ثم قارنه بالسياق. لا تعتمد على الكتابة وحدها في النطق."
+    },
+    "grammar": {
+      "mode": "enrichment",
+      "notes": [
+        "Bonjour/Bonsoir يرتبطان بسياق الوقت",
+        "Salut تعبير تحية غير رسمي",
+        "Ça va? سؤال شائع عن الحال"
+      ],
+      "sourceBoundary": "هذه ملاحظات إثرائية ولا تُعرض كدرس قواعد مستقل من المصدر.",
+      "explanation": "هذه ليست وحدة قواعد مستقلة؛ هي ملاحظات تساعدك على اختيار التحية الصحيحة بسرعة."
+    },
+    "conversation": {
+      "sourcePreserved": [
+        "Salut ! Comment ça va ?",
+        "Bonjour madame ! Bonjour monsieur !"
+      ],
+      "enrichment": [
+        "choose greeting",
+        "complete short exchange",
+        "role-play"
+      ],
+      "sourceBoundary": "الحوار الأصلي مميز عن الإثراء.",
+      "enrichmentPairs": [
+        [
+          "Bonjour !",
+          "Bonjour ! Ça va ?",
+          "مرحبًا! كيف حالك؟"
+        ],
+        [
+          "Ça va bien, merci.",
+          "Et toi ?",
+          "أنا بخير، شكرًا. وأنت؟"
+        ],
+        [
+          "Bonsoir !",
+          "Bonsoir !",
+          "مساء الخير!"
+        ],
+        [
+          "Salut !",
+          "Salut ! Ça va ?",
+          "أهلًا! كيف حالك؟"
+        ]
+      ]
+    },
+    "practice": {
+      "sourceTasks": [
+        "dialogue ordering",
+        "Vérifie-toi !"
+      ],
+      "enrichment": [
+        "context choice",
+        "audio recall",
+        "retry"
+      ],
+      "questions": [
+        {
+          "q": "متى نستخدم «Bonsoir»؟",
+          "options": [
+            "في المساء",
+            "في الصباح فقط",
+            "عند الوداع فقط"
+          ],
+          "answer": "في المساء",
+          "reason": "Bonsoir تحية مرتبطة بالمساء."
+        },
+        {
+          "q": "أي تحية غير رسمية أكثر؟",
+          "options": [
+            "Salut",
+            "Bonjour monsieur !",
+            "Bonsoir madame !"
+          ],
+          "answer": "Salut",
+          "reason": "Salut تُستخدم كتحية غير رسمية."
+        },
+        {
+          "q": "اختر الرد المناسب: Ça va bien.",
+          "options": [
+            "Merci !",
+            "Bonsoir !",
+            "Au revoir !"
+          ],
+          "answer": "Merci !",
+          "reason": "يمكن أن تأتي Merci بعد التعبير عن الحال."
+        },
+        {
+          "q": "أي تعبير يعني «مساء الخير»؟",
+          "options": [
+            "Bonsoir",
+            "Bonjour",
+            "Salut"
+          ],
+          "answer": "Bonsoir",
+          "reason": "Bonsoir هي تحية المساء."
+        },
+        {
+          "q": "أكمل: Bonjour ___ !",
+          "options": [
+            "madame",
+            "soir",
+            "va"
+          ],
+          "answer": "madame",
+          "reason": "من صيغ الدرس: Bonjour madame !"
+        },
+        {
+          "q": "أي ترتيب يبدأ بتحية ثم سؤال عن الحال؟",
+          "options": [
+            "Salut ! → Comment ça va ?",
+            "Bonsoir ! → Le matin",
+            "Ça va mal. → Bonjour"
+          ],
+          "answer": "Salut ! → Comment ça va ?",
+          "reason": "هذا هو الحوار المحفوظ في المصدر."
+        }
+      ]
+    },
+    "games": [
+      {
+        "id": "morning-or-evening",
+        "title": "☀️ أم 🌙؟",
+        "prompt": "اختر التحية المناسبة للمساء.",
+        "answer": "Bonsoir",
+        "options": [
+          "Bonjour",
+          "Bonsoir",
+          "Salut"
+        ]
+      },
+      {
+        "id": "greeting-match",
+        "title": "🧩 طابق التحية",
+        "prompt": "أي تعبير يناسب «مساء الخير»؟",
+        "answer": "Bonsoir",
+        "options": [
+          "Bonjour",
+          "Bonsoir",
+          "Ça va bien."
+        ]
+      },
+      {
+        "id": "choose-right-greeting",
+        "title": "🎯 اختر التحية",
+        "prompt": "تريد تحية غير رسمية لصديق.",
+        "answer": "Salut",
+        "options": [
+          "Salut",
+          "Bonjour monsieur !",
+          "Bonsoir madame !"
+        ]
+      },
+      {
+        "id": "dialogue-order",
+        "title": "💬 رتّب الحوار",
+        "prompt": "ما البداية الصحيحة؟",
+        "answer": "Salut !",
+        "options": [
+          "Salut !",
+          "Ça va bien.",
+          "Bonjour madame !"
+        ]
+      }
+    ],
+    "smartReview": {
+      "targets": [
+        "Salut vs Bonjour",
+        "Bonjour vs Bonsoir",
+        "response formulas",
+        "dialogue sequencing"
+      ],
+      "questions": [
+        {
+          "q": "Bonjour أم Bonsoir؟ إذا كان الوقت مساءً.",
+          "options": [
+            "Bonjour",
+            "Bonsoir",
+            "Salut"
+          ],
+          "answer": "Bonsoir",
+          "reason": "Bonsoir ترتبط بسياق المساء."
+        },
+        {
+          "q": "أي تحية تناسب صديقًا في موقف غير رسمي؟",
+          "options": [
+            "Salut",
+            "Bonjour monsieur !",
+            "Bonjour madame !"
+          ],
+          "answer": "Salut",
+          "reason": "Salut تحية غير رسمية."
+        },
+        {
+          "q": "أكمل: Salut ! ___ ça va ?",
+          "options": [
+            "Comment",
+            "Bonsoir",
+            "Madame"
+          ],
+          "answer": "Comment",
+          "reason": "الصيغة المصدرية هي Salut ! Comment ça va ?"
+        },
+        {
+          "q": "ماذا تعني Comme ci, comme ça ؟",
+          "options": [
+            "هكذا هكذا",
+            "صباح الخير",
+            "مساء الخير"
+          ],
+          "answer": "هكذا هكذا",
+          "reason": "هي إحدى صيغ الإجابة عن الحال في الدرس."
+        }
+      ]
+    },
+    "assessment": {
+      "source": "Vérifie-toi !",
+      "sourceBoundary": "التقييم الأصلي هو المرجع.",
+      "questions": [
+        {
+          "q": "اختر تحية المساء.",
+          "options": [
+            "Bonjour",
+            "Bonsoir",
+            "Salut"
+          ],
+          "answer": "Bonsoir",
+          "reason": "Bonsoir مرتبطة بالمساء."
+        },
+        {
+          "q": "اختر التحية غير الرسمية.",
+          "options": [
+            "Salut",
+            "Bonjour madame !",
+            "Bonjour monsieur !"
+          ],
+          "answer": "Salut",
+          "reason": "Salut تعبير غير رسمي."
+        },
+        {
+          "q": "أكمل: Salut ! ___ ça va ?",
+          "options": [
+            "Comment",
+            "Bonsoir",
+            "Madame"
+          ],
+          "answer": "Comment",
+          "reason": "الصيغة الصحيحة: Salut ! Comment ça va ?"
+        },
+        {
+          "q": "ما معنى Bonjour monsieur !؟",
+          "options": [
+            "مرحبًا سيدي!",
+            "مساء الخير!",
+            "أنا بخير."
+          ],
+          "answer": "مرحبًا سيدي!",
+          "reason": "monsieur تعني سيدي."
+        },
+        {
+          "q": "ما معنى Bonjour madame !؟",
+          "options": [
+            "مرحبًا سيدتي!",
+            "مساء الخير!",
+            "هكذا هكذا."
+          ],
+          "answer": "مرحبًا سيدتي!",
+          "reason": "madame تعني سيدتي."
+        },
+        {
+          "q": "اختر التعبير الذي يدل على أنك بخير.",
+          "options": [
+            "Ça va bien.",
+            "Ça va mal.",
+            "Bonsoir."
+          ],
+          "answer": "Ça va bien.",
+          "reason": "Ça va bien تعني أنا بخير."
+        },
+        {
+          "q": "اختر التعبير الذي يدل على أنك لست بخير.",
+          "options": [
+            "Ça va mal.",
+            "Bonjour.",
+            "Salut."
+          ],
+          "answer": "Ça va mal.",
+          "reason": "Ça va mal تعني أنا لست بخير."
+        },
+        {
+          "q": "ما التعبير الذي يعني «هكذا هكذا»؟",
+          "options": [
+            "Comme ci, comme ça.",
+            "Ça va bien.",
+            "Bonsoir."
+          ],
+          "answer": "Comme ci, comme ça.",
+          "reason": "هذه إحدى صيغ الإجابة عن الحال."
+        },
+        {
+          "q": "أي تحية تناسب بداية النهار؟",
+          "options": [
+            "Bonjour",
+            "Bonsoir",
+            "Ça va mal."
+          ],
+          "answer": "Bonjour",
+          "reason": "Bonjour تُستخدم في الصباح وكذلك كتحية عامة."
+        },
+        {
+          "q": "أي كلمة مرتبطة بسياق الوقت؟",
+          "options": [
+            "Bonjour / Bonsoir",
+            "Salut / Madame",
+            "Ça va / Merci"
+          ],
+          "answer": "Bonjour / Bonsoir",
+          "reason": "الفرق بينهما مرتبط بسياق الوقت."
+        }
+      ],
+      "sourceDeclaredTotal": 10,
+      "sourceNote": "الأسئلة التالية تقييم إثرائي مبني على عناصر المصدر. أما «Vérifie-toi !» فهو المرجع الأصلي المحفوظ."
+    }
+  },
+  "qualityGate": [
+    "source sections represented",
+    "source atoms represented",
+    "source activities represented",
+    "source dialogue preserved",
+    "official assessment preserved",
+    "enrichment labeled",
+    "mobile-first",
+    "mastery evidence required",
+    "all journey stages represented",
+    "visual parity with Grade 7 Lesson 1",
+    "source/enrichment boundaries visible",
+    "assessment enrichment labeled"
+  ]
 }
