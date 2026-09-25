@@ -61,6 +61,7 @@ const G9V=[["au club","في النادي","🏟️"],["à la piscine","في حم
  function g9Speak(t){if(window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.8;speechSynthesis.speak(u)}}
  window.g9Start=g9Start;window.g9Answer=g9Answer;window.g9Speak=g9Speak;document.addEventListener('click',function(e){const s=e.target.closest('[data-g9-start]');if(s){e.preventDefault();let v=s.getAttribute('data-g9-start');try{v=JSON.parse(v)}catch(_){}g9Start(v);return}const a=e.target.closest('[data-g9-answer]');if(a){e.preventDefault();let v=a.getAttribute('data-g9-answer');try{v=JSON.parse(v)}catch(_){v=v==='true'}g9Answer(a,v);return}const p=e.target.closest('[data-g9-speak]');if(p){e.preventDefault();let v=p.getAttribute('data-g9-speak');try{v=JSON.parse(v)}catch(_){}g9Speak(v);return}});
 function render(){
+if(id==='g9-u1-l3'){renderG9L3();return}
 nav.innerHTML=steps.map((s,i)=>'<button class="'+(i===idx?'active':'')+'" onclick="go('+i+')">'+s[1]+' '+s[2]+'</button>').join('');
 const v=data.journey?.vocabulary||[],g=data.journey?.grammar||[],c=data.journey?.conversation||[],p=data.journey?.practice||[],pr=data.journey?.pronunciation||[],vis=data.journey?.visual||[],a=data.journey?.assessment||[];
 let h='';
@@ -118,10 +119,78 @@ if(idx===9){const aq=[['Où pratiques-tu la natation ?',['au stade','à la pisci
 if(idx===10){const total=8,done=Object.keys(scores).filter(k=>k.startsWith('a')).length,pct=Math.round(done/total*100);h=head('📈 تقدمك','تقدم هذا الدرس محفوظ على هذا الجهاز.')+'<div class="box"><h2>'+ (completed?'🏆 الدرس مكتمل':'🚀 واصل رحلتك')+'</h2><p>عناصر التقييم المنجزة: '+done+' من '+total+'</p><div class="progress"><span style="width:'+pct+'%"></span></div><b>'+pct+'%</b></div>'}
 panel.innerHTML=h;status.textContent=completed?'تم إكمال الدرس وحفظ تقدمك على هذا الجهاز.':'تقدمك محفوظ على هذا الجهاز.';
 }
+
+const G9L3_DATA={
+ id:'g9-u1-l3',unit:'Le sport',
+ titleFr:'Jouer, faire, pratiquer et les verbes du 2e groupe',
+ titleAr:'استخدام jouer وfaire وpratiquer وأفعال المجموعة الثانية',
+ sourcePages:'24-31',
+ journey:{
+  vocabulary:[
+   {fr:'jouer au tennis',ar:'يلعب التنس',icon:'🎾',type:'jouer à'},
+   {fr:'jouer aux échecs',ar:'يلعب الشطرنج',icon:'♟️',type:'jouer à'},
+   {fr:'jouer de la guitare',ar:'يعزف الجيتار',icon:'🎸',type:'jouer de'},
+   {fr:'faire du ski',ar:'يمارس التزلج',icon:'⛷️',type:'faire de'},
+   {fr:'faire de la natation',ar:'يمارس السباحة',icon:'🏊',type:'faire de'}
+  ],
+  grammar:[
+   'Jouer + à / au / à la / aux',
+   'Jouer + de / du / de la / de l\'',
+   'Faire + du / de la / de l\'',
+   'Conjugaison du 2e groupe: finir, remplir, choisir, réussir, applaudir'
+  ],
+  conversation:[
+   'Tu pratiques la boxe ? — Oui, je pratique la boxe.',
+   'Tu aimes le football ? — Oui, j\'aime le football.',
+   'Tu joues au tennis ? — Oui, je joue au tennis.',
+   'Tu fais du ski ? — Oui, je fais du ski.'
+  ]
+ }
+};
+function renderG9L3(){
+ const d=G9L3_DATA,v=d.journey.vocabulary,g=d.journey.grammar,c=d.journey.conversation;
+ nav.innerHTML=steps.map((s,i)=>'<button class="'+(i===idx?'active':'')+'" onclick="go('+i+')">'+s[1]+' '+s[2]+'</button>').join('');
+ let h='';
+ if(idx===0)h=head('🚀 ضربة البداية','درس متكامل يربط بين jouer وfaire وpratiquer، ثم ينتقل إلى تصريف أفعال المجموعة الثانية في المضارع.')+
+ '<div class="grid2"><article class="box"><h3>🎯 أهداف الدرس</h3><ul><li>التمييز بين jouer à وjouer de وfaire de وpratiquer.</li><li>اختيار حرف الجر والأداة الصحيحة مع النشاط.</li><li>تصريف أفعال المجموعة الثانية في المضارع.</li><li>إنتاج جمل فرنسية كاملة حول الرياضة والهوايات.</li></ul></article><article class="box"><h3>🧭 خريطة الدرس</h3><p>اكتشف ← تعلم ← افهم ← تواصل ← تدرب ← العب ← راجع ← قيّم ← تقدم.</p><div class="note"><b>المصدر:</b> الصفحات '+esc(d.sourcePages)+' من منهج Français simple 3.</div></article></div>';
+ if(idx===1)h=head('🖼️ تعلم المفردات','أربع بنيات رئيسية في هذا الدرس: jouer à، jouer de، faire de، pratiquer، مع أمثلة واضحة مرتبطة بالأنشطة.')+
+ '<div class="cards">'+v.map(x=>'<article class="card"><div class="visual">'+x.icon+'</div><div class="fr">'+esc(x.fr)+'</div><div class="ar">'+esc(x.ar)+'</div><div class="example">'+esc(x.type)+'</div>'+audio(x.fr,'🔊 نطق العبارة')+'</article>').join('')+'</div>';
+ if(idx===2)h=head('📘 افهم الفرق بين jouer وfaire وpratiquer','لا تحفظ العبارة منفصلة؛ لاحظ البنية التي تأتي بعدها ثم طبّقها على نشاط جديد.')+
+ '<div class="grid2"><article class="box"><h3>🎾 Jouer à</h3><div class="formula"><b>jouer à + sport</b><div class="ltr">Je joue au tennis.<br>Je joue aux échecs.</div><p>نستخدمها مع الألعاب والرياضات التي تأتي مع à.</p></div></article>'+
+ '<article class="box"><h3>🎸 Jouer de</h3><div class="formula"><b>jouer de + instrument</b><div class="ltr">Je joue de la guitare.</div><p>نستخدمها مع الآلات الموسيقية.</p></div></article>'+
+ '<article class="box"><h3>⛷️ Faire de</h3><div class="formula"><b>faire de + activité</b><div class="ltr">Je fais du ski.<br>Je fais de la natation.</div><p>تتغير الأداة حسب جنس وعدد الاسم: du / de la / de l\'.</p></div></article>'+
+ '<article class="box"><h3>🥊 Pratiquer</h3><div class="formula"><b>pratiquer + article + activité</b><div class="ltr">Je pratique la boxe.<br>Je pratique le football.</div><p>استخدمها للتعبير عن ممارسة النشاط بصورة مباشرة.</p></div></article></div>';
+ if(idx===3)h=head('📗 أفعال المجموعة الثانية','لاحظ النهاية -issons مع nous، و -issez مع vous، و -issent مع ils/elles.')+
+ '<div class="grid2">'+
+ '<article class="box"><h3>finir</h3><div class="formula"><div class="ltr">je finis · tu finis · il finit<br>nous finissons · vous finissez · ils finissent</div></div></article>'+
+ '<article class="box"><h3>remplir</h3><div class="formula"><div class="ltr">je remplis · tu remplis · il remplit<br>nous remplissons · vous remplissez · ils remplissent</div></div></article>'+
+ '<article class="box"><h3>choisir</h3><div class="formula"><div class="ltr">je choisis · tu choisis · il choisit<br>nous choisissons · vous choisissez · ils choisissent</div></div></article>'+
+ '<article class="box"><h3>réussir</h3><div class="formula"><div class="ltr">je réussis · tu réussis · il réussit<br>nous réussissons · vous réussissez · ils réussissent</div></div></article>'+
+ '<article class="box"><h3>applaudir</h3><div class="formula"><div class="ltr">j\'applaudis · tu applaudis · il applaudit<br>nous applaudissons · vous applaudissez · ils applaudissent</div></div></article></div>';
+ if(idx===4)h=head('💬 تواصل','اقرأ السؤال أولًا، استمع، ثم أعد إنتاج الإجابة دون النظر إليها.')+'<div>'+c.map((x,i)=>{const p=String(x).split('—');return '<article class="dialogue"><b>🗣️ موقف '+(i+1)+'</b><div class="line-fr">'+esc(p[0])+'</div>'+audio(p[0],'🔊 استمع للسؤال')+(p[1]?'<hr><div class="line-fr">— '+esc(p[1])+'</div>'+audio(p[1],'▶ استمع للإجابة'):'')+'</article>'}).join('')+'</div>';
+ if(idx===5)h=head('🎬 شاهد','لا يوجد رابط فيديو مخصص محفوظ لهذا الدرس في بياناته الحالية، لذلك لن نعرض فيديو من درس آخر أو رابطًا وهميًا.')+'<div class="empty"><h3>🎬 فيديو الدرس</h3><p>لا يوجد فيديو مخصص في بيانات الدرس الحالية.</p></div>';
+ if(idx===6)h=head('🎯 تدرب','تدريبات تفاعلية على اختيار البنية الصحيحة وتصريف أفعال المجموعة الثانية.')+
+ '<div class="cards">'+
+ '<article class="box quiz" data-key="l3p1"><h3>1. أكمل: Je ___ au tennis.</h3><div class="options"><button class="option" data-ok="1" onclick="answer(this)">joue</button><button class="option" data-ok="0" onclick="answer(this)">fais</button><button class="option" data-ok="0" onclick="answer(this)">joue de</button></div><div class="feedback"></div></article>'+
+ '<article class="box quiz" data-key="l3p2"><h3>2. Je joue ___ guitare.</h3><div class="options"><button class="option" data-ok="0" onclick="answer(this)">au</button><button class="option" data-ok="1" onclick="answer(this)">de la</button><button class="option" data-ok="0" onclick="answer(this)">du</button></div><div class="feedback"></div></article>'+
+ '<article class="box quiz" data-key="l3p3"><h3>3. Je fais ___ ski.</h3><div class="options"><button class="option" data-ok="1" onclick="answer(this)">du</button><button class="option" data-ok="0" onclick="answer(this)">de la</button><button class="option" data-ok="0" onclick="answer(this)">aux</button></div><div class="feedback"></div></article>'+
+ '<article class="box quiz" data-key="l3p4"><h3>4. Nous ___ avec succès.</h3><div class="options"><button class="option" data-ok="0" onclick="answer(this)">réussissez</button><button class="option" data-ok="1" onclick="answer(this)">réussissons</button><button class="option" data-ok="0" onclick="answer(this)">réussissent</button></div><div class="feedback"></div></article></div>';
+ if(idx===7)h=head('🎮 العب','تحديات سريعة مرتبطة مباشرة بمحتوى الدرس.')+'<div class="game"><div id="g9l3game"><h3>🎯 تحدي البنية</h3><p id="g9l3q">اضغط «سؤال جديد» لبدء التحدي.</p><div class="options" id="g9l3opts"></div><div class="feedback" id="g9l3fb"></div><button class="btn primary" type="button" onclick="g9l3New()">سؤال جديد</button></div></div>';
+ if(idx===8)h=head('🧠 راجع','مراجعة مركزة قبل التقييم.')+'<div class="grid2">'+g.map((x,i)=>'<article class="box"><h3>'+(i+1)+'. '+esc(x)+'</h3><div class="formula"><p>طبّق القاعدة في جملة فرنسية من موضوع الرياضة أو الهوايات.</p></div></article>').join('')+'<article class="box"><h3>⭐ قاعدة سريعة</h3><p><b>jouer à</b> → رياضة/لعبة · <b>jouer de</b> → آلة موسيقية · <b>faire de</b> → نشاط · <b>pratiquer</b> → ممارسة النشاط.</p></article></div>';
+ if(idx===9){const qs=[['Je joue ___ échecs.',['aux','du','de la'],0],['Je joue ___ guitare.',['au','de la','aux'],1],['Je fais ___ natation.',['du','de la','aux'],1],['Nous ___ avec succès.',['réussissons','réussissez','réussissent'],0],['Vous ___ un livre.',['choisissez','choisissons','choisit'],0],['اختر الجملة الصحيحة.',['Je joue au tennis.','Je joue de tennis.','Je fais aux tennis.'],0],['اختر الجملة الصحيحة.',['Je fais du ski.','Je fais au ski.','Je joue du ski.'],0],['اختر الجملة الصحيحة.',['Je joue de la guitare.','Je joue à la guitare.','Je fais aux guitare.'],0]];h=head('🏆 التقييم الرسمي','8 أسئلة تغطي البنية اللغوية وتصريف أفعال المجموعة الثانية. اختر إجابة واحدة ثم راجع التصحيح.')+'<div class="cards">'+qs.map((q,i)=>'<article class="box quiz" data-key="l3a'+i+'"><h3>'+(i+1)+'. '+q[0]+'</h3><div class="options">'+q[1].map((o,j)=>'<button class="option" data-ok="'+(j===q[2]?'1':'0')+'" onclick="answer(this)">'+esc(o)+'</button>').join('')+'</div><div class="feedback"></div></article>').join('')+'</div>';}
+ if(idx===10){const done=Object.keys(scores).filter(k=>k.startsWith('l3a')).length,pct=Math.round(done/8*100);h=head('📈 تقدمك','تقدم هذا الدرس محفوظ على هذا الجهاز.')+'<div class="box"><h2>'+(completed?'🏆 الدرس مكتمل':'🚀 واصل رحلتك')+'</h2><p>عناصر التقييم المنجزة: '+done+' من 8</p><div class="progress"><span style="width:'+pct+'%"></span></div><b>'+pct+'%</b></div>';}
+ panel.innerHTML=h;status.textContent=completed?'تم إكمال الدرس وحفظ تقدمك على هذا الجهاز.':'تقدمك محفوظ على هذا الجهاز.';
+}
+let g9l3GameIndex=0;
+const G9L3_GAME=[{q:'Je ___ au tennis.',o:['joue','joue de','fais'],a:0},{q:'Je joue ___ guitare.',o:['aux','de la','au'],a:1},{q:'Je fais ___ ski.',o:['du','aux','de la'],a:0},{q:'Nous ___ avec succès.',o:['réussissez','réussissons','réussissent'],a:1},{q:'Vous ___ un livre.',o:['choisissez','choisissons','choisit'],a:0}];
+function g9l3New(){const x=G9L3_GAME[g9l3GameIndex++%G9L3_GAME.length],q=document.getElementById('g9l3q'),o=document.getElementById('g9l3opts'),f=document.getElementById('g9l3fb');if(!q||!o)return;q.textContent=x.q;f.textContent='';o.innerHTML=x.o.map((v,i)=>'<button class="option" data-ok="'+(i===x.a?'1':'0')+'" onclick="g9l3Answer(this)">'+esc(v)+'</button>').join('')}
+function g9l3Answer(btn){const o=document.getElementById('g9l3opts'),f=document.getElementById('g9l3fb'),ok=btn.dataset.ok==='1';o.querySelectorAll('.option').forEach(x=>x.disabled=true);btn.classList.add(ok?'correct':'wrong');f.textContent=ok?'✅ صحيح! أحسنت.':'❌ ليست الإجابة الصحيحة.'}
+window.g9l3New=g9l3New;window.g9l3Answer=g9l3Answer;
+
 (async()=>{try{
 const init=()=>{document.getElementById('titleAr').textContent=data.titleAr;document.getElementById('subtitle').textContent=data.titleFr+' · الصف الثالث الإعدادي · '+data.unit;const h=new URLSearchParams(location.search).get('section');const map={start:0,vocabulary:1,vocab:1,pronunciation:2,pron:2,grammar:3,conversation:4,conv:4,video:5,practice:6,games:7,'smart-review':8,review:8,evaluation:9,assessment:9,progress:10};if(h&&map[h]!=null)idx=map[h];render();const completeBtn=document.getElementById('complete');if(completeBtn)completeBtn.onclick=()=>{completed=true;save();render()};};
 if(id==='g9-u1-l2'){data={"id":"g9-u1-l2","unit":"Le sport","titleFr":"Les lieux, les personnages et les objets sportifs","titleAr":"أماكن الرياضة والشخصيات والأدوات الرياضية","sourcePages":"20-23","journey":{"vocabulary":[{"fr":"au club","ar":"في النادي"},{"fr":"à la piscine","ar":"في حمام السباحة"},{"fr":"au stade","ar":"في الملعب"},{"fr":"à l'école","ar":"في المدرسة"},{"fr":"les supporters","ar":"المشجعون"},{"fr":"l'arbitre","ar":"الحكم"},{"fr":"les joueurs","ar":"اللاعبون"},{"fr":"l'entraîneur","ar":"المدرب"},{"fr":"un maillot de bain","ar":"ملابس السباحة"},{"fr":"des gants","ar":"قفازات"},{"fr":"un maillot sportif","ar":"زي رياضي"},{"fr":"des chaussures de sport","ar":"حذاء رياضي"}],"grammar":["Jouer à + sport","Jouer de + instrument","Faire de + activité","À / au / à la / à l' dans les lieux"],"conversation":["Quel sport préfères-tu ? — Je préfère le football.","Où pratiques-tu ton sport préféré ? — Je pratique la natation à la piscine.","Qui est sur le terrain ? — L'arbitre, les joueurs et les supporters.","Tu joues de quel instrument ? — Je joue de la guitare."],"practice":["Associer personnage et action","Choisir le lieu adapté à la pratique d'un sport","Compléter avec jouer à, jouer de ou faire de","Choisir la préposition correcte pour un lieu","Construire une phrase à partir de lieu + sport + personnage","Identifier l'erreur dans une phrase et la corriger","Décrire une scène sportive en trois phrases"],"pronunciation":["Répéter les lieux et les métiers du sport avec leur article","Lire à voix haute les structures jouer à, jouer de et faire de","Travailler l'intonation de Quel sport préfères-tu ? et Où pratiques-tu ton sport préféré ?","Faire une écoute-répétition puis répondre oralement avec une phrase complète","Distinguer au, à la, à l' et aux dans des phrases sur les lieux","Jouer un court échange question-réponse à partir d'une scène sportive"],"visual":["Associer chaque lieu sportif à son illustration","Identifier l'arbitre, les joueurs, les supporters et l'entraîneur","Associer chaque objet sportif à son nom","Associer une scène sportive à la structure française correcte: jouer à, jouer de ou faire de","Créer un terrain sportif interactif où l'élève clique sur un personnage ou un objet pour entendre et produire son nom","Associer lieu + sport + action dans une scène complète"],"assessment":["Décrire le lieu où l'on pratique un sport","Répondre à une question sur le sport préféré","Choisir entre jouer à, jouer de et faire de","Produire oralement une phrase à partir d'une scène sportive","Identifier correctement les personnages et objets sportifs","Décrire une scène sportive en plusieurs phrases","Corriger une erreur de préposition ou de structure"],"video":"https://www.youtube.com/embed/sHsu2P0M7Xs"}};init();return}
-const r=await fetch('data/lessons/grade-9/semester-1/'+file+'?v=20260919-standard-v2',{cache:'no-store'});if(!r.ok)throw 0;data=await r.json();init()
+if(id==='g9-u1-l3'){data=G9L3_DATA;init();return}const r=await fetch('data/lessons/grade-9/semester-1/'+file+'?v=20260925-standard-l3-fix',{cache:'no-store'});if(!r.ok)throw 0;data=await r.json();init()
 }catch(e){panel.innerHTML='<div class="empty">تعذر تحميل محتوى الدرس. يرجى تحديث الصفحة.</div>'}})();
 </script>
 </body>
