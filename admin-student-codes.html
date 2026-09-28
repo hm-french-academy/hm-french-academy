@@ -1,133 +1,73 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1736">
-<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=3">
-<link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=3">
-<title>HM Academy | إدارة أكواد الطلاب</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1736"><link rel="icon" href="assets/images/hm-academy-favicon.svg?v=3">
+<title>HM Academy | مركز إدارة الطلاب</title>
 <style>
-*{box-sizing:border-box}
-:root{--navy:#0b1736;--blue:#2457a6;--gold:#d9a441;--ink:#172033;--muted:#667085;--line:#e4e9f2;--bg:#f5f7fb;--ok:#067647;--danger:#b42318}
-body{margin:0;background:linear-gradient(145deg,#f8faff,#f3f6fb);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink)}
-header{background:linear-gradient(135deg,var(--navy),#1b3569);color:#fff;padding:22px 18px;box-shadow:0 8px 30px #0b17361c}
-.head{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:48px;height:48px;border-radius:14px}.brand strong{font-size:21px}.brand small{display:block;opacity:.7;margin-top:2px}.logout{border:1px solid #ffffff35;background:#ffffff12;color:#fff;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
-main{max-width:1180px;margin:24px auto;padding:0 14px 50px}.grid{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
-.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 35px #0b17360a}.card h2{margin:0 0 5px;color:var(--navy);font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.7;margin:0 0 16px}
-label{display:block;font-size:13px;font-weight:850;color:#344054;margin:12px 0 7px}input,textarea,select{width:100%;border:1px solid #d8dfeb;border-radius:12px;padding:11px 12px;font:inherit;background:#fbfcfe;outline:none}input:focus,textarea:focus,select:focus{border-color:#90a7d2;box-shadow:0 0 0 4px #2457a612}textarea{min-height:100px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:12px;padding:11px 15px;font:inherit;font-weight:850;cursor:pointer}.primary{background:linear-gradient(135deg,var(--navy),#2457a6);color:#fff}.secondary{background:#eef2f8;color:#23385f;border:1px solid #dce3ef}.danger{background:#fff1f2;color:var(--danger);border:1px solid #fecdd3}.success{background:#ecfdf3;color:var(--ok);border:1px solid #a7f3d0}
-.status{display:none;margin:12px 0;padding:11px 13px;border-radius:12px;font-size:13px;font-weight:750;line-height:1.6}.status.show{display:block}.status.ok{background:#ecfdf3;color:var(--ok);border:1px solid #a7f3d0}.status.err{background:#fff1f2;color:var(--danger);border:1px solid #fecdd3}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.toolbar h2{margin:0}.count{color:var(--muted);font-size:13px}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:12px 10px;border-bottom:1px solid #edf0f5;text-align:right;vertical-align:top;font-size:13px}th{background:#f8faff;color:#475467;font-size:12px}tr:last-child td{border-bottom:0}.code{font-family:ui-monospace,monospace;font-weight:900;letter-spacing:.4px;color:#173d7a;white-space:nowrap}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900}.active{background:#ecfdf3;color:#067647}.inactive{background:#fff1f2;color:#b42318}.bound{background:#eef4ff;color:#2457a6}.free{background:#f2f4f7;color:#667085}.lesson-list{display:flex;flex-wrap:wrap;gap:5px;max-width:260px}.lesson{background:#f4f6fa;border:1px solid #e2e7ef;border-radius:8px;padding:3px 7px;font-family:ui-monospace,monospace;font-size:10px}.row-actions{display:flex;gap:5px;flex-wrap:wrap}.mini{border:1px solid #d9e0eb;background:#fff;border-radius:8px;padding:6px 8px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.mini:hover{background:#f5f8fc}.empty{padding:35px;text-align:center;color:var(--muted)}.hint{font-size:11px;color:#7b8494;line-height:1.7;margin-top:7px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.card.form-card{order:1}.card.list-card{order:2}}
-@media(max-width:520px){main{padding:0 10px 35px}.row{grid-template-columns:1fr}.head{align-items:flex-start}.brand small{font-size:10px}}
-</style>
-</head>
+*{box-sizing:border-box}:root{--n:#0b1736;--b:#2457a6;--i:#172033;--m:#667085;--l:#e4e9f2;--s:#f7f9fc;--ok:#067647;--bad:#b42318;--w:#b54708}
+body{margin:0;background:#f4f7fb;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--i)}button,input,select{font:inherit}button{cursor:pointer}
+header{background:linear-gradient(135deg,var(--n),#1b3569);color:#fff;padding:18px}.head,main{max-width:1240px;margin:auto}.head{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;gap:11px;align-items:center}.brand img{width:46px;height:46px;border-radius:13px}.brand strong{font-size:20px}.brand small{display:block;opacity:.7}.logout{background:#ffffff12;border:1px solid #ffffff35;color:#fff;border-radius:10px;padding:9px 13px;font-weight:800}
+main{padding:22px 14px 50px}.hero{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}.hero h1{margin:0;color:var(--n);font-size:27px}.hero p{margin:5px 0 0;color:var(--m);font-size:12px}.btn{border:1px solid var(--l);background:#fff;color:#243858;border-radius:10px;padding:9px 12px;font-weight:800}.primary{background:linear-gradient(135deg,var(--n),var(--b));color:#fff;border-color:transparent}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:15px}.stat,.card{background:#fff;border:1px solid var(--l);border-radius:17px;box-shadow:0 8px 25px #0b173608}.stat{padding:13px}.stat b{display:block;color:var(--n);font-size:22px}.stat span{color:var(--m);font-size:11px}.grid{display:grid;grid-template-columns:390px 1fr;gap:15px}.card{padding:17px}.card h2{margin:0;color:var(--n);font-size:18px}.sub,.hint{color:var(--m);font-size:11px;line-height:1.7}.sub{margin:5px 0 13px}label{display:block;font-size:12px;font-weight:850;margin:10px 0 5px}input,select{width:100%;min-height:42px;border:1px solid #d8dfeb;border-radius:10px;padding:8px 10px;background:#fbfcfe;outline:none}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.templates{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0}.template{border:1px solid #d9e2ef;background:var(--s);border-radius:8px;padding:6px 8px;font-size:10px;font-weight:800}.lessonbox{border:1px solid var(--l);border-radius:12px;overflow:hidden}.lessonbox>div:first-child{padding:7px;background:var(--s);border-bottom:1px solid var(--l)}.lesson-group{border-bottom:1px solid #edf0f5}.lesson-head{display:flex;justify-content:space-between;padding:8px 10px;background:#fafbfc;font-size:11px;font-weight:900}.lesson-head button{border:0;background:none;color:var(--b);font-size:10px;font-weight:900}.lesson{display:flex;gap:7px;align-items:center;padding:8px 10px;border-top:1px solid #f0f2f6;font-size:10px}.lesson input{width:17px;min-height:17px;accent-color:var(--b)}.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;min-height:25px}.chip{background:#eef4ff;border:1px solid #cddbf1;color:#234c8c;border-radius:999px;padding:4px 7px;font-size:9px}.chip button{border:0;background:none;padding:0;color:#60708a}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}.status{display:none;padding:10px 12px;border-radius:10px;margin-bottom:12px;font-size:11px;font-weight:800}.status.show{display:block}.ok{background:#ecfdf3;color:var(--ok)}.err{background:#fff1f2;color:var(--bad)}
+.toolbar{display:grid;grid-template-columns:1.5fr .8fr .8fr auto;gap:7px;margin:0 0 10px}.toolbar input,.toolbar select{min-height:40px}.tablewrap{overflow:auto;border:1px solid var(--l);border-radius:13px}table{width:100%;border-collapse:collapse;min-width:900px}th,td{padding:10px 8px;border-bottom:1px solid #edf0f5;text-align:right;font-size:11px;vertical-align:middle}th{background:var(--s);font-size:10px;white-space:nowrap}.code{font-family:monospace;font-weight:900;color:#173d7a;white-space:nowrap}.pill{display:inline-block;border-radius:999px;padding:4px 7px;font-size:9px;font-weight:900}.active{background:#ecfdf3;color:var(--ok)}.inactive{background:#fff1f2;color:var(--bad)}.soon{background:#fff7e8;color:var(--w)}.free{background:#f2f4f7;color:#667085}.bound{background:#eef4ff;color:var(--b)}.mini{border:1px solid #d9e0eb;background:#fff;border-radius:7px;padding:5px 6px;font-size:9px;font-weight:800}.row-actions{display:flex;gap:3px;flex-wrap:wrap}.selectbar{display:none;background:#eef4ff;border:1px solid #ccd9ef;border-radius:9px;padding:7px 9px;margin-bottom:8px;font-size:10px;justify-content:space-between}.selectbar.show{display:flex}.empty{text-align:center;color:var(--m);padding:30px;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;background:#08142a66;z-index:20;align-items:center;justify-content:center;padding:18px}.overlay.show{display:flex}.modal{background:#fff;border-radius:18px;width:min(580px,100%);max-height:90vh;overflow:auto;padding:17px}.modalhead{display:flex;justify-content:space-between}.profile{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:14px 0}.box{background:var(--s);border:1px solid var(--l);border-radius:10px;padding:9px}.box small{display:block;color:var(--m);font-size:9px}.box b{font-size:12px}.qr{text-align:center;border:1px dashed #cdd6e4;border-radius:11px;padding:10px;margin-top:12px}.qr canvas{max-width:180px}.recent{margin-top:12px;border-top:1px solid var(--l);padding-top:10px;font-size:10px}.recent div{padding:4px 0;border-bottom:1px solid #f0f2f6}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:620px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.hero{flex-direction:column;align-items:flex-start}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}.row,.profile{grid-template-columns:1fr}}
+</style></head>
 <body>
-<header><div class="head"><div class="brand"><img src="assets/images/hm-academy-favicon.svg?v=3" alt="HM Academy"><div><strong>HM Academy</strong><small>إدارة أكواد الطلاب</small></div></div><button id="logout" class="logout">تسجيل الخروج</button></div></header>
+<header><div class="head"><div class="brand"><img src="assets/images/hm-academy-favicon.svg?v=3" alt="HM Academy"><div><strong>HM Academy</strong><small>مركز إدارة الطلاب والأكواد</small></div></div><button id="logout" class="logout">تسجيل الخروج</button></div></header>
 <main>
 <div id="status" class="status"></div>
+<div class="hero"><div><h1>مركز إدارة الطلاب</h1><p>إدارة الأكواد والصلاحيات من لوحة واحدة — بدون كتابة Lesson IDs يدويًا.</p></div><div><button id="refresh" class="btn">↻ تحديث</button> <button id="new" class="btn primary">＋ طالب / كود جديد</button></div></div>
+<div class="stats"><div class="stat"><b id="t">—</b><span>إجمالي الأكواد</span></div><div class="stat"><b id="a">—</b><span>فعالة</span></div><div class="stat"><b id="s">—</b><span>تنتهي خلال 7 أيام</span></div><div class="stat"><b id="e">—</b><span>منتهية</span></div><div class="stat"><b id="d">—</b><span>مرتبطة بجهاز</span></div></div>
 <div class="grid">
-<section class="card form-card">
-<h2 id="formTitle">➕ إنشاء كود طالب</h2>
-<p class="sub">أنشئ كودًا مرتبطًا بالطالب، وحدد الدروس التي يستطيع تطبيق HM Academy v1.3 فتحها.</p>
-<input id="editCode" type="hidden">
-<label for="studentName">اسم الطالب</label><input id="studentName" placeholder="مثال: أحمد محمد">
-<div class="row"><div><label for="grade">الصف</label><input id="grade" type="number" min="1" max="12" placeholder="8"></div><div><label for="expires">تاريخ الانتهاء</label><input id="expires" type="date"></div></div>
-<label for="lessons">الدروس المسموحة</label><textarea id="lessons" placeholder="كل معرّف في سطر مستقل، مثل:
-grade8-u1-l1
-grade8-u1-l2"></textarea>
-<div class="hint">الكود يمكنه فتح الدروس الموجودة في هذه القائمة فقط. ترك تاريخ الانتهاء فارغًا يعني بدون انتهاء.</div>
-<div class="actions"><button id="save" class="btn primary">إنشاء الكود</button><button id="cancel" class="btn secondary" style="display:none">إلغاء التعديل</button></div>
+<section class="card" id="editor"><h2 id="ft">＋ إنشاء طالب / كود</h2><p class="sub">اختَر قالبًا أو حدّد الدروس، ثم أنشئ الكود. يمكن تعديل الصلاحيات لاحقًا.</p>
+<input id="ec" type="hidden"><label>اسم الطالب</label><input id="name" placeholder="مثال: أحمد محمد">
+<div class="row"><div><label>الصف</label><select id="grade"><option value="">اختر الصف</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div><div><label>تاريخ الانتهاء</label><input id="exp" type="date"></div></div>
+<label>قوالب صلاحيات</label><div class="templates"><button class="template" data-t="g8">الصف 8 · الوحدة 1</button><button class="template" data-t="g7">الصف 7 · الوحدة 1</button><button class="template" data-t="g9">الصف 9 · الوحدة 1</button><button class="template" data-t="clear">مسح</button></div>
+<label>الدروس المسموحة</label><div class="lessonbox"><div><input id="ls" placeholder="🔎 ابحث عن درس..."></div><div id="catalog"></div></div>
+<div id="chips" class="chips"></div><div class="hint">يمكن إضافة أي Lesson ID غير موجود في القائمة من زر «إضافة معرف درس». التاريخ الفارغ يعني بدون انتهاء.</div>
+<div class="actions"><button id="custom" class="btn">＋ إضافة معرف درس</button><button id="save" class="btn primary">إنشاء الكود</button><button id="clone" class="btn" style="display:none">نسخ الصلاحيات لطالب جديد</button><button id="cancel" class="btn" style="display:none">إلغاء</button></div>
 </section>
-
-<section class="card list-card">
-<div class="toolbar"><div><h2>👨‍🎓 أكواد الطلاب</h2><span id="count" class="count">جارٍ التحميل…</span></div><button id="refresh" class="btn secondary">↻ تحديث</button></div>
-<div class="table-wrap"><table><thead><tr><th>الطالب</th><th>الكود</th><th>الصف</th><th>الدروس</th><th>الحالة</th><th>الجهاز</th><th>الانتهاء</th><th>إجراءات</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty" style="display:none">لا توجد أكواد بعد.</div></div>
-</section>
-</div>
-</main>
+<section class="card"><div class="toolbar"><input id="q" placeholder="🔎 اسم الطالب أو الكود"><select id="fg"><option value="all">كل الصفوف</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select><select id="fs"><option value="all">كل الحالات</option><option value="active">فعال</option><option value="inactive">موقوف</option><option value="expired">منتهي</option><option value="soon">قريب الانتهاء</option></select><button id="clear" class="btn">مسح</button></div>
+<div id="selbar" class="selectbar"><span id="seltext">0 محدد</span><span><button id="ba" class="mini">تفعيل المحدد</button> <button id="bd" class="mini">تعطيل المحدد</button></span></div>
+<div class="tablewrap"><table><thead><tr><th><input id="all" type="checkbox"></th><th>الطالب</th><th>الكود</th><th>الصف</th><th>الدروس</th><th>الحالة</th><th>الجهاز</th><th>الانتهاء</th><th>إجراءات</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">لا توجد نتائج.</div></div></section>
+</div></main>
+<div id="modal" class="overlay"><div class="modal"><div class="modalhead"><div><h2 id="mt" style="margin:0;color:var(--n)">ملف الطالب</h2><small id="ms" style="color:var(--m)"></small></div><button id="close" class="btn">إغلاق</button></div><div id="mb"></div></div></div>
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './js/supabase-config.js';
-
-const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-const API=SUPABASE_URL+'/functions/v1/admin-student-codes';
-const $=id=>document.getElementById(id);
-let codes=[];
-
-function show(message,ok=false){$('status').textContent=message;$('status').className='status show '+(ok?'ok':'err');setTimeout(()=>{$('status').className='status'},4200)}
-function lines(v){return v.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean)}
-function dateOnly(v){return v?new Date(v).toLocaleDateString('ar-EG'): '—'}
-function apiError(body){return body?.error==='forbidden'?'هذا الحساب ليس ضمن مسؤولي HM Academy.':body?.error==='unauthorized'?'انتهت جلسة الدخول.':'تعذر تنفيذ العملية الآن.'}
-
-async function call(action,payload={}){
- const {data:{session}}=await supabase.auth.getSession();
- if(!session){location.replace('login.html?next='+encodeURIComponent(location.href));return null}
- const res=await fetch(API,{method:'POST',headers:{Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({action,...payload})});
- const body=await res.json().catch(()=>({}));
- if(res.status===401){await supabase.auth.signOut();location.replace('login.html?next='+encodeURIComponent(location.href));return null}
- if(!res.ok){show(apiError(body));return null}
- return body
-}
-
-async function load(){
- const body=await call('list'); if(!body)return;
- codes=body.codes||[]; render();
-}
-function render(){
- $('count').textContent=codes.length+' كود';
- $('empty').style.display=codes.length?'none':'block';
- $('rows').innerHTML=codes.map(c=>{
-  const lessons=(c.allowed_lessons||[]).map(x=>'<span class="lesson">'+escapeHtml(x)+'</span>').join('');
-  return '<tr>'+
-  '<td><strong>'+escapeHtml(c.student_name)+'</strong></td>'+
-  '<td><span class="code">'+escapeHtml(c.code)+'</span></td>'+
-  '<td>'+escapeHtml(String(c.grade??'—'))+'</td>'+
-  '<td><div class="lesson-list">'+lessons+'</div></td>'+
-  '<td><span class="pill '+(c.active?'active':'inactive')+'">'+(c.active?'مفعل':'موقوف')+'</span></td>'+
-  '<td><span class="pill '+(c.bound_device_id?'bound':'free')+'">'+(c.bound_device_id?'مرتبط بجهاز':'غير مرتبط')+'</span></td>'+
-  '<td>'+dateOnly(c.expires_at)+'</td>'+
-  '<td><div class="row-actions">'+
-  '<button class="mini" data-act="copy" data-code="'+escapeAttr(c.code)+'">نسخ</button>'+
-  '<button class="mini" data-act="edit" data-code="'+escapeAttr(c.code)+'">تعديل</button>'+
-  '<button class="mini" data-act="toggle" data-code="'+escapeAttr(c.code)+'">'+(c.active?'تعطيل':'تفعيل')+'</button>'+
-  (c.bound_device_id?'<button class="mini" data-act="unbind" data-code="'+escapeAttr(c.code)+'">فك الجهاز</button>':'')+
-  '</div></td></tr>';
- }).join('');
-}
-function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function escapeAttr(s){return escapeHtml(s)}
-function resetForm(){ $('editCode').value='';$('studentName').value='';$('grade').value='';$('expires').value='';$('lessons').value='';$('formTitle').textContent='➕ إنشاء كود طالب';$('save').textContent='إنشاء الكود';$('cancel').style.display='none'}
-function edit(c){$('editCode').value=c.code;$('studentName').value=c.student_name||'';$('grade').value=c.grade||'';$('expires').value=c.expires_at?new Date(c.expires_at).toISOString().slice(0,10):'';$('lessons').value=(c.allowed_lessons||[]).join('\n');$('formTitle').textContent='✏️ تعديل كود '+c.code;$('save').textContent='حفظ التعديلات';$('cancel').style.display='inline-block';window.scrollTo({top:0,behavior:'smooth'})}
-
-$('save').addEventListener('click',async()=>{
- const student_name=$('studentName').value.trim(),grade=Number($('grade').value),allowed_lessons=lines($('lessons').value),expires_at=$('expires').value?$('expires').value+'T23:59:59':null,code=$('editCode').value;
- if(!student_name||!Number.isInteger(grade)||grade<1||grade>12||!allowed_lessons.length)return show('أدخل اسم الطالب والصف ودروسًا مسموحة على الأقل.');
- $('save').disabled=true;
- const body=await call(code?'update':'create',{code,student_name,grade,allowed_lessons,expires_at});
- $('save').disabled=false;
- if(body?.ok){show(code?'تم حفظ تعديلات الكود.':'تم إنشاء الكود: '+body.code.code,true);resetForm();await load();}
-});
-$('cancel').addEventListener('click',resetForm);
-$('refresh').addEventListener('click',load);
-$('logout').addEventListener('click',async()=>{await supabase.auth.signOut();location.replace('login.html?next='+encodeURIComponent(location.href))});
-
-$('rows').addEventListener('click',async e=>{
- const b=e.target.closest('button');if(!b)return;
- const c=codes.find(x=>x.code===b.dataset.code);if(!c)return;
- const act=b.dataset.act;
- if(act==='copy'){await navigator.clipboard?.writeText(c.code);show('تم نسخ الكود '+c.code,true);return}
- if(act==='edit'){edit(c);return}
- if(act==='toggle'){const body=await call('toggle',{code:c.code,active:!c.active});if(body?.ok){show(c.active?'تم تعطيل الكود.':'تم تفعيل الكود.',true);load()}return}
- if(act==='unbind'){if(!confirm('فك ارتباط هذا الكود بالجهاز الحالي؟'))return;const body=await call('unbind',{code:c.code});if(body?.ok){show('تم فك ارتباط الجهاز. يمكن ربط الكود بجهاز آخر عند أول دخول.',true);load()}}
-});
-
-supabase.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'&&!location.pathname.endsWith('login.html'))location.replace('login.html?next='+encodeURIComponent(location.href))});
-const {data:{session}}=await supabase.auth.getSession();
-if(!session){location.replace('login.html?next='+encodeURIComponent(location.href))}
-else{load()}
-</script>
-</body>
-</html>
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
+import {SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY} from './js/supabase-config.js';
+const sb=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY),API=SUPABASE_URL+'/functions/v1/admin-student-codes',$=x=>document.getElementById(x);
+let codes=[],sel=new Set(),lessons=new Set(),recent=[],qr=null;
+const groups=[
+ ['7','الصف السابع · Unité 1',[['grade7-u1-l1','الدرس الأول'],['grade7-u1-l2','الدرس الثاني']]],
+ ['8','الصف الثامن · Unité 1',[['grade8-u1-l1','الدرس الأول'],['grade8-u1-l2','الدرس الثاني']]],
+ ['9','الصف التاسع · Unité 1',[['grade9-u1-l3','الدرس الثالث']]]
+];
+const temps={g7:['grade7-u1-l1','grade7-u1-l2'],g8:['grade8-u1-l1','grade8-u1-l2'],g9:['grade9-u1-l3'],clear:[]};
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const expired=c=>c.expires_at&&new Date(c.expires_at)<new Date();
+const soon=c=>c.expires_at&&!expired(c)&&new Date(c.expires_at)-Date.now()<=604800000;
+function msg(x,ok=false){$('status').textContent=x;$('status').className='status show '+(ok?'ok':'err');clearTimeout(msg.t);msg.t=setTimeout(()=>$('status').className='status',4000)}
+async function api(action,p={}){const {data:{session}}=await sb.auth.getSession();if(!session){location.replace('login.html?next='+encodeURIComponent(location.href));return null}const r=await fetch(API,{method:'POST',headers:{Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({action,...p})});const b=await r.json().catch(()=>({}));if(r.status===401){await sb.auth.signOut();return null}if(!r.ok){msg(b.error==='forbidden'?'هذا الحساب ليس ضمن مسؤولي HM Academy.':b.error||'تعذر تنفيذ العملية.');return null}return b}
+function addRecent(x){recent.unshift({x,t:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});recent=recent.slice(0,6)}
+function merge(){const known=new Set(groups.flatMap(g=>g[2].map(x=>x[0])));codes.forEach(c=>(c.allowed_lessons||[]).forEach(id=>{if(known.has(id))return;let g=groups.find(x=>x[0]==String(c.grade));if(!g){g=[String(c.grade),'الصف '+c.grade+' · دروس إضافية',[]];groups.push(g)}g[2].push([id,'درس مخصص']);known.add(id)}))}
+function drawCatalog(){const q=$('ls').value.toLowerCase(),g=$('grade').value; $('catalog').innerHTML=groups.filter(x=>!g||x[0]==g).map(x=>{const it=x[2].filter(y=>!q||y[0].toLowerCase().includes(q)||y[1].includes(q));if(!it.length)return '';return '<div class="lesson-group"><div class="lesson-head"><span>'+esc(x[1])+'</span><button data-pick="'+x[0]+'">تحديد الكل</button></div>'+it.map(y=>'<label class="lesson"><input type="checkbox" data-l="'+esc(y[0])+'" '+(lessons.has(y[0])?'checked':'')+'><span>'+esc(y[1])+'<br><small style="color:var(--m)">'+esc(y[0])+'</small></span></label>').join('')+'</div>'}).join('')||'<div class="empty">لا توجد دروس.</div>'}
+function drawChips(){$('chips').innerHTML=lessons.size?[...lessons].map(x=>'<span class="chip">'+esc(x)+' <button data-rm="'+esc(x)+'">×</button></span>').join(''):'<span class="hint">لم يتم اختيار أي درس</span>'}
+function edit(c,clone=false){$('ec').value=clone?'':c.code;$('name').value=clone?'':c.student_name||'';$('grade').value=c.grade||'';$('exp').value=c.expires_at?new Date(c.expires_at).toISOString().slice(0,10):'';lessons=new Set(c.allowed_lessons||[]);$('ft').textContent=clone?'＋ طالب جديد بصلاحيات منسوخة':'✏️ تعديل '+(c.student_name||c.code);$('save').textContent=clone?'إنشاء الكود':'حفظ التعديلات';$('cancel').style.display='inline-block';$('clone').style.display=clone?'none':'inline-block';drawCatalog();drawChips();$('editor').scrollIntoView({behavior:'smooth'})}
+function reset(){ $('ec').value='';$('name').value='';$('grade').value='';$('exp').value='';lessons=new Set();$('ft').textContent='＋ إنشاء طالب / كود';$('save').textContent='إنشاء الكود';$('cancel').style.display='none';$('clone').style.display='none';drawCatalog();drawChips()}
+function list(){const q=$('q').value.toLowerCase(),g=$('fg').value,s=$('fs').value;return codes.filter(c=>{const okq=!q||(c.student_name+' '+c.code).toLowerCase().includes(q),okg=g==='all'||String(c.grade)===g,oks=s==='all'||(s==='active'&&c.active&&!expired(c))||(s==='inactive'&&!c.active)||(s==='expired'&&expired(c))||(s==='soon'&&soon(c));return okq&&okg&&oks})}
+function render(){const a=codes.filter(c=>c.active&&!expired(c)).length;$('t').textContent=codes.length;$('a').textContent=a;$('s').textContent=codes.filter(c=>c.active&&soon(c)).length;$('e').textContent=codes.filter(expired).length;$('d').textContent=codes.filter(c=>c.bound_device_id).length;const arr=list();$('empty').style.display=arr.length?'none':'block';$('rows').innerHTML=arr.map(c=>{const st=!c.active?'<span class="pill inactive">موقوف</span>':expired(c)?'<span class="pill inactive">منتهي</span>':soon(c)?'<span class="pill soon">قريب</span>':'<span class="pill active">فعال</span>';return '<tr><td><input class="rc" type="checkbox" data-sc="'+esc(c.code)+'" '+(sel.has(c.code)?'checked':'')+'></td><td><b>'+esc(c.student_name)+'</b></td><td><span class="code">'+esc(c.code)+'</span></td><td>'+esc(c.grade)+'</td><td><span class="pill free">'+(c.allowed_lessons||[]).length+' درس</span></td><td>'+st+'</td><td>'+(c.bound_device_id?'<span class="pill bound">مرتبط</span>':'<span class="pill free">غير مرتبط</span>')+'</td><td>'+ (c.expires_at?new Date(c.expires_at).toLocaleDateString('ar-EG'):'—')+'</td><td><div class="row-actions"><button class="mini" data-act="view" data-c="'+esc(c.code)+'">الملف</button><button class="mini" data-act="edit" data-c="'+esc(c.code)+'">تعديل</button><button class="mini" data-act="copy" data-c="'+esc(c.code)+'">نسخ</button><button class="mini" data-act="toggle" data-c="'+esc(c.code)+'">'+(c.active?'تعطيل':'تفعيل')+'</button>'+(c.bound_device_id?'<button class="mini" data-act="unbind" data-c="'+esc(c.code)+'">فك الجهاز</button>':'')+'</div></td></tr>'}).join('');$('selbar').classList.toggle('show',sel.size>0);$('seltext').textContent=sel.size+' محدد'}
+async function load(){const b=await api('list');if(!b)return;codes=b.codes||[];merge();render();drawCatalog()}
+function profile(c){$('mt').textContent=c.student_name||'ملف الطالب';$('ms').textContent='الكود: '+c.code;const ls=(c.allowed_lessons||[]).map(x=>'<span class="chip">'+esc(x)+'</span>').join('')||'<span class="hint">لا توجد دروس</span>';$('mb').innerHTML='<div class="profile"><div class="box"><small>الصف</small><b>'+esc(c.grade)+'</b></div><div class="box"><small>الحالة</small><b>'+(!c.active?'موقوف':expired(c)?'منتهي':'فعال')+'</b></div><div class="box"><small>الانتهاء</small><b>'+(c.expires_at?new Date(c.expires_at).toLocaleDateString('ar-EG'):'بدون انتهاء')+'</b></div><div class="box"><small>الجهاز</small><b>'+(c.bound_device_id?'مرتبط':'غير مرتبط')+'</b></div></div><b style="font-size:11px">الدروس المسموحة</b><div class="chips">'+ls+'</div><div class="qr"><div class="hint">QR للكود</div><canvas id="canvas" width="180" height="180"></canvas><br><span class="code">'+esc(c.code)+'</span><br><button id="qrbtn" class="btn" style="margin-top:7px">إنشاء QR</button></div><div class="recent"><b>آخر عمليات هذه الجلسة</b>'+(recent.length?recent.map(x=>'<div>'+esc(x.x)+' · <span style="color:var(--m)">'+esc(x.t)+'</span></div>').join(''):'<div style="color:var(--m)">لا توجد عمليات بعد.</div>')+'</div>';$('modal').classList.add('show');$('qrbtn').onclick=async()=>{try{if(!qr)qr=await import('https://esm.sh/qrcode@1.5.4');await qr.toCanvas($('canvas'),c.code,{width:180,margin:2});msg('تم إنشاء QR.',true)}catch{msg('تعذر إنشاء QR الآن.')}}}
+$('ls').oninput=drawCatalog;$('grade').onchange=drawCatalog;$('catalog').onclick=e=>{const p=e.target.closest('[data-pick]');if(p){groups.find(x=>x[0]==p.dataset.pick)?.[2].forEach(x=>lessons.add(x[0]));drawCatalog();drawChips()}};$('catalog').onchange=e=>{const x=e.target.closest('[data-l]');if(!x)return;x.checked?lessons.add(x.dataset.l):lessons.delete(x.dataset.l);drawChips()};$('chips').onclick=e=>{const x=e.target.closest('[data-rm]');if(x){lessons.delete(x.dataset.rm);drawCatalog();drawChips()}}
+document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{lessons=new Set(temps[b.dataset.t]);drawCatalog();drawChips()});$('custom').onclick=()=>{const x=prompt('اكتب Lesson ID:');if(x?.trim()){lessons.add(x.trim());drawCatalog();drawChips()}}
+$('save').onclick=async()=>{const student_name=$('name').value.trim(),grade=Number($('grade').value),allowed_lessons=[...lessons],expires_at=$('exp').value?$('exp').value+'T23:59:59':null,code=$('ec').value;if(!student_name||!Number.isInteger(grade)||grade<1||grade>12||!allowed_lessons.length)return msg('أدخل اسم الطالب والصف واختر درسًا واحدًا على الأقل.');$('save').disabled=true;const b=await api(code?'update':'create',{code,student_name,grade,allowed_lessons,expires_at});$('save').disabled=false;if(b?.ok){addRecent((code?'تعديل':'إنشاء')+' '+(b.code?.code||code));msg(code?'تم حفظ التعديلات.':'تم إنشاء الكود: '+b.code.code,true);reset();await load()}}
+$('clone').onclick=()=>{const c=codes.find(x=>x.code==$('ec').value);if(c)edit(c,true)};$('cancel').onclick=reset;$('new').onclick=reset;$('refresh').onclick=load;
+$('q').oninput=render;$('fg').onchange=render;$('fs').onchange=render;$('clear').onclick=()=>{$('q').value='';$('fg').value='all';$('fs').value='all';render()};
+$('all').onchange=()=>{list().forEach(c=>$('all').checked?sel.add(c.code):sel.delete(c.code));render()};$('rows').onchange=e=>{const x=e.target.closest('[data-sc]');if(x){x.checked?sel.add(x.dataset.sc):sel.delete(x.dataset.sc);render()}};
+async function bulk(active){const a=[...sel];for(const code of a){const c=codes.find(x=>x.code==code);if(c&&c.active!==active)await api('toggle',{code,active})}sel.clear();addRecent((active?'تفعيل ':'تعطيل ')+a.length+' أكواد');msg('تم تنفيذ العملية على '+a.length+' أكواد.',true);await load()}
+$('ba').onclick=()=>bulk(true);$('bd').onclick=()=>bulk(false);
+$('rows').onclick=async e=>{const b=e.target.closest('[data-act]');if(!b)return;const c=codes.find(x=>x.code==b.dataset.c);if(!c)return;const act=b.dataset.act;if(act==='view')return profile(c);if(act==='edit')return edit(c);if(act==='copy'){try{await navigator.clipboard.writeText(c.code);msg('تم نسخ الكود '+c.code,true)}catch{msg('الكود: '+c.code,true)}return}if(act==='toggle'){const r=await api('toggle',{code:c.code,active:!c.active});if(r?.ok){addRecent((c.active?'تعطيل ':'تفعيل ')+c.code);msg(c.active?'تم تعطيل الكود.':'تم تفعيل الكود.',true);load()}}if(act==='unbind'&&confirm('فك ارتباط هذا الكود بالجهاز؟')){const r=await api('unbind',{code:c.code});if(r?.ok){addRecent('فك جهاز '+c.code);msg('تم فك ارتباط الجهاز.',true);load()}}};
+$('close').onclick=()=>$('modal').classList.remove('show');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};$('logout').onclick=async()=>{await sb.auth.signOut();location.replace('login.html?next='+encodeURIComponent(location.href))};sb.auth.onAuthStateChange(e=>{if(e==='SIGNED_OUT')location.replace('login.html?next='+encodeURIComponent(location.href))});
+const {data:{session}}=await sb.auth.getSession();if(!session)location.replace('login.html?next='+encodeURIComponent(location.href));else{await load();reset()}
+</script></body></html>
