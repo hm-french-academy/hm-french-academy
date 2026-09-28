@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HM Academy — دخول الطالب</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=2">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:linear-gradient(145deg,#f5f8fc,#fff);color:#172b4d}
+main{min-height:100vh;display:grid;place-items:center;padding:24px}
+.card{width:min(520px,100%);background:#fff;border:1px solid #e5eaf1;border-radius:24px;padding:32px;box-shadow:0 18px 55px rgba(23,43,77,.10);text-align:center}
+.logo{width:70px;height:70px;object-fit:contain;margin:0 auto 12px}
+h1{margin:0 0 8px;font-size:26px}p{color:#667085;line-height:1.8;margin:8px 0 22px}
+input{width:100%;padding:15px 16px;border:1px solid #ccd5e2;border-radius:13px;font-size:18px;text-align:center;direction:ltr;text-transform:uppercase;outline:none}
+input:focus{border-color:#1f5d9b;box-shadow:0 0 0 3px rgba(31,93,155,.10)}
+button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:13px;background:#1f5d9b;color:#fff;font-size:17px;font-weight:700;cursor:pointer}
+button:disabled{opacity:.65;cursor:wait}
+.status{min-height:28px;margin-top:15px;font-size:14px;color:#b42318}
+.status.ok{color:#087443}.hidden{display:none}
+.lessons{display:grid;gap:10px;margin-top:18px}.lesson{padding:14px;border:1px solid #dce4ee;border-radius:13px;background:#f8fafc;cursor:pointer;font-size:16px}
+.small{font-size:13px;color:#98a2b3;margin-top:18px}
+</style>
+</head>
+<body>
+<main><section class="card">
+<img class="logo" src="assets/images/hm-academy-favicon.svg?v=2" alt="HM Academy">
+<h1>دخول الطالب</h1>
+<p id="hint">أدخل كود الطالب المخصص لك لفتح الدرس.</p>
+<form id="form">
+<input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="HM-XXXXXXXX" aria-label="كود الطالب">
+<button id="enter" type="submit">دخول</button>
+</form>
+<div id="status" class="status" role="alert"></div>
+<div id="lessons" class="lessons hidden"></div>
+<div class="small">HM Academy · الوصول المخصص للطلاب</div>
+</section></main>
+<script>
+const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
+const target=new URLSearchParams(location.search).get('lesson')||'';
+const $=id=>document.getElementById(id);
+const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
+
+function deviceId(){
+  let id=localStorage.getItem('hm_student_browser_id');
+  if(!id){
+    id=(crypto.randomUUID?crypto.randomUUID():('web-'+Date.now()+'-'+Math.random().toString(36).slice(2)));
+    localStorage.setItem('hm_student_browser_id',id);
+  }
+  return id;
+}
+function msg(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'');}
+function lessonUrl(id){
+  return 'lesson-studio-standard.html?id='+encodeURIComponent(id)+'&v=20260831-content-polish&section=lesson&student=1';
+}
+function showLessons(name,list){
+  form.classList.add('hidden'); $('hint').textContent='مرحبًا '+name+' — اختر الدرس المسموح لك.';
+  lessonsBox.innerHTML='';
+  list.forEach(id=>{
+    const b=document.createElement('button'); b.type='button'; b.className='lesson'; b.textContent='فتح الدرس: '+id;
+    b.onclick=()=>location.replace(lessonUrl(id)); lessonsBox.appendChild(b);
+  });
+  lessonsBox.classList.remove('hidden'); msg('',true);
+}
+async function validate(code,silent=false){
+  enter.disabled=true;
+  if(!silent) msg('جارٍ التحقق من الكود…');
+  try{
+    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,device_id:deviceId(),lesson_id:target})});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok || !data.ok){
+      const e=data.error;
+      msg(e==='expired'?'انتهت صلاحية الكود.':e==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':e==='lesson_not_allowed'?'هذا الدرس غير مسموح لهذا الطالب.':e==='no_lessons'?'الكود صحيح ولكن لا توجد دروس مسموحة.':'كود الطالب غير صحيح أو غير مفعل.');
+      localStorage.removeItem('hm_student_code');
+      enter.disabled=false; return;
+    }
+    localStorage.setItem('hm_student_code',code);
+    if(target){ location.replace(lessonUrl(target)); return; }
+    if(data.allowed_lessons.length===1){location.replace(lessonUrl(data.allowed_lessons[0]));return;}
+    showLessons(data.student_name||'الطالب',data.allowed_lessons);
+    enter.disabled=false;
+  }catch(e){
+    msg('تعذر الاتصال بخدمة التحقق. تأكد من الإنترنت ثم حاول مرة أخرى.');
+    enter.disabled=false;
+  }
+}
+form.addEventListener('submit',e=>{e.preventDefault();const c=input.value.trim().toUpperCase();if(!c)return msg('اكتب كود الطالب أولًا.');validate(c,false)});
+const saved=localStorage.getItem('hm_student_code');
+if(saved) validate(saved,true);
+</script>
+</body>
+</html>
