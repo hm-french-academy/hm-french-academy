@@ -92,7 +92,14 @@ async function validate(code,silent=false,requestedLesson=''){
     }
     localStorage.setItem('hm_student_code',code);
     if(data.student_name) localStorage.setItem('hm_student_name',data.student_name);
-    if(requestedLesson){ location.replace(lessonUrl(requestedLesson)); return; }
+    if(requestedLesson){
+      localStorage.setItem('hm_student_current_lesson',requestedLesson);
+      form.classList.add('hidden');
+      showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
+      msg('مرحبًا بك! تم التحقق من الكود بنجاح.',true);
+      enter.disabled=false;
+      return;
+    }
     const current=localStorage.getItem('hm_student_current_lesson');
     if(!switchMode&&current&&Array.isArray(data.allowed_lessons)&&data.allowed_lessons.includes(current)){
       // لا تنتقل تلقائيًا: أعطِ الطالب فرصة للاختيار.
@@ -104,7 +111,14 @@ async function validate(code,silent=false,requestedLesson=''){
       enter.disabled=false;
       return;
     }
-    if(data.allowed_lessons.length===1){location.replace(lessonUrl(data.allowed_lessons[0]));return;}
+    if(data.allowed_lessons.length===1){
+      localStorage.setItem('hm_student_current_lesson',data.allowed_lessons[0]);
+      form.classList.add('hidden');
+      showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
+      msg('مرحبًا بك! تم التحقق من الكود بنجاح.',true);
+      enter.disabled=false;
+      return;
+    }
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
     enter.disabled=false;
   }catch(e){
