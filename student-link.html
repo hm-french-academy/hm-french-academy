@@ -51,7 +51,9 @@ function deviceId(){
 }
 function msg(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'');}
 function lessonUrl(id){
-  return 'lesson-studio-standard.html?id='+encodeURIComponent(id)+'&v=20260831-content-polish&section=lesson&student=1';
+  // Route every student lesson through the canonical lesson router.
+  // The router maps each lesson ID to its own grade-specific Learning Studio.
+  return 'lesson.html?id='+encodeURIComponent(id)+'&v=20260831-content-polish&section=lesson&student=1';
 }
 function showLessons(name,list){
   form.classList.add('hidden'); $('hint').textContent='مرحبًا '+name+' — اختر الدرس المسموح لك.';
