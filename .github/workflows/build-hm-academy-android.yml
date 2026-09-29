@@ -237,7 +237,7 @@ jobs:
               }
 
               private void openLesson(String studentName,String lesson){
-                  activeProfile=new AccessProfile(studentName,"https://"+HOST+"/hm-french-academy/lesson-studio-standard.html?id="+Uri.encode(lesson)+"&v=20260831-content-polish&section=lesson");
+                  activeProfile=new AccessProfile(studentName,"https://"+HOST+"/hm-french-academy/lesson.html?id="+Uri.encode(lesson)+"&v=20260831-content-polish&section=lesson");
                   showLesson();
               }
 
