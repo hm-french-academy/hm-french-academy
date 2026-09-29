@@ -4,21 +4,47 @@
   const LOGIN=ROOT+'student-link.html';
   const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
   const path=location.pathname.split('/').pop()||'index.html';
-  // The public homepage is a neutral entry point and must never be forced through the student-code gate.
   if(path==='index.html' || path==='') return;
   if(path==='student-link.html' || path==='login.html') return;
   if(window.__HM_STUDENT_GATE_RUNNING) return;
   window.__HM_STUDENT_GATE_RUNNING=true;
-  function go(lesson){const u=new URL(LOGIN);if(lesson)u.searchParams.set('lesson',lesson);location.replace(u.href)}
-  const code=localStorage.getItem('hm_student_code');
-  const device=localStorage.getItem('hm_student_browser_id');
-  if(!code||!device){go(new URLSearchParams(location.search).get('id')||'');return;}
   const qs=new URLSearchParams(location.search);
   const lesson=qs.get('id')||qs.get('lesson')||'';
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),7000);
+  function go(id){const u=new URL(LOGIN);if(id)u.searchParams.set('lesson',id);location.replace(u.href)}
+  function newLesson(){const u=new URL(LOGIN);u.searchParams.set('switch','1');location.replace(u.href)}
+  function tools(){
+    if(document.getElementById('hm-student-tools')) return;
+    const s=document.createElement('style');s.id='hm-student-tools-style';
+    s.textContent='#hm-student-tools{position:fixed;z-index:2147483000;right:14px;bottom:14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{right:10px;bottom:10px;left:10px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
+    document.head.appendChild(s);
+    const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
+    box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
+    (document.body||document.documentElement).appendChild(box);
+    document.getElementById('hm-switch-lesson').onclick=newLesson;
+    document.getElementById('hm-student-logout').onclick=function(){
+      localStorage.removeItem('hm_student_code');
+      localStorage.removeItem('hm_student_current_lesson');
+      const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
+    };
+  }
+  const code=localStorage.getItem('hm_student_code');
+  const device=localStorage.getItem('hm_student_browser_id');
+  if(!code||!device){go(lesson);return}
+  if(lesson)localStorage.setItem('hm_student_current_lesson',lesson);
+  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),7000);
   fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code,device_id:device,lesson_id:lesson||undefined}),signal:controller.signal,cache:'no-store'})
    .then(r=>r.ok?r.json():Promise.reject(new Error('denied')))
-   .then(data=>{clearTimeout(timer);if(!data||data.valid!==true)throw new Error('denied');if(lesson&&Array.isArray(data.allowed_lessons)&&!data.allowed_lessons.includes(lesson))throw new Error('lesson-not-allowed');document.documentElement.classList.add('hm-student-authorized')})
-   .catch(()=>{clearTimeout(timer);localStorage.removeItem('hm_student_code');go(lesson||'');});
+   .then(data=>{
+     clearTimeout(timer);
+     if(!data||data.valid!==true)throw new Error('denied');
+     if(lesson&&Array.isArray(data.allowed_lessons)&&!data.allowed_lessons.includes(lesson))throw new Error('lesson-not-allowed');
+     document.documentElement.classList.add('hm-student-authorized');
+     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
+   })
+   .catch(()=>{
+     clearTimeout(timer);
+     localStorage.removeItem('hm_student_code');
+     localStorage.removeItem('hm_student_current_lesson');
+     go(lesson||'');
+   });
 })();
