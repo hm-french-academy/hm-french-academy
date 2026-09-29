@@ -82,6 +82,28 @@ $('all').onchange=()=>{list().forEach(c=>$('all').checked?sel.add(c.code):sel.de
 async function bulk(active){const a=[...sel];for(const code of a){const c=codes.find(x=>x.code==code);if(c&&c.active!==active)await api('toggle',{code,active})}sel.clear();addRecent((active?'تفعيل ':'تعطيل ')+a.length+' أكواد');msg('تم تنفيذ العملية على '+a.length+' أكواد.',true);await load()}
 $('ba').onclick=()=>bulk(true);$('bd').onclick=()=>bulk(false);
 $('rows').onclick=async e=>{const b=e.target.closest('[data-act]');if(!b)return;const c=codes.find(x=>x.code==b.dataset.c);if(!c)return;const act=b.dataset.act;if(act==='view')return profile(c);if(act==='edit')return edit(c);if(act==='copy'){try{await navigator.clipboard.writeText(c.code);msg('تم نسخ الكود '+c.code,true)}catch{msg('الكود: '+c.code,true)}return}if(act==='toggle'){const r=await api('toggle',{code:c.code,active:!c.active});if(r?.ok){addRecent((c.active?'تعطيل ':'تفعيل ')+c.code);msg(c.active?'تم تعطيل الكود.':'تم تفعيل الكود.',true);load()}}if(act==='unbind'&&confirm('فك ارتباط هذا الكود بالجهاز؟')){const r=await api('unbind',{code:c.code});if(r?.ok){addRecent('فك جهاز '+c.code);msg('تم فك ارتباط الجهاز.',true);load()}}};
-$('close').onclick=()=>$('modal').classList.remove('show');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};async function doLogout(){const btn=$('logout');if(btn.dataset.busy==='1')return;btn.dataset.busy='1';btn.disabled=true;btn.textContent='جارٍ تسجيل الخروج…';try{const {error}=await sb.auth.signOut({scope:'local'});if(error)throw error;location.replace('login.html?next='+encodeURIComponent(location.pathname+location.search+location.hash));}catch(err){btn.dataset.busy='';btn.disabled=false;btn.textContent='تسجيل الخروج';msg('تعذر تسجيل الخروج. حاول مرة أخرى.');console.error('Logout error',err)}}$('logout').onclick=doLogout;sb.auth.onAuthStateChange((e)=>{if(e==='SIGNED_OUT')location.replace('login.html?next='+encodeURIComponent(location.pathname+location.search+location.hash))});
+$('close').onclick=()=>$('modal').classList.remove('show');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};async function doLogout(){
+ const btn=$('logout');
+ if(btn.dataset.busy==='1')return;
+ btn.dataset.busy='1';
+ btn.disabled=true;
+ btn.textContent='جارٍ تسجيل الخروج…';
+ const login='login.html';
+ try{
+   const result=await Promise.race([
+     sb.auth.signOut({scope:'local'}),
+     new Promise(resolve=>setTimeout(()=>resolve({timeout:true}),2500))
+   ]);
+   if(result?.error)throw result.error;
+ }catch(err){
+   console.error('Logout error',err);
+ }
+ try{localStorage.removeItem('sb-yvoprtjyxmurvcsaqsny-auth-token')}catch{}
+ try{sessionStorage.clear()}catch{}
+ location.replace(login);
+}
+$('logout').type='button';
+$('logout').addEventListener('click',doLogout);
+sb.auth.onAuthStateChange((e)=>{if(e==='SIGNED_OUT')location.replace('login.html')});
 const {data:{session}}=await sb.auth.getSession();if(!session)location.replace('login.html?next='+encodeURIComponent(location.href));else{await load();reset();renderCurriculumManager()}
 </script></body></html>
