@@ -104,7 +104,10 @@ if(logoutMode){$('title').textContent='تم تسجيل الخروج';$('hint').t
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
 if(switchMode||logoutMode)showResume();
 const saved=localStorage.getItem('hm_student_code');
-if(saved&&!switchMode&&!logoutMode) validate(saved,true,target||localStorage.getItem('hm_student_current_lesson')||'');
+if(saved&&!switchMode&&!logoutMode){
+  // لا تفتح الدرس تلقائيًا. تحقق من الكود ثم اعرض خيارات الجلسة.
+  validate(saved,true,'');
+}
 </script>
 </body>
 </html>
