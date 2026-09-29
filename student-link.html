@@ -81,7 +81,16 @@ async function validate(code,silent=false,requestedLesson=''){
     localStorage.setItem('hm_student_code',code);
     if(requestedLesson){ location.replace(lessonUrl(requestedLesson)); return; }
     const current=localStorage.getItem('hm_student_current_lesson');
-    if(!switchMode&&current&&Array.isArray(data.allowed_lessons)&&data.allowed_lessons.includes(current)){ location.replace(lessonUrl(current)); return; }
+    if(!switchMode&&current&&Array.isArray(data.allowed_lessons)&&data.allowed_lessons.includes(current)){
+      // لا تنتقل تلقائيًا: أعطِ الطالب فرصة للاختيار.
+      form.classList.add('hidden');
+      $('title').textContent='جلسة الطالب';
+      $('hint').textContent='تم التحقق من الكود. اختر ما تريد فعله:';
+      showResume();
+      msg('الكود محفوظ والدرس السابق متاح.',true);
+      enter.disabled=false;
+      return;
+    }
     if(data.allowed_lessons.length===1){location.replace(lessonUrl(data.allowed_lessons[0]));return;}
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
     enter.disabled=false;
