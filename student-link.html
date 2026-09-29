@@ -65,7 +65,19 @@ function showLessons(name,list){
   });
   lessonsBox.classList.remove('hidden'); msg('',true);
 }
-function showResume(){const current=localStorage.getItem('hm_student_current_lesson');if(!current)return;document.getElementById('actions').classList.remove('hidden');document.getElementById('resume').onclick=()=>location.replace(lessonUrl(current));document.getElementById('logout').onclick=()=>{localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_current_lesson');location.replace('student-link.html?logout=1')}}
+function showResume(name=''){
+  const current=localStorage.getItem('hm_student_current_lesson');
+  const actions=document.getElementById('actions');
+  if(name){
+    $('title').textContent='مرحبًا بك، '+name+' 👋';
+    $('hint').innerHTML='<b>HM Academy ترحب بك</b><br><span dir="ltr">Bienvenue à HM Academy</span><br><small style="color:#98a2b3">يسعدنا أن نكمل معك رحلة تعلّم الفرنسية · <span dir="ltr">Nous sommes heureux de poursuivre votre parcours en français.</span></small>';
+  }
+  if(!current){actions.classList.remove('hidden');document.getElementById('resume').disabled=true;return;}
+  actions.classList.remove('hidden');
+  document.getElementById('resume').disabled=false;
+  document.getElementById('resume').onclick=()=>location.replace(lessonUrl(current));
+  document.getElementById('logout').onclick=()=>{localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_current_lesson');localStorage.removeItem('hm_student_name');location.replace('student-link.html?logout=1')};
+}
 async function validate(code,silent=false,requestedLesson=''){
   enter.disabled=true;
   if(!silent) msg('جارٍ التحقق من الكود…');
@@ -79,6 +91,7 @@ async function validate(code,silent=false,requestedLesson=''){
       enter.disabled=false; return;
     }
     localStorage.setItem('hm_student_code',code);
+    if(data.student_name) localStorage.setItem('hm_student_name',data.student_name);
     if(requestedLesson){ location.replace(lessonUrl(requestedLesson)); return; }
     const current=localStorage.getItem('hm_student_current_lesson');
     if(!switchMode&&current&&Array.isArray(data.allowed_lessons)&&data.allowed_lessons.includes(current)){
@@ -86,8 +99,8 @@ async function validate(code,silent=false,requestedLesson=''){
       form.classList.add('hidden');
       $('title').textContent='جلسة الطالب';
       $('hint').textContent='تم التحقق من الكود. اختر ما تريد فعله:';
-      showResume();
-      msg('الكود محفوظ والدرس السابق متاح.',true);
+      showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
+      msg('تم التحقق من الكود بنجاح.',true);
       enter.disabled=false;
       return;
     }
@@ -102,7 +115,7 @@ async function validate(code,silent=false,requestedLesson=''){
 form.addEventListener('submit',e=>{e.preventDefault();const c=input.value.trim().toUpperCase();if(!c)return msg('اكتب كود الطالب أولًا.');localStorage.removeItem('hm_student_current_lesson');validate(c,false,target)});
 if(logoutMode){$('title').textContent='تم تسجيل الخروج';$('hint').textContent='تم إنهاء جلسة الطالب على هذا الجهاز. يمكنك إدخال كود جديد.';msg('تم تسجيل الخروج بنجاح.',true)}
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
-if(switchMode||logoutMode)showResume();
+if(switchMode||logoutMode)showResume(localStorage.getItem('hm_student_name')||'');
 const saved=localStorage.getItem('hm_student_code');
 if(saved&&!switchMode&&!logoutMode){
   // لا تفتح الدرس تلقائيًا. تحقق من الكود ثم اعرض خيارات الجلسة.
