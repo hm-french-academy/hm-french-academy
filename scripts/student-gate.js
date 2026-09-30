@@ -41,6 +41,8 @@
     document.getElementById('hm-student-logout').onclick=function(){
       localStorage.removeItem('hm_student_code');
       localStorage.removeItem('hm_student_current_lesson');
+      localStorage.removeItem('hm_student_verified_lesson');
+      localStorage.removeItem('hm_student_verified_at');
       const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
     };
   }
@@ -90,6 +92,16 @@
 
     if(lesson)localStorage.setItem('hm_student_current_lesson',lesson);
 
+    // Keep the verified lesson session while the lesson uses nested wrappers/iframes.
+    // This prevents the same authorized lesson from bouncing back to the code screen.
+    const verifiedLesson=localStorage.getItem('hm_student_verified_lesson')||'';
+    const verifiedAt=Number(localStorage.getItem('hm_student_verified_at')||0);
+    if(lesson && verifiedLesson===lesson && Date.now()-verifiedAt < 30*60*1000){
+      document.documentElement.classList.add('hm-student-authorized');
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
+      return;
+    }
+
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),7000);
 
@@ -104,6 +116,8 @@
     .then(data=>{
       clearTimeout(timer);
       if(!data||data.valid!==true)throw new Error('denied');
+      localStorage.setItem('hm_student_verified_lesson',lesson||'');
+      localStorage.setItem('hm_student_verified_at',String(Date.now()));
       if(lesson&&Array.isArray(data.allowed_lessons)&&!data.allowed_lessons.includes(lesson))throw new Error('lesson-not-allowed');
       document.documentElement.classList.add('hm-student-authorized');
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
