@@ -85,31 +85,65 @@ const LESSON_TITLES={
   'g4-l03':['الساعة',"L'heure"],
   'g4-l04':['وجهي','Mon visage']
 };
-function lessonLabel(id){
-  const key=String(id);
-  const m=key.match(/^grade(\\d+)-u(\\d+)-l(\\d+)$/i);
-  const title=LESSON_TITLES[key];
-  if(title) return {title:title[0],meta:title[1]};
-  if(/^g4-l\\d+$/i.test(key)) return {title:'الدرس '+key.slice(-2).replace(/^0/,'') ,meta:key};
-  if(!m) return {title:'الدرس المتاح',meta:''};
-  const grade=Number(m[1]),unit=Number(m[2]),lesson=Number(m[3]);
-  const gradeText=grade>=10?'الصف '+grade:grade===9?'الصف الثالث الإعدادي':grade===8?'الصف الثاني الإعدادي':grade===7?'الصف الأول الإعدادي':grade===6?'الصف السادس الابتدائي':'الصف '+grade;
-  return {title:'الدرس '+lesson+' — الوحدة '+unit,meta:gradeText};
+const lessonCatalogCache=new Map();
+function gradeFromLessonId(id){
+  const k=String(id||'');
+  let m=k.match(/^g(\\d+)-/i); if(m)return m[1];
+  m=k.match(/^grade(\\d+)-/i); return m?m[1]:'';
 }
-function showLessons(name,list){
+function gradeTextFor(grade){
+  const g=Number(grade);
+  return g===9?'الصف الثالث الإعدادي':g===8?'الصف الثاني الإعدادي':g===7?'الصف الأول الإعدادي':g===6?'الصف السادس الابتدائي':g===5?'الصف الخامس الابتدائي':g===4?'الصف الرابع الابتدائي':g===3?'الصف الثالث الابتدائي':'الصف '+g;
+}
+function addCatalogLessons(data,map){
+  const add=l=>{
+    if(!l||!l.id)return;
+    const ar=l.titleAr||l.title||'', fr=l.titleFr||'';
+    if(ar||fr)map.set(String(l.id),{title:ar||fr,meta:fr&&ar?fr:''});
+  };
+  if(Array.isArray(data.lessons))data.lessons.forEach(add);
+  if(Array.isArray(data.includedUnits))data.includedUnits.forEach(u=>(u.lessons||[]).forEach(add));
+}
+async function loadLessonCatalogForId(id){
+  const grade=gradeFromLessonId(id);
+  if(!grade)return;
+  if(!lessonCatalogCache.has(grade)){
+    const p=fetch('data/lessons/grade-'+encodeURIComponent(grade)+'/lesson-registry.json?v=20260930-student-catalog')
+      .then(r=>r.ok?r.json():null)
+      .then(data=>{const map=new Map();if(data)addCatalogLessons(data,map);lessonCatalogCache.set(grade,map);return map})
+      .catch(()=>{const map=new Map();lessonCatalogCache.set(grade,map);return map});
+    lessonCatalogCache.set(grade,p);
+  }
+  const map=await lessonCatalogCache.get(grade);
+  return map;
+}
+async function lessonLabel(id){
+  const key=String(id);
+  const title=LESSON_TITLES[key];
+  if(title)return {title:title[0],meta:title[1]};
+  const map=await loadLessonCatalogForId(key);
+  if(map&&map.has(key))return map.get(key);
+  const g=gradeFromLessonId(key),m=key.match(/(?:g|grade)\\d+(?:-u(\\d+))?-l(\\d+)$/i);
+  if(m&&m[1])return {title:'الدرس '+Number(m[2])+' — الوحدة '+Number(m[1]),meta:gradeTextFor(g)};
+  if(m)return {title:'الدرس '+Number(m[2]),meta:gradeTextFor(g)};
+  return {title:'الدرس المتاح',meta:key};
+}
+async function showLessons(name,list){
   form.classList.add('hidden');
   $('hint').textContent='مرحبًا '+name+' — اختر الدرس الذي تريد دراسته.';
+  lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل أسماء الدروس…</div>';
+  lessonsBox.classList.remove('hidden');
+  const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
   lessonsBox.innerHTML='';
-  list.forEach(id=>{
+  labels.forEach(({id,label})=>{
     const b=document.createElement('button');
     b.type='button'; b.className='lesson';
-    const label=lessonLabel(id);
     b.innerHTML='<span class="lesson-main">📘 '+label.title+'</span><span class="lesson-meta">'+label.meta+'</span>';
     b.setAttribute('aria-label','فتح '+label.title+' '+label.meta);
     b.onclick=()=>location.replace(lessonUrl(id));
     lessonsBox.appendChild(b);
   });
-  lessonsBox.classList.remove('hidden'); msg('',true);
+  msg('',true);
 }
 function showResume(name=''){
   const current=localStorage.getItem('hm_student_current_lesson');
