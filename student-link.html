@@ -37,7 +37,6 @@ button:disabled{opacity:.65;cursor:wait}
 </section></main>
 <script>
 const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
 const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';const logoutMode=params.get('logout')==='1';
 const $=id=>document.getElementById(id);
 const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
@@ -129,7 +128,7 @@ async function validate(code,silent=false,requestedLesson=''){
   enter.disabled=true;
   if(!silent) msg('جارٍ التحقق من الكود…');
   try{
-    const res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined})});
+    const res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined})});
     const data=await res.json().catch(()=>({}));
     if(!res.ok || !data.ok){
       const e=data.error;
@@ -158,7 +157,7 @@ async function validate(code,silent=false,requestedLesson=''){
       enter.disabled=false;
       return;
     }
-    if(data.allowed_lessons.length===1){
+    if(Array.isArray(data.allowed_lessons)&&data.allowed_lessons.length===1){
       localStorage.setItem('hm_student_current_lesson',data.allowed_lessons[0]);
       form.classList.add('hidden');
       showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
@@ -166,6 +165,7 @@ async function validate(code,silent=false,requestedLesson=''){
       enter.disabled=false;
       return;
     }
+    if(!Array.isArray(data.allowed_lessons)){ msg('تم التحقق من الكود، لكن لم تصل قائمة الدروس من الخادم.'); enter.disabled=false; return; }
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
     enter.disabled=false;
   }catch(e){
