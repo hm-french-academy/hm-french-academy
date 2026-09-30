@@ -32,7 +32,7 @@ button:disabled{opacity:.65;cursor:wait}
 <button id="enter" type="submit">دخول</button>
 </form>
 <div id="status" class="status" role="alert"></div>
-<div id="lessons" class="lessons hidden"></div><div id="actions" class="actions hidden"><button id="resume" type="button" class="secondary">▶ متابعة الدرس الحالي</button><button id="logout" type="button" class="secondary">🚪 تسجيل الخروج</button></div>
+<div id="lessons" class="lessons hidden"></div><div id="actions" class="actions hidden"><a id="resume" class="secondary" href="#">▶ متابعة الدرس الحالي</a><button id="logout" type="button" class="secondary">🚪 تسجيل الخروج</button></div>
 <div class="small">HM Academy · الوصول المخصص للطلاب</div>
 </section></main>
 <script>
@@ -118,10 +118,11 @@ function showResume(name=''){
     $('title').textContent='مرحبًا بك، '+name+' 👋';
     $('hint').innerHTML='<b>HM Academy ترحب بك</b><br><span dir="ltr">Bienvenue à HM Academy</span><br><small style="color:#98a2b3">يسعدنا أن نكمل معك رحلة تعلّم الفرنسية · <span dir="ltr">Nous sommes heureux de poursuivre votre parcours en français.</span></small><br><span style="display:inline-block;margin-top:10px;color:#1f5d9b;font-weight:700;font-size:13px">— Monsieur Hatem ElMorsi</span>';
   }
-  if(!current){actions.classList.remove('hidden');document.getElementById('resume').disabled=true;return;}
+  if(!current){actions.classList.remove('hidden');document.getElementById('resume').setAttribute('aria-disabled','true');return;}
   actions.classList.remove('hidden');
-  document.getElementById('resume').disabled=false;
-  document.getElementById('resume').onclick=(e)=>{e.preventDefault();e.stopPropagation();window.location.href=lessonUrl(current);};
+  document.getElementById('resume').removeAttribute('aria-disabled');
+  const resume=document.getElementById('resume');
+  resume.href=lessonUrl(current);
   document.getElementById('logout').onclick=()=>{localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_current_lesson');localStorage.removeItem('hm_student_name');location.replace('student-link.html?logout=1')};
 }
 async function validate(code,silent=false,requestedLesson=''){
