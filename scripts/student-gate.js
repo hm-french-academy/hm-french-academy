@@ -1,17 +1,34 @@
 (function(){
   'use strict';
+
   const ROOT='https://hm-french-academy.github.io/hm-french-academy/';
   const LOGIN=ROOT+'student-link.html';
   const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
+  const ADMIN_API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/admin-student-codes';
   const path=location.pathname.split('/').pop()||'index.html';
+
+  // Public entry pages must remain reachable without either a student code or admin session.
   if(path==='index.html' || path==='') return;
   if(path==='student-link.html' || path==='login.html') return;
+
   if(window.__HM_STUDENT_GATE_RUNNING) return;
   window.__HM_STUDENT_GATE_RUNNING=true;
+
   const qs=new URLSearchParams(location.search);
   const lesson=qs.get('id')||qs.get('lesson')||'';
-  function go(id){const u=new URL(LOGIN);if(id)u.searchParams.set('lesson',id);location.replace(u.href)}
-  function newLesson(){const u=new URL(LOGIN);u.searchParams.set('switch','1');location.replace(u.href)}
+
+  function go(id){
+    const u=new URL(LOGIN);
+    if(id)u.searchParams.set('lesson',id);
+    location.replace(u.href);
+  }
+
+  function newLesson(){
+    const u=new URL(LOGIN);
+    u.searchParams.set('switch','1');
+    location.replace(u.href);
+  }
+
   function tools(){
     if(document.getElementById('hm-student-tools')) return;
     const s=document.createElement('style');s.id='hm-student-tools-style';
@@ -27,24 +44,77 @@
       const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
     };
   }
-  const code=localStorage.getItem('hm_student_code');
-  const device=localStorage.getItem('hm_student_browser_id');
-  if(!code||!device){go(lesson);return}
-  if(lesson)localStorage.setItem('hm_student_current_lesson',lesson);
-  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),7000);
-  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code,device_id:device,lesson_id:lesson||undefined}),signal:controller.signal,cache:'no-store'})
-   .then(r=>r.ok?r.json():Promise.reject(new Error('denied')))
-   .then(data=>{
-     clearTimeout(timer);
-     if(!data||data.valid!==true)throw new Error('denied');
-     if(lesson&&Array.isArray(data.allowed_lessons)&&!data.allowed_lessons.includes(lesson))throw new Error('lesson-not-allowed');
-     document.documentElement.classList.add('hm-student-authorized');
-     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
-   })
-   .catch(()=>{
-     clearTimeout(timer);
-     localStorage.removeItem('hm_student_code');
-     localStorage.removeItem('hm_student_current_lesson');
-     go(lesson||'');
-   });
+
+  async function getAdminSession(){
+    try{
+      const {createClient}=await import('https://esm.sh/@supabase/supabase-js@2');
+      const sb=createClient(
+        'https://yvoprtjyxmurvcsaqsny.supabase.co',
+        'sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV'
+      );
+      const {data,error}=await sb.auth.getSession();
+      if(error||!data?.session?.access_token) return false;
+
+      // A valid Supabase login is not enough: the admin endpoint must confirm
+      // that this account belongs to the HM Academy admin_users list.
+      const r=await fetch(ADMIN_API,{
+        method:'POST',
+        headers:{
+          Authorization:'Bearer '+data.session.access_token,
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({action:'list'}),
+        cache:'no-store'
+      });
+      return r.ok;
+    }catch(e){
+      return false;
+    }
+  }
+
+  async function run(){
+    // Admin sessions are allowed to explore curricula and lessons without
+    // being mistaken for a student session.
+    if(await getAdminSession()){
+      document.documentElement.classList.add('hm-admin-authorized');
+      return;
+    }
+
+    const code=localStorage.getItem('hm_student_code');
+    const device=localStorage.getItem('hm_student_browser_id');
+
+    if(!code||!device){
+      go(lesson);
+      return;
+    }
+
+    if(lesson)localStorage.setItem('hm_student_current_lesson',lesson);
+
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),7000);
+
+    fetch(API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({code:code,device_id:device,lesson_id:lesson||undefined}),
+      signal:controller.signal,
+      cache:'no-store'
+    })
+    .then(r=>r.ok?r.json():Promise.reject(new Error('denied')))
+    .then(data=>{
+      clearTimeout(timer);
+      if(!data||data.valid!==true)throw new Error('denied');
+      if(lesson&&Array.isArray(data.allowed_lessons)&&!data.allowed_lessons.includes(lesson))throw new Error('lesson-not-allowed');
+      document.documentElement.classList.add('hm-student-authorized');
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
+    })
+    .catch(()=>{
+      clearTimeout(timer);
+      localStorage.removeItem('hm_student_code');
+      localStorage.removeItem('hm_student_current_lesson');
+      go(lesson||'');
+    });
+  }
+
+  run();
 })();
