@@ -20,11 +20,16 @@ if(student){
   let device=localStorage.getItem('hm_student_browser_id');
   if(!device){device=(crypto.randomUUID?crypto.randomUUID():('web-'+Date.now()+'-'+Math.random().toString(36).slice(2)));localStorage.setItem('hm_student_browser_id',device);}
   if(!code||!id){goLogin();return;}
+  const verifiedLesson=localStorage.getItem('hm_student_verified_lesson')||'';
+  const verifiedAt=Number(localStorage.getItem('hm_student_verified_at')||0);
+  if(verifiedLesson===id && Date.now()-verifiedAt < 30*60*1000){goTarget();return;}
   fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({code,device_id:device,lesson_id:id}),cache:'no-store'
   }).then(r=>r.json().then(data=>({ok:r.ok,data}))).then(({ok,data})=>{
-    if(!ok||!data.ok){localStorage.removeItem('hm_student_code');goLogin();return;}
+    if(!ok||!data.ok){localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_verified_lesson');localStorage.removeItem('hm_student_verified_at');goLogin();return;}
+    localStorage.setItem('hm_student_verified_lesson',id);
+    localStorage.setItem('hm_student_verified_at',String(Date.now()));
     if(!goTarget()){document.addEventListener('DOMContentLoaded',()=>{document.body.innerHTML='<header class="hm-header"><a class="hm-brand" href="index.html"><span class="hm-logo">HM</span><span class="hm-brand-text">🇫🇷 HM Academy</span></a></header><main class="hm-main" style="max-width:760px;margin:40px auto;padding:20px"><section class="hm-hero" style="text-align:center"><h1>الدرس غير متاح</h1><p>هذا الدرس غير مسجل في مسار المنصة الحالي.</p></section></main>';});}
   }).catch(()=>goLogin());
   return;
