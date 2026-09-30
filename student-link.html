@@ -18,7 +18,7 @@ button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:13px;backg
 button:disabled{opacity:.65;cursor:wait}
 .status{min-height:28px;margin-top:15px;font-size:14px;color:#b42318}
 .status.ok{color:#087443}.hidden{display:none}
-.lessons{display:grid;gap:10px;margin-top:18px}.lesson{padding:14px;border:1px solid #dce4ee;border-radius:13px;background:#f8fafc;cursor:pointer;font-size:16px}
+.lessons{display:grid;gap:12px;margin-top:18px;text-align:right}.lesson{width:100%;padding:15px 16px;border:1px solid #cfd9e6;border-radius:15px;background:#fff!important;color:#1f5d9b!important;cursor:pointer;font-size:17px;font-weight:800;line-height:1.45;text-align:right;box-shadow:0 2px 7px rgba(23,43,77,.04);transition:.15s ease}.lesson:hover{border-color:#1f5d9b;box-shadow:0 5px 14px rgba(31,93,155,.10);transform:translateY(-1px)}.lesson .lesson-main{display:block}.lesson .lesson-meta{display:block;margin-top:4px;color:#667085;font-size:12px;font-weight:600;direction:ltr;text-align:right}
 .small{font-size:13px;color:#98a2b3;margin-top:18px}.actions{display:grid;gap:9px;margin-top:14px}.secondary{background:#fff!important;color:#1f5d9b!important;border:1px solid #ccd9e8!important}
 </style>
 </head>
@@ -56,12 +56,25 @@ function lessonUrl(id){
   // The router maps each lesson ID to its own grade-specific Learning Studio.
   return 'lesson.html?id='+encodeURIComponent(id)+'&v=20260831-content-polish&section=lesson&student=1';
 }
+function lessonLabel(id){
+  const m=String(id).match(/^grade(\\d+)-u(\\d+)-l(\\d+)$/i);
+  if(!m) return {title:'الدرس المتاح',meta:id};
+  const grade=Number(m[1]),unit=Number(m[2]),lesson=Number(m[3]);
+  const gradeText=grade>=10?'الصف '+grade:grade===9?'الصف الثالث الإعدادي':grade===8?'الصف الثاني الإعدادي':grade===7?'الصف الأول الإعدادي':grade===6?'الصف السادس الابتدائي':'الصف '+grade;
+  return {title:'الدرس '+lesson+' — الوحدة '+unit,meta:gradeText+' · '+id};
+}
 function showLessons(name,list){
-  form.classList.add('hidden'); $('hint').textContent='مرحبًا '+name+' — اختر الدرس المسموح لك.';
+  form.classList.add('hidden');
+  $('hint').textContent='مرحبًا '+name+' — اختر الدرس الذي تريد دراسته.';
   lessonsBox.innerHTML='';
   list.forEach(id=>{
-    const b=document.createElement('button'); b.type='button'; b.className='lesson'; b.textContent='فتح الدرس: '+id;
-    b.onclick=()=>location.replace(lessonUrl(id)); lessonsBox.appendChild(b);
+    const b=document.createElement('button');
+    b.type='button'; b.className='lesson';
+    const label=lessonLabel(id);
+    b.innerHTML='<span class="lesson-main">📘 '+label.title+'</span><span class="lesson-meta">'+label.meta+'</span>';
+    b.setAttribute('aria-label','فتح '+label.title+' '+label.meta);
+    b.onclick=()=>location.replace(lessonUrl(id));
+    lessonsBox.appendChild(b);
   });
   lessonsBox.classList.remove('hidden'); msg('',true);
 }
