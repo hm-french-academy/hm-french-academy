@@ -121,7 +121,7 @@ function showResume(name=''){
   if(!current){actions.classList.remove('hidden');document.getElementById('resume').disabled=true;return;}
   actions.classList.remove('hidden');
   document.getElementById('resume').disabled=false;
-  document.getElementById('resume').onclick=()=>location.replace(lessonUrl(current));
+  document.getElementById('resume').onclick=(e)=>{e.preventDefault();e.stopPropagation();window.location.href=lessonUrl(current);};
   document.getElementById('logout').onclick=()=>{localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_current_lesson');localStorage.removeItem('hm_student_name');location.replace('student-link.html?logout=1')};
 }
 async function validate(code,silent=false,requestedLesson=''){
