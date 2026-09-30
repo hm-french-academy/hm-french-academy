@@ -20,17 +20,17 @@
     {"id":"subjects","title":"📚 المواد الدراسية","description":"المواد الدراسية الواردة في الملف المرجعي للدرس الثالث."}
   ],
   "vocabulary": [
-    {"word":"Le français","translation":"اللغة الفرنسية","image":"assets/subjects/francais.svg","example":"J'aime le français.","category":"subjects"},
-    {"word":"L'anglais","translation":"اللغة الإنجليزية","image":"assets/subjects/anglais.svg","example":"J'aime l'anglais.","category":"subjects"},
-    {"word":"Les mathématiques","translation":"الرياضيات","image":"assets/subjects/mathematiques.svg","example":"J'aime les mathématiques.","category":"subjects"},
-    {"word":"L'arabe","translation":"اللغة العربية","image":"assets/subjects/arabe.svg","example":"J'aime l'arabe.","category":"subjects"},
-    {"word":"Le dessin","translation":"الرسم","image":"assets/subjects/dessin.svg","example":"J'aime le dessin.","category":"subjects"},
-    {"word":"Les sciences","translation":"العلوم","image":"assets/subjects/sciences.svg","example":"J'aime les sciences.","category":"subjects"},
-    {"word":"L'histoire","translation":"التاريخ","image":"assets/subjects/histoire.svg","example":"J'aime l'histoire.","category":"subjects"},
-    {"word":"La géographie","translation":"الجغرافيا","image":"assets/subjects/geographie.svg","example":"J'aime la géographie.","category":"subjects"},
-    {"word":"La musique","translation":"الموسيقى","image":"assets/subjects/musique.svg","example":"J'aime la musique.","category":"subjects"},
-    {"word":"La gymnastique","translation":"التربية البدنية","image":"assets/subjects/gymnastique.svg","example":"J'aime la gymnastique.","category":"subjects"},
-    {"word":"La technologie","translation":"التكنولوجيا","image":"assets/subjects/technologie.svg","example":"J'aime la technologie.","category":"subjects"}
+    {"word":"Le français","translation":"اللغة الفرنسية","image":"data/lessons/grade-8/unit-1/assets/subjects/francais.svg","example":"J'aime le français.","category":"subjects"},
+    {"word":"L'anglais","translation":"اللغة الإنجليزية","image":"data/lessons/grade-8/unit-1/assets/subjects/anglais.svg","example":"J'aime l'anglais.","category":"subjects"},
+    {"word":"Les mathématiques","translation":"الرياضيات","image":"data/lessons/grade-8/unit-1/assets/subjects/mathematiques.svg","example":"J'aime les mathématiques.","category":"subjects"},
+    {"word":"L'arabe","translation":"اللغة العربية","image":"data/lessons/grade-8/unit-1/assets/subjects/arabe.svg","example":"J'aime l'arabe.","category":"subjects"},
+    {"word":"Le dessin","translation":"الرسم","image":"data/lessons/grade-8/unit-1/assets/subjects/dessin.svg","example":"J'aime le dessin.","category":"subjects"},
+    {"word":"Les sciences","translation":"العلوم","image":"data/lessons/grade-8/unit-1/assets/subjects/sciences.svg","example":"J'aime les sciences.","category":"subjects"},
+    {"word":"L'histoire","translation":"التاريخ","image":"data/lessons/grade-8/unit-1/assets/subjects/histoire.svg","example":"J'aime l'histoire.","category":"subjects"},
+    {"word":"La géographie","translation":"الجغرافيا","image":"data/lessons/grade-8/unit-1/assets/subjects/geographie.svg","example":"J'aime la géographie.","category":"subjects"},
+    {"word":"La musique","translation":"الموسيقى","image":"data/lessons/grade-8/unit-1/assets/subjects/musique.svg","example":"J'aime la musique.","category":"subjects"},
+    {"word":"La gymnastique","translation":"التربية البدنية","image":"data/lessons/grade-8/unit-1/assets/subjects/gymnastique.svg","example":"J'aime la gymnastique.","category":"subjects"},
+    {"word":"La technologie","translation":"التكنولوجيا","image":"data/lessons/grade-8/unit-1/assets/subjects/technologie.svg","example":"J'aime la technologie.","category":"subjects"}
   ],
   "grammar": {
     "title":"قواعد الدرس · Aimer / Préférer",
