@@ -37,6 +37,7 @@ button:disabled{opacity:.65;cursor:wait}
 </section></main>
 <script>
 const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
 const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';const logoutMode=params.get('logout')==='1';
 const $=id=>document.getElementById(id);
 const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
@@ -128,11 +129,11 @@ async function validate(code,silent=false,requestedLesson=''){
   enter.disabled=true;
   if(!silent) msg('جارٍ التحقق من الكود…');
   try{
-    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined})});
+    const res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined})});
     const data=await res.json().catch(()=>({}));
     if(!res.ok || !data.ok){
       const e=data.error;
-      msg(e==='expired'?'انتهت صلاحية الكود.':e==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':e==='lesson_not_allowed'?'هذا الدرس غير مسموح لهذا الطالب.':e==='no_lessons'?'الكود صحيح ولكن لا توجد دروس مسموحة.':'كود الطالب غير صحيح أو غير مفعل.');
+      msg(e==='expired'?'انتهت صلاحية الكود.':e==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':e==='lesson_not_allowed'?'هذا الدرس غير مسموح لهذا الطالب.':e==='no_lessons'?'الكود صحيح ولكن لا توجد دروس مسموحة.':e==='missing_credentials'?'بيانات الدخول غير مكتملة.':e==='server_configuration_error'?'خدمة الدخول تحتاج إلى إصلاح إعدادات الخادم.':e==='lookup_failed'?'تعذر الوصول إلى بيانات الطالب الآن.':e==='device_bind_failed'?'تعذر ربط الكود بهذا الجهاز.':'كود الطالب غير صحيح أو غير مفعل.');
       localStorage.removeItem('hm_student_code');
       enter.disabled=false; return;
     }
