@@ -128,11 +128,17 @@ async function validate(code,silent=false,requestedLesson=''){
   enter.disabled=true;
   if(!silent) msg('جارٍ التحقق من الكود…');
   try{
-    const res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined})});
-    const data=await res.json().catch(()=>({}));
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),10000);
+    let res;
+    try{
+      res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
+    }finally{clearTimeout(timer)}
+    const raw=await res.text();
+    let data={}; try{data=JSON.parse(raw||'{}')}catch(_){}
     if(!res.ok || !data.ok){
       const e=data.error;
-      msg(e==='expired'?'انتهت صلاحية الكود.':e==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':e==='lesson_not_allowed'?'هذا الدرس غير مسموح لهذا الطالب.':e==='no_lessons'?'الكود صحيح ولكن لا توجد دروس مسموحة.':e==='missing_credentials'?'بيانات الدخول غير مكتملة.':e==='server_configuration_error'?'خدمة الدخول تحتاج إلى إصلاح إعدادات الخادم.':e==='lookup_failed'?'تعذر الوصول إلى بيانات الطالب الآن.':e==='device_bind_failed'?'تعذر ربط الكود بهذا الجهاز.':'كود الطالب غير صحيح أو غير مفعل.');
+      msg(e==='expired'?'انتهت صلاحية الكود.':e==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':e==='lesson_not_allowed'?'هذا الدرس غير مسموح لهذا الطالب.':e==='no_lessons'?'الكود صحيح ولكن لا توجد دروس مسموحة.':e==='missing_credentials'?'بيانات الدخول غير مكتملة.':e==='server_configuration_error'?'خدمة الدخول تحتاج إلى إصلاح إعدادات الخادم.':e==='lookup_failed'?'تعذر الوصول إلى بيانات الطالب الآن.':e==='device_bind_failed'?'تعذر ربط الكود بهذا الجهاز.':'كود الطالب غير صحيح أو غير مفعل.')+' ['+res.status+(e?' · '+e:'')+']';
       localStorage.removeItem('hm_student_code');
       enter.disabled=false; return;
     }
@@ -169,7 +175,7 @@ async function validate(code,silent=false,requestedLesson=''){
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
     enter.disabled=false;
   }catch(e){
-    msg('تعذر الاتصال بخدمة التحقق. تأكد من الإنترنت ثم حاول مرة أخرى.');
+    msg(e?.name==='AbortError'?'استغرق التحقق أكثر من 10 ثوانٍ. حاول مرة أخرى.':'تعذر الاتصال بخدمة التحقق: '+(e?.message||'خطأ غير معروف'));
     enter.disabled=false;
   }
 }
@@ -177,11 +183,8 @@ form.addEventListener('submit',e=>{e.preventDefault();const c=input.value.trim()
 if(logoutMode){$('title').textContent='تم تسجيل الخروج';$('hint').textContent='تم إنهاء جلسة الطالب على هذا الجهاز. يمكنك إدخال كود جديد.';msg('تم تسجيل الخروج بنجاح.',true)}
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
 if(switchMode||logoutMode)showResume(localStorage.getItem('hm_student_name')||'');
-const saved=localStorage.getItem('hm_student_code');
-if(saved&&!switchMode&&!logoutMode){
-  // لا تفتح الدرس تلقائيًا. تحقق من الكود ثم اعرض خيارات الجلسة.
-  validate(saved,true,'');
-}
+// لا نتحقق تلقائيًا من الكود المحفوظ عند فتح الصفحة؛
+ // حتى لا تتداخل جلسة قديمة مع إدخال كود جديد يدويًا.
 </script>
 </body>
 </html>
