@@ -112,9 +112,22 @@ async function loadLessonCatalogForId(id){
   const grade=gradeFromLessonId(id);
   if(!grade)return;
   if(!lessonCatalogCache.has(grade)){
-    const p=fetch('./data/lessons/grade-'+encodeURIComponent(grade)+'/lesson-registry.json?v=20260930-student-catalog-2',{cache:'no-store'})
+    const registryPath=grade==='9'
+      ? './data/lessons/grade-9/semester-1/lesson-registry.json'
+      : './data/lessons/grade-'+encodeURIComponent(grade)+'/lesson-registry.json';
+    const p=fetch(registryPath+'?v=20261001-student-catalog-3',{cache:'no-store'})
       .then(r=>r.ok?r.json():null)
-      .then(data=>{const map=new Map();if(data)addCatalogLessons(data,map);lessonCatalogCache.set(grade,map);return map})
+      .then(data=>{
+        const map=new Map();
+        if(data){
+          addCatalogLessons(data,map);
+          if(Array.isArray(data.units))data.units.forEach(u=>(u.lessons||[]).forEach(l=>{
+            if(l&&l.id)map.set(String(l.id),{title:l.titleAr||l.titleFr||l.id,meta:l.titleFr&&l.titleAr?l.titleFr:''});
+          }));
+        }
+        lessonCatalogCache.set(grade,map);
+        return map;
+      })
       .catch(()=>{const map=new Map();lessonCatalogCache.set(grade,map);return map});
     lessonCatalogCache.set(grade,p);
   }
