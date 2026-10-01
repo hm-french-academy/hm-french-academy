@@ -54,9 +54,13 @@ async function loadLessonCatalog(grade){
     const r=await fetch('data/lessons/grade-'+key+'/lesson-registry.json?v=20260930');
     if(!r.ok)throw new Error('registry '+r.status);
     const data=await r.json();
-    const units=(data.includedUnits||[]).map((u,i)=>{
+    const rawUnits=(data.includedUnits||[]).map((u,i)=>({id:u.id||('unit-'+(i+1)),titleAr:u.titleAr,titleFr:u.titleFr,lessons:u.lessons||[]}));
+    if(!rawUnits.length && Array.isArray(data.lessons) && data.lessons.length){
+      rawUnits.push({id:'all-lessons',titleAr:'الدروس',titleFr:'Lessons',lessons:data.lessons});
+    }
+    const units=rawUnits.map((u,i)=>{
       const items=(u.lessons||[]).map(l=>[l.id,[l.titleAr,l.titleFr].filter(Boolean).join(' — ')||l.id]);
-      return [key+'::'+(u.id||('unit-'+(i+1))), 'الصف '+key+' · '+([u.titleAr,u.titleFr].filter(Boolean).join(' — ')||u.id||('الوحدة '+(i+1))), items];
+      return [key+'::'+u.id, 'الصف '+key+' · '+([u.titleAr,u.titleFr].filter(Boolean).join(' — ')||u.id||('الوحدة '+(i+1))), items];
     }).filter(x=>x[2].length);
     if(!units.length)throw new Error('empty registry');
     catalogCache.set(key,units);
