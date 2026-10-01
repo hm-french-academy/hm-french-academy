@@ -37,8 +37,6 @@ jobs:
           PY
       - name: Apply Premier Pas interactive vocabulary visuals
         run: node scripts/fix-premier-pas-vocab-visuals.js
-      - name: Repair Grade 4 Lesson 1 game interactions
-        run: node scripts/fix-grade4-l01-games.js
       - name: Patch annual revision feedback by stable question ID
         run: python3 scripts/fix-annual-revision-feedback.py
       - name: Add source-specific feedback to Grade 4 readiness review
