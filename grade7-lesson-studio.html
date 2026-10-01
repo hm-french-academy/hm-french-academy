@@ -1,1 +1,11 @@
-<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy | الصف الأول الإعدادي</title><body><p style="font-family:Arial;text-align:center;padding:40px">جاري فتح الدرس…</p><!-- grade7-u1-l1-final.html compatibility marker --><script>const p=new URLSearchParams(location.search),id=p.get('id')||'grade7-u1-l1',section=p.get('section')||'introduction';if(id==='grade7-u1-l1'&&section==='video')location.replace('grade7-u1-l1-video.html?'+p.toString());else if(id==='grade7-u1-l1')location.replace('grade7-u1-l1-clean.html?'+p.toString());else location.replace('grade7-lesson-studio-live-v6.html?'+p.toString())</script>
+<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy | الصف الأول الإعدادي</title><body><p style="font-family:Arial;text-align:center;padding:40px">جاري فتح الدرس…</p><script>
+const p=new URLSearchParams(location.search),id=p.get('id')||'grade7-u1-l1';
+const allowed=/^grade7-u[1-3]-l[1-6]$/.test(id)||/^grade7-u2-l[12]$/.test(id)||/^grade7-u3-l[1-3]$/.test(id);
+if(allowed){
+  const q=new URLSearchParams(p);
+  if(!q.get('section'))q.set('section','introduction');
+  location.replace('grade7-lesson-studio-live-v2.html?'+q.toString());
+}else{
+  location.replace('lesson.html?'+p.toString());
+}
+</script>
