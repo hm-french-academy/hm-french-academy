@@ -51,10 +51,11 @@ async function loadLessonCatalog(grade){
   if(!key)return;
   if(catalogCache.has(key)){replaceGradeGroups(key,catalogCache.get(key));return}
   try{
-    const r=await fetch('data/lessons/grade-'+key+'/lesson-registry.json?v=20260930');
+    const registryPath=key==='9'?'data/lessons/grade-9/semester-1/lesson-registry.json':'data/lessons/grade-'+key+'/lesson-registry.json';
+    const r=await fetch(registryPath+'?v=20261001');
     if(!r.ok)throw new Error('registry '+r.status);
     const data=await r.json();
-    const rawUnits=(data.includedUnits||[]).map((u,i)=>({id:u.id||('unit-'+(i+1)),titleAr:u.titleAr,titleFr:u.titleFr,lessons:u.lessons||[]}));
+    const rawUnits=(data.includedUnits||data.units||[]).map((u,i)=>({id:u.id||('unit-'+(i+1)),titleAr:u.titleAr,titleFr:u.titleFr,lessons:u.lessons||[]}));
     if(!rawUnits.length && Array.isArray(data.lessons) && data.lessons.length){
       rawUnits.push({id:'all-lessons',titleAr:'الدروس',titleFr:'Lessons',lessons:data.lessons});
     }
