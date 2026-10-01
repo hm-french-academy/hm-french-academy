@@ -92,14 +92,15 @@ const LESSON_TITLES={
 const lessonCatalogCache=new Map();
 function canonicalLessonId(id){
   const k=String(id||'');
-  let m=k.match(/^grade(6)-l(\\d+)$/i); if(m)return 'g'+m[1]+'-l'+m[2];
-  m=k.match(/^grade(9)-(u\\d+-l\\d+)$/i); if(m)return 'g'+m[1]+'-'+m[2];
+  let m=k.match(/^grade(6)-l(\d+)$/i); if(m)return 'g'+m[1]+'-l'+m[2];
+  m=k.match(/^grade(6)-u\d+-l(\d+)$/i); if(m)return 'g6-l'+m[1];
+  m=k.match(/^grade(9)-(u\d+-l\d+)$/i); if(m)return 'g9-'+m[2];
   return k;
 }
 function gradeFromLessonId(id){
   const k=canonicalLessonId(id);
-  let m=k.match(/^g(\\d+)-/i); if(m)return m[1];
-  m=k.match(/^grade(\\d+)-/i); return m?m[1]:'';
+  let m=k.match(/^g(\d+)-/i); if(m)return m[1];
+  m=k.match(/^grade(\d+)-/i); return m?m[1]:'';
 }
 function gradeTextFor(grade){
   const g=Number(grade);
