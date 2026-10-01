@@ -4,7 +4,11 @@ const allowed=/^grade7-u[1-3]-l[1-6]$/.test(id)||/^grade7-u2-l[12]$/.test(id)||/
 if(allowed){
   const q=new URLSearchParams(p);
   if(!q.get('section'))q.set('section','introduction');
-  location.replace('grade7-lesson-studio-live-v2.html?'+q.toString());
+  if(id==='grade7-u1-l1'){
+    location.replace('grade7-u1-l1-clean.html?'+q.toString());
+  }else{
+    location.replace('grade7-lesson-studio-live-v2.html?'+q.toString());
+  }
 }else{
   location.replace('lesson.html?'+p.toString());
 }
