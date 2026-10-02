@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <script src="scripts/student-gate.js"></script>
+  <script src="scripts/student-gate.js?v=20261002-student-ui"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-store">
@@ -194,6 +194,44 @@ const init=()=>{document.getElementById('titleAr').textContent=data.titleAr;docu
 if(id==='g9-u1-l2'){data={"id":"g9-u1-l2","unit":"Le sport","titleFr":"Les lieux, les personnages et les objets sportifs","titleAr":"أماكن الرياضة والشخصيات والأدوات الرياضية","sourcePages":"20-23","journey":{"vocabulary":[{"fr":"au club","ar":"في النادي"},{"fr":"à la piscine","ar":"في حمام السباحة"},{"fr":"au stade","ar":"في الملعب"},{"fr":"à l'école","ar":"في المدرسة"},{"fr":"les supporters","ar":"المشجعون"},{"fr":"l'arbitre","ar":"الحكم"},{"fr":"les joueurs","ar":"اللاعبون"},{"fr":"l'entraîneur","ar":"المدرب"},{"fr":"un maillot de bain","ar":"ملابس السباحة"},{"fr":"des gants","ar":"قفازات"},{"fr":"un maillot sportif","ar":"زي رياضي"},{"fr":"des chaussures de sport","ar":"حذاء رياضي"}],"grammar":["Jouer à + sport","Jouer de + instrument","Faire de + activité","À / au / à la / à l' dans les lieux"],"conversation":["Quel sport préfères-tu ? — Je préfère le football.","Où pratiques-tu ton sport préféré ? — Je pratique la natation à la piscine.","Qui est sur le terrain ? — L'arbitre, les joueurs et les supporters.","Tu joues de quel instrument ? — Je joue de la guitare."],"practice":["Associer personnage et action","Choisir le lieu adapté à la pratique d'un sport","Compléter avec jouer à, jouer de ou faire de","Choisir la préposition correcte pour un lieu","Construire une phrase à partir de lieu + sport + personnage","Identifier l'erreur dans une phrase et la corriger","Décrire une scène sportive en trois phrases"],"pronunciation":["Répéter les lieux et les métiers du sport avec leur article","Lire à voix haute les structures jouer à, jouer de et faire de","Travailler l'intonation de Quel sport préfères-tu ? et Où pratiques-tu ton sport préféré ?","Faire une écoute-répétition puis répondre oralement avec une phrase complète","Distinguer au, à la, à l' et aux dans des phrases sur les lieux","Jouer un court échange question-réponse à partir d'une scène sportive"],"visual":["Associer chaque lieu sportif à son illustration","Identifier l'arbitre, les joueurs, les supporters et l'entraîneur","Associer chaque objet sportif à son nom","Associer une scène sportive à la structure française correcte: jouer à, jouer de ou faire de","Créer un terrain sportif interactif où l'élève clique sur un personnage ou un objet pour entendre et produire son nom","Associer lieu + sport + action dans une scène complète"],"assessment":["Décrire le lieu où l'on pratique un sport","Répondre à une question sur le sport préféré","Choisir entre jouer à, jouer de et faire de","Produire oralement une phrase à partir d'une scène sportive","Identifier correctement les personnages et objets sportifs","Décrire une scène sportive en plusieurs phrases","Corriger une erreur de préposition ou de structure"],"video":"https://www.youtube.com/embed/sHsu2P0M7Xs"}};init();return}
 if(id==='g9-u1-l3'){data=G9L3_DATA;document.getElementById('titleAr').textContent=data.titleAr;document.getElementById('subtitle').textContent=data.titleFr+' · الصف الثالث الإعدادي · '+data.unit;const h=new URLSearchParams(location.search).get('section');const map={start:0,vocabulary:1,vocab:1,pronunciation:2,pron:2,grammar:3,conversation:4,conv:4,video:5,practice:6,games:7,'smart-review':8,review:8,evaluation:9,assessment:9,progress:10};if(h&&map[h]!=null)idx=map[h];renderG9L3();const completeBtn=document.getElementById('complete');if(completeBtn)completeBtn.onclick=()=>{completed=true;save();renderG9L3()};return}const r=await fetch('data/lessons/grade-9/semester-1/'+file+'?v=20260925-standard-l3-fix',{cache:'no-store'});if(!r.ok)throw 0;data=await r.json();init()
 }catch(e){panel.innerHTML='<div class="empty">تعذر تحميل محتوى الدرس. يرجى تحديث الصفحة.</div>'}})();
+</script>
+<script>
+(function(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('student')!=='1') return;
+  function applyStudentUI(name){
+    const home=document.querySelector('.home-btn');
+    if(home) home.style.display='none';
+    const brand=document.querySelector('.brand');
+    if(brand){brand.style.pointerEvents='none';brand.removeAttribute('href');}
+    if(!name) return;
+    let bar=document.getElementById('hm-student-namebar');
+    if(!bar){
+      bar=document.createElement('div');
+      bar.id='hm-student-namebar';
+      bar.dir='rtl';
+      bar.style.cssText='margin:-2px 0 14px;padding:12px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
+      const header=document.querySelector('.student-header');
+      if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
+    }
+    bar.textContent='👋 الطالب: '+name;
+  }
+  function start(){
+    applyStudentUI((localStorage.getItem('hm_student_name')||'').trim());
+    const code=localStorage.getItem('hm_student_code'), device=localStorage.getItem('hm_student_browser_id'), lesson=p.get('id')||'';
+    if(!code||!device||localStorage.getItem('hm_student_name')) return;
+    fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{
+      method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',
+      body:JSON.stringify({code:code,device_id:device,lesson_id:lesson||undefined})
+    }).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.valid!==false&&d.ok!==false&&d.student_name){
+        localStorage.setItem('hm_student_name',d.student_name);
+        applyStudentUI(d.student_name);
+      }
+    }).catch(()=>{});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+})();
 </script>
 </body>
 </html>
