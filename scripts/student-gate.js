@@ -46,19 +46,28 @@
       ];
       sels.forEach(sel=>root.querySelectorAll(sel).forEach(el=>{el.style.display='none';el.setAttribute('aria-hidden','true')}));
     };
-    hideHomeLinks();
-    if(studentName){
-      const existing=document.getElementById('hm-student-namebar');
-      if(!existing){
-        const bar=document.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
-        bar.textContent='👋 الطالب: '+studentName;
-        bar.style.cssText='margin:0 0 12px;padding:11px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
-        const header=document.querySelector('.student-header');
-        const main=document.querySelector('main');
-        if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
-        else if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
-        else (document.body||document.documentElement).prepend(bar);
+    // Apply the student-only chrome immediately and keep it applied if a page renders
+    // its header/navigation after this script runs.
+    const applyStudentChrome=()=>{
+      hideHomeLinks();
+      if(studentName){
+        const existing=document.getElementById('hm-student-namebar');
+        if(!existing){
+          const bar=document.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
+          bar.textContent='👋 أهلًا بك، '+studentName;
+          bar.style.cssText='margin:12px auto 18px;padding:12px 18px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 8px 24px rgba(20,38,74,.10);color:#173a82;font-weight:900;font-size:16px;text-align:right;max-width:calc(100% - 32px);';
+          const main=document.querySelector('main');
+          const header=document.querySelector('.hm-header,.student-header,header');
+          if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
+          else if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
+          else (document.body||document.documentElement).prepend(bar);
+        }
       }
+    };
+    applyStudentChrome();
+    if(!window.__HM_STUDENT_CHROME_OBSERVER){
+      window.__HM_STUDENT_CHROME_OBSERVER=new MutationObserver(()=>applyStudentChrome());
+      window.__HM_STUDENT_CHROME_OBSERVER.observe(document.documentElement,{childList:true,subtree:true});
     }
     // Some lesson versions are wrapped in same-origin iframes. Apply the same
     // student UI rules inside them so old home icons cannot leak through.
