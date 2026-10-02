@@ -195,5 +195,48 @@ if(id==='g9-u1-l3'){data=G9L3_DATA;document.getElementById('titleAr').textConten
 }catch(e){panel.innerHTML='<div class="empty">تعذر تحميل محتوى الدرس. يرجى تحديث الصفحة.</div>'}})();
 </script>
 </script>
+<script>
+(function(){
+  'use strict';
+  const p=new URLSearchParams(location.search);
+  if(p.get('student')!=='1' && !localStorage.getItem('hm_student_code')) return;
+  function apply(name){
+    document.querySelectorAll('.home-btn,a.home-btn,a[href="index.html"],a[href*="/index.html"]').forEach(a=>a.style.display='none');
+    const brand=document.querySelector('.brand');
+    if(brand){brand.removeAttribute('href');brand.style.pointerEvents='none';}
+    const old=document.getElementById('studentNameTop');
+    if(old) old.style.display='none';
+    name=String(name||localStorage.getItem('hm_student_name')||'').trim();
+    if(!name)return;
+    let bar=document.getElementById('hm-student-namebar');
+    if(!bar){
+      bar=document.createElement('div');
+      bar.id='hm-student-namebar';
+      bar.dir='rtl';
+      bar.style.cssText='margin:0 0 12px;padding:11px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
+      const header=document.querySelector('.student-header');
+      if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
+    }
+    bar.textContent='👋 الطالب: '+name;
+  }
+  function start(){
+    apply('');
+    const name=(localStorage.getItem('hm_student_name')||'').trim();
+    if(name)return;
+    const code=localStorage.getItem('hm_student_code'),device=localStorage.getItem('hm_student_browser_id');
+    if(!code||!device)return;
+    fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{
+      method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',
+      body:JSON.stringify({code:code,device_id:device,lesson_id:p.get('id')||''})
+    }).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.student_name){
+        localStorage.setItem('hm_student_name',String(d.student_name));
+        apply(d.student_name);
+      }
+    }).catch(()=>{});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
 </body>
 </html>
