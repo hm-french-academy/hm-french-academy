@@ -238,5 +238,25 @@ if(id==='g9-u1-l3'){data=G9L3_DATA;document.getElementById('titleAr').textConten
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 </script>
+<script>
+(function(){
+  function addStudentActions(){
+    if(!localStorage.getItem('hm_student_code') && new URLSearchParams(location.search).get('student')!=='1') return;
+    if(document.getElementById('hm-student-tools')) return;
+    const box=document.createElement('div');
+    box.id='hm-student-tools';
+    box.dir='rtl';
+    box.style.cssText='display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:42px auto 28px;padding:0 16px;position:relative;z-index:9999;';
+    box.innerHTML='<button type="button" style="border:1px solid #d8e1ec;border-radius:12px;padding:11px 16px;background:#1f5d9b;color:#fff;font-weight:800;font-size:14px;cursor:pointer">🔑 دخول درس آخر</button><button type="button" style="border:1px solid #d8e1ec;border-radius:12px;padding:11px 16px;background:#fff;color:#b42318;font-weight:800;font-size:14px;cursor:pointer">🚪 تسجيل الخروج</button>';
+    document.body.appendChild(box);
+    box.children[0].onclick=function(){location.href='student-link.html?switch=1'};
+    box.children[1].onclick=function(){
+      ['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));
+      location.href='student-link.html?logout=1';
+    };
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addStudentActions,{once:true});else addStudentActions();
+})();
+</script>
 </body>
 </html>
