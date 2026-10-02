@@ -22,12 +22,14 @@ html.hm-student-authorized .home-btn{display:none!important}html.hm-student-auth
 <body>
 <div class="wrap">
 <header class="student-header"><a class="brand" href="index.html"><span class="brand-logo">HM</span><span>🇫🇷 HM Academy</span></a><div class="header-actions"><a class="unit-btn" href="grade-9.html">📚 دروس الصف الثالث</a><a class="home-btn" href="index.html">⌂ الرئيسية</a></div></header>
+<div id="studentNameTop" style="display:none;margin:0 0 12px;padding:11px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;text-align:right">👋 الطالب: <span id="studentNameText"></span></div>
 <section class="hero"><h1 id="titleAr">جارٍ تحميل الدرس...</h1><p id="subtitle"></p><div class="journey"><span>🚀 استكشف</span><span>🖼️ تعلم</span><span>📍 الأماكن والأشخاص</span><span>📘 افهم</span><span>💬 تواصل</span><span>🎯 تدرب</span><span>🎮 العب</span><span>🧠 راجع</span><span>🏆 قيّم</span><span>📈 تقدم</span></div></section>
 <nav class="nav" id="nav"></nav><section class="panel" id="panel"></section>
 <section class="complete"><div><b>🏁 رحلة التعلم</b><div id="status">تقدمك محفوظ على هذا الجهاز.</div></div><button class="btn primary" id="complete">إكمال الدرس</button></section>
 </div>
 <script>
 'use strict';
+(function(){const n=(localStorage.getItem('hm_student_name')||'').trim(),s=new URLSearchParams(location.search);if(n&&(localStorage.getItem('hm_student_code')||s.get('student')==='1')){const b=document.getElementById('studentNameTop');document.getElementById('studentNameText').textContent=n;b.style.display='block';document.documentElement.classList.add('hm-student-authorized');document.querySelectorAll('a.home-btn,a[href="index.html"]').forEach(a=>a.style.display='none')}})();
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
 if(id==='g9-u1-l2'){document.querySelector('.student-header').style.display='none';}
 const file=id.replace(/^g9-/,'')+'.json';
