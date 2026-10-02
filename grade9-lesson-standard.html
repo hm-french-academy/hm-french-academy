@@ -28,8 +28,6 @@ html.hm-student-authorized .home-btn{display:none!important}html.hm-student-auth
 <section class="complete"><div><b>🏁 رحلة التعلم</b><div id="status">تقدمك محفوظ على هذا الجهاز.</div></div><button class="btn primary" id="complete">إكمال الدرس</button></section>
 </div>
 <script>
-'use strict';
-(function(){const s=new URLSearchParams(location.search),isStudent=s.get('student')==='1'||!!localStorage.getItem('hm_student_code');if(!isStudent)return;document.documentElement.classList.add('hm-student-authorized');document.querySelectorAll('.home-btn,a.home-btn,a[href="index.html"],a[href*="index.html"]').forEach(a=>a.style.display='none');const bar=document.getElementById('studentNameTop'),txt=document.getElementById('studentNameText');let n=(localStorage.getItem('hm_student_name')||'').trim();if(n){txt.textContent=n;bar.style.display='block';}else{const code=localStorage.getItem('hm_student_code')||'',device=localStorage.getItem('hm_student_browser_id')||'';if(code&&device){fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code,device_id:device,lesson_id:s.get('id')||''}),cache:'no-store'}).then(r=>r.json()).then(d=>{if(d&&d.student_name){localStorage.setItem('hm_student_name',String(d.student_name));txt.textContent=String(d.student_name);bar.style.display='block';}}).catch(()=>{});}}})();
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
 const file=id.replace(/^g9-/,'')+'.json';
 const iconMap={
@@ -196,43 +194,6 @@ if(id==='g9-u1-l2'){data={"id":"g9-u1-l2","unit":"Le sport","titleFr":"Les lieux
 if(id==='g9-u1-l3'){data=G9L3_DATA;document.getElementById('titleAr').textContent=data.titleAr;document.getElementById('subtitle').textContent=data.titleFr+' · الصف الثالث الإعدادي · '+data.unit;const h=new URLSearchParams(location.search).get('section');const map={start:0,vocabulary:1,vocab:1,pronunciation:2,pron:2,grammar:3,conversation:4,conv:4,video:5,practice:6,games:7,'smart-review':8,review:8,evaluation:9,assessment:9,progress:10};if(h&&map[h]!=null)idx=map[h];renderG9L3();const completeBtn=document.getElementById('complete');if(completeBtn)completeBtn.onclick=()=>{completed=true;save();renderG9L3()};return}const r=await fetch('data/lessons/grade-9/semester-1/'+file+'?v=20260925-standard-l3-fix',{cache:'no-store'});if(!r.ok)throw 0;data=await r.json();init()
 }catch(e){panel.innerHTML='<div class="empty">تعذر تحميل محتوى الدرس. يرجى تحديث الصفحة.</div>'}})();
 </script>
-<script>
-(function(){
-  const p=new URLSearchParams(location.search);
-  if(p.get('student')!=='1') return;
-  function applyStudentUI(name){
-    const home=document.querySelector('.home-btn');
-    if(home) home.style.display='none';
-    const brand=document.querySelector('.brand');
-    if(brand){brand.style.pointerEvents='none';brand.removeAttribute('href');}
-    if(!name) return;
-    let bar=document.getElementById('hm-student-namebar');
-    if(!bar){
-      bar=document.createElement('div');
-      bar.id='hm-student-namebar';
-      bar.dir='rtl';
-      bar.style.cssText='margin:-2px 0 14px;padding:12px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
-      const header=document.querySelector('.student-header');
-      if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
-    }
-    bar.textContent='👋 الطالب: '+name;
-  }
-  function start(){
-    applyStudentUI((localStorage.getItem('hm_student_name')||'').trim());
-    const code=localStorage.getItem('hm_student_code'), device=localStorage.getItem('hm_student_browser_id'), lesson=p.get('id')||'';
-    if(!code||!device||localStorage.getItem('hm_student_name')) return;
-    fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{
-      method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',
-      body:JSON.stringify({code:code,device_id:device,lesson_id:lesson||undefined})
-    }).then(r=>r.ok?r.json():null).then(d=>{
-      if(d&&d.valid!==false&&d.ok!==false&&d.student_name){
-        localStorage.setItem('hm_student_name',d.student_name);
-        applyStudentUI(d.student_name);
-      }
-    }).catch(()=>{});
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
-})();
 </script>
 </body>
 </html>
