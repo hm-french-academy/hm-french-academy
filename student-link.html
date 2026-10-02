@@ -52,8 +52,9 @@ function deviceId(){
 function msg(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'');}
 function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
-  // Route every student lesson through the canonical lesson router.
-  // The router maps each lesson ID to its own grade-specific Learning Studio.
+  if(String(id)==='secondary-french-intro')
+    return 'secondary-french-intro.html?id=secondary-french-intro&v=20261002-student-intro&student=1';
+  // Route every standard student lesson through the canonical lesson router.
   return 'lesson.html?id='+encodeURIComponent(id)+'&v=20261001-route-fix&section=lesson&student=1';
 }
 const LESSON_TITLES={
@@ -87,6 +88,7 @@ const LESSON_TITLES={
   'g4-l05':['صفات الملكية — الوجه','Adjectifs possessifs — visage'],
   'g4-l06':['الجسم','Le corps'],
   'g4-l07':['صفات الملكية — الجسم','Adjectifs possessifs — corps'],
+  'secondary-french-intro':['مقدمة اللغة الفرنسية — الصف الأول الثانوي','Introduction au français — Première secondaire'],
   'g6-l01':['في السوق','Au marché'],
 };
 const lessonCatalogCache=new Map();
