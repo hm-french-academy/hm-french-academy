@@ -31,9 +31,24 @@
 
   function tools(){
     if(document.getElementById('hm-student-tools')) return;
+    const studentName=(localStorage.getItem('hm_student_name')||'').trim();
     const s=document.createElement('style');s.id='hm-student-tools-style';
     s.textContent='#hm-student-tools{position:fixed;z-index:2147483000;right:14px;bottom:14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{right:10px;bottom:10px;left:10px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
     document.head.appendChild(s);
+    document.documentElement.classList.add('hm-student-authorized');
+    const homeSelectors=['a.home-btn','a[href="index.html"].home-btn','a[href="../index.html"].home-btn'];
+    homeSelectors.forEach(sel=>document.querySelectorAll(sel).forEach(el=>el.style.display='none'));
+    if(studentName){
+      const existing=document.getElementById('hm-student-namebar');
+      if(!existing){
+        const bar=document.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
+        bar.textContent='👋 الطالب: '+studentName;
+        bar.style.cssText='margin:0 0 12px;padding:11px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
+        const header=document.querySelector('.student-header');
+        if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
+        else (document.body||document.documentElement).prepend(bar);
+      }
+    }
     const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
     box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
     (document.body||document.documentElement).appendChild(box);
