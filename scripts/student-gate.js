@@ -151,6 +151,15 @@
 
     const code=localStorage.getItem('hm_student_code');
     const device=localStorage.getItem('hm_student_browser_id');
+    const sessionName=(localStorage.getItem('hm_student_name')||'').trim();
+
+    // Rebuild the student controls immediately from the persisted session.
+    // The API check below remains authoritative and can still redirect if the
+    // session/code is no longer valid.
+    if(code && sessionName){
+      document.documentElement.classList.add('hm-student-authorized');
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
+    }
 
     if(!code||!device){
       go(lesson);
