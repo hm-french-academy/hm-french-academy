@@ -17,6 +17,18 @@
   const qs=new URLSearchParams(location.search);
   const lesson=qs.get('id')||qs.get('lesson')||'';
 
+  // If a student session already exists, enter the closed student shell immediately.
+  // This prevents the public navigation from flashing back in after refresh.
+  const persistedCode=(localStorage.getItem('hm_student_code')||'').trim();
+  const persistedName=(localStorage.getItem('hm_student_name')||'').trim();
+  if(persistedCode){
+    document.documentElement.classList.add('hm-student-authorized');
+    const early=document.createElement('style');
+    early.id='hm-student-early-style';
+    early.textContent='html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-tools,html.hm-student-authorized .hm-header .hm-brand[href*="index.html"],html.hm-student-authorized header a[href*="secondary-french-intro.html"]{display:none!important}';
+    (document.head||document.documentElement).appendChild(early);
+  }
+
   function go(id){
     const u=new URL(LOGIN);
     if(id)u.searchParams.set('lesson',id);
@@ -33,7 +45,7 @@
     if(document.getElementById('hm-student-tools')) return;
     const studentName=(localStorage.getItem('hm_student_name')||'').trim();
     const s=document.createElement('style');s.id='hm-student-tools-style';
-    s.textContent='html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-tools,html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:relative;z-index:20;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{margin:32px auto 20px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
+    s.textContent='html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-tools,html.hm-student-authorized .hm-header .hm-brand,html.hm-student-authorized .hm-header .hm-nav,html.hm-student-authorized header a[href*="secondary-french-intro.html"],html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:relative;z-index:20;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{margin:32px auto 20px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
     document.head.appendChild(s);
     document.documentElement.classList.add('hm-student-authorized');
     // Student mode: remove every visible route back to the public homepage,
@@ -151,11 +163,15 @@
     // This prevents the same authorized lesson from bouncing back to the code screen.
     const verifiedLesson=localStorage.getItem('hm_student_verified_lesson')||'';
     const verifiedAt=Number(localStorage.getItem('hm_student_verified_at')||0);
-    if(lesson && verifiedLesson===lesson && Date.now()-verifiedAt < 30*60*1000 && (localStorage.getItem('hm_student_name')||'').trim()){
+    const persistedStudentName=(localStorage.getItem('hm_student_name')||'').trim();
+    const recentSession=Date.now()-verifiedAt < 30*60*1000 && !!persistedStudentName;
+    if(recentSession && (!lesson || !verifiedLesson || verifiedLesson===lesson)){
       document.documentElement.classList.add('hm-student-authorized');
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
       return;
     }
+    // Keep the student shell visible while a new lesson is being verified.
+    // The API response below still decides whether access is allowed.
 
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),7000);
