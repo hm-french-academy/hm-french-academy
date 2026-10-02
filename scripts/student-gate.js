@@ -62,8 +62,11 @@
     // its header/navigation after this script runs.
     const applyStudentChrome=()=>{
       hideHomeLinks();
+
+      // Welcome bar: keep exactly one copy and recreate it if the page renderer
+      // replaces the body/main after refresh or navigation.
       if(studentName){
-        const existing=document.getElementById('hm-student-namebar');
+        let existing=document.getElementById('hm-student-namebar');
         if(!existing){
           const bar=document.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
           bar.textContent='👋 أهلًا بك، '+studentName;
@@ -73,7 +76,22 @@
           if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
           else if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
           else (document.body||document.documentElement).prepend(bar);
+          existing=bar;
         }
+        existing.textContent='👋 أهلًا بك، '+studentName;
+      }
+
+      // Bottom controls: they are intentionally NOT part of the public header.
+      // Recreate them whenever a lesson renderer replaces the page DOM.
+      if(!document.getElementById('hm-student-tools') && (document.body||document.documentElement)){
+        const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
+        box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
+        (document.body||document.documentElement).appendChild(box);
+        box.querySelector('#hm-switch-lesson').onclick=newLesson;
+        box.querySelector('#hm-student-logout').onclick=function(){
+          ['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));
+          const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
+        };
       }
     };
     applyStudentChrome();
@@ -100,18 +118,7 @@
       frame.addEventListener('load',sync);
       sync();
     });
-    const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
-    box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
-    (document.body||document.documentElement).appendChild(box);
-    document.getElementById('hm-switch-lesson').onclick=newLesson;
-    document.getElementById('hm-student-logout').onclick=function(){
-      localStorage.removeItem('hm_student_code');
-      localStorage.removeItem('hm_student_current_lesson');
-      localStorage.removeItem('hm_student_verified_lesson');
-      localStorage.removeItem('hm_student_verified_at');
-      localStorage.removeItem('hm_student_name');
-      const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
-    };
+
   }
 
   async function getAdminSession(){
