@@ -33,7 +33,7 @@
     if(document.getElementById('hm-student-tools')) return;
     const studentName=(localStorage.getItem('hm_student_name')||'').trim();
     const s=document.createElement('style');s.id='hm-student-tools-style';
-    s.textContent='html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized a[href*="/index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:fixed;z-index:2147483000;right:14px;bottom:14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{right:10px;bottom:10px;left:10px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
+    s.textContent='html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized a[href*="/index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:relative;z-index:20;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{margin:32px auto 20px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
     document.head.appendChild(s);
     document.documentElement.classList.add('hm-student-authorized');
     // Student mode: remove every visible route back to the public homepage,
@@ -88,6 +88,7 @@
       localStorage.removeItem('hm_student_current_lesson');
       localStorage.removeItem('hm_student_verified_lesson');
       localStorage.removeItem('hm_student_verified_at');
+      localStorage.removeItem('hm_student_name');
       const u=new URL(LOGIN);u.searchParams.set('logout','1');location.replace(u.href);
     };
   }
