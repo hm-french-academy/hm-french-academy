@@ -36,8 +36,17 @@
     s.textContent='#hm-student-tools{position:fixed;z-index:2147483000;right:14px;bottom:14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{right:10px;bottom:10px;left:10px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
     document.head.appendChild(s);
     document.documentElement.classList.add('hm-student-authorized');
-    const homeSelectors=['a.home-btn','a[href="index.html"].home-btn','a[href="../index.html"].home-btn'];
-    homeSelectors.forEach(sel=>document.querySelectorAll(sel).forEach(el=>el.style.display='none'));
+    // Student mode: remove every visible route back to the public homepage,
+    // not only the legacy .home-btn class. This keeps the lesson a closed student session.
+    const hideHomeLinks=(root=document)=>{
+      const sels=[
+        'a.home-btn','a[href="index.html"]','a[href="../index.html"]',
+        'a[href="./index.html"]','a[href*="/index.html"]',
+        '.hm-nav a[href$="index.html"]','.hm-brand[href*="index.html"]'
+      ];
+      sels.forEach(sel=>root.querySelectorAll(sel).forEach(el=>{el.style.display='none';el.setAttribute('aria-hidden','true')}));
+    };
+    hideHomeLinks();
     if(studentName){
       const existing=document.getElementById('hm-student-namebar');
       if(!existing){
@@ -45,10 +54,31 @@
         bar.textContent='👋 الطالب: '+studentName;
         bar.style.cssText='margin:0 0 12px;padding:11px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
         const header=document.querySelector('.student-header');
+        const main=document.querySelector('main');
         if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
+        else if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
         else (document.body||document.documentElement).prepend(bar);
       }
     }
+    // Some lesson versions are wrapped in same-origin iframes. Apply the same
+    // student UI rules inside them so old home icons cannot leak through.
+    document.querySelectorAll('iframe').forEach(frame=>{
+      const sync=()=>{
+        try{
+          const doc=frame.contentDocument;
+          if(!doc)return;
+          hideHomeLinks(doc);
+          if(studentName&&!doc.getElementById('hm-student-namebar')){
+            const bar=doc.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
+            bar.textContent='👋 الطالب: '+studentName;
+            bar.style.cssText='position:relative;z-index:2147483000;margin:10px 14px;padding:10px 14px;border-radius:14px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:14px;text-align:right;';
+            (doc.body||doc.documentElement).prepend(bar);
+          }
+        }catch(e){}
+      };
+      frame.addEventListener('load',sync);
+      sync();
+    });
     const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
     box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
     (document.body||document.documentElement).appendChild(box);
