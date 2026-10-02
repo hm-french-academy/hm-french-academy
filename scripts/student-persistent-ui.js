@@ -18,7 +18,7 @@ function welcome(){
   if(main&&main.parentNode)main.parentNode.insertBefore(b,main);
   else if(header&&header.parentNode)header.parentNode.insertBefore(b,header.nextSibling);
   else(document.body||document.documentElement).prepend(b);
- }else b.textContent='👋 أهلًا بك، '+n;
+ }else if(b.textContent!=='👋 أهلًا بك، '+n) b.textContent='👋 أهلًا بك، '+n;
 }
 function tools(){
  if(!active()||document.getElementById(TOOLS_ID))return;
@@ -29,6 +29,14 @@ function tools(){
  b.querySelector('.hm-logout').onclick=function(){['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name','hm_student_browser_id'].forEach(function(k){localStorage.removeItem(k)});location.replace(login()+'?logout=1')};
 }
 function render(){if(!active())return;style();welcome();tools()}
-function start(){render();new MutationObserver(render).observe(document.documentElement,{subtree:true,childList:true});setInterval(render,700)}
+function start(){
+ render();
+ var scheduled=false;
+ new MutationObserver(function(){
+   if(scheduled||!active())return;
+   scheduled=true;
+   setTimeout(function(){scheduled=false;render()},100);
+ }).observe(document.documentElement,{subtree:true,childList:true});
+}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
