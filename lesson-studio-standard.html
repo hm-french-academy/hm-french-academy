@@ -83,5 +83,23 @@ const completeButton=document.getElementById('complete');completeButton.onclick=
 <script src="scripts/supabase-client.js?v=20260903"></script>
 <script src="scripts/learning-progress.js?v=20260903"></script>
 <script src="scripts/lesson-complete.js?v=20260903"></script>
+<script>
+(function(){
+  'use strict';
+  if(!localStorage.getItem('hm_student_code')) return;
+  if(document.getElementById('hm-student-tools')) return;
+  var box=document.createElement('div');
+  box.id='hm-student-tools';
+  box.dir='rtl';
+  box.style.cssText='position:relative;z-index:9999;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);justify-content:center;';
+  box.innerHTML='<button type="button" style="border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#1f5d9b;color:#fff;font-weight:800;font-size:13px;cursor:pointer">🔑 دخول درس آخر</button><button type="button" style="border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#b42318;font-weight:800;font-size:13px;cursor:pointer">🚪 تسجيل الخروج</button>';
+  document.body.appendChild(box);
+  box.children[0].onclick=function(){location.href='student-link.html?switch=1'};
+  box.children[1].onclick=function(){
+    ['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name','hm_student_browser_id'].forEach(function(k){localStorage.removeItem(k)});
+    location.replace('student-link.html?logout=1');
+  };
+})();
+</script>
 </body>
 </html>
