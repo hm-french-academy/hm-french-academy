@@ -43,7 +43,8 @@ const groups=[
  ['4','الصف الرابع · دروس المنهج',[['g4-l01','Les saisons — الفصول'],['g4-l02','Les chiffres — الأرقام'],['g4-l03',"L'heure — الساعة"],['g4-l04','Mon visage — وجهي'],['g4-l05','Adjectifs possessifs — visage — صفات الملكية (الوجه)'],['g4-l06','Le corps — الجسم'],['g4-l07','Adjectifs possessifs — corps — صفات الملكية (الجسم)']]],
  ['7','الصف السابع · Unité 1',[['grade7-u1-l1','الدرس الأول'],['grade7-u1-l2','الدرس الثاني']]],
  ['8','الصف الثامن · Unité 1',[['grade8-u1-l1','الدرس الأول'],['grade8-u1-l2','الدرس الثاني']]],
- ['9','الصف التاسع · Unité 1',[['grade9-u1-l3','الدرس الثالث']]]
+ ['9','الصف التاسع · Unité 1',[['grade9-u1-l3','الدرس الثالث']]],
+ ['10','الصف الأول الثانوي · مقدمة المرحلة',[['secondary-french-intro','مقدمة اللغة الفرنسية — بوابة الصف الأول الثانوي']]]
 ];
 const catalogCache=new Map();
 async function loadLessonCatalog(grade){
@@ -74,7 +75,7 @@ function replaceGradeGroups(grade,units){
   for(let i=groups.length-1;i>=0;i--)if(groups[i][0]===String(grade))groups.splice(i,1);
   groups.push(...units.map(x=>[x[0].split('::')[0],x[1],x[2],true,x[0]]));
 }
-const temps={g4:['g4-l01','g4-l02','g4-l03','g4-l04','g4-l05','g4-l06','g4-l07'],g4first3:['g4-l01','g4-l02','g4-l03'],g7:['grade7-u1-l1','grade7-u1-l2'],g8:['grade8-u1-l1','grade8-u1-l2'],g9:['grade9-u1-l3'],clear:[]};
+const temps={secondaryIntro:['secondary-french-intro'],g4:['g4-l01','g4-l02','g4-l03','g4-l04','g4-l05','g4-l06','g4-l07'],g4first3:['g4-l01','g4-l02','g4-l03'],g7:['grade7-u1-l1','grade7-u1-l2'],g8:['grade8-u1-l1','grade8-u1-l2'],g9:['grade9-u1-l3'],clear:[]};
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const expired=c=>c.expires_at&&new Date(c.expires_at)<new Date();
 const soon=c=>c.expires_at&&!expired(c)&&new Date(c.expires_at)-Date.now()<=604800000;
