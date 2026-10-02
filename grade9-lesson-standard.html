@@ -29,9 +29,8 @@ html.hm-student-authorized .home-btn{display:none!important}html.hm-student-auth
 </div>
 <script>
 'use strict';
-(function(){const n=(localStorage.getItem('hm_student_name')||'').trim(),s=new URLSearchParams(location.search);if(n&&(localStorage.getItem('hm_student_code')||s.get('student')==='1')){const b=document.getElementById('studentNameTop');document.getElementById('studentNameText').textContent=n;b.style.display='block';document.documentElement.classList.add('hm-student-authorized');document.querySelectorAll('a.home-btn,a[href="index.html"]').forEach(a=>a.style.display='none')}})();
+(function(){const s=new URLSearchParams(location.search),isStudent=s.get('student')==='1'||!!localStorage.getItem('hm_student_code');if(!isStudent)return;document.documentElement.classList.add('hm-student-authorized');document.querySelectorAll('.home-btn,a.home-btn,a[href="index.html"],a[href*="index.html"]').forEach(a=>a.style.display='none');const bar=document.getElementById('studentNameTop'),txt=document.getElementById('studentNameText');let n=(localStorage.getItem('hm_student_name')||'').trim();if(n){txt.textContent=n;bar.style.display='block';}else{const code=localStorage.getItem('hm_student_code')||'',device=localStorage.getItem('hm_student_browser_id')||'';if(code&&device){fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code,device_id:device,lesson_id:s.get('id')||''}),cache:'no-store'}).then(r=>r.json()).then(d=>{if(d&&d.student_name){localStorage.setItem('hm_student_name',String(d.student_name));txt.textContent=String(d.student_name);bar.style.display='block';}}).catch(()=>{});}}})();
 const id=new URLSearchParams(location.search).get('id')||'g9-u1-l2';
-if(id==='g9-u1-l2'){document.querySelector('.student-header').style.display='none';}
 const file=id.replace(/^g9-/,'')+'.json';
 const iconMap={
 'au club':'🏟️','à la piscine':'🏊','au stade':'🏟️',"à l&#39;école":'🏫',
