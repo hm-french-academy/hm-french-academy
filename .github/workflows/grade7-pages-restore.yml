@@ -1,8 +1,6 @@
 name: Deploy HM Academy Pages (Grade 7 restore)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +9,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-grade7-manual
   cancel-in-progress: true
 
 jobs:
