@@ -195,7 +195,7 @@ async function validate(code,silent=false,requestedLesson=''){
     const timer=setTimeout(()=>controller.abort(),10000);
     let res;
     try{
-      res=await fetch(API+'?v='+LOGIN_BUILD,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
+      res=await fetch(API+'?v='+LOGIN_BUILD,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':'Bearer '+SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
     }finally{clearTimeout(timer)}
     const raw=await res.text();
     let data={}; try{data=JSON.parse(raw||'{}')}catch(_){}
