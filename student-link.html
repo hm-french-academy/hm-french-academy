@@ -242,7 +242,8 @@ async function validate(code,silent=false,requestedLesson=''){
     enter.disabled=false;
   }
 }
-form.addEventListener('submit',e=>{e.preventDefault();const c=input.value.trim().toUpperCase();if(!c)return msg('اكتب كود الطالب أولًا.');localStorage.removeItem('hm_student_current_lesson');validate(c,false,target)});
+function normalizeCode(value){return String(value||'').normalize('NFKC').replace(/[\\u200B-\\u200D\\uFEFF]/g,'').replace(/[\\u2010-\\u2015\\u2212]/g,'-').replace(/[\\s\\u00A0]+/g,'').toUpperCase();}
+form.addEventListener('submit',e=>{e.preventDefault();const c=normalizeCode(input.value);if(!c)return msg('اكتب كود الطالب أولًا.');input.value=c;localStorage.removeItem('hm_student_current_lesson');validate(c,false,target)});
 if(logoutMode){$('title').textContent='تم تسجيل الخروج';$('hint').textContent='تم إنهاء جلسة الطالب على هذا الجهاز. يمكنك إدخال كود جديد.';msg('تم تسجيل الخروج بنجاح.',true)}
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
 if(switchMode||logoutMode)showResume(localStorage.getItem('hm_student_name')||'');
