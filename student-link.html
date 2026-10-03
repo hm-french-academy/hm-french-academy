@@ -38,6 +38,7 @@ button:disabled{opacity:.65;cursor:wait}
 <script>
 const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
+const LOGIN_BUILD='20261003-login-fix-1';
 const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';const logoutMode=params.get('logout')==='1';
 const $=id=>document.getElementById(id);
 const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
@@ -194,7 +195,7 @@ async function validate(code,silent=false,requestedLesson=''){
     const timer=setTimeout(()=>controller.abort(),10000);
     let res;
     try{
-      res=await fetch(API,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
+      res=await fetch(API+'?v='+LOGIN_BUILD,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
     }finally{clearTimeout(timer)}
     const raw=await res.text();
     let data={}; try{data=JSON.parse(raw||'{}')}catch(_){}
@@ -244,7 +245,16 @@ async function validate(code,silent=false,requestedLesson=''){
   }
 }
 function normalizeCode(value){return String(value||'').normalize('NFKC').replace(/[\\u200B-\\u200D\\uFEFF]/g,'').replace(/[\\u2010-\\u2015\\u2212]/g,'-').replace(/[\\s\\u00A0]+/g,'').toUpperCase();}
-form.addEventListener('submit',e=>{e.preventDefault();const c=normalizeCode(input.value);if(!c)return msg('اكتب كود الطالب أولًا.');input.value=c;localStorage.removeItem('hm_student_current_lesson');validate(c,false,target)});
+function submitCode(){
+  const c=normalizeCode(input.value);
+  if(!c)return msg('اكتب كود الطالب أولًا.');
+  input.value=c;
+  localStorage.removeItem('hm_student_current_lesson');
+  validate(c,false,target);
+}
+form.addEventListener('submit',e=>{e.preventDefault();submitCode()});
+enter.addEventListener('click',e=>{e.preventDefault();submitCode()});
+window.addEventListener('error',e=>{if(e&&e.message)msg('حدث خطأ في صفحة الدخول: '+e.message);});
 if(logoutMode){$('title').textContent='تم تسجيل الخروج';$('hint').textContent='تم إنهاء جلسة الطالب على هذا الجهاز. يمكنك إدخال كود جديد.';msg('تم تسجيل الخروج بنجاح.',true)}
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
 if(switchMode||logoutMode)showResume(localStorage.getItem('hm_student_name')||'');
