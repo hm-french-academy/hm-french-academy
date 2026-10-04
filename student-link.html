@@ -1,1 +1,18 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy - دخول الطالب</title><style>body{font-family:system-ui;min-height:100vh;display:grid;place-items:center;background:#f5f8fc}.card{width:min(500px,90%);background:white;padding:30px;border-radius:22px;text-align:center;box-shadow:0 10px 40px #0001}input,button{width:100%;box-sizing:border-box;padding:15px;margin-top:10px;border-radius:12px;font-size:18px}input{text-align:center;direction:ltr}button{border:0;background:#1f5d9b;color:white;font-weight:700}.status{margin-top:15px;min-height:25px}.lessons button{background:white;color:#1f5d9b;border:1px solid #ccd9e8;text-align:right}</style></head><body><main class="card"><h1>دخول الطالب</h1><p>أدخل كود الطالب المخصص لك.</p><form id="f"><input id="c" placeholder="HM-XXXXXXXX" autocomplete="off"><button>دخول</button></form><div id="s" class="status"></div><div id="l" class="lessons"></div></main><script>const API="https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login",KEY="sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV",f=document.getElementById("f"),c=document.getElementById("c"),s=document.getElementById("s"),l=document.getElementById("l");function did(){let x=localStorage.getItem("hm_student_browser_id");if(!x){x=crypto.randomUUID();localStorage.setItem("hm_student_browser_id",x)}return x}function norm(x){return String(x||"").normalize("NFKC").replace(/[\u200B-\u200D\uFEFF]/g,"").replace(/[\s\u00A0]+/g,"").toUpperCase()}f.onsubmit=async e=>{e.preventDefault();s.textContent="جارٍ التحقق…";l.innerHTML="";try{let r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY},body:JSON.stringify({code:norm(c.value),device_id:did()})}),d=await r.json();if(!r.ok||!d.ok){s.textContent=(d.error||"invalid_code")+" ["+r.status+"]";return}localStorage.setItem("hm_student_code",d.code);localStorage.setItem("hm_student_name",d.student_name||"");s.textContent="تم التحقق بنجاح";(d.allowed_lessons||[]).forEach(id=>{let b=document.createElement("button");b.type="button";b.textContent="📘 "+id;b.onclick=()=>location.href="lesson.html?id="+encodeURIComponent(id)+"&student=1&v=20261003";l.appendChild(b)})}catch(e){s.textContent="network_error: "+e.message}}</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HM Academy — دخول الطالب</title>
+</head>
+<body>
+<script>
+(function(){
+  var target='student-login.html'+(location.search||'');
+  location.replace(target);
+})();
+</script>
+<noscript><a href="student-login.html">فتح دخول الطالب</a></noscript>
+</body>
+</html>
