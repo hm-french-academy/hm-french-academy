@@ -210,19 +210,9 @@
 
     if(lesson)localStorage.setItem('hm_student_current_lesson',lesson);
 
-    // Keep the verified lesson session while the lesson uses nested wrappers/iframes.
-    // This prevents the same authorized lesson from bouncing back to the code screen.
-    const verifiedLesson=localStorage.getItem('hm_student_verified_lesson')||'';
-    const verifiedAt=Number(localStorage.getItem('hm_student_verified_at')||0);
-    const persistedStudentName=(localStorage.getItem('hm_student_name')||'').trim();
-    const recentSession=Date.now()-verifiedAt < 30*60*1000 && !!persistedStudentName;
-    if(recentSession && (!lesson || !verifiedLesson || verifiedLesson===lesson)){
-      document.documentElement.classList.add('hm-student-authorized');
-      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
-      return;
-    }
-    // Keep the student shell visible while a new lesson is being verified.
-    // The API response below still decides whether access is allowed.
+    // Do not trust a cached browser flag as authorization.
+    // Every protected lesson must pass through the single canonical Supabase
+    // student-code-login endpoint. LocalStorage is UI/session state only.
 
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),7000);
