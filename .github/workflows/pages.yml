@@ -38,7 +38,7 @@ jobs:
           test -f student-login.html
           test -f student-link.html
           test -f scripts/student-gate.js
-          grep -Fq "student-code-login" student-login.html
+          grep -Fq "verify_student_access_code" student-login.html
           grep -Fq "student-code-login" scripts/student-gate.js
           echo "Production deployment topology: OK"
       - name: Sync Grade 8 games and files sections
