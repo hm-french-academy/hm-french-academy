@@ -99,25 +99,60 @@
       window.__HM_STUDENT_CHROME_OBSERVER=new MutationObserver(()=>applyStudentChrome());
       window.__HM_STUDENT_CHROME_OBSERVER.observe(document.documentElement,{childList:true,subtree:true});
     }
-    // Some lesson versions are wrapped in same-origin iframes. Apply the same
-    // student UI rules inside them so old home icons cannot leak through.
-    document.querySelectorAll('iframe').forEach(frame=>{
+    // Some lesson versions are wrapped in same-origin iframes. Keep the
+    // same student-only welcome and remove public home/stage shortcuts inside
+    // the actual lesson frame as well. Older versions created the iframe after
+    // this script ran, so we also watch for newly-added frames.
+    const syncStudentFrame=(frame)=>{
       const sync=()=>{
         try{
           const doc=frame.contentDocument;
           if(!doc)return;
-          hideHomeLinks(doc);
-          if(studentName&&!doc.getElementById('hm-student-namebar')){
-            const bar=doc.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
-            bar.textContent='👋 الطالب: '+studentName;
-            bar.style.cssText='position:relative;z-index:2147483000;margin:10px 14px;padding:10px 14px;border-radius:14px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 6px 18px rgba(20,38,74,.08);color:#173a82;font-weight:900;font-size:14px;text-align:right;';
-            (doc.body||doc.documentElement).prepend(bar);
+          const frameSels=[
+            'a.home-btn','a[href="index.html"]','a[href="../index.html"]',
+            'a[href="./index.html"]','a[href*="/index.html"]',
+            'a[href="grade-7.html"]','a[href="../grade-7.html"]',
+            'a[href="grade-4.html"]','a[href="../grade-4.html"]',
+            '.hm-nav a[href$="index.html"]','.hm-brand[href*="index.html"]'
+          ];
+          frameSels.forEach(sel=>doc.querySelectorAll(sel).forEach(el=>{
+            el.style.display='none';
+            el.setAttribute('aria-hidden','true');
+          }));
+          if(studentName){
+            let bar=doc.getElementById('hm-student-namebar');
+            if(!bar){
+              bar=doc.createElement('div');
+              bar.id='hm-student-namebar';
+              bar.dir='rtl';
+              bar.style.cssText='position:relative;z-index:2147483000;margin:12px 14px 18px;padding:12px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 8px 24px rgba(20,38,74,.10);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
+              const main=doc.querySelector('main');
+              const header=doc.querySelector('header');
+              if(main&&main.parentNode)main.parentNode.insertBefore(bar,main);
+              else if(header&&header.parentNode)header.parentNode.insertBefore(bar,header.nextSibling);
+              else (doc.body||doc.documentElement).prepend(bar);
+            }
+            bar.textContent='👋 أهلًا بك، '+studentName+' — لنُكمل رحلتك في تعلّم الفرنسية ✨';
           }
         }catch(e){}
       };
       frame.addEventListener('load',sync);
       sync();
-    });
+    };
+    const bindStudentFrames=(root=document)=>{
+      root.querySelectorAll('iframe').forEach(syncStudentFrame);
+    };
+    bindStudentFrames();
+    if(!window.__HM_STUDENT_FRAME_OBSERVER){
+      window.__HM_STUDENT_FRAME_OBSERVER=new MutationObserver(mutations=>{
+        mutations.forEach(m=>m.addedNodes.forEach(n=>{
+          if(n.nodeType!==1)return;
+          if(n.tagName==='IFRAME')syncStudentFrame(n);
+          n.querySelectorAll&&n.querySelectorAll('iframe').forEach(syncStudentFrame);
+        }));
+      });
+      window.__HM_STUDENT_FRAME_OBSERVER.observe(document.documentElement,{childList:true,subtree:true});
+    }
 
   }
 
