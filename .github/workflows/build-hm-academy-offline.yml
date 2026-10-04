@@ -1,0 +1,71 @@
+name: Build HM Academy Offline USB Package
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'offline/**'
+      - 'android-offline/**'
+      - '.github/workflows/build-hm-academy-offline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Prepare Android SDK
+        shell: bash
+        run: |
+          set -e
+          export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          export ANDROID_SDK_ROOT="$ANDROID_HOME"
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER="$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"; fi
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Build USB player APK
+        working-directory: android-offline
+        run: gradle assembleDebug --no-daemon
+
+      - name: Build offline package
+        shell: bash
+        run: |
+          set -e
+          rm -rf release
+          mkdir -p release/HM-Academy
+          rsync -a --exclude='.git' --exclude='.github' --exclude='android-offline' --exclude='release' ./ release/HM-Academy/
+          cp android-offline/app/build/outputs/apk/debug/app-debug.apk release/HM-Academy/HM-Academy-Offline-USB-Player.apk
+          cp offline/OFFLINE-README.md release/HM-Academy/README-OFFLINE.md
+          (cd release && zip -r HM-Academy-Offline-USB.zip HM-Academy >/dev/null)
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: HM-Academy-Offline-USB-Player
+          path: android-offline/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+      - name: Upload complete USB package
+        uses: actions/upload-artifact@v4
+        with:
+          name: HM-Academy-Offline-USB-Package
+          path: release/HM-Academy-Offline-USB.zip
+          if-no-files-found: error
