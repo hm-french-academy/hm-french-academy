@@ -24,6 +24,23 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Verify production deployment topology
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/pages.yml
+          for f in .github/workflows/*.yml .github/workflows/*.yaml; do
+            [ -e "$f" ] || continue
+            if [ "$f" != ".github/workflows/pages.yml" ] && grep -Eq 'actions/deploy-pages@|upload-pages-artifact@' "$f"; then
+              echo "ERROR: competing GitHub Pages publisher detected: $f"
+              exit 1
+            fi
+          done
+          test -f student-login.html
+          test -f student-link.html
+          test -f scripts/student-gate.js
+          grep -Fq "student-code-login" student-login.html
+          grep -Fq "student-code-login" scripts/student-gate.js
+          echo "Production deployment topology: OK"
       - name: Sync Grade 8 games and files sections
         run: node scripts/fix-grade8-games-files-sync.js
       - name: Publish real Ensemble interactive book layer
