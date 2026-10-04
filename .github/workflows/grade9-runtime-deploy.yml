@@ -1,8 +1,9 @@
 name: Deploy Grade 9 Lesson Runtime
 
 on:
-  push:
-    branches: [ main ]
+  # Production Pages has one canonical publisher: pages.yml.
+  # Keep this workflow manual so a Grade 9 change can never overwrite
+  # the production site with a competing Pages artifact.
   workflow_dispatch:
 
 permissions:
