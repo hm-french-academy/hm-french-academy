@@ -85,11 +85,11 @@ public class MainActivity extends Activity {
                     return true;
                 }
                 @Override public WebResourceResponse shouldInterceptRequest(WebView v,WebResourceRequest req){
-                    try{return server.response(req.getUrl().getPath(),req.getMethod(),req.getRequestHeaders().get("Range"));}catch(Exception e){return null;}
+                    try{return server.webResponse(req.getUrl().getPath(),req.getMethod(),req.getRequestHeaders().get("Range"));}catch(Exception e){return null;}
                 }
                 @SuppressWarnings("deprecation")
                 @Override public WebResourceResponse shouldInterceptRequest(WebView v,String url){
-                    try{return server.response(Uri.parse(url).getPath(),"GET",null);}catch(Exception e){return null;}
+                    try{return server.webResponse(Uri.parse(url).getPath(),"GET",null);}catch(Exception e){return null;}
                 }
             });
 
@@ -162,6 +162,67 @@ public class MainActivity extends Activity {
             }catch(Exception ignored){
             }finally{
                 try{s.close();}catch(Exception ignored){}
+            }
+        }
+
+        private WebResourceResponse webResponse(String raw,String method,String range) throws Exception{
+            String path=URLDecoder.decode((raw==null?"/":raw).split("\\?",2)[0],"UTF-8");
+            if("/".equals(path)) path="/offline/index.html";
+            if(!isSafePath(path)) return new WebResourceResponse("text/plain","utf-8",null);
+            DocumentFile f=root;
+            String rel=path.startsWith("/")?path.substring(1):path;
+            for(String part:rel.split("/")){
+                if(part.isEmpty()) continue;
+                f=f.findFile(part);
+                if(f==null) break;
+            }
+            if(f==null||!f.isFile()) return new WebResourceResponse("text/plain","utf-8",null);
+            InputStream in=getContentResolver().openInputStream(f.getUri());
+            if(in==null) return new WebResourceResponse("text/plain","utf-8",null);
+            Map<String,String> headers=new HashMap<>();
+            headers.put("Cache-Control","no-store");
+            headers.put("Accept-Ranges","bytes");
+            long len=f.length();
+            int status=200;
+            String reason="OK";
+            if(range!=null&&range.startsWith("bytes=")){
+                String[] a=range.substring(6).split(",",2)[0].split("-",2);
+                long start=0,end=Math.max(0,len-1);
+                try{
+                    start=Long.parseLong(a[0]);
+                    if(a.length>1&&!a[1].isEmpty()) end=Long.parseLong(a[1]);
+                    if(start<0||start>=len||end<start) throw new Exception();
+                    if(end>=len) end=len-1;
+                    long skip=start;
+                    while(skip>0){
+                        long z=in.skip(skip);
+                        if(z<=0) throw new IOException("skip");
+                        skip-=z;
+                    }
+                    long outLen=end-start+1;
+                    in=new LimitedInputStream(in,outLen);
+                    status=206; reason="Partial Content";
+                    headers.put("Content-Range","bytes "+start+"-"+end+"/"+len);
+                    headers.put("Content-Length",String.valueOf(outLen));
+                }catch(Exception e){ try{in.close();}catch(Exception ignored){}; return new WebResourceResponse("text/plain","utf-8",null); }
+            } else {
+                headers.put("Content-Length",String.valueOf(len));
+            }
+            return new WebResourceResponse(mime(f.getName()),null,status,reason,headers,in);
+        }
+
+        class LimitedInputStream extends FilterInputStream {
+            private long left;
+            LimitedInputStream(InputStream in,long length){super(in);left=length;}
+            @Override public int read() throws IOException {
+                if(left<=0) return -1;
+                int r=super.read(); if(r>=0) left--; return r;
+            }
+            @Override public int read(byte[] b,int off,int len) throws IOException {
+                if(left<=0) return -1;
+                int n=super.read(b,off,(int)Math.min(len,left));
+                if(n>0) left-=n;
+                return n;
             }
         }
 
