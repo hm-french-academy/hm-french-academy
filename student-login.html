@@ -36,9 +36,8 @@ button:disabled{opacity:.65;cursor:wait}
 <div class="small">HM Academy · الوصول المخصص للطلاب</div>
 </section></main>
 <script>
-const API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login';
+const API='https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
-const LOGIN_BUILD='20261005-login-fix-4';
 const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';const logoutMode=params.get('logout')==='1';
 const $=id=>document.getElementById(id);
 const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
@@ -195,7 +194,7 @@ async function validate(code,silent=false,requestedLesson=''){
     const timer=setTimeout(()=>controller.abort(),10000);
     let res;
     try{
-      res=await fetch(API+'?v='+LOGIN_BUILD,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({code,device_id:deviceId(),lesson_id:requestedLesson||undefined}),signal:controller.signal});
+      res=await fetch(API,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Accept':'application/json'},body:JSON.stringify({p_code:code,p_device_id:deviceId(),p_lesson_id:requestedLesson||null}),signal:controller.signal});
     }finally{clearTimeout(timer)}
     const raw=await res.text();
     let data={}; try{data=JSON.parse(raw||'{}')}catch(_){}
