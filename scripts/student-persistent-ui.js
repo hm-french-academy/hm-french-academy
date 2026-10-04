@@ -3,7 +3,7 @@
 var STYLE_ID='hm-student-persistent-ui-style',NAME_ID='hm-student-persistent-welcome',TOOLS_ID='hm-student-persistent-tools';
 function name(){return(localStorage.getItem('hm_student_name')||'').trim()}
 function active(){return!!(localStorage.getItem('hm_student_code')||'').trim()}
-function login(){return'/hm-french-academy/student-code.html'}
+function login(){return'/hm-french-academy/student-link.html'}
 function style(){
  if(document.getElementById(STYLE_ID))return;
  var s=document.createElement('style');s.id=STYLE_ID;
