@@ -21,9 +21,8 @@ if(student){
   let device=localStorage.getItem('hm_student_browser_id');
   if(!device){device=(crypto.randomUUID?crypto.randomUUID():('web-'+Date.now()+'-'+Math.random().toString(36).slice(2)));localStorage.setItem('hm_student_browser_id',device);}
   if(!code||!id){goLogin();return;}
-  const verifiedLesson=localStorage.getItem('hm_student_verified_lesson')||'';
-  const verifiedAt=Number(localStorage.getItem('hm_student_verified_at')||0);
-  if(verifiedLesson===id && Date.now()-verifiedAt < 30*60*1000){goTarget();return;}
+  // Never trust cached localStorage verification for authorization.
+  // The canonical Supabase student-code-login endpoint is authoritative on every protected lesson load.
   fetch('https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-code-login',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({code,device_id:device,lesson_id:id}),cache:'no-store'
