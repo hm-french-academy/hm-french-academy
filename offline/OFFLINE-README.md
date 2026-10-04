@@ -21,3 +21,7 @@
 
 ## مهم
 لم يتم تعديل تصميم أو محتوى دروس HM Academy الأصلية. كل طبقة Offline موجودة داخل `offline/`.
+
+
+## Offline USB player
+The Android player runs the academy locally from the selected USB folder and bypasses the online student-code gate.
