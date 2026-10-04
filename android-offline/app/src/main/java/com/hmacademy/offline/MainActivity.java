@@ -85,7 +85,14 @@ public class MainActivity extends Activity {
                     return true;
                 }
                 @Override public WebResourceResponse shouldInterceptRequest(WebView v,WebResourceRequest req){
-                    try{return server.webResponse(req.getUrl().getPath(),req.getMethod(),req.getRequestHeaders().get("Range"));}catch(Exception e){return null;}
+                    try{
+                        String path=req.getUrl().getPath();
+                        if(path!=null&&path.endsWith("/scripts/student-gate.js")){
+                            byte[] b="(function(){ window.__HM_OFFLINE_MODE=true; })();".getBytes(StandardCharsets.UTF_8);
+                            return new WebResourceResponse("application/javascript","utf-8",200,"OK",new HashMap<String,String>(),new ByteArrayInputStream(b));
+                        }
+                        return server.webResponse(path,req.getMethod(),req.getRequestHeaders().get("Range"));
+                    }catch(Exception e){return null;}
                 }
                 @SuppressWarnings("deprecation")
                 @Override public WebResourceResponse shouldInterceptRequest(WebView v,String url){
