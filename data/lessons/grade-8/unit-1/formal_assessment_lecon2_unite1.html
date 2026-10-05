@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-store"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HM Academy | التقييم الرسمي · Leçon 2</title>
 <style>
 body{margin:0;background:#f4f7fc;color:#17223b;font-family:Arial,Cairo,sans-serif}
@@ -17,7 +17,7 @@ main{max-width:900px;margin:auto;padding:20px}
 @media(max-width:600px){.opts{grid-template-columns:1fr}main{padding:14px}}
 @media print{body{background:#fff}.actions,.result{display:none}.hero{color:#111;background:#fff;border:1px solid #ddd}.opt{color:#111}}
 </style>
-</head>
+<style>html.hm-student-authorized header,html.hm-student-authorized nav,html.hm-student-authorized a[href*="index.html"],html.hm-student-authorized a[href*="grade-"],html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-header{display:none!important}</style><script src="../../../scripts/student-gate.js?v=20261005-formal-l2"></script></head>
 <body>
 <main>
 <section class="hero"><h1>🏆 التقييم الرسمي · الدرس الثاني</h1><p>Leçon 2 — Les fournitures, la trousse et le sac à dos</p><p>أجب عن جميع الأسئلة باختيار إجابة واحدة لكل سؤال، ثم اضغط «إرسال التقييم».</p></section>
@@ -28,15 +28,15 @@ main{max-width:900px;margin:auto;padding:20px}
 <script src="../../../scripts/activity-complete.js?v=20261005-assessment-l2"></script>
 <script>
 const Q=[
-['ما معنى « une gomme »؟',['مسطرة','استيكة','قلم جاف'],1],
-['اختر الجملة الصحيحة.',['C’est un gomme.','C’est une gomme.','Ce sont une gomme.'],1],
-['أكمل: J’ai ___ cahier.',['une','un','des'],1],
-['أي أداة نستخدمها للقياس؟',['une gomme','un stylo','une règle'],2],
-['ما معنى « une trousse »؟',['مقلمة','شنطة ظهر','كراسة'],0],
-['اختر الصيغة الصحيحة.',['un ciseaux','une ciseaux','des ciseaux'],2],
-['ما الذي يوجد في حقيبة Adam؟',['une règle فقط','un cahier et des ciseaux','une gomme فقط'],1],
-['اختر الجملة الصحيحة.',['J’écris avec une gomme.','Je mesure avec des ciseaux.','J’écris avec un stylo.'],2]
-];
+['ما معنى « une gomme »؟',['استيكة','مسطرة','قلم جاف'],0],
+['اختر الجملة الصحيحة.',['C’est un gomme.','Ce sont une gomme.','C’est une gomme.'],2],
+['أكمل: J’ai ___ cahier.',['des','un','une'],1],
+['أي أداة نستخدمها للقياس؟',['une gomme','une règle','un stylo'],1],
+['ما معنى « une trousse »؟',['كراسة','مقلمة','شنطة ظهر'],1],
+['اختر الصيغة الصحيحة.',['des ciseaux','un ciseaux','une ciseaux'],0],
+['ما الذي يوجد في حقيبة Adam؟',['une gomme فقط','un cahier et des ciseaux','une règle فقط'],1],
+['اختر الجملة الصحيحة.',['J’écris avec un stylo.','Je mesure avec des ciseaux.','J’écris avec une gomme.'],0]
+]
 const A={};const F=document.getElementById('form');
 Q.forEach((x,i)=>{F.insertAdjacentHTML('beforeend','<section class="qcard"><h2>'+(i+1)+'. '+x[0]+'</h2><div class="opts">'+x[1].map((v,k)=>'<button class="opt" type="button" data-i="'+i+'" data-k="'+k+'">'+v+'</button>').join('')+'</div></section>')});
 F.onclick=e=>{const b=e.target.closest('.opt');if(!b)return;const i=+b.dataset.i;A[i]=+b.dataset.k;F.querySelectorAll('.opt[data-i="'+i+'"]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')};
