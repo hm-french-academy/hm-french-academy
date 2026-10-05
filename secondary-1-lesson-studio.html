@@ -89,10 +89,12 @@ html+='<div class="card" style="margin-top:18px"><h3>🎨 Les couleurs</h3><div 
 html+='<div class="card" style="margin-top:14px"><h3>🔢 Les nombres · 0 → 50</h3><div class="numbers">'+((d.numbers||{}).core||[]).map(x=>'<button class="number" onclick=\'speak('+JSON.stringify(x)+',this)\'>'+esc(x)+'</button>').join('')+'</div></div><button class="listen" style="margin-top:18px" onclick="complete(\'vocab\')">✓ إتمام المفردات</button></section>';return html
 }
 function pronunciation(){
-return '<section class="section">'+head('PRONONCIATION','Atelier de prononciation','النطق هنا مرتبط بما ورد في الدرس: r، التهجئة، والتنغيم.');
-return ''
-}
-function grammar(){
+const a=d.phonetics||[];
+return '<section class="section">'+head('PRONONCIATION','Atelier de prononciation','النطق مرتبط مباشرة بمحتوى الدرس: صوت r، التهجئة، والتنغيم.')+
+'<div class="grid">'+a.map((x,i)=>'<article class="card cover-card"><div><div class="num">0'+(i+1)+'</div><h3>'+esc(x.focus||'')+'</h3><p class="artext">'+esc(x.ar||'')+'</p><div class="vocab-tools">'+(x.examples||[]).map(e=>'<button class="chip" onclick=\\'speak('+JSON.stringify(e)+',this)\\'>'+esc(e)+'</button>').join('')+'</div></div>'+listen((x.examples||[]).join('. '))+'</article>').join('')+'</div>'+
+'<div class="card" style="margin-top:16px"><h3>🔤 Épelle ton prénom</h3><p class="artext">اكتب اسمك بالفرنسية، ثم انطقه حرفًا حرفًا. الهدف هو الربط بين صوت الحرف والاسم، لا حفظ قائمة حروف فقط.</p><input class="chip" style="width:100%;border-radius:10px" placeholder="Ex. Hatem"></div>'+
+'<button class="listen" style="margin-top:15px" onclick="complete(\\'pronunciation\\')">✓ إتمام النطق</button></section>'
+}function grammar(){
 const g=d.grammar||{};return '<section class="section">'+head('GRAMMAIRE','s’appeler · être · avoir','ثلاثة أفعال أساسية، لكن استخدامها مختلف — افهم الوظيفة قبل الحفظ.')
 +'<div class="rule"><div class="rule-main"><div class="label">La règle</div><h3>s’appeler · être · avoir</h3><div class="formula">Je m’appelle…<br>Je suis…<br>J’ai … ans.</div><p>'+esc(g.explanationAr||'')+'</p></div><div>'+((g.examples||[]).map(x=>'<div class="example"><div class="fr">'+esc(x.fr)+'</div><div class="artext">'+esc(x.ar)+'</div>'+listen(x.fr)+'</div>').join(''))+'</div></div><div class="grid" style="margin-top:15px">'+((g.microDrills||[]).map(x=>'<div class="exercise"><b>'+esc(x.prompt)+'</b><input style="width:100%;margin-top:10px;padding:10px;border:1px solid #ddd;border-radius:9px" placeholder="Réponse"></div>').join(''))+'</div><button class="listen" style="margin-top:15px" onclick="complete(\'grammar\')">✓ إتمام القواعد</button></section>'
 }
