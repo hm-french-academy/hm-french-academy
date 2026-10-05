@@ -222,7 +222,7 @@
     // Do this before checking any Supabase admin session so a cached admin login
     // can never suppress the student welcome bar or restore public navigation.
     const explicitStudentRoute=qs.get('student')==='1';
-    if(!explicitStudentRoute && await getAdminSession()){
+    if(!explicitStudentRoute && !persistedCode && await getAdminSession()){
       document.documentElement.classList.add('hm-admin-authorized');
       return;
     }
@@ -284,5 +284,17 @@
     });
   }
 
+  window.addEventListener('pageshow',function(){
+    const c=(localStorage.getItem('hm_student_code')||'').trim();
+    const n=(localStorage.getItem('hm_student_name')||'').trim();
+    if(c&&n)tools();
+  });
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'){
+      const c=(localStorage.getItem('hm_student_code')||'').trim();
+      const n=(localStorage.getItem('hm_student_name')||'').trim();
+      if(c&&n)tools();
+    }
+  });
   run();
 })();
