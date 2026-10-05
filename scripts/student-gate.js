@@ -89,10 +89,11 @@
 
       // Bottom controls: they are intentionally NOT part of the public header.
       // Recreate them whenever a lesson renderer replaces the page DOM.
-      if(!document.getElementById('hm-student-tools') && (document.body||document.documentElement)){
-        const box=document.createElement('div');box.id='hm-student-tools';box.dir='rtl';
+      if(!document.getElementById('hm-student-tools') && document.body){
+        const box=document.createElement('footer');box.id='hm-student-tools';box.dir='rtl';box.setAttribute('role','contentinfo');box.setAttribute('data-hm-student-controls','1');
         box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
-        (document.body||document.documentElement).appendChild(box);
+        box.style.cssText='display:flex!important;clear:both;position:relative!important;float:none!important;width:100%!important;box-sizing:border-box!important;';
+        document.body.appendChild(box);
         box.querySelector('#hm-switch-lesson').onclick=newLesson;
         box.querySelector('#hm-student-logout').onclick=function(){
           ['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));
