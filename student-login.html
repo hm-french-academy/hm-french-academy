@@ -53,6 +53,9 @@ function deviceId(){
 function msg(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'');}
 function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
+  // First secondary lessons use the dedicated secondary lesson studio.
+  if(/^s1-u\d+-\d+$/i.test(String(id)))
+    return 'secondary-1-lesson-studio.html?id='+encodeURIComponent(id)+'&section=observe&student=1&v=20261006-secondary-student-route';
   if(String(id)==='secondary-french-intro')
     return 'secondary-french-intro.html?id=secondary-french-intro&v=20261004-student-intro&student=1';
   // Grade 7 has its own canonical router and student gate. Opening it directly
@@ -107,6 +110,7 @@ function canonicalLessonId(id){
 }
 function gradeFromLessonId(id){
   const k=canonicalLessonId(id);
+  if(/^s1-/i.test(k))return '10';
   let m=k.match(/^g(\d+)-/i); if(m)return m[1];
   m=k.match(/^grade(\d+)-/i); return m?m[1]:'';
 }
@@ -129,7 +133,9 @@ async function loadLessonCatalogForId(id){
   if(!lessonCatalogCache.has(grade)){
     const registryPath=grade==='9'
       ? './data/lessons/grade-9/semester-1/lesson-registry.json'
-      : './data/lessons/grade-'+encodeURIComponent(grade)+'/lesson-registry.json';
+      : grade==='10'
+        ? './data/lessons/secondary-1/semester-1/lesson-registry.json'
+        : './data/lessons/grade-'+encodeURIComponent(grade)+'/lesson-registry.json';
     const p=fetch(registryPath+'?v=20261001-student-catalog-3',{cache:'no-store'})
       .then(r=>r.ok?r.json():null)
       .then(data=>{
@@ -271,5 +277,6 @@ function normalizeCode(value){return String(value||'').normalize('NFKC').replace
 <!-- LOGIN_DEPLOY_PING_20261003_2 -->
 
 <!-- PAGES_PUBLISH_SYNC_20261003 -->
+<!-- SECONDARY_STUDENT_ROUTE_FIX_20261006 -->
 
 <!-- Production deployment guard: student-code-login retired; canonical verification is verify_student_access_code. -->
