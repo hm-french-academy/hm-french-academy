@@ -184,9 +184,11 @@
   }
 
   async function run(){
-    // Admin sessions are allowed to explore curricula and lessons without
-    // being mistaken for a student session.
-    if(await getAdminSession()){
+    // A lesson opened from the student-code router is always a student session.
+    // Do this before checking any Supabase admin session so a cached admin login
+    // can never suppress the student welcome bar or restore public navigation.
+    const explicitStudentRoute=qs.get('student')==='1';
+    if(!explicitStudentRoute && await getAdminSession()){
       document.documentElement.classList.add('hm-admin-authorized');
       return;
     }
@@ -194,6 +196,11 @@
     const code=localStorage.getItem('hm_student_code');
     const device=localStorage.getItem('hm_student_browser_id');
     const sessionName=(localStorage.getItem('hm_student_name')||'').trim();
+
+    // Explicit student routes must always render the closed student chrome
+    // after successful verification, even when the student's display name is
+    // temporarily unavailable. The welcome bar will use the stored name once
+    // it is returned by the verification endpoint.
 
     // Rebuild the student controls immediately from the persisted session.
     // The API check below remains authoritative and can still redirect if the
