@@ -55,7 +55,12 @@ function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
   if(String(id)==='secondary-french-intro')
     return 'secondary-french-intro.html?id=secondary-french-intro&v=20261004-student-intro&student=1';
-  // Route every standard student lesson through the canonical lesson router.
+  // Grade 7 has its own canonical router and student gate. Opening it directly
+  // avoids a second authorization hop through lesson.html, which could send the
+  // student back to the code page even though the dashboard session is valid.
+  if(/^grade7-u[1-3]-l[1-6]$/i.test(String(id)))
+    return 'grade7-lesson-studio.html?id='+encodeURIComponent(id)+'&section=introduction&student=1&v=20261005-grade7-student-route';
+  // Other standard lessons continue through the canonical lesson router.
   return 'lesson.html?id='+encodeURIComponent(id)+'&v=20261001-route-fix&section=lesson&student=1';
 }
 const LESSON_TITLES={
