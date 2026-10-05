@@ -1,6 +1,7 @@
 name: Deploy HM Academy
 
 # Production Pages build. Grade 7 is intentionally isolated from this workflow.
+# Secondary 1 lesson runtime deployment verified 2026-10-06.
 # Force production publication after scoped page fixes.
 # LOGIN_DEPLOY_TRIGGER_20261003_5
 on:
