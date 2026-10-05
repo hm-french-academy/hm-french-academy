@@ -50,5 +50,9 @@ if(window.HMActivityComplete&&pct>=70)HMActivityComplete.complete('grade8-u1-l2'
 document.getElementById('reset').onclick=()=>location.reload();
 </script>
 <script src="../../../scripts/student-gate.js?v=20261005-student-chrome-assessment-l2"></script>
+<script>
+// Randomize answer order while preserving the keyed correct answer.
+document.querySelectorAll('.opts').forEach(box=>{const items=[...box.children];items.sort(()=>Math.random()-.5);items.forEach(x=>box.appendChild(x))});
+</script>
 </body>
 </html>
