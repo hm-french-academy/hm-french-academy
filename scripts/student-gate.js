@@ -230,15 +230,23 @@
     const code=localStorage.getItem('hm_student_code');
     const device=localStorage.getItem('hm_student_browser_id');
     const sessionName=(localStorage.getItem('hm_student_name')||'').trim();
+    const verifiedLesson=(localStorage.getItem('hm_student_verified_lesson')||'').trim();
 
-    // Explicit student routes must always render the closed student chrome
-    // after successful verification, even when the student's display name is
-    // temporarily unavailable. The welcome bar will use the stored name once
-    // it is returned by the verification endpoint.
+    // The student-login page has already authenticated the code with the
+    // canonical verification endpoint before sending the student to a lesson.
+    // Grade 7 lessons are routed through several canonical files, each loading
+    // this same gate. Re-verifying the same code on every hop caused a valid
+    // session to bounce back to the code page. For an explicit student route,
+    // accept the already-verified lesson session and let the canonical lesson
+    // renderer continue. The stored verified lesson must match the requested
+    // lesson exactly; a missing/mismatched verification still goes through the
+    // authoritative API check below.
+    if(explicitStudentRoute && code && lesson && verifiedLesson===lesson){
+      document.documentElement.classList.add('hm-student-authorized');
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
+      return;
+    }
 
-    // Rebuild the student controls immediately from the persisted session.
-    // The API check below remains authoritative and can still redirect if the
-    // session/code is no longer valid.
     if(code && sessionName){
       document.documentElement.classList.add('hm-student-authorized');
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
