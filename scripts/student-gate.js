@@ -231,17 +231,17 @@
     const device=localStorage.getItem('hm_student_browser_id');
     const sessionName=(localStorage.getItem('hm_student_name')||'').trim();
     const verifiedLesson=(localStorage.getItem('hm_student_verified_lesson')||'').trim();
+    const currentLesson=(localStorage.getItem('hm_student_current_lesson')||'').trim();
 
-    // The student-login page has already authenticated the code with the
-    // canonical verification endpoint before sending the student to a lesson.
-    // Grade 7 lessons are routed through several canonical files, each loading
-    // this same gate. Re-verifying the same code on every hop caused a valid
-    // session to bounce back to the code page. For an explicit student route,
-    // accept the already-verified lesson session and let the canonical lesson
-    // renderer continue. The stored verified lesson must match the requested
-    // lesson exactly; a missing/mismatched verification still goes through the
-    // authoritative API check below.
-    if(explicitStudentRoute && code && lesson && verifiedLesson===lesson){
+    // student-login.html authenticates the code first, then stores the selected
+    // lesson in hm_student_current_lesson. When the student chooses a lesson
+    // from the allowed-lessons list, verified_lesson is intentionally empty
+    // because the original authentication was for the session, not a single
+    // requested lesson. Grade 7 then passes through several canonical files,
+    // so the gate must recognize that authenticated session by its current
+    // lesson as well.
+    if(explicitStudentRoute && code && lesson &&
+       (verifiedLesson===lesson || currentLesson===lesson || !verifiedLesson&&currentLesson===lesson)){
       document.documentElement.classList.add('hm-student-authorized');
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tools,{once:true});else tools();
       return;
