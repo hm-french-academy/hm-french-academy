@@ -45,15 +45,18 @@
     if(document.getElementById('hm-student-tools')) return;
     const studentName=(localStorage.getItem('hm_student_name')||'').trim();
     const s=document.createElement('style');s.id='hm-student-tools-style';
-    s.textContent='html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-tools,html.hm-student-authorized .hm-header .hm-brand,html.hm-student-authorized .hm-header .hm-nav,html.hm-student-authorized header a[href*="secondary-french-intro.html"],html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:relative;z-index:20;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{margin:32px auto 20px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
+    s.textContent='html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-tools,html.hm-student-authorized .hm-header .hm-brand,html.hm-student-authorized .hm-header .hm-nav,html.hm-student-authorized header.top,html.hm-student-authorized header a[href*="secondary-french-intro.html"],html.hm-student-authorized header a[href*="grade-4.html"],html.hm-student-authorized header a[href*="grade-3.html"],html.hm-student-authorized header a[href*="grade-5.html"],html.hm-student-authorized header a[href*="grade-6.html"],html.hm-student-authorized header a[href*="grade-7.html"],html.hm-student-authorized header a[href*="grade-8.html"],html.hm-student-authorized header a[href*="grade-9.html"],html.hm-student-authorized a.home-btn,html.hm-student-authorized a[href="index.html"],html.hm-student-authorized a[href="../index.html"],html.hm-student-authorized a[href="./index.html"],html.hm-student-authorized .hm-nav a[href$="index.html"],html.hm-student-authorized .hm-brand[href*="index.html"]{display:none!important}html.hm-student-authorized .brand[href*="index.html"]{pointer-events:none!important;cursor:default!important}#hm-student-tools{position:relative;z-index:20;margin:40px auto 24px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 28px);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}#hm-student-tools button{border:1px solid #d8e1ec;border-radius:12px;padding:10px 13px;background:#fff;color:#173a82;font-weight:800;font-size:13px;box-shadow:0 8px 25px rgba(23,43,77,.12);cursor:pointer}#hm-student-tools .primary{background:#1f5d9b;color:#fff;border-color:#1f5d9b}#hm-student-tools .logout{color:#b42318}@media(max-width:600px){#hm-student-tools{margin:32px auto 20px;justify-content:center}#hm-student-tools button{flex:1;min-width:130px}}';
     document.head.appendChild(s);
     document.documentElement.classList.add('hm-student-authorized');
     // Student mode: remove every visible route back to the public homepage,
     // not only the legacy .home-btn class. This keeps the lesson a closed student session.
     const hideHomeLinks=(root=document)=>{
       const sels=[
-        'a.home-btn','a[href="index.html"]','a[href="../index.html"]',
+        'header.top','a.home-btn','a[href="index.html"]','a[href="../index.html"]',
         'a[href="./index.html"]','a[href*="/index.html"]',
+        'a[href*="grade-3.html"]','a[href*="grade-4.html"]','a[href*="grade-5.html"]',
+        'a[href*="grade-6.html"]','a[href*="grade-7.html"]','a[href*="grade-8.html"]',
+        'a[href*="grade-9.html"]',
         '.hm-nav a[href$="index.html"]','.hm-brand[href*="index.html"]'
       ];
       sels.forEach(sel=>root.querySelectorAll(sel).forEach(el=>{el.style.display='none';el.setAttribute('aria-hidden','true')}));
@@ -71,11 +74,14 @@
           const bar=document.createElement('div');bar.id='hm-student-namebar';bar.dir='rtl';
           bar.textContent='👋 أهلًا بك، '+studentName;
           bar.style.cssText='margin:12px auto 18px;padding:12px 18px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 8px 24px rgba(20,38,74,.10);color:#173a82;font-weight:900;font-size:16px;text-align:right;max-width:calc(100% - 32px);';
+          const body=document.body||document.documentElement;
+          const wrap=document.querySelector('.wrap');
           const main=document.querySelector('main');
           const header=document.querySelector('.hm-header,.student-header,header');
-          if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
+          if(wrap&&wrap.parentNode) wrap.parentNode.insertBefore(bar,wrap);
+          else if(main&&main.parentNode) main.parentNode.insertBefore(bar,main);
           else if(header&&header.parentNode) header.parentNode.insertBefore(bar,header.nextSibling);
-          else (document.body||document.documentElement).prepend(bar);
+          else body.prepend(bar);
           existing=bar;
         }
         existing.textContent='👋 أهلًا بك، '+studentName;
@@ -109,8 +115,11 @@
           const doc=frame.contentDocument;
           if(!doc)return;
           const frameSels=[
-            'a.home-btn','a[href="index.html"]','a[href="../index.html"]',
+            'header.top','a.home-btn','a[href="index.html"]','a[href="../index.html"]',
             'a[href="./index.html"]','a[href*="/index.html"]',
+            'a[href*="grade-3.html"]','a[href*="grade-4.html"]','a[href*="grade-5.html"]',
+            'a[href*="grade-6.html"]','a[href*="grade-7.html"]','a[href*="grade-8.html"]',
+            'a[href*="grade-9.html"]',
             'a[href="grade-7.html"]','a[href="../grade-7.html"]',
             'a[href="grade-4.html"]','a[href="../grade-4.html"]',
             '.hm-nav a[href$="index.html"]','.hm-brand[href*="index.html"]'
@@ -126,11 +135,14 @@
               bar.id='hm-student-namebar';
               bar.dir='rtl';
               bar.style.cssText='position:relative;z-index:2147483000;margin:12px 14px 18px;padding:12px 16px;border-radius:16px;background:#fff;border:1px solid #dfe6f2;box-shadow:0 8px 24px rgba(20,38,74,.10);color:#173a82;font-weight:900;font-size:15px;text-align:right;';
+              const body=doc.body||doc.documentElement;
+              const wrap=doc.querySelector('.wrap');
               const main=doc.querySelector('main');
               const header=doc.querySelector('header');
-              if(main&&main.parentNode)main.parentNode.insertBefore(bar,main);
+              if(wrap&&wrap.parentNode)wrap.parentNode.insertBefore(bar,wrap);
+              else if(main&&main.parentNode)main.parentNode.insertBefore(bar,main);
               else if(header&&header.parentNode)header.parentNode.insertBefore(bar,header.nextSibling);
-              else (doc.body||doc.documentElement).prepend(bar);
+              else body.prepend(bar);
             }
             bar.textContent='👋 أهلًا بك، '+studentName+' — لنُكمل رحلتك في تعلّم الفرنسية ✨';
           }
