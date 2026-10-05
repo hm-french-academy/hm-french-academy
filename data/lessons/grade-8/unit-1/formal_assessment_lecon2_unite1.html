@@ -1,1 +1,54 @@
-<!doctype html><html lang="ar" dir="rtl"><head><link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=2"><link rel="shortcut icon" href="assets/images/hm-academy-favicon.svg?v=2"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HM Academy | تقييم Leçon 2</title><style>body{font-family:Arial,Cairo,sans-serif;background:#f4f7fc;color:#17223b;margin:0}main{max-width:900px;margin:auto;padding:24px}.hero,.paper{background:#fff;border-radius:22px;padding:24px;margin-bottom:16px;box-shadow:0 10px 30px #14264a12}.hero{background:linear-gradient(135deg,#173a82,#713bd1);color:#fff}p{line-height:1.9}.q{padding:14px;border-bottom:1px solid #e1e7f0}button{padding:12px 16px;border:0;border-radius:12px;background:#713bd1;color:#fff;font-weight:900} @media print{body{background:#fff}.hero{color:#111;background:#fff;border:1px solid #ddd}button{display:none}}</style></head><body><main><section class="hero"><h1>اختبار الدرس الثاني</h1><p>Leçon 2 — Les fournitures, la trousse et le sac à dos · 30 points</p></section><section class="paper"><div class="q"><b>① المطابقة (6)</b><p>Une gomme — Une règle — Un sac à dos — Une calculatrice — Un taille-crayon</p><p>اربط الكلمات بالمعاني الصحيحة.</p></div><div class="q"><b>② اختر الإجابة الصحيحة (6)</b><p>1) Dans la trousse, il y a … a) un tableau b) une gomme c) une piscine</p><p>2) Pour effacer un crayon, on utilise … a) une règle b) une gomme c) un stylo</p><p>3) Pour porter les livres, on utilise … a) un sac à dos b) une trousse c) un dossier</p></div><div class="q"><b>③ أكمل (6)</b><p>Je mesure la longueur avec …</p><p>J'écris avec …</p><p>Je colle mes feuilles avec …</p></div><div class="q"><b>④ الكلمة الشاذة (6)</b><p>un stylo — un crayon — une gomme — une piscine</p><p>une trousse — un sac à dos — un dossier — un tableau</p></div><div class="q"><b>⑤ تعبير كتابي (6)</b><p>اكتب جملتين عن محتويات مقلمتك.</p><p>1) ........................................................</p><p>2) ........................................................</p></div><button onclick="print()">🖨️ طباعة</button></section></main></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HM Academy | التقييم الرسمي · Leçon 2</title>
+<style>
+body{margin:0;background:#f4f7fc;color:#17223b;font-family:Arial,Cairo,sans-serif}
+main{max-width:900px;margin:auto;padding:20px}
+.hero,.qcard,.result{background:#fff;border-radius:22px;padding:22px;margin-bottom:15px;box-shadow:0 10px 30px #14264a12}
+.hero{background:linear-gradient(135deg,#173a82,#2563eb,#713bd1);color:#fff}
+.hero h1{margin:0 0 8px}.hero p{line-height:1.8}
+.qcard h2{margin-top:0;font-size:18px}.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{padding:14px;border:1px solid #dbe3ef;border-radius:13px;background:#fff;color:#17223b;font-weight:800;cursor:pointer;text-align:right}
+.opt.selected{border-color:#2563eb;background:#edf3ff}.opt.correct{border-color:#20a45a;background:#eaf8f0}.opt.wrong{border-color:#d9534f;background:#fff0f0}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.submit,.reset{border:0;padding:14px 20px;border-radius:13px;font-weight:900;cursor:pointer}.submit{background:#713bd1;color:#fff}.reset{background:#fff;border:1px solid #dbe3ef;color:#315fc8}
+.result{font-weight:900;line-height:1.8}
+@media(max-width:600px){.opts{grid-template-columns:1fr}main{padding:14px}}
+@media print{body{background:#fff}.actions,.result{display:none}.hero{color:#111;background:#fff;border:1px solid #ddd}.opt{color:#111}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero"><h1>🏆 التقييم الرسمي · الدرس الثاني</h1><p>Leçon 2 — Les fournitures, la trousse et le sac à dos</p><p>أجب عن جميع الأسئلة باختيار إجابة واحدة لكل سؤال، ثم اضغط «إرسال التقييم».</p></section>
+<div id="form"></div>
+<div class="actions"><button class="submit" id="submit" type="button">إرسال التقييم</button><button class="reset" id="reset" type="button">إعادة المحاولة</button></div>
+<section class="result" id="result">لم يتم إرسال التقييم بعد.</section>
+</main>
+<script src="../../../scripts/activity-complete.js?v=20261005-assessment-l2"></script>
+<script>
+const Q=[
+['ما معنى « une gomme »؟',['مسطرة','استيكة','قلم جاف'],1],
+['اختر الجملة الصحيحة.',['C’est un gomme.','C’est une gomme.','Ce sont une gomme.'],1],
+['أكمل: J’ai ___ cahier.',['une','un','des'],1],
+['أي أداة نستخدمها للقياس؟',['une gomme','un stylo','une règle'],2],
+['ما معنى « une trousse »؟',['مقلمة','شنطة ظهر','كراسة'],0],
+['اختر الصيغة الصحيحة.',['un ciseaux','une ciseaux','des ciseaux'],2],
+['ما الذي يوجد في حقيبة Adam؟',['une règle فقط','un cahier et des ciseaux','une gomme فقط'],1],
+['اختر الجملة الصحيحة.',['J’écris avec une gomme.','Je mesure avec des ciseaux.','J’écris avec un stylo.'],2]
+];
+const A={};const F=document.getElementById('form');
+Q.forEach((x,i)=>{F.insertAdjacentHTML('beforeend','<section class="qcard"><h2>'+(i+1)+'. '+x[0]+'</h2><div class="opts">'+x[1].map((v,k)=>'<button class="opt" type="button" data-i="'+i+'" data-k="'+k+'">'+v+'</button>').join('')+'</div></section>')});
+F.onclick=e=>{const b=e.target.closest('.opt');if(!b)return;const i=+b.dataset.i;A[i]=+b.dataset.k;F.querySelectorAll('.opt[data-i="'+i+'"]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')};
+document.getElementById('submit').onclick=()=>{
+let answered=Object.keys(A).length;if(answered<Q.length){document.getElementById('result').textContent='⚠️ أجب عن جميع الأسئلة أولًا. تم اختيار '+answered+' من '+Q.length+' أسئلة.';return}
+let score=Q.reduce((n,x,i)=>n+(A[i]===x[2]?1:0),0),pct=Math.round(score/Q.length*100);
+Q.forEach((x,i)=>{F.querySelectorAll('.opt[data-i="'+i+'"]').forEach(b=>{const k=+b.dataset.k;b.classList.toggle('correct',k===x[2]);b.classList.toggle('wrong',k===A[i]&&k!==x[2]);b.disabled=true})});
+document.getElementById('result').textContent='النتيجة: '+score+' / '+Q.length+' ('+pct+'%). '+(pct>=70?'ممتاز! لقد أتقنت معظم أهداف الدرس.':'راجع المفردات والقواعد ثم أعد المحاولة.');
+if(window.HMActivityComplete&&pct>=70)HMActivityComplete.complete('grade8-u1-l2','formal-assessment',50);
+};
+document.getElementById('reset').onclick=()=>location.reload();
+</script>
+<script src="../../../scripts/student-gate.js?v=20261005-student-chrome-assessment-l2"></script>
+</body>
+</html>
