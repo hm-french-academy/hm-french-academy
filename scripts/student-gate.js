@@ -103,7 +103,28 @@
     };
     applyStudentChrome();
     if(!window.__HM_STUDENT_CHROME_OBSERVER){
-      window.__HM_STUDENT_CHROME_OBSERVER=new MutationObserver(()=>applyStudentChrome());
+      // Do not rescan the entire lesson after every DOM mutation. Dynamic lesson
+      // sections can replace large panels on each click; rescanning the whole
+      // document for every mutation can lock slower mobile browsers.
+      let chromeQueued=false;
+      const queueStudentChrome=()=>{
+        if(chromeQueued)return;
+        chromeQueued=true;
+        const run=()=>{
+          chromeQueued=false;
+          const missingTools=!document.getElementById('hm-student-tools');
+          const missingName=!!studentName&&!document.getElementById('hm-student-namebar');
+          const publicHeader=document.querySelector('header.top,.hm-nav a[href$="index.html"],.hm-brand[href*="index.html"]');
+          if(missingTools||missingName||publicHeader)applyStudentChrome();
+        };
+        if(window.requestAnimationFrame)window.requestAnimationFrame(run);else setTimeout(run,0);
+      };
+      window.__HM_STUDENT_CHROME_OBSERVER=new MutationObserver(mutations=>{
+        for(const m of mutations){
+          if(m.type!=='childList')continue;
+          if(m.addedNodes.length||m.removedNodes.length){queueStudentChrome();break;}
+        }
+      });
       window.__HM_STUDENT_CHROME_OBSERVER.observe(document.documentElement,{childList:true,subtree:true});
     }
     // Some lesson versions are wrapped in same-origin iframes. Keep the
