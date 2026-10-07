@@ -17,7 +17,7 @@ main{max-width:900px;margin:auto;padding:20px}
 @media(max-width:600px){.opts{grid-template-columns:1fr}main{padding:14px}}
 @media print{body{background:#fff}.actions,.result{display:none}.hero{color:#111;background:#fff;border:1px solid #ddd}.opt{color:#111}}
 </style>
-<style>html.hm-student-authorized header,html.hm-student-authorized nav,html.hm-student-authorized a[href*="index.html"],html.hm-student-authorized a[href*="grade-"],html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-header{display:none!important}</style><script src="../../../scripts/student-gate.js?v=20261005-formal-l2"></script></head>
+<style>html.hm-student-authorized header,html.hm-student-authorized nav,html.hm-student-authorized a[href*="index.html"],html.hm-student-authorized a[href*="grade-"],html.hm-student-authorized .hm-nav,html.hm-student-authorized .hm-header{display:none!important}</style><script src="../../../../scripts/student-gate.js?v=20261005-formal-l2"></script></head>
 <body>
 <main>
 <section class="hero"><h1>🏆 التقييم الرسمي · الدرس الثاني</h1><p>Leçon 2 — Les fournitures, la trousse et le sac à dos</p><p>أجب عن جميع الأسئلة باختيار إجابة واحدة لكل سؤال، ثم اضغط «إرسال التقييم».</p></section>
@@ -25,7 +25,7 @@ main{max-width:900px;margin:auto;padding:20px}
 <div class="actions"><button class="submit" id="submit" type="button">إرسال التقييم</button><button class="reset" id="reset" type="button">إعادة المحاولة</button></div>
 <section class="result" id="result">لم يتم إرسال التقييم بعد.</section>
 </main>
-<script src="../../../scripts/activity-complete.js?v=20261005-assessment-l2"></script>
+<script src="../../../../scripts/activity-complete.js?v=20261005-assessment-l2"></script>
 <script>
 const Q=[
 ['ما معنى « une gomme »؟',['استيكة','مسطرة','قلم جاف'],0],
@@ -49,7 +49,7 @@ if(window.HMActivityComplete&&pct>=70)HMActivityComplete.complete('grade8-u1-l2'
 };
 document.getElementById('reset').onclick=()=>location.reload();
 </script>
-<script src="../../../scripts/student-gate.js?v=20261005-student-chrome-assessment-l2"></script>
+<script src="../../../../scripts/student-gate.js?v=20261005-student-chrome-assessment-l2"></script>
 <script>
 // Randomize answer order while preserving the keyed correct answer.
 document.querySelectorAll('.opts').forEach(box=>{const items=[...box.children];items.sort(()=>Math.random()-.5);items.forEach(x=>box.appendChild(x))});
