@@ -1,2 +1,604 @@
 {
-  "id":"grade7-u1-l5","unit":"unit-1","sourceLesson":5,"titleFr":"Les nombres (0-20)","titleAr":"الأعداد من 0 إلى 20","status":"gold-standard-v2","sourceTruth":"authoritative-source-package/Leçon_5","journey":["introduction","vocabulary","pronunciation","grammar","conversation","practice","video","games","smart-review","assessment","progress"],"sourceSections":["De 0 à 20","La ligne des nombres","Compte les objets !","Calcule et écris en lettres","Vérifie-toi !","Vidéo complémentaire"],"sourceData":{"range":"0-20","skills":["number recognition","number pronunciation","counting","writing numbers in words","calculation"],"practice":["Compte les objets !","Calcule et écris en lettres"],"assessment":"Vérifie-toi !"},"enrichment":{"vocabulary":"interactive number cards, audio, recognition, matching and quick checks while preserving 0-20","pronunciation":"listen/repeat/discrimination/retry","grammar":"brief language notes about number use only; no unrelated grammar","conversation":"short counting and answer situations using verified lesson numbers; enrichment clearly labeled","games":["number line","count objects","number-to-word match","mental calculation"],"smartReview":"adaptive review of weak number recognition, pronunciation, number words or calculation"},"qualityGate":["all source sections represented","all 0-20 source content preserved","source practice preserved","source assessment preserved","enrichment distinguished","mobile-first","mastery evidence required"]}
+  "id": "grade7-u1-l5",
+  "grade": "grade-7",
+  "unit": "unit-1",
+  "sourceLesson": 5,
+  "titleFr": "Les nombres (0-20)",
+  "titleAr": "الأعداد من 0 إلى 20",
+  "status": "published-runtime-enriched-v3",
+  "publishedBuild": "2026-10-11-grade7-numbers-load-fix",
+  "sourceTruth": "authoritative-source-package/Leçon_5",
+  "journey": [
+    "introduction",
+    "vocabulary",
+    "pronunciation",
+    "grammar",
+    "conversation",
+    "practice",
+    "video",
+    "games",
+    "smart-review",
+    "assessment",
+    "progress"
+  ],
+  "sourceSections": [
+    "De 0 à 20",
+    "La ligne des nombres",
+    "Compte les objets !",
+    "Calcule et écris en lettres",
+    "Vérifie-toi !",
+    "Vidéo complémentaire"
+  ],
+  "sourceData": {
+    "range": "0-20",
+    "skills": [
+      "number recognition",
+      "number pronunciation",
+      "counting",
+      "writing numbers in words",
+      "calculation"
+    ],
+    "vocabulary": [
+      [
+        "zéro",
+        "0"
+      ],
+      [
+        "un",
+        "1"
+      ],
+      [
+        "deux",
+        "2"
+      ],
+      [
+        "trois",
+        "3"
+      ],
+      [
+        "quatre",
+        "4"
+      ],
+      [
+        "cinq",
+        "5"
+      ],
+      [
+        "six",
+        "6"
+      ],
+      [
+        "sept",
+        "7"
+      ],
+      [
+        "huit",
+        "8"
+      ],
+      [
+        "neuf",
+        "9"
+      ],
+      [
+        "dix",
+        "10"
+      ],
+      [
+        "onze",
+        "11"
+      ],
+      [
+        "douze",
+        "12"
+      ],
+      [
+        "treize",
+        "13"
+      ],
+      [
+        "quatorze",
+        "14"
+      ],
+      [
+        "quinze",
+        "15"
+      ],
+      [
+        "seize",
+        "16"
+      ],
+      [
+        "dix-sept",
+        "17"
+      ],
+      [
+        "dix-huit",
+        "18"
+      ],
+      [
+        "dix-neuf",
+        "19"
+      ],
+      [
+        "vingt",
+        "20"
+      ]
+    ],
+    "quizData": [
+      [
+        "Quel nombre correspond à « zéro » ?",
+        [
+          "0",
+          "1",
+          "10"
+        ],
+        "0"
+      ],
+      [
+        "Quel nombre correspond à « quatre » ?",
+        [
+          "4",
+          "14",
+          "40"
+        ],
+        "4"
+      ],
+      [
+        "Comment écrit-on 7 en français ?",
+        [
+          "sept",
+          "six",
+          "seize"
+        ],
+        "sept"
+      ],
+      [
+        "Quel nombre correspond à « onze » ?",
+        [
+          "9",
+          "11",
+          "12"
+        ],
+        "11"
+      ],
+      [
+        "Comment écrit-on 16 en français ?",
+        [
+          "six",
+          "seize",
+          "dix-six"
+        ],
+        "seize"
+      ],
+      [
+        "Quel nombre correspond à « dix-huit » ?",
+        [
+          "17",
+          "18",
+          "19"
+        ],
+        "18"
+      ],
+      [
+        "Comment écrit-on 13 en français ?",
+        [
+          "treize",
+          "trente",
+          "douze"
+        ],
+        "treize"
+      ],
+      [
+        "Quel nombre correspond à « vingt » ?",
+        [
+          "12",
+          "19",
+          "20"
+        ],
+        "20"
+      ],
+      [
+        "Complète la suite : huit, neuf, …",
+        [
+          "dix",
+          "sept",
+          "douze"
+        ],
+        "dix"
+      ],
+      [
+        "Calcule : trois + deux = …",
+        [
+          "quatre",
+          "cinq",
+          "six"
+        ],
+        "cinq"
+      ]
+    ],
+    "practice": [
+      "Compte les objets !",
+      "Calcule et écris en lettres"
+    ],
+    "assessment": "Vérifie-toi !"
+  },
+  "journeyContent": {
+    "introduction": {
+      "goal": "التعرّف إلى الأعداد الفرنسية من 0 إلى 20، ونطقها وقراءتها وكتابتها، ثم استخدامها في العدّ والحساب البسيط.",
+      "learningPath": [
+        "أتعرف إلى الأعداد من 0 إلى 20",
+        "أستمع إلى نطق العدد وأكرره",
+        "أربط العدد المكتوب بالكلمة الفرنسية",
+        "أعدّ الأشياء وأكتب الناتج بالحروف",
+        "أحل تدريبات وتقييمًا قصيرًا"
+      ]
+    },
+    "vocabulary": {
+      "items": [
+        [
+          "zéro",
+          "صفر",
+          "zéro"
+        ],
+        [
+          "un",
+          "واحد",
+          "un"
+        ],
+        [
+          "deux",
+          "اثنان",
+          "deux"
+        ],
+        [
+          "trois",
+          "ثلاثة",
+          "trois"
+        ],
+        [
+          "quatre",
+          "أربعة",
+          "quatre"
+        ],
+        [
+          "cinq",
+          "خمسة",
+          "cinq"
+        ],
+        [
+          "six",
+          "ستة",
+          "six"
+        ],
+        [
+          "sept",
+          "سبعة",
+          "sept"
+        ],
+        [
+          "huit",
+          "ثمانية",
+          "huit"
+        ],
+        [
+          "neuf",
+          "تسعة",
+          "neuf"
+        ],
+        [
+          "dix",
+          "عشرة",
+          "dix"
+        ],
+        [
+          "onze",
+          "أحد عشر",
+          "onze"
+        ],
+        [
+          "douze",
+          "اثنا عشر",
+          "douze"
+        ],
+        [
+          "treize",
+          "ثلاثة عشر",
+          "treize"
+        ],
+        [
+          "quatorze",
+          "أربعة عشر",
+          "quatorze"
+        ],
+        [
+          "quinze",
+          "خمسة عشر",
+          "quinze"
+        ],
+        [
+          "seize",
+          "ستة عشر",
+          "seize"
+        ],
+        [
+          "dix-sept",
+          "سبعة عشر",
+          "dix-sept"
+        ],
+        [
+          "dix-huit",
+          "ثمانية عشر",
+          "dix-huit"
+        ],
+        [
+          "dix-neuf",
+          "تسعة عشر",
+          "dix-neuf"
+        ],
+        [
+          "vingt",
+          "عشرون",
+          "vingt"
+        ]
+      ]
+    },
+    "pronunciation": {
+      "items": [
+        "zéro",
+        "un",
+        "deux",
+        "trois",
+        "quatre",
+        "cinq",
+        "six",
+        "sept",
+        "huit",
+        "neuf",
+        "dix",
+        "onze",
+        "douze",
+        "treize",
+        "quatorze",
+        "quinze",
+        "seize",
+        "dix-sept",
+        "dix-huit",
+        "dix-neuf",
+        "vingt"
+      ]
+    },
+    "grammar": {
+      "notes": [
+        "هذا الدرس مخصص للأعداد من 0 إلى 20.",
+        "تُكتب الأعداد الفرنسية في هذا النطاق بالكلمات الموضحة في بطاقات المفردات.",
+        "عند العدّ، رتّب الأعداد تصاعديًا ثم اكتب الناتج بالحروف الفرنسية."
+      ]
+    },
+    "conversation": {
+      "sourcePreserved": [
+        "Combien ? — Trois.",
+        "Tu comptes combien d’objets ? — Cinq objets.",
+        "Deux plus trois, ça fait combien ? — Cinq."
+      ]
+    },
+    "practice": {
+      "sourceTasks": [
+        "De 0 à 20",
+        "La ligne des nombres",
+        "Compte les objets !",
+        "Calcule et écris en lettres",
+        "Vérifie-toi !"
+      ]
+    },
+    "games": [
+      "خط الأعداد: رتّب الأعداد من 0 إلى 20",
+      "عدّ الأشياء واختر العدد الصحيح",
+      "طابق الرقم مع الكلمة الفرنسية",
+      "تحدي الحساب الذهني البسيط"
+    ]
+  },
+  "assessment": {
+    "items": [
+      [
+        "Quel nombre correspond à « zéro » ?",
+        [
+          "0",
+          "1",
+          "10"
+        ],
+        "0"
+      ],
+      [
+        "Quel nombre correspond à « un » ?",
+        [
+          "1",
+          "2",
+          "11"
+        ],
+        "1"
+      ],
+      [
+        "Quel nombre correspond à « deux » ?",
+        [
+          "3",
+          "2",
+          "12"
+        ],
+        "2"
+      ],
+      [
+        "Comment écrit-on 3 en français ?",
+        [
+          "trois",
+          "treize",
+          "trente"
+        ],
+        "trois"
+      ],
+      [
+        "Quel nombre correspond à « quatre » ?",
+        [
+          "4",
+          "14",
+          "40"
+        ],
+        "4"
+      ],
+      [
+        "Comment écrit-on 5 en français ?",
+        [
+          "six",
+          "cinq",
+          "quinze"
+        ],
+        "cinq"
+      ],
+      [
+        "Quel nombre correspond à « six » ?",
+        [
+          "5",
+          "6",
+          "16"
+        ],
+        "6"
+      ],
+      [
+        "Comment écrit-on 7 en français ?",
+        [
+          "sept",
+          "huit",
+          "seize"
+        ],
+        "sept"
+      ],
+      [
+        "Quel nombre correspond à « huit » ?",
+        [
+          "8",
+          "18",
+          "9"
+        ],
+        "8"
+      ],
+      [
+        "Comment écrit-on 9 en français ?",
+        [
+          "neuf",
+          "neufze",
+          "dix"
+        ],
+        "neuf"
+      ],
+      [
+        "Quel nombre correspond à « dix » ?",
+        [
+          "2",
+          "10",
+          "20"
+        ],
+        "10"
+      ],
+      [
+        "Comment écrit-on 11 en français ?",
+        [
+          "douze",
+          "onze",
+          "treize"
+        ],
+        "onze"
+      ],
+      [
+        "Quel nombre correspond à « douze » ?",
+        [
+          "10",
+          "11",
+          "12"
+        ],
+        "12"
+      ],
+      [
+        "Comment écrit-on 13 en français ?",
+        [
+          "treize",
+          "trente",
+          "quatorze"
+        ],
+        "treize"
+      ],
+      [
+        "Quel nombre correspond à « quatorze » ?",
+        [
+          "14",
+          "4",
+          "40"
+        ],
+        "14"
+      ],
+      [
+        "Comment écrit-on 15 en français ?",
+        [
+          "seize",
+          "quinze",
+          "six"
+        ],
+        "quinze"
+      ],
+      [
+        "Quel nombre correspond à « seize » ?",
+        [
+          "6",
+          "16",
+          "17"
+        ],
+        "16"
+      ],
+      [
+        "Comment écrit-on 17 en français ?",
+        [
+          "dix-sept",
+          "dix-huit",
+          "sept"
+        ],
+        "dix-sept"
+      ],
+      [
+        "Quel nombre correspond à « dix-neuf » ?",
+        [
+          "18",
+          "19",
+          "20"
+        ],
+        "19"
+      ],
+      [
+        "Trois + deux = …",
+        [
+          "quatre",
+          "cinq",
+          "six"
+        ],
+        "cinq"
+      ]
+    ]
+  },
+  "enrichment": {
+    "vocabulary": "بطاقات تفاعلية للأعداد من 0 إلى 20 مع النطق والمعنى.",
+    "pronunciation": "استمع وكرر وقارن نطق الأعداد.",
+    "grammar": "ملاحظات قصيرة مرتبطة بالأعداد فقط.",
+    "conversation": "مواقف قصيرة للعد والإجابة عن سؤال Combien ?",
+    "games": [
+      "number line",
+      "count objects",
+      "number-to-word match",
+      "mental calculation"
+    ],
+    "smartReview": "مراجعة الأعداد التي يخطئ فيها الطالب مع تدريب إضافي."
+  },
+  "qualityGate": [
+    "all source sections represented",
+    "all 0-20 content preserved",
+    "source practice represented",
+    "source assessment included",
+    "mobile-first"
+  ]
+}
