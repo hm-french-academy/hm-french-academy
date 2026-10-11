@@ -91,7 +91,7 @@
       // Recreate them whenever a lesson renderer replaces the page DOM.
       if(!document.getElementById('hm-student-tools') && document.body){
         const box=document.createElement('footer');box.id='hm-student-tools';box.dir='rtl';box.setAttribute('role','contentinfo');box.setAttribute('data-hm-student-controls','1');
-        box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 دخول درس آخر</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
+        box.innerHTML='<button class="primary" type="button" id="hm-switch-lesson">🔑 تسجيل درس جديد</button><button class="logout" type="button" id="hm-student-logout">🚪 تسجيل الخروج</button>';
         box.style.cssText='display:flex!important;clear:both;position:relative!important;float:none!important;width:100%!important;box-sizing:border-box!important;';
         document.body.appendChild(box);
         box.querySelector('#hm-switch-lesson').onclick=newLesson;
