@@ -67,12 +67,39 @@ const types=["الاسم (Nom)","الحال (Humeur)","العمر (Âge)"];
 $('sortQuestions').innerHTML=sortItems.map((x,i)=>'<div class="q"><b class="fr">'+x[0]+'</b><div class="options">'+types.map((t,j)=>'<button data-sort="'+i+'" data-value="'+j+'">'+t+'</button>').join('')+'</div></div>').join('');
 $('sortQuestions').querySelectorAll('button').forEach(b=>b.onclick=()=>{const q=b.closest('.q');q.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');q.dataset.choice=b.dataset.value});
 $('checkSort').onclick=()=>{let n=0;sortItems.forEach((x,i)=>{const q=$('sortQuestions').children[i];if(q.dataset.choice!==undefined&&+q.dataset.choice===x[1])n++});$('sortFeedback').textContent='نتيجتك: '+n+' من '+sortItems.length;$('sortFeedback').className='feedback '+(n===sortItems.length?'good':'bad');markProgress(1)};
-function renderChoices(container,items,prefix){$(container).innerHTML=items.map((q,i)=>'<div class="q" data-index="'+i+'"><b>'+(i+1)+'. '+q[1]+'</b><div class="footer"><button class="btn light" data-play="'+prefix+i+'">🔊 استمع</button></div><div class="options">'+q[2].map((o,j)=>'<button data-choice="'+j+'">'+o+'</button>').join('')+'</div><div class="feedback"></div></div>').join('');$(container).querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>speak(items[+b.closest('.q').dataset.index][0]));$(container).querySelectorAll('.q .options button').forEach(b=>b.onclick=()=>{const q=b.closest('.q');q.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');q.dataset.choice=b.dataset.choice})}
-renderChoices('listenQs',listen,'listen');renderChoices('practiceQs',practice,'practice');
-function gradeGroup(container,items,out,multi){let n=0;items.forEach((item,i)=>{const q=$(container).children[i],chosen=q.dataset.choice===undefined?[]:q.dataset.choice.split(',').map(Number);const accepted=Array.isArray(item[3])?item[3]:[item[3]];const ok=multi&&Array.isArray(item[3])?chosen.length===accepted.length&&accepted.every(x=>chosen.includes(x)):chosen.some(x=>accepted.includes(x));if(ok)n++;q.querySelector('.feedback').textContent=ok?'إجابة صحيحة ✓':(chosen.length?'راجع الإجابة.':'اختر إجابة أولًا.');q.querySelector('.feedback').className='feedback '+(ok?'good':'bad')});$(out).textContent='النتيجة: '+n+' من '+items.length;$(out).className='feedback '+(n===items.length?'good':'bad');markProgress(2)}
-$('checkListen').onclick=()=>gradeGroup('listenQs',listen,'listenScore',false);
-$('checkPractice').onclick=()=>gradeGroup('practiceQs',practice,'practiceScore',true);
-$('practiceQs').querySelectorAll('.q').forEach((q,i)=>{if(i===1){q.querySelectorAll('.options button').forEach(b=>b.onclick=()=>{const idx=+b.dataset.choice;let arr=q.dataset.choice?q.dataset.choice.split(',').map(Number):[];if(arr.includes(idx))arr=arr.filter(x=>x!==idx);else arr.push(idx);q.dataset.choice=arr.join(',');b.classList.toggle('selected')})}});
+function renderChoices(container,items,prefix,kind){
+const isListen=kind==='listen';
+$(container).innerHTML=items.map((q,i)=>{
+const prompt=isListen?q[1]:q[0], options=isListen?q[2]:q[1];
+return '<div class="q" data-index="'+i+'"><b>'+(i+1)+'. '+prompt+'</b><div class="footer"><button class="btn light" data-play="'+prefix+i+'">🔊 '+(isListen?'استمع':'استمع للسؤال')+'</button></div><div class="options">'+options.map((o,j)=>'<button data-choice="'+j+'">'+o+'</button>').join('')+'</div><div class="feedback"></div></div>';
+}).join('');
+$(container).querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>speak(isListen?items[+b.closest('.q').dataset.index][0]:items[+b.closest('.q').dataset.index][0]));
+$(container).querySelectorAll('.q .options button').forEach(b=>b.onclick=()=>{
+const q=b.closest('.q'),idx=+b.dataset.choice;
+if(!isListen&&Array.isArray(items[+q.dataset.index][2])){
+let arr=q.dataset.choice?q.dataset.choice.split(',').map(Number):[];
+arr=arr.includes(idx)?arr.filter(x=>x!==idx):[...arr,idx];
+q.dataset.choice=arr.join(',');
+b.classList.toggle('selected',arr.includes(idx));
+}else{q.querySelectorAll('.options button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');q.dataset.choice=String(idx)}
+});
+}
+renderChoices('listenQs',listen,'listen','listen');renderChoices('practiceQs',practice,'practice','practice');
+function gradeGroup(container,items,out,kind){
+let n=0;
+items.forEach((item,i)=>{
+const q=$(container).children[i],chosen=q.dataset.choice===undefined?[]:q.dataset.choice.split(',').map(Number);
+const raw=kind==='listen'?item[3]:item[2],accepted=Array.isArray(raw)?raw:[raw];
+const ok=chosen.length>0&&(Array.isArray(raw)?chosen.length===accepted.length&&accepted.every(x=>chosen.includes(x)):chosen.some(x=>accepted.includes(x)));
+if(ok)n++;
+q.querySelector('.feedback').textContent=ok?'إجابة صحيحة ✓':(chosen.length?'راجع الإجابة.':'اختر إجابة أولًا.');
+q.querySelector('.feedback').className='feedback '+(ok?'good':'bad');
+});
+$(out).textContent='النتيجة: '+n+' من '+items.length;
+$(out).className='feedback '+(n===items.length?'good':'bad');markProgress(2)
+}
+$('checkListen').onclick=()=>gradeGroup('listenQs',listen,'listenScore','listen');
+$('checkPractice').onclick=()=>gradeGroup('practiceQs',practice,'practiceScore','practice');
 const words=['Je',"m'appelle",'Lina'];let picked=[];function renderBuilder(){const pool=['Lina',"m'appelle",'Je'];$('builderChoices').innerHTML=pool.map(w=>'<button class="btn light" data-build="'+w+'">'+w+'</button>').join('');$('builderChoices').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(picked.includes(b.dataset.build))return;picked.push(b.dataset.build);b.disabled=true;$('builderResult').textContent=picked.join(' ');$('builderFeedback').textContent=''});$('builderResult').textContent=picked.join(' ')}renderBuilder();
 $('checkBuilder').onclick=()=>{const ok=picked.join('|')===words.join('|');$('builderFeedback').textContent=ok?'ممتاز! Je m’appelle Lina. 🎉':'حاول ترتيبها هكذا: Je → m’appelle → Lina.';$('builderFeedback').className='feedback '+(ok?'good':'bad');markProgress(3)};
 $('resetBuilder').onclick=()=>{picked=[];renderBuilder();$('builderFeedback').textContent=''};
