@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "description": "Preview-only examples, not official curriculum questions.",
+  "supportedStages": [
+    "primary",
+    "preparatory",
+    "secondary"
+  ],
+  "supportedTypes": [
+    "multiple-choice",
+    "true-false",
+    "fill-blank",
+    "translation",
+    "ordering",
+    "matching",
+    "reading",
+    "written"
+  ],
+  "questions": [
+    {
+      "id": "qb-demo-p3-001",
+      "stage": "primary",
+      "grade": 3,
+      "semester": "1",
+      "unit": "تمهيدي",
+      "lesson": "التحية والتعارف",
+      "type": "multiple-choice",
+      "difficulty": "easy",
+      "status": "published",
+      "text": "Comment dit-on «مرحبًا» en français ?",
+      "options": [
+        "Bonjour",
+        "Merci",
+        "Au revoir",
+        "Pardon"
+      ],
+      "answer": "Bonjour",
+      "marks": 1,
+      "explanation": "Bonjour تعني مرحبًا أو صباح الخير بحسب السياق.",
+      "source": "مثال توضيحي من إعداد المنصة، وليس سؤالًا منقولًا من كتاب",
+      "tags": [
+        "مفردات",
+        "تحية"
+      ]
+    },
+    {
+      "id": "qb-demo-p3-002",
+      "stage": "primary",
+      "grade": 3,
+      "semester": "1",
+      "unit": "تمهيدي",
+      "lesson": "التحية والتعارف",
+      "type": "multiple-choice",
+      "difficulty": "medium",
+      "status": "review",
+      "text": "اختر الإجابة المناسبة: Je ___ Lina.",
+      "options": [
+        "suis",
+        "es",
+        "sommes",
+        "êtes"
+      ],
+      "answer": "suis",
+      "marks": 1,
+      "explanation": "مع الضمير Je نستخدم suis من الفعل être.",
+      "source": "مثال توضيحي يحتاج مراجعة قبل النشر",
+      "tags": [
+        "قواعد",
+        "être"
+      ]
+    },
+    {
+      "id": "qb-demo-p5-001",
+      "stage": "primary",
+      "grade": 5,
+      "semester": "1",
+      "unit": "الوحدة الأولى",
+      "lesson": "الأعداد",
+      "type": "multiple-choice",
+      "difficulty": "medium",
+      "status": "draft",
+      "text": "Quel nombre correspond à «douze» ?",
+      "options": [
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "answer": "12",
+      "marks": 1,
+      "explanation": "douze تعني اثني عشر.",
+      "source": "مثال توضيحي",
+      "tags": [
+        "مفردات",
+        "أعداد"
+      ]
+    },
+    {
+      "id": "qb-demo-p8-001",
+      "stage": "preparatory",
+      "grade": 8,
+      "semester": "1",
+      "unit": "الوحدة الأولى",
+      "lesson": "تكوين الجملة",
+      "type": "multiple-choice",
+      "difficulty": "medium",
+      "status": "published",
+      "text": "Choisissez la phrase correcte.",
+      "options": [
+        "Je m'appelle Sara.",
+        "Je appelle m Sara.",
+        "M'appelle je Sara.",
+        "Sara je m'appelle."
+      ],
+      "answer": "Je m'appelle Sara.",
+      "marks": 2,
+      "explanation": "الترتيب الصحيح: Je + m'appelle + الاسم.",
+      "source": "مثال توضيحي",
+      "tags": [
+        "قواعد",
+        "تركيب الجملة"
+      ]
+    },
+    {
+      "id": "qb-demo-s10-001",
+      "stage": "secondary",
+      "grade": 10,
+      "semester": "1",
+      "unit": "المراجعة",
+      "lesson": "الأزمنة",
+      "type": "multiple-choice",
+      "difficulty": "advanced",
+      "status": "review",
+      "text": "Complétez : Hier, nous ___ au musée.",
+      "options": [
+        "allons",
+        "sommes allés",
+        "irons",
+        "allons aller"
+      ],
+      "answer": "sommes allés",
+      "marks": 2,
+      "explanation": "Hier يشير إلى الماضي؛ يُستخدم passé composé مع être مع aller.",
+      "source": "مثال توضيحي يحتاج مراجعة لغوية",
+      "tags": [
+        "قواعد",
+        "passé composé"
+      ]
+    },
+    {
+      "id": "qb-demo-p4-001",
+      "stage": "primary",
+      "grade": 4,
+      "semester": "2",
+      "unit": "الوحدة الثانية",
+      "lesson": "الألوان",
+      "type": "true-false",
+      "difficulty": "easy",
+      "status": "draft",
+      "text": "«Rouge» تعني اللون الأحمر.",
+      "options": [
+        "صح",
+        "خطأ"
+      ],
+      "answer": "صح",
+      "marks": 1,
+      "explanation": "Rouge تعني أحمر بالفرنسية.",
+      "source": "مثال توضيحي",
+      "tags": [
+        "مفردات",
+        "ألوان"
+      ]
+    }
+  ]
+}
