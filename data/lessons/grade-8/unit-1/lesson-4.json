@@ -200,64 +200,127 @@
   },
   "practice": [
     {
-      "question": "اختر المؤنث الصحيح: Un mécanicien → ...",
+      "question": "اختر الصيغة المؤنثة الصحيحة: Un acteur → ...",
       "options": [
-        "Une mécanicienne",
-        "Une mécanicien",
-        "Un mécanicienne"
+        "Un actrice",
+        "Une actrice",
+        "Une acteur"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "أكمل الجملة المثبتة: ___ une pharmacienne à l'hôpital.",
+      "options": [
+        "Il n'y a pas de",
+        "Ce sont",
+        "Il y a"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "اختر النفي الصحيح: Il y a un coiffeur. (حوّل إلى النفي)",
+      "options": [
+        "Il n'y a pas de coiffeur.",
+        "Il n'y a pas un coiffeur.",
+        "Il n'y a pas des coiffeur."
       ],
       "answer": 0
     },
     {
-      "question": "اختر المؤنث الصحيح: Un pharmacien → ...",
+      "question": "ما مؤنث Un policier؟",
       "options": [
-        "Une pharmacienne",
-        "Une pharmacien",
-        "Un pharmacienne"
+        "Une policière",
+        "Une policier",
+        "Un policière"
       ],
       "answer": 0
     },
     {
-      "question": "أكمل: Il ___ un tableau.",
+      "question": "أكمل: Il n'y a pas ___ actrice dans la salle.",
       "options": [
-        "y a",
-        "n'y a",
-        "a y"
+        "une",
+        "de",
+        "d'"
       ],
-      "answer": 0
+      "answer": 2
     },
     {
-      "question": "اختر النفي الصحيح.",
+      "question": "اختر الكلمة التي تعني «خبازة».",
       "options": [
-        "Il n'y a pas de tableau.",
-        "Il y a pas une tableau.",
-        "Il ne y a pas tableau."
-      ],
-      "answer": 0
-    },
-    {
-      "question": "اختر المؤنث الصحيح: Un boulanger → ...",
-      "options": [
+        "Une vendeuse",
         "Une boulangère",
-        "Une boulanger",
-        "Un boulangère"
+        "Une cuisinière"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "أي جملة تعبّر عن وجود عدة بائعات؟",
+      "options": [
+        "Il y a des vendeuses.",
+        "Il n'y a pas de vendeuse.",
+        "Il y a une vendeuse."
       ],
       "answer": 0
+    },
+    {
+      "question": "اختر مؤنث Un cuisinier.",
+      "options": [
+        "Une cuisinier",
+        "Un cuisinière",
+        "Une cuisinière"
+      ],
+      "answer": 2
     }
   ],
   "assessment": {
     "questions": [
       {
-        "question": "Un vendeur يصبح في المؤنث:",
+        "question": "حوّل Un mécanicien إلى المؤنث.",
         "options": [
-          "Une vendeuse",
-          "Une vendeur",
-          "Un vendeuse"
+          "Une mécanicien",
+          "Une mécanicienne",
+          "Un mécanicienne"
+        ],
+        "answer": 1
+      },
+      {
+        "question": "اختر الجملة التي تعني «لا يوجد صيدلي».",
+        "options": [
+          "Il n'y a pas de pharmacien.",
+          "Il y a un pharmacien.",
+          "Il n'y a pas des pharmacien."
         ],
         "answer": 0
       },
       {
-        "question": "Un coiffeur يصبح في المؤنث:",
+        "question": "أكمل: ___ trois infirmières dans l'hôpital.",
+        "options": [
+          "C'est",
+          "Il n'y a pas",
+          "Il y a"
+        ],
+        "answer": 2
+      },
+      {
+        "question": "ما مؤنث Un vendeur؟",
+        "options": [
+          "Un vendeuse",
+          "Une vendeur",
+          "Une vendeuse"
+        ],
+        "answer": 2
+      },
+      {
+        "question": "اختر النفي الصحيح قبل اسم يبدأ بحرف متحرك: Il n'y a pas ___ acteur.",
+        "options": [
+          "de",
+          "d'",
+          "un"
+        ],
+        "answer": 1
+      },
+      {
+        "question": "أي كلمة تعني «حلاقة» بصيغة المؤنث؟",
         "options": [
           "Une coiffeuse",
           "Une coiffeur",
@@ -266,20 +329,20 @@
         "answer": 0
       },
       {
-        "question": "اختر الجملة الصحيحة.",
+        "question": "اختر الجملة الصحيحة نحويًا.",
         "options": [
-          "Il y a des livres.",
-          "Il y a de livres.",
-          "Il y a pas des livres."
+          "Il n'y a pas de mécanicienne.",
+          "Il n'y a pas une mécanicienne.",
+          "Il n'y a pas des mécanicienne."
         ],
         "answer": 0
       },
       {
-        "question": "اختر الصيغة الصحيحة للنفي.",
+        "question": "أكمل: Dans la cuisine, ___ une cuisinière.",
         "options": [
-          "Il n'y a pas d'acteur.",
-          "Il ne y a pas un acteur.",
-          "Il y a pas d'acteur."
+          "Il y a",
+          "Il n'y a pas de",
+          "Ce sont"
         ],
         "answer": 0
       }
