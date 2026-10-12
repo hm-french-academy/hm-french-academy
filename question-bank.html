@@ -11,7 +11,7 @@
 <div class="modal" id="practice"><div class="dialog"><div class="dialoghead"><h2>تجربة التدريب</h2><button class="btn alt" data-close="practice">إغلاق ✕</button></div><p class="sub">تجربة على أسئلة الاختيار من متعدد المنشورة في بيانات المعاينة.</p><div id="practiceContent"></div><div class="actions"><button class="btn" id="check">تصحيح الإجابات</button><button class="btn alt" id="another">مجموعة أخرى</button></div><div id="result"></div></div></div><div class="toast" id="toast" role="status"></div>
 <script>
 (function(){
-const $=x=>document.getElementById(x),KEY='hm-question-bank-preview-v1',DATA='data/question-bank-v2.json';
+const $=x=>document.getElementById(x),KEY='hm-question-bank-preview-v1',DATA=location.hostname==='htmlpreview.github.io'?'https://raw.githubusercontent.com/hm-french-academy/hm-french-academy/feature/central-question-bank/data/question-bank-v2.json':'data/question-bank-v2.json';
 const stageNames={primary:'ابتدائي',preparatory:'إعدادي',secondary:'ثانوي'},typeNames={'multiple-choice':'اختيار من متعدد','true-false':'صح أو خطأ','fill-blank':'أكمل',translation:'ترجمة',ordering:'ترتيب كلمات',matching:'توصيل',reading:'فهم مقروء',written:'إجابة كتابية'},diffNames={easy:'سهل',medium:'متوسط',advanced:'متقدم'},statusNames={draft:'مسودة',review:'قيد المراجعة',published:'منشور',archived:'مؤرشف'};
 let seed=[],items=[],practiceItems=[];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
