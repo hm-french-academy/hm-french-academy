@@ -49,7 +49,7 @@ const practice=[
 ];
 const assessment=[
 ["ماذا تقول عندما يسألك عن اسمك؟",["Je m'appelle Lina.","Ça va bien, merci.","J'ai neuf ans."],0],
-["اختر إجابة واردة وصحيحة لسؤال الحال.",["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],[0,1,2,3]],
+["حدّد جميع الإجابات الصحيحة لسؤال الحال.",["Ça va bien, merci.","Pas mal.","Ça ne va pas.","Oui, ça va bien."],[0,1,2,3]],
 ["كيف تقول: عمري تسع سنوات؟",["J'ai neuf ans.","Ça va bien.","Je m'appelle Lina."],0],
 ["ما معنى «Quel âge as-tu ?»",["ما اسمك؟","كيف حالك؟","كم عمرك؟"],2],
 ["أي عبارة تعني «لا بأس»؟",["Pas mal.","Bonjour.","Je m'appelle."],0]
@@ -80,6 +80,8 @@ $('moodCards').innerHTML=['Ça va bien, merci.','Pas mal.','Ça ne va pas.','Oui
 $('moodCards').querySelectorAll('button').forEach(b=>b.onclick=()=>speak(b.dataset.mood));
 function renderAssessment(){ $('assessmentQs').innerHTML=assessment.map((q,i)=>'<div class="q" data-index="'+i+'"><b>'+(i+1)+'. '+q[0]+'</b><div class="options">'+q[1].map((o,j)=>'<button data-answer="'+j+'">'+o+'</button>').join('')+'</div><div class="feedback"></div></div>').join('');$('assessmentQs').querySelectorAll('.q .options button').forEach(b=>b.onclick=()=>{const q=b.closest('.q');q.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');q.dataset.choice=b.dataset.answer})}
 renderAssessment();
+const moodAssessment=$('assessmentQs').children[1];
+if(moodAssessment){moodAssessment.querySelectorAll('.options button').forEach(b=>b.onclick=()=>{let arr=moodAssessment.dataset.choice?moodAssessment.dataset.choice.split(',').map(Number):[];const idx=+b.dataset.answer;if(arr.includes(idx))arr=arr.filter(x=>x!==idx);else arr.push(idx);moodAssessment.dataset.choice=arr.join(',');b.classList.toggle('selected',arr.includes(idx))})}
 $('gradeFinal').onclick=()=>{let score=0,answered=0;assessment.forEach((x,i)=>{const q=$('assessmentQs').children[i],ch=q.dataset.choice===undefined?[]:q.dataset.choice.split(',').map(Number),acc=Array.isArray(x[2])?x[2]:[x[2]],ok=Array.isArray(x[2])?ch.length===acc.length&&acc.every(a=>ch.includes(a)):ch.some(a=>acc.includes(a));if(ch.length)answered++;if(ok)score++;q.querySelector('.feedback').textContent=ok?'إجابة صحيحة ✓':(ch.length?'إجابة غير صحيحة.':'لم تجب عن السؤال.');q.querySelector('.feedback').className='feedback '+(ok?'good':'bad')});if(answered<assessment.length){$('finalScore').textContent='أجب عن الأسئلة كلها أولًا. (أجبت عن '+answered+' من '+assessment.length+')';$('finalScore').className='feedback bad'}else{$('finalScore').textContent='النتيجة النهائية: '+score+' من '+assessment.length+' ('+Math.round(score/assessment.length*100)+'%)';$('finalScore').className='feedback score '+(score>=4?'good':'bad');markProgress(4)}};
 $('resetFinal').onclick=()=>{renderAssessment();$('finalScore').textContent=''};
 $('sayMyName').onclick=()=>{const n=$('myName').value.trim();if(!n){$('nameFeedback').textContent='اكتب اسمك أولًا.';return}$('nameFeedback').textContent="Je m'appelle "+n+" !";speak("Je m'appelle "+n)};
