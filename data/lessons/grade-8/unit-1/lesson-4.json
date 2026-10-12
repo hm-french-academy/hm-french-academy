@@ -229,11 +229,11 @@
     {
       "question": "ما مؤنث Un policier؟",
       "options": [
-        "Une policière",
         "Une policier",
+        "Une policière",
         "Un policière"
       ],
-      "answer": 0
+      "answer": 1
     },
     {
       "question": "أكمل: Il n'y a pas ___ actrice dans la salle.",
@@ -247,20 +247,20 @@
     {
       "question": "اختر الكلمة التي تعني «خبازة».",
       "options": [
-        "Une vendeuse",
         "Une boulangère",
+        "Une vendeuse",
         "Une cuisinière"
       ],
-      "answer": 1
+      "answer": 0
     },
     {
       "question": "أي جملة تعبّر عن وجود عدة بائعات؟",
       "options": [
-        "Il y a des vendeuses.",
         "Il n'y a pas de vendeuse.",
+        "Il y a des vendeuses.",
         "Il y a une vendeuse."
       ],
-      "answer": 0
+      "answer": 1
     },
     {
       "question": "اختر مؤنث Un cuisinier.",
@@ -305,19 +305,19 @@
         "question": "ما مؤنث Un vendeur؟",
         "options": [
           "Un vendeuse",
-          "Une vendeur",
-          "Une vendeuse"
+          "Une vendeuse",
+          "Une vendeur"
         ],
-        "answer": 2
+        "answer": 1
       },
       {
         "question": "اختر النفي الصحيح قبل اسم يبدأ بحرف متحرك: Il n'y a pas ___ acteur.",
         "options": [
           "de",
-          "d'",
-          "un"
+          "un",
+          "d'"
         ],
-        "answer": 1
+        "answer": 2
       },
       {
         "question": "أي كلمة تعني «حلاقة» بصيغة المؤنث؟",
@@ -331,20 +331,20 @@
       {
         "question": "اختر الجملة الصحيحة نحويًا.",
         "options": [
-          "Il n'y a pas de mécanicienne.",
           "Il n'y a pas une mécanicienne.",
+          "Il n'y a pas de mécanicienne.",
           "Il n'y a pas des mécanicienne."
         ],
-        "answer": 0
+        "answer": 1
       },
       {
         "question": "أكمل: Dans la cuisine, ___ une cuisinière.",
         "options": [
-          "Il y a",
           "Il n'y a pas de",
-          "Ce sont"
+          "Ce sont",
+          "Il y a"
         ],
-        "answer": 0
+        "answer": 2
       }
     ]
   },
