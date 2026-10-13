@@ -140,4 +140,5 @@ document.getElementById('keyBtn').addEventListener('click',()=>{const k=document
 document.getElementById('resetBtn').addEventListener('click',()=>{form.reset();questions.forEach((q,i)=>{const fb=document.getElementById('fb'+i);fb.hidden=true;fb.textContent='';fb.className='feedback'});document.getElementById('result').style.display='none';document.getElementById('answerKey').classList.remove('show');document.getElementById('keyBtn').textContent='عرض نموذج الإجابة';document.getElementById('test').scrollIntoView({behavior:'smooth'})});
 </script>
 <script src="scripts/brand.js?v=20261013-oct-review"></script>
+<!-- republish-fix-2026-10-14: ensure the complete exam and contrast updates are deployed -->
 </body></html>
