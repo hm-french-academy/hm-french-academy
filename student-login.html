@@ -32,7 +32,7 @@ button:disabled{opacity:.65;cursor:wait}
 <button id="enter" type="submit">دخول</button>
 </form>
 <div id="status" class="status" role="alert"></div>
-<div id="lessons" class="lessons hidden"></div><div id="actions" class="actions hidden"><a id="resume" class="secondary" href="#">▶ متابعة الدرس الحالي</a><button id="logout" type="button" class="secondary">🚪 تسجيل الخروج</button></div>
+<div id="lessons" class="lessons hidden"></div><div id="actions" class="actions hidden"><a id="resume" class="secondary" href="#">▶ متابعة الدرس الحالي</a><button id="switchLesson" type="button" class="secondary">🔑 تسجيل درس آخر</button><button id="logout" type="button" class="secondary">🚪 تسجيل الخروج</button></div>
 <div class="small">HM Academy · الوصول المخصص للطلاب</div>
 </section></main>
 <script>
@@ -53,6 +53,8 @@ function deviceId(){
 function msg(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'');}
 function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
+  if(String(id)==='october-review-grade7')return 'october-exam-review-grade7.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
+  if(String(id)==='october-review-grade8')return 'october-exam-review-grade8.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
   // First secondary lessons use the dedicated secondary lesson studio.
   if(/^s1-u\d+-\d+$/i.test(String(id)))
     return 'secondary-1-lesson-studio.html?id='+encodeURIComponent(id)+'&section=observe&student=1&v=20261006-secondary-student-route';
@@ -67,6 +69,8 @@ function lessonUrl(id){
   return 'lesson.html?id='+encodeURIComponent(id)+'&v=20261001-route-fix&section=lesson&student=1';
 }
 const LESSON_TITLES={
+  'october-review-grade7':['مراجعة اختبار أكتوبر — الصف الأول الإعدادي','Révision de l’examen d’octobre — 1re préparatoire'],
+  'october-review-grade8':['مراجعة اختبار أكتوبر — الصف الثاني الإعدادي','Révision de l’examen d’octobre — 2e préparatoire'],
   'grade8-u1-l1':['في المدرسة',"À l'école"],
   'grade8-u1-l2':['الأدوات المدرسية والمقلمة وشنطة الظهر','Les fournitures, la trousse et le sac à dos'],
   'grade8-u1-l3':['المواد الدراسية وتصريف الأفعال','Les matières scolaires et la conjugaison'],
@@ -170,9 +174,21 @@ async function lessonLabel(id){
   if(m)return {title:'الدرس '+Number(m[2]),meta:gradeTextFor(g)};
   return {title:'الدرس المتاح',meta:key};
 }
+function bindStudentActions(){
+  const resume=document.getElementById('resume');
+  const current=localStorage.getItem('hm_student_current_lesson');
+  if(current){resume.href=lessonUrl(current);resume.hidden=false;resume.removeAttribute('aria-disabled');}
+  else{resume.hidden=true;resume.setAttribute('aria-disabled','true');}
+  document.getElementById('switchLesson').onclick=()=>location.href='student-login.html?switch=1';
+  document.getElementById('logout').onclick=()=>{
+    ['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name','hm_student_browser_id'].forEach(k=>localStorage.removeItem(k));
+    location.replace('student-login.html?logout=1');
+  };
+}
 async function showLessons(name,list){
   form.classList.add('hidden');
-  $('hint').textContent='مرحبًا '+name+' — اختر الدرس الذي تريد دراسته.';
+  $('title').textContent='مرحبًا بك، '+name+' 👋';
+  $('hint').textContent='اختر المراجعة أو الدرس الذي تريد دراسته.';
   lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل أسماء الدروس…</div>';
   lessonsBox.classList.remove('hidden');
   const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
@@ -185,21 +201,18 @@ async function showLessons(name,list){
     b.onclick=()=>location.replace(lessonUrl(id));
     lessonsBox.appendChild(b);
   });
+  document.getElementById('actions').classList.remove('hidden');
+  bindStudentActions();
   msg('',true);
 }
 function showResume(name=''){
-  const current=localStorage.getItem('hm_student_current_lesson');
   const actions=document.getElementById('actions');
   if(name){
     $('title').textContent='مرحبًا بك، '+name+' 👋';
     $('hint').innerHTML='<b>HM Academy ترحب بك</b><br><span dir="ltr">Bienvenue à HM Academy</span><br><small style="color:#98a2b3">يسعدنا أن نكمل معك رحلة تعلّم الفرنسية · <span dir="ltr">Nous sommes heureux de poursuivre votre parcours en français.</span></small><br><span style="display:inline-block;margin-top:10px;color:#1f5d9b;font-weight:700;font-size:13px">— Monsieur Hatem ElMorsi</span>';
   }
-  if(!current){actions.classList.remove('hidden');document.getElementById('resume').setAttribute('aria-disabled','true');return;}
   actions.classList.remove('hidden');
-  document.getElementById('resume').removeAttribute('aria-disabled');
-  const resume=document.getElementById('resume');
-  resume.href=lessonUrl(current);
-  document.getElementById('logout').onclick=()=>{localStorage.removeItem('hm_student_code');localStorage.removeItem('hm_student_current_lesson');localStorage.removeItem('hm_student_name');location.replace('student-link.html?logout=1')};
+  bindStudentActions();
 }
 async function validate(code,silent=false,requestedLesson=''){
   enter.disabled=true;
