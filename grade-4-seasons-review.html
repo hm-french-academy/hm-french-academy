@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17624b"><title>مراجعة درس الفصول | الصف الرابع الابتدائي | HM Academy</title>
+<script src="scripts/student-gate.js?v=20261014-seasons-review"></script>
+<style>
+:root{--g:#17624b;--ink:#183b31;--line:#d8e8df;--bg:#f2f8f3;--red:#a93636}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Tahoma,sans-serif;line-height:1.65}
+.wrap{max-width:1120px;margin:auto;padding:14px}.hero,.panel{background:#fff;border:1px solid var(--line);border-radius:23px;padding:20px;margin-bottom:13px}
+.hero{background:linear-gradient(125deg,#d9f4e2,#fff1cf 55%,#dceefb)}.tag{display:inline-block;background:var(--g);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800}.hero h1{font-size:clamp(27px,5vw,42px);margin:8px 0}.stats{display:flex;gap:8px;flex-wrap:wrap}.stat{background:#ffffffd9;border:1px solid var(--line);padding:7px 11px;border-radius:12px;font-weight:800}
+.tabs{display:flex;gap:7px;overflow:auto;position:sticky;top:0;z-index:5;background:#f2f8f3ed;padding:8px 2px}.tab,.btn{border:1px solid var(--line);border-radius:12px;padding:9px 12px;background:#fff;color:var(--ink);font-weight:800;cursor:pointer;white-space:nowrap}.tab.active,.btn.primary{background:var(--g);color:#fff;border-color:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:11px}.q{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff;min-width:0}.q h3{margin:0 0 9px;font-size:16px}.fr{direction:ltr;text-align:left;font-size:20px;font-weight:800;margin:7px 0;display:block}.muted,.hint{color:#557066}.pic{font-size:39px;text-align:center;display:block;margin:4px}.opts{display:grid;gap:7px}.opt{border:1px solid var(--line);background:#f8fbf8;border-radius:11px;padding:10px;text-align:right;font-weight:700;color:var(--ink);cursor:pointer}.opt.correct{background:#e2f6e8;border-color:#29945e}.opt.wrong{background:#fff0ed;border-color:#d65c50}
+.answer{width:100%;padding:11px;border:2px solid var(--line);border-radius:11px;font-size:17px;direction:ltr;text-align:left}.feedback{min-height:24px;margin:7px 0 0;font-weight:800}.ok{color:#19734c}.bad{color:var(--red)}.progress{height:9px;background:#e3eee7;border-radius:99px;overflow:hidden;margin-bottom:12px}.progress span{display:block;height:100%;width:0;background:var(--g)}.endbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:16px 0}.small{font-size:12px}
+@media(max-width:560px){.hero,.panel{padding:13px}.q{padding:11px}.fr{font-size:18px}}
+</style></head>
+<body data-hm-grade-theme="primary-4"><main class="wrap">
+<section class="hero"><span class="tag">4e année · Le français</span>
+<h1>🍂 مراجعة شاملة لدرس <span dir="ltr">Les saisons</span></h1>
+<p>الصف الرابع الابتدائي — مراجعة الفصول الأربعة ومفردات الدرس وجمله وشهوره، دون إدخال محتوى من دروس أخرى.</p>
+<p class="muted">اختر، اكتب، أكمل، رتّب الحروف والكلمات والجمل، واستخدم الصور لتثبيت المعنى.</p>
+<div class="stats"><span class="stat">🌷 4 فصول</span><span class="stat">📝 أكثر من 100 تدريب متنوع</span><span class="stat">✅ تصحيح فوري</span><span class="stat" id="score">⭐ 0 إجابة صحيحة</span></div></section>
+<nav class="tabs" id="tabs"></nav>
+<section class="panel"><div class="progress"><span id="bar"></span></div><div id="content"></div></section>
+<div class="endbar"><button class="btn" onclick="scrollTo({top:0,behavior:'smooth'})">⬆ أعلى الصفحة</button><button class="btn primary" id="switch">📚 تسجيل درس آخر</button><button class="btn" id="logout">🚪 تسجيل الخروج</button></div>
+</main>
+<script>
+(function(){
+const S=[
+{fr:'Le printemps',ar:'الربيع',pic:'🌷🌱',prep:'au printemps',months:['Mars','Avril','Mai'],main:'Il fait beau.',clues:['Le ciel est bleu.','Les feuilles sont vertes.','Il y a des fleurs.']},
+{fr:"L'été",ar:'الصيف',pic:'☀️🏖️',prep:'en été',months:['Juin','Juillet','Août'],main:'Il fait chaud.',clues:['Le ciel est bleu.','Le soleil brille.','Les arbres ont des fruits.']},
+{fr:"L'automne",ar:'الخريف',pic:'🍂🌰',prep:'en automne',months:['Septembre','Octobre','Novembre'],main:'Il fait mauvais.',clues:['Le ciel est gris.','Les feuilles sont jaunes.',"Les feuilles d'arbres tombent."]},
+{fr:"L'hiver",ar:'الشتاء',pic:'❄️⛄',prep:'en hiver',months:['Décembre','Janvier','Février'],main:'Il fait froid.',clues:['Il pleut.','Les vents soufflent.','La neige tombe.']}
+];
+const V=[
+['Le printemps','الربيع','🌷🌱'],["L'été",'الصيف','☀️🏖️'],["L'automne",'الخريف','🍂🌰'],["L'hiver",'الشتاء','❄️⛄'],
+['beau','جميل / الطقس جميل','☀️'],['chaud','حار','🔥'],['froid','بارد','🥶'],['mauvais','سيئ','🌧️'],
+['le ciel','السماء','🌤️'],['bleu','أزرق','🔵'],['gris','رمادي','☁️'],['les feuilles','الأوراق','🍃'],['vertes','خضراء','🌿'],['jaunes','صفراء','💛'],
+['les fleurs','الزهور','🌸'],['le soleil','الشمس','☀️'],['brille','يُشرق / يلمع','✨'],['les arbres','الأشجار','🌳'],['des fruits','ثمار','🍎'],
+['pleut','تمطر','🌧️'],['les vents','الرياح','💨'],['soufflent','تهب','🌬️'],['la neige','الثلج','❄️'],['tombe','يسقط','⬇️'],['tombent','تسقط','🍂⬇️']
+];
+const M=[
+['Il fait beau.','الطقس جميل.'],['Il fait chaud.','الطقس حار.'],['Il fait froid.','الطقس بارد.'],['Il fait mauvais.','الطقس سيئ.'],
+['Le ciel est bleu.','السماء زرقاء.'],['Le ciel est gris.','السماء رمادية.'],['Les feuilles sont vertes.','الأوراق خضراء.'],['Les feuilles sont jaunes.','الأوراق صفراء.'],
+['Il y a des fleurs.','توجد زهور.'],['Le soleil brille.','الشمس تشرق.'],['Les arbres ont des fruits.','الأشجار بها ثمار.'],["Les feuilles d'arbres tombent.",'أوراق الأشجار تسقط.'],
+['Il pleut.','إنها تمطر.'],['Les vents soufflent.','الرياح تهب.'],['La neige tombe.','الثلج يسقط.']
+];
+const T=[['🌍 نظرة سريعة','intro'],['🖼️ معنى الكلمة','vocab'],['💬 معنى الجملة','sentence'],['🎨 اختر الصورة','picture'],['✍️ اكتب بالفرنسية','write'],['🔤 أكمل الحرف','missing'],['🔠 اختر الحرف','letterpick'],['🧩 رتّب الحروف','letters'],['🧱 رتّب الكلمات','words'],['📚 رتّب الجمل','sentences'],['🎯 اختيارات متنوعة','mixed'],['🗓️ الشهور و au/en','months'],['🏆 النتيجة','result']];
+let active='intro',right=0,done=0;const $=id=>document.getElementById(id);
+function n(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").replace(/[.!?,;:]/g,'').replace(/\s+/g,' ').trim()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function card(title,extra=''){return '<article class="q" data-q><h3>'+title+'</h3>'+extra+'<p class="feedback"></p></article>'}
+function mc(title,prompt,opts,answer,extra=''){return '<article class="q" data-q data-answer="'+esc(answer)+'"><h3>'+title+'</h3>'+extra+(prompt?'<div class="fr">'+prompt+'</div>':'')+'<div class="opts">'+shuffle(opts).map(o=>'<button class="opt" data-pick="'+esc(o)+'">'+o+'</button>').join('')+'</div><p class="feedback"></p></article>'}
+function inp(title,prompt,answer,placeholder='اكتب بالفرنسية'){return '<article class="q" data-q data-answer="'+esc(answer)+'"><h3>'+title+'</h3><div class="fr">'+prompt+'</div><input class="answer" autocomplete="off" placeholder="'+placeholder+'"><button class="btn primary" data-check>تحقق</button><p class="feedback"></p></article>'}
+function finish(q,ok,answer){if(q.dataset.done)return;q.dataset.done='1';done++;if(ok)right++;$('score').textContent='⭐ '+right+' من '+done+' صحيحة';$('bar').style.width=Math.min(100,done/120*100)+'%';const f=q.querySelector('.feedback');f.className='feedback '+(ok?'ok':'bad');f.textContent=ok?'✅ ممتاز! إجابة صحيحة.':'❌ الإجابة الصحيحة: '+answer;q.querySelectorAll('button,input').forEach(b=>b.disabled=true)}
+function render(){
+$('tabs').innerHTML=T.map(t=>'<button class="tab '+(active===t[1]?'active':'')+'" data-tab="'+t[1]+'">'+t[0]+'</button>').join('');
+let h='';
+if(active==='intro')h='<h2>أهلًا بك في مراجعة الفصول الأربعة</h2><p>احفظ اسم الفصل، ثم اربطه بحالة الطقس والكلمات والجمل المناسبة له.</p><div class="grid">'+S.map(s=>'<article class="q"><span class="pic">'+s.pic+'</span><h3 class="fr">'+s.fr+'</h3><b>'+s.ar+'</b><p><span class="fr">'+s.prep+'</span></p><p class="fr">'+s.main+'</p><p class="muted">'+s.clues.join('<br>')+'</p><p class="small">الشهور: '+s.months.join(' · ')+'</p></article>').join('')+'</div>';
+if(active==='vocab')h='<h2>🖼️ اختر معنى الكلمة الصحيح</h2><p class="hint">25 سؤالًا على أسماء الفصول ومفردات الطقس والطبيعة.</p><div class="grid">'+V.map((v,i)=>mc('اختر معنى الكلمة ('+(i+1)+')',v[0],[v[1],V[(i+7)%V.length][1],V[(i+13)%V.length][1],V[(i+19)%V.length][1]],v[1],'<span class="pic">'+v[2]+'</span>')).join('')+'</div>';
+if(active==='sentence')h='<h2>💬 اختر معنى الجملة الصحيح</h2><p class="hint">15 سؤالًا لفهم الجمل الفرنسية وترسيخ معناها.</p><div class="grid">'+M.map((m,i)=>mc('ما معنى الجملة؟',m[0],[m[1],M[(i+4)%M.length][1],M[(i+8)%M.length][1],M[(i+11)%M.length][1]],m[1])).join('')+'</div>';
+if(active==='picture'){const q=[];S.forEach(s=>q.push(mc('اختر الصورة التي تعبّر عن '+s.ar,s.fr,S.map(x=>x.pic+' '+x.ar),s.pic+' '+s.ar)));V.slice(4).forEach((v,i)=>q.push(mc('اختر الصورة المناسبة للكلمة',v[0],shuffle(V.filter(x=>x!==v).slice(i%7,i%7+3).concat([v]).map(x=>x[2]+' '+x[1])),v[2]+' '+v[1])));h='<h2>🎨 اختر الصورة التي تعبّر عن المعنى</h2><p class="hint">استخدم الصور الرمزية لتثبيت المعنى وربط المفردة بالصورة المناسبة.</p><div class="grid">'+q.join('')+'</div>'}
+if(active==='write'){const W=[['الربيع','Le printemps'],['الصيف',"L'été"],['الخريف',"L'automne"],['الشتاء',"L'hiver"],['الطقس جميل.','Il fait beau.'],['الطقس حار.','Il fait chaud.'],['الطقس بارد.','Il fait froid.'],['الطقس سيئ.','Il fait mauvais.'],['السماء زرقاء.','Le ciel est bleu.'],['السماء رمادية.','Le ciel est gris.'],['الأوراق خضراء.','Les feuilles sont vertes.'],['الأوراق صفراء.','Les feuilles sont jaunes.'],['توجد زهور.','Il y a des fleurs.'],['الشمس تشرق.','Le soleil brille.'],['إنها تمطر.','Il pleut.'],['الثلج يسقط.','La neige tombe.'],['الرياح تهب.','Les vents soufflent.'],['الأشجار بها ثمار.','Les arbres ont des fruits.'],['أوراق الأشجار تسقط.',"Les feuilles d'arbres tombent."]];h='<h2>✍️ اكتب بالفرنسية</h2><p class="hint">19 سؤال ترجمة من العربية إلى الفرنسية. اكتب الكلمة أو الجملة كاملة من الذاكرة.</p><div class="grid">'+W.map((w,i)=>inp('ترجم إلى الفرنسية ('+(i+1)+')',w[0],w[1])).join('')+'</div>'}
+if(active==='missing'){const W=[['L_ printemps','Le printemps'],['L’_té',"L'été"],['L’aut_mne',"L'automne"],['L’h_ver',"L'hiver"],['b_au','beau'],['ch_ud','chaud'],['fr_id','froid'],['mauva_s','mauvais'],['c_el','ciel'],['bl_u','bleu'],['gr_s','gris'],['ja_nes','jaunes'],['fl_urs','fleurs'],['s_leil','soleil'],['n_ige','neige'],['t_mbe','tombe'],['v_rtes','vertes'],['fru_ts','fruits']];h='<h2>🔤 أكمل الحرف الناقص واكتب الكلمة كاملة</h2><div class="grid">'+W.map((w,i)=>inp('أكمل الكلمة ('+(i+1)+')',w[0].replace('_','…'),w[1],'اكتب الكلمة كاملة')).join('')+'</div>'}
+if(active==='letterpick'){const W=[['printemps','i'],["été",'é'],["automne",'u'],["hiver",'v'],['beau','e'],['chaud','a'],['froid','o'],['mauvais','i'],['ciel','i'],['bleu','e'],['gris','i'],['jaunes','u'],['fleurs','e'],['soleil','o'],['neige','e'],['tombe','o'],['vertes','e'],['fruits','i']];h='<h2>🔠 اختر الحرف الناقص</h2><div class="grid">'+W.map((w,i)=>{const pos=w[0].indexOf(w[1]);const shown=w[0].slice(0,pos)+'…'+w[0].slice(pos+1);const options=[w[1],'a','e','i','o','u'].filter((x,j,a)=>a.indexOf(x)===j);return mc('اختر الحرف الصحيح',shown,options,w[1])}).join('')+'</div>'}
+if(active==='letters'){const W=['printemps','été','automne','hiver','chaud','froid','beau','neige','soleil','fleurs','feuilles','jaunes','vertes','gris','bleu','tombe','fruits','mauvais'];h='<h2>🧩 رتّب الحروف لتكوين كلمة</h2><p class="hint">الحروف معروضة بترتيب مختلف؛ اكتب الكلمة الفرنسية الصحيحة.</p><div class="grid">'+W.map((w,i)=>{let a=[...w];if(a.length>2)a=a.slice(2).concat(a.slice(0,2));return inp('رتّب الحروف ('+(i+1)+')',a.join(' · '),w,'اكتب الكلمة الصحيحة')}).join('')+'</div>'}
+if(active==='words'){const W=[['Il fait beau.',['beau','fait','Il']],['Il fait chaud.',['chaud','Il','fait']],['Il fait froid.',['froid','fait','Il']],['Il fait mauvais.',['mauvais','Il','fait']],['Le ciel est bleu.',['bleu','Le','est','ciel']],['Le ciel est gris.',['gris','ciel','Le','est']],['Il y a des fleurs.',['fleurs','Il','des','a','y']],['Le soleil brille.',['brille','soleil','Le']],['La neige tombe.',['tombe','La','neige']],['Les vents soufflent.',['soufflent','Les','vents']],['Les feuilles sont vertes.',['vertes','sont','Les','feuilles']],['Les feuilles sont jaunes.',['jaunes','Les','sont','feuilles']],["Les feuilles d'arbres tombent.",['tombent',"d'arbres",'Les','feuilles']],['Les arbres ont des fruits.',['fruits','ont','Les','arbres','des']]];h='<h2>🧱 رتّب الكلمات لتكوين جملة</h2><p class="hint">اكتب الجملة بالفرنسية مع ترتيب الكلمات بشكل صحيح.</p><div class="grid">'+W.map((w,i)=>inp('رتّب الكلمات ('+(i+1)+')',shuffle(w[1]).join(' / '),w[0],'اكتب الجملة كاملة')).join('')+'</div>'}
+if(active==='sentences'){const W=[['الربيع',"Il fait beau. Le ciel est bleu. Il y a des fleurs.",['Il y a des fleurs.','Il fait beau.','Le ciel est bleu.']],['الصيف','Il fait chaud. Le soleil brille. Les arbres ont des fruits.',['Les arbres ont des fruits.','Le soleil brille.','Il fait chaud.']],['الخريف',"Il fait mauvais. Les feuilles sont jaunes. Les feuilles d'arbres tombent.",["Les feuilles d'arbres tombent.",'Les feuilles sont jaunes.','Il fait mauvais.']],['الشتاء','Il fait froid. Il pleut. La neige tombe.',['La neige tombe.','Il pleut.','Il fait froid.']]];h='<h2>📚 رتّب الجمل لتكوين وصف للفصل</h2><p class="hint">رتّب الجمل بحيث تبدأ بوصف الطقس ثم تكمل بعلامات الفصل. اكتب الجمل بالترتيب الصحيح.</p><div class="grid">'+W.map((w,i)=>inp('رتّب الجمل: '+w[0],shuffle(w[2]).join(' / '),w[1],'اكتب الجمل مرتبة بالفرنسية')).join('')+'</div>'}
+if(active==='mixed'){const Q=[];S.forEach(s=>{Q.push(mc('ما الفصل الذي يناسب الجملة؟',s.main,S.map(x=>x.fr),s.fr));Q.push(mc('اختر التعبير الصحيح للفصل',s.ar,S.map(x=>x.prep),s.prep));s.clues.forEach(c=>Q.push(mc('إلى أي فصل تشير الجملة؟',c,S.map(x=>x.fr),s.fr)))});M.forEach((m,i)=>{if(i%2===0)Q.push(mc('اختيار من متعدد: ما المعنى الصحيح؟',m[0],[m[1],M[(i+3)%M.length][1],M[(i+6)%M.length][1]],m[1]))});h='<h2>🎯 اختيارات متنوعة</h2><p class="hint">تدريب شامل على الطقس والمفردات والجمل والفصول.</p><div class="grid">'+Q.join('')+'</div>'}
+if(active==='months'){const Q=[];S.forEach(s=>{Q.push(mc('اختر التعبير المناسب: '+s.ar,'Nous sommes…',S.map(x=>x.prep),s.prep));s.months.forEach(m=>Q.push(mc('إلى أي فصل ينتمي الشهر؟',m,S.map(x=>x.fr),s.fr)))});h='<h2>🗓️ الشهور واستخدام au / en</h2><p class="hint">تدرّب على شهور كل فصل وعلى التعبيرات كما وردت في الدرس.</p><div class="grid">'+Q.join('')+'</div>'}
+if(active==='result')h='<h2>🏆 نتيجتك</h2><div class="q"><p style="font-size:23px">الإجابات الصحيحة: <b>'+right+'</b> من <b>'+done+'</b></p><p>النسبة: <b>'+(done?Math.round(right/done*100):0)+'%</b></p><p class="hint">ارجع إلى الأقسام التي تحتاج إلى تدريب إضافي، وخصوصًا الكتابة وترتيب الكلمات.</p><button class="btn primary" id="restart">إعادة بدء المراجعة</button></div>';
+$('content').innerHTML=h;
+$('content').querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{const q=b.closest('[data-q]');const ok=n(b.dataset.pick)===n(q.dataset.answer);q.querySelectorAll('.opt').forEach(x=>x.classList.remove('correct','wrong'));b.classList.add(ok?'correct':'wrong');finish(q,ok,q.dataset.answer)});
+$('content').querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>{const q=b.closest('[data-q]'),v=q.querySelector('input').value;finish(q,n(v)===n(q.dataset.answer),q.dataset.answer)});
+$('tabs').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=b.dataset.tab;render();window.scrollTo({top:0,behavior:'smooth'})});
+const restart=$('restart');if(restart)restart.onclick=()=>{right=0;done=0;$('score').textContent='⭐ 0 إجابة صحيحة';active='intro';render()};
+}
+$('switch').onclick=()=>location.href='student-login.html?switch=1';
+$('logout').onclick=()=>{['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name','hm_student_browser_id'].forEach(k=>localStorage.removeItem(k));location.replace('student-login.html?logout=1')};
+render();
+})();
+</script></body></html>
