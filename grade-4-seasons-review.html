@@ -21,7 +21,7 @@
 <div class="stats"><span class="stat">🌷 4 فصول</span><span class="stat">📝 أكثر من 100 تدريب متنوع</span><span class="stat">✅ تصحيح فوري</span><span class="stat" id="score">⭐ 0 إجابة صحيحة</span></div></section>
 <nav class="tabs" id="tabs"></nav>
 <section class="panel"><div class="progress"><span id="bar"></span></div><div id="content"></div></section>
-<div class="endbar"><button class="btn" onclick="scrollTo({top:0,behavior:'smooth'})">⬆ أعلى الصفحة</button><button class="btn primary" id="switch">📚 تسجيل درس آخر</button><button class="btn" id="logout">🚪 تسجيل الخروج</button></div>
+<div class="endbar"><button class="btn" onclick="scrollTo({top:0,behavior:'smooth'})">⬆ أعلى الصفحة</button></div>
 </main>
 <script>
 (function(){
@@ -75,8 +75,8 @@ $('content').querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>{const q=
 $('tabs').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=b.dataset.tab;render();window.scrollTo({top:0,behavior:'smooth'})});
 const restart=$('restart');if(restart)restart.onclick=()=>{right=0;done=0;$('score').textContent='⭐ 0 إجابة صحيحة';active='intro';render()};
 }
-$('switch').onclick=()=>location.href='student-login.html?switch=1';
-$('logout').onclick=()=>{['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name','hm_student_browser_id'].forEach(k=>localStorage.removeItem(k));location.replace('student-login.html?logout=1')};
+const labelObserver=new MutationObserver(()=>{const b=document.getElementById('hm-switch-lesson');if(b&&b.textContent!=='📚 تسجيل درس آخر')b.textContent='📚 تسجيل درس آخر';});
+labelObserver.observe(document.body,{childList:true,subtree:true});
 render();
 })();
 </script></body></html>
