@@ -55,6 +55,7 @@ function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
   if(String(id)==='october-review-grade7')return 'october-exam-review-grade7.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
   if(String(id)==='october-review-grade8')return 'october-exam-review-grade8.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
+  if(String(id)==='grade4-seasons-review')return 'grade-4-seasons-review.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-seasons-review';
   // First secondary lessons use the dedicated secondary lesson studio.
   if(/^s1-u\d+-\d+$/i.test(String(id)))
     return 'secondary-1-lesson-studio.html?id='+encodeURIComponent(id)+'&section=observe&student=1&v=20261006-secondary-student-route';
@@ -71,6 +72,7 @@ function lessonUrl(id){
 const LESSON_TITLES={
   'october-review-grade7':['مراجعة اختبار أكتوبر — الصف الأول الإعدادي','Révision de l’examen d’octobre — 1re préparatoire'],
   'october-review-grade8':['مراجعة اختبار أكتوبر — الصف الثاني الإعدادي','Révision de l’examen d’octobre — 2e préparatoire'],
+  'grade4-seasons-review':['مراجعة درس الفصول — الصف الرابع الابتدائي','Révision des saisons — 4e primaire'],
   'grade8-u1-l1':['في المدرسة',"À l'école"],
   'grade8-u1-l2':['الأدوات المدرسية والمقلمة وشنطة الظهر','Les fournitures, la trousse et le sac à dos'],
   'grade8-u1-l3':['المواد الدراسية وتصريف الأفعال','Les matières scolaires et la conjugaison'],
