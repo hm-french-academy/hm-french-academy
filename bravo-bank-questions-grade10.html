@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كويزات بنك أسئلة Bravo</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1b1f33;--mute:#5d6379;--blue:#1d3f9e;--red:#d62839;--ok:#12805c;--okb:#dcf5ea;--bad:#b3261e;--badb:#fde3e1;--line:#d9dce8}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#10131f;--card:#1a1f33;--ink:#eef0f8;--mute:#a4abc4;--blue:#8fb0ff;--red:#ff7a86;--ok:#5fe0b0;--okb:#123a2c;--bad:#ff8d85;--badb:#44201d;--line:#2d3452}}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Segoe UI",Tahoma,Arial,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+header{background:linear-gradient(90deg,var(--blue) 0 33%,#fff 33% 66%,var(--red) 66%) bottom/100% 6px no-repeat,var(--card);padding:22px 16px 20px;text-align:center}
+h1{margin:0;font:italic 700 28px/1.2 Georgia,"Times New Roman",serif;direction:ltr;color:var(--blue)}
+header p{margin:6px 0 0;color:var(--mute);font-size:14px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;position:sticky;top:env(safe-area-inset-top,0);background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}
+nav button{flex:0 0 auto;border:1.5px solid var(--blue);background:transparent;color:var(--blue);padding:8px 16px;border-radius:99px;font:600 15px inherit;cursor:pointer}
+nav button.on{background:var(--blue);color:#fff}
+nav button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:16px}
+.ex{display:none}.ex.on{display:block}
+section{background:var(--card);border-radius:14px;padding:16px;margin:0 0 16px;border:1px solid var(--line)}
+h2{margin:0 0 12px;font-size:17px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-inline-start:5px solid var(--red);padding-inline-start:10px}
+h2 small{color:var(--red);font-weight:700;white-space:nowrap}
+.fr{direction:ltr;text-align:left;font-family:Georgia,"Times New Roman",serif}
+.txt{background:var(--bg);border-radius:10px;padding:12px 14px;white-space:pre-line;font-size:17px;border-left:4px solid var(--blue)}
+.q{margin:14px 0;padding-bottom:12px;border-bottom:1px dashed var(--line)}.q:last-child{border:0}
+.q>p{margin:0 0 8px;font-weight:600}
+.os{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;direction:ltr}
+.o{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;font-family:Georgia,serif}
+.o span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bg);font:700 13px sans-serif;flex:none}
+.o:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.o input{position:absolute;opacity:0}
+.o:has(input:focus-visible){outline:3px solid var(--red)}
+.o.ok{border-color:var(--ok);background:var(--okb)}.o.bad{border-color:var(--bad);background:var(--badb)}
+input.t,textarea{width:100%;direction:ltr;text-align:left;font:17px Georgia,serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:110px;resize:vertical}
+.fb{margin-top:8px;font-size:14px;direction:rtl}
+.fb b.g{color:var(--ok)}.fb b.r{color:var(--bad)}
+.fb .m{direction:ltr;text-align:left;display:block;font-family:Georgia,serif;color:var(--mute)}
+.ck{margin:4px 0;padding-inline-start:4px}
+.hint{font-size:13px;color:var(--mute);margin:0 0 8px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 20px}
+.btn{border:0;border-radius:12px;padding:13px 26px;font:700 16px inherit;cursor:pointer;background:var(--red);color:#fff}
+.btn.s{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.res{display:none;text-align:center}
+.res.on{display:block}
+.ring{width:130px;height:130px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--line) 0)}
+.ring div{width:100px;height:100px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:700 26px sans-serif;direction:ltr}
+.br{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+.br span{background:var(--bg);border-radius:99px;padding:4px 12px;font-size:14px}
+@media(prefers-reduced-motion:no-preference){.res.on{animation:f .4s}@keyframes f{from{opacity:0;transform:translateY(8px)}}}
+</style>
+</head>
+<body>
+<header><h1>Bravo !</h1><p>كويزات بنك أسئلة — اللغة الفرنسية — الصف الأول الثانوي — شهر أكتوبر (المواصفات الجديدة)</p></header>
+<nav id="nav" aria-label="الكويزات"></nav>
+<main id="app"></main>
+<script>
+const T=[
+{n:"وثيقة 1",s:[{h:"Lis ce document puis réponds aux questions",t:"w",x:"De : marie@gmail.com\nÀ : célinejean@yahoo.com\nObjet : Présentation\nBonjour !\nÇa va ? Je m'appelle Marie Martin. J'ai 16 ans. Je suis élève au lycée « La Paix ». J'ai un voisin du quartier, il s'appelle Albert. J'ai une copine de classe, elle s'appelle Émilie. Et Victor, c'est un ami du basket. Et toi, tu as des copains ou des copines ?",q:[["Comment s'appelle le lycée de Marie ?","Le lycée de Marie s'appelle La Paix.",[["paix"]]],["Quel âge a Marie ?","Elle a 16 ans.",[["16","seize"]]],["Quel est le nom du voisin du quartier de Marie ?","Il s'appelle Albert.",[["albert"]]],["Qui est Céline ?","Céline est une amie de Marie.",[["amie","copine","ami","copain"]]]]}]},
+{n:"وثيقة 2",s:[{h:"Lis ce document puis choisis la bonne réponse",t:"m",x:"Bonjour Mona !\nJe m'appelle Merna Samir. J'ai 15 ans. J'aime le dessin et la musique. Je n'aime pas les maths. J'ai deux copines de classe : Malak et Manar. Malak aime le tennis comme moi. Manar aime le basket.",q:[["Dans ce document ... se présente et présente ses copines.",["Malak","Manar","Merna","Mona"],2],["Merna aime ...",["le basket","le tennis","le football","le judo"],1],["Merna a ... ans.",["quinze","seize","deux","quatorze"],0],["La copine du basket de Merna s'appelle ...",["Malak","Manar","Martine","Mona"],1]]}]},
+{n:"وثيقة 3",s:[{h:"Lis ce document puis choisis la bonne réponse",t:"m",x:"Merna est élève au lycée, elle a 17 ans. Elle est sociable et souriante. Elle a deux copines du basket et une voisine. Malak et Manar sont deux copines du basket. Malak a 16 ans et elle est bavarde. Manar a 14 ans et elle est timide. Mona, une voisine, elle est sympa.",q:[["Dans ce document ... se présente et présente ses copines.",["Malak","Manar","Merna","Mona"],2],["Malak est ...",["sociable","timide","souriante","bavarde"],3],["La voisine de Merna s'appelle ...",["Malak","Manar","Mona","Rabab"],2],["Manar a ... ans.",["quatorze","seize","deux","dix-sept"],0]]}]},
+{n:"وثيقة 4",s:[{h:"Lis ce document puis réponds aux questions",t:"w",x:"Salut Amir !\nJe m'appelle Chadi Mostafa. J'ai 15 ans. J'habite à Alexandrie. Ma mère s'appelle Racha, elle est professeure au lycée. J'ai un copain du karaté, il s'appelle Omar. J'ai un voisin du quartier, il s'appelle Mazen. Mon copain de classe s'appelle Mohamed.",q:[["Quel âge Chadi a ?","Il a 15 ans.",[["15","quinze"]]],["Comment s'appelle le père de Chadi ?","On ne sait pas : le texte ne parle pas du père de Chadi.",[["pas","texte","inconnu","non"]]],["Où habite Chadi ?","Il habite à Alexandrie.",[["alexandrie"]]],["Qui est Mohamed ?","C'est le copain de classe de Chadi.",[["copain","ami","classe"]]]]}]},
+{n:"المواقف",s:[{h:"Choisis la bonne réponse",t:"m",q:[["Tu salues tes copains le matin, qu'est-ce que tu dis ?",["Bonsoir mes copains !","Bonjour monsieur !","Bonjour mes copains !","Bonsoir monsieur !"],2],["Tu demandes à ton professeur son nom, qu'est-ce que tu dis ?",["Quel âge avez-vous ?","Quel est votre nom ?","Comment ça va ?","Qui c'est ?"],1],["Tu demandes à ton ami sa couleur préférée, qu'est-ce que tu dis ?",["Quelle couleur aimes-tu ?","Quelle couleur aime ton copain ?","Qui aime le vert ?","Quelles sont les couleurs du drapeau égyptien ?"],0],["Ton professeur te demande ton âge, qu'est-ce que tu dis ?",["Il a 16 ans.","J'ai 16 ans.","Son âge, c'est 16 ans.","Ils ont 16 ans. Ils sont jumeaux."],1],["Pour décrire ton ami, qu'est-ce que tu dis ?",["Il a 16 ans.","Il s'appelle Ali.","Il est mon voisin.","Il est sympa."],3],["Tu demandes à ton ami sa couleur préférée, qu'est-ce qu'il dit ?",["Le vert, c'est une couleur.","Le vert, c'est ma couleur préférée.","Mon ami aime le vert.","Le drapeau égyptien a 3 couleurs."],1],["Tu demandes à ton ami son adresse, qu'est-ce que tu dis ?",["Quelle est ta couleur préférée ?","Quel âge as-tu ?","Quelle est ton adresse ?","Quel est ton nom ?"],2],["Tu demandes à ton ami : « Comment ça va ? », qu'est-ce qu'il dit ?",["Comme ci comme ça.","Bonjour !","Au revoir !","Merci !"],0]]}]},
+{n:"القواعد",s:[{h:"Choisis la bonne réponse",t:"m",q:[["Elle ... comment ?",["s'appeler","s'appellent","s'appelle","m'appelle"],2],["Je ... présente mon professeur de français.",["nous","me","se","vous"],1],["C'est Marie, ... camarade de classe.",["un","une","des","du"],1],["Le ... est ma couleur préférée.",["verte","noire","blanche","rouge"],3],["... sont copines.",["Ils","Elles","Il","Elle"],1],["Ali ... timide.",["est","es","sommes","sont"],0],["... C'est ?",["Quel","Quelle","Qui","Quels"],2],["Elle aime la couleur ...",["marron","noir","blanc","bleu"],0],["Rami et Mona sont deux ...",["copines","amies","voisines","camarades"],3],["Samia a très ... caractère.",["bonne","bon","bons","bonnes"],1],["... sommes copines.",["Vous","Elles","Ils","Nous"],3],["... mon ami !",["Il","Ce","Voici","Ça"],2],["Vous ... les cahiers d'exercices ?",["avez","as","ont","avons"],0],["Ali nous ... son copain.",["présentons","présenter","présente","présentent"],2],["J'ai une voisine ...",["sympa","bavard","gourmand","intelligent"],0],["... sont tes copines ?",["Quel","Quels","Comment","Quelle"],2]]}]},
+{n:"الإيميلات",s:[{h:"Réponds à chaque mail par deux phrases complètes",t:"e",q:[["Bonjour !\nComment tu t'appelles ? Tu habites où ?\nÀ plus !","Je m'appelle Ali. J'habite à Alexandrie.",[["appelle"],["habite"]]],["Salut !\nComment s'appelle ton professeur de français ? Et il a quel âge ?\nÀ plus !","Mon professeur s'appelle Monsieur Karim. Il a quarante ans.",[["appelle"],["ans"]]],["Bonjour !\nQui est-ce ? Comment est-il ?\nÀ plus !","C'est mon ami Omar. Il est sympa et sociable.",[["c'est","voici"],["est"]]],["Bonjour !\nComment est ta voisine ? Et quelle couleur elle aime ?\nÀ plus !","Ma voisine est gentille et souriante. Elle aime le rose.",[["est"],["aime"]]]]}]}
+];
+const N=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/œ/g,"oe").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const W=s=>s.match(/[a-zA-ZÀ-ÿœŒ]+/g)||[];
+const D={age:"âge",ca:"ça",frere:"frère",pere:"père",mere:"mère",soeur:"sœur",eleve:"élève",lycee:"lycée",lyceen:"lycéen",egyptien:"égyptien",francais:"français",tres:"très",deteste:"déteste",ecoute:"écoute",prefere:"préfère",preferee:"préférée",desordonne:"désordonné",desordonnee:"désordonnée",ordonnee:"ordonnée",ordonne:"ordonné",caractere:"caractère",bientot:"bientôt",ecole:"école",college:"collège",cinema:"cinéma",enchante:"enchanté",meme:"même",voila:"voilà",genial:"génial",egypte:"Égypte",numero:"numéro",reponse:"réponse",agee:"âgée",passionne:"passionné",etudiant:"étudiant",gentile:"gentille",sympatique:"sympathique"};
+function lev(a,b){const d=[];for(let i=0;i<=a.length;i++)d[i]=[i];for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]==b[j-1]?0:1));return d[a.length][b.length]}
+function spell(t){const r=[];W(t).forEach(w=>{const f=D[w.toLowerCase()];if(f)r.push([w,f])});return r}
+function has(a,kw){let r=0;const n=N(a);for(const k0 of kw){const k=N(k0);if(n.includes(k))return 1;if(k.length>4&&W(n).some(w=>lev(w,k)==1))r=2}return r}
+const sents=t=>t.split(/(?<=[.!?])\s+|\n+/).map(s=>s.trim()).filter(s=>W(s).length>1);
+const nice=t=>{const s=sents(t);return s.length>0&&s.every(x=>/^[A-ZÀ-Ý]/.test(x)&&/[.!?]$/.test(x))&&!spell(t).length};
+const chk=(ok,t)=>`<div class=ck>${ok?"✅":"❌"} ${t}</div>`;
+const app=document.getElementById("app"),nav=document.getElementById("nav");
+function render(k){
+ const t=T[k],e=document.getElementById("e"+k);let mx=0;
+ e.innerHTML=t.s.map((s,j)=>{
+  const pt=s.t=="w"?2:s.t=="m"?1:3;mx+=pt*s.q.length;
+  let b=s.x?`<div class="txt fr">${s.x}</div>`:"";
+  b+=s.q.map((q,i)=>{const a=`data-s=${j} data-i=${i}`;
+   if(s.t=="w")return `<div class=q ${a}><p class=fr>${i+1}. ${q[0]}</p><input class=t type=text lang=fr spellcheck=true autocomplete=off autocapitalize=off placeholder="Écris une phrase complète…"><div class=fb></div></div>`;
+   if(s.t=="m")return `<div class=q ${a}><p class=fr>${i+1}. ${q[0]}</p><div class=os>${q[1].map((o,x)=>`<label class=o><input type=radio name=r${k}_${j}_${i} value=${x}><span>${"abcd"[x]}</span>${o}</label>`).join("")}</div></div>`;
+   return `<div class=q ${a}><div class="txt fr">${q[0]}</div><textarea lang=fr spellcheck=true autocapitalize=sentences placeholder="Écris deux phrases complètes…"></textarea><div class=fb></div></div>`}).join("");
+  return `<section><h2><span>${s.h}</span><small>${pt*s.q.length} درجات</small></h2>${b}</section>`}).join("")+`<div class=bar><button class=btn data-go=${k}>تصحيح</button><button class="btn s" data-rs=${k}>إعادة المحاولة</button></div><section class=res id=r${k}></section>`;
+ e.dataset.mx=mx;nav.children[k].textContent=t.n;scrollTo(0,0)}
+function grade(k){
+ const t=T[k],e=document.getElementById("e"+k),mx=+e.dataset.mx;let got=0;
+ e.querySelectorAll(".q").forEach(q=>{
+  const s=t.s[+q.dataset.s],d=s.q[+q.dataset.i],fb=q.querySelector(".fb");
+  if(s.t=="m"){const sel=q.querySelector("input:checked");
+   q.querySelectorAll("input").forEach(x=>x.disabled=true);
+   q.querySelectorAll(".o").forEach((o,j)=>{if(j==d[2])o.classList.add("ok");else if(sel&&+sel.value==j)o.classList.add("bad")});
+   if(sel&&+sel.value==d[2])got++;return}
+  const inp=q.querySelector("input.t,textarea"),v=inp.value.trim(),sps=spell(v);inp.readOnly=true;
+  const sl=x=>sps.map(y=>`<div class=ck>✏️ «${y[0]}» ← <b>${y[1]}</b></div>`).join("");
+  if(s.t=="w"){const r=d[2].map(x=>has(v,x)),all=v&&r.every(Boolean),pts=!all?0:(sps.length||r.includes(2)?1:2);got+=pts;
+   fb.innerHTML=`<b class=${pts?"g":"r"}>${pts} / 2</b> `+(!v?"لم تكتب إجابة.":!all?"الإجابة غير مكتملة أو غير صحيحة.":pts==1?"الإجابة صحيحة لكن فيها خطأ إملائي (نصف الدرجة).":"إجابة صحيحة وإملاء سليم.")+sl()+`<span class=m>${d[1]}</span>`}
+  else{const c=[sents(v).length>=2,d[2].every(x=>has(v,x)),nice(v)],pts=c.filter(Boolean).length;got+=pts;
+   fb.innerHTML=`<b class=${pts>1?"g":"r"}>${pts} / 3</b>`+chk(c[0],"جملتان كاملتان على الأقل")+chk(c[1],"الإجابة تجيب عن الأسئلة المطلوبة")+chk(c[2],"الإملاء وبداية الجمل بحرف كبير ونقطة النهاية")+sl()+`<span class=m>${d[1]}</span>`}
+ });
+ const p=Math.round(got/mx*100),r=document.getElementById("r"+k);
+ r.innerHTML=`<h2><span>النتيجة</span></h2><div class=ring style="--p:${p}"><div>${got}/${mx}</div></div><p>${p>=85?"ممتاز! Bravo !":p>=65?"جيد جدًا، استمر! Très bien !":p>=50?"جيد، راجع الأخطاء وحاول مجددًا.":"راجع الدرس وأعد المحاولة. Courage !"}</p>`;
+ r.classList.add("on");r.scrollIntoView({behavior:"smooth"});
+ nav.children[k].textContent=`${t.n} ✓ ${got}/${mx}`}
+const show=k=>{[...app.children].forEach((x,i)=>x.classList.toggle("on",i==k));[...nav.children].forEach((b,i)=>b.classList.toggle("on",i==k));scrollTo(0,0)};
+T.forEach((t,k)=>{nav.insertAdjacentHTML("beforeend",`<button data-k=${k}>${t.n}</button>`);app.insertAdjacentHTML("beforeend",`<div class=ex id=e${k}></div>`);render(k)});
+nav.onclick=ev=>{const b=ev.target.closest("button");if(b)show(+b.dataset.k)};
+app.onclick=ev=>{const b=ev.target.closest("button");if(!b)return;if(b.dataset.go!=null)grade(+b.dataset.go);if(b.dataset.rs!=null)render(+b.dataset.rs)};
+show(0);
+</script>
+</body>
+</html>
