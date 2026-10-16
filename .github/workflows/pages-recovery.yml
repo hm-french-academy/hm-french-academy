@@ -1,0 +1,48 @@
+name: HM Academy Pages Recovery
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enrich Grade 1 Lesson 1 learning sections
+        run: python3 scripts/enrich-grade7-lesson1-pages.py
+
+      - name: Apply Premier Pas interactive vocabulary visuals
+        run: node scripts/fix-premier-pas-vocab-visuals.js
+
+      - name: Repair Grade 4 Lesson 1 game interactions
+        run: node scripts/fix-grade4-l01-games.js
+
+      - name: Verify current site
+        run: |
+          set -euo pipefail
+          test -f grade7-lesson-studio.html
+          test -f grade-4-l01-learning-studio.html
+          grep -q "Les mots transparents" grade7-lesson-studio.html
+          grep -Fq 'function setGame' grade-4-l01-learning-studio.html
+
+      - name: Write deployment fingerprint
+        run: echo "$GITHUB_SHA" > deployment-version.txt
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy site
+        uses: actions/deploy-pages@v4
