@@ -67,8 +67,7 @@ const Q=[
 ["أي جملة تعبر عن عادة كل يوم؟",["Chaque jour, je joue au ballon.","Hier, je joue au ballon.","Au revoir, je joue.","Combien de pommes ?"],0,"Chaque jour تعني كل يوم."],
 ["رتّب: (parlons / nous / français).",["Parlons nous français.","Nous parlons français.","Français nous parlons est.","Nous français parlons sommes."],1,"الترتيب: Nous parlons français."],
 ["Les élèves ___ les mots. (choisir)",["choisit","choisis","choisissent","choisissez"],2,"Les élèves = ils؛ تصريف choisir هو choisissent."],
-["نهايات أفعال -er هي…",["-is, -is, -it, -issons, -issez, -issent","-e, -es, -e, -ons, -ez, -ent","suis, es, est, sommes, êtes, sont","vais, vas, va, allons, allez, vont"],1,"هذه نهايات أفعال المجموعة الأولى."],
-["نهايات أفعال -ir مثل finir هي…",["-e, -es, -e, -ons, -ez, -ent","-is, -is, -it, -issons, -issez, -issent","-ais, -ais, -ait, -ions, -iez, -aient","suis, es, est, sommes, êtes, sont"],1,"هذه نهايات أفعال المجموعة الثانية مثل finir."]
+
 ];
 const form=document.getElementById('quizForm');
 form.innerHTML=Q.map((q,i)=>'<fieldset class="q" id="q'+i+'"><legend>'+(i+1)+'. '+q[0]+' <small>· '+(i<25?'Au marché':'Le présent')+'</small></legend>'+q[1].map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+') '+o+'</span></label>').join('')+'<div class="feedback" hidden></div></fieldset>').join('');
