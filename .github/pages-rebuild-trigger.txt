@@ -1,3 +1,5 @@
 Production Pages rebuild trigger for grade9-u1-l1-standard.html runtime fix.
 The lesson source uses explicit runtime globals supplied by the published analytics bootstrap; this file intentionally triggers the Pages deployment workflow so the corrected lesson is republished.
 2026-09-11T17:00Z
+
+Grade 4 clock route repair deployment trigger: ensure lesson.html routes g4-l03 to the existing grade-4-start-under-presentation.html. Rebuild marker 2026-10-17T-live-republish-02.
