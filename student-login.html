@@ -55,6 +55,7 @@ function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
   if(String(id)==='october-review-grade7')return 'october-exam-review-grade7.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
   if(String(id)==='october-review-grade8')return 'october-exam-review-grade8.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
+  if(String(id)==='s1-october-review')return 'october-exam-review-grade10.html?id='+encodeURIComponent(id)+'&student=1&v=20261016-student-review';
   if(String(id)==='grade4-seasons-review')return 'grade-4-seasons-review.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-seasons-review';
   // First secondary lessons use the dedicated secondary lesson studio.
   if(/^s1-u\d+-\d+$/i.test(String(id)))
@@ -104,6 +105,7 @@ const LESSON_TITLES={
   'g4-l06':['الجسم','Le corps'],
   'g4-l07':['صفات الملكية — الجسم','Adjectifs possessifs — corps'],
   'secondary-french-intro':['مقدمة اللغة الفرنسية — الصف الأول الثانوي','Introduction au français — Première secondaire'],
+  's1-october-review':['مراجعة أكتوبر — الصف الأول الثانوي','Révision d’octobre — Première secondaire'],
   's1-u1-01':['اللقاء والتعارف وتقديم النفس','Se présenter'],
   's1-u1-02':['تقديم والتعرف على الأصدقاء','Présenter et identifier ses copains'],
   's1-u1-03':['التحدث عن الصفات الشخصية','Parler du caractère'],
