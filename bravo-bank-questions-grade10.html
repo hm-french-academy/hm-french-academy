@@ -4,57 +4,55 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>كويزات بنك أسئلة Bravo</title>
+<link rel="stylesheet" href="css/premium-shell.css">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--ink:#1b1f33;--mute:#5d6379;--blue:#1d3f9e;--red:#d62839;--ok:#12805c;--okb:#dcf5ea;--bad:#b3261e;--badb:#fde3e1;--line:#d9dce8}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#10131f;--card:#1a1f33;--ink:#eef0f8;--mute:#a4abc4;--blue:#8fb0ff;--red:#ff7a86;--ok:#5fe0b0;--okb:#123a2c;--bad:#ff8d85;--badb:#44201d;--line:#2d3452}}
 *{box-sizing:border-box}
-html{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Segoe UI",Tahoma,Arial,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
-header{background:linear-gradient(90deg,var(--blue) 0 33%,#fff 33% 66%,var(--red) 66%) bottom/100% 6px no-repeat,var(--card);padding:22px 16px 20px;text-align:center}
-h1{margin:0;font:italic 700 28px/1.2 Georgia,"Times New Roman",serif;direction:ltr;color:var(--blue)}
-header p{margin:6px 0 0;color:var(--mute);font-size:14px}
-nav{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;position:sticky;top:env(safe-area-inset-top,0);background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}
-nav button{flex:0 0 auto;border:1.5px solid var(--blue);background:transparent;color:var(--blue);padding:8px 16px;border-radius:99px;font:600 15px inherit;cursor:pointer}
-nav button.on{background:var(--blue);color:#fff}
-nav button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-main{max-width:860px;margin:0 auto;padding:16px}
+body{margin:0;background:#f4f6fb;color:#172033;font:16px/1.7 "Segoe UI",Tahoma,Arial,sans-serif;padding:0}
+header{max-width:900px;margin:20px auto 12px;background:#14264a;color:#fff;padding:22px;border-radius:18px;text-align:right}
+h1{margin:0;font-size:25px;line-height:1.4;color:#fff;font-weight:800;direction:rtl;font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+header p{margin:6px 0 0;color:#e4eaf8;font-size:15px}
+nav{max-width:900px;margin:0 auto 12px;display:flex;gap:8px;overflow-x:auto;padding:8px 16px;position:sticky;top:0;background:#f4f6fb;z-index:5;border-bottom:1px solid #dce2ef}
+nav button{flex:0 0 auto;border:0;background:#e5eaf5;color:#14264a;padding:10px 16px;border-radius:10px;font:600 15px "Segoe UI",Tahoma,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+nav button.on{background:#2563eb;color:#fff}
+nav button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+main{max-width:900px;margin:0 auto;padding:8px 20px 24px}
 .ex{display:none}.ex.on{display:block}
-section{background:var(--card);border-radius:14px;padding:16px;margin:0 0 16px;border:1px solid var(--line)}
-h2{margin:0 0 12px;font-size:17px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-inline-start:5px solid var(--red);padding-inline-start:10px}
-h2 small{color:var(--red);font-weight:700;white-space:nowrap}
+section{background:#fff;border-radius:16px;padding:20px;margin:12px 0;border:1px solid #dce2ec;box-shadow:0 3px 12px #14264a0a}
+h2{margin:0 0 12px;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-inline-start:4px solid #2563eb;padding-inline-start:10px;color:#14264a}
+h2 small{color:#2563eb;font-weight:700;white-space:nowrap}
 .fr{direction:ltr;text-align:left;font-family:Georgia,"Times New Roman",serif}
-.txt{background:var(--bg);border-radius:10px;padding:12px 14px;white-space:pre-line;font-size:17px;border-left:4px solid var(--blue)}
-.q{margin:14px 0;padding-bottom:12px;border-bottom:1px dashed var(--line)}.q:last-child{border:0}
+.txt{background:#f5f7fb;border-radius:10px;padding:14px;white-space:pre-line;font-size:17px;border-left:4px solid #2563eb;color:#172033}
+.q{direction:ltr;text-align:left;margin:14px 0;padding:12px;border-bottom:1px solid #ddd;border-radius:8px}.q:last-child{border:0}
 .q>p{margin:0 0 8px;font-weight:600}
 .os{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;direction:ltr}
-.o{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;font-family:Georgia,serif}
-.o span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bg);font:700 13px sans-serif;flex:none}
-.o:has(input:checked){border-color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.o{display:flex;gap:10px;align-items:center;border:1px solid #d7dce7;border-radius:9px;padding:9px 12px;cursor:pointer;font-family:Georgia,serif;color:#172033}
+.o span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#eef2fa;font:700 13px sans-serif;flex:none}
+.o:has(input:checked){border-color:#2563eb;background:#eff6ff}
 .o input{position:absolute;opacity:0}
-.o:has(input:focus-visible){outline:3px solid var(--red)}
-.o.ok{border-color:var(--ok);background:var(--okb)}.o.bad{border-color:var(--bad);background:var(--badb)}
-input.t,textarea{width:100%;direction:ltr;text-align:left;font:17px Georgia,serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+.o:has(input:focus-visible){outline:3px solid #f59e0b}
+.o.ok{border-color:#16a34a;background:#dcfce7}.o.bad{border-color:#dc2626;background:#fee2e2}
+input.t,textarea{width:100%;direction:ltr;text-align:left;font:17px Georgia,serif;color:#172033;background:#fff;border:1px solid #cfd6e3;border-radius:9px;padding:10px 12px}
 textarea{min-height:110px;resize:vertical}
 .fb{margin-top:8px;font-size:14px;direction:rtl}
-.fb b.g{color:var(--ok)}.fb b.r{color:var(--bad)}
-.fb .m{direction:ltr;text-align:left;display:block;font-family:Georgia,serif;color:var(--mute)}
+.fb b.g{color:#15803d}.fb b.r{color:#b91c1c}
+.fb .m{direction:ltr;text-align:left;display:block;font-family:Georgia,serif;color:#475569;background:#f5f7fb;padding:10px;border-radius:8px;margin-top:8px}
 .ck{margin:4px 0;padding-inline-start:4px}
-.hint{font-size:13px;color:var(--mute);margin:0 0 8px}
-.bar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 20px}
-.btn{border:0;border-radius:12px;padding:13px 26px;font:700 16px inherit;cursor:pointer;background:var(--red);color:#fff}
-.btn.s{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.hint{font-size:13px;color:#64748b;margin:0 0 8px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 20px}
+.btn{border:0;border-radius:10px;padding:11px 18px;font:700 16px "Segoe UI",Tahoma,Arial,sans-serif;cursor:pointer;background:#2563eb;color:#fff}
+.btn.s{background:#fff;color:#2563eb;border:1px solid #2563eb}
 .res{display:none;text-align:center}
 .res.on{display:block}
-.ring{width:130px;height:130px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:conic-gradient(var(--ok) calc(var(--p)*1%),var(--line) 0)}
-.ring div{width:100px;height:100px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:700 26px sans-serif;direction:ltr}
+.ring{width:130px;height:130px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:conic-gradient(#16a34a calc(var(--p)*1%),#e2e8f0 0)}
+.ring div{width:100px;height:100px;border-radius:50%;background:#fff;display:grid;place-items:center;font:700 26px sans-serif;direction:ltr}
 .br{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
-.br span{background:var(--bg);border-radius:99px;padding:4px 12px;font-size:14px}
-@media(prefers-reduced-motion:no-preference){.res.on{animation:f .4s}@keyframes f{from{opacity:0;transform:translateY(8px)}}}
+.br span{background:#eef2fa;border-radius:99px;padding:4px 12px;font-size:14px}
+@media(max-width:600px){header{margin:10px 10px 12px;padding:18px}main{padding:8px 10px 20px}section{padding:15px}h1{font-size:22px}}
 </style>
 </head>
 <body>
-<header><h1>Bravo !</h1><p>كويزات بنك أسئلة — اللغة الفرنسية — الصف الأول الثانوي — شهر أكتوبر (المواصفات الجديدة)</p></header>
-<nav id="nav" aria-label="الكويزات"></nav>
+<header class="hero"><h1>كويزات بنك أسئلة حسب المواصفات الجديدة</h1><p>اللغة الفرنسية — الصف الأول الثانوي — مراجعة شهر أكتوبر</p></header>
+<nav id="nav" aria-label="أقسام بنك الأسئلة"></nav>
 <main id="app"></main>
 <script>
 const T=[
