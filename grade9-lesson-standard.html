@@ -84,7 +84,7 @@ function g9HealthStart(type='memory'){
    prompt=type==='memory'?'<div style="font-size:58px">'+esc(x.icon||'🩺')+'</div><p>اختر المعنى العربي للصورة.</p>':'<div class="fr">'+esc(x.fr)+'</div><p>اختر المعنى العربي الصحيح.</p>';
  }
  values.sort(()=>Math.random()-.5);
- box.innerHTML='<div class="box"><h3>'+titles[type]+'</h3>'+prompt+'<div class="options">'+values.map(o=>'<button class="option" onclick="g9HealthAnswer(this,'+JSON.stringify(o.correct)+')">'+esc(o.text)+'</button>').join('')+'</div><div class="feedback"></div><button class="btn primary" onclick="g9HealthStart('+JSON.stringify(type)+')">سؤال جديد</button></div>';
+ box.innerHTML='<div class="box"><h3>'+titles[type]+'</h3>'+prompt+'<div class="options">'+values.map(o=>'<button class="option" onclick="g9HealthAnswer(this,'+JSON.stringify(o.correct)+')">'+esc(o.text)+'</button>').join('')+'</div><div class="feedback"></div><button class="btn primary" data-g9-start="'+esc(type)+'">سؤال جديد</button></div>';
 }
 function g9HealthAnswer(btn,ok){const box=btn.closest('.box');box.querySelectorAll('.option').forEach(b=>{b.disabled=true;if(b===btn)b.classList.add(ok?'correct':'wrong')});box.querySelector('.feedback').textContent=ok?'✅ إجابة صحيحة!':'❌ ليست الإجابة الصحيحة؛ جرّب سؤالًا جديدًا.';}
 window.g9HealthStart=g9HealthStart;window.g9HealthAnswer=g9HealthAnswer;
