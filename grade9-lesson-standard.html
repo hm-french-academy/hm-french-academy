@@ -68,7 +68,7 @@ function g9HealthStart(type='memory'){
  const distractors=arr.filter(y=>y.fr!==x.fr).sort(()=>Math.random()-.5).slice(0,3);
  const opts=[x,...distractors].sort(()=>Math.random()-.5);
  const box=document.getElementById('g9box');if(!box)return;
- const titles={memory:'🧩 معنى الكلمة',quiz:'⚡ اختبار سريع',sort:'🧲 تصنيف المفردات',pron:'🎤 تحدي النطق'};
+ const titles={memory:'🧩 معنى الكلمة',quiz:'⚡ اختبار سريع',sort:'🧲 تصنيف المفردات',catch:'🎯 التقاط الكلمة',pron:'🎤 تحدي النطق'};
  let prompt='',values=opts.map(y=>({text:y.ar,correct:y.fr===x.fr}));
  if(type==='sort'){
    const category=t=>/médecin|malade|patient|infirmier/i.test(t.fr)?'الأشخاص':/hôpital|clinique|pharmacie/i.test(t.fr)?'الأماكن':'الأعراض والأدوات والعلاج';
@@ -79,9 +79,9 @@ function g9HealthStart(type='memory'){
    prompt='<div class="ar">'+esc(x.ar)+'</div><p>التقط الكلمة الفرنسية المطابقة.</p>';
  }else if(type==='pron'){
    values=opts.map(y=>({text:y.fr,correct:y.fr===x.fr}));
-   prompt='<div class="fr">'+esc(x.fr)+'</div><button class="btn secondary" type="button" onclick="g9Speak('+JSON.stringify(x.fr)+')">🔊 استمع للنطق</button><p>اختر الكلمة التي سمعتها.</p>';
+   prompt='<button class="btn secondary" type="button" onclick="g9Speak('+JSON.stringify(x.fr)+')">🔊 استمع للنطق</button><p>استمع جيدًا ثم اختر الكلمة التي سمعتها.</p>';
  }else{
-   prompt=(type==='memory'?'<div style="font-size:50px">'+esc(x.icon||'🩺')+'</div>':'')+'<div class="fr">'+esc(x.fr)+'</div><p>اختر المعنى العربي الصحيح.</p>';
+   prompt=type==='memory'?'<div style="font-size:58px">'+esc(x.icon||'🩺')+'</div><p>اختر المعنى العربي للصورة.</p>':'<div class="fr">'+esc(x.fr)+'</div><p>اختر المعنى العربي الصحيح.</p>';
  }
  values.sort(()=>Math.random()-.5);
  box.innerHTML='<div class="box"><h3>'+titles[type]+'</h3>'+prompt+'<div class="options">'+values.map(o=>'<button class="option" onclick="g9HealthAnswer(this,'+JSON.stringify(o.correct)+')">'+esc(o.text)+'</button>').join('')+'</div><div class="feedback"></div><button class="btn primary" onclick="g9HealthStart('+JSON.stringify(type)+')">سؤال جديد</button></div>';
