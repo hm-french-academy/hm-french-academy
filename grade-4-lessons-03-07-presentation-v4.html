@@ -23,7 +23,7 @@
  // Older student links use section=lesson; map that legacy value to the real opening section.
  if(!['start','vocab','under','rules','interact','talk','practice','media','review','after'].includes(params.get('section')))params.set('section','start');
  // Explicit build token prevents an old cached lesson file from hiding published changes.
- params.set('_build','20261019-face-map-2');
+ params.set('_build','20261019-face-map-3');
  frame.src='grade-4-lessons-03-07-live-v4.html?'+params.toString();
  frame.addEventListener('error',()=>document.getElementById('load-error').style.display='grid');
 })();
