@@ -64,7 +64,48 @@ const foods=[
 ['le pain','الخبز','photo-1509440159596-0249088772ff'],['le fromage','الجبن','photo-1486297678162-eb2a19b0a32d'],['le croissant','الكرواسون','photo-1555507036-ab1f4038808a'],['le riz','الأرز','photo-1516684732162-798a0062be99'],['le poulet','الدجاج','photo-1532550907401-a500c9a57435'],['la viande','اللحم','photo-1607623814075-e51df1bdc82f'],['le poisson','السمك','photo-1519708227418-c8fd9a32b7a2'],['des pâtes','المعكرونة','photo-1551183053-bf91a1d81141'],['la soupe','الشوربة','photo-1547592180-85f173990554'],['la salade','السلطة','photo-1512621776951-a57141f2eefd'],['les légumes','الخضراوات','photo-1540420773420-3366772f4999'],['les fruits','الفاكهة','photo-1610832958506-aa56368176cf'],['une pomme','تفاحة','photo-1560806887-1e4cd0b6cbd6'],['une banane','موزة','photo-1571771894821-ce9b6c11b08e'],['des biscuits','بسكويت','photo-1558961363-fa8fdf82db35'],['un gâteau','كعكة','photo-1578985545062-69928b1d9587'],['un yaourt','زبادي','photo-1488477181946-6428a0291777'],['du lait','اللبن','photo-1550583724-b2692b85b150'],['du café','القهوة','photo-1509042239860-f550ce710b93'],['du jus d’orange','عصير البرتقال','photo-1600271886742-f049cd451bba'],['du thé','الشاي','photo-1576092768241-dec231879fc3'],['la pizza','البيتزا','photo-1565299624946-b28f40a0ae38'],['une glace','آيس كريم','photo-1501446529957-6226bd447c46'],['des œufs','البيض','photo-1525351484163-7529414344d8'],['des frites','البطاطس المقلية','photo-1573080496219-bb080dd4f877'],['un sandwich','شطيرة','photo-1528735602780-2552fd46c7af'],['une tarte','فطيرة حلوة','photo-1464305795204-6f5bbfc7fb81'],['des céréales','حبوب الإفطار','photo-1517093157656-b9ec4031a6b5'],['un jus','عصير','photo-1600271886742-f049cd451bba'],['la limonade','ليمونادة','photo-1513558161293-cdaa741dffd9'],['une tisane','مشروب أعشاب','photo-1576092768241-dec231879fc3'],['un légume','خضار','photo-1540420773420-3366772f4999'],['un fruit','فاكهة','photo-1610832958506-aa56368176cf']];
 const imgUrl=id=>id.startsWith('photo-')?'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=500&q=75':'';
 document.getElementById('foodGrid').innerHTML=foods.map(([w,a,id])=>'<article class="food"><img loading="lazy" src="'+imgUrl(id)+'" alt="'+w+' — '+a+'" onerror="this.style.display=&quot;none&quot;"><div class="body"><div class="fr">'+w+'</div><small>'+a+'</small><button class="secondary" onclick="speak('+JSON.stringify(w)+')">🔊 النطق</button></div></article>').join('');
-function speak(t){if(!t||!('speechSynthesis'in window)){alert('خاصية النطق غير مدعومة في هذا المتصفح.');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.86;speechSynthesis.speak(u)}
+let frenchAudioFallback=null;
+function showSpeechStatus(message,isError=false){
+ let box=document.getElementById('speechStatus');
+ if(!box){box=document.createElement('div');box.id='speechStatus';box.setAttribute('role','status');box.style.cssText='position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:9999;background:#123b32;color:#fff;padding:10px 16px;border-radius:12px;box-shadow:0 4px 18px #0003;font-size:14px;max-width:90%;text-align:center';document.body.appendChild(box)}
+ box.style.background=isError?'#8b2e2e':'#123b32';box.textContent=message;box.style.display='block';clearTimeout(box._hideTimer);box._hideTimer=setTimeout(()=>box.style.display='none',3200);
+}
+function playFrenchFallback(text){
+ try{
+  if(!frenchAudioFallback){frenchAudioFallback=new Audio();frenchAudioFallback.preload='none'}
+  frenchAudioFallback.pause();frenchAudioFallback.src='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=fr&q='+encodeURIComponent(text);
+  const p=frenchAudioFallback.play();
+  if(p&&p.catch)p.catch(()=>showSpeechStatus('تعذّر تشغيل الصوت. جرّب فتح الدرس في Chrome وتأكد من اتصال الإنترنت.',true));
+ }catch(e){showSpeechStatus('تعذّر تشغيل الصوت على هذا الجهاز.',true)}
+}
+function speak(text){
+ if(!text)return;
+ if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){playFrenchFallback(text);return}
+ try{
+  const synth=window.speechSynthesis;
+  synth.cancel();synth.resume();
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.lang='fr-FR';utterance.rate=.82;utterance.pitch=1;utterance.volume=1;
+  let started=false;
+  utterance.onstart=()=>{started=true;showSpeechStatus('🔊 جاري نطق الفرنسية…')};
+  utterance.onend=()=>{if(started)showSpeechStatus('انتهى النطق.')};
+  utterance.onerror=(event)=>{showSpeechStatus('تعذّر النطق عبر الجهاز؛ نحاول تشغيل الصوت البديل…',true);playFrenchFallback(text)};
+  const chooseVoice=()=>{
+   const voices=synth.getVoices();
+   const french=voices.find(v=>/^fr(-|_)/i.test(v.lang)&&/france|french|français/i.test(v.name))||voices.find(v=>/^fr(-|_)/i.test(v.lang));
+   if(french)utterance.voice=french;
+   synth.speak(utterance);
+   setTimeout(()=>{if(!started&&synth.speaking===false&&synth.pending===false){playFrenchFallback(text)}},1800);
+  };
+  if(synth.getVoices().length){chooseVoice()}
+  else{
+   let done=false;
+   const ready=()=>{if(done)return;done=true;synth.onvoiceschanged=null;chooseVoice()};
+   synth.onvoiceschanged=ready;
+   setTimeout(ready,900);
+  }
+ }catch(error){playFrenchFallback(text)}
+}
 const flashWords=foods.slice(0,12).map(x=>({w:x[0],a:x[1]}));let fi=0;
 function currentFlash(){return flashWords[fi]}
 function showFlash(){document.getElementById('flashWord').textContent=currentFlash().w;let m=document.getElementById('flashMeaning');m.textContent=currentFlash().a;m.classList.add('hidden');document.getElementById('flashCount').textContent=(fi+1)+' / '+flashWords.length;document.getElementById('flashProgress').style.width=((fi+1)/flashWords.length*100)+'%'}
