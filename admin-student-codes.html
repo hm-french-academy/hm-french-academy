@@ -55,6 +55,12 @@ const catalogCache=new Map();
 async function loadLessonCatalog(grade){
   const key=String(grade||'');
   if(!key)return;
+  if(key==='11'){
+    const units=[['11','الصف الثاني الثانوي · Clé d’avenir',[['bac2-u1-l1','Les repas de la journée — الوجبات اليومية · الوحدة الأولى / الدرس الأول']]]];
+    catalogCache.set(key,units);
+    replaceGradeGroups(key,units);
+    return;
+  }
   if(catalogCache.has(key)){replaceGradeGroups(key,catalogCache.get(key));return}
   try{
     const registryPath=key==='9'?'data/lessons/grade-9/semester-1/lesson-registry.json':key==='10'?'data/lessons/secondary-1/semester-1/lesson-registry.json':'data/lessons/grade-'+key+'/lesson-registry.json';
