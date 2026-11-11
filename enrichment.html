@@ -82,7 +82,7 @@ function answerSplit(lines){
  return {tasks:i<0?lines:lines.slice(0,i),answers:i<0?[]:lines.slice(i)};
 }
 function lineHtml(line){
- const s=String(line||'').trim();
+ const s=String(line||'').trim().replace(/استمع/g,'اقرأ').replace(/المسموعة/g,'المكتوبة');
  const cls=/^الهدف/.test(s)?'objective':/^[•●▪]/.test(s)?'bullet':/[A-Za-zÀ-ÿ]/.test(s)&&!/[؀-ۿ]/.test(s)?'french':'';
  return '<div class="line '+cls+'" dir="auto">'+esc(s.replace(/^الهدف\s*[:：]?\s*/,''))+'</div>';
 }
@@ -94,6 +94,7 @@ function studentSections(lines){
   if(/^(تعليمات التنفيذ|مالحظة للمعلم|ملاحظة للمعلم)/.test(s)){hidden='teacher';continue;}
   if(/^دعم اختياري للمتعثر/.test(s)){hidden='support';continue;}
   if(/^تحدي اختياري للمتقدم/.test(s)){hidden='';visible.push({type:'bonus-title',text:'تحدٍّ إضافي'});continue;}
+  if(hidden==='teacher' && /^(?:[.،]?\\s*[1-3]\\s*[.)،]?|.*\\s[.][1-3]\\s*)\\S/.test(s))hidden='';
   if(/^اإلجابات النموذجية|^الإجابات النموذجية|^الإجابة النموذجية/.test(s))break;
   if(hidden==='teacher' || hidden==='support')continue;
   if(/^(المدة|االرتباط بالمنهج|الارتباط بالمنهج|التقييم)\b/.test(s))continue;
