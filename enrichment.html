@@ -122,6 +122,15 @@ function renderStudentContent(lines){
  if(challenge)html+='</section>';
  return html||'<p>لا توجد أنشطة معروضة لهذا اليوم.</p>';
 }
+const answerKey=key+'_answers';
+function wireAnswers(day){
+ let saved={};try{saved=JSON.parse(localStorage.getItem(answerKey)||'{}')||{};}catch(_){saved={};}
+ const fields=[...$('dayContent').querySelectorAll('.student-answer')];
+ fields.forEach((field,i)=>{
+  const k=String(day.day)+'_'+i;field.value=saved[k]||'';
+  field.addEventListener('input',()=>{saved[k]=field.value;localStorage.setItem(answerKey,JSON.stringify(saved));});
+ });
+}
 function save(){localStorage.setItem(key,JSON.stringify([...done]));}
 function updateProgress(){
  const n=done.size;
@@ -135,6 +144,7 @@ function renderTabs(){
 function renderDay(){
  const d=plan.days[active],parts=answerSplit(d.content||[]);
  $('dayContent').innerHTML='<div class="day-head"><div><h2>'+esc(d.title||('اليوم '+d.day))+'</h2><p>اليوم '+d.day+' · '+esc(plan.gradeName)+' · نشاط قصير</p></div><span class="day-pill">'+(done.has(d.day)?'تم الإنجاز':'نشاط اليوم')+'</span></div><div class="content">'+renderStudentContent(parts.tasks)+'</div>'+(parts.answers.length?'<details class="answers"><summary>راجع إجاباتك بعد الانتهاء</summary><div class="answer-content">'+parts.answers.filter(x=>!/^مالحظة للمعلم|^ملاحظة للمعلم/.test(x)).map(lineHtml).join('')+'</div></details>':'')+'<div class="actions"><button type="button" id="prevDay" '+(active===0?'disabled':'')+'>اليوم السابق</button><button type="button" class="'+(done.has(d.day)?'':'complete')+'" id="markDone">'+(done.has(d.day)?'إلغاء إنجاز اليوم':'✓ أنهيت هذا اليوم')+'</button><button type="button" class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>اليوم التالي</button></div>';
+ wireAnswers(d);
  $('prevDay').onclick=()=>{if(active>0){active--;renderDay()}};
  $('nextDay').onclick=()=>{if(active<plan.days.length-1){active++;renderDay()}};
  $('markDone').onclick=()=>{done.has(d.day)?done.delete(d.day):done.add(d.day);save();renderTabs();renderDay();updateProgress();};
