@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#14264a"><meta name="robots" content="noindex,nofollow">
+<title>HM Academy | خطة الإثراء</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=3">
+<script src="scripts/student-gate.js?v=20261111-enrichment-gate"></script>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#14264a;--blue:#245bd7;--ink:#17243b;--muted:#68758b;--line:#e1e8f2;--soft:#f5f8fd;--teal:#138477}
+body{margin:0;background:linear-gradient(145deg,#f5f8fd,#eef3fa);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+main{width:min(1080px,calc(100% - 28px));margin:24px auto 46px}
+.hero{background:linear-gradient(125deg,#102348,#1d3e78);color:#fff;border-radius:24px;padding:25px 26px;box-shadow:0 16px 38px #10234820}
+.eyebrow{font-size:12px;font-weight:850;letter-spacing:.4px;color:#c9d9ff}
+h1{font-size:clamp(23px,4vw,34px);margin:8px 0}
+.hero p{margin:0;color:#e0e9fb;line-height:1.9}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.meta span{border:1px solid #ffffff35;background:#ffffff12;padding:7px 11px;border-radius:99px;font-size:12px;font-weight:800}
+.notice{margin:14px 0;background:#fff;border:1px solid var(--line);border-right:4px solid var(--teal);border-radius:14px;padding:12px 15px;color:#43516a;line-height:1.8;font-size:13px}
+.progress-card,.day-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px #14264a08}
+.progress-card{padding:15px 18px;margin:14px 0}
+.progress-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:850}
+.progress-top small{color:var(--muted);font-weight:700}
+.track{height:9px;border-radius:99px;background:#edf1f7;overflow:hidden;margin-top:10px}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#245bd7,#24a18f);border-radius:99px;transition:width .2s}
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:14px 0}
+.day-tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:14px;padding:12px 8px;cursor:pointer;text-align:center;min-height:68px;font:inherit}
+.day-tab b{display:block;color:var(--blue);font-size:13px}
+.day-tab span{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}
+.day-tab.active{background:#edf3ff;border-color:#9bb7f0;box-shadow:inset 0 0 0 1px #9bb7f0}
+.day-tab.done b:after{content:" ✓";color:var(--teal)}
+.day-card{padding:20px}
+.day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #edf0f5;padding-bottom:14px;margin-bottom:14px}
+.day-head h2{margin:0;font-size:22px;color:var(--navy)}
+.day-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.day-pill{background:#edf3ff;color:#245bd7;padding:7px 10px;border-radius:99px;font-size:11px;font-weight:900;white-space:nowrap}
+.content{line-height:1.9}
+.line{padding:5px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.line.heading{font-weight:900;color:#17396e;margin-top:9px}
+.line.bullet{padding-right:14px;position:relative}
+.line.bullet:before{content:"";position:absolute;right:0;top:17px;width:5px;height:5px;border-radius:50%;background:#7895c7}
+.line.french{direction:ltr;text-align:left;font-weight:650;color:#253c61}
+.answers{margin-top:18px;border:1px solid #d9e3f2;border-radius:15px;background:#f8faff;overflow:hidden}
+.answers summary{padding:13px 15px;cursor:pointer;color:#1c4d9c;font-weight:900}
+.answer-content{padding:0 15px 14px;line-height:1.9}
+.answer-content .line{border-top:1px solid #e9eef6}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:18px}
+.actions button{border:1px solid var(--line);border-radius:12px;padding:11px 14px;font:inherit;font-weight:850;cursor:pointer;background:#fff;color:#23416f}
+.actions .primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.actions .complete{background:#eaf8f4;border-color:#b9e4d9;color:#08786b}
+.empty{background:#fff;padding:28px;border-radius:18px;text-align:center;color:var(--muted)}
+footer{padding:15px;text-align:center;color:#8994a7;font-size:11px}
+@media(max-width:760px){.days{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:20px}.day-card{padding:15px}.day-head{flex-direction:column}.day-pill{align-self:flex-start}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<div class="eyebrow">HM ACADEMY · PROGRAMME D’ENRICHISSEMENT</div>
+<h1 id="gradeTitle">خطة الإثراء لمدة أسبوعين</h1>
+<p id="gradeSub">تدريبات وأنشطة قصيرة لتثبيت ما تم تعلمه.</p>
+<div class="meta"><span>10 أيام تعليمية</span><span>10–15 دقيقة يوميًا</span><span>بدون درجات أو واجبات</span></div>
+</section>
+<div class="notice">بنود الاستماع التي لا يتوفر لها تسجيل صوتي يقرأها المعلم بصوت واضح مرتين، كما ورد في تعليمات الخطة.</div>
+<section class="progress-card">
+<div class="progress-top"><span>تقدمك في خطة الإثراء</span><small id="progressText">0 من 10 أيام</small></div>
+<div class="track"><i id="progressBar"></i></div>
+</section>
+<nav id="dayTabs" class="days" aria-label="أيام خطة الإثراء"></nav>
+<section id="dayContent" class="day-card"><div class="empty">جارٍ تحميل خطة الإثراء…</div></section>
+<footer>HM Academy · Français pour vous / Français Simple</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const params=new URLSearchParams(location.search);
+const match=String(params.get('id')||'').match(/^hm-enrich-g([4-8])$/);
+const grade=match?match[1]:'';
+const $=id=>document.getElementById(id);
+let plan=null,active=0,done=new Set();
+const code=(localStorage.getItem('hm_student_code')||'student').replace(/[^a-z0-9_-]/gi,'');
+const key='hm_enrichment_progress_'+code+'_g'+grade;
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function answerSplit(lines){
+ const i=lines.findIndex(x=>/الإجابات النموذجية|اإلجابات النموذجية|الإجابة النموذجية/.test(x));
+ return {tasks:i<0?lines:lines.slice(0,i),answers:i<0?[]:lines.slice(i)};
+}
+function lineHtml(line){
+ const s=String(line||'').trim();
+ const cls=/^(الهدف|تعليمات التنفيذ|دعم اختياري|تحدي اختياري|الإجابات النموذجية|اإلجابات النموذجية|مالحظة للمعلم)/.test(s)?'heading':/^[•●▪]/.test(s)?'bullet':/[A-Za-zÀ-ÿ]/.test(s)&&!/[\u0600-\u06FF]/.test(s)?'french':'';
+ return '<div class="line '+cls+'" dir="auto">'+esc(s)+'</div>';
+}
+function save(){localStorage.setItem(key,JSON.stringify([...done]));}
+function updateProgress(){
+ const n=done.size;
+ $('progressText').textContent=n+' من 10 أيام';
+ $('progressBar').style.width=(n*10)+'%';
+}
+function renderTabs(){
+ $('dayTabs').innerHTML=plan.days.map((d,i)=>'<button type="button" class="day-tab '+(i===active?'active ':'')+(done.has(d.day)?'done':'')+'" data-day="'+i+'"><b>اليوم '+d.day+(done.has(d.day)?' ✓':'')+'</b><span>'+esc(d.title)+'</span></button>').join('');
+ $('dayTabs').querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>{active=Number(b.dataset.day);renderDay();}));
+}
+function renderDay(){
+ const d=plan.days[active],parts=answerSplit(d.content||[]);
+ $('dayContent').innerHTML='<div class="day-head"><div><h2>'+esc(d.title||('اليوم '+d.day))+'</h2><p>اليوم '+d.day+' · '+esc(plan.gradeName)+' · 10–15 دقيقة</p></div><span class="day-pill">'+(done.has(d.day)?'تم الإنجاز':'نشاط اليوم')+'</span></div><div class="content">'+parts.tasks.map(lineHtml).join('')+'</div>'+(parts.answers.length?'<details class="answers"><summary>عرض الإجابات النموذجية وملاحظات المعلم</summary><div class="answer-content">'+parts.answers.map(lineHtml).join('')+'</div></details>':'')+'<div class="actions"><button type="button" id="prevDay" '+(active===0?'disabled':'')+'>اليوم السابق</button><button type="button" class="'+(done.has(d.day)?'':'complete')+'" id="markDone">'+(done.has(d.day)?'إلغاء إنجاز اليوم':'✓ أنهيت هذا اليوم')+'</button><button type="button" class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>اليوم التالي</button></div>';
+ $('prevDay').onclick=()=>{if(active>0){active--;renderDay()}};
+ $('nextDay').onclick=()=>{if(active<plan.days.length-1){active++;renderDay()}};
+ $('markDone').onclick=()=>{done.has(d.day)?done.delete(d.day):done.add(d.day);save();renderTabs();renderDay();updateProgress();};
+ renderTabs();updateProgress();
+}
+async function init(){
+ if(!grade){$('dayContent').innerHTML='<div class="empty">رابط خطة الإثراء غير مكتمل.</div>';return;}
+ try{
+  const r=await fetch('data/enrichment/two-week-enrichment.json?v=20261111-enrichment-content',{cache:'no-store'});
+  if(!r.ok)throw new Error('تعذر تحميل المحتوى');
+  const data=await r.json();plan=data.grades[grade];
+  if(!plan||plan.days.length!==10)throw new Error('محتوى الصف غير مكتمل');
+  $('gradeTitle').textContent='خطة الإثراء — '+plan.gradeName;
+  $('gradeSub').textContent=plan.program+' · برنامج إثراء من 10 أيام لتثبيت المفردات والقواعد والمهارات الواردة في المنهج.';
+  try{done=new Set(JSON.parse(localStorage.getItem(key)||'[]'));}catch(_){done=new Set();}
+  renderTabs();renderDay();updateProgress();
+ }catch(e){$('dayContent').innerHTML='<div class="empty">تعذر تحميل خطة الإثراء الآن. حاول تحديث الصفحة.</div>';}
+}
+init();
+})();
+</script>
+</body>
+</html>
