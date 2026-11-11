@@ -35,12 +35,7 @@ h1{font-size:clamp(23px,4vw,34px);margin:8px 0}
 .day-head h2{margin:0;font-size:22px;color:var(--navy)}
 .day-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
 .day-pill{background:#edf3ff;color:#245bd7;padding:7px 10px;border-radius:99px;font-size:11px;font-weight:900;white-space:nowrap}
-.content{line-height:1.9}
-.line{padding:5px 0;white-space:pre-wrap;overflow-wrap:anywhere}
-.line.heading{font-weight:900;color:#17396e;margin-top:9px}
-.line.bullet{padding-right:14px;position:relative}
-.line.bullet:before{content:"";position:absolute;right:0;top:17px;width:5px;height:5px;border-radius:50%;background:#7895c7}
-.line.french{direction:ltr;text-align:left;font-weight:650;color:#253c61}
+.content{line-height:1.95;display:grid;gap:12px}.activity-block{background:#fbfcff;border:1px solid #e8edf5;border-radius:15px;padding:13px 15px}.activity-block h3{margin:0 0 9px;color:#183967;font-size:16px}.line{padding:7px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}.line.objective{background:#eef5ff;border-right:4px solid #3972d7;border-radius:12px;padding:12px 14px;color:#183967;font-weight:800}.line.bullet{padding-right:18px;position:relative}.line.bullet:before{content:"";position:absolute;right:2px;top:19px;width:6px;height:6px;border-radius:50%;background:#6385c1}.line.french{direction:ltr;text-align:left;font-weight:700;color:#253c61;background:#f2f6fc;border-radius:9px;padding:9px 11px;margin:5px 0}.bonus{background:#f5f8ff;border:1px dashed #a9bde2;border-radius:13px;padding:12px 14px;margin-top:12px}.bonus b{color:#245bd7}.day-head{align-items:center}.day-head h2{font-size:clamp(21px,3vw,27px)}.day-card{padding:clamp(15px,3vw,25px)}
 .answers{margin-top:18px;border:1px solid #d9e3f2;border-radius:15px;background:#f8faff;overflow:hidden}
 .answers summary{padding:13px 15px;cursor:pointer;color:#1c4d9c;font-weight:900}
 .answer-content{padding:0 15px 14px;line-height:1.9}
@@ -62,7 +57,7 @@ footer{padding:15px;text-align:center;color:#8994a7;font-size:11px}
 <p id="gradeSub">تدريبات وأنشطة قصيرة لتثبيت ما تم تعلمه.</p>
 <div class="meta"><span>10 أيام تعليمية</span><span>10–15 دقيقة يوميًا</span><span>بدون درجات أو واجبات</span></div>
 </section>
-<div class="notice">بنود الاستماع التي لا يتوفر لها تسجيل صوتي يقرأها المعلم بصوت واضح مرتين، كما ورد في تعليمات الخطة.</div>
+<div class="notice">أنجز أنشطة اليوم بنفسك، ثم راجع إجاباتك بعد المحاولة. يمكنك العودة لأي يوم وإكماله في وقتك.</div>
 <section class="progress-card">
 <div class="progress-top"><span>تقدمك في خطة الإثراء</span><small id="progressText">0 من 10 أيام</small></div>
 <div class="track"><i id="progressBar"></i></div>
@@ -88,8 +83,36 @@ function answerSplit(lines){
 }
 function lineHtml(line){
  const s=String(line||'').trim();
- const cls=/^(الهدف|تعليمات التنفيذ|دعم اختياري|تحدي اختياري|الإجابات النموذجية|اإلجابات النموذجية|مالحظة للمعلم)/.test(s)?'heading':/^[•●▪]/.test(s)?'bullet':/[A-Za-zÀ-ÿ]/.test(s)&&!/[\u0600-\u06FF]/.test(s)?'french':'';
- return '<div class="line '+cls+'" dir="auto">'+esc(s)+'</div>';
+ const cls=/^الهدف/.test(s)?'objective':/^[•●▪]/.test(s)?'bullet':/[A-Za-zÀ-ÿ]/.test(s)&&!/[؀-ۿ]/.test(s)?'french':'';
+ return '<div class="line '+cls+'" dir="auto">'+esc(s.replace(/^الهدف\s*[:：]?\s*/,''))+'</div>';
+}
+function studentSections(lines){
+ const visible=[];let hidden='';
+ for(const raw of lines){
+  const s=String(raw||'').trim();
+  if(!s)continue;
+  if(/^(تعليمات التنفيذ|مالحظة للمعلم|ملاحظة للمعلم)/.test(s)){hidden='teacher';continue;}
+  if(/^دعم اختياري للمتعثر/.test(s)){hidden='support';continue;}
+  if(/^تحدي اختياري للمتقدم/.test(s)){hidden='';visible.push({type:'bonus-title',text:'تحدٍّ إضافي'});continue;}
+  if(/^اإلجابات النموذجية|^الإجابات النموذجية|^الإجابة النموذجية/.test(s))break;
+  if(hidden==='teacher' || hidden==='support')continue;
+  if(/^(المدة|االرتباط بالمنهج|الارتباط بالمنهج|التقييم)\b/.test(s))continue;
+  if(/^الهدف/.test(s)){visible.push({type:'objective',text:s});continue;}
+  visible.push({type:'line',text:s});
+ }
+ return visible;
+}
+function renderStudentContent(lines){
+ const items=studentSections(lines);let html='',block=[],count=0;
+ const flush=()=>{if(block.length){html+='<section class="activity-block"><h3>تدريب '+(++count)+'</h3>'+block.map(x=>lineHtml(x.text)).join('')+'</section>';block=[];}};
+ for(const item of items){
+  if(item.type==='objective'){flush();html+=lineHtml(item.text);}
+  else if(item.type==='bonus-title'){flush();html+='<section class="bonus"><b>تحدٍّ إضافي</b>';}
+  else block.push(item);
+ }
+ flush();
+ if(items.some(x=>x.type==='bonus-title'))html+='</section>';
+ return html||'<p>لا توجد أنشطة معروضة لهذا اليوم.</p>';
 }
 function save(){localStorage.setItem(key,JSON.stringify([...done]));}
 function updateProgress(){
@@ -103,7 +126,7 @@ function renderTabs(){
 }
 function renderDay(){
  const d=plan.days[active],parts=answerSplit(d.content||[]);
- $('dayContent').innerHTML='<div class="day-head"><div><h2>'+esc(d.title||('اليوم '+d.day))+'</h2><p>اليوم '+d.day+' · '+esc(plan.gradeName)+' · 10–15 دقيقة</p></div><span class="day-pill">'+(done.has(d.day)?'تم الإنجاز':'نشاط اليوم')+'</span></div><div class="content">'+parts.tasks.map(lineHtml).join('')+'</div>'+(parts.answers.length?'<details class="answers"><summary>عرض الإجابات النموذجية وملاحظات المعلم</summary><div class="answer-content">'+parts.answers.map(lineHtml).join('')+'</div></details>':'')+'<div class="actions"><button type="button" id="prevDay" '+(active===0?'disabled':'')+'>اليوم السابق</button><button type="button" class="'+(done.has(d.day)?'':'complete')+'" id="markDone">'+(done.has(d.day)?'إلغاء إنجاز اليوم':'✓ أنهيت هذا اليوم')+'</button><button type="button" class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>اليوم التالي</button></div>';
+ $('dayContent').innerHTML='<div class="day-head"><div><h2>'+esc(d.title||('اليوم '+d.day))+'</h2><p>اليوم '+d.day+' · '+esc(plan.gradeName)+' · نشاط قصير</p></div><span class="day-pill">'+(done.has(d.day)?'تم الإنجاز':'نشاط اليوم')+'</span></div><div class="content">'+renderStudentContent(parts.tasks)+'</div>'+(parts.answers.length?'<details class="answers"><summary>راجع إجاباتك بعد الانتهاء</summary><div class="answer-content">'+parts.answers.filter(x=>!/^مالحظة للمعلم|^ملاحظة للمعلم/.test(x)).map(lineHtml).join('')+'</div></details>':'')+'<div class="actions"><button type="button" id="prevDay" '+(active===0?'disabled':'')+'>اليوم السابق</button><button type="button" class="'+(done.has(d.day)?'':'complete')+'" id="markDone">'+(done.has(d.day)?'إلغاء إنجاز اليوم':'✓ أنهيت هذا اليوم')+'</button><button type="button" class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>اليوم التالي</button></div>';
  $('prevDay').onclick=()=>{if(active>0){active--;renderDay()}};
  $('nextDay').onclick=()=>{if(active<plan.days.length-1){active++;renderDay()}};
  $('markDone').onclick=()=>{done.has(d.day)?done.delete(d.day):done.add(d.day);save();renderTabs();renderDay();updateProgress();};
