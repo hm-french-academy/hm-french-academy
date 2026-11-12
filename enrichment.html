@@ -85,8 +85,8 @@ function questionHtml(item,day,index){
  const options=choice?choice.choices:(tf?['Vrai','Faux']:null);
  let html='<article class="question"><div class="qline" dir="auto">'+esc(cleanText)+'</div>';
  if(options){html+='<div class="choice-list" role="group" aria-label="اختر الإجابة">'+options.map((o,i)=>'<button type="button" class="choice" data-choice="'+esc(o)+'" data-id="'+id+'">'+esc(o)+'</button>').join('')+'</div>';}
- else if(item.bullet&&!/^(?:A|B)\s*[:：]/.test(cleanText)&&!/^☐/.test(cleanText)){html+='<input class="answer-input" id="'+id+'" data-answer="'+id+'" type="text" placeholder="اكتب إجابتك هنا" autocomplete="off">';}
  else if(/^☐/.test(cleanText)){html+='<label class="qmeta"><input type="checkbox" data-check="'+id+'"> أتممت هذه المهارة</label>';}
+ else if(/_{2,}/.test(cleanText)|| (item.bullet&&!/^(?:A|B)\s*[:：]/.test(cleanText))){html+='<input class="answer-input" id="'+id+'" data-answer="'+id+'" type="text" placeholder="اكتب إجابتك هنا" autocomplete="off">';}
  if(french)html+='<div class="qmeta"><button class="small-btn read-btn" type="button" data-speak="'+esc(cleanText)+'">🔊 استمع للجملة</button></div>';
  html+='</article>';return html;
 }
