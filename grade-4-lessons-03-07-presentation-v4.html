@@ -22,6 +22,7 @@
  if(!params.has('id'))params.set('id','g4-l04');
  // Older student links use section=lesson; map that legacy value to the real opening section.
  if(!['start','vocab','under','rules','interact','talk','practice','media','review','after'].includes(params.get('section')))params.set('section','start');
+ if(params.get('id')==='g4-l07'){location.replace('grade-4-face-possessives-studio.html?'+params.toString()+'&_v=20261112-face-possessives-v2');return;}
  // Explicit build token prevents an old cached lesson file from hiding published changes.
  params.set('_build','20261019-face-map-3');
  frame.src='grade-4-lessons-03-07-live-v4.html?'+params.toString();
