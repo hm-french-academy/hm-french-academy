@@ -2,169 +2,148 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#14264a"><meta name="robots" content="noindex,nofollow">
-<title>HM Academy | خطة الإثراء</title>
+<meta name="theme-color" content="#10264d"><meta name="robots" content="noindex,nofollow">
+<title>HM Academy | برنامج الإثراء</title>
 <link rel="icon" type="image/svg+xml" href="assets/images/hm-academy-favicon.svg?v=3">
 <script src="scripts/student-gate.js?v=20261111-enrichment-gate"></script>
 <style>
-*{box-sizing:border-box}
-:root{--navy:#14264a;--blue:#245bd7;--ink:#17243b;--muted:#68758b;--line:#e1e8f2;--soft:#f5f8fd;--teal:#138477}
-body{margin:0;background:linear-gradient(145deg,#f5f8fd,#eef3fa);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
-main{width:min(1080px,calc(100% - 28px));margin:24px auto 46px}
-.hero{background:linear-gradient(125deg,#102348,#1d3e78);color:#fff;border-radius:24px;padding:25px 26px;box-shadow:0 16px 38px #10234820}
-.eyebrow{font-size:12px;font-weight:850;letter-spacing:.4px;color:#c9d9ff}
-h1{font-size:clamp(23px,4vw,34px);margin:8px 0}
-.hero p{margin:0;color:#e0e9fb;line-height:1.9}
-.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
-.meta span{border:1px solid #ffffff35;background:#ffffff12;padding:7px 11px;border-radius:99px;font-size:12px;font-weight:800}
-.notice{margin:14px 0;background:#fff;border:1px solid var(--line);border-right:4px solid var(--teal);border-radius:14px;padding:12px 15px;color:#43516a;line-height:1.8;font-size:13px}
-.progress-card,.day-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px #14264a08}
-.progress-card{padding:15px 18px;margin:14px 0}
-.progress-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:850}
-.progress-top small{color:var(--muted);font-weight:700}
-.track{height:9px;border-radius:99px;background:#edf1f7;overflow:hidden;margin-top:10px}
-.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#245bd7,#24a18f);border-radius:99px;transition:width .2s}
-.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:14px 0}
-.day-tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:14px;padding:12px 8px;cursor:pointer;text-align:center;min-height:68px;font:inherit}
-.day-tab b{display:block;color:var(--blue);font-size:13px}
-.day-tab span{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}
-.day-tab.active{background:#edf3ff;border-color:#9bb7f0;box-shadow:inset 0 0 0 1px #9bb7f0}
-.day-tab.done b:after{content:" ✓";color:var(--teal)}
-.day-card{padding:20px}
-.day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #edf0f5;padding-bottom:14px;margin-bottom:14px}
-.day-head h2{margin:0;font-size:22px;color:var(--navy)}
-.day-head p{margin:5px 0 0;color:var(--muted);font-size:12px}
-.day-pill{background:#edf3ff;color:#245bd7;padding:7px 10px;border-radius:99px;font-size:11px;font-weight:900;white-space:nowrap}
-.content{line-height:1.95;display:grid;gap:12px}.activity-block{background:#fbfcff;border:1px solid #e8edf5;border-radius:15px;padding:13px 15px}.activity-block h3{margin:0 0 9px;color:#183967;font-size:16px}.line{padding:7px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}.line.objective{background:#eef5ff;border-right:4px solid #3972d7;border-radius:12px;padding:12px 14px;color:#183967;font-weight:800}.line.bullet{padding-right:18px;position:relative}.line.bullet:before{content:"";position:absolute;right:2px;top:19px;width:6px;height:6px;border-radius:50%;background:#6385c1}.line.french{direction:ltr;text-align:left;font-weight:700;color:#253c61;background:#f2f6fc;border-radius:9px;padding:9px 11px;margin:5px 0}.bonus{background:#f5f8ff;border:1px dashed #a9bde2;border-radius:13px;padding:12px 14px;margin-top:12px}.bonus b{color:#245bd7}.day-head{align-items:center}.day-head h2{font-size:clamp(21px,3vw,27px)}.day-card{padding:clamp(15px,3vw,25px)}
-.answers{margin-top:18px;border:1px solid #d9e3f2;border-radius:15px;background:#f8faff;overflow:hidden}
-.answers summary{padding:13px 15px;cursor:pointer;color:#1c4d9c;font-weight:900}
-.answer-content{padding:0 15px 14px;line-height:1.9}
-.answer-content .line{border-top:1px solid #e9eef6}
-.actions{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:18px}
-.actions button{border:1px solid var(--line);border-radius:12px;padding:11px 14px;font:inherit;font-weight:850;cursor:pointer;background:#fff;color:#23416f}
-.actions .primary{background:var(--blue);border-color:var(--blue);color:#fff}
-.actions .complete{background:#eaf8f4;border-color:#b9e4d9;color:#08786b}
-.empty{background:#fff;padding:28px;border-radius:18px;text-align:center;color:var(--muted)}
-footer{padding:15px;text-align:center;color:#8994a7;font-size:11px}
-@media(max-width:760px){.days{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:20px}.day-card{padding:15px}.day-head{flex-direction:column}.day-pill{align-self:flex-start}}
+:root{--navy:#10264d;--blue:#315fd3;--sky:#edf3ff;--ink:#1c2940;--muted:#718096;--line:#e5eaf2;--paper:#fff;--bg:#f4f6fa;--green:#13836e;--greenbg:#eaf7f3;--gold:#a56a13;--goldbg:#fff7e8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+main{width:min(980px,calc(100% - 26px));margin:20px auto 42px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy)}.brand-mark{width:37px;height:37px;border-radius:12px;background:var(--navy);color:white;display:grid;place-items:center;font-weight:950;letter-spacing:-1px}.brand small{display:block;color:var(--muted);font-weight:650;font-size:10px;letter-spacing:.4px}.program-tag{border:1px solid #dbe4f3;background:white;border-radius:99px;padding:7px 11px;color:#52627a;font-size:11px;font-weight:850}
+.hero{background:linear-gradient(120deg,#10264d,#24477f);border-radius:23px;color:#fff;padding:24px 25px;box-shadow:0 12px 30px #10264d16}.hero .kicker{color:#c7d7fa;font-size:11px;font-weight:900;letter-spacing:.6px}.hero h1{font-size:clamp(23px,4vw,32px);margin:8px 0 5px}.hero p{margin:0;color:#e0e9fa;line-height:1.8;font-size:14px}.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.hero-meta span{border:1px solid #ffffff35;background:#ffffff12;border-radius:99px;padding:6px 10px;font-size:11px;font-weight:800}
+.intro{margin:13px 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 15px;display:flex;gap:10px;align-items:flex-start;color:#52627a;font-size:13px;line-height:1.75}.intro b{color:var(--navy);white-space:nowrap}
+.progress{background:white;border:1px solid var(--line);border-radius:17px;padding:14px 16px;margin:13px 0}.progress-head{display:flex;justify-content:space-between;gap:10px;font-weight:900;font-size:13px}.progress-head span:last-child{color:var(--blue)}.bar{height:8px;border-radius:20px;background:#edf1f7;margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#315fd3,#2ba28a);border-radius:20px;transition:width .25s}
+.days-wrap{margin:14px 0}.days-label{font-size:12px;font-weight:900;color:#6b7890;margin:0 3px 8px}.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.day-tab{min-width:0;border:1px solid var(--line);border-radius:13px;background:#fff;padding:10px 6px;cursor:pointer;text-align:center;color:var(--ink);font:inherit;transition:.15s}.day-tab b{display:block;color:#526987;font-size:12px}.day-tab span{display:block;margin-top:4px;font-size:10px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.day-tab.active{border-color:#9bb5f1;background:var(--sky);box-shadow:inset 0 0 0 1px #c9d8fb}.day-tab.done b{color:var(--green)}.day-tab.done b:after{content:" ✓"}
+.lesson{background:var(--paper);border:1px solid var(--line);border-radius:21px;box-shadow:0 8px 25px #10264d08;overflow:hidden}.lesson-head{padding:21px 22px 17px;border-bottom:1px solid var(--line)}.lesson-topline{display:flex;align-items:center;justify-content:space-between;gap:10px}.day-chip{font-size:11px;font-weight:900;color:#315fd3;background:var(--sky);padding:6px 10px;border-radius:99px}.duration{font-size:11px;color:var(--muted);font-weight:750}.lesson-head h2{font-size:clamp(21px,3.6vw,28px);color:var(--navy);margin:12px 0 5px}.goal{color:#52627a;font-size:13px;line-height:1.8;margin:0}.lesson-body{padding:18px 21px 20px}.section-label{display:flex;align-items:center;gap:9px;margin:3px 0 11px;color:var(--navy);font-size:14px;font-weight:950}.section-label:before{content:"";width:4px;height:19px;border-radius:9px;background:var(--blue)}
+.task-group{margin:0 0 17px}.task-title{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:900;color:#243c63;margin:0 0 10px}.task-title .num{width:25px;height:25px;border-radius:8px;background:#edf3ff;color:#315fd3;display:grid;place-items:center;font-size:11px}.task-desc{font-size:13px;line-height:1.8;color:#52627a;margin:0 0 10px}.question{border:1px solid #e8edf4;border-radius:14px;padding:12px 13px;margin:8px 0;background:#fff}.qline{font-size:14px;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere}.qmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px}.answer-input{width:100%;border:1px solid #d8e0ec;border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;direction:auto;color:var(--ink);background:#fbfcff;margin-top:9px}.answer-input:focus{outline:2px solid #b7caf6;border-color:#7598e8}.choice-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.choice{border:1px solid #dfe6f0;border-radius:10px;background:#f9fbff;padding:8px 11px;font:inherit;font-size:13px;cursor:pointer;color:#30415d}.choice.selected{background:#eaf0ff;border-color:#7898e8;color:#234eae;font-weight:900}.choice:focus-visible,button:focus-visible{outline:3px solid #b7caf6;outline-offset:2px}.small-btn{border:0;background:#edf3ff;color:#315fd3;border-radius:9px;padding:7px 10px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}.read-btn{white-space:nowrap}.challenge{border:1px dashed #d6b46f;background:var(--goldbg);border-radius:16px;padding:14px;margin:16px 0}.challenge .section-label{color:#80520e}.challenge .section-label:before{background:#d49b36}.answers{border:1px solid #dce5f2;border-radius:14px;background:#f8faff;margin-top:16px;overflow:hidden}.answers summary{padding:13px 15px;cursor:pointer;color:#234e9f;font-weight:900;font-size:13px}.answer-body{padding:0 14px 12px}.answer-line{font-size:13px;line-height:1.8;padding:8px 3px;border-top:1px solid #e8edf5;white-space:pre-wrap}.answer-line.teacher-note{display:none}
+.self-check{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#f5f8fd;border-radius:13px;padding:12px 13px;margin-top:17px}.self-check p{font-size:12px;color:#607089;margin:0;line-height:1.7}.self-check button,.nav-actions button{border:1px solid #dce4ef;background:#fff;color:#29456f;border-radius:11px;padding:10px 13px;font:inherit;font-size:12px;font-weight:900;cursor:pointer}.nav-actions{display:flex;justify-content:space-between;gap:8px;margin-top:16px}.nav-actions .primary{background:var(--blue);border-color:var(--blue);color:#fff}.nav-actions button:disabled{opacity:.35;cursor:not-allowed}.complete-btn{background:var(--greenbg)!important;border-color:#b9e4d9!important;color:#087765!important}.feedback{font-size:12px;font-weight:800;color:var(--green);margin-top:8px;min-height:18px}
+.empty{padding:35px;text-align:center;color:var(--muted)}footer{text-align:center;color:#8995a8;font-size:10px;padding:18px}
+@media(max-width:650px){main{width:calc(100% - 18px);margin-top:12px}.hero{padding:19px;border-radius:19px}.days{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-head{padding:17px}.lesson-body{padding:15px}.lesson-head h2{margin-top:10px}.topbar{margin-bottom:10px}.program-tag{font-size:10px}.intro{font-size:12px}.nav-actions button{padding:10px 9px}.day-tab span{white-space:normal;min-height:26px}}
 </style>
 </head>
 <body>
 <main>
-<section class="hero">
-<div class="eyebrow">HM ACADEMY · PROGRAMME D’ENRICHISSEMENT</div>
-<h1 id="gradeTitle">خطة الإثراء لمدة أسبوعين</h1>
-<p id="gradeSub">تدريبات وأنشطة قصيرة لتثبيت ما تم تعلمه.</p>
-<div class="meta"><span>10 أيام تعليمية</span><span>10–15 دقيقة يوميًا</span><span>بدون درجات أو واجبات</span></div>
-</section>
-<div class="notice">أنجز أنشطة اليوم بنفسك، ثم راجع إجاباتك بعد المحاولة. يمكنك العودة لأي يوم وإكماله في وقتك.</div>
-<section class="progress-card">
-<div class="progress-top"><span>تقدمك في خطة الإثراء</span><small id="progressText">0 من 10 أيام</small></div>
-<div class="track"><i id="progressBar"></i></div>
-</section>
-<nav id="dayTabs" class="days" aria-label="أيام خطة الإثراء"></nav>
-<section id="dayContent" class="day-card"><div class="empty">جارٍ تحميل خطة الإثراء…</div></section>
-<footer>HM Academy · Français pour vous / Français Simple</footer>
+<div class="topbar"><div class="brand"><div class="brand-mark">HM</div><div>HM ACADEMY<small>APPRENDRE · PRATIQUER · PROGRESSER</small></div></div><span class="program-tag">برنامج إثراء تفاعلي</span></div>
+<header class="hero"><div class="kicker">PROGRAMME D’ENRICHISSEMENT</div><h1 id="gradeTitle">خطة الإثراء</h1><p id="gradeSub">تدريبات قصيرة لمراجعة ما سبق تعلمه.</p><div class="hero-meta"><span>10 أيام</span><span>10–15 دقيقة يوميًا</span><span>تعلّم ذاتي</span></div></header>
+<div class="intro"><b>طريقة العمل</b><span>اقرأ المطلوب، وأجب بنفسك، واستخدم زر الاستماع عند وجود جملة فرنسية. بعد الانتهاء افتح الإجابات النموذجية للمراجعة، ثم سجّل إنجاز اليوم.</span></div>
+<section class="progress"><div class="progress-head"><span>تقدمك في البرنامج</span><span id="progressText">0 / 10 أيام</span></div><div class="bar"><i id="progressBar"></i></div></section>
+<div class="days-wrap"><p class="days-label">اختر يومًا من البرنامج</p><nav id="dayTabs" class="days" aria-label="أيام البرنامج"></nav></div>
+<section id="dayContent" class="lesson"><div class="empty">جارٍ تحميل الأنشطة…</div></section>
+<footer>HM Academy · Programme d’enrichissement</footer>
 </main>
 <script>
 (function(){
 'use strict';
-const params=new URLSearchParams(location.search);
-const match=String(params.get('id')||'').match(/^hm-enrich-g([4-8])$/);
-const grade=match?match[1]:'';
-const $=id=>document.getElementById(id);
-let plan=null,active=0,done=new Set();
-const code=(localStorage.getItem('hm_student_code')||'student').replace(/[^a-z0-9_-]/gi,'');
-const key='hm_enrichment_progress_'+code+'_g'+grade;
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function answerSplit(lines){
- const i=lines.findIndex(x=>/الإجابات النموذجية|اإلجابات النموذجية|الإجابة النموذجية/.test(x));
- return {tasks:i<0?lines:lines.slice(0,i),answers:i<0?[]:lines.slice(i)};
-}
-function lineHtml(line){
- const s=String(line||'').trim().replace(/استمع/g,'اقرأ').replace(/المسموعة/g,'المكتوبة');
- const cls=/^الهدف/.test(s)?'objective':/^[•●▪]/.test(s)?'bullet':/[A-Za-zÀ-ÿ]/.test(s)&&!/[؀-ۿ]/.test(s)?'french':'';
- return '<div class="line '+cls+'" dir="auto">'+esc(s.replace(/^الهدف\s*[:：]?\s*/,''))+'</div>';
-}
-function studentSections(lines){
- const out=[];let mode='normal';
+const params=new URLSearchParams(location.search),m=String(params.get('id')||'').match(/^hm-enrich-g([4-8])$/),grade=m?m[1]:'';
+const $=id=>document.getElementById(id),studentCode=(localStorage.getItem('hm_student_code')||'student').replace(/[^a-z0-9_-]/gi,'');
+const progressKey='hm_enrichment_progress_'+studentCode+'_g'+grade,answersKey=progressKey+'_answers';
+let plan=null,active=0,done=new Set(),saved={};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
+function splitAnswers(lines){const i=lines.findIndex(x=>/الإجابات النموذجية|اإلجابات النموذجية|الإجابة النموذجية/.test(x));return{tasks:i<0?lines:lines.slice(0,i),answers:i<0?[]:lines.slice(i+1)};}
+function isTeacher(s){return /^(تعليمات التنفيذ|مالحظة للمعلم|ملاحظة للمعلم|دعم اختياري للمتعثر)/.test(s)||/^(المدة|االرتباط بالمنهج|الارتباط بالمنهج|التقييم)\b/.test(s);}
+function parseTasks(lines){
+ const result=[];let mode='normal',section=null,challenge=false;
  for(const raw of lines){
-  const t=String(raw||'').trim();if(!t)continue;
-  if(/^(تعليمات التنفيذ|مالحظة للمعلم|ملاحظة للمعلم)/.test(t)){mode='teacher';continue;}
-  if(/^دعم اختياري للمتعثر/.test(t)){mode='support';continue;}
-  if(/^تحدي اختياري للمتقدم/.test(t)){mode='challenge';out.push({type:'challenge-title'});continue;}
-  if(/^اإلجابات النموذجية|^الإجابات النموذجية|^الإجابة النموذجية/.test(t))break;
-  if(/^(المدة|االرتباط بالمنهج|الارتباط بالمنهج|التقييم)\b/.test(t))continue;
-  if(mode==='teacher'||mode==='support'){
-   if(/^(?:[.،]?\s*\d+\s*[.)،]?|\d+\s*[.)،])/.test(t))mode='normal';
-   else continue;
+  const s=clean(raw);if(!s)continue;
+  if(/^تعليمات التنفيذ|^مالحظة للمعلم|^ملاحظة للمعلم|^دعم اختياري للمتعثر/.test(s)){mode='hidden';continue;}
+  if(/^تحدي اختياري للمتقدم/.test(s)){mode='challenge';challenge=true;section=null;continue;}
+  if(/^(المدة|االرتباط بالمنهج|الارتباط بالمنهج|التقييم)\b/.test(s))continue;
+  if(mode==='hidden'){
+   if(/^(?:[.،]?\s*\d+\s*[.)،]?|\d+\s*[.)،])/.test(s))mode='normal';else continue;
   }
-  if(/^الهدف/.test(t)){out.push({type:'objective',text:t});continue;}
-  if(mode==='challenge'){out.push({type:'challenge',text:t});continue;}
-  if(/^(?:[.،]?\s*\d+\s*[.)،]?\s*|\d+\s*[.)،]\s*)/.test(t)){out.push({type:'heading',text:t});continue;}
-  out.push({type:'prompt',text:t});
+  if(/^اإلجابات النموذجية|^الإجابات النموذجية|^الإجابة النموذجية/.test(s))break;
+  if(/^الهدف/.test(s)){result.push({type:'goal',text:s.replace(/^الهدف\s*[:：]?\s*/,''),challenge:false});continue;}
+  const heading=s.replace(/^[.،]?\s*(\d+)\s*[.)،]\s*/,'').trim();
+  const numbered=/^[.،]?\s*\d+\s*[.)،]/.test(s);
+  const knownHeading=/^(Vrai ou Faux|Choisis|Choisissez|Rangez|Relie|Mets au pluriel|Conjugue|Écoute|استمع|أكمل|اكتب|صنّف|صنف|حوار|موقف|مهام|بطاقة|محطات|صح أم خطأ|عجلة)/i.test(heading);
+  if(numbered && (knownHeading || s.length<48)){section={title:heading.replace(/^[:：]/,''),items:[],challenge:mode==='challenge'};result.push({type:'section',section});continue;}
+  if(mode==='challenge' && !challenge){challenge=true;}
+  if(!section||section.challenge!==(mode==='challenge')){section={title:mode==='challenge'?'تحدٍّ إضافي':'تدريب',items:[],challenge:mode==='challenge'};result.push({type:'section',section});}
+  section.items.push({text:s.replace(/^[•●▪]\s*/,''),bullet:/^[•●▪]/.test(s),challenge:mode==='challenge'});
  }
- return out;
+ return result;
 }
-function renderStudentContent(lines){
- const items=studentSections(lines);let html='',challenge=false;
- for(const item of items){
-  if(item.type==='objective'){html+='<div class="objective-card"><span>هدف اليوم</span>'+lineHtml(item.text.replace(/^الهدف\s*[:：]?\s*/,''))+'</div>';continue;}
-  if(item.type==='challenge-title'){html+='<section class="challenge-card"><h3>⭐ تحدٍّ إضافي</h3>';challenge=true;continue;}
-  if(item.type==='heading'){html+='<h3 class="activity-heading">'+esc(item.text.replace(/^[.،]?\s*/,''))+'</h3>';continue;}
-  if(item.type==='prompt'||item.type==='challenge'){
-   const isBullet=/^[•●▪]/.test(item.text);
-   html+='<div class="question-row"><div class="question-text" dir="auto">'+esc(item.text.replace(/^[•●▪]\s*/,''))+'</div>';
-   if(isBullet)html+='<label class="answer-label">إجابتك</label><input class="student-answer" type="text" autocomplete="off" placeholder="اكتب إجابتك هنا">';
-   html+='</div>';
-  }
+function parseChoices(text){
+ let match=text.match(/\[([^\]]+)\]/);
+ if(!match)match=text.match(/\(([^()]*\s[/|،]\s*[^()]*)\)\s*$/);
+ if(!match)return null;
+ const choices=match[1].split(/\s*(?:\/|\||،)\s*/).map(x=>x.trim()).filter(Boolean);
+ return choices.length>1?{choices,clean:text.replace(match[0],'').trim()}:null;
+}
+function speak(text){
+ const phrase=String(text).match(/[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ0-9'’.,!? :;-]*/g)?.join(' ').trim();
+ if(!phrase||!('speechSynthesis'in window))return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(phrase);u.lang='fr-FR';u.rate=.88;speechSynthesis.speak(u);
+}
+function questionHtml(item,day,index){
+ const raw=item.text,choice=parseChoices(raw),id='q_'+day+'_'+index;
+ const cleanText=choice?choice.clean:raw;
+ const french=/[A-Za-zÀ-ÿ]/.test(cleanText)&&!/[\u0600-\u06ff]/.test(cleanText);
+ const tf=/^Vrai ou Faux/i.test(item.sectionTitle||'')||/^(?:\d+[.)]?\s*)?(?:En hiver|Au printemps|Les arbres|Il y a|L'hiver|Nous parlons)/i.test(cleanText);
+ const options=choice?choice.choices:(tf?['Vrai','Faux']:null);
+ let html='<article class="question"><div class="qline" dir="auto">'+esc(cleanText)+'</div>';
+ if(options){html+='<div class="choice-list" role="group" aria-label="اختر الإجابة">'+options.map((o,i)=>'<button type="button" class="choice" data-choice="'+esc(o)+'" data-id="'+id+'">'+esc(o)+'</button>').join('')+'</div>';}
+ else if(item.bullet&&!/^(?:A|B)\s*[:：]/.test(cleanText)&&!/^☐/.test(cleanText)){html+='<input class="answer-input" id="'+id+'" data-answer="'+id+'" type="text" placeholder="اكتب إجابتك هنا" autocomplete="off">';}
+ else if(/^☐/.test(cleanText)){html+='<label class="qmeta"><input type="checkbox" data-check="'+id+'"> أتممت هذه المهارة</label>';}
+ if(french)html+='<div class="qmeta"><button class="small-btn read-btn" type="button" data-speak="'+esc(cleanText)+'">🔊 استمع للجملة</button></div>';
+ html+='</article>';return html;
+}
+function renderItems(tasks,day){
+ let html='',q=0,sectionCount=0,challengeOpen=false;
+ for(const item of tasks){
+  if(item.type==='goal'){html+='<div class="task-group"><div class="section-label">هدف اليوم</div><p class="task-desc">'+esc(item.text)+'</p></div>';continue;}
+  if(item.type!=='section')continue;
+  if(item.section.challenge&&!challengeOpen){html+='<section class="challenge"><div class="section-label">تحدٍّ إضافي</div>';challengeOpen=true;}
+  if(!item.section.challenge&&challengeOpen){html+='</section>';challengeOpen=false;}
+  sectionCount++;
+  html+='<section class="task-group"><h3 class="task-title"><span class="num">'+sectionCount+'</span>'+esc(item.section.title||'تدريب')+'</h3>';
+  item.section.items.forEach(it=>{it.sectionTitle=item.section.title;html+=questionHtml(it,day,++q);});
+  html+='</section>';
  }
- if(challenge)html+='</section>';
- return html||'<p>لا توجد أنشطة معروضة لهذا اليوم.</p>';
+ if(challengeOpen)html+='</section>';
+ return html||'<div class="empty">لا توجد تدريبات مسجلة لهذا اليوم.</div>';
 }
-const answerKey=key+'_answers';
-function wireAnswers(day){
- let saved={};try{saved=JSON.parse(localStorage.getItem(answerKey)||'{}')||{};}catch(_){saved={};}
- const fields=[...$('dayContent').querySelectorAll('.student-answer')];
- fields.forEach((field,i)=>{
-  const k=String(day.day)+'_'+i;field.value=saved[k]||'';
-  field.addEventListener('input',()=>{saved[k]=field.value;localStorage.setItem(answerKey,JSON.stringify(saved));});
- });
+function renderAnswers(lines){
+ const filtered=lines.filter(s=>!/^مالحظة للمعلم|^ملاحظة للمعلم|^•?\s*تحدي/.test(clean(s)));
+ return filtered.map(s=>'<div class="answer-line" dir="auto">'+esc(clean(s).replace(/^[•●▪]\s*/,''))+'</div>').join('');
 }
-function save(){localStorage.setItem(key,JSON.stringify([...done]));}
-function updateProgress(){
- const n=done.size;
- $('progressText').textContent=n+' من 10 أيام';
- $('progressBar').style.width=(n*10)+'%';
-}
+function loadSaved(){try{done=new Set(JSON.parse(localStorage.getItem(progressKey)||'[]'));}catch(_){done=new Set();}try{saved=JSON.parse(localStorage.getItem(answersKey)||'{}')||{};}catch(_){saved={};}}
+function persistAnswer(id,value){saved[id]=value;localStorage.setItem(answersKey,JSON.stringify(saved));}
 function renderTabs(){
- $('dayTabs').innerHTML=plan.days.map((d,i)=>'<button type="button" class="day-tab '+(i===active?'active ':'')+(done.has(d.day)?'done':'')+'" data-day="'+i+'"><b>اليوم '+d.day+(done.has(d.day)?' ✓':'')+'</b><span>'+esc(d.title)+'</span></button>').join('');
+ $('dayTabs').innerHTML=plan.days.map((d,i)=>'<button type="button" class="day-tab '+(i===active?'active ':'')+(done.has(d.day)?'done':'')+'" data-day="'+i+'"><b>اليوم '+d.day+'</b><span>'+esc(d.title)+'</span></button>').join('');
  $('dayTabs').querySelectorAll('[data-day]').forEach(b=>b.addEventListener('click',()=>{active=Number(b.dataset.day);renderDay();}));
 }
+function renderProgress(){$('progressText').textContent=done.size+' / 10 أيام';$('progressBar').style.width=(done.size*10)+'%';}
+function bindInputs(day){
+ $('dayContent').querySelectorAll('[data-answer]').forEach(el=>{const id=el.dataset.answer;el.value=saved[id]||'';el.addEventListener('input',()=>persistAnswer(id,el.value));});
+ $('dayContent').querySelectorAll('[data-choice]').forEach(el=>{const id=el.dataset.id;const value=el.dataset.choice;if(saved[id]===value)el.classList.add('selected');el.addEventListener('click',()=>{const group=[...$('dayContent').querySelectorAll('[data-id="'+id+'"]')];group.forEach(x=>x.classList.remove('selected'));el.classList.add('selected');persistAnswer(id,value);});});
+ $('dayContent').querySelectorAll('[data-check]').forEach(el=>{el.checked=saved[el.dataset.check]==='yes';el.addEventListener('change',()=>persistAnswer(el.dataset.check,el.checked?'yes':''));});
+ $('dayContent').querySelectorAll('[data-speak]').forEach(el=>el.addEventListener('click',()=>speak(el.dataset.speak)));
+}
 function renderDay(){
- const d=plan.days[active],parts=answerSplit(d.content||[]);
- $('dayContent').innerHTML='<div class="day-head"><div><h2>'+esc(d.title||('اليوم '+d.day))+'</h2><p>اليوم '+d.day+' · '+esc(plan.gradeName)+' · نشاط قصير</p></div><span class="day-pill">'+(done.has(d.day)?'تم الإنجاز':'نشاط اليوم')+'</span></div><div class="content">'+renderStudentContent(parts.tasks)+'</div>'+(parts.answers.length?'<details class="answers"><summary>راجع إجاباتك بعد الانتهاء</summary><div class="answer-content">'+parts.answers.filter(x=>!/^مالحظة للمعلم|^ملاحظة للمعلم/.test(x)).map(lineHtml).join('')+'</div></details>':'')+'<div class="actions"><button type="button" id="prevDay" '+(active===0?'disabled':'')+'>اليوم السابق</button><button type="button" class="'+(done.has(d.day)?'':'complete')+'" id="markDone">'+(done.has(d.day)?'إلغاء إنجاز اليوم':'✓ أنهيت هذا اليوم')+'</button><button type="button" class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>اليوم التالي</button></div>';
- wireAnswers(d);
- $('prevDay').onclick=()=>{if(active>0){active--;renderDay()}};
- $('nextDay').onclick=()=>{if(active<plan.days.length-1){active++;renderDay()}};
- $('markDone').onclick=()=>{done.has(d.day)?done.delete(d.day):done.add(d.day);save();renderTabs();renderDay();updateProgress();};
- renderTabs();updateProgress();
+ const d=plan.days[active],parts=splitAnswers(d.content||[]),tasks=parseTasks(parts.tasks),doneToday=done.has(d.day);
+ const answerBlock=parts.answers.length?'<details class="answers"><summary>الإجابات النموذجية — افتحها بعد المحاولة</summary><div class="answer-body">'+renderAnswers(parts.answers)+'</div></details>':'';
+ $('dayContent').innerHTML='<header class="lesson-head"><div class="lesson-topline"><span class="day-chip">اليوم '+d.day+' من 10</span><span class="duration">نشاط قصير · 10–15 دقيقة</span></div><h2>'+esc(d.title||'نشاط اليوم')+'</h2><p class="goal">'+(tasks.find(x=>x.type==='goal')?esc(tasks.find(x=>x.type==='goal').text):'تدريب على ما سبق تعلمه.')+'</p></header><div class="lesson-body"><div class="section-label">أنشطة اليوم</div>'+renderItems(tasks,d.day)+'<div class="self-check"><p>انتهيت من المحاولة؟ راجع الحلول، ثم سجّل إنجازك.</p><button type="button" id="reviewAnswers">مراجعة الإجابات</button></div>'+answerBlock+'<div class="feedback" id="feedback"></div><div class="nav-actions"><button id="prevDay" '+(active===0?'disabled':'')+'>السابق</button><button id="markDone" class="'+(doneToday?'complete-btn':'')+'">'+(doneToday?'✓ تم إنجاز اليوم':'تسجيل إنجاز اليوم')+'</button><button class="primary" id="nextDay" '+(active===plan.days.length-1?'disabled':'')+'>التالي</button></div></div>';
+ bindInputs(d);
+ $('reviewAnswers').onclick=()=>{const el=$('dayContent').querySelector('.answers');if(el){el.open=true;el.scrollIntoView({behavior:'smooth',block:'nearest'});}else $('feedback').textContent='لا توجد إجابات نموذجية مرفقة لهذا النشاط.';};
+ $('prevDay').onclick=()=>{if(active>0){active--;renderDay();}};
+ $('nextDay').onclick=()=>{if(active<plan.days.length-1){active++;renderDay();}};
+ $('markDone').onclick=()=>{done.has(d.day)?done.delete(d.day):done.add(d.day);localStorage.setItem(progressKey,JSON.stringify([...done]));renderDay();renderTabs();renderProgress();};
+ renderTabs();renderProgress();
 }
 async function init(){
- if(!grade){$('dayContent').innerHTML='<div class="empty">رابط خطة الإثراء غير مكتمل.</div>';return;}
+ if(!grade){$('dayContent').innerHTML='<div class="empty">الرابط غير مكتمل. افتح البرنامج من صفحة الطالب.</div>';return;}
  try{
-  const r=await fetch('data/enrichment/two-week-enrichment.json?v=20261111-enrichment-content',{cache:'no-store'});
-  if(!r.ok)throw new Error('تعذر تحميل المحتوى');
-  const data=await r.json();plan=data.grades[grade];
-  if(!plan||plan.days.length!==10)throw new Error('محتوى الصف غير مكتمل');
-  $('gradeTitle').textContent='خطة الإثراء — '+plan.gradeName;
-  $('gradeSub').textContent=plan.program+' · برنامج إثراء من 10 أيام لتثبيت المفردات والقواعد والمهارات الواردة في المنهج.';
-  try{done=new Set(JSON.parse(localStorage.getItem(key)||'[]'));}catch(_){done=new Set();}
-  renderTabs();renderDay();updateProgress();
- }catch(e){$('dayContent').innerHTML='<div class="empty">تعذر تحميل خطة الإثراء الآن. حاول تحديث الصفحة.</div>';}
+  const r=await fetch('data/enrichment/two-week-enrichment.json?v=20261112-interactive',{cache:'no-store'});if(!r.ok)throw Error('load');
+  const data=await r.json();plan=data.grades[grade];if(!plan||!Array.isArray(plan.days)||plan.days.length!==10)throw Error('data');
+  $('gradeTitle').textContent='برنامج الإثراء · '+plan.gradeName;
+  $('gradeSub').textContent=plan.program+' · 10 أيام من الأنشطة التفاعلية لمراجعة ما سبق تعلمه.';
+  loadSaved();renderDay();
+ }catch(e){$('dayContent').innerHTML='<div class="empty">تعذر تحميل البرنامج الآن. حاول تحديث الصفحة لاحقًا.</div>';}
 }
 init();
 })();
 </script>
-</body>
-</html>
+</body></html>
