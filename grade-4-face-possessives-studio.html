@@ -166,7 +166,7 @@ function nextGame(kind){
  if(kind==='match'){prompt=id==='g4-l04'?'اختر العبارة الفرنسية الصحيحة للكلمة: '+(D.vocab.find(v=>v[1]===word)?.[2]||word):'اختر العبارة التي تعبّر عن: '+(D.vocab.find(v=>v[1]===word)?.[2]||word)}
  else if(kind==='article'){const v=D.vocab.find(v=>v[1]===word);prompt='ما صفة/أداة الملكية المناسبة؟ '+word;correct=v?v[3]:word}
  else{prompt='تحدي الاسترجاع: اختر الكلمة التي راجعتها للتو.'}
- const choices=kind==='article'?shuffle([correct,...(id==='g4-l04'?['le','la','les'].filter(x=>x!==correct).slice(0,2):['mon','ma','mes'].filter(x=>x!==correct).slice(0,2))]):opts;
+ const choices=kind==='article'?shuffle([correct,...(id==='g4-l04'?['le','la','les']:['mon','ma','mes','ton','ta','tes','son','sa','ses']).filter(x=>x!==correct).slice(0,2)]):opts;
  p.innerHTML='<div class="score">النقاط: '+gameScore+' · الجولة '+(gameRound+1)+' / 5</div><h3>'+prompt+'</h3>'+choices.map(x=>'<button class="choice" data-game-choice="'+x+'" data-game-ok="'+(x===correct)+'">'+x+'</button>').join('')+'<p class="feedback" id="gameFeedback"></p><button class="btn" id="gameNext" disabled>التالي ←</button>';
  p.querySelectorAll('[data-game-choice]').forEach(b=>b.onclick=()=>{if(p.dataset.answered==='1')return;p.dataset.answered='1';const ok=b.dataset.gameOk==='true';if(ok)gameScore++;p.querySelectorAll('[data-game-choice]').forEach(x=>{x.disabled=true;if(x.dataset.gameOk==='true')x.classList.add('correct')});if(!ok)b.classList.add('wrong');p.querySelector('#gameFeedback').textContent=ok?'أحسنت! إجابة صحيحة.':'الإجابة الصحيحة: '+correct;p.querySelector('#gameNext').disabled=false});
  p.querySelector('#gameNext').onclick=()=>{gameRound++;p.dataset.answered='0';nextGame(kind)};
