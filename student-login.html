@@ -55,9 +55,9 @@ function lessonUrl(id){
   localStorage.setItem('hm_student_current_lesson',id);
   if(/^hm-enrich-g[4-8]$/i.test(String(id)))return 'enrichment.html?id='+encodeURIComponent(id)+'&student=1&v=20261111-enrichment';
   // Grade 4 face and possessive-face lessons use the same upgraded studio as the public lesson page.
-  if(String(id)==='g4-l04'||String(id)==='g4-l05'||String(id)==='g4-l07')return 'grade-4-face-possessives-studio.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v5';
+  if(String(id)==='g4-l04'||String(id)==='g4-l05'||String(id)==='g4-l07')return 'grade-4-face-possessives-studio.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
   // Grade 4 Le corps uses the upgraded dedicated lesson studio for both public and student-code entry.
-  if(String(id)==='g4-l06')return 'grade-4-start-under-presentation.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v5';
+  if(String(id)==='g4-l06')return 'grade-4-start-under-presentation.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
   if(String(id)==='bac2-u1-l1')return 'baccalaureat-2-u1-l1-premium.html?id='+encodeURIComponent(id)+'&student=1&v=20261107-student-route';
   if(String(id)==='october-review-grade7')return 'october-exam-review-grade7.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
   if(String(id)==='october-review-grade8')return 'october-exam-review-grade8.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
