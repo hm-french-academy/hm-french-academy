@@ -189,7 +189,7 @@ async function lessonLabel(id){
   if(title)return {title:title[0],meta:title[1]};
   const map=await loadLessonCatalogForId(key);
   if(map&&(map.has(key)||map.has(canonical)))return map.get(key)||map.get(canonical);
-  const g=gradeFromLessonId(key),m=key.match(/(?:g|grade)\\d+(?:-u(\\d+))?-l(\\d+)$/i);
+  const g=gradeFromLessonId(key),m=key.match(/(?:g|grade)\d+(?:-u(\d+))?-l(\d+)$/i);
   if(m&&m[1])return {title:'الدرس '+Number(m[2])+' — الوحدة '+Number(m[1]),meta:gradeTextFor(g)};
   if(m)return {title:'الدرس '+Number(m[2]),meta:gradeTextFor(g)};
   return {title:'الدرس المتاح',meta:key};
@@ -214,7 +214,7 @@ async function showLessons(name,list){
   const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
   const grouped=new Map();
   labels.forEach(item=>{
-    const m=String(item.id).match(/^(grade\\d+|g\\d+)-u(\\d+)-l\\d+$/i);
+    const m=String(item.id).match(/^(grade\d+|g\d+)-u(\d+)-l\d+$/i);
     const key=m?(m[1].toLowerCase()+'-u'+m[2]):'other';
     if(!grouped.has(key))grouped.set(key,[]);
     grouped.get(key).push(item);
@@ -222,14 +222,14 @@ async function showLessons(name,list){
   lessonsBox.innerHTML='';
   const ordered=[...grouped.entries()].sort((a,b)=>{
     if(a[0]==='other')return 1;if(b[0]==='other')return -1;
-    const ga=Number((a[0].match(/\\d+/)||[])[0]),gb=Number((b[0].match(/\\d+/)||[])[0]);
+    const ga=Number((a[0].match(/\d+/)||[])[0]),gb=Number((b[0].match(/\d+/)||[])[0]);
     if(ga!==gb)return ga-gb;
-    return Number((a[0].match(/-u(\\d+)/)||[])[1])-Number((b[0].match(/-u(\\d+)/)||[])[1]);
+    return Number((a[0].match(/-u(\d+)/)||[])[1])-Number((b[0].match(/-u(\d+)/)||[])[1]);
   });
   ordered.forEach(([key,items])=>{
     const section=document.createElement('section');
     section.className='student-unit';
-    const match=key.match(/-u(\\d+)$/);
+    const match=key.match(/-u(\d+)$/);
     const heading=match?'الوحدة '+Number(match[1]):'دروس ومراجعات أخرى';
     const head=document.createElement('div');head.className='student-unit-head';
     head.innerHTML='<strong>📚 '+heading+'</strong><span>'+items.length+' '+(items.length===1?'درس':'دروس')+'</span>';
