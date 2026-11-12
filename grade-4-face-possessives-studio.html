@@ -170,7 +170,7 @@ function partVisual(term, mode){
    [/menton|chin/,['100','197','31']],[/tête|head|visage|face/,['100','128','88']]
   ]);
   const [x,y,r]=hit?hit[1]:['100','128','88'];
-  const ears=/oreille/.test(t);
+  const ears=/oreille/.test(t), eyes=/yeux|œil|oeil/.test(t);
   return '<svg viewBox="0 0 200 230" role="img" aria-label="رسم توضيحي للوجه مع تحديد '+term+'" style="width:100%;height:100%;max-height:112px">'+
    '<ellipse cx="100" cy="124" rx="65" ry="91" fill="#f2cda8" stroke="#9b6c4b" stroke-width="2"/>'+
    '<ellipse cx="34" cy="126" rx="12" ry="21" fill="#edc39b" stroke="#9b6c4b" stroke-width="2"/><ellipse cx="166" cy="126" rx="12" ry="21" fill="#edc39b" stroke="#9b6c4b" stroke-width="2"/>'+
@@ -182,7 +182,7 @@ function partVisual(term, mode){
    '<path d="M100 130 Q94 148 100 153 Q106 155 109 151" stroke="#b77b62" stroke-width="3" fill="none" stroke-linecap="round"/>'+
    '<path d="M78 174 Q100 189 122 174" stroke="#a94758" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M86 176 Q100 181 114 176" stroke="#fff" stroke-width="3" fill="none"/>'+
    '<path d="M70 204 Q100 218 130 204" stroke="#d2a17e" stroke-width="2" fill="none"/>'+
-   (ears?'<circle cx="34" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/><circle cx="166" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/>':'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#ffcc45" fill-opacity=".12" stroke="#e99b22" stroke-width="5"/>')+
+   (ears?'<circle cx="34" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/><circle cx="166" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/>':eyes?'<ellipse cx="75" cy="125" rx="17" ry="15" fill="none" stroke="#e99b22" stroke-width="5"/><ellipse cx="125" cy="125" rx="17" ry="15" fill="none" stroke="#e99b22" stroke-width="5"/>':'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#ffcc45" fill-opacity=".12" stroke="#e99b22" stroke-width="5"/>')+
    '</svg>';
  }
  const back=/dos|back/.test(t), whole=/corps|body/.test(t);
