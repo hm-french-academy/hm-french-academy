@@ -123,26 +123,53 @@ const D={
 'grade7-u3-l3':[['Janvier','يناير'],['Février','فبراير'],['Mars','مارس'],['Avril','أبريل'],['Mai','مايو'],['Juin','يونيو'],['Juillet','يوليو'],['Août','أغسطس'],['Septembre','سبتمبر'],['Octobre','أكتوبر'],['Novembre','نوفمبر'],['Décembre','ديسمبر'],['Le printemps','الربيع'],['L’été','الصيف'],['L’automne','الخريف'],['L’hiver','الشتاء'],['Il fait beau','الجو جميل'],['Il fait chaud','الجو حار'],['Il fait mauvais','الجو سيئ'],['Il fait froid','الجو بارد']]};
 const RULE={
 'grade7-u1-l1':['alphabet','source-vocabulary'],'grade7-u1-l2':['salutations'],'grade7-u1-l3':['pronouns','-er verbs'],'grade7-u1-l4':['être','presentation'],'grade7-u1-l5':['numbers 0-20'],'grade7-u1-l6':['telling time'],'grade7-u2-l1':['avoir','age'],'grade7-u2-l2':['indefinite articles','classroom objects'],'grade7-u3-l1':['colors','agreement'],'grade7-u3-l2':['definite articles','weekdays'],'grade7-u3-l3':['months','seasons','weather']};
-function qs(){let q=new URLSearchParams(location.search);return[q.get('id')||'grade7-u1-l1',q.get('section')||'intro']};function save(id,s){let k='hm-g7-progress-'+id,st=JSON.parse(localStorage.getItem(k)||'{}');st[s]=true;localStorage.setItem(k,JSON.stringify(st))};function prog(id){let st=JSON.parse(localStorage.getItem('hm-g7-progress-'+id)||'{}');return ST.filter(x=>st[x[0]]).length};function speak(t){
-try{
-const synth=window.speechSynthesis;
-if(!synth||typeof window.SpeechSynthesisUtterance!=='function'){
-const old=document.getElementById('hm-speech-status');if(old)old.textContent='خاصية النطق غير مدعومة في هذا المتصفح. افتح الدرس باستخدام Google Chrome.';
-return false;
-}
-if(!t)return false;
-synth.cancel();
-const u=new window.SpeechSynthesisUtterance(String(t));
-u.lang='fr-FR';u.rate=0.86;u.pitch=1;u.volume=1;
-const voices=synth.getVoices?synth.getVoices():[];
-const french=voices.find(v=>/^fr(-|_)/i.test(v.lang))||voices.find(v=>/french|français/i.test(v.name));
-if(french)u.voice=french;
-u.onerror=function(){const el=document.getElementById('hm-speech-status');if(el)el.textContent='تعذّر تشغيل الصوت. تأكد من تفعيل صوت اللغة الفرنسية في الجهاز.'};
-u.onstart=function(){const el=document.getElementById('hm-speech-status');if(el)el.textContent='🔊 جاري النطق بالفرنسية…'};
-u.onend=function(){const el=document.getElementById('hm-speech-status');if(el)el.textContent=''};
-synth.speak(u);
-return true;
-}catch(e){const el=document.getElementById('hm-speech-status');if(el)el.textContent='تعذّر تشغيل النطق. جرّب تحديث الصفحة أو استخدام Chrome.';return false}
+function qs(){let q=new URLSearchParams(location.search);return[q.get('id')||'grade7-u1-l1',q.get('section')||'intro']};function save(id,s){let k='hm-g7-progress-'+id,st=JSON.parse(localStorage.getItem(k)||'{}');st[s]=true;localStorage.setItem(k,JSON.stringify(st))};function prog(id){let st=JSON.parse(localStorage.getItem('hm-g7-progress-'+id)||'{}');return ST.filter(x=>st[x[0]]).length};let hmSpeechPending=null;
+function speak(t){
+  const status=document.getElementById('hm-speech-status');
+  const sayStatus=m=>{if(status)status.textContent=m};
+  try{
+    const synth=window.speechSynthesis;
+    if(!synth || !('SpeechSynthesisUtterance' in window)){
+      sayStatus('هذا المتصفح لا يدعم النطق الصوتي. جرّب Google Chrome على الهاتف.');
+      return false;
+    }
+    const phrase=String(t||'').trim();
+    if(!phrase)return false;
+    if(hmSpeechPending){clearTimeout(hmSpeechPending);hmSpeechPending=null;}
+    synth.cancel();
+    try{synth.resume()}catch(e){}
+    sayStatus('⏳ جارٍ تجهيز النطق الفرنسي…');
+    const speakNow=()=>{
+      try{
+        const utterance=new SpeechSynthesisUtterance(phrase);
+        utterance.lang='fr-FR';
+        utterance.rate=0.82;
+        utterance.pitch=1;
+        utterance.volume=1;
+        const voices=synth.getVoices?synth.getVoices():[];
+        const frenchVoice=voices.find(v=>/^fr[-_]/i.test(v.lang)) || voices.find(v=>/french|français/i.test(v.name));
+        if(frenchVoice)utterance.voice=frenchVoice;
+        utterance.onstart=()=>sayStatus('🔊 استمع إلى النطق الفرنسي');
+        utterance.onend=()=>sayStatus('');
+        utterance.onerror=(event)=>{
+          sayStatus('لم يعمل الصوت على هذا الجهاز. تأكد من تثبيت وتفعيل خدمة تحويل النص إلى كلام (TTS) وصوت فرنسي.');
+        };
+        synth.speak(utterance);
+        // Chrome on Android may leave speech paused after cancel; resume after enqueue.
+        setTimeout(()=>{try{if(synth.paused)synth.resume()}catch(e){}},180);
+      }catch(err){sayStatus('تعذّر تشغيل الصوت. تحقق من إعدادات النطق في الجهاز.')}
+    };
+    // Android Chrome may populate its voice list asynchronously.
+    const voices=synth.getVoices?synth.getVoices():[];
+    if(voices.length){hmSpeechPending=setTimeout(()=>{hmSpeechPending=null;speakNow()},80);}
+    else{
+      let finished=false;
+      const run=()=>{if(finished)return;finished=true;synth.removeEventListener?.('voiceschanged',run);hmSpeechPending=null;speakNow()};
+      synth.addEventListener?.('voiceschanged',run);
+      hmSpeechPending=setTimeout(run,900);
+    }
+    return true;
+  }catch(err){sayStatus('خاصية النطق غير متاحة حاليًا في المتصفح.');return false}
 }function cards(a){return '<div class="grid">'+a.map(x=>'<article class="card"><div class="fr">'+x[0]+'</div><div class="ar">'+x[1]+'</div><button class="btn" onclick="speak('+JSON.stringify(x[0])+')">🔊 استمع</button></article>').join('')+'</div>'};function quiz(a){return '<div>'+a.map(q=>'<article class="card"><b>'+q.q+'</b>'+q.o.map((o,i)=>'<button class="opt" onclick="answer(this,'+i+','+q.a+')">'+o+'</button>').join('')+'</article>').join('')+'</div>'};function answer(b,i,a){let box=b.parentNode;if(box.dataset.done)return;box.dataset.done=1;[...box.querySelectorAll('.opt')].forEach((x,n)=>{if(n===a)x.classList.add('good')});if(i!==a)b.classList.add('bad')};
 function etreGames(){return '<h2>🎮 ساحة الألعاب التفاعلية</h2><p>اللعبتان التاليتان مخصصتان لدرس فعل être والتقديم.</p><div class="grid"><article class="card"><h3>🎯 تحدي التصريف</h3><p>اختر التصريف المناسب للضمير.</p><div id="etre-match"></div></article><article class="card"><h3>🧩 ابنِ جملة</h3><p>اضغط الكلمات بالترتيب لتكوين جملة صحيحة.</p><div id="etre-builder"></div></article></div>'}
 function initEtreGames(){const forms=[['Je','suis'],['Tu','es'],['Il / Elle','est'],['Nous','sommes'],['Vous','êtes'],['Ils / Elles','sont']];let index=0,score=0;const match=document.getElementById('etre-match'),builder=document.getElementById('etre-builder');if(!match||!builder)return;function drawMatch(){if(index>=forms.length){match.innerHTML='<div class="note">🏆 انتهت الجولة! نتيجتك '+score+' من '+forms.length+'.</div><button type="button" id="etre-restart">العب مرة أخرى ↻</button>';return}const row=forms[index],opts=[row[1],...forms.filter(x=>x[1]!==row[1]).map(x=>x[1]).sort(()=>Math.random()-.5).slice(0,2)].sort(()=>Math.random()-.5);match.innerHTML='<div class="fr" style="font-size:25px;margin:12px 0">'+row[0]+' ___</div><div class="options">'+opts.map(x=>'<button type="button" data-etre-choice="'+x+'" data-etre-correct="'+row[1]+'">'+x+'</button>').join('')+'</div><p id="etre-feedback" class="feedback"></p><p class="small">السؤال '+(index+1)+' من '+forms.length+' · النقاط '+score+'</p>'}function drawBuilder(){const words=['Je','suis','élève.'].sort(()=>Math.random()-.5);builder.innerHTML='<div id="etre-built" class="fr" style="min-height:45px;font-size:22px;margin:12px 0"></div><div class="game-controls">'+words.map((w,i)=>'<button type="button" data-etre-word="'+w+'" data-word-id="'+i+'">'+w+'</button>').join('')+'</div><div class="game-controls"><button type="button" id="etre-check">تحقق</button><button type="button" id="etre-reset">إعادة</button></div><p id="etre-builder-feedback" class="feedback"></p>'}match.onclick=e=>{const b=e.target.closest('[data-etre-choice]');if(b){const group=[...match.querySelectorAll('[data-etre-choice]')];group.forEach(x=>x.disabled=true);const ok=b.dataset.etreChoice===b.dataset.etreCorrect;if(ok){b.classList.add('good');score++}else{b.classList.add('bad');const right=group.find(x=>x.dataset.etreChoice===b.dataset.etreCorrect);if(right)right.classList.add('good')}document.getElementById('etre-feedback').textContent=ok?'✅ صحيح!':'الإجابة الصحيحة: '+b.dataset.etreCorrect;match.insertAdjacentHTML('beforeend','<button type="button" id="etre-next" style="margin-top:10px">السؤال التالي ←</button>');return}if(e.target.closest('#etre-next')){index++;drawMatch();return}if(e.target.closest('#etre-restart')){index=0;score=0;drawMatch()}};builder.onclick=e=>{const b=e.target.closest('[data-etre-word]');if(b){const out=document.getElementById('etre-built');out.textContent=(out.textContent+' '+b.dataset.etreWord).trim();b.disabled=true;return}if(e.target.closest('#etre-check')){const val=document.getElementById('etre-built').textContent.trim().replace(/\\s+/g,' ');document.getElementById('etre-builder-feedback').textContent=val==='Je suis élève.'?'✅ ممتاز! الجملة صحيحة.':'جرّب الترتيب: Je suis élève.';return}if(e.target.closest('#etre-reset'))drawBuilder()};drawMatch();drawBuilder()}
