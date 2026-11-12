@@ -156,10 +156,68 @@ const tabs=[['start','🚀 البداية'],['vocab','🖼️ المفردات']
 const nav=document.getElementById('nav'),page=document.getElementById('page');
 function head(n,title,desc){return '<div class="section-head"><span class="tag">'+n+'</span><h2>'+title+'</h2><p class="muted">'+desc+'</p></div>'}
 function shuffle(a){const z=a.slice();for(let i=z.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[z[i],z[j]]=[z[j],z[i]]}return z}
+
+function partVisual(term, mode){
+ const t=String(term||'').toLowerCase();
+ const pick=(pairs)=>pairs.find(([re])=>re.test(t));
+ if(mode==='face'){
+  const hit=pick([
+   [/cheveux|hair/,['100','38','52']],[/front|forehead/,['100','78','35']],
+   [/sourcil|eyebrow/,['76','96','31']],[/cils|eyelash/,['76','119','31']],
+   [/paupi|eyelid/,['76','113','29']],[/yeux|œil|oeil|eye/,['100','116','57']],
+   [/oreille|ear/,['34','126','25']],[/nez|nose/,['100','143','27']],
+   [/bouche|mouth/,['100','169','31']],[/dent|tooth/,['100','165','24']],
+   [/menton|chin/,['100','197','31']],[/tête|head|visage|face/,['100','128','88']]
+  ]);
+  const [x,y,r]=hit?hit[1]:['100','128','88'];
+  const ears=/oreille/.test(t);
+  return '<svg viewBox="0 0 200 230" role="img" aria-label="رسم توضيحي للوجه مع تحديد '+term+'" style="width:100%;height:100%;max-height:112px">'+
+   '<ellipse cx="100" cy="124" rx="65" ry="91" fill="#f2cda8" stroke="#9b6c4b" stroke-width="2"/>'+
+   '<ellipse cx="34" cy="126" rx="12" ry="21" fill="#edc39b" stroke="#9b6c4b" stroke-width="2"/><ellipse cx="166" cy="126" rx="12" ry="21" fill="#edc39b" stroke="#9b6c4b" stroke-width="2"/>'+
+   '<path d="M37 91 Q35 27 100 25 Q165 27 163 91 Q145 67 127 64 Q99 78 72 64 Q52 68 37 91Z" fill="#49352b"/>'+
+   '<path d="M57 102 Q73 92 88 101 M112 101 Q127 92 143 102" stroke="#49352b" stroke-width="6" stroke-linecap="round" fill="none"/>'+
+   '<path d="M59 119 Q75 109 90 119 M110 119 Q125 109 141 119" stroke="#49352b" stroke-width="2" fill="none"/>'+
+   '<ellipse cx="75" cy="125" rx="10" ry="7" fill="#fff"/><ellipse cx="125" cy="125" rx="10" ry="7" fill="#fff"/><circle cx="75" cy="125" r="4" fill="#3b302c"/><circle cx="125" cy="125" r="4" fill="#3b302c"/>'+
+   '<path d="M66 113 l-5 -5 M73 111 l-2 -7 M80 111 l1 -7 M87 113 l4 -6 M114 113 l-4 -6 M121 111 l-1 -7 M128 111 l2 -7 M135 113 l5 -5" stroke="#49352b" stroke-width="2" stroke-linecap="round"/>'+
+   '<path d="M100 130 Q94 148 100 153 Q106 155 109 151" stroke="#b77b62" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+   '<path d="M78 174 Q100 189 122 174" stroke="#a94758" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M86 176 Q100 181 114 176" stroke="#fff" stroke-width="3" fill="none"/>'+
+   '<path d="M70 204 Q100 218 130 204" stroke="#d2a17e" stroke-width="2" fill="none"/>'+
+   (ears?'<circle cx="34" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/><circle cx="166" cy="126" r="20" fill="none" stroke="#e99b22" stroke-width="5"/>':'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#ffcc45" fill-opacity=".12" stroke="#e99b22" stroke-width="5"/>')+
+   '</svg>';
+ }
+ const back=/dos|back/.test(t), whole=/corps|body/.test(t);
+ let x=100,y=145,r=86;
+ if(/tête|head/.test(t)){x=100;y=29;r=25}
+ else if(/cou|neck/.test(t)){x=100;y=66;r=13}
+ else if(/poitrine|chest/.test(t)){x=100;y=111;r=27}
+ else if(/ventre|abdomen|belly/.test(t)){x=100;y=153;r=25}
+ else if(/bras|arm/.test(t)){x=44;y=125;r=22}
+ else if(/main|hand/.test(t)){x=29;y=169;r=18}
+ else if(/doigt|finger/.test(t)){x=23;y=169;r=13}
+ else if(/jambe|leg/.test(t)){x=76;y=218;r=24}
+ else if(/genou|knee/.test(t)){x=77;y=207;r=15}
+ else if(/pied|foot|feet/.test(t)){x=77;y=263;r=15}
+ else if(back){x=100;y=133;r=35}
+ else if(/épaule|shoulder/.test(t)){x=68;y=83;r=17}
+ else if(whole){x=100;y=145;r=88}
+ const body='<circle cx="100" cy="29" r="22" fill="#f1c9a2" stroke="#91694f" stroke-width="2"/>'+
+ '<path d="M78 24 Q100 1 122 24 L119 37 Q100 28 81 37Z" fill="#49352b"/>'+
+ '<rect x="91" y="50" width="18" height="24" rx="7" fill="#efc49b"/>'+
+ '<path d="M70 73 Q100 63 130 73 L137 164 Q100 178 63 164Z" fill="'+(back?'#80a4bd':'#4f83ad')+'" stroke="#345b7d" stroke-width="2"/>'+
+ '<path d="M70 76 Q53 83 44 111 L29 163 L42 169 L61 119 L78 98Z M130 76 Q147 83 156 111 L171 163 L158 169 L139 119 L122 98Z" fill="#4f83ad" stroke="#345b7d" stroke-width="2"/>'+
+ '<path d="M29 163 L22 177 L28 185 L37 180 L42 169 M171 163 L178 177 L172 185 L163 180 L158 169" fill="#efc49b" stroke="#91694f" stroke-width="2"/>'+
+ '<path d="M64 164 L59 244 L83 246 L91 173Z M136 164 L141 244 L117 246 L109 173Z" fill="#46536b" stroke="#2e3c50" stroke-width="2"/>'+
+ '<path d="M59 244 L57 262 Q71 269 91 264 L85 246 M141 244 L143 262 Q129 269 109 264 L115 246" fill="#efc49b" stroke="#91694f" stroke-width="2"/>'+
+ (back?'<path d="M100 83 L100 158 M72 102 Q100 115 128 102" stroke="#d5e2eb" stroke-width="3" fill="none"/>':'<path d="M100 80 L100 163" stroke="#d5e2eb" stroke-width="2" opacity=".6"/>')+
+ '<circle cx="22" cy="176" r="3" fill="#91694f"/><circle cx="28" cy="180" r="3" fill="#91694f"/><circle cx="34" cy="180" r="3" fill="#91694f"/><circle cx="40" cy="176" r="3" fill="#91694f"/>'+
+ '<circle cx="160" cy="176" r="3" fill="#91694f"/><circle cx="166" cy="180" r="3" fill="#91694f"/><circle cx="172" cy="180" r="3" fill="#91694f"/><circle cx="178" cy="176" r="3" fill="#91694f"/>';
+ return '<svg viewBox="0 0 200 280" role="img" aria-label="رسم توضيحي للجسم مع تحديد '+term+'" style="width:100%;height:100%;max-height:126px">'+body+'<ellipse cx="'+x+'" cy="'+y+'" rx="'+r+'" ry="'+Math.max(10,Math.round(r*.78))+'" fill="#ffcc45" fill-opacity=".18" stroke="#e99b22" stroke-width="5"/></svg>';
+}
+
 function speak(t){try{if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}catch(e){}}
 function quiz(arr){return '<div class="grid">'+arr.map((q,i)=>'<article class="card question"><div class="qnum">QUESTION '+(i+1)+'</div><h3>'+q[0]+'</h3>'+shuffle(q[1]).map(o=>'<button type="button" class="choice" data-ok="'+(o===q[2])+'">'+o+'</button>').join('')+'<p class="feedback"></p></article>').join('')+'</div>'}
-function vocab(){return '<div class="vocab-grid">'+D.vocab.map(v=>'<article class="vocab-card"><div class="visual"><div class="emoji">'+v[0]+'</div></div><div class="fr">'+v[1]+'</div><div class="ar">'+v[2]+'</div><span class="article-chip">'+v[3]+'</span><p class="hint">'+v[4]+'</p><button type="button" class="btn light" data-say="'+v[1]+'">🔊 استمع</button></article>').join('')+'</div>'}
-function understand(){return '<div class="grid">'+D.understand.map(x=>'<article class="card"><div class="visual"><div class="emoji">'+x[2]+'</div></div><div class="fr">'+x[0]+'</div><p>'+x[1]+'</p><button class="btn light" data-say="'+x[0]+'">🔊 استمع إلى الجملة</button></article>').join('')+'</div>'}
+function vocab(){const mode=(id==='g4-l04'||id==='g4-l05')?'face':'body';return '<div class="vocab-grid">'+D.vocab.map(v=>'<article class="vocab-card"><div class="visual">'+partVisual(v[1],mode)+'</div><div class="fr">'+v[1]+'</div><div class="ar">'+v[2]+'</div><span class="article-chip">'+v[3]+'</span><p class="hint">'+v[4]+'</p><button type="button" class="btn light" data-say="'+v[1]+'">🔊 استمع</button></article>').join('')+'</div>'}
+function understand(){const mode=(id==='g4-l04'||id==='g4-l05')?'face':'body';return '<div class="grid">'+D.understand.map(x=>'<article class="card"><div class="visual">'+partVisual(x[0],mode)+'</div><div class="fr">'+x[0]+'</div><p>'+x[1]+'</p><button class="btn light" data-say="'+x[0]+'">🔊 استمع إلى الجملة</button></article>').join('')+'</div>'}
 function render(s){
  nav.querySelectorAll('.step').forEach(b=>b.classList.toggle('active',b.dataset.s===s));
  let h='';
