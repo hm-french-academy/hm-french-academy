@@ -18,7 +18,7 @@ button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:13px;backg
 button:disabled{opacity:.65;cursor:wait}
 .status{min-height:28px;margin-top:15px;font-size:14px;color:#b42318}
 .status.ok{color:#087443}.hidden{display:none}
-.lessons{display:grid;gap:12px;margin-top:18px;text-align:right}.lesson{width:100%;padding:15px 16px;border:1px solid #cfd9e6;border-radius:15px;background:#fff!important;color:#1f5d9b!important;cursor:pointer;font-size:17px;font-weight:800;line-height:1.45;text-align:right;box-shadow:0 2px 7px rgba(23,43,77,.04);transition:.15s ease}.lesson:hover{border-color:#1f5d9b;box-shadow:0 5px 14px rgba(31,93,155,.10);transform:translateY(-1px)}.lesson .lesson-main{display:block}.lesson .lesson-meta{display:block;margin-top:4px;color:#667085;font-size:12px;font-weight:600;direction:ltr;text-align:right}
+.lessons{display:grid;gap:15px;margin-top:18px;text-align:right}.student-unit{border:1px solid #dfe7f2;border-radius:17px;padding:10px;background:#f8faff}.student-unit-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 5px 10px;color:#173a75}.student-unit-head strong{font-size:14px}.student-unit-head span{font-size:11px;color:#667085;background:#eaf0fa;padding:5px 8px;border-radius:999px}.student-unit .lesson{margin-top:8px}.lesson{width:100%;padding:15px 16px;border:1px solid #cfd9e6;border-radius:15px;background:#fff!important;color:#1f5d9b!important;cursor:pointer;font-size:17px;font-weight:800;line-height:1.45;text-align:right;box-shadow:0 2px 7px rgba(23,43,77,.04);transition:.15s ease}.lesson:hover{border-color:#1f5d9b;box-shadow:0 5px 14px rgba(31,93,155,.10);transform:translateY(-1px)}.lesson .lesson-main{display:block}.lesson .lesson-meta{display:block;margin-top:4px;color:#667085;font-size:12px;font-weight:600;direction:ltr;text-align:right}
 .small{font-size:13px;color:#98a2b3;margin-top:18px}.actions{display:grid;gap:9px;margin-top:14px}.secondary{background:#fff!important;color:#1f5d9b!important;border:1px solid #ccd9e8!important}
 </style>
 </head>
@@ -208,18 +208,41 @@ function bindStudentActions(){
 async function showLessons(name,list){
   form.classList.add('hidden');
   $('title').textContent='مرحبًا بك، '+name+' 👋';
-  $('hint').textContent='اختر المراجعة أو الدرس الذي تريد دراسته.';
-  lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل أسماء الدروس…</div>';
+  $('hint').textContent='هذه الدروس والوحدات المصرّح بها لك. اختر الدرس الذي تريد دراسته.';
+  lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل الوحدات والدروس…</div>';
   lessonsBox.classList.remove('hidden');
   const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
+  const grouped=new Map();
+  labels.forEach(item=>{
+    const m=String(item.id).match(/^(grade\\d+|g\\d+)-u(\\d+)-l\\d+$/i);
+    const key=m?(m[1].toLowerCase()+'-u'+m[2]):'other';
+    if(!grouped.has(key))grouped.set(key,[]);
+    grouped.get(key).push(item);
+  });
   lessonsBox.innerHTML='';
-  labels.forEach(({id,label})=>{
-    const b=document.createElement('button');
-    b.type='button'; b.className='lesson';
-    b.innerHTML='<span class="lesson-main">📘 '+label.title+'</span><span class="lesson-meta">'+label.meta+'</span>';
-    b.setAttribute('aria-label','فتح '+label.title+' '+label.meta);
-    b.onclick=()=>location.replace(lessonUrl(id));
-    lessonsBox.appendChild(b);
+  const ordered=[...grouped.entries()].sort((a,b)=>{
+    if(a[0]==='other')return 1;if(b[0]==='other')return -1;
+    const ga=Number((a[0].match(/\\d+/)||[])[0]),gb=Number((b[0].match(/\\d+/)||[])[0]);
+    if(ga!==gb)return ga-gb;
+    return Number((a[0].match(/-u(\\d+)/)||[])[1])-Number((b[0].match(/-u(\\d+)/)||[])[1]);
+  });
+  ordered.forEach(([key,items])=>{
+    const section=document.createElement('section');
+    section.className='student-unit';
+    const match=key.match(/-u(\\d+)$/);
+    const heading=match?'الوحدة '+Number(match[1]):'دروس ومراجعات أخرى';
+    const head=document.createElement('div');head.className='student-unit-head';
+    head.innerHTML='<strong>📚 '+heading+'</strong><span>'+items.length+' '+(items.length===1?'درس':'دروس')+'</span>';
+    section.appendChild(head);
+    items.forEach(({id,label})=>{
+      const b=document.createElement('button');
+      b.type='button'; b.className='lesson';
+      b.innerHTML='<span class="lesson-main">📘 '+label.title+'</span><span class="lesson-meta">'+label.meta+'</span>';
+      b.setAttribute('aria-label','فتح '+label.title+' '+label.meta);
+      b.onclick=()=>location.replace(lessonUrl(id));
+      section.appendChild(b);
+    });
+    lessonsBox.appendChild(section);
   });
   document.getElementById('actions').classList.remove('hidden');
   bindStudentActions();
@@ -264,26 +287,9 @@ async function validate(code,silent=false,requestedLesson=''){
       enter.disabled=false;
       return;
     }
-    const current=localStorage.getItem('hm_student_current_lesson');
-    if(!switchMode&&current&&Array.isArray(data.allowed_lessons)&&data.allowed_lessons.includes(current)){
-      // لا تنتقل تلقائيًا: أعطِ الطالب فرصة للاختيار.
-      form.classList.add('hidden');
-      $('title').textContent='جلسة الطالب';
-      $('hint').textContent='تم التحقق من الكود. اختر ما تريد فعله:';
-      showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
-      msg('تم التحقق من الكود بنجاح.',true);
-      enter.disabled=false;
-      return;
-    }
-    if(Array.isArray(data.allowed_lessons)&&data.allowed_lessons.length===1){
-      localStorage.setItem('hm_student_current_lesson',data.allowed_lessons[0]);
-      form.classList.add('hidden');
-      showResume(data.student_name||localStorage.getItem('hm_student_name')||'');
-      msg('مرحبًا بك! تم التحقق من الكود بنجاح.',true);
-      enter.disabled=false;
-      return;
-    }
     if(!Array.isArray(data.allowed_lessons)){ msg('تم التحقق من الكود، لكن لم تصل قائمة الدروس من الخادم.'); enter.disabled=false; return; }
+    // Always display the full authorized lesson list, even when only one lesson
+    // is currently assigned or a previous lesson was opened on this device.
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
     enter.disabled=false;
   }catch(e){
