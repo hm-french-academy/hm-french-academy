@@ -21,6 +21,81 @@
 </main>
 <script>
 (function(){
+const requestedBody = new URLSearchParams(location.search).get('id');
+if(requestedBody === 'g4-l06'){
+  const nav=document.getElementById('nav'), page=document.getElementById('page');
+  document.title='HM Academy · الصف الرابع · الجسم — Le corps';
+  document.querySelector('.hero .tag').textContent='Le français · 4e année · Unité 2';
+  document.querySelector('.hero h1').textContent='💪 Le corps · الجسم';
+  document.querySelector('.hero p').innerHTML='تعرّف على أجزاء الجسم بالفرنسية، وتعلّم أدوات التعريف <b>le / la / les</b>، ثم استخدم الكلمات في جمل صحيحة.';
+  const tabs=[['start','🚀 البداية'],['vocab','🖼️ المفردات'],['understand','🧠 افهم'],['rules','📘 القاعدة'],['interact','🤝 تفاعل'],['listen','🎧 اسمع وانطق'],['practice','✍️ التدريب'],['media','🎬 شرح بصري'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['review','🧠 المراجعة الذكية'],['after','📚 بعد الرحلة']];
+  const vocab=[
+    ['🙂','la tête','الرأس','la'],['🧣','le cou','الرقبة','le'],['💪','le bras','الذراع','le'],['🫁','la poitrine','الصدر','la'],['🟠','le ventre','البطن','le'],['✋','la main','اليد','la'],['☝️','le doigt','الإصبع','le'],['🦵','la jambe','الساق','la'],['🦿','le genou','الركبة','le'],['🦶','le pied','القدم','le'],['🔙','le dos','الظهر','le'],['🧍','le corps','الجسم','le']
+  ];
+  const banks={
+    interact:[
+      ['اختر الكلمة التي تعني «الرقبة»',['le cou','la main','le dos'],'le cou'],
+      ['أي كلمة تعني «الصدر»؟',['la poitrine','le ventre','la jambe'],'la poitrine'],
+      ['أكمل: Il a deux …',['bras','tête','ventre'],'bras'],
+      ['ما معنى le doigt؟',['الإصبع','الركبة','الظهر'],'الإصبع'],
+      ['اختر الجمع الصحيح لكلمة la main',['les mains','les main','la mains'],'les mains']
+    ],
+    practice:[
+      ['اختر الأداة الصحيحة: ___ genou',['le','la','les'],'le'],
+      ['اختر الأداة الصحيحة: ___ poitrine',['le','la','les'],'la'],
+      ['حوّل le pied إلى الجمع',['les pieds','les pied','le pieds'],'les pieds'],
+      ['أي جملة صحيحة؟',['La tête est ronde.','Le tête est ronde.','Les tête est ronde.'],'La tête est ronde.'],
+      ['أكمل: Il a deux …',['pieds','pied','le pied'],'pieds']
+    ],
+    assessment:[
+      ['اختر الأداة المناسبة: ___ ventre',['le','la','les'],'le'],
+      ['ما المقابل الفرنسي لكلمة «اليد»؟',['la main','le bras','le doigt'],'la main'],
+      ['اختر الجمع الصحيح: le bras',['les bras','les brasS','la bras'],'les bras'],
+      ['أي جملة تصف سامي بصورة صحيحة؟',['Ses bras sont solides.','Sa bras est solide.','Ses bras est solide.'],'Ses bras sont solides.'],
+      ['ما معنى «Il s’appelle Samy»؟',['اسمه سامي','عمره سامي','يسكن سامي'],'اسمه سامي']
+    ],
+    review:[
+      ['ما الأداة التي نستخدمها مع poitrine؟',['la','le','les'],'la'],
+      ['اختر معنى «le ventre»',['البطن','الظهر','القدم'],'البطن'],
+      ['أي كلمة جمع؟',['les doigts','le doigt','la main'],'les doigts'],
+      ['أكمل: C’est ___ tête.',['la','le','les'],'la'],
+      ['اختر العبارة الصحيحة عن القدمين',['les deux pieds','les deux pied','la deux pieds'],'les deux pieds']
+    ]
+  };
+  const grammar=[
+    ['le','اسم مفرد مذكر','le bras · le cou · le ventre · le dos'],
+    ['la','اسم مفرد مؤنث','la tête · la main · la jambe · la poitrine'],
+    ['les','اسم جمع للمذكر والمؤنث','les bras · les mains · les jambes']
+  ];
+  function shuffle(a){return a.slice().sort(()=>Math.random()-.5)}
+  function head(n,t,d){return '<div class="section-head"><span class="tag">'+n+'</span><h2>'+t+'</h2><p class="muted">'+d+'</p></div>'}
+  function quiz(arr){return '<div class="grid">'+arr.map((q,i)=>{const opts=shuffle(q[1]);return '<article class="card question"><div class="qnum">QUESTION '+(i+1)+'</div><h3>'+q[0]+'</h3>'+opts.map(o=>'<button type="button" class="choice" data-ok="'+(o===q[2])+'">'+o+'</button>').join('')+'<p class="feedback"></p></article>'}).join('')+'</div>'}
+  function render(s){
+    nav.querySelectorAll('[data-s]').forEach(b=>b.classList.toggle('active',b.dataset.s===s));
+    let h='';
+    if(s==='start')h=head('01','مرحبًا في درس الجسم','في نهاية الرحلة ستكون قادرًا على تسمية أجزاء الجسم، واختيار أداة التعريف المناسبة، ووصف شخص بجمل قصيرة.')+'<div class="body-hero"><div class="body-figure" aria-hidden="true">🧍</div><div><h3>🎯 أهداف التعلم</h3><ul><li>التعرف على 12 كلمة أساسية من أجزاء الجسم.</li><li>التمييز بين le وla وles.</li><li>قراءة جمل قصيرة وفهمها.</li><li>استخدام المفردات في وصف بسيط.</li></ul><button class="btn" data-go="vocab">ابدأ بالمفردات ←</button></div></div>';
+    if(s==='vocab')h=head('02','مفردات أجزاء الجسم','كل بطاقة تعرض صورة توضيحية، والكلمة الفرنسية، والمعنى العربي، وزرًا مستقلًا للاستماع إلى النطق.')+'<div class="vocab-grid">'+vocab.map((v,i)=>'<article class="vocab-card"><div class="vocab-icon">'+v[0]+'</div><div class="vocab-meta">MOT '+String(i+1).padStart(2,'0')+'</div><div class="fr">'+v[1]+'</div><div class="ar">'+v[2]+'</div><span class="article-chip '+v[3]+'">'+v[3]+'</span><button class="btn sound" data-say="'+v[1]+'">🔊 استمع للنطق</button></article>').join('')+'</div>';
+    if(s==='understand')h=head('03','افهم الكلمات داخل السياق','اقرأ وصف سامي. لاحظ أن أداة التعريف جزء من الكلمة، وأن الصفة تتوافق مع الاسم في الجملة.')+'<article class="reading-card"><div class="reading-title">📖 Le corps de Samy</div><p class="fr">C’est un garçon. Il s’appelle Samy.</p><p class="fr">Sa tête est ronde. Son cou est court.</p><p class="fr">Ses bras sont solides. Il a deux pieds, un dos droit et une poitrine.</p><div class="ar">هذا ولد اسمه سامي. رأسه مستدير، ورقبته قصيرة. ذراعاه قويتان، وله قدمان وظهر مستقيم وصدر.</div><button class="btn sound" data-say="C’est un garçon. Il s’appelle Samy. Sa tête est ronde. Son cou est court. Ses bras sont solides. Il a deux pieds, un dos droit et une poitrine.">🔊 استمع إلى النص</button></article><div class="grid"><article class="card"><h3>مفرد</h3><p class="fr">la tête · le cou · le dos</p><p>نتحدث عن جزء واحد.</p></article><article class="card"><h3>جمع</h3><p class="fr">les bras · les pieds</p><p>نتحدث عن أكثر من جزء.</p></article></div>';
+    if(s==='rules')h=head('04','القاعدة: أدوات التعريف','نختار أداة التعريف حسب جنس الاسم وعدده، وليس حسب الشخص الذي نملكه أو نصفه.')+'<div class="grammar-grid">'+grammar.map(g=>'<article class="grammar-card"><div class="grammar-word">'+g[0]+'</div><h3>'+g[1]+'</h3><p class="fr">'+g[2]+'</p></article>').join('')+'</div><div class="rule-note"><b>تذكّر:</b> لا توجد قاعدة سهلة لمعرفة جنس كل اسم من شكله؛ احفظ الاسم مع أداته: <span class="fr">la main</span> وليس <span class="fr">le main</span>.</div><div class="example-row"><div><span class="fr">C’est la tête.</span><p>هذا هو الرأس.</p></div><div><span class="fr">Ce sont les bras.</span><p>هذان/هذه الذراعان.</p></div></div>';
+    if(s==='interact')h=head('05','تفاعل وتحقق من الفهم','اختر الإجابة المناسبة. ستظهر لك نتيجة فورية بعد كل اختيار.')+quiz(banks.interact);
+    if(s==='listen')h=head('06','اسمع وانطق','استمع إلى كل كلمة ثم كررها بصوت واضح. استخدم زر الاستماع لكل عبارة على حدة.')+'<div class="listen-list">'+vocab.map(v=>'<div class="listen-row"><span class="fr">'+v[1]+'</span><span>'+v[2]+'</span><button class="btn sound" data-say="'+v[1]+'">🔊</button></div>').join('')+'</div>';
+    if(s==='practice')h=head('07','التدريب','تدريب جديد يركز على الأدوات والجمع وبناء الجملة. الأسئلة هنا مختلفة عن قسم التفاعل والمراجعة.')+quiz(banks.practice);
+    if(s==='media')h=head('08','شرح بصري: le أم la أم les؟','لاحظ الفرق بين الاسم المفرد والجمع، ثم انطق الأمثلة.')+'<div class="visual-board"><div class="visual-column"><span class="article-chip le">LE</span><div class="fr">le bras</div><div class="fr">le genou</div><div class="fr">le pied</div><small>مفرد مذكر</small></div><div class="visual-column"><span class="article-chip la">LA</span><div class="fr">la tête</div><div class="fr">la main</div><div class="fr">la jambe</div><small>مفرد مؤنث</small></div><div class="visual-column"><span class="article-chip les">LES</span><div class="fr">les bras</div><div class="fr">les mains</div><div class="fr">les pieds</div><small>جمع</small></div></div>';
+    if(s==='games')h=head('09','مركز الألعاب','اختر لعبة قصيرة لتثبيت المفردات والأدوات. تتغير أماكن الإجابات في كل محاولة.')+'<div class="game-menu"><button class="btn" data-go="interact">🎯 تحدي المفردات</button><button class="btn" data-go="practice">🧩 تحدي الأدوات والجمع</button><button class="btn" data-go="review">🧠 تحدي الذاكرة</button></div>';
+    if(s==='assessment')h=head('10','التقييم النهائي','هذا تقييم مستقل بأسئلة جديدة لقياس فهمك للدرس.')+quiz(banks.assessment);
+    if(s==='review')h=head('11','المراجعة الذكية','مراجعة تشخيصية قصيرة بأسئلة مختلفة عن التفاعل والتدريب والتقييم.')+quiz(banks.review);
+    if(s==='after')h=head('12','بعد الرحلة','أصبحت جاهزًا لاستخدام مفردات الجسم في وصف بسيط.')+'<div class="grid"><article class="card"><h3>🧠 استرجع دون مساعدة</h3><p>اذكر خمس كلمات من أجزاء الجسم بالفرنسية مع أداتها.</p></article><article class="card"><h3>✍️ كوّن جملة</h3><p class="fr">La tête est ronde.</p><p>اكتب جملة مشابهة باستخدام كلمة أخرى.</p></article><article class="card"><h3>✅ تحقق من إتقانك</h3><p>هل تستطيع التمييز بين le وla وles؟ وهل تستطيع نطق الكلمات؟</p><button class="btn" data-go="assessment">أعد التقييم ←</button></article></div>';
+    page.innerHTML=h;
+    page.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>render(b.dataset.go)));
+    page.querySelectorAll('[data-say]').forEach(b=>b.addEventListener('click',()=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(b.dataset.say);u.lang='fr-FR';u.rate=.82;speechSynthesis.speak(u)}catch(e){}}));
+    page.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{const card=b.closest('.question');if(card.dataset.done)return;card.dataset.done='1';const ok=b.dataset.ok==='true';card.querySelectorAll('.choice').forEach(x=>{x.disabled=true;if(x.dataset.ok==='true')x.classList.add('correct')});if(!ok)b.classList.add('wrong');card.querySelector('.feedback').textContent=ok?'✅ إجابة صحيحة!':'❌ حاول مرة أخرى. راجع الدرس ثم أعد المحاولة.'}));
+  }
+  nav.innerHTML=tabs.map((t,i)=>'<button type="button" class="step" data-s="'+t[0]+'">'+(i+1)+'. '+t[1]+'</button>').join('');
+  nav.addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(b)render(b.dataset.s)});
+  render(new URLSearchParams(location.search).get('section')||'start');
+  return;
+}
+
 const steps=[['start','🚀 البداية'],['vocab','🖼️ المفردات'],['understand','🧠 افهم'],['rules','📘 القاعدة'],['interact','🤝 تفاعل'],['listen','🎧 اسمع وانطق'],['practice','✍️ التدريب'],['media','🎬 شرح بصري'],['games','🎮 الألعاب'],['assessment','🏆 التقييم'],['review','🧠 المراجعة'],['after','📚 بعد الرحلة']];
 const nav=document.getElementById('nav'),page=document.getElementById('page');
 nav.innerHTML=steps.map((s,i)=>'<button class="step" data-s="'+s[0]+'">'+(i+1)+'. '+s[1]+'</button>').join('');
