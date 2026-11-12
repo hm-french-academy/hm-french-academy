@@ -1,1 +1,347 @@
-{"id":"grade8-u2-l1","title":"Les pièces de la maison et la chambre","unit":"La maison","language":"fr","contentSource":"curriculum-aligned lesson framework + verified source vocabulary shown in the original lesson material","vocabulary":[{"word":"la maison","translation":"المنزل","image":"🏠","example":"Ma maison est grande.","category":"home-parts"},{"word":"la chambre","translation":"غرفة النوم","image":"🛏️","example":"Ma chambre est petite.","category":"rooms"},{"word":"la porte","translation":"الباب","image":"🚪","example":"La porte est fermée.","category":"home-parts"},{"word":"la fenêtre","translation":"النافذة","image":"🪟","example":"La fenêtre est ouverte.","category":"home-parts"},{"word":"le lit","translation":"السرير","image":"🛏️","example":"Le lit est dans la chambre.","category":"bedroom"},{"word":"l'armoire","translation":"خزانة الملابس","image":"🗄️","example":"L'armoire est dans la chambre.","category":"bedroom"},{"word":"un oreiller","translation":"وسادة","image":"🛌","example":"L'oreiller est sur le lit.","category":"bedroom"},{"word":"un bureau","translation":"مكتب","image":"🖥️","example":"Le bureau est dans la chambre.","category":"bedroom"},{"word":"une chaise","translation":"كرسي","image":"🪑","example":"La chaise est dans la chambre.","category":"bedroom"},{"word":"une table de chevet","translation":"منضدة بجوار السرير","image":"🛏️","example":"La table de chevet est près du lit.","category":"bedroom"},{"word":"un abat-jour","translation":"غطاء المصباح","image":"💡","example":"L'abat-jour est sur la table de chevet.","category":"bedroom"},{"word":"un tapis","translation":"سجادة","image":"🧶","example":"Le tapis est sur le sol.","category":"bedroom"},{"word":"un matelas","translation":"مرتبة","image":"🛏️","example":"Le matelas est sur le lit.","category":"bedroom"},{"word":"un réveil","translation":"منبه","image":"⏰","example":"Le réveil est sur la table de chevet.","category":"bedroom"},{"word":"un tableau","translation":"لوحة","image":"🖼️","example":"Le tableau est sur le mur.","category":"bedroom"},{"word":"un miroir","translation":"مرآة","image":"🪞","example":"Le miroir est dans la chambre.","category":"bedroom"},{"word":"un lustre","translation":"نجفة","image":"💡","example":"Le lustre est au plafond.","category":"bedroom"},{"word":"un rideau","translation":"ستارة","image":"🪟","example":"Le rideau est devant la fenêtre.","category":"bedroom"},{"word":"le salon","translation":"غرفة المعيشة","image":"🛋️","example":"Dans le salon, il y a un canapé.","category":"rooms"},{"word":"la cuisine","translation":"المطبخ","image":"🍳","example":"Dans la cuisine, il y a un repas.","category":"rooms"},{"word":"la salle de bains","translation":"الحمام","image":"🛁","example":"La salle de bains est petite.","category":"rooms"},{"word":"la salle à manger","translation":"غرفة الطعام","image":"🍽️","example":"Nous mangeons dans la salle à manger.","category":"rooms"},{"word":"l'entrée","translation":"المدخل","image":"🚪","example":"L'entrée est près du salon.","category":"rooms"},{"word":"le couloir","translation":"الممر","image":"🚶","example":"Le couloir est long.","category":"rooms"},{"word":"le jardin","translation":"الحديقة","image":"🌳","example":"Le jardin est derrière la maison.","category":"rooms"},{"word":"le garage","translation":"الجراج","image":"🚗","example":"La voiture est dans le garage.","category":"rooms"},{"word":"les toilettes","translation":"دورة المياه","image":"🚻","example":"Les toilettes sont près de la salle de bains.","category":"rooms"},{"word":"le balcon","translation":"الشرفة","image":"🏡","example":"Le balcon est devant la chambre.","category":"rooms"}],"grammar":{"explanation":"Décrire une pièce et dire ce qu'il y a dedans.","examples":[{"fr":"Il y a un lit dans la chambre.","ar":"يوجد سرير في غرفة النوم."},{"fr":"La fenêtre est ouverte.","ar":"النافذة مفتوحة."}]},"conversation":{"lines":[{"speaker":"Sara","fr":"Tu aimes ta chambre ?","ar":"هل تحبين غرفتك؟"},{"speaker":"Adam","fr":"Oui, ma chambre est jolie.","ar":"نعم، غرفتي جميلة."},{"speaker":"Sara","fr":"Il y a un lit ?","ar":"هل يوجد سرير؟"},{"speaker":"Adam","fr":"Oui, il y a un lit.","ar":"نعم، يوجد سرير."}]},"practice":[{"question":"ما معنى la chambre؟","options":["غرفة النوم","المطبخ","الحمام"],"answer":0},{"question":"اختر ما يوجد في غرفة النوم.","options":["un lit","une voiture","un bus"],"answer":0},{"question":"أكمل: Il y a ... dans la chambre.","options":["un lit","une rue","un train"],"answer":0},{"question":"ما معنى un réveil؟","options":["منبه","مرآة","ستارة"],"answer":0},{"question":"ما معنى un rideau؟","options":["ستارة","مرتبة","كرسي"],"answer":0},{"question":"اختر الجملة الصحيحة.","options":["La fenêtre est ouverte.","La fenêtre ouverte est.","Est fenêtre la ouverte."],"answer":0}],"assessment":{"questions":[{"question":"أين يوجد السرير؟","options":["dans la chambre","dans la rue","dans la cuisine"],"answer":0},{"question":"ما معنى la porte؟","options":["الباب","النافذة","الخزانة"],"answer":0},{"question":"أين يوجد le réveil؟","options":["sur la table de chevet","dans la cuisine","dans le salon"],"answer":0}],"status":"standardized"},"vocabularyGroups":[{"id":"home-parts","title":"🏠 أجزاء المنزل","description":"الكلمات الأساسية التي تصف المنزل وأجزاءه."},{"id":"rooms","title":"🚪 غرف وأماكن المنزل","description":"تعرّف على الغرف والأماكن المختلفة داخل المنزل وحوله."},{"id":"bedroom","title":"🛏️ غرفة النوم وأثاثها","description":"مفردات غرفة النوم والأثاث والأشياء الموجودة فيها."}]}
+{
+  "id": "grade8-u2-l1",
+  "title": "Les pièces de la maison et la chambre",
+  "unit": "La maison",
+  "language": "fr",
+  "contentSource": "curriculum-aligned lesson framework + verified source vocabulary shown in the original lesson material",
+  "vocabulary": [
+    {
+      "word": "la maison",
+      "translation": "المنزل",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M12%2046%20L60%209%20108%2046%22%20fill%3D%22%23d97757%22%20stroke%3D%22%23854b37%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%2223%22%20y%3D%2244%22%20width%3D%2274%22%20height%3D%2247%22%20rx%3D%223%22%20fill%3D%22%23f4d9a6%22%20stroke%3D%22%239a7045%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2251%22%20y%3D%2262%22%20width%3D%2218%22%20height%3D%2229%22%20fill%3D%22%238b5a3c%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2255%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22%239bd4e8%22%20stroke%3D%22%23527f91%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%2276%22%20y%3D%2255%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22%239bd4e8%22%20stroke%3D%22%23527f91%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Ma maison est grande.",
+      "category": "home-parts"
+    },
+    {
+      "word": "la chambre",
+      "translation": "غرفة النوم",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2212%22%20y%3D%2218%22%20width%3D%2296%22%20height%3D%2270%22%20rx%3D%225%22%20fill%3D%22%23e8eef7%22%20stroke%3D%22%238798b2%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2222%22%20y%3D%2253%22%20width%3D%2276%22%20height%3D%2228%22%20rx%3D%225%22%20fill%3D%22%236687b8%22%2F%3E%3Crect%20x%3D%2227%22%20y%3D%2246%22%20width%3D%2228%22%20height%3D%2216%22%20rx%3D%225%22%20fill%3D%22%23fff%22%20stroke%3D%22%239aabc2%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M18%2053%20V88%20M102%2053%20V88%22%20stroke%3D%22%2376533e%22%20stroke-width%3D%225%22%2F%3E%3Crect%20x%3D%2278%22%20y%3D%2226%22%20width%3D%2222%22%20height%3D%2218%22%20fill%3D%22%23a9d8eb%22%20stroke%3D%22%23718ba8%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Ma chambre est petite.",
+      "category": "rooms"
+    },
+    {
+      "word": "la porte",
+      "translation": "الباب",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2228%22%20y%3D%229%22%20width%3D%2264%22%20height%3D%2284%22%20rx%3D%223%22%20fill%3D%22%23b87945%22%20stroke%3D%22%2371472f%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%2236%22%20y%3D%2217%22%20width%3D%2248%22%20height%3D%2268%22%20fill%3D%22%23dba977%22%20stroke%3D%22%23875936%22%20stroke-width%3D%222%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%2254%22%20r%3D%223.5%22%20fill%3D%22%23f5d36d%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La porte est fermée.",
+      "category": "home-parts"
+    },
+    {
+      "word": "la fenêtre",
+      "translation": "النافذة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2214%22%20width%3D%2290%22%20height%3D%2272%22%20rx%3D%223%22%20fill%3D%22%23bfe5f3%22%20stroke%3D%22%238b654b%22%20stroke-width%3D%227%22%2F%3E%3Cpath%20d%3D%22M60%2015%20V85%20M17%2050%20H103%22%20stroke%3D%22%23fff%22%20stroke-width%3D%226%22%2F%3E%3Cpath%20d%3D%22M20%2020%20L54%2045%20M100%2020%20L66%2045%22%20stroke%3D%22%23e6f7ff%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La fenêtre est ouverte.",
+      "category": "home-parts"
+    },
+    {
+      "word": "le lit",
+      "translation": "السرير",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2214%22%20y%3D%2224%22%20width%3D%2215%22%20height%3D%2267%22%20rx%3D%224%22%20fill%3D%22%238a654b%22%2F%3E%3Crect%20x%3D%2224%22%20y%3D%2249%22%20width%3D%2282%22%20height%3D%2235%22%20rx%3D%227%22%20fill%3D%22%237c9bc9%22%20stroke%3D%22%23536e99%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2239%22%20width%3D%2230%22%20height%3D%2220%22%20rx%3D%227%22%20fill%3D%22%23fff%22%20stroke%3D%22%23a9b6c8%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M28%2084%20V94%20M101%2084%20V94%22%20stroke%3D%22%2379553d%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le lit est dans la chambre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "l'armoire",
+      "translation": "خزانة الملابس",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2219%22%20y%3D%228%22%20width%3D%2282%22%20height%3D%2286%22%20rx%3D%224%22%20fill%3D%22%23b87945%22%20stroke%3D%22%2371472f%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%2226%22%20y%3D%2215%22%20width%3D%2232%22%20height%3D%2272%22%20fill%3D%22%23e7c18e%22%20stroke%3D%22%2393623b%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%2262%22%20y%3D%2215%22%20width%3D%2232%22%20height%3D%2272%22%20fill%3D%22%23e7c18e%22%20stroke%3D%22%2393623b%22%20stroke-width%3D%222%22%2F%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2251%22%20r%3D%223%22%20fill%3D%22%2362432c%22%2F%3E%3Ccircle%20cx%3D%2267%22%20cy%3D%2251%22%20r%3D%223%22%20fill%3D%22%2362432c%22%2F%3E%3C%2Fsvg%3E",
+      "example": "L'armoire est dans la chambre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un oreiller",
+      "translation": "وسادة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M22%2030%20Q60%2016%2098%2030%20L102%2073%20Q60%2088%2018%2073%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%238297b5%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M31%2035%20Q60%2025%2089%2035%20L91%2068%20Q60%2078%2029%2068%20Z%22%20fill%3D%22%23d8e8f5%22%20stroke%3D%22%23a5b7cc%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
+      "example": "L'oreiller est sur le lit.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un bureau",
+      "translation": "مكتب",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2235%22%20width%3D%2294%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23b87945%22%20stroke%3D%22%2382502d%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M24%2047%20V91%20M96%2047%20V91%22%20stroke%3D%22%2382502d%22%20stroke-width%3D%228%22%2F%3E%3Crect%20x%3D%2262%22%20y%3D%2219%22%20width%3D%2229%22%20height%3D%2215%22%20rx%3D%222%22%20fill%3D%22%23d7e5f3%22%20stroke%3D%22%236d829d%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M68%2025%20H84%22%20stroke%3D%22%236d829d%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le bureau est dans la chambre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "une chaise",
+      "translation": "كرسي",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2238%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%2242%22%20rx%3D%225%22%20fill%3D%22%239d6c45%22%20stroke%3D%22%23704a31%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%2254%22%20width%3D%2258%22%20height%3D%2211%22%20rx%3D%223%22%20fill%3D%22%23c08a5b%22%20stroke%3D%22%23704a31%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M39%2065%20L34%2092%20M81%2065%20L86%2092%22%20stroke%3D%22%23704a31%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La chaise est dans la chambre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "une table de chevet",
+      "translation": "منضدة بجوار السرير",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2224%22%20y%3D%2230%22%20width%3D%2272%22%20height%3D%2258%22%20rx%3D%224%22%20fill%3D%22%23c08a5b%22%20stroke%3D%22%23805638%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%2238%22%20width%3D%2258%22%20height%3D%2220%22%20rx%3D%223%22%20fill%3D%22%23e6c69d%22%20stroke%3D%22%2394683f%22%20stroke-width%3D%222%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2248%22%20r%3D%222.5%22%20fill%3D%22%23805638%22%2F%3E%3Cpath%20d%3D%22M30%2088%20V95%20M90%2088%20V95%22%20stroke%3D%22%23805638%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La table de chevet est près du lit.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un abat-jour",
+      "translation": "غطاء المصباح",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M33%2018%20H87%20L78%2048%20H42%20Z%22%20fill%3D%22%23e8b85f%22%20stroke%3D%22%239a7136%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M60%2048%20V75%20M46%2078%20H74%20L80%2087%20H40%20Z%22%20fill%3D%22%23b87945%22%20stroke%3D%22%2382502d%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "L'abat-jour est sur la table de chevet.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un tapis",
+      "translation": "سجادة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2212%22%20y%3D%2218%22%20width%3D%2296%22%20height%3D%2264%22%20rx%3D%228%22%20fill%3D%22%23c45d67%22%20stroke%3D%22%2387404a%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%2222%22%20y%3D%2228%22%20width%3D%2276%22%20height%3D%2244%22%20rx%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%23f1c58b%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M28%2050%20H92%20M60%2031%20V69%22%20stroke%3D%22%23f1c58b%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M12%2030%20H5%20M12%2070%20H5%20M108%2030%20H115%20M108%2070%20H115%22%20stroke%3D%22%2387404a%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le tapis est sur le sol.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un matelas",
+      "translation": "مرتبة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M13%2035%20Q18%2022%2032%2027%20H94%20Q108%2027%20108%2040%20V79%20H13%20Z%22%20fill%3D%22%23dce7f4%22%20stroke%3D%22%237b91ae%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M20%2044%20Q60%2052%20101%2044%20M20%2065%20Q60%2073%20101%2065%22%20fill%3D%22none%22%20stroke%3D%22%23a6b8ce%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le matelas est sur le lit.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un réveil",
+      "translation": "منبه",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2254%22%20r%3D%2234%22%20fill%3D%22%23fff%22%20stroke%3D%22%23536d91%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M60%2054%20V31%20M60%2054%20L78%2064%22%20stroke%3D%22%23d45d5d%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M38%2017%20L31%208%20M82%2017%20L89%208%22%20stroke%3D%22%23536d91%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2254%22%20r%3D%223%22%20fill%3D%22%23536d91%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le réveil est sur la table de chevet.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un tableau",
+      "translation": "لوحة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2217%22%20y%3D%2210%22%20width%3D%2286%22%20height%3D%2280%22%20rx%3D%223%22%20fill%3D%22%23b87945%22%20stroke%3D%22%23704a31%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%2225%22%20y%3D%2218%22%20width%3D%2270%22%20height%3D%2264%22%20fill%3D%22%23bfe3ee%22%2F%3E%3Cpath%20d%3D%22M27%2070%20L48%2043%20L63%2059%20L76%2034%20L94%2070%20Z%22%20fill%3D%22%236e9b72%22%2F%3E%3Ccircle%20cx%3D%2276%22%20cy%3D%2230%22%20r%3D%227%22%20fill%3D%22%23f4c66a%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le tableau est sur le mur.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un miroir",
+      "translation": "مرآة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2247%22%20rx%3D%2229%22%20ry%3D%2238%22%20fill%3D%22%23bfe5f3%22%20stroke%3D%22%239a7045%22%20stroke-width%3D%226%22%2F%3E%3Cpath%20d%3D%22M47%2025%20Q66%2012%2078%2034%20Q60%2045%2047%2067%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M60%2085%20V96%22%20stroke%3D%22%239a7045%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le miroir est dans la chambre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un lustre",
+      "translation": "نجفة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M60%206%20V29%20M30%2029%20H90%20M60%2029%20L28%2060%20M60%2029%20L92%2060%22%20stroke%3D%22%238b704a%22%20stroke-width%3D%224%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M19%2060%20Q28%2078%2038%2060%20M50%2060%20Q60%2078%2070%2060%20M82%2060%20Q92%2078%20101%2060%22%20fill%3D%22%23f4c45d%22%20stroke%3D%22%239b7938%22%20stroke-width%3D%223%22%2F%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%2260%22%20r%3D%226%22%20fill%3D%22%23fff2b6%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%226%22%20fill%3D%22%23fff2b6%22%2F%3E%3Ccircle%20cx%3D%2292%22%20cy%3D%2260%22%20r%3D%226%22%20fill%3D%22%23fff2b6%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le lustre est au plafond.",
+      "category": "bedroom"
+    },
+    {
+      "word": "un rideau",
+      "translation": "ستارة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M13%2013%20H107%22%20stroke%3D%22%238b654b%22%20stroke-width%3D%226%22%2F%3E%3Crect%20x%3D%2234%22%20y%3D%2221%22%20width%3D%2252%22%20height%3D%2263%22%20fill%3D%22%23bfe5f3%22%20stroke%3D%22%238babc0%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M12%2018%20Q29%2018%2039%2028%20V89%20Q22%2083%2012%2090%20Z%20M108%2018%20Q91%2018%2081%2028%20V89%20Q98%2083%20108%2090%20Z%22%20fill%3D%22%23b75b71%22%20stroke%3D%22%23873f52%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le rideau est devant la fenêtre.",
+      "category": "bedroom"
+    },
+    {
+      "word": "le salon",
+      "translation": "غرفة المعيشة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2211%22%20y%3D%2215%22%20width%3D%2298%22%20height%3D%2273%22%20rx%3D%225%22%20fill%3D%22%23e8eef7%22%20stroke%3D%22%239aaac0%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2225%22%20y%3D%2248%22%20width%3D%2270%22%20height%3D%2230%22%20rx%3D%229%22%20fill%3D%22%234f8f91%22%20stroke%3D%22%232f686c%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2242%22%20width%3D%2218%22%20height%3D%2235%22%20rx%3D%227%22%20fill%3D%22%234f8f91%22%2F%3E%3Crect%20x%3D%2282%22%20y%3D%2242%22%20width%3D%2218%22%20height%3D%2235%22%20rx%3D%227%22%20fill%3D%22%234f8f91%22%2F%3E%3Crect%20x%3D%2243%22%20y%3D%2225%22%20width%3D%2234%22%20height%3D%2214%22%20fill%3D%22%23a8d8e8%22%20stroke%3D%22%23758da8%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Dans le salon, il y a un canapé.",
+      "category": "rooms"
+    },
+    {
+      "word": "la cuisine",
+      "translation": "المطبخ",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2210%22%20y%3D%2218%22%20width%3D%22100%22%20height%3D%2270%22%20rx%3D%224%22%20fill%3D%22%23e7eee8%22%20stroke%3D%22%23899c8d%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2218%22%20y%3D%2228%22%20width%3D%2284%22%20height%3D%2225%22%20fill%3D%22%23c7d9d1%22%20stroke%3D%22%237d9588%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%2222%22%20y%3D%2261%22%20width%3D%2276%22%20height%3D%2222%22%20fill%3D%22%23fff%22%20stroke%3D%22%239aa9a0%22%20stroke-width%3D%222%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2272%22%20r%3D%225%22%20fill%3D%22%23a7bac0%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2272%22%20r%3D%225%22%20fill%3D%22%23a7bac0%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%2272%22%20r%3D%225%22%20fill%3D%22%23a7bac0%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Dans la cuisine, il y a un repas.",
+      "category": "rooms"
+    },
+    {
+      "word": "la salle de bains",
+      "translation": "الحمام",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2212%22%20y%3D%2214%22%20width%3D%2296%22%20height%3D%2276%22%20rx%3D%225%22%20fill%3D%22%23e5f3f7%22%20stroke%3D%22%238aaeba%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2222%22%20width%3D%2280%22%20height%3D%2256%22%20fill%3D%22%23d2ebf3%22%20stroke%3D%22%239bbac7%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M76%2024%20V49%20Q76%2057%2085%2057%22%20fill%3D%22none%22%20stroke%3D%22%237899a8%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M25%2065%20Q25%2052%2039%2052%20H59%20Q73%2052%2073%2065%20V75%20H25%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%239aaeb8%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La salle de bains est petite.",
+      "category": "rooms"
+    },
+    {
+      "word": "la salle à manger",
+      "translation": "غرفة الطعام",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2224%22%20y%3D%2240%22%20width%3D%2272%22%20height%3D%2212%22%20rx%3D%224%22%20fill%3D%22%23b87945%22%20stroke%3D%22%23805638%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M34%2052%20V87%20M86%2052%20V87%22%20stroke%3D%22%23805638%22%20stroke-width%3D%226%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%2224%22%20width%3D%2218%22%20height%3D%2230%22%20rx%3D%224%22%20fill%3D%22%239d6c45%22%2F%3E%3Crect%20x%3D%2293%22%20y%3D%2224%22%20width%3D%2218%22%20height%3D%2230%22%20rx%3D%224%22%20fill%3D%22%239d6c45%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Nous mangeons dans la salle à manger.",
+      "category": "rooms"
+    },
+    {
+      "word": "l'entrée",
+      "translation": "المدخل",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%228%22%20width%3D%2258%22%20height%3D%2279%22%20fill%3D%22%23b87945%22%20stroke%3D%22%23704a31%22%20stroke-width%3D%224%22%2F%3E%3Ccircle%20cx%3D%2277%22%20cy%3D%2250%22%20r%3D%223%22%20fill%3D%22%23f6d36d%22%2F%3E%3Crect%20x%3D%2218%22%20y%3D%2288%22%20width%3D%2284%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23b9a28b%22%2F%3E%3C%2Fsvg%3E",
+      "example": "L'entrée est près du salon.",
+      "category": "rooms"
+    },
+    {
+      "word": "le couloir",
+      "translation": "الممر",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M10%2090%20L36%2018%20H84%20L110%2090%20Z%22%20fill%3D%22%23e8eef7%22%20stroke%3D%22%239aaac0%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M36%2018%20V90%20M84%2018%20V90%22%20stroke%3D%22%23b4c2d3%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2248%22%20y%3D%2238%22%20width%3D%2224%22%20height%3D%2252%22%20fill%3D%22%23b87945%22%20stroke%3D%22%23805638%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le couloir est long.",
+      "category": "rooms"
+    },
+    {
+      "word": "le jardin",
+      "translation": "الحديقة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Cpath%20d%3D%22M0%2082%20Q30%2068%2060%2082%20T120%2082%20V100%20H0%20Z%22%20fill%3D%22%2384b77a%22%2F%3E%3Crect%20x%3D%2252%22%20y%3D%2246%22%20width%3D%2216%22%20height%3D%2242%22%20fill%3D%22%238a654b%22%2F%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2235%22%20r%3D%2227%22%20fill%3D%22%2362a66c%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2246%22%20r%3D%2216%22%20fill%3D%22%2379bd77%22%2F%3E%3Ccircle%20cx%3D%2282%22%20cy%3D%2246%22%20r%3D%2216%22%20fill%3D%22%2379bd77%22%2F%3E%3Cpath%20d%3D%22M24%2088%20L28%2075%20M95%2088%20L91%2074%22%20stroke%3D%22%23e3ad68%22%20stroke-width%3D%224%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le jardin est derrière la maison.",
+      "category": "rooms"
+    },
+    {
+      "word": "le garage",
+      "translation": "الجراج",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2210%22%20y%3D%2222%22%20width%3D%22100%22%20height%3D%2267%22%20rx%3D%224%22%20fill%3D%22%23d5dce5%22%20stroke%3D%22%2378879b%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M18%2036%20H102%20M18%2049%20H102%20M18%2062%20H102%20M18%2075%20H102%22%20stroke%3D%22%239ba9b9%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M37%2076%20V58%20Q60%2042%2083%2058%20V76%20Z%22%20fill%3D%22%234f8fba%22%20stroke%3D%22%23365e7c%22%20stroke-width%3D%223%22%2F%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2277%22%20r%3D%226%22%20fill%3D%22%23394c61%22%2F%3E%3Ccircle%20cx%3D%2273%22%20cy%3D%2277%22%20r%3D%226%22%20fill%3D%22%23394c61%22%2F%3E%3C%2Fsvg%3E",
+      "example": "La voiture est dans le garage.",
+      "category": "rooms"
+    },
+    {
+      "word": "les toilettes",
+      "translation": "دورة المياه",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2213%22%20width%3D%2242%22%20height%3D%2228%22%20rx%3D%224%22%20fill%3D%22%23fff%22%20stroke%3D%22%238297aa%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M29%2047%20H83%20Q83%2074%2058%2080%20Q35%2077%2029%2047%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%238297aa%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M40%2081%20H78%20V91%20H40%20Z%22%20fill%3D%22%23dbe8ef%22%20stroke%3D%22%238297aa%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Les toilettes sont près de la salle de bains.",
+      "category": "rooms"
+    },
+    {
+      "word": "le balcon",
+      "translation": "الشرفة",
+      "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f3f7fc%22%2F%3E%3Cellipse%20cx%3D%2260%22%20cy%3D%2291%22%20rx%3D%2239%22%20ry%3D%224%22%20fill%3D%22%23d7e0eb%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2215%22%20width%3D%2294%22%20height%3D%2258%22%20fill%3D%22%23c4e6f3%22%20stroke%3D%22%238199ae%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M12%2074%20H108%20M22%2055%20V92%20M44%2055%20V92%20M66%2055%20V92%20M88%2055%20V92%20M108%2055%20V92%22%20stroke%3D%22%237b91a8%22%20stroke-width%3D%224%22%2F%3E%3C%2Fsvg%3E",
+      "example": "Le balcon est devant la chambre.",
+      "category": "rooms"
+    }
+  ],
+  "grammar": {
+    "explanation": "Décrire une pièce et dire ce qu'il y a dedans.",
+    "examples": [
+      {
+        "fr": "Il y a un lit dans la chambre.",
+        "ar": "يوجد سرير في غرفة النوم."
+      },
+      {
+        "fr": "La fenêtre est ouverte.",
+        "ar": "النافذة مفتوحة."
+      }
+    ]
+  },
+  "conversation": {
+    "lines": [
+      {
+        "speaker": "Sara",
+        "fr": "Tu aimes ta chambre ?",
+        "ar": "هل تحبين غرفتك؟"
+      },
+      {
+        "speaker": "Adam",
+        "fr": "Oui, ma chambre est jolie.",
+        "ar": "نعم، غرفتي جميلة."
+      },
+      {
+        "speaker": "Sara",
+        "fr": "Il y a un lit ?",
+        "ar": "هل يوجد سرير؟"
+      },
+      {
+        "speaker": "Adam",
+        "fr": "Oui, il y a un lit.",
+        "ar": "نعم، يوجد سرير."
+      }
+    ]
+  },
+  "practice": [
+    {
+      "question": "ما معنى la chambre؟",
+      "options": [
+        "غرفة النوم",
+        "المطبخ",
+        "الحمام"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "اختر ما يوجد في غرفة النوم.",
+      "options": [
+        "un lit",
+        "une voiture",
+        "un bus"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "أكمل: Il y a ... dans la chambre.",
+      "options": [
+        "un lit",
+        "une rue",
+        "un train"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "ما معنى un réveil؟",
+      "options": [
+        "منبه",
+        "مرآة",
+        "ستارة"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "ما معنى un rideau؟",
+      "options": [
+        "ستارة",
+        "مرتبة",
+        "كرسي"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "اختر الجملة الصحيحة.",
+      "options": [
+        "La fenêtre est ouverte.",
+        "La fenêtre ouverte est.",
+        "Est fenêtre la ouverte."
+      ],
+      "answer": 0
+    }
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "question": "أين يوجد السرير؟",
+        "options": [
+          "dans la chambre",
+          "dans la rue",
+          "dans la cuisine"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "ما معنى la porte؟",
+        "options": [
+          "الباب",
+          "النافذة",
+          "الخزانة"
+        ],
+        "answer": 0
+      },
+      {
+        "question": "أين يوجد le réveil؟",
+        "options": [
+          "sur la table de chevet",
+          "dans la cuisine",
+          "dans le salon"
+        ],
+        "answer": 0
+      }
+    ],
+    "status": "standardized"
+  },
+  "vocabularyGroups": [
+    {
+      "id": "home-parts",
+      "title": "🏠 أجزاء المنزل",
+      "description": "الكلمات الأساسية التي تصف المنزل وأجزاءه."
+    },
+    {
+      "id": "rooms",
+      "title": "🚪 غرف وأماكن المنزل",
+      "description": "تعرّف على الغرف والأماكن المختلفة داخل المنزل وحوله."
+    },
+    {
+      "id": "bedroom",
+      "title": "🛏️ غرفة النوم وأثاثها",
+      "description": "مفردات غرفة النوم والأثاث والأشياء الموجودة فيها."
+    }
+  ]
+}
