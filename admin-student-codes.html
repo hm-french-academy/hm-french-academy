@@ -74,7 +74,7 @@ async function loadLessonCatalog(grade){
       if(key==='7'){
         const byUnit=new Map();
         data.lessons.forEach(l=>{
-          const m=String(l.id||'').match(/^grade7-u(\\d+)-l\\d+$/i);
+          const m=String(l.id||'').match(/^grade7-u(\d+)-l\d+$/i);
           const unit=m?Number(m[1]):0;
           const k=unit||'other';
           if(!byUnit.has(k))byUnit.set(k,[]);
