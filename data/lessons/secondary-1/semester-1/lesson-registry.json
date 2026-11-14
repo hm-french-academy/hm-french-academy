@@ -158,7 +158,15 @@
         "genre grammatical, groupes mixtes et pronom on"
       ],
       "type": "supplemental-interactive",
-      "note": "مسار تكميلي تفاعلي من ست محطات، يغطي محتوى الصفحات 1–4 من الملف المجمع، مستقل عن تقسيم دروس الكتاب المدرسي."
+      "note": "مسار تكميلي تفاعلي من ست محطات، يغطي محتوى الصفحات 1–4 من الملف المجمع، مستقل عن تقسيم دروس الكتاب المدرسي. يتضمن مرشدًا تعليميًا ونظام نقاط وشارات وتدريب نطق وتقرير أداء محليًا.",
+      "experience_features": [
+        "interactive learning companion",
+        "points and achievement badges",
+        "French speech recognition practice with self-assessment fallback",
+        "saved student progress",
+        "performance report by learning station",
+        "printable progress report"
+      ]
     }
   ]
 }
