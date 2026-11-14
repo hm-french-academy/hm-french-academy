@@ -94,4 +94,4 @@
   "speaking":{"prompt":"قدّم نفسك ثم قدّم زميلًا. استخدم 8–10 جمل.","targets":["salutation","prénom","âge","ville","caractère","présentatif","s'appeler","être"]},
   "assessment":{"questions":[{"question":"أي فعل تستخدم لتقديم اسمك؟","options":["s'appeler","être","avoir"],"answer":0},{"question":"أي مجموعة تمثل أدوات النكرة؟","options":["un, une, des","le, la, les","je, tu, il"],"answer":0},{"question":"اختر الجملة السليمة.","options":["Elle est timide.","Elle est timides.","Elle sont timide."],"answer":0},{"question":"اختر الجملة الصحيحة للتعريف بصديق.","options":["Voici mon copain.","Voici ma copain.","Voici mes copain."],"answer":0},{"question":"أكمل: Ils ___ sociables.","options":["est","sont","êtes"],"answer":1},{"question":"اختر المؤنث الصحيح لـ sportif.","options":["sportif","sportive","sportifs"],"answer":1},{"question":"اكتب 5 جمل تصف زميلًا مع استخدام voici أو c'est.","type":"open"},{"question":"قدّم نفسك شفهيًا في 30 ثانية مع الاسم والعمر والمدينة وصفتين.","type":"oral"}],
   "journey":["البداية","المفردات","النطق","القواعد","المحادثة","التدريب","الفيديو","الألعاب","المراجعة الذكية","التقييم","التقدم"]
-}
+}}
