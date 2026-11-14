@@ -142,22 +142,23 @@
   "lessons": [
     {
       "id": "s1-supp-01",
-      "title": "Saluer, communiquer et construire une phrase",
-      "titleAr": "التحية والتواصل وبناء الجملة — الحصة التفاعلية الأولى",
-      "titleFr": "Saluer, communiquer et construire une phrase",
+      "title": "Parcours interactif — Saluer, communiquer et construire une phrase",
+      "titleAr": "مسار تفاعلي شامل — التحية والتواصل وبناء الجملة",
+      "titleFr": "Parcours interactif — Saluer, communiquer et construire une phrase",
       "source_pages": "الملف المجمع المرفوع — الصفحات 1–4",
       "focus": [
-        "saluer",
+        "saluer selon le moment et l'interlocuteur",
         "demander et donner des nouvelles",
-        "prendre congé",
-        "mots de politesse",
-        "tu ou vous",
-        "la phrase",
-        "le sujet",
-        "les pronoms sujets"
+        "conjugaison du verbe aller",
+        "prendre congé et mots de politesse",
+        "tu ou vous et erreurs fréquentes",
+        "structure de la phrase",
+        "types de sujet",
+        "pronoms sujets et règles de remplacement",
+        "genre grammatical, groupes mixtes et pronom on"
       ],
       "type": "supplemental-interactive",
-      "note": "قسم تفاعلي تكميلي مستقل عن تقسيم دروس الكتاب المدرسي."
+      "note": "مسار تكميلي تفاعلي من ست محطات، يغطي محتوى الصفحات 1–4 من الملف المجمع، مستقل عن تقسيم دروس الكتاب المدرسي."
     }
   ]
 }
