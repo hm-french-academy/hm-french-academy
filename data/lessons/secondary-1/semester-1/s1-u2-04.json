@@ -2,21 +2,22 @@
   "id": "s1-u2-04",
   "title": "Le coin de la grammaire, du lexique & Magazine @dos.plus",
   "titleAr": "المراجعة الشاملة للوحدة الثانية والإثراء",
-  "source": "Club @dos Plus 1 — Unité 2, Le Club des artistes, pp. 20–35; section de grammaire, lexique et Magazine @dos.plus: pp. 33–35; Cahier p. 90. Référentiel officiel: articles définis, pluriel des adjectifs, questions, avoir, verbes en -er, négation; fournitures scolaires, mois, nombres 50–100. Les objets de chambre et loisirs ci-dessous servent de consolidation des leçons précédentes. Dialogue: création pédagogique HM Academy, non extrait du manuel.",
+  "source": "Club @dos Plus 1 — Unité 2, Le Club des artistes, pp. 20–35; cahier d’exercices pp. 83–90. Consolidation des points officiels listés dans le sommaire du manuel: articles définis, pluriel des adjectifs, questions (2), avoir, présent des verbes en -er, négation ne…pas; fournitures scolaires, mois, nombres 50–100; liaison et Magazine @dos.plus. Les contextes chambre, anniversaire et loisirs présents dans les leçons sont conservés comme supports de réemploi/enrichissement, sans les présenter comme la liste exhaustive du sommaire officiel. Dialogue HM Academy, non extrait du manuel.",
   "status": "enriched-qa",
-  "objectiveAr": "مراجعة وتطبيق الوحدة الثانية في سياقات متدرجة: الأشياء والملكية والعمر وتاريخ الميلاد والأعداد والشهور والميول والقواعد والنطق، مع قراءة ومهام إنتاجية واختبار ختامي.",
+  "objectiveAr": "مراجعة مركزة لموضوعات الوحدة الثانية وفق فهرس كتاب الوزارة: أدوات التعريف، جمع الصفات، تكوين الأسئلة، avoir، أفعال -er، النفي، الأدوات المدرسية، الشهور، الأعداد 50–100 والربط الصوتي؛ مع إعادة توظيف سياقات الغرفة وعيد الميلاد والميول كتطبيقات إثرائية.",
   "focus": [
     "fournitures scolaires",
-    "objets de la chambre",
+    "articles définis",
+    "pluriel des adjectifs qualificatifs",
+    "questions (2)",
+    "avoir",
+    "présent des verbes en -er",
+    "négation ne…pas",
     "mois de l'année",
     "nombres 50-100",
-    "avoir",
-    "verbes en -er",
-    "négation",
-    "exprimer ses goûts",
-    "articles définis",
-    "production orale",
-    "production écrite"
+    "liaison",
+    "Magazine @dos.plus",
+    "réemploi: objets de la chambre, anniversaire et goûts"
   ],
   "reviewChecklist": [
     "أستطيع تحديد ووصف الأشياء",
@@ -32,7 +33,35 @@
   ],
   "grammarReview": [
     {
-      "title": "avoir",
+      "title": "Articles définis",
+      "examples": [
+        "le stylo",
+        "la trousse",
+        "l'ordinateur",
+        "les ciseaux"
+      ],
+      "explanation": "le للمذكر، la للمؤنث، l' قبل حرف متحرك، les للجمع."
+    },
+    {
+      "title": "Pluriel des adjectifs qualificatifs",
+      "examples": [
+        "un stylo bleu → des stylos bleus",
+        "une trousse noire → des trousses noires",
+        "un cahier vert → des cahiers verts"
+      ],
+      "explanation": "غالبًا نضيف s للصفة في الجمع، مع الانتباه إلى الصيغ غير المنتظمة التي تُدرس لاحقًا."
+    },
+    {
+      "title": "Les questions (2)",
+      "examples": [
+        "Tu as un stylo ?",
+        "Est-ce que tu as une règle ?",
+        "Qu'est-ce que tu as dans ton sac ?"
+      ],
+      "explanation": "التدرب على تكوين سؤال مناسب حول الأدوات والأشياء."
+    },
+    {
+      "title": "Avoir",
       "examples": [
         "j'ai",
         "tu as",
@@ -43,16 +72,23 @@
       ]
     },
     {
-      "title": "verbes en -er",
-      "example": "aimer: j'aime, tu aimes, il aime, nous aimons, vous aimez, ils aiment"
+      "title": "Présent des verbes en -er",
+      "examples": [
+        "j'aime",
+        "tu aimes",
+        "il/elle aime",
+        "nous aimons",
+        "vous aimez",
+        "ils/elles aiment"
+      ]
     },
     {
-      "title": "négation",
-      "example": "Je n'aime pas le cinéma."
-    },
-    {
-      "title": "articles définis",
-      "example": "le livre, la trousse, l'ordinateur, les ciseaux"
+      "title": "La négation ne…pas",
+      "examples": [
+        "J'aime le français.",
+        "Je n'aime pas le football.",
+        "Nous n'aimons pas les jeux vidéo."
+      ]
     }
   ],
   "lexiqueReview": {
@@ -186,7 +222,8 @@
     "اختبار نهائي متعدد المهارات مستوحى من تنوع Merci وBravo دون نسخهما",
     "إضافة بنك مفردات ظاهر في محطة المفردات يجمع مفردات الوحدة الرسمية مع مراجعة مفردات الدروس السابقة مع تمييز مصدر كل مجموعة.",
     "إضافة تدريب على الأعداد 50–100 والربط الصوتي La liaison.",
-    "إضافة حوار مراجعة من إعداد HM Academy، موسوم بوضوح بأنه ليس مقتبسًا من الكتاب."
+    "إضافة حوار مراجعة من إعداد HM Academy، موسوم بوضوح بأنه ليس مقتبسًا من الكتاب.",
+    "توسيع المراجعة لتشمل جمع الصفات وتكوين الأسئلة وفق قائمة قواعد الوحدة الثانية في فهرس كتاب الوزارة."
   ],
   "practice": [
     {
@@ -278,6 +315,51 @@
         "Tu aimes quel âge ?"
       ],
       "answer": 0
+    },
+    {
+      "q": "اختر الجمع الصحيح: des stylos ___.",
+      "o": [
+        "bleu",
+        "bleus",
+        "bleues"
+      ],
+      "a": 1
+    },
+    {
+      "q": "اختر الجمع الصحيح: des trousses ___.",
+      "o": [
+        "noir",
+        "noirs",
+        "noires"
+      ],
+      "a": 2
+    },
+    {
+      "q": "أي سؤال صحيح للسؤال عن محتويات الحقيبة؟",
+      "o": [
+        "Qu'est-ce que tu as dans ton sac ?",
+        "Qu'est-ce que tu es dans ton sac ?",
+        "Qu'est-ce que tu a dans ton sac ?"
+      ],
+      "a": 0
+    },
+    {
+      "q": "أكمل: Vous ___ le français.",
+      "o": [
+        "aimez",
+        "aimons",
+        "aiment"
+      ],
+      "a": 0
+    },
+    {
+      "q": "اختر النفي الصحيح: Nous aimons le sport.",
+      "o": [
+        "Nous ne aimons pas le sport.",
+        "Nous n'aimons pas le sport.",
+        "Nous aimons ne pas le sport."
+      ],
+      "a": 1
     }
   ],
   "assessment": {
@@ -333,6 +415,18 @@
       {
         "question": "أجرِ مقابلة قصيرة مع زميل عن العمر وتاريخ الميلاد والميول.",
         "type": "oral"
+      },
+      {
+        "question": "حوّل إلى الجمع: un stylo bleu.",
+        "type": "open"
+      },
+      {
+        "question": "كوّن سؤالًا باستخدام Qu'est-ce que… عن محتويات الحقيبة.",
+        "type": "open"
+      },
+      {
+        "question": "اكتب جملتين: واحدة مثبتة وأخرى منفية باستخدام فعل من أفعال -er.",
+        "type": "open"
       }
     ],
     "scoring": "اختيار من متعدد + إنتاج كتابي + إنتاج شفهي"
