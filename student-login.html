@@ -64,6 +64,7 @@ function lessonUrl(id){
   if(String(id)==='s1-october-review')return 'october-exam-review-grade10.html?id='+encodeURIComponent(id)+'&student=1&v=20261016-student-review';
   if(String(id)==='grade4-seasons-review')return 'grade-4-seasons-review.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-seasons-review';
   if(String(id)==='october-review-grade6')return 'october-exam-review-grade6.html?id='+encodeURIComponent(id)+'&student=1&v=20261017-g6-october-catalog-fix';
+  if(String(id)==='s1-supp-01')return 'secondary-1-foundations-session-01.html?student=1&v=20261114-foundations';
   // First secondary lessons use the dedicated secondary lesson studio.
   if(/^s1-u\d+-\d+$/i.test(String(id)))
     return 'secondary-1-lesson-studio.html?id='+encodeURIComponent(id)+'&section=observe&student=1&v=20261006-secondary-student-route';
@@ -120,6 +121,7 @@ const LESSON_TITLES={
   'secondary-french-intro':['مقدمة اللغة الفرنسية — الصف الأول الثانوي','Introduction au français — Première secondaire'],
   's1-october-review':['مراجعة أكتوبر — الصف الأول الثانوي','Révision d’octobre — Première secondaire'],
   'bac2-u1-l1':['الوجبات اليومية','Les repas de la journée — Clé d’avenir · Unité 1'],
+  's1-supp-01':['الحصة التفاعلية الأولى — التحية والجملة','Saluer et construire une phrase'],
   's1-u1-01':['اللقاء والتعارف وتقديم النفس','Se présenter'],
   's1-u1-02':['تقديم والتعرف على الأصدقاء','Présenter et identifier ses copains'],
   's1-u1-03':['التحدث عن الصفات الشخصية','Parler du caractère'],
