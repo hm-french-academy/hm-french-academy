@@ -116,8 +116,10 @@ function initStudentSession(){
   };
 }
 function render(){
-  document.getElementById("title").textContent="Se présenter";
+  document.getElementById("title").textContent=d.title||"Leçon de français";
   document.getElementById("titleAr").textContent=d.titleAr||"";
+  const desc=document.querySelector(".hero .desc");if(desc)desc.textContent=d.objectiveAr||"اكتشف محتوى هذا الدرس وتدرّب عليه خطوة بخطوة.";
+  const chip=document.querySelector(".hero .chips .chip");if(chip)chip.textContent=d.title||"Leçon";
   document.getElementById("objective").textContent=d.objectiveAr||"";
   document.getElementById("ch-observe").innerHTML=observe();
   document.getElementById("ch-notice").innerHTML=notice();
@@ -132,6 +134,6 @@ function render(){
   show(steps.some(x=>x[0]===requested)?requested:"observe");
 }
 initStudentSession();
-fetch(file).then(r=>{if(!r.ok)throw new Error("content");return r.json()}).then(x=>{d=x;render()}).catch(()=>{document.querySelector("main").innerHTML="<section class=\"section\"><h2>تعذر تحميل محتوى الدرس</h2><p>تحقق من ملف المحتوى.</p></section>"});
+fetch(file).then(r=>{if(!r.ok)throw new Error("content");return r.json()}).then(x=>{d=(x&&typeof x.content==="string")?JSON.parse(x.content):x;render()}).catch(()=>{document.querySelector("main").innerHTML="<section class=\"section\"><h2>تعذر تحميل محتوى الدرس</h2><p>تحقق من ملف المحتوى.</p></section>"});
 </script>
 </body></html>
