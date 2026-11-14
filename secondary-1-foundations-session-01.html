@@ -182,7 +182,7 @@
 const names=["اكتشف الموقف","السؤال عن الحال","الوداع واللباقة","tu ou vous؟","الجملة والفاعل","الضمائر والتحدي"];
 const key="hm-s1-supp-01-progress-v2";let state={done:[],current:0,points:0,streak:0,bestStreak:0,answers:{},pronunciation:{},badges:[]};
 try{state={...state,...JSON.parse(localStorage.getItem(key)||"{}")}}catch(e){}
-state.done=Array.isArray(state.done)?state.done:[];state.answers=state.answers||{};state.pronunciation=state.pronunciation||{};state.badges=Array.isArray(state.badges)?state.badges:[];
+state.done=Array.isArray(state.done)?state.done:[];state.answers=state.answers||{};state.pronunciation=state.pronunciation||{};state.badges=Array.isArray(state.badges)?state.badges:[];state.points=Number.isFinite(Number(state.points))?Number(state.points):0;state.streak=Number.isFinite(Number(state.streak))?Number(state.streak):0;state.bestStreak=Number.isFinite(Number(state.bestStreak))?Number(state.bestStreak):0;
 const $=id=>document.getElementById(id),nav=$("lessonNav"),sessions=[...document.querySelectorAll(".session")];let toastTimer,selectedPhrase="Bonjour, comment allez-vous ?",recognition=null;
 const badgeDefs=[["first","بداية قوية 🌱","أكملت أول محطة"],["three","نصف الطريق 🏅","أكملت ثلاث محطات"],["all","بطل الفرنسية 🏆","أكملت المحطات الست"],["sharp","عين الصقر 🎯","أجبت عن 10 أسئلة صحيحة"],["voice","صوت فرنسي 🎙️","أنجزت أول تدريب نطق"]];
 function toast(s){const el=$("toast");el.textContent=s;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2300)}
