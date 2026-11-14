@@ -180,14 +180,22 @@
     ]
   },
   "listening": {
-    "title": "Écoute et repère",
-    "instructionAr": "استمع إلى ملف أو قراءة صوتية قصيرة ثم استخرج العمر والشهر وشيئين يملكهما الشخص وشيئًا يحبه وآخر لا يحبه.",
+    "title": "Écoute — Révision de l'unité 2",
+    "instructionAr": "استمع إلى الجمل واستخرج الأداة أو العدد أو الفعل أو الشهر أو المعلومة المطلوبة. هذه جمل مراجعة من إعداد HM Academy.",
     "targets": [
-      "âge",
+      "article défini",
+      "nombre",
       "mois",
-      "objets",
-      "goûts",
+      "verbe",
       "négation"
+    ],
+    "items": [
+      "J'ai soixante-deux stylos.",
+      "Les trousses sont rouges.",
+      "Nous aimons le français.",
+      "Je n'aime pas les jeux vidéo.",
+      "Mon anniversaire est en avril.",
+      "Vous avez des cahiers et des règles."
     ]
   },
   "speaking": {
