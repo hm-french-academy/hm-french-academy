@@ -563,15 +563,23 @@
     ]
   },
   "listening": {
-    "title": "Écoute et présente",
-    "instructionAr": "استمع إلى ملف أو قراءة صوتية قصيرة واستخرج الاسم والعمر والمدينة ثم كوّن بطاقة تعريف للشخص.",
+    "title": "Écoute — La fiche de présentation",
+    "instructionAr": "استمع إلى التعريف القصير، ثم استخرج الاسم والعمر والمدينة والتهجئة والتحية. الجمل التالية نص تدريبي يُقرأ أو يُشغّل بالنطق الآلي، وليست تسجيلًا أصليًا من الكتاب.",
     "targets": [
-      "nom",
+      "prénom",
       "âge",
       "ville",
-      "épellation",
-      "salutation"
-    ]
+      "salutation",
+      "épellation"
+    ],
+    "items": [
+      "Bonjour ! Je m'appelle Lina.",
+      "J'ai quinze ans.",
+      "J'habite à Alexandrie.",
+      "Mon amie s'appelle Nour.",
+      "N-O-U-R. Enchantée !"
+    ],
+    "followUp": "أعد الاستماع، ثم كوّن بطاقة تعريف من خمس معلومات."
   },
   "speaking": {
     "title": "Interview express",
