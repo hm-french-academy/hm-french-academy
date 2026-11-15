@@ -150,7 +150,7 @@ function vocab(){
  const vs=d.vocabulary||d.vocab||[],groups={};
  const art=[
  [/sac à dos/,"bag"],[/stylo|crayon|feutre|surligneur|correcteur|taille-crayon/,"pencil"],[/livre|cahier|dossier|bande dessinée/,"book"],[/gomme/,"eraser"],[/règle/,"ruler"],[/trousse/,"case"],[/ciseaux/,"scissors"],[/colle|tube de peinture/,"glue"],[/calculatrice/,"calc"],
- [/ordinateur/,"laptop"],[/portable/,"phone"],[/bureau/,"desk"],[/chambre/,"room"],[/raquette/,"racket"],[/maquette|puzzle/,"puzzle"],[/bracelet/,"bracelet"],[/casquette/,"cap"],[/porte-clés|clé/,"keychain"],[/chien/,"dog"],[/photo|image/,"photo"],[/lecteur mp3/,"music"],[/cd/,"cd"],[/fête/,"party"],[/école/,"school"],[/yeux/,"eyes"],[/vêtement/,"shirt"],[/dessin/,"drawing"],[/art/,"palette"],
+ [/ordinateur/,"laptop"],[/portable/,"phone"],[/bureau/,"desk"],[/chambre/,"room"],[/raquette/,"racket"],[/maquette|puzzle/,"puzzle"],[/bracelet/,"bracelet"],[/casquette/,"cap"],[/porte-clés|clé/,"keychain"],[/chien/,"dog"],[/photo|image/,"photo"],[/lecteur mp3/,"music"],[/cd/,"cd"],[/fête/,"party"],[/école/,"school"],[/yeux/,"eyes"],[/vêtement/,"shirt"],[/dessin/,"drawing"],[/artiste/,"artist"],[/art/,"palette"],
  [/objet/,"object"],[/kit/,"kit"],[/contenu/,"contents"],[/loisir/,"hobby"],[/jeu/,"game"],[/lieu/,"place"],[/ado/,"teen"],[/artiste/,"artist"]];
  const kind=w=>(art.find(a=>a[0].test(w.toLowerCase()))||[])[1]||"object";
  const svg=k=>{const common='viewBox="0 0 160 120" role="img" aria-hidden="true"';
