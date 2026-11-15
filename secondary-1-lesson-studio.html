@@ -42,6 +42,25 @@
 .dialogue:nth-child(even){background:#f8f6f0}
 @media(max-width:650px){.activity-list,.grammar-card .rule-examples{grid-template-columns:1fr}.vocab-tools{align-items:stretch}.vocab-filter{font-size:12px}.vocab-group{padding:11px}.hero h1{font-size:clamp(35px,10vw,48px)}}
 
+
+/* Interactive visual vocabulary */
+.vocab-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
+.vocab-search{flex:1;min-width:190px;border:1px solid var(--line);border-radius:15px;padding:14px;font:inherit;background:#fff}
+.vocab-filter{border:1px solid var(--line);border-radius:99px;padding:9px 13px;background:#fff;color:var(--navy);font-weight:900;cursor:pointer}
+.vocab-filter.active{background:var(--navy);color:#fff}
+.vocab-group{margin:18px 0;border:1px solid var(--line);border-radius:22px;padding:13px;background:linear-gradient(145deg,#fff,#f8f5ee)}
+.vocab-group summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-size:17px;font-weight:900;color:var(--navy);padding:8px}
+.vocab-group summary:after{content:"＋";color:var(--gold)}.vocab-group[open] summary:after{content:"−"}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;margin-top:14px}
+.visual-word{border:1px solid #e6dfd1;border-radius:19px;background:#fff;min-height:190px;padding:10px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;transition:.2s;overflow:hidden}
+.visual-word:hover{transform:translateY(-4px);box-shadow:0 12px 24px #17203318;border-color:var(--gold)}
+.visual-word .picture{width:100%;height:100px;border-radius:14px;background:radial-gradient(circle,#fff 0,#f5eddb 80%);display:grid;place-items:center;font-size:57px;margin-bottom:9px}
+.visual-word .word-fr{font-size:16px;font-weight:900;direction:ltr;color:var(--navy);line-height:1.4}
+.visual-word .word-ar{font-size:13px;color:var(--muted);margin-top:5px}
+.visual-word .reveal-hint{font-size:10px;color:#9a7b43;font-weight:900;margin-top:auto;padding-top:7px}
+.visual-word .word-tools{margin-top:7px}.visual-word .word-tools span{font-size:12px;background:var(--navy);color:white;border-radius:9px;padding:6px 10px}
+.vocab-count{font-size:12px;color:var(--muted);font-weight:800}
+@media(max-width:520px){.vocab-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.visual-word{min-height:175px;padding:8px}.visual-word .picture{height:90px;font-size:50px}.visual-word .word-fr{font-size:14px}}
 </style>
 </head>
 <body>
@@ -105,11 +124,13 @@ function observe(){const r=d.reading||{};const qs=r.questions||[];return "<secti
 function notice(){const lines=(d.conversation&&d.conversation.lines)||[];const items=(d.communication||[]);return "<section class=\"section\">"+head("02 · REMARQUER","Observer les fonctions du chapitre","استخرج الوظائف والتعبيرات من محتوى الدرس نفسه.")+"<div class=\"panel\"><h3>Communication</h3><div class=\"grid\">"+items.map(x=>"<div class=\"v\"><div class=\"fr\">"+esc(x)+"</div></div>").join("")+"</div></div><div class=\"panel\" style=\"margin-top:14px\"><h3>Extraits du dialogue</h3>"+lines.slice(0,4).map(x=>"<div class=\"dialogue\"><div class=\"speaker\">"+esc(x.speaker)+"</div><div><div class=\"fr\">"+esc(x.fr)+"</div><div class=\"ar\">"+esc(x.ar)+"</div></div>"+listen(x.fr)+"</div>").join("")+"</div>"+finish("notice","vocab")+"</section>"}
 function vocab(){
  const vs=d.vocabulary||d.vocab||[],groups={};
- vs.forEach(x=>{const item=typeof x==="string"?{word:x,translation:"",category:"Lexique"}:x;const k=item.category||"Lexique";(groups[k]||(groups[k]=[])).push(item)});
- const keys=Object.keys(groups);let html="<section class=\"section\">"+head("03 · LEXIQUE","Tout le lexique du chapitre","المفردات كاملة في مجموعات واضحة، مع البحث السريع والاستماع إلى النطق.")+
- "<div class=\"vocab-tools\"><input id=\"vocabSearch\" class=\"vocab-search\" type=\"search\" placeholder=\"ابحث عن كلمة بالفرنسية أو بالعربية…\"><span class=\"vocab-count\">"+vs.length+" مفردة وتعبيرًا</span></div><div class=\"vocab-tools\"><button class=\"vocab-filter active\" data-vfilter=\"all\">كل المجموعات</button>"+keys.map((k,i)=>"<button class=\"vocab-filter\" data-vfilter=\""+i+"\">"+esc(k)+" · "+groups[k].length+"</button>").join("")+"</div>";
- keys.forEach((g,i)=>{html+="<details class=\"vocab-group\" data-vgroup=\""+i+"\" "+(i===0?"open":"")+"><summary>"+esc(g)+" <span class=\"vocab-count\">"+groups[g].length+" كلمة</span></summary><div class=\"grid\">"+groups[g].map(x=>"<article class=\"v vocab-card\" data-vocab-item=\"1\"><div class=\"fr\">"+esc(x.word)+"</div>"+(x.translation?"<div class=\"ar\">"+esc(x.translation)+"</div>":"")+(x.example?"<div class=\"note\" style=\"margin-top:9px\">"+esc(x.example)+"</div>":"")+"<div class=\"tools\">"+listen(x.word)+"</div></article>").join("")+"</div></details>"});
- html+=finish("vocab","phonetics")+"</section>";return html
+ const icons=[[/sac à dos|sac/,"🎒"],[/stylo|crayon|feutre|surligneur/,"✏️"],[/livre|cahier|dossier/,"📚"],[/gomme/,"🧽"],[/calculatrice/,"🧮"],[/règle/,"📏"],[/trousse/,"🖊️"],[/ciseaux/,"✂️"],[/colle/,"🧴"],[/papier|feuille/,"📄"],[/taille-crayon/,"🔪"],[/peinture|dessin|art/,"🎨"],[/maquette|puzzle/,"🧩"],[/bracelet/,"📿"],[/raquette|tennis/,"🎾"],[/chambre/,"🛏️"],[/bureau/,"🪑"],[/ordinateur|portable/,"💻"],[/photo/,"🖼️"],[/chien/,"🐶"],[/jeu/,"🎲"],[/fête|anniversaire/,"🎂"],[/casquette/,"🧢"],[/clé|porte-clés/,"🔑"],[/vacances/,"🏖️"],[/école/,"🏫"],[/artiste/,"🧑‍🎨"],[/ado/,"🧑"],[/yeux/,"👀"],[/vêtement/,"👕"],[/musique|lecteur mp3|cd/,"🎧"],[/liste/,"📝"],[/activité|loisir/,"🎯"],[/lieu/,"📍"],[/objet|chose|contenu|kit/,"📦"],[/chercher/,"🔎"],[/dessiner/,"🖍️"],[/donner/,"🤲"],[/arriver|entrer/,"🚪"],[/préparer|faire/,"🛠️"],[/utiliser/,"🖐️"],[/ranger/,"🗂️"],[/comparer/,"⚖️"],[/admirer/,"😍"],[/décrire/,"💬"],[/idéal|génial|super/,"⭐"],[/coloré|bleu|orange|marron/,"🌈"],[/petit|grand|taille/,"📐"],[/rangé/,"✨"],[/manuel/,"👐"],[/nécessaire/,"✅"],[/dans|sous|sur|côté/,"🧭"],[/aussi|mais|très/,"💡"],[/il y a/,"📌"]];
+ const icon=w=>(icons.find(a=>a[0].test(w.toLowerCase()))||[])[1]||"🔎";
+ vs.forEach(x=>{const z=typeof x==="string"?{word:x,translation:"",category:"Lexique"}:x;const k=z.category||"Lexique";(groups[k]||(groups[k]=[])).push(z)});
+ const keys=Object.keys(groups);
+ let h="<section class=\"section\">"+head("03 · LEXIQUE","Explore le vocabulaire","مفردات مصوّرة وتفاعلية: اضغط على البطاقة لكشف المعنى، واستمع إلى النطق الفرنسي.")+"<div class=\"vocab-tools\"><input id=\"vocabSearch\" class=\"vocab-search\" type=\"search\" placeholder=\"ابحث بالفرنسية أو العربية…\"><span class=\"vocab-count\">"+vs.length+" مفردة وتعبيرًا</span></div><div class=\"vocab-tools\"><button class=\"vocab-filter active\" data-vfilter=\"all\">كل المجموعات</button>"+keys.map((k,i)=>"<button class=\"vocab-filter\" data-vfilter=\""+i+"\">"+esc(k)+" · "+groups[k].length+"</button>").join("")+"</div>";
+ keys.forEach((g,i)=>{h+="<details class=\"vocab-group\" data-vgroup=\""+i+"\" "+(i===0?"open":"")+"><summary>"+esc(g)+" <span class=\"vocab-count\">"+groups[g].length+" مفردة</span></summary><div class=\"vocab-grid\">"+groups[g].map(x=>"<button class=\"visual-word\" type=\"button\" data-vocab-item=\"1\" data-word=\""+esc(x.word)+"\"><span class=\"picture\">"+icon(x.word)+"</span><span class=\"word-fr\">"+esc(x.word)+"</span><span class=\"word-ar\" hidden>"+esc(x.translation||"")+"</span><span class=\"reveal-hint\">اضغط لكشف المعنى</span><span class=\"word-tools\"><span>🔊 اسمع النطق</span></span></button>").join("")+"</div></details>"});
+ h+=finish("vocab","phonetics")+"</section>";return h
 }
 function phonetics(){const p=d.phonetics||[];return "<section class=\"section\">"+head("04 · PHONÉTIQUE","Écouter · distinguer · répéter","النطق جزء أساسي من الدرس.")+"<div class=\"grid\">"+p.map(x=>{if(typeof x==="string")return "<article class=\"v\"><div class=\"ar\">"+esc(x)+"</div></article>";return "<article class=\"v\"><div class=\"kicker\">"+esc(x.focus||"")+"</div><div class=\"ar\">"+esc(x.ar||"")+"</div><div class=\"tools\">"+(x.examples||[]).map(e=>"<button class=\"answer\" data-speak=\""+esc(e)+"\">"+esc(e)+"</button>").join("")+"</div></article>"}).join("")+"</div><div class=\"panel\" style=\"margin-top:18px\"><h3>Mini-répétition</h3><div class=\"fr\">Tu t’appelles comment ?</div><div class=\"fr\">J’ai quinze ans.</div><div class=\"tools\">"+listen("Tu t’appelles comment ?")+listen("J’ai quinze ans.")+"</div></div>"+finish("phonetics","grammar")+"</section>"}
 function grammar(){
@@ -146,7 +167,8 @@ document.addEventListener("click",e=>{
   const t=e.target.closest(".toggle");if(t){const x=t.nextElementSibling;x.hidden=!x.hidden}
   if(e.target.id==="complete"){done.assessment=true;localStorage.setItem("hm-s1-complete-"+id,JSON.stringify(done));nav();progress();e.target.textContent="✓ تم إكمال الدرس بالكامل"}
 });
-document.addEventListener("input",e=>{if(e.target.id!=="vocabSearch")return;const q=e.target.value.trim().toLowerCase();document.querySelectorAll("[data-vocab-item]").forEach(card=>{const hit=card.textContent.toLowerCase().includes(q);card.hidden=!hit;const group=card.closest("[data-vgroup]");if(group&&hit&&q)group.open=true});document.querySelectorAll("[data-vgroup]").forEach(g=>{if(q)g.hidden=!g.querySelector("[data-vocab-item]:not([hidden])")})});
+document.addEventListener("click",e=>{const w=e.target.closest(".visual-word");if(w){if(e.target.closest(".word-tools")){speak(w.dataset.word);return}const a=w.querySelector(".word-ar");a.hidden=!a.hidden;w.querySelector(".reveal-hint").textContent=a.hidden?"اضغط لكشف المعنى":"اضغط لإخفاء المعنى";return}});
+document.addEventListener("input",e=>{if(e.target.id!=="vocabSearch")return;const q=e.target.value.trim().toLowerCase();document.querySelectorAll("[data-vocab-item]").forEach(card=>{const hit=card.textContent.toLowerCase().includes(q)||card.dataset.word.toLowerCase().includes(q);card.hidden=!hit;const group=card.closest("[data-vgroup]");if(group&&hit&&q)group.open=true});document.querySelectorAll("[data-vgroup]").forEach(g=>{if(q)g.hidden=!g.querySelector("[data-vocab-item]:not([hidden])")})});
 function initStudentSession(){
   const qs=new URLSearchParams(location.search);
   const isStudent=qs.get("student")==="1" || !!localStorage.getItem("hm_student_code");
