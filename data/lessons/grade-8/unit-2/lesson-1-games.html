@@ -58,7 +58,7 @@ function imageMarkup(item,cls){
   'le lit':'🛌',"l'armoire":'🚪','un oreiller':'🛏️','un bureau':'🖥️',
   'une chaise':'🪑','une table de chevet':'🗄️','un abat-jour':'💡','un tapis':'🧶',
   'un matelas':'🛏️','un réveil':'⏰','un tableau':'🖼️','un miroir':'🪞',
-  'un lustre':' chandelier','un rideau':'🪟','le salon':'🛋️','la cuisine':'🍳',
+  'un lustre':'💡','un rideau':'🪟','le salon':'🛋️','la cuisine':'🍳',
   'la salle de bains':'🛁','la salle à manger':'🍽️',"l'entrée":'🚪',
   'le couloir':'🚶','le jardin':'🌳','le garage':'🚗','les toilettes':'🚽','le balcon':'🪴'
  };
@@ -102,7 +102,7 @@ function initMemory(){
    if(state.busy||btn.dataset.done||btn===state.first)return;
    const card=cards[Number(btn.dataset.index)];
    if(card.kind==='picture')btn.innerHTML=imageMarkup(card.item,'memory-picture');
-   else btn.innerHTML='<span class="memory-word" lang="ar" dir="rtl">'+escapeHtml(card.item.translation)+'</span>';
+   else {const shortMeaning=card.item.word==='une table de chevet'?'كومودينو':card.item.translation;btn.innerHTML='<span class="memory-word" lang="ar" dir="rtl">'+escapeHtml(shortMeaning)+'</span>';}
    btn.style.background='#fff';
    if(!state.first){state.first=btn;return;}
    const first=state.first;state.first=null;state.busy=true;
