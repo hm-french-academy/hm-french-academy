@@ -148,7 +148,7 @@ function initQuiz(){
  const raw=[];
  practice.forEach(q=>raw.push({question:q.question,options:q.options.slice(),answer:q.answer,source:'تدريب'}));
  assessment.forEach(q=>raw.push({question:q.question,options:q.options.slice(),answer:q.answer,source:'مراجعة'}));
- words.forEach(w=>raw.push({question:'ما معنى «'+w.word+'»؟',options:distractors(w.translation,'translation',2),answer:0,source:'مفردات'}));
+ words.forEach(w=>raw.push({question:'ما معنى '+w.word+'؟',options:distractors(w.translation,'translation',2),answer:0,source:'مفردات'}));
  const bank=uniqueBy(raw,q=>norm(q.question));
  let deck=[],current=null,roundNo=0,score=0;
  function next(){
