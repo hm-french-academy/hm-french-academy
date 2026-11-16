@@ -38,7 +38,7 @@ button:disabled{opacity:.65;cursor:wait}
 <script>
 const API='https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
-const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';const logoutMode=params.get('logout')==='1';
+const params=new URLSearchParams(location.search);const target=params.get('lesson')||'';const switchMode=params.get('switch')==='1';
 const $=id=>document.getElementById(id);
 const status=$('status'), form=$('form'), input=$('code'), enter=$('enter'), lessonsBox=$('lessons');
 
@@ -326,6 +326,7 @@ if(loggedOut){
   form.classList.remove('hidden');lessonsBox.classList.add('hidden');$('actions').classList.add('hidden');
   $('title').textContent='تم تسجيل الخروج';$('hint').textContent='انتهت جلستك بنجاح. أدخل كود الطالب للبدء من جديد.';
   msg('تم تسجيل الخروج بنجاح.',true);
+  history.replaceState(null,'','student-login.html');
 }
 if(switchMode){$('title').textContent='دخول درس آخر';$('hint').textContent='أدخل كود الدرس الجديد. سيحل محل الدرس الحالي على هذا الجهاز.'}
 if(switchMode)showResume(localStorage.getItem('hm_student_name')||'');
