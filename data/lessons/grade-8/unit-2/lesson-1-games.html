@@ -21,6 +21,20 @@
 .result{padding:8px 10px;border-radius:12px;line-height:1.7}
 .result.ok{background:#edf9f2}.result.bad{background:#fff2f1}
 @media(max-width:700px){.opts{grid-template-columns:1fr}.mem{grid-template-columns:repeat(2,minmax(0,1fr))}.mem button{min-height:130px}.mystery-visual{min-height:205px}}
+
+/* Clear, consistent pictograms and compact Arabic memory cards */
+.mystery-visual{display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #e1e9f5;border-radius:26px}
+.illustration{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:165px;border-radius:22px;background:radial-gradient(circle at 50% 38%,#fff 0 27%,#f0f5ff 72%,#e6eefb 100%);position:relative}
+.illustration:before{content:"";position:absolute;width:65%;height:16px;bottom:22px;border-radius:50%;background:#dce5f1;filter:blur(7px)}
+.illustration-emoji{position:relative;z-index:1;display:block;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:clamp(88px,17vw,142px);line-height:1.2;filter:drop-shadow(0 10px 9px #253b5b22)}
+.memory-picture{min-height:88px!important;height:88px!important;width:100%!important;max-width:none!important;background:linear-gradient(145deg,#f8fbff,#edf3fc);border-radius:15px}
+.memory-picture .illustration-emoji{font-size:clamp(48px,9vw,68px)}
+.mem button{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:10px 8px;min-height:132px;border:1px solid #e1e8f2;border-radius:17px;overflow:hidden}
+.mem button .memory-word{display:flex;align-items:center;justify-content:center;width:100%;min-height:60px;padding:8px 9px;border-radius:12px;background:#f1f5fb;color:#24364f;font-size:clamp(14px,2.8vw,17px);font-weight:800;line-height:1.55;text-align:center;white-space:normal;overflow-wrap:anywhere;word-break:normal}
+.mem button[data-type="a"]{font-size:14px;font-weight:800}
+.mem button[data-done]{background:#eaf8f0!important;border-color:#78c99a}
+.mem button[data-done] .memory-word{background:#dff3e7;color:#17643b}
+@media(max-width:700px){.mystery-visual{min-height:205px;padding:10px}.illustration{min-height:175px}.illustration-emoji{font-size:clamp(82px,23vw,120px)}.mem{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.mem button{min-height:120px;padding:8px 6px}.memory-picture{height:78px!important;min-height:78px!important}.mem button .memory-word{font-size:14px;min-height:56px}}
 </style></head><body><main class="wrap"><section class="hero"><div>HM ACADEMY · UNITÉ 2 · LEÇON 1</div><h1>🎮 مركز الألعاب · Les pièces de la maison</h1><p>تدريب متدرج على مفردات الدرس، المعنى، التصنيف والتراكيب.</p></section><section class="path"><div class="step"><b>📘</b>التعلّم</div><div class="step"><b>🎤</b>النطق</div><div class="step"><b>📄</b>المرجع</div><div class="step"><b>📝</b>التقييم</div><div class="step"><b>🎮</b>الألعاب</div></section><div class="grid"><article class="game card featured"><div class="game-icon">🧠</div><div><h2>Mot mystère · الكلمة السرية</h2><p>انظر إلى الصورة واختر اسمها الصحيح بالفرنسية. تغطي الجولات مفردات الدرس كاملة دون الخروج عنها.</p><a href="#mystery">ابدأ اللعبة ↘</a></div></article><article class="game card"><div class="game-icon">🧩</div><div><h2>Memory · صورة ↔ معنى</h2><p>اكشف البطاقات وطابق كل مفردة فرنسية مع معناها العربي. تُسحب الكلمات من مفردات الدرس المعتمدة.</p><a href="#memory">ابدأ اللعبة ↘</a></div></article><article class="game card"><div class="game-icon">🎯</div><div><h2>Word Catch</h2><p>اختر الكلمة الفرنسية المطابقة للمعنى.</p><a href="#catch">ابدأ التحدي ↘</a></div></article><article class="game card"><div class="game-icon">🧲</div><div><h2>Classement · التصنيف</h2><p>صنّف كل كلمة حسب مجموعتها في مفردات الدرس: أجزاء المنزل، الغرف، أو أثاث غرفة النوم.</p><a href="#sorting">ابدأ التحدي ↘</a></div></article><article class="game card pron"><div class="game-icon">🎤</div><div><h2>Pronunciation Challenge</h2><p>تدرّب على نطق مفردات الدرس المعتمدة مع أمثلتها.</p><a href="pronunciation_challenge_lecon1_unite2.html?v=20261112-home-illustrations-v2">ابدأ التدريب ↗</a></div></article><article class="game card"><div class="game-icon">⚡</div><div><h2>Quiz Express</h2><p>أسئلة سريعة في مفردات وتراكيب الدرس.</p><a href="#quiz">ابدأ الـ Quiz ↘</a></div></article><article class="game card assessment"><div class="game-icon">📝</div><div><h2>التقييم الرسمي</h2><p>تقييم أكاديمي مستقل لقياس إتقان الدرس.</p><a href="formal_assessment_lecon1_unite2.html">فتح التقييم ↗</a></div></article></div><section id="mystery" class="game play"><h2>🧠 Mot mystère</h2><p id="mq"></p><div id="mysteryImage" class="mystery-visual" role="img" aria-label="صورة المفردة"></div><div id="mo" class="opts"></div><div id="mr" class="result"></div><button id="mn" class="btn">🔀 جولة جديدة</button></section><section id="memory" class="game play"><h2>🧩 Memory</h2><p>افتح بطاقتين وطابق الصورة مع معناها العربي. مفردات هذه الجولة مختلفة عن مفردات الكلمة السرية.</p><div id="mem" class="mem"></div><div id="memr" class="result"></div><div class="toolbar"><button id="memReset" class="btn small">↻ إعادة اللعبة</button></div></section><section id="catch" class="game play"><h2>🎯 Word Catch</h2><p id="cq"></p><div id="co" class="opts"></div><div id="cr" class="result"></div><button id="cn" class="btn">جولة جديدة</button></section><section id="sorting" class="game play"><h2>🧲 Classement</h2><p>اضغط الكلمة أولاً ثم اضغط المكان المناسب.</p><div id="chips"></div><div class="drop" data-category="home-parts"><b>أجزاء المنزل 🏠</b><div class="placed"></div></div><div class="drop" data-category="rooms"><b>الغرف والأماكن 🚪</b><div class="placed"></div></div><div class="drop" data-category="bedroom"><b>أثاث غرفة النوم 🛏️</b><div class="placed"></div></div><div id="sr" class="result"></div><button id="sortReset" class="btn small">↻ إعادة التصنيف</button></section><section id="quiz" class="game play"><h2>⚡ Quiz Express</h2><p id="qq"></p><div id="qo" class="opts"></div><div id="qr" class="result"></div><button id="qn" class="btn">السؤال التالي</button></section><div class="note">الألعاب مستقلة عن التقييم الرسمي، والنطق يعمل عبر مسار الدرس والاتصال بالإنترنت ولا يحتاج إلى ملف صوتي مستقل.</div><a class="back" href="../../../../lesson.html?id=grade8-u2-l1">← العودة إلى الدرس</a></main><script>
 (function(){
 'use strict';
@@ -39,9 +53,17 @@ function distractors(correct,field,count){
  return [correct,...candidates.slice(0,count)];
 }
 function imageMarkup(item,cls){
- if(item.image && /^data:image\//.test(item.image))return '<img class="'+(cls||'')+'" src="'+item.image+'" alt="'+escapeHtml(item.translation)+'">';
- const fallback={'la maison':'🏠','la chambre':'🛏️','la porte':'🚪','la fenêtre':'🪟','le lit':'🛏️',"l'armoire":'🗄️','un oreiller':'🛌','un bureau':'🪑','une chaise':'🪑','une table de chevet':'🗄️','un abat-jour':'💡','un tapis':'🧶','un matelas':'🛏️','un réveil':'⏰','un tableau':'🖼️','un miroir':'🪞','un lustre':'💡','un rideau':'🪟','le salon':'🛋️','la cuisine':'🍳','la salle de bains':'🛁','la salle à manger':'🍽️',"l'entrée":'🚪','le couloir':'🚪','le jardin':'🌳','le garage':'🚗','les toilettes':'🚽','le balcon':'🌿'};
- return '<span aria-hidden="true">'+(fallback[item.word]||'🏡')+'</span>';
+ const icons={
+  'la maison':'🏡','la chambre':'🛏️','la porte':'🚪','la fenêtre':'🪟',
+  'le lit':'🛌',"l'armoire":'🚪','un oreiller':'🛏️','un bureau':'🖥️',
+  'une chaise':'🪑','une table de chevet':'🗄️','un abat-jour':'💡','un tapis':'🧶',
+  'un matelas':'🛏️','un réveil':'⏰','un tableau':'🖼️','un miroir':'🪞',
+  'un lustre':' chandelier','un rideau':'🪟','le salon':'🛋️','la cuisine':'🍳',
+  'la salle de bains':'🛁','la salle à manger':'🍽️',"l'entrée":'🚪',
+  'le couloir':'🚶','le jardin':'🌳','le garage':'🚗','les toilettes':'🚽','le balcon':'🪴'
+ };
+ const icon=icons[item.word]||'🏠';
+ return '<span class="illustration '+(cls||'')+'" role="img" aria-label="'+escapeHtml(item.translation)+'"><span class="illustration-emoji">'+icon+'</span></span>';
 }
 function makeDeck(list){return shuffle(list);}
 function takeFromDeck(state,list){if(!state.deck.length)state.deck=makeDeck(list);return state.deck.pop();}
@@ -80,7 +102,7 @@ function initMemory(){
    if(state.busy||btn.dataset.done||btn===state.first)return;
    const card=cards[Number(btn.dataset.index)];
    if(card.kind==='picture')btn.innerHTML=imageMarkup(card.item,'memory-picture');
-   else btn.textContent=card.item.translation;
+   else btn.innerHTML='<span class="memory-word" lang="ar" dir="rtl">'+escapeHtml(card.item.translation)+'</span>';
    btn.style.background='#fff';
    if(!state.first){state.first=btn;return;}
    const first=state.first;state.first=null;state.busy=true;
