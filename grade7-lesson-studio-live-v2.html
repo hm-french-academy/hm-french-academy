@@ -240,6 +240,7 @@ if(current==='progress'){let done=0;try{done=Object.keys(JSON.parse(localStorage
 document.getElementById('lessons').style.display='none';document.getElementById('stages').style.display='none';document.getElementById('title').textContent='';document.getElementById('goal').textContent='';
 const mainEl=document.getElementById('main');mainEl.className='color-shell';mainEl.innerHTML='<div id="hm-speech-status" role="status" aria-live="polite" style="text-align:center;min-height:20px;color:#2059b5;font-weight:800;font-size:13px"></div><header class="color-top"><div class="color-brand">🇫🇷 HM Academy · Learning Studio</div><span class="color-tag">الصف الأول الإعدادي · الوحدة الثالثة</span></header><section class="color-hero"><div class="color-kicker">UNITÉ 3 · LEÇON 1</div><h1>Les couleurs</h1><p>الألوان — اكتشف الألوان وتعلّم مطابقة الصفة مع الاسم</p><div class="color-chips"><span>🎨 ألوان واضحة</span><span>🎧 نطق فرنسي</span><span>📘 قواعد وتطبيق</span></div></section><nav class="color-nav">'+nav+'</nav>'+content+'<p class="color-foot">HM Academy · Source First · تعلّم الفرنسية خطوة بخطوة</p>';
 mainEl.onclick=function(event){const button=event.target.closest('[data-speak]');if(button&&mainEl.contains(button)){event.preventDefault();speak(button.getAttribute('data-speak'));}};
+ if(current==='games'){startColorMemory();startColorSort();startColorScramble();startColorBuilder();}
  try{save('grade7-u3-l1',current)}catch(e){}
 }
 
@@ -247,12 +248,12 @@ mainEl.onclick=function(event){const button=event.target.closest('[data-speak]')
 function renderColorGames(gender){
  const palette=[['rouge','أحمر','#e53935'],['bleu','أزرق','#2876d2'],['vert','أخضر','#249b59'],['jaune','أصفر','#f5d328'],['noir','أسود','#20242b'],['rose','وردي','#ed91b4']];
  const cards=palette.map((x,i)=>({id:i,word:x[0],color:x[2]}));
- const scrambled=[['eugor','rouge'],['uelb','bleu'],['trev','vert'],['enauj','jaune'],['orinn','noir'],['esro','rose']];
+ const scrambled=[['eugor','rouge'],['uelb','bleu'],['trev','vert'],['enauj','jaune'],['rion','noir'],['esro','rose']];
  return '<section class="color-panel"><h2>🎮 مركز تحديات الألوان</h2><p class="color-lead">ست ألعاب متنوعة؛ كل لعبة تدرب مهارة مختلفة، من تمييز اللون إلى بناء الجملة ومطابقة الصفة.</p><div class="color-game-grid">'+
  '<article class="color-game-card"><span class="game-chip">اللعبة 1 · تعرّف بصري</span><h3>🎨 طابق اللون باسمه</h3><p>شاهد عينة اللون واختر اسمه الفرنسي.</p>'+[['#e53935','rouge',['bleu','rouge','vert']],['#f5d328','jaune',['jaune','noir','gris']],['#2876d2','bleu',['blanc','bleu','rose']],['#249b59','vert',['marron','violet','vert']],['#20242b','noir',['noir','orange','rouge']],['#ed91b4','rose',['rose','gris','jaune']]].map((q,i)=>'<div class="color-task"><div class="color-swatch" style="height:48px;max-width:130px;background:'+q[0]+'"></div><h3>'+(i+1)+'. اختر اسم اللون</h3><div class="color-options">'+q[2].map(o=>'<button class="color-option" data-correct="'+(o===q[1]?'1':'0')+'" onclick="colorPick(this)">'+o+'</button>').join('')+'</div><div class="color-feedback"></div></div>').join('')+'</article>'+
  '<article class="color-game-card"><span class="game-chip">اللعبة 2 · قواعد</span><h3>🧩 اكتشف الصفة الصحيحة</h3><p>اختر صورة اللون التي تتفق مع الاسم في التذكير والتأنيث والعدد.</p>'+gender.map((q,i)=>'<div class="color-task"><h3>'+(i+1)+'. '+q[0]+' ___</h3><div class="color-options">'+q[1].map(o=>'<button class="color-option" data-correct="'+(o===q[2]?'1':'0')+'" onclick="colorPick(this)">'+o+'</button>').join('')+'</div><div class="color-feedback"></div></div>').join('')+'</article>'+
  '<article class="color-game-card"><span class="game-chip">اللعبة 3 · ذاكرة</span><h3>🧠 ذاكرة الألوان</h3><p>افتح بطاقتين في كل مرة، وطابق عينة اللون مع الكلمة الفرنسية المقابلة.</p><div id="color-memory" class="memory-board"></div><div id="memory-status" class="game-status">اعثر على الأزواج الستة.</div><button class="game-primary" onclick="startColorMemory()">إعادة خلط البطاقات</button></article>'+
- '<article class="color-game-card"><span class="game-chip">اللعبة 4 · تصنيف</span><h3>🗂️ صنّف صفة اللون</h3><p>اختر البطاقة ثم ضعها في المجموعة المناسبة: لا تتغير / تتغير حسب الاسم.</p><div id="sort-choices" class="sort-choices"></div><div class="sort-bins"><div class="sort-bin" data-bin="fixed"><b>لا تتغير</b><small>orange · marron</small><div id="bin-fixed"></div></div><div class="sort-bin" data-bin="changes"><b>تتغير حسب النوع والعدد</b><small>bleu · vert · blanc…</small><div id="bin-changes"></div></div></div><div id="sort-status" class="game-status">صنّف البطاقات الست.</div><button class="game-primary" onclick="startColorSort()">ابدأ من جديد</button></article>'+
+ '<article class="color-game-card"><span class="game-chip">اللعبة 4 · تصنيف</span><h3>🗂️ صنّف صفة اللون</h3><p>اختر البطاقة ثم ضعها في المجموعة المناسبة: لا تتغير / تتغير حسب الاسم.</p><div id="sort-choices" class="sort-choices"></div><div class="sort-bins"><div class="sort-bin" data-bin="fixed"><b>لا تتغير</b><small>orange · marron</small><button class="game-primary" onclick="dropColorSort('fixed')">ضع البطاقة هنا</button><div id="bin-fixed"></div></div><div class="sort-bin" data-bin="changes"><b>تتغير حسب النوع والعدد</b><small>bleu · vert · blanc…</small><button class="game-primary" onclick="dropColorSort('changes')">ضع البطاقة هنا</button><div id="bin-changes"></div></div></div><div id="sort-status" class="game-status">صنّف البطاقات الست.</div><button class="game-primary" onclick="startColorSort()">ابدأ من جديد</button></article>'+
  '<article class="color-game-card"><span class="game-chip">اللعبة 5 · تهجئة</span><h3>🔤 فك شفرة اللون</h3><p>رتّب حروف الكلمة لتكتشف اسم اللون بالفرنسية.</p><div id="scramble-round"></div><div id="scramble-status" class="game-status">اختر الحروف بالترتيب الصحيح.</div><button class="game-primary" onclick="startColorScramble()">تحدٍ جديد</button></article>'+
  '<article class="color-game-card"><span class="game-chip">اللعبة 6 · بناء جملة</span><h3>🧱 ابنِ الجملة</h3><p>كوّن جملة فرنسية صحيحة من الكلمات المتاحة، ثم تحقق من ترتيبك.</p><div id="builder-question" class="game-status">كوّن الجملة: «التنورة زرقاء».</div><div id="builder-slots" class="builder-slots"></div><div id="builder-choices" class="builder-choices"></div><div id="builder-status" class="game-status"></div><button class="game-primary" onclick="startColorBuilder()">إعادة المحاولة</button></article>'+
  '</div></section>';
@@ -271,25 +272,33 @@ function flipColorMemory(i){
  const item=colorMemoryDeck[i];tile.classList.add('open');tile.textContent=item.type==='word'?item.label:'';if(item.type==='swatch'){tile.style.background=item.label;tile.style.color='#fff';tile.textContent='لون';}
  colorMemoryOpen.push({i,id:item.id});if(colorMemoryOpen.length===2){const [a,b]=colorMemoryOpen;if(a.id===b.id){[a.i,b.i].forEach(n=>document.querySelector('.memory-tile[data-index="'+n+'"]').classList.add('matched'));colorMemoryMatches++;document.getElementById('memory-status').textContent='أحسنت! '+colorMemoryMatches+' / 6 أزواج.';colorMemoryOpen=[];}else{document.getElementById('memory-status').textContent='ليست مطابقة، حاول تذكر المكانين.';setTimeout(()=>{colorMemoryOpen.forEach(x=>{const t=document.querySelector('.memory-tile[data-index="'+x.i+'"]');if(t&&!t.classList.contains('matched')){t.classList.remove('open');t.textContent='?';t.style.background='';t.style.color='';}});colorMemoryOpen=[];},750);}if(colorMemoryMatches===6)document.getElementById('memory-status').textContent='🏆 رائع! أكملت جميع الأزواج.';}
 }
-let colorSortItems=[];
+let colorSortItems=[],colorSortSelected=-1;
 function startColorSort(){
  const root=document.getElementById('sort-choices');if(!root)return;
- colorSortItems=[['rouge','changes'],['bleu','changes'],['vert','changes'],['orange','fixed'],['marron','fixed'],['violet','changes']].sort(()=>Math.random()-.5);
- document.getElementById('bin-fixed').innerHTML='';document.getElementById('bin-changes').innerHTML='';
- root.innerHTML=colorSortItems.map((x,i)=>'<button onclick="placeColorSort('+i+')">'+x[0]+'</button>').join('');
- document.getElementById('sort-status').textContent='اختر بطاقة ثم حدّد المجموعة المناسبة لها.';
+ colorSortItems=[['rouge','changes'],['bleu','changes'],['vert','changes'],['orange','fixed'],['marron','fixed'],['violet','changes']].sort(()=>Math.random()-.5).map(x=>[x[0],x[1],false]);
+ colorSortSelected=-1;document.getElementById('bin-fixed').innerHTML='';document.getElementById('bin-changes').innerHTML='';
+ root.innerHTML=colorSortItems.map((x,i)=>'<button id="sort-card-'+i+'" onclick="chooseColorSort('+i+')">'+x[0]+'</button>').join('');
+ document.getElementById('sort-status').textContent='اختر بطاقة، ثم اضغط زر المجموعة المناسبة.';
 }
-function placeColorSort(i){
- const x=colorSortItems[i];if(!x||x[2])return;const target=prompt('اكتب (1) إذا كانت لا تتغير، أو (2) إذا كانت تتغير:');if(target===null)return;
- const correct=(target.trim()==='1'&&x[1]==='fixed')||(target.trim()==='2'&&x[1]==='changes');
- if(correct){x[2]=true;document.getElementById(x[1]==='fixed'?'bin-fixed':'bin-changes').innerHTML+= '<button disabled>'+x[0]+' ✓</button>';const b=document.querySelectorAll('#sort-choices button')[i];if(b)b.disabled=true;document.getElementById('sort-status').textContent='صحيح! '+colorSortItems.filter(z=>z[2]).length+' / 6';}
- else document.getElementById('sort-status').textContent='ليست المجموعة الصحيحة؛ تذكّر أن orange وmarron لا يتغيران.';
+function chooseColorSort(i){
+ if(!colorSortItems[i]||colorSortItems[i][2])return;
+ colorSortSelected=i;document.getElementById('sort-status').textContent='اخترت: '+colorSortItems[i][0]+' — حدد المجموعة المناسبة.';
+ document.querySelectorAll('#sort-choices button').forEach(b=>b.style.outline='');
+ const b=document.getElementById('sort-card-'+i);if(b)b.style.outline='3px solid #77a7ed';
+}
+function dropColorSort(bin){
+ if(colorSortSelected<0){document.getElementById('sort-status').textContent='اختر بطاقة أولًا.';return;}
+ const x=colorSortItems[colorSortSelected];
+ if(x[1]!==bin){document.getElementById('sort-status').textContent='ليست المجموعة الصحيحة؛ تذكّر أن orange وmarron لا يتغيران.';return;}
+ x[2]=true;const b=document.getElementById('sort-card-'+colorSortSelected);if(b){b.disabled=true;b.style.outline='';}
+ document.getElementById(bin==='fixed'?'bin-fixed':'bin-changes').innerHTML+='<button disabled>'+x[0]+' ✓</button>';
+ colorSortSelected=-1;document.getElementById('sort-status').textContent='صحيح! '+colorSortItems.filter(z=>z[2]).length+' / 6 بطاقات.';
  if(colorSortItems.every(z=>z[2]))document.getElementById('sort-status').textContent='🏆 أحسنت! صنّفت جميع الصفات بشكل صحيح.';
 }
 let colorScrambleIndex=0;
 function startColorScramble(){
  const root=document.getElementById('scramble-round');if(!root)return;
- const words=[['eugor','rouge'],['uelb','bleu'],['trev','vert'],['enauj','jaune'],['orinn','noir'],['esro','rose']];
+ const words=[['eugor','rouge'],['uelb','bleu'],['trev','vert'],['enauj','jaune'],['rion','noir'],['esro','rose']];
  const x=words[colorScrambleIndex++%words.length],letters=x[0].split('').sort(()=>Math.random()-.5);let chosen='';
  root.innerHTML='<div class="scramble-word">'+x[0]+'</div><div class="scramble-choices">'+letters.map(ch=>'<button onclick="this.disabled=true;addScrambleLetter('+JSON.stringify(ch)+')">'+ch+'</button>').join('')+'</div><div id="scramble-answer" class="builder-slots"></div><button class="game-primary" onclick="checkColorScramble('+JSON.stringify(x[1])+')">تحقق من الكلمة</button>';
  document.getElementById('scramble-status').textContent='استخدم كل حرف مرة واحدة.';
