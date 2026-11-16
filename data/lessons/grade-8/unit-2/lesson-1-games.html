@@ -38,15 +38,6 @@ function distractors(correct,field,count){
  const candidates=uniqueBy(shuffle(words.filter(w=>norm(w[field])!==norm(correct)).map(w=>w[field])),norm);
  return [correct,...candidates.slice(0,count)];
 }
-function showFeedback(buttons,correct,feedbackId,successText){
- buttons.forEach(b=>b.disabled=true);
- const picked=buttons.find(b=>b===event.currentTarget);
- const ok=picked && norm(picked.textContent)===norm(correct);
- if(picked)picked.classList.add(ok?'correct':'incorrect');
- if(!ok){const right=buttons.find(b=>norm(b.textContent)===norm(correct));if(right)right.classList.add('correct');}
- setResult(feedbackId,ok?successText:'الإجابة الصحيحة: '+correct,ok);
- return ok;
-}
 function imageMarkup(item,cls){
  if(item.image && /^data:image\//.test(item.image))return '<img class="'+(cls||'')+'" src="'+item.image+'" alt="'+escapeHtml(item.translation)+'">';
  const fallback={'la maison':'🏠','la chambre':'🛏️','la porte':'🚪','la fenêtre':'🪟','le lit':'🛏️',"l'armoire":'🗄️','un oreiller':'🛌','un bureau':'🪑','une chaise':'🪑','une table de chevet':'🗄️','un abat-jour':'💡','un tapis':'🧶','un matelas':'🛏️','un réveil':'⏰','un tableau':'🖼️','un miroir':'🪞','un lustre':'💡','un rideau':'🪟','le salon':'🛋️','la cuisine':'🍳','la salle de bains':'🛁','la salle à manger':'🍽️',"l'entrée":'🚪','le couloir':'🚪','le jardin':'🌳','le garage':'🚗','les toilettes':'🚽','le balcon':'🌿'};
@@ -181,7 +172,7 @@ function initQuiz(){
 
 async function init(){
  try{
-  const response=await fetch('lesson-1.json?games=20261116',{cache:'no-store'});
+  const response=await fetch('lesson-1.json?v=20261116-games-fix1',{cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
   const data=await response.json();
   words=(data.vocabulary||[]).filter(w=>w&&w.word&&w.translation&&w.category);
