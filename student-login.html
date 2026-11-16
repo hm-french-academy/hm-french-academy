@@ -213,9 +213,6 @@ async function showLessons(name,list){
   form.classList.add('hidden');
   $('title').textContent='مرحبًا بك، '+name+' 👋';
   $('hint').textContent='مساحتك التعليمية الشخصية لتعلّم الفرنسية.';
-  const intro=document.createElement('div');intro.className='portal-intro';
-  intro.innerHTML='<strong>مرحبًا بك في رحلتك مع اللغة الفرنسية 🇫🇷</strong><p>اختر وحدتك، ثم افتح الدرس الذي تريد البدء به. جميع الدروس المعروضة مخصصة لحسابك.</p>';
-  lessonsBox.innerHTML='';lessonsBox.appendChild(intro);
   lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل الوحدات والدروس…</div>';
   lessonsBox.classList.remove('hidden');
   const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
@@ -232,6 +229,10 @@ async function showLessons(name,list){
     if(ga!==gb)return ga-gb;
     return Number((a[0].match(/-u(\d+)/)||[])[1])-Number((b[0].match(/-u(\d+)/)||[])[1]);
   });
+  lessonsBox.innerHTML='';
+  const intro=document.createElement('div');intro.className='portal-intro';
+  intro.innerHTML='<strong>مرحبًا بك في رحلتك مع اللغة الفرنسية 🇫🇷</strong><p>اختر وحدتك، ثم افتح الدرس الذي تريد البدء به. جميع الدروس المعروضة مخصصة لحسابك.</p>';
+  lessonsBox.appendChild(intro);
   const totalLessons=labels.length;
   const summary=document.createElement('div');summary.className='portal-stats';
   summary.innerHTML='<div class="portal-stat"><b>'+totalLessons+'</b><span>درس متاح</span></div><div class="portal-stat"><b>'+ordered.filter(([k])=>k!=='other').length+'</b><span>وحدة دراسية</span></div>';
