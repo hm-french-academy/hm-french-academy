@@ -146,7 +146,17 @@ const situationBank=[
 {q:'تتحدث عن صديقتك وتقول: «صديقتي في الغرفة».',o:['Mon amie est dans la chambre.','Ma amie est dans la chambre.','Mes amie est dans la chambre.','Ton amie est dans la chambre.'],a:0},
 {q:'يسألك شخص عن مكان المطبخ، وتريد أن تقول: «المطبخ أمام الحديقة».',o:['La cuisine est devant le jardin.','La cuisine est derrière le jardin.','La cuisine est sous le jardin.','Il y a le jardin dans la cuisine.'],a:0},
 {q:'تريد أن تقول: «هذه كتبي».',o:['Ce sont mes livres.','C’est ma livres.','Ce sont mon livres.','Ce sont tes livre.'],a:0}
-];
+,
+{q:'زميلك يسألك عن مكان القلم، وهو داخل الحقيبة. ماذا تجيب؟',o:['Le stylo est dans le sac.','Le stylo est sur le sac.','Le stylo est derrière le sac.','Le stylo est entre le sac.'],a:0},
+{q:'تريد أن تقول لأختك: «غرفتك جميلة».',o:['Ta chambre est belle.','Ton chambre est beau.','Tes chambre est belles.','Ma chambre est belle.'],a:0},
+{q:'تسأل صديقك: «هل لديك منزل؟»',o:['Est-ce que tu as une maison ?','Est-ce que tu es une maison ?','Il y a ta maison ?','Tu est une maison ?'],a:0},
+{q:'تريد أن تخبر ضيفك: «الحمام بجوار المطبخ».',o:['La salle de bains est à côté de la cuisine.','La salle de bains est sous la cuisine.','La salle de bains a la cuisine.','Il y a la cuisine dans la salle de bains.'],a:0},
+{q:'تسأل أخاك عن مكان الكرسي، وهو خلف الطاولة.',o:['Où est la chaise ? — Elle est derrière la table.','Où est la chaise ? — Elle est devant la table.','Où est la chaise ? — Elle est sur la table.','Où est la chaise ? — Elle est dans la table.'],a:0},
+{q:'تريد أن تقول: «لديّ ثلاثة كتب في غرفتي».',o:['J’ai trois livres dans ma chambre.','Je suis trois livres dans ma chambre.','Il y a trois livres à ma chambre.','J’ai trois livre sur ma chambre.'],a:0},
+{q:'تصف غرفة أخيك وتقول: «غرفته صغيرة ونظيفة».',o:['Sa chambre est petite et propre.','Son chambre est petit et propre.','Ses chambre est petite et propre.','Ta chambre est petite et propre.'],a:0},
+{q:'تريد أن تسأل صديقك: «ماذا يوجد في المطبخ؟»',o:['Qu’est-ce qu’il y a dans la cuisine ?','Où est la cuisine ?','Comment est la cuisine ?','Tu as une cuisine ?'],a:0},
+{q:'تخبر صديقك أن الطاولة بين الكرسيين.',o:['La table est entre les deux chaises.','La table est sous les deux chaises.','La table est derrière les deux chaises.','La table est dans les deux chaises.'],a:0},
+{q:'تريد أن تقول: «هذه صورة عائلتي، وهي فوق المكتب».',o:['C’est ma photo de famille, elle est sur le bureau.','C’est mon photo de famille, elle est sous le bureau.','Ce sont ma photo, elle est dans le bureau.','C’est ta photo de famille, elle est entre le bureau.'],a:0}];
 let situationItems=[],situationAnswers={},situationDone=false;
 function startSituations(){situationItems=shuffle(situationBank).map(q=>({...q,options:shuffle(q.o.map((v,i)=>({v,correct:i===q.a})))}));situationAnswers={};situationDone=false;document.getElementById('situationResult').innerHTML='';renderSituations()}
 function renderSituations(){document.getElementById('situationQuestions').innerHTML=situationItems.map((q,i)=>'<article class="question"><div class="qhead"><span>الموقف '+(i+1)+' من '+situationItems.length+'</span><span>اختر الرد المناسب</span></div><div class="qtext">'+esc(q.q)+'</div><div class="opts">'+q.options.map((o,j)=>'<button class="opt" type="button" data-sq="'+i+'" data-sa="'+j+'" dir="ltr">'+String.fromCharCode(65+j)+'. '+esc(o.v)+'</button>').join('')+'</div><div class="feedback" id="sf'+i+'"></div></article>').join('');document.querySelectorAll('[data-sq]').forEach(b=>b.onclick=()=>{if(situationDone)return;const i=+b.dataset.sq,j=+b.dataset.sa;situationAnswers[i]=j;document.querySelectorAll('[data-sq="'+i+'"]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')})}
