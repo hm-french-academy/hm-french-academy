@@ -66,6 +66,8 @@ function lessonUrl(id){
   if(String(id)==='october-review-grade6')return 'october-exam-review-grade6.html?id='+encodeURIComponent(id)+'&student=1&v=20261017-g6-october-catalog-fix';
   // Comprehensive Grade 8 Unit 2 review is a standalone protected page, not a lesson-router item.
   if(String(id)==='grade8-unit2-review')return 'grade8-unit2-review.html?lesson='+encodeURIComponent(id)+'&student=1&v=20261118-review-route-fix';
+  // Grade 7 Unit 2 review is a standalone protected review page.
+  if(String(id)==='grade7-unit2-review')return 'grade7-unit2-review.html?lesson='+encodeURIComponent(id)+'&student=1&v=20261118-g7-review-route';
   if(String(id)==='s1-supp-01')return 'secondary-1-foundations-session-01.html?student=1&v=20261114-gamified';
   // First secondary lessons use the dedicated secondary lesson studio.
   if(/^s1-u\d+-\d+$/i.test(String(id)))
@@ -86,6 +88,7 @@ const LESSON_TITLES={
   'grade4-seasons-review':['مراجعة درس الفصول — الصف الرابع الابتدائي','Révision des saisons — 4e primaire'],
   'october-review-grade6':['مراجعة أكتوبر — السوق والمضارع — الصف السادس الابتدائي','Révision d’octobre — Au marché et Le présent — 6e primaire'],
   'grade8-unit2-review':['المراجعة الشاملة — الوحدة الثانية','Révision complète — Unité 2'],
+  'grade7-unit2-review':['المراجعة الشاملة — الوحدة الثانية','Révision complète — Unité 2'],
   'hm-enrich-g4':['خطة الإثراء لمدة أسبوعين — الصف الرابع الابتدائي','Programme d’enrichissement — 4e primaire'],
   'hm-enrich-g5':['خطة الإثراء لمدة أسبوعين — الصف الخامس الابتدائي','Programme d’enrichissement — 5e primaire'],
   'hm-enrich-g6':['خطة الإثراء لمدة أسبوعين — الصف السادس الابتدائي','Programme d’enrichissement — 6e primaire'],
