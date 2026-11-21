@@ -22,86 +22,94 @@
 <div class="passage"><b>سلم تقييم مقترح لكل موضوع (10 درجات):</b><ul class="rubric"><li>تحقيق المطلوب ووضوح الأفكار: درجتان.</li><li>المفردات المناسبة للدرس: درجتان.</li><li>القواعد والتصريف وأدوات التجزئة: 3 درجات.</li><li>ترابط الجمل والإملاء: درجتان.</li><li>عدد الكلمات والتنظيم: درجة واحدة.</li></ul><small>استخدم السلم لتقييم كتابتك بعد ظهور النتيجة الموضوعية.</small></div></section>
 <div class="card"><div class="actions"><button class="action" id="submitBtn" onclick="submitExam()">تسليم الاختبار وإظهار النتيجة</button><button class="action secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">العودة إلى الأعلى</button></div><div id="result"></div></div>
 </div>
-<div class="footer">HM Academy · Le Français Simple<br>راجع تفسير كل إجابة، ثم أعد المحاولة لتحسين مستواك.</div>
+<div class="footer">HM Academy · Le Français Simple<br>HM Academy · تُسجّل النتيجة تلقائيًا في سجل الطالب.</div>
 </div>
 <script>
 const groups=[
 {title:'القسم الأول: اختر الإجابة الصحيحة · Choisissez la bonne réponse',desc:'15 سؤالًا في المفردات والوجبات والقواعد الأساسية.',qs:[
-['Le petit-déjeuner se prend généralement…',['le matin','à midi','le soir','la nuit'],0,'الإفطار يكون في الصباح.'],
-['Le goûter se prend généralement…',['à midi','l’après-midi','la nuit','tôt le matin'],1,'Le goûter وجبة خفيفة بعد الظهر.'],
-['« une boisson » signifie…',['وجبة','مشروب','طبق','مطعم'],1,'boisson تعني مشروب.'],
-['« les horaires » signifie…',['المواعيد','الأطعمة','الأصدقاء','الأسباب'],0,'horaires تعني المواعيد.'],
-['Je mange ___ pain au petit-déjeuner.',['du','de la','des','une'],0,'pain اسم مذكر مفرد؛ نستخدم du.'],
-['Elle boit ___ eau.',['du','de l’','de la','des'],1,'eau تبدأ بحرف متحرك؛ نستخدم de l’.'],
-['Nous mangeons ___ salade.',['du','de la','de l’','des'],1,'salade اسم مؤنث مفرد.'],
-['Ils achètent ___ fruits.',['du','de la','des','une'],2,'fruits جمع؛ نستخدم des.'],
-['Je ne bois pas ___ lait.',['du','de','de la','des'],1,'في النفي تتحول أداة التجزئة إلى de.'],
-['Je mange beaucoup ___ légumes.',['des','du','de','de la'],2,'بعد beaucoup نستخدم de.'],
-['Avec « nous », le verbe manger devient…',['mangeons','mangons','mangent','mangez'],0,'التصريف الصحيح mangeons للحفاظ على النطق.'],
-['Vous ___ de l’eau.',['bois','boit','buvez','buvons'],2,'تصريف boire مع vous هو buvez.'],
-['Ils ___ le dîner à huit heures.',['prend','prends','prenons','prennent'],3,'تصريف prendre مع ils هو prennent.'],
-['On ___ au restaurant.',['vont','va','allez','allons'],1,'On يعامل معاملة المفرد: va.'],
-['Je prends ___ pomme après le déjeuner.',['du','de la','une','des'],2,'pomme اسم مؤنث مفرد معدود؛ une pomme.']
+['Le petit-déjeuner se prend généralement…',['le matin','à midi','le soir','la nuit'],'الإفطار يكون في الصباح.'],
+['Le goûter se prend généralement…',['à midi','l’après-midi','la nuit','tôt le matin'],'Le goûter وجبة خفيفة بعد الظهر.'],
+['« une boisson » signifie…',['وجبة','مشروب','طبق','مطعم'],'boisson تعني مشروب.'],
+['« les horaires » signifie…',['المواعيد','الأطعمة','الأصدقاء','الأسباب'],'horaires تعني المواعيد.'],
+['Je mange ___ pain au petit-déjeuner.',['du','de la','des','une'],'pain اسم مذكر مفرد؛ نستخدم du.'],
+['Elle boit ___ eau.',['du','de l’','de la','des'],'eau تبدأ بحرف متحرك؛ نستخدم de l’.'],
+['Nous mangeons ___ salade.',['du','de la','de l’','des'],'salade اسم مؤنث مفرد.'],
+['Ils achètent ___ fruits.',['du','de la','des','une'],'fruits جمع؛ نستخدم des.'],
+['Je ne bois pas ___ lait.',['du','de','de la','des'],'في النفي تتحول أداة التجزئة إلى de.'],
+['Je mange beaucoup ___ légumes.',['des','du','de','de la'],'بعد beaucoup نستخدم de.'],
+['Avec « nous », le verbe manger devient…',['mangeons','mangons','mangent','mangez'],'التصريف الصحيح mangeons للحفاظ على النطق.'],
+['Vous ___ de l’eau.',['bois','boit','buvez','buvons'],'تصريف boire مع vous هو buvez.'],
+['Ils ___ le dîner à huit heures.',['prend','prends','prenons','prennent'],'تصريف prendre مع ils هو prennent.'],
+['On ___ au restaurant.',['vont','va','allez','allons'],'On يعامل معاملة المفرد: va.'],
+['Je prends ___ pomme après le déjeuner.',['du','de la','une','des'],'pomme اسم مؤنث مفرد معدود؛ une pomme.']
 ]},
 {title:'القسم الثاني: أكمل الجمل · Complétez',desc:'10 أسئلة لاختيار الكلمة أو الصيغة المناسبة.',qs:[
-['Le soir, ma famille prend le ___.',['déjeuner','dîner','goûter','petit-déjeuner'],1,'العشاء هو dîner.'],
-['Le matin, je ___ du café.',['bois','boit','buvons','boivent'],0,'مع je: bois.'],
-['Nous ___ du poulet avec du riz.',['mange','manges','mangeons','mangent'],2,'مع nous: mangeons.'],
-['Tu ne manges pas ___ viande.',['de la','de','du','des'],1,'في النفي: pas de viande.'],
-['Elle prend ___ yaourt.',['du','de la','un','des'],2,'yaourt اسم مذكر مفرد معدود: un yaourt.'],
-['___ repas prends-tu par jour ?',['Quand','Combien de','Pourquoi','Qui'],1,'Combien de للسؤال عن العدد.'],
-['___ heure prends-tu le petit-déjeuner ?',['À quelle','Quel','Combien','Qui'],0,'À quelle heure للسؤال عن الساعة.'],
-['Je mange des fruits ___ je veux être en bonne santé.',['mais','parce que','ou','avec'],1,'parce que تُستخدم لذكر السبب.'],
-['Mon frère aime ___ du jus d’orange.',['boire','bois','boit','buvez'],0,'بعد aimer يأتي المصدر: boire.'],
-['Il y a ___ sucre dans le thé.',['beaucoup de','beaucoup du','beaucoup des','beaucoup la'],0,'بعد ظرف الكمية beaucoup نستخدم de.']
+['Le soir, ma famille prend le ___.',['déjeuner','dîner','goûter','petit-déjeuner'],'العشاء هو dîner.'],
+['Le matin, je ___ du café.',['bois','boit','buvons','boivent'],'مع je: bois.'],
+['Nous ___ du poulet avec du riz.',['mange','manges','mangeons','mangent'],'مع nous: mangeons.'],
+['Tu ne manges pas ___ viande.',['de la','de','du','des'],'في النفي: pas de viande.'],
+['Elle prend ___ yaourt.',['du','de la','un','des'],'yaourt اسم مذكر مفرد معدود: un yaourt.'],
+['___ repas prends-tu par jour ?',['Quand','Combien de','Pourquoi','Qui'],'Combien de للسؤال عن العدد.'],
+['___ heure prends-tu le petit-déjeuner ?',['À quelle','Quel','Combien','Qui'],'À quelle heure للسؤال عن الساعة.'],
+['Je mange des fruits ___ je veux être en bonne santé.',['mais','parce que','ou','avec'],'parce que تُستخدم لذكر السبب.'],
+['Mon frère aime ___ du jus d’orange.',['boire','bois','boit','buvez'],'بعد aimer يأتي المصدر: boire.'],
+['Il y a ___ sucre dans le thé.',['beaucoup de','beaucoup du','beaucoup des','beaucoup la'],'بعد ظرف الكمية beaucoup نستخدم de.']
 ]},
 {title:'القسم الثالث: اكتشف الخطأ واختر التصحيح · Corrigez',desc:'5 أسئلة لقياس قدرتك على اكتشاف الخطأ اللغوي.',qs:[
-['اختر الجملة الصحيحة بدلًا من: « Je bois de la eau. »',['Je bois du eau.','Je bois de l’eau.','Je bois des eau.','Je bois une eau.'],1,'الصحيح de l’eau لأن eau تبدأ بحرف متحرك.'],
-['اختر التصحيح: « Nous mangons du pain. »',['Nous mangeons du pain.','Nous mangent du pain.','Nous mangez du pain.','Nous mange du pain.'],0,'نكتب mangeons بحرف e بعد g.'],
-['اختر التصحيح: « Elle ne boit pas du lait. »',['Elle ne boit pas de lait.','Elle ne boit pas des lait.','Elle ne boit pas de la lait.','Elle ne boit pas le lait.'],0,'في النفي العام: pas de lait.'],
-['اختر التصحيح: « On allons au café. »',['On allez au café.','On va au café.','On vont au café.','On vas au café.'],1,'On يأخذ تصريف الغائب المفرد: va.'],
-['اختر التصحيح: « Ils prend le déjeuner. »',['Ils prends le déjeuner.','Ils prenez le déjeuner.','Ils prennent le déjeuner.','Ils prenons le déjeuner.'],2,'مع ils: prennent.']
+['اختر الجملة الصحيحة بدلًا من: « Je bois de la eau. »',['Je bois du eau.','Je bois de l’eau.','Je bois des eau.','Je bois une eau.'],'الصحيح de l’eau لأن eau تبدأ بحرف متحرك.'],
+['اختر التصحيح: « Nous mangons du pain. »',['Nous mangeons du pain.','Nous mangent du pain.','Nous mangez du pain.','Nous mange du pain.'],'نكتب mangeons بحرف e بعد g.'],
+['اختر التصحيح: « Elle ne boit pas du lait. »',['Elle ne boit pas de lait.','Elle ne boit pas des lait.','Elle ne boit pas de la lait.','Elle ne boit pas le lait.'],'في النفي العام: pas de lait.'],
+['اختر التصحيح: « On allons au café. »',['On allez au café.','On va au café.','On vont au café.','On vas au café.'],'On يأخذ تصريف الغائب المفرد: va.'],
+['اختر التصحيح: « Ils prend le déjeuner. »',['Ils prends le déjeuner.','Ils prenez le déjeuner.','Ils prennent le déjeuner.','Ils prenons le déjeuner.'],'مع ils: prennent.']
 ]},
 {title:'القسم الرابع: المواقف · Situations',desc:'5 مواقف تواصلية. اختر العبارة الأنسب للموقف.',qs:[
-['Tu demandes à ton ami le nombre de repas qu’il prend par jour. Tu dis :',['Pourquoi tu manges ?','Combien de repas prends-tu par jour ?','À quelle heure tu dors ?','Qui prépare le repas ?'],1,'للسؤال عن عدد الوجبات نستخدم Combien de.'],
-['Ton ami te demande : « Pourquoi tu manges des fruits ? » Tu réponds :',['Parce que c’est bon pour la santé.','À midi.','Trois repas.','Avec ma famille.'],0,'السؤال عن السبب، والإجابة تبدأ بـ Parce que.'],
-['Tu veux connaître l’heure du déjeuner. Tu demandes :',['Qui déjeune ?','Quel repas préfères-tu ?','À quelle heure déjeunes-tu ?','Combien de fruits ?'],2,'للسؤال عن الساعة: À quelle heure.'],
-['Au restaurant, le serveur demande ce que tu veux boire. Tu réponds :',['Je prends du jus d’orange, s’il vous plaît.','Je déjeune à midi.','Je mange beaucoup.','Je suis en classe.'],0,'هذه إجابة مناسبة لطلب مشروب في المطعم.'],
-['Ton ami te demande ton repas préféré. Tu réponds :',['Je prends trois repas.','Mon repas préféré est le déjeuner.','À sept heures.','Parce que je suis malade.'],1,'السؤال عن الوجبة المفضلة، فنذكر اسم الوجبة.']
+['Tu demandes à ton ami le nombre de repas qu’il prend par jour. Tu dis :',['Pourquoi tu manges ?','Combien de repas prends-tu par jour ?','À quelle heure tu dors ?','Qui prépare le repas ?'],'للسؤال عن عدد الوجبات نستخدم Combien de.'],
+['Ton ami te demande : « Pourquoi tu manges des fruits ? » Tu réponds :',['Parce que c’est bon pour la santé.','À midi.','Trois repas.','Avec ma famille.'],'السؤال عن السبب، والإجابة تبدأ بـ Parce que.'],
+['Tu veux connaître l’heure du déjeuner. Tu demandes :',['Qui déjeune ?','Quel repas préfères-tu ?','À quelle heure déjeunes-tu ?','Combien de fruits ?'],'للسؤال عن الساعة: À quelle heure.'],
+['Au restaurant, le serveur demande ce que tu veux boire. Tu réponds :',['Je prends du jus d’orange, s’il vous plaît.','Je déjeune à midi.','Je mange beaucoup.','Je suis en classe.'],'هذه إجابة مناسبة لطلب مشروب في المطعم.'],
+['Ton ami te demande ton repas préféré. Tu réponds :',['Je prends trois repas.','Mon repas préféré est le déjeuner.','À sept heures.','Parce que je suis malade.'],'السؤال عن الوجبة المفضلة، فنذكر اسم الوجبة.']
 ]},
 {title:'القسم الخامس: ترتيب الجمل · Remettez en ordre',desc:'5 أسئلة لاختيار الترتيب الصحيح للكلمات.',qs:[
-['رتّب: ( prends / Je / le petit-déjeuner / à 7 heures )',['Je prends le petit-déjeuner à 7 heures.','À 7 heures prends je le petit-déjeuner.','Le petit-déjeuner à je prends 7 heures.','Je le petit-déjeuner prends à 7 heures.'],0,'الترتيب: فاعل + فعل + مفعول + مكمل زمان.'],
-['رتّب: ( du lait / boit / Elle / le matin )',['Du lait elle le matin boit.','Elle boit du lait le matin.','Elle du lait boit le matin.','Le matin du lait elle boit.'],1,'Elle + boit + du lait + le matin.'],
-['رتّب: ( ne / pas / mange / de viande / Il )',['Il mange ne pas de viande.','Il ne mange pas de viande.','Il ne pas mange de viande.','Il pas ne mange de viande.'],1,'النفي يحيط بالفعل: ne + verbe + pas.'],
-['رتّب: ( préférée / est / Le déjeuner / repas / mon )',['Mon est repas le déjeuner préférée.','Le déjeuner mon préférée est repas.','Le déjeuner est mon repas préféré.','Préféré le déjeuner mon repas est.'],2,'الترتيب الصحيح: Le déjeuner est mon repas préféré.'],
-['رتّب: ( mangeons / Nous / avec / famille / notre )',['Nous mangeons avec notre famille.','Nous avec mangeons famille notre.','Notre famille nous avec mangeons.','Mangeons nous notre famille avec.'],0,'الفاعل ثم الفعل ثم المكمل.']
+['رتّب: ( prends / Je / le petit-déjeuner / à 7 heures )',['Je prends le petit-déjeuner à 7 heures.','À 7 heures prends je le petit-déjeuner.','Le petit-déjeuner à je prends 7 heures.','Je le petit-déjeuner prends à 7 heures.'],'الترتيب: فاعل + فعل + مفعول + مكمل زمان.'],
+['رتّب: ( du lait / boit / Elle / le matin )',['Du lait elle le matin boit.','Elle boit du lait le matin.','Elle du lait boit le matin.','Le matin du lait elle boit.'],'Elle + boit + du lait + le matin.'],
+['رتّب: ( ne / pas / mange / de viande / Il )',['Il mange ne pas de viande.','Il ne mange pas de viande.','Il ne pas mange de viande.','Il pas ne mange de viande.'],'النفي يحيط بالفعل: ne + verbe + pas.'],
+['رتّب: ( préférée / est / Le déjeuner / repas / mon )',['Mon est repas le déjeuner préférée.','Le déjeuner mon préférée est repas.','Le déjeuner est mon repas préféré.','Préféré le déjeuner mon repas est.'],'الترتيب الصحيح: Le déjeuner est mon repas préféré.'],
+['رتّب: ( mangeons / Nous / avec / famille / notre )',['Nous mangeons avec notre famille.','Nous avec mangeons famille notre.','Notre famille nous avec mangeons.','Mangeons nous notre famille avec.'],'الفاعل ثم الفعل ثم المكمل.']
 ]},
 {title:'القسم السادس: فهم القطعة · Compréhension écrite',desc:'اقرأ القطعة جيدًا ثم أجب عن الأسئلة الخمسة.',passage:'Je m’appelle Lina et j’habite au Caire. Je prends trois repas par jour. À sept heures, je prends le petit-déjeuner avec ma sœur : je mange du pain, du fromage et je bois du lait. À midi, je déjeune à la cantine avec mes camarades. Je mange du poulet et du riz. À cinq heures, je prends un goûter : une pomme et un yaourt. Le soir, je dîne avec ma famille. Je préfère le déjeuner parce que je parle avec mes amis à la cantine.',qs:[
-['Où habite Lina ?',['À Paris','Au Caire','À Lyon','À Marseille'],1,'تذكر القطعة: j’habite au Caire.'],
-['Combien de repas prend-elle par jour ?',['Deux','Trois','Quatre','Cinq'],1,'تقول: trois repas par jour.'],
-['Avec qui prend-elle le petit-déjeuner ?',['Son père','Ses amis','Sa sœur','Ses camarades'],2,'الإفطار مع أختها: avec ma sœur.'],
-['Que mange-t-elle à la cantine ?',['Du poisson et des pâtes','Du poulet et du riz','Du pain et du fromage','Une pomme et un yaourt'],1,'الغداء في المقصف: du poulet et du riz.'],
-['Pourquoi préfère-t-elle le déjeuner ?',['Parce qu’elle dort','Parce qu’elle parle avec ses amis','Parce qu’elle mange seule','Parce qu’elle boit du café'],1,'تفضل الغداء لأنها تتحدث مع أصدقائها.']
+['Où habite Lina ?',['À Paris','Au Caire','À Lyon','À Marseille'],'تذكر القطعة: j’habite au Caire.'],
+['Combien de repas prend-elle par jour ?',['Deux','Trois','Quatre','Cinq'],'تقول: trois repas par jour.'],
+['Avec qui prend-elle le petit-déjeuner ?',['Son père','Ses amis','Sa sœur','Ses camarades'],'الإفطار مع أختها: avec ma sœur.'],
+['Que mange-t-elle à la cantine ?',['Du poisson et des pâtes','Du poulet et du riz','Du pain et du fromage','Une pomme et un yaourt'],'الغداء في المقصف: du poulet et du riz.'],
+['Pourquoi préfère-t-elle le déjeuner ?',['Parce qu’elle dort','Parce qu’elle parle avec ses amis','Parce qu’elle mange seule','Parce qu’elle boit du café'],'تفضل الغداء لأنها تتحدث مع أصدقائها.']
 ]},
 {title:'القسم السابع: الحوار · Dialogue',desc:'أكمل الحوار باختيار الرد المناسب لكل عبارة.',passage:'Au café : Le serveur parle avec Karim.',qs:[
-['Serveur : Bonjour, vous désirez ? Karim : …',['Je voudrais un sandwich et un jus, s’il vous plaît.','Je prends le dîner à huit heures.','Je suis au lycée.','Parce que j’ai faim hier.'],0,'هذا رد مناسب لطلب الطعام والشراب.'],
-['Serveur : Et comme boisson ? Karim : …',['Je mange du poulet.','Un jus d’orange, s’il vous plaît.','À midi.','Trois repas.'],1,'السؤال عن المشروب؛ نطلب عصير البرتقال.'],
-['Serveur : Vous prenez un dessert ? Karim : …',['Oui, une glace, merci.','Je bois de l’eau hier.','Pourquoi le déjeuner ?','Ma sœur mange.'],0,'إجابة مناسبة لقبول الحلوى وطلب آيس كريم.'],
-['Serveur : C’est tout ? Karim : …',['Oui, merci beaucoup.','Je ne suis pas une heure.','Combien de repas ?','Il mange du riz.'],0,'C’est tout تعني هل هذا كل شيء؟'],
-['Serveur : Voilà votre commande. Karim : …',['Merci, bonne journée !','Je prends le petit-déjeuner.','Parce que c’est bon.','À quelle heure ?'],0,'نشكر مقدم الخدمة ونتمنى له يومًا سعيدًا.']
+['Serveur : Bonjour, vous désirez ? Karim : …',['Je voudrais un sandwich et un jus, s’il vous plaît.','Je prends le dîner à huit heures.','Je suis au lycée.','Parce que j’ai faim hier.'],'هذا رد مناسب لطلب الطعام والشراب.'],
+['Serveur : Et comme boisson ? Karim : …',['Je mange du poulet.','Un jus d’orange, s’il vous plaît.','À midi.','Trois repas.'],'السؤال عن المشروب؛ نطلب عصير البرتقال.'],
+['Serveur : Vous prenez un dessert ? Karim : …',['Oui, une glace, merci.','Je bois de l’eau hier.','Pourquoi le déjeuner ?','Ma sœur mange.'],'إجابة مناسبة لقبول الحلوى وطلب آيس كريم.'],
+['Serveur : C’est tout ? Karim : …',['Oui, merci beaucoup.','Je ne suis pas une heure.','Combien de repas ?','Il mange du riz.'],'C’est tout تعني هل هذا كل شيء؟'],
+['Serveur : Voilà votre commande. Karim : …',['Merci, bonne journée !','Je prends le petit-déjeuner.','Parce que c’est bon.','À quelle heure ?'],'نشكر مقدم الخدمة ونتمنى له يومًا سعيدًا.']
 ]}
 ];
-let answers={},started=false,done=false,remaining=45*60,clock=null;
+const EXAM_API='https://yvoprtjyxmurvcsaqsny.supabase.co/functions/v1/student-exam-attempt';
+const EXAM_KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
+let answers={},started=false,done=false,remaining=45*60,clock=null,attemptId=null,saveTimer=null,correctKey=null;
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function render(){let n=0;document.getElementById('sections').innerHTML=groups.map((g,gi)=>{let html='<section class="card"><div class="head"><span class="num">'+String(gi+1).padStart(2,'0')+'</span><h2>'+g.title+'</h2></div><p class="sub">'+g.desc+'</p>'+(g.passage?'<div class="passage"><span class="fr">'+g.passage+'</span></div>':'');html+=g.qs.map((q,qi)=>{let idx=n++;const promptDir=/[\u0600-\u06FF]/.test(q[0])?'rtl':'ltr';return '<div class="q" id="q'+idx+'"><div class="qline"><span class="qno">'+(idx+1)+'</span><span class="qtext" dir="'+promptDir+'">'+esc(q[0])+'</span></div><div class="opts">'+q[1].map((o,j)=>{const d=/[\u0600-\u06FF]/.test(o)?'rtl':'ltr';return '<button class="opt" dir="'+d+'" type="button" onclick="choose('+idx+','+j+',this)">'+esc(o)+'</button>'}).join('')+'</div><div class="feedback" id="fb'+idx+'"></div></div>'}).join('')+'</section>';return html}).join('');updateProgress()}
 function allQuestions(){return groups.flatMap(g=>g.qs)}
-function choose(i,j,b){if(!started||done)return;answers[i]=j;b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');updateProgress()}
+function choose(i,j,b){if(!started||done)return;answers[i]=j;b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');updateProgress();queueSave()}
+function writingPayload(){return {write1:document.getElementById('write1').value,write2:document.getElementById('write2').value}}
+async function examRequest(action,extra={}){const code=(localStorage.getItem('hm_student_code')||'').trim(),device=(localStorage.getItem('hm_student_browser_id')||'').trim();if(!code||!device)throw new Error('انتهت جلسة الطالب. سجّل الدخول بكود الطالب مرة أخرى.');const r=await fetch(EXAM_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':EXAM_KEY},cache:'no-store',body:JSON.stringify({action,code,device_id:device,attempt_id:attemptId,answers,writing_answers:writingPayload(),...extra})});const b=await r.json().catch(()=>({}));if(!r.ok||!b.ok)throw new Error(b.error==='already_submitted'?'تم تسليم هذا الاختبار بالفعل.':b.error==='access_denied'?'كود الطالب أو الجهاز غير مصرح له بهذا الاختبار.':b.error||'تعذر الاتصال بخادم الاختبار.');return b}
+function queueSave(){if(!attemptId||done)return;clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{try{await examRequest('save')}catch(e){showNotice(e.message)}},650)}
+function showNotice(msg){let n=document.getElementById('examNotice');if(!n){n=document.createElement('div');n.id='examNotice';n.className='feedback bad';document.querySelector('.actions').after(n)}n.textContent=msg}
+function restoreAnswers(a,w){answers=a&&typeof a==='object'?a:{};Object.keys(answers).forEach(k=>{const box=document.querySelector('#q'+k+' .opts');if(box&&box.children[Number(answers[k])])box.children[Number(answers[k])].classList.add('selected')});if(w){document.getElementById('write1').value=w.write1||'';document.getElementById('write2').value=w.write2||'';updateWords()}updateProgress()}
+function showSavedResult(a){done=true;started=false;clearInterval(clock);document.getElementById('startBtn').disabled=true;document.getElementById('submitBtn').disabled=true;document.querySelectorAll('.opt').forEach(x=>x.disabled=true);document.getElementById('result').innerHTML='<div class="score"><h2>تم تسجيل نتيجة الاختبار</h2><h1>'+a.score+' / '+a.total_questions+' — '+Number(a.percentage||0)+'%</h1><p>تم حفظ النتيجة رسميًا في سجل الطالب.</p><p>تاريخ التسليم: '+new Date(a.submitted_at).toLocaleString('ar-EG')+'</p></div>';document.getElementById('result').scrollIntoView({behavior:'smooth'})}
 function updateProgress(){let c=Object.keys(answers).length;document.getElementById('progress').style.width=(c/50*100)+'%';document.getElementById('answered').textContent='تمت الإجابة عن '+c+' من 50 سؤالًا'}
-function startExam(){if(started)return;started=true;document.getElementById('startBtn').disabled=true;document.getElementById('examArea').classList.remove('hidden');document.getElementById('examArea').scrollIntoView({behavior:'smooth'});clock=setInterval(()=>{remaining--;let m=Math.floor(remaining/60),s=remaining%60;document.getElementById('timer').textContent=m+':'+String(s).padStart(2,'0');if(remaining<=0)submitExam()},1000)}
-function submitExam(){if(done)return;if(!started)startExam();done=true;clearInterval(clock);let qs=allQuestions(),score=0,unanswered=0;qs.forEach((q,i)=>{let ok=answers[i]===q[2];if(ok)score++;if(answers[i]===undefined)unanswered++;let el=document.getElementById('q'+i),fb=document.getElementById('fb'+i);fb.textContent=(ok?'✓ إجابة صحيحة. ':'✗ الإجابة الصحيحة: '+q[1][q[2]]+'. ')+q[3];fb.className='feedback '+(ok?'good':'bad');el.querySelectorAll('button').forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.border='2px solid #237b58';else if(j===answers[i]&&!ok)b.style.border='2px solid #b94c4c'})});document.getElementById('submitBtn').disabled=true;let pct=Math.round(score/50*100),level=pct>=90?'ممتاز — إتقان متميز للدرس.':pct>=80?'جيد جدًا — مستواك قوي.':pct>=65?'جيد — راجع النقاط التي أخطأت فيها.':pct>=50?'مقبول — تحتاج إلى مراجعة مركزة.':'تحتاج إلى إعادة دراسة الدرس ثم المحاولة مرة أخرى.';let w1=wordCount('write1'),w2=wordCount('write2');document.getElementById('result').innerHTML='<div class="score"><h2>نتيجة الاختبار</h2><h1>'+score+' / 50 — '+pct+'%</h1><p>'+level+'</p><p>الإجابات غير المجابة: '+unanswered+' · الكتابة: الموضوع الأول '+w1+' كلمة، والموضوع الثاني '+w2+' كلمة.</p><p><b>تقييم الكتابة:</b> راجع الموضوعين باستخدام سلم التقييم (10 درجات لكل موضوع) أعلى الصفحة. الدرجة الكتابية منفصلة عن التصحيح الإلكتروني.</p><button class="action" onclick="window.print()">طباعة النتيجة</button> <button class="action secondary" onclick="resetAll()">إعادة الاختبار</button></div>';document.getElementById('result').scrollIntoView({behavior:'smooth'})}
+async function startExam(){if(started||done)return;const btn=document.getElementById('startBtn');btn.disabled=true;btn.textContent='جارٍ تسجيل المحاولة...';try{const b=await examRequest('start');const a=b.attempt;attemptId=a.id;if(a.status==='submitted'){restoreAnswers(a.answers,a.writing_answers);showSavedResult(a);return}if(a.status!=='in_progress')throw new Error('هذه المحاولة مغلقة. تواصل مع إدارة الأكاديمية.');restoreAnswers(a.answers,a.writing_answers);started=true;document.getElementById('examArea').classList.remove('hidden');document.getElementById('examArea').scrollIntoView({behavior:'smooth'});const expiry=new Date(a.expires_at).getTime();const tick=()=>{remaining=Math.max(0,Math.floor((expiry-Date.now())/1000));let m=Math.floor(remaining/60),s=remaining%60;document.getElementById('timer').textContent=m+':'+String(s).padStart(2,'0');if(remaining<=0)submitExam()};tick();clock=setInterval(tick,1000);btn.textContent=b.resumed?'استكمال المحاولة':'المحاولة مسجلة'}catch(e){btn.disabled=false;btn.textContent='ابدأ الاختبار';showNotice(e.message)}}
+async function submitExam(){if(done||!attemptId||!started)return;done=true;clearInterval(clock);clearTimeout(saveTimer);document.getElementById('submitBtn').disabled=true;try{const b=await examRequest('submit');correctKey=b.correct_answers;const qs=allQuestions(),score=b.result.score;qs.forEach((q,i)=>{const ok=Number(answers[i])===correctKey[i],el=document.getElementById('q'+i),fb=document.getElementById('fb'+i);fb.textContent=(ok?'✓ إجابة صحيحة. ':'✗ الإجابة الصحيحة: '+q[1][correctKey[i]]+'. ')+q[2];fb.className='feedback '+(ok?'good':'bad');el.querySelectorAll('button').forEach((x,j)=>{x.disabled=true;if(j===correctKey[i])x.style.border='2px solid #237b58';else if(j===Number(answers[i])&&!ok)x.style.border='2px solid #b94c4c'})});const pct=Number(b.result.percentage),unanswered=50-Object.keys(answers).length,level=pct>=90?'ممتاز — إتقان متميز للدرس.':pct>=80?'جيد جدًا — مستواك قوي.':pct>=65?'جيد — راجع النقاط التي أخطأت فيها.':pct>=50?'مقبول — تحتاج إلى مراجعة مركزة.':'تحتاج إلى مراجعة الدرس.';const w1=wordCount('write1'),w2=wordCount('write2');document.getElementById('result').innerHTML='<div class="score"><h2>نتيجة الاختبار المسجلة</h2><h1>'+score+' / 50 — '+pct+'%</h1><p>'+level+'</p><p>الإجابات غير المجابة: '+unanswered+' · الكتابة: الموضوع الأول '+w1+' كلمة، والموضوع الثاني '+w2+' كلمة.</p><p><b>تم حفظ نتيجتك تلقائيًا في سجل HM Academy.</b></p><p>تقييم الكتابة منفصل ويُراجع من المدرس.</p><button class="action" onclick="window.print()">طباعة النتيجة</button></div>';document.getElementById('result').scrollIntoView({behavior:'smooth'})}catch(e){done=false;document.getElementById('submitBtn').disabled=false;showNotice(e.message)}}
 function wordCount(id){let t=document.getElementById(id).value.trim();return t?t.split(/\s+/).length:0}
 function updateWords(){['write1','write2'].forEach((id,i)=>{let n=wordCount(id);document.getElementById('wc'+(i+1)).textContent='عدد الكلمات: '+n+' '+(n>=45&&n<=60?'— مناسب للمطلوب':n<45?'— أضف مزيدًا من التفاصيل':'— حاول الاختصار إلى 60 كلمة')})}
-function resetAll(){answers={};started=false;done=false;remaining=45*60;clearInterval(clock);document.getElementById('timer').textContent='45:00';document.getElementById('startBtn').disabled=false;document.getElementById('submitBtn').disabled=false;document.getElementById('write1').value='';document.getElementById('write2').value='';updateWords();render();document.getElementById('result').innerHTML='';document.getElementById('startBtn').scrollIntoView({behavior:'smooth'})}
-document.getElementById('write1').addEventListener('input',updateWords);document.getElementById('write2').addEventListener('input',updateWords);render();
+function resetAll(){showNotice('لا يمكن إعادة المحاولة بعد تسجيلها.')}
+document.getElementById('write1').addEventListener('input',()=>{updateWords();queueSave()});document.getElementById('write2').addEventListener('input',()=>{updateWords();queueSave()});render();
 </script>
 </body></html>
