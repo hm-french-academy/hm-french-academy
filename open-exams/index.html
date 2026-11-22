@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#14264a">
+<meta name="description" content="اختبارات ومراجعات اللغة الفرنسية الشهرية لطلاب المدرسة.">
+<title>مراجعات نوفمبر | HM Academy</title>
+<style>
+:root{--navy:#14264a;--blue:#2456a6;--gold:#d6a84f;--ink:#1c2940;--muted:#718096;--bg:#f3f6fb;--line:#e1e8f2}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#f4f7fc,#f8f5ee);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
+header{background:linear-gradient(115deg,#14264a,#214e91);color:#fff;padding:25px 16px 30px;text-align:center;border-bottom:4px solid var(--gold)}
+.brand{font-size:14px;letter-spacing:2px;color:#dce7fa;font-weight:bold}.mark{display:inline-grid;place-items:center;width:45px;height:45px;border:2px solid #fff;border-radius:14px;font-weight:900;font-size:20px;margin-left:9px;vertical-align:middle}
+h1{font-size:clamp(24px,5vw,36px);margin:15px 0 8px}.subtitle{margin:0;color:#e1eaf9;line-height:1.8}
+main{max-width:900px;margin:24px auto;padding:0 14px 50px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 14px 40px #14264a0c}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grade{border:1px solid var(--line);border-radius:18px;padding:20px;text-align:right;background:linear-gradient(145deg,#fff,#f7faff);cursor:pointer;transition:.18s}.grade:hover{transform:translateY(-2px);border-color:#9bb5e3;box-shadow:0 10px 25px #14264a12}.grade strong{display:block;font-size:19px;color:var(--navy)}.grade small{display:block;color:var(--muted);margin-top:7px}.badge{display:inline-block;margin-top:14px;background:#edf3ff;color:#2456a6;padding:6px 10px;border-radius:30px;font-size:12px;font-weight:bold}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;font-weight:bold}.primary{background:var(--blue);color:white}.secondary{background:#edf2f8;color:var(--navy)}.back{background:transparent;color:var(--blue);padding:4px 0;margin-bottom:14px}
+label{display:block;font-weight:bold;margin:12px 0 7px}input{width:100%;padding:13px;border:1px solid #cfd9e8;border-radius:12px;font:inherit}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);font-size:14px;margin-bottom:15px}.progress{height:8px;background:#edf1f7;border-radius:20px;overflow:hidden;margin:12px 0 22px}.progress span{display:block;height:100%;background:var(--gold);width:0}
+.q{padding:18px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.q h3{font-size:17px;line-height:1.8;margin:0 0 12px}.opts{display:grid;gap:9px}.opt{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;line-height:1.6}.opt:has(input:checked){background:#eef4ff;border-color:#8ba9df}.opt input{width:auto;margin:0;accent-color:var(--blue)}
+.actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}.result{text-align:center}.score{font-size:48px;color:var(--blue);font-weight:900;margin:10px}.review{text-align:right;margin-top:22px}.correct{color:#13805c}.wrong{color:#bd3946}.hidden{display:none!important}.note{background:#fff8e8;border:1px solid #f0dfb8;border-radius:12px;padding:12px;color:#72551b;line-height:1.7;font-size:13px;margin-top:16px}
+footer{text-align:center;color:#8590a2;font-size:12px;padding:10px 15px 25px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.panel{padding:17px}.topline{align-items:flex-start;flex-direction:column}}
+</style></head>
+<body>
+<header><div class="brand"><span class="mark">HM</span> HM ACADEMY</div><h1>مراجعات شهر نوفمبر</h1><p class="subtitle">اختبر مستواك في اللغة الفرنسية · اختر صفك وابدأ المراجعة</p></header>
+<main>
+<section id="home" class="panel"><h2>اختر الصف الدراسي</h2><p style="color:#718096;line-height:1.8">المراجعات متاحة لجميع طلاب المدرسة دون تسجيل دخول أو كود طالب.</p><div id="grades" class="grid"></div><div class="note">هذه بوابة مستقلة للمراجعات فقط. لا تحتوي على روابط أو قوائم تنقل إلى بقية منصة HM Academy.</div></section>
+<section id="intro" class="panel hidden"><button class="back" id="backHome">← العودة لاختيار الصف</button><h2 id="examTitle"></h2><p id="examInfo" style="color:#718096;line-height:1.8"></p><label for="studentName">اسم الطالب (اختياري)</label><input id="studentName" maxlength="60" placeholder="اكتب اسمك"><div class="actions"><span></span><button class="primary" id="start">ابدأ الامتحان</button></div></section>
+<section id="quiz" class="panel hidden"><div class="topline"><strong id="quizTitle"></strong><span id="counter"></span></div><div class="progress"><span id="bar"></span></div><div id="questions"></div><div class="actions"><button class="secondary" id="prev">السابق</button><button class="primary" id="next">التالي</button><button class="primary hidden" id="finish">إنهاء الامتحان</button></div></section>
+<section id="result" class="panel hidden result"><h2>نتيجتك</h2><div class="score" id="score"></div><p id="resultText"></p><div class="actions" style="justify-content:center"><button class="primary" id="retry">إعادة المحاولة</button><button class="secondary" id="chooseAgain">اختيار صف آخر</button></div><div id="review" class="review"></div></section>
+</main><footer>HM Academy · مراجعات اللغة الفرنسية</footer>
+<script src="exams.js"></script></body></html>
