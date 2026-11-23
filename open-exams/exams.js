@@ -125,7 +125,28 @@ const exams = [
 ["Le pluriel de « un canapé » est :",["des canapeaux","des canapé","des canapés"],2],
 ["Ils habitent dans … maison.",["leurs","leur","son"],1],
 ["Tu regardes … cahiers.",["tes","ta","ton"],0],
-["Le contraire de « près de » est :",["loin de","à côté de","devant"],0]
+["Le contraire de « près de » est :",["loin de","à côté de","devant"],0],
+["On met une gomme dans …",["un garage","une trousse","un lavabo"],1],
+["Ma tante est …",["un bon avocat","une bon avocate","une bonne avocate"],2],
+["Nous … le football.",["aime","aimons","aimez"],1],
+["Elle … les devoirs.",["détestent","détestes","déteste"],2],
+["Vous … le dessin.",["adore","adorons","adorez"],2],
+["Tu … un film.",["regarde","regardez","regardes"],2],
+["Ma sœur … l'anglais.",["étudie","étudies","étudient"],0],
+["« … ? — Ce sont mes amis. »",["Qu'est-ce que c'est ?","Qui est-ce ?","Quel âge as-tu ?"],1],
+["« … ? — C'est un tapis. »",["Qu'est-ce que c'est ?","Qui est-ce ?","Où est le tapis ?"],0],
+["Le cinéma est loin … hôpital.",["du","de la","de l'"],2],
+["La poste est à droite … lycée.",["du","de la","des"],0],
+["Quel mot ne change pas au pluriel ?",["un rideau","un matelas","un bureau"],1],
+["Nous aimons … professeur de français.",["nos","votre","notre"],2],
+["« à droite de » est le contraire de …",["devant","entre","à gauche de"],2],
+["Ma mère … professeure.",["a","ont","est"],2],
+["Mes amis … au stade.",["sont","ont","suis"],0],
+["Tu … douze ans.",["a","as","avez"],1],
+["Les élèves … un exercice.",["faisons","font","faites"],1],
+["Mon frère … treize ans.",["ai","a","sont"],1],
+["Le musée est à gauche … école.",["de l'","de la","des"],0],
+["On … dans la salle à manger.",["manges","mange","mangeons"],1]
 ]}
 ];
 const $=id=>document.getElementById(id);let selected=null,index=0,answers=[],name="";
