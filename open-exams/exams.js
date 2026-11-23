@@ -158,7 +158,7 @@ const routeLesson=pageParams.get("lesson")||pageParams.get("id")||"";
 const studentGrade=Number(pageParams.get("grade")||0);
 const expectedStudentGrade=reviewGradeByLesson[routeLesson]||0;
 const gradeExamIds={4:"p4",6:"p6",7:"g7",8:"g8"};
-let studentExamIds=studentMode&&studentGrade===expectedStudentGrade&&gradeExamIds[studentGrade]?[gradeExamIds[studentGrade]]:[];
+let studentExamIds=[]; // Never trust the URL alone; the active student code must authorize this review.
 function renderGrades(){
  const available=studentMode?exams.filter(e=>studentExamIds.includes(e.id)):exams.filter(e=>e.id!=="p4");
  $("grades").innerHTML=available.map(e=>{const i=exams.indexOf(e);return '<button class="grade" data-i="'+i+'"><strong>'+e.title+'</strong><small>'+e.curriculum+' · مراجعة شهر نوفمبر</small><span class="badge">'+e.questions.length+' سؤالاً تدريبياً</span></button>';}).join("");
@@ -189,12 +189,28 @@ async function loadStudentNovemberAccess(){
   const data=await response.json();
   if(response.ok&&data&&data.ok&&Array.isArray(data.allowed_lessons)){
    const allowed=new Set(data.allowed_lessons.map(String));
-   studentExamIds=Object.entries(reviewGradeByLesson).filter(([lesson])=>allowed.has(lesson)).map(([,grade])=>gradeExamIds[grade]).filter(Boolean);
+   const authorizedGrade=reviewGradeByLesson[routeLesson]||0;
+   if(allowed.has(routeLesson)&&authorizedGrade&&studentGrade===authorizedGrade&&gradeExamIds[authorizedGrade]){
+    studentExamIds=[gradeExamIds[authorizedGrade]];
+   }else{
+    $("examInfo").textContent="هذا الرابط غير مخصص لكود الطالب الحالي. ارجع إلى صفحة مراجعات نوفمبر واختر المراجعة المخصصة لك.";
+    $("home").classList.remove("hidden");
+    return;
+   }
+  }else{
+   $("examInfo").textContent="تعذر التحقق من كود الطالب. ارجع إلى صفحة الدخول وحاول مرة أخرى.";
+   $("home").classList.remove("hidden");
+   return;
   }
- }catch(error){console.warn("تعذر تحميل مراجعات الطالب:",error);}
+ }catch(error){
+  console.warn("تعذر تحميل مراجعات الطالب:",error);
+  $("examInfo").textContent="تعذر الاتصال للتحقق من كود الطالب. تأكد من الاتصال بالإنترنت ثم أعد المحاولة.";
+  $("home").classList.remove("hidden");
+  return;
+ }
  renderGrades();
 }
-function selectExam(i){selected=exams[i];$("examTitle").textContent=selected.title+" — مراجعة نوفمبر";$("examInfo").textContent=selected.curriculum+" · "+selected.questions.length+" سؤالاً. اختر الإجابة الأنسب لكل سؤال.";show("intro");}
+function selectExam(i){selected=exams[i];$("examTitle").textContent=selected.title+" — مراجعة نوفمبر";$("examInfo").textContent=selected.curriculum+" · "+selected.questions.length+" سؤالاً. اختر الإجابة الأنسب لكل سؤال.";if(studentMode){name="";answers=Array(selected.questions.length).fill(null);index=0;renderQuestion();show("quiz");window.scrollTo(0,0);}else{show("intro");}}
 $("backHome").onclick=()=>show("home");$("start").onclick=()=>{name=$("studentName").value.trim();answers=Array(selected.questions.length).fill(null);index=0;renderQuestion();show("quiz");};
 function renderQuestion(){let q=selected.questions[index];$("quizTitle").textContent=selected.title;$("counter").textContent="السؤال "+(index+1)+" من "+selected.questions.length;$("bar").style.width=((index+1)/selected.questions.length*100)+"%";const questionDir=/[\u0600-\u06FF]/.test(q[0])?"rtl":"ltr";const readingContext=(selected.id==="p6"&&index>=46&&index<=49)?'<div class="reading-context" dir="ltr"><strong>Lis le texte, puis réponds :</strong><br>Karim a un bureau. Sur son bureau, il y a un ordinateur, un cahier et deux crayons. Karim n’a pas de colle. Demain, son père va acheter de la colle.</div>':(selected.id==="g7"&&index>=10&&index<=13)?'<div class="reading-context" dir="ltr"><strong>Lis le texte, puis réponds :</strong><br>Sami est un garçon. Il a douze ans. Il a une sœur, Hana. Hana a dix ans. Dans le sac à dos de Hana, il y a un cahier et un livre. Dans la trousse, il y a une règle et deux stylos.</div>':(selected.id==="g8"&&index>=11&&index<=14)?'<div class="reading-context" dir="ltr"><strong>Lis le document :</strong><br>Je m\'appelle Karim. J\'ai douze ans. J\'habite dans une grande maison. Dans la maison, il y a trois chambres, un salon et une cuisine. Mon père est médecin. Ma mère est professeure. Le garage est devant la maison.</div>':"";$("questions").innerHTML='<article class="q">'+readingContext+'<h3 class="question-text '+questionDir+'" dir="'+questionDir+'"><bdi dir="'+questionDir+'">'+(index+1)+'. '+q[0]+'</bdi></h3><div class="opts">'+q[1].map((o,j)=>'<label class="opt"><input type="radio" name="answer" value="'+j+'" '+(answers[index]===j?"checked":"")+'> <span dir="auto">'+String.fromCharCode(65+j)+') '+o+'</span></label>').join("")+'</div></article>';$("prev").classList.toggle("hidden",index===0);$("next").classList.toggle("hidden",index===selected.questions.length-1);$("finish").classList.toggle("hidden",index!==selected.questions.length-1);document.querySelectorAll('input[name="answer"]').forEach(x=>x.onchange=()=>answers[index]=+x.value);}
 $("prev").onclick=()=>{index--;renderQuestion();};$("next").onclick=()=>{index++;renderQuestion();};
