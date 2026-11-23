@@ -58,6 +58,11 @@ function lessonUrl(id){
   if(String(id)==='g4-l04'||String(id)==='g4-l05'||String(id)==='g4-l07')return 'grade-4-face-possessives-studio.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
   // Grade 4 Le corps uses the upgraded dedicated lesson studio for both public and student-code entry.
   if(String(id)==='g4-l06')return 'grade-4-start-under-presentation.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
+  const novemberGrades={'november-review-grade4':4,'november-review-grade6':6,'november-review-grade7':7,'november-review-grade8':8};
+  if(Object.prototype.hasOwnProperty.call(novemberGrades,String(id))){
+    const grade=novemberGrades[String(id)];
+    return 'open-exams/student.html?lesson='+encodeURIComponent(id)+'&grade='+grade+'&student=1&v=20261123-student-november';
+  }
   if(String(id)==='bac2-u1-l1')return 'baccalaureat-2-u1-l1-premium.html?id='+encodeURIComponent(id)+'&student=1&v=20261107-student-route';
   if(String(id)==='october-review-grade7')return 'october-exam-review-grade7.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
   if(String(id)==='october-review-grade8')return 'october-exam-review-grade8.html?id='+encodeURIComponent(id)+'&student=1&v=20261014-student-review';
@@ -83,6 +88,10 @@ function lessonUrl(id){
   return 'lesson.html?id='+encodeURIComponent(id)+'&v=20261001-route-fix&section=lesson&student=1';
 }
 const LESSON_TITLES={
+  'november-review-grade4':['مراجعة شهر نوفمبر — الصف الرابع الابتدائي','Révision de novembre — 4e primaire'],
+  'november-review-grade6':['مراجعة شهر نوفمبر — الصف السادس الابتدائي','Révision de novembre — 6e primaire'],
+  'november-review-grade7':['مراجعة شهر نوفمبر — الصف الأول الإعدادي','Révision de novembre — 1re préparatoire'],
+  'november-review-grade8':['مراجعة شهر نوفمبر — الصف الثاني الإعدادي','Révision de novembre — 2e préparatoire'],
   'october-review-grade7':['مراجعة اختبار أكتوبر — الصف الأول الإعدادي','Révision de l’examen d’octobre — 1re préparatoire'],
   'october-review-grade8':['مراجعة اختبار أكتوبر — الصف الثاني الإعدادي','Révision de l’examen d’octobre — 2e préparatoire'],
   'grade4-seasons-review':['مراجعة درس الفصول — الصف الرابع الابتدائي','Révision des saisons — 4e primaire'],
