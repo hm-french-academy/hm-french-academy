@@ -230,7 +230,17 @@ async function showLessons(name,list){
   $('hint').textContent='مساحتك التعليمية الشخصية لتعلّم الفرنسية.';
   lessonsBox.innerHTML='<div style="padding:14px;text-align:center;color:#667085">جارٍ تحميل الوحدات والدروس…</div>';
   lessonsBox.classList.remove('hidden');
-  const labels=await Promise.all(list.map(async id=>({id,label:await lessonLabel(id)})));
+  // November private revisions are accessed only through their separate code-entry portal.
+  // Keep them authorized in Supabase, but never list them in the regular student dashboard.
+  const regularLessons=list.filter(id=>!/^november-review-grade(4|6|7|8)$/i.test(String(id)));
+  if(!regularLessons.length){
+    lessonsBox.innerHTML='<div class="portal-intro"><strong>لا توجد دروس أخرى متاحة حاليًا.</strong><p>مراجعات نوفمبر الخاصة لها رابط دخول مستقل.</p></div>';
+    document.getElementById('actions').classList.remove('hidden');
+    bindStudentActions();
+    msg('',true);
+    return;
+  }
+  const labels=await Promise.all(regularLessons.map(async id=>({id,label:await lessonLabel(id)})));
   const grouped=new Map();
   labels.forEach(item=>{
     const m=String(item.id).match(/^(grade\d+|g\d+)-u(\d+)-l\d+$/i);
