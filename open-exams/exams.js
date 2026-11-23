@@ -177,7 +177,9 @@ async function loadStudentNovemberAccess(){
  if(!studentMode||studentExamIds.length)return;
  const code=(localStorage.getItem("hm_student_code")||"").trim();
  const device=(localStorage.getItem("hm_student_browser_id")||"").trim();
- if(!code||!device){renderGrades();return;}
+ // After logout there is no active student session: return to the canonical
+ // code-entry page instead of leaving the protected review shell empty.
+ if(!code||!device){location.replace("../student-login.html");return;}
  try{
   const response=await fetch("https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code",{
    method:"POST",mode:"cors",cache:"no-store",
