@@ -74,9 +74,12 @@ const exams = [
 const $=id=>document.getElementById(id);let selected=null,index=0,answers=[],name="";
 function show(id){["home","intro","quiz","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));}
 const pageParams=new URLSearchParams(location.search);
-const studentMode=pageParams.get("student")==="1";
+const studentMode=pageParams.get("student")==="1"||location.pathname.endsWith("/student.html");
+const reviewGradeByLesson={"november-review-grade4":4,"november-review-grade6":6,"november-review-grade7":7,"november-review-grade8":8};
+const routeLesson=pageParams.get("lesson")||pageParams.get("id")||"";
 const studentGrade=Number(pageParams.get("grade")||0);
-const studentExamId=({4:"p4",6:"p6",7:"g7",8:"g8"})[studentGrade]||"";
+const expectedStudentGrade=reviewGradeByLesson[routeLesson]||0;
+const studentExamId=studentMode&&studentGrade===expectedStudentGrade?({4:"p4",6:"p6",7:"g7",8:"g8"})[studentGrade]||"":"";
 function renderGrades(){
  const available=studentMode?exams.filter(e=>e.id===studentExamId):exams.filter(e=>e.id!=="p4");
  $("grades").innerHTML=available.map(e=>{const i=exams.indexOf(e);return '<button class="grade" data-i="'+i+'"><strong>'+e.title+'</strong><small>'+e.curriculum+' · مراجعة شهر نوفمبر</small><span class="badge">'+e.questions.length+' سؤالاً تدريبياً</span></button>';}).join("");
