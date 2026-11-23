@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HM Academy — مراجعات نوفمبر</title>
+<link rel="icon" type="image/svg+xml" href="../assets/images/hm-academy-favicon.svg?v=2">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:linear-gradient(145deg,#f1f6fd,#fff 55%,#f7faff);color:#172b4d}
+.card{width:min(620px,100%);padding:clamp(22px,5vw,38px);background:#fff;border:1px solid #e4eaf2;border-radius:26px;box-shadow:0 20px 60px #173a7518;text-align:center}
+.logo{width:72px;height:72px;object-fit:contain;padding:8px;border-radius:20px;background:#f2f6fc}
+.kicker{font-size:11px;letter-spacing:1.5px;color:#7890ae;font-weight:800;margin:10px 0 5px}h1{font-size:clamp(23px,4vw,30px);margin:4px 0 8px}p{color:#667085;line-height:1.8;margin:8px 0 22px}
+input{width:100%;padding:15px;border:1px solid #ccd5e2;border-radius:13px;font-size:18px;text-align:center;direction:ltr;text-transform:uppercase}
+button,.review{width:100%;display:block;margin-top:12px;padding:14px;border:0;border-radius:13px;background:#1f5d9b;color:white;font-size:16px;font-weight:750;text-decoration:none;cursor:pointer}
+button:disabled{opacity:.6}.status{min-height:28px;margin-top:15px;color:#b42318;font-size:14px}.ok{color:#087443}.hidden{display:none}
+.review{background:#f7faff;color:#1f5d9b;border:1px solid #d7e3f1;text-align:right;padding:16px}.review small{display:block;color:#667085;font-weight:500;margin-top:5px}
+#reviews{display:grid;gap:9px;margin-top:18px}.foot{font-size:12px;color:#98a2b3;margin-top:22px}
+</style></head>
+<body><main class="card">
+<img class="logo" src="../assets/images/hm-academy-favicon.svg?v=2" alt="HM Academy">
+<div class="kicker" dir="ltr">HM ACADEMY · NOVEMBER REVISION</div>
+<h1 id="heading">مراجعات شهر نوفمبر</h1>
+<p id="intro">أدخل كود الطالب المفعّل لعرض المراجعة المخصصة لك فقط.</p>
+<form id="form"><input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="HM-XXXXXXXX" aria-label="كود الطالب"><button id="submit" type="submit">دخول المراجعة</button></form>
+<div id="status" class="status" role="alert"></div><section id="reviews" class="hidden"></section>
+<div class="foot">HM Academy · دخول آمن بالكود المخصص للطالب</div>
+</main>
+<script>
+const API='https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code';
+const KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
+const $=id=>document.getElementById(id), form=$('form'), input=$('code'), submit=$('submit'), status=$('status'), reviews=$('reviews');
+const reviewInfo={
+ 'november-review-grade4':{grade:4,title:'مراجعة شهر نوفمبر — الصف الرابع الابتدائي',fr:'Révision de novembre — 4e primaire'},
+ 'november-review-grade6':{grade:6,title:'مراجعة شهر نوفمبر — الصف السادس الابتدائي',fr:'Révision de novembre — 6e primaire'},
+ 'november-review-grade7':{grade:7,title:'مراجعة شهر نوفمبر — الصف الأول الإعدادي',fr:'Révision de novembre — 1re préparatoire'},
+ 'november-review-grade8':{grade:8,title:'مراجعة شهر نوفمبر — الصف الثاني الإعدادي',fr:'Révision de novembre — 2e préparatoire'}
+};
+function say(t,ok=false){status.textContent=t;status.className='status'+(ok?' ok':'')}
+function deviceId(){let id=localStorage.getItem('hm_student_browser_id');if(!id){id=crypto.randomUUID?crypto.randomUUID():'web-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('hm_student_browser_id',id)}return id}
+function normalize(v){return String(v||'').normalize('NFKC').replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/g,'').replace(/[\u2010-\u2015\u2212]/g,'-').replace(/[\s\u00A0]+/g,'').toUpperCase()}
+function showReviews(name,ids){
+ form.classList.add('hidden');$('heading').textContent='مرحبًا '+(name||'بك');$('intro').textContent='دي مراجعات نوفمبر المتاحة لك حسب الكود الخاص بك.';reviews.classList.remove('hidden');reviews.innerHTML='';
+ ids.forEach(id=>{const r=reviewInfo[id];if(!r)return;const a=document.createElement('a');a.className='review';a.href='student.html?lesson='+encodeURIComponent(id)+'&grade='+r.grade+'&student=1&v=20261123-unified-private-portal';a.innerHTML='<span></span><small></small>';a.querySelector('span').textContent=r.title;a.querySelector('small').textContent=r.fr;reviews.appendChild(a)});
+ if(ids.length===1){say('تم التحقق بنجاح. افتح المراجعة المخصصة لك بالأسفل.',true)}
+ if(!reviews.children.length){say('الكود صحيح، لكن لا توجد مراجعة نوفمبر مخصصة لهذا الحساب. تواصل مع الإدارة.');form.classList.remove('hidden')}
+}
+form.addEventListener('submit',async e=>{
+ e.preventDefault();const code=normalize(input.value);if(!code){say('اكتب كود الطالب أولًا.');return}input.value=code;submit.disabled=true;say('جارٍ التحقق من الكود…');
+ try{
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);let res;
+  try{res=await fetch(API,{method:'POST',mode:'cors',cache:'no-store',headers:{'Content-Type':'application/json','apikey':KEY,'Accept':'application/json'},body:JSON.stringify({p_code:code,p_device_id:deviceId(),p_lesson_id:null}),signal:controller.signal})}finally{clearTimeout(timer)}
+  const raw=await res.text();let data={};try{data=JSON.parse(raw||'{}')}catch(_){}
+  if(!res.ok||!data.ok){const er=data.error;say(er==='expired'?'انتهت صلاحية الكود.':er==='device_mismatch'?'هذا الكود مرتبط بجهاز آخر.':er==='lookup_failed'?'تعذر الوصول إلى بيانات الطالب الآن.':er==='device_bind_failed'?'تعذر ربط الكود بهذا الجهاز.':'كود الطالب غير صحيح أو غير مفعل.');submit.disabled=false;return}
+  localStorage.setItem('hm_student_code',code);localStorage.setItem('hm_student_verified_lesson','');localStorage.setItem('hm_student_verified_at',String(Date.now()));if(data.student_name)localStorage.setItem('hm_student_name',data.student_name);
+  const ids=[...new Set((Array.isArray(data.allowed_lessons)?data.allowed_lessons:[]).map(String).filter(id=>Object.prototype.hasOwnProperty.call(reviewInfo,id)))];
+  if(!ids.length){say('الكود صحيح، لكن لا توجد مراجعة نوفمبر مخصصة لهذا الحساب. تواصل مع الإدارة.');submit.disabled=false;return}
+  showReviews(data.student_name||'الطالب',ids);
+ }catch(err){say(err?.name==='AbortError'?'استغرق التحقق أكثر من 10 ثوانٍ. حاول مرة أخرى.':'تعذر الاتصال بخدمة التحقق. حاول مرة أخرى.')}
+ submit.disabled=false;
+});
+</script></body></html>
