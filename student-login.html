@@ -315,6 +315,24 @@ async function validate(code,silent=false,requestedLesson=''){
       return;
     }
     if(!Array.isArray(data.allowed_lessons)){ msg('تم التحقق من الكود، لكن لم تصل قائمة الدروس من الخادم.'); enter.disabled=false; return; }
+    // A direct November-review link returns here after code entry. Open the
+    // student's assigned November review through the same canonical lesson router.
+    if(params.get('return')==='november'){
+      const novemberIds=data.allowed_lessons.filter(id=>/^november-review-grade(4|6|7|8)$/i.test(String(id)));
+      if(novemberIds.length===1){
+        location.replace(lessonUrl(novemberIds[0]));
+        enter.disabled=false;
+        return;
+      }
+      if(novemberIds.length>1){
+        showLessons(data.student_name||'الطالب',novemberIds);
+        enter.disabled=false;
+        return;
+      }
+      msg('الكود صحيح، لكن لا توجد مراجعة نوفمبر مخصصة لهذا الحساب. راجع قائمة الدروس المتاحة أو تواصل مع الإدارة.');
+      enter.disabled=false;
+      return;
+    }
     // Always display the full authorized lesson list, even when only one lesson
     // is currently assigned or a previous lesson was opened on this device.
     showLessons(data.student_name||'الطالب',data.allowed_lessons);
