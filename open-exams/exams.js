@@ -2,7 +2,30 @@ const exams = [
 {id:"p6",title:"السادس الابتدائي",curriculum:"Français pour vous",questions:[
 ["« الدباسة »",["la colle","l'agrafeuse","le correcteur"],1],["« الصمغ »",["la gomme","la règle","la colle"],2],["« قلم الرصاص »",["le stylo","le crayon","le feutre"],1],["Elle dessine avec …",["la colle","un feutre","l'agrafeuse"],1],["… feutre est rouge.",["Cette","Ce","Cet"],1],["Je lis … livre.",["ces","cet","ce"],2],["Nous … au marché.",["allons","vont","allez"],0],["Tu … content.",["suis","es","est"],1],["Nous … une colle.",["ont","avez","avons"],2],["Ils … à la piscine.",["vont","va","allons"],0],["Je … un feutre.",["choisis","choisit","choisissons"],0],["Nous … le travail.",["finis","finissons","finissez"],1],["Elles … les feuilles.",["colle","collons","collent"],2],["Il … un arbre.",["dessine","dessines","dessinent"],0],["Tu … les mots.",["souligne","soulignes","soulignez"],1],["Demain, je … jouer.",["vais","vas","vont"],0],["Elle va … une pomme.",["manger","mange","manges"],0],["Ils … chanter bientôt.",["va","vont","allez"],1],["Vous … danser.",["allez","allons","vas"],0],["Il … boit pas de lait.",["ne","n'","pas"],0],["Nous … achetons pas de pain.",["ne","n'","pas"],1],["Elle n'a pas … ordinateur.",["un","de","d'"],2],["Elle ne va pas … la leçon.",["écrit","écrire","écris"],1],
 ["Cette crayon est long.",["Cet","Ce","Ces"],1],["Ce agrafeuse est neuve.",["Cette","Cet","Ces"],0],["Ces cahier est propre.",["Cet","Cette","Ce"],2],["Nous allez manger.",["allons","vont","va"],0],["Ils va jouer demain.",["vais","vont","allons"],1],["Je vais choisis un livre.",["choisit","choisissons","choisir"],2],["Elle ne boit pas de la limonade.",["du","des","de"],2],["Nous n'avons pas des livres.",["un","de","du"],1],["Vous choisons un livre.",["choisis","choisissons","choisissez"],2],
-["Demain, nous … jouer.",["allons","vont","va"],0],["Il va … le livre.",["lire","lit","lis"],0],["Elles … arriver bientôt.",["va","vont","allez"],1],["Tu … être content.",["vas","va","vais"],0],["Je ne vais pas … ce stylo.",["acheter","achète","achetons"],0]
+["Demain, nous … jouer.",["allons","vont","va"],0],["Il va … le livre.",["lire","lit","lis"],0],["Elles … arriver bientôt.",["va","vont","allez"],1],["Tu … être content.",["vas","va","vais"],0],["Je ne vais pas … ce stylo.",["acheter","achète","achetons"],0],
+["« يلصق » =",["coller","effacer","souligner"],0],
+["« يمحو » =",["dessiner","grouper","effacer"],2],
+["Choisis le mot différent :",["le crayon","le raisin","le stylo","le feutre"],1],
+["Choisis le mot différent :",["la viande","le fromage","le sel","la colle"],3],
+["Choisis le mot différent :",["lire","écrire","la carotte","dessiner"],2],
+["Sur mon bureau, il y a …",["du lait","un citron","un ordinateur"],2],
+["Au marché, j'achète …",["une règle","des carottes","un cahier"],1],
+["Où sont l'ordinateur et le cahier ?",["Sur le bureau de Karim.","Dans l'armoire.","Au marché."],0],
+["Karim a … crayons.",["un","deux","trois"],1],
+["Karim n'a pas de …",["cahier","crayon","colle"],2],
+["Qui va acheter de la colle ?",["Son père.","Sa sœur.","Karim."],0],
+["… aubergine est noire.",["Cet","Ce","Cette"],2],
+["… œufs sont blancs.",["Ces","Cet","Cette"],0],
+["… argent est à moi.",["Ce","Cet","Cette"],1],
+["… orange est grande.",["Cet","Cette","Ces"],1],
+["… agrafeuse.",["Le","La","L'"],2],
+["Je mange … salade.",["de la","du","des"],0],
+["Elle prend … eau.",["du","de l'","de la"],1],
+["Il ne mange pas … viande.",["de la","la","de"],2],
+["Ce n'est pas … gomme.",["une","de","d'"],0],
+["… école est grande.",["Cet","Cette","Ces"],1],
+["… livres sont neufs.",["Ces","Ce","Cet"],0],
+["… colle est blanche.",["Ce","Cet","Cette"],2]
 ]},
 {id:"p4",title:"الرابع الابتدائي",curriculum:"Français pour vous",questions:[
 ["4:00",["Il est quatre heures et demie.","Il est quatre heure.","Il est quatre heures."],2],
@@ -51,7 +74,17 @@ const exams = [
 ["… oreille.",["mon","mes","ta"],0],
 ["Il a … menton.",["sa","son","ses"],1],
 ["J'ai … dents.",["des","une","le"],0],
-["Tu as … nez.",["tes","ton","mon"],1]
+["Tu as … nez.",["tes","ton","mon"],1],
+["« 12:30 (midi) »",["Il est midi et demi.","Il est midi et demie.","Il est minuit et demi."],0],
+["« 6:00 »",["Il est six heures.","Il est six heure.","Il est six heures et demie."],0],
+["« 7:30 »",["Il est sept heures et demie.","Il est sept heures et quart.","Il est huit heures moins le quart."],0],
+["« 3:15 »",["Il est trois heures et quart.","Il est trois heures et demie.","Il est quatre heures moins le quart."],0],
+["« الجبهة » =",["le front","le menton","le nez"],0],
+["« الأذن » =",["la bouche","l'oreille","les dents"],1],
+["Le pluriel de « un œil » est :",["des œils","des yeux","des œilles"],1],
+["Le contraire de « devant » est :",["derrière","sur","entre"],0],
+["« Le quart » veut dire :",["15 minutes","30 minutes","45 minutes"],0],
+["Le pluriel de « un cheveu » est :",["des cheveus","des cheveux","des cheveaux"],1]
 ]},
 {id:"p5",title:"الخامس الابتدائي",curriculum:"Français pour vous",questions:[
 ["7:00",["Il est sept heures et demie.","Il est sept heure.","Il est sept heures."],2],["3:15",["Il est trois heures et quart.","Il est quatre heures moins le quart.","Il est trois heures et demie."],0],["5:30",["Il est cinq heures et quart.","Il est cinq heures et demie.","Il est six heures moins le quart."],1],["7:45",["Il est sept heures et quart.","Il est huit heures moins le quart.","Il est sept heures moins le quart."],1],["« midi »",["12:00 ظهراً","12:00 منتصف الليل","1:00"],0],["Il est onze …",["heure","heures","minuit"],1],["« الشتاء »",["l'hiver","l'été","l'automne"],0],["« الخريف »",["le printemps","l'automne","l'été"],1],["En été, le soleil …",["tombe","souffle","brille"],2],["Les vents …",["soufflent","tombent","brillent"],0],["La neige …",["tombe","brille","souffle"],0],["En automne, les feuilles sont …",["vertes","bleues","jaunes"],2],["Au printemps, le ciel est …",["gris","jaune","bleu"],2],["« الفم »",["la bouche","le nez","le menton"],0],["« الجبهة »",["les cils","le front","les dents"],1],["« العينان »",["les yeux","les oreilles","les cheveux"],0],["Nous … le ciel.",["regardons","regardez","regardent"],0],["Il … une chanson.",["chantes","chante","chantent"],1],["Elles … la voiture.",["lavent","laves","lavons"],0],["Tu … dans le jardin.",["marche","marches","marchez"],1],["Je … la maîtresse.",["écoutes","écoute","écoutent"],1],["Vous … au ballon.",["jouez","jouons","jouent"],0],["Il … à sa mère.",["parlent","parle","parles"],1],["Nous … la musique.",["aime","aimez","aimons"],2],["Il est sept heures … le quart. (6:45)",["moins","et","demie"],0],["Il est midi … (12:30)",["et demie","et demi","moins demi"],1],["8:30 → Il est huit heures …",["et demie","et demi","moins le quart"],0],["Il est six …",["heure","heures","minuit"],1],
@@ -64,11 +97,35 @@ const exams = [
 ["Hana a …",["douze ans","dix ans","neuf ans"],1],
 ["Dans le sac à dos de Hana, il y a …",["une règle et deux stylos","un cahier et un livre","une gomme"],1],
 ["Dans la trousse, il y a …",["un livre","un cahier","une règle et deux stylos"],2],["Elles … une trousse.",["a","as","ont"],2],["Nous … huit ans.",["avons","avez","ont"],0],["J'… un crayon.",["as","a","ai"],2],["Karim … une sœur.",["ont","a","avez"],1],["Vous … des cahiers.",["avons","as","avez"],2],["Ils … froid.",["a","ont","as"],1],["Vous … soif.",["avez","avons","ont"],0],["Sara a … photo.",["un","une","des"],1],["Ce sont … chaises.",["une","un","des"],2],["Il y a … fenêtre dans la classe.",["des","une","un"],1],["Omar a … frère.",["un","une","des"],0],["Dans la classe, il y a … tables.",["une","des","un"],1],["Hana et Sara ont dix ans. → … ont dix ans.",["Ils","Elles","Elle"],1],["Omar et Youssef ont neuf ans. → …",["Ils","Elles","Il"],0],["Sara a six ans. → …",["Elle","Ils","Elles"],0],["J'… à Ismaïlia.",["habites","habite","habitons"],1],["Vous … au restaurant.",["mangez","mange","mangeons"],0],["Ils … la musique.",["aime","aimons","aiment"],2],["Ils … à l'école.",["est","sont","êtes"],1],
-["Rana est dix ans.",["a","ont","as"],0],["J'ai cinq an.",["ans","âge","année"],0],["Elle a quelle âge ?",["quels","quel","quelles"],1],["J'ai un lettre.",["des","une","le"],1],["Ce sont des cahier.",["cahiers","cahiere","cahieux"],0],["Tu ont une règle.",["a","avons","as"],2],["Elles a huit ans.",["ont","as","avons"],0],["Vous as un livre.",["avez","avons","ont"],0],["Nous habitent à Ismaïlia.",["habite","habitons","habitez"],1],["Elle m'appelle Marie.",["s'appelle","t'appelles","s'appellent"],0],["C'est un porte.",["une","des","le"],0]
+["Rana est dix ans.",["a","ont","as"],0],["J'ai cinq an.",["ans","âge","année"],0],["Elle a quelle âge ?",["quels","quel","quelles"],1],["J'ai un lettre.",["des","une","le"],1],["Ce sont des cahier.",["cahiers","cahiere","cahieux"],0],["Tu ont une règle.",["a","avons","as"],2],["Elles a huit ans.",["ont","as","avons"],0],["Vous as un livre.",["avez","avons","ont"],0],["Nous habitent à Ismaïlia.",["habite","habitons","habitez"],1],["Elle m'appelle Marie.",["s'appelle","t'appelles","s'appellent"],0],["C'est un porte.",["une","des","le"],0],
+["« في » =",["dans","sous","sur"],0],
+["Quel mot n'est pas dans la trousse ?",["une gomme","un crayon","un banc","un stylo"],2],
+["Quel mot est différent ?",["cinq","huit","porte","onze"],2],
+["Il … Ali. (s'appeler)",["m'appelle","t'appelles","s'appelle"],2],
+["Ce sont des …",["cahier","cahiers","cahiere"],1],
+["Tu … une règle.",["a","avons","as"],2],
+["Elles … huit ans.",["ont","as","avons"],0],
+["Vous … un livre.",["avez","avons","ont"],0],
+["Nous … à Ismaïlia.",["habite","habitons","habitez"],1],
+["Le pluriel de « un tableau » est :",["des tableaus","des tableaux","des tableau"],1]
 ]},
 {id:"g8",title:"الثاني الإعدادي",curriculum:"Français Simple 2",questions:[
 ["« ستارة »",["un tapis","un miroir","un rideau"],2],["« نجفة »",["un réveil","un coussin","un lustre"],2],["« منبه »",["une horloge","un réveil","un matelas"],1],["Chasse l'intrus :",["le lit","la baignoire","le matelas","l'oreiller"],1],["Chasse l'intrus :",["le médecin","l'avocat","le pilote","le tapis"],3],["Chasse l'intrus :",["le réfrigérateur","le lavabo","la douche","le miroir"],0],["Chasse l'intrus :",["l'école","le club","le canapé","le musée"],2],["Le féminin de « un coiffeur » est :",["une coiffeur","une coiffeure","une coiffeuse"],2],["Le féminin de « un mécanicien » est :",["une mécanicienne","une mécaniciene","une mécanicien"],0],["Ma tante est …",["un bon avocat","une bon avocate","une bonne avocate"],2],["Qu'est-ce qu'il y a dans la cuisine ?",["une douche et un lavabo","un évier et une cuisinière","un lit et un tapis"],1],["Karim a …",["douze ans","treize ans","quatorze ans"],0],["Dans la maison, il y a … chambres.",["deux","quatre","trois"],2],["Que fait la mère de Karim ?",["pharmacienne","professeure","avocate"],1],["Où est le garage ?",["dans la cuisine","devant la maison","derrière la maison"],1],["Nous … douze ans.",["sommes","avez","avons"],2],["Les élèves … dans la cour.",["est","sont","ont"],1],["Mes cousines … un exercice.",["font","fait","faisons"],0],["Vous … à la maison ?",["sont","sommes","êtes"],2],["Elle … un chat.",["ont","a","avons"],1],["Nous … le football.",["aime","aimons","aimez"],1],["Elle … les devoirs.",["détestent","détestes","déteste"],2],["… des tapis dans la chambre.",["C'est","Ce sont","Il y a"],2],["… des rideaux.",["Il y a","C'est","Ce sont"],2],["« … ? — Ce sont mes amis. »",["Qu'est-ce que c'est ?","Qui est-ce ?","Quel âge as-tu ?"],1],["« … ? — C'est un tapis. »",["Qu'est-ce que c'est ?","Qui est-ce ?","Où est le tapis ?"],0],["Le parc est … le musée et la gare.",["entre","sur","sous"],0],["La cuisine est à côté … salon.",["du","de la","des"],0],["Le cinéma est loin … école.",["du","de la","de l'"],2],["« à droite de » ≠ …",["devant","entre","à gauche de"],2],
-["Ma mère sont professeure.",["a","ont","est"],2],["Mes amis est au stade.",["sont","ont","suis"],0],["Tu ai douze ans.",["a","as","avez"],1],["Les élèves fait un exercice.",["faisons","font","faites"],1],["Mon frère est treize ans.",["ai","a","sont"],1],["Le musée est à gauche du école.",["de l'","de la","des"],0],["On mangent dans la salle à manger.",["manges","mange","mangeons"],1],["« Un matelas » =",["مرتبة","مخدة","سرير"],0],["« Un coussin » =",["ستارة","وسادة","مرآة"],1],["« Une horloge » =",["ساعة حائط","منبه","نجفة"],0],["Ma sœur … treize ans.",["est","a","sont"],1],["Le contraire de « devant » est :",["sur","derrière","entre"],1],["Nous nous … dans la salle de bains.",["douchez","douchons","douche"],1]
+["Ma mère sont professeure.",["a","ont","est"],2],["Mes amis est au stade.",["sont","ont","suis"],0],["Tu ai douze ans.",["a","as","avez"],1],["Les élèves fait un exercice.",["faisons","font","faites"],1],["Mon frère est treize ans.",["ai","a","sont"],1],["Le musée est à gauche du école.",["de l'","de la","des"],0],["On mangent dans la salle à manger.",["manges","mange","mangeons"],1],["« Un matelas » =",["مرتبة","مخدة","سرير"],0],["« Un coussin » =",["ستارة","وسادة","مرآة"],1],["« Une horloge » =",["ساعة حائط","منبه","نجفة"],0],["Ma sœur … treize ans.",["est","a","sont"],1],["Le contraire de « devant » est :",["sur","derrière","entre"],1],["Nous nous … dans la salle de bains.",["douchez","douchons","douche"],1],
+["Quel mot ne change pas au féminin ?",["infirmier","chanteur","policier","dentiste"],3],
+["Quelle phrase est correcte ?",["C'est dentiste.","Elle est dentiste.","Elle est une dentiste."],1],
+["Où est la banque ?",["Elle est une banque.","Il y a la poste.","Elle est entre la poste et le musée."],2],
+["Nous nous … à minuit.",["couchez","couchons","couche"],1],
+["Elles se … dans la salle de bains.",["douche","douchons","douchent"],2],
+["Tu te … dans le salon.",["repose","reposes","reposez"],1],
+["On … la porte.",["ouvrent","ouvrons","ouvre"],2],
+["Je … le vase sur la table.",["mets","met","mettent"],0],
+["… âge as-tu ?",["Quelle","Quels","Quel"],2],
+["À … heure ouvre la banque ?",["quel","quelle","quelles"],1],
+["Le pluriel de « un canapé » est :",["des canapeaux","des canapé","des canapés"],2],
+["Ils habitent dans … maison.",["leurs","leur","son"],1],
+["Tu regardes … cahiers.",["tes","ta","ton"],0],
+["Le contraire de « près de » est :",["loin de","à côté de","devant"],0]
 ]}
 ];
 const $=id=>document.getElementById(id);let selected=null,index=0,answers=[],name="";
