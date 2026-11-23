@@ -157,9 +157,10 @@ const reviewGradeByLesson={"november-review-grade4":4,"november-review-grade6":6
 const routeLesson=pageParams.get("lesson")||pageParams.get("id")||"";
 const studentGrade=Number(pageParams.get("grade")||0);
 const expectedStudentGrade=reviewGradeByLesson[routeLesson]||0;
-const studentExamId=studentMode&&studentGrade===expectedStudentGrade?({4:"p4",6:"p6",7:"g7",8:"g8"})[studentGrade]||"":"";
+const gradeExamIds={4:"p4",6:"p6",7:"g7",8:"g8"};
+let studentExamIds=studentMode&&studentGrade===expectedStudentGrade&&gradeExamIds[studentGrade]?[gradeExamIds[studentGrade]]:[];
 function renderGrades(){
- const available=studentMode?exams.filter(e=>e.id===studentExamId):exams.filter(e=>e.id!=="p4");
+ const available=studentMode?exams.filter(e=>studentExamIds.includes(e.id)):exams.filter(e=>e.id!=="p4");
  $("grades").innerHTML=available.map(e=>{const i=exams.indexOf(e);return '<button class="grade" data-i="'+i+'"><strong>'+e.title+'</strong><small>'+e.curriculum+' · مراجعة شهر نوفمبر</small><span class="badge">'+e.questions.length+' سؤالاً تدريبياً</span></button>';}).join("");
  document.querySelectorAll(".grade").forEach(b=>b.onclick=()=>selectExam(+b.dataset.i));
  if(studentMode){
@@ -169,12 +170,31 @@ function renderGrades(){
    const label=document.querySelector('label[for="studentName"]');
    if(label)label.textContent="اسم الطالب";
    if(available.length)selectExam(exams.indexOf(available[0]));
-   else $("examInfo").textContent="لا توجد مراجعة مطابقة لهذا الصف.";
+   else {$("examInfo").textContent="لا توجد مراجعة نوفمبر مخصصة لهذا الحساب، أو تعذر تحميل قائمة المراجعات. ارجع إلى صفحة دخول الطالب واختر مراجعة نوفمبر من قائمة دروسك.";}
  }
+}
+async function loadStudentNovemberAccess(){
+ if(!studentMode||studentExamIds.length)return;
+ const code=(localStorage.getItem("hm_student_code")||"").trim();
+ const device=(localStorage.getItem("hm_student_browser_id")||"").trim();
+ if(!code||!device){renderGrades();return;}
+ try{
+  const response=await fetch("https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code",{
+   method:"POST",mode:"cors",cache:"no-store",
+   headers:{"Content-Type":"application/json","apikey":"sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV","Accept":"application/json"},
+   body:JSON.stringify({p_code:code,p_device_id:device,p_lesson_id:null})
+  });
+  const data=await response.json();
+  if(response.ok&&data&&data.ok&&Array.isArray(data.allowed_lessons)){
+   const allowed=new Set(data.allowed_lessons.map(String));
+   studentExamIds=Object.entries(reviewGradeByLesson).filter(([lesson])=>allowed.has(lesson)).map(([,grade])=>gradeExamIds[grade]).filter(Boolean);
+  }
+ }catch(error){console.warn("تعذر تحميل مراجعات الطالب:",error);}
+ renderGrades();
 }
 function selectExam(i){selected=exams[i];$("examTitle").textContent=selected.title+" — مراجعة نوفمبر";$("examInfo").textContent=selected.curriculum+" · "+selected.questions.length+" سؤالاً. اختر الإجابة الأنسب لكل سؤال.";show("intro");}
 $("backHome").onclick=()=>show("home");$("start").onclick=()=>{name=$("studentName").value.trim();answers=Array(selected.questions.length).fill(null);index=0;renderQuestion();show("quiz");};
 function renderQuestion(){let q=selected.questions[index];$("quizTitle").textContent=selected.title;$("counter").textContent="السؤال "+(index+1)+" من "+selected.questions.length;$("bar").style.width=((index+1)/selected.questions.length*100)+"%";const questionDir=/[\u0600-\u06FF]/.test(q[0])?"rtl":"ltr";const readingContext=(selected.id==="p6"&&index>=46&&index<=49)?'<div class="reading-context" dir="ltr"><strong>Lis le texte, puis réponds :</strong><br>Karim a un bureau. Sur son bureau, il y a un ordinateur, un cahier et deux crayons. Karim n’a pas de colle. Demain, son père va acheter de la colle.</div>':(selected.id==="g7"&&index>=10&&index<=13)?'<div class="reading-context" dir="ltr"><strong>Lis le texte, puis réponds :</strong><br>Sami est un garçon. Il a douze ans. Il a une sœur, Hana. Hana a dix ans. Dans le sac à dos de Hana, il y a un cahier et un livre. Dans la trousse, il y a une règle et deux stylos.</div>':(selected.id==="g8"&&index>=11&&index<=14)?'<div class="reading-context" dir="ltr"><strong>Lis le document :</strong><br>Je m\'appelle Karim. J\'ai douze ans. J\'habite dans une grande maison. Dans la maison, il y a trois chambres, un salon et une cuisine. Mon père est médecin. Ma mère est professeure. Le garage est devant la maison.</div>':"";$("questions").innerHTML='<article class="q">'+readingContext+'<h3 class="question-text '+questionDir+'" dir="'+questionDir+'"><bdi dir="'+questionDir+'">'+(index+1)+'. '+q[0]+'</bdi></h3><div class="opts">'+q[1].map((o,j)=>'<label class="opt"><input type="radio" name="answer" value="'+j+'" '+(answers[index]===j?"checked":"")+'> <span dir="auto">'+String.fromCharCode(65+j)+') '+o+'</span></label>').join("")+'</div></article>';$("prev").classList.toggle("hidden",index===0);$("next").classList.toggle("hidden",index===selected.questions.length-1);$("finish").classList.toggle("hidden",index!==selected.questions.length-1);document.querySelectorAll('input[name="answer"]').forEach(x=>x.onchange=()=>answers[index]=+x.value);}
 $("prev").onclick=()=>{index--;renderQuestion();};$("next").onclick=()=>{index++;renderQuestion();};
 $("finish").onclick=()=>{let score=0;selected.questions.forEach((q,i)=>{if(answers[i]===q[2])score++;});$("score").textContent=score+" / "+selected.questions.length;$("resultText").textContent=(name?name+"، ":"")+"أجبت إجابة صحيحة عن "+score+" سؤالاً من "+selected.questions.length+" ("+Math.round(score/selected.questions.length*100)+"%).";$("review").innerHTML="<h3>مراجعة الإجابات</h3>"+selected.questions.map((q,i)=>'<p><bdi class="q-number" dir="ltr">'+(i+1)+'.</bdi> <strong class="review-question" dir="auto">'+q[0]+'</strong><br><span class="'+(answers[i]===q[2]?"correct":"wrong")+'">'+(answers[i]===q[2]?"إجابة صحيحة":"إجابتك: "+(answers[i]===null?"لم تجب":q[1][answers[i]]))+'</span> · الإجابة الصحيحة: <strong dir="auto">'+q[1][q[2]]+"</strong></p>").join("");show("result");window.scrollTo({top:0,behavior:"smooth"});};
-$("retry").onclick=()=>{answers=Array(selected.questions.length).fill(null);index=0;renderQuestion();show("quiz");window.scrollTo(0,0);};$("chooseAgain").onclick=()=>{show("home");window.scrollTo(0,0);};renderGrades();
+$("retry").onclick=()=>{answers=Array(selected.questions.length).fill(null);index=0;renderQuestion();show("quiz");window.scrollTo(0,0);};$("chooseAgain").onclick=()=>{show("home");window.scrollTo(0,0);};if(studentMode)loadStudentNovemberAccess();else renderGrades();
