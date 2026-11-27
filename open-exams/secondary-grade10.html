@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14264a">
+<title>مراجعة نوفمبر — الأول الثانوي | HM Academy</title>
+<link rel="icon" href="../assets/images/hm-academy-favicon.svg">
+<style>
+:root{--navy:#14264a;--blue:#2456a6;--gold:#d6a84f;--ink:#1c2940;--muted:#718096;--bg:#f3f6fb;--line:#e1e8f2;--green:#087443;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#f4f7fc,#f8f5ee);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
+header{background:linear-gradient(115deg,#14264a,#214e91);color:#fff;padding:22px 15px 26px;text-align:center;border-bottom:4px solid var(--gold)}
+.brand{font-size:13px;letter-spacing:2px;color:#dce7fa;font-weight:bold}h1{font-size:clamp(23px,5vw,34px);margin:12px 0 6px}.subtitle{margin:0;color:#e1eaf9;line-height:1.8}
+main{max-width:920px;margin:22px auto;padding:0 13px 45px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(16px,3vw,24px);box-shadow:0 14px 40px #14264a0c;margin-bottom:14px}
+.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:13px}.progress{height:8px;background:#edf1f7;border-radius:20px;overflow:hidden;margin:13px 0 20px}.progress span{display:block;height:100%;background:var(--gold);width:0}
+.section{background:#edf3ff;color:#204d8b;border-radius:10px;padding:9px 12px;font-weight:bold;margin:20px 0 8px}.reading{direction:ltr;text-align:left;white-space:pre-line;background:#f4f7fb;border:1px solid var(--line);border-radius:12px;padding:14px;line-height:1.9;margin:10px 0}
+.q{padding:16px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.q h3{font-size:16px;line-height:1.9;margin:0 0 10px}.opts{display:grid;gap:8px}.opt{display:flex;gap:9px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:11px;cursor:pointer;line-height:1.7}.opt:has(input:checked){background:#eef4ff;border-color:#8ba9df}.opt input{margin-top:5px;accent-color:var(--blue)}
+.feedback{display:none;margin-top:10px;border-radius:11px;padding:12px;line-height:1.8;font-size:13px}.feedback.show{display:block}.feedback.good{background:#ecfdf3;color:#05603a;border:1px solid #abefc6}.feedback.bad{background:#fff1f2;color:#9f1c1c;border:1px solid #fecdd3}.explain{display:block;margin-top:5px}
+button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:12px 17px;font-weight:bold}.primary{background:var(--blue);color:#fff}.secondary{background:#edf2f8;color:var(--navy)}.actions{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:18px}.hidden{display:none!important}
+.score{text-align:center;font-size:44px;color:var(--blue);font-weight:900;margin:12px}.note{background:#fff8e8;border:1px solid #f0dfb8;border-radius:12px;padding:12px;color:#72551b;line-height:1.8;font-size:13px;margin-top:13px}
+.write{direction:ltr;text-align:left;line-height:1.8;background:#f8fafc;padding:13px;border-radius:10px;margin:9px 0}.write h3{direction:rtl;text-align:right}.write p{margin:5px 0}
+@media(max-width:600px){.topline{align-items:flex-start;flex-direction:column}.actions button{flex:1}}
+</style></head>
+<body>
+<header><div class="brand">HM ACADEMY · FRANÇAIS</div><h1>مراجعة مقرر شهر نوفمبر</h1><p class="subtitle">اللغة الفرنسية — الصف الأول الثانوي · الفصل الدراسي الأول</p></header>
+<main>
+<section id="loading" class="panel">جارٍ التحقق من كود الطالب…</section>
+<section id="intro" class="panel hidden"><h2>مرحبًا <span id="student"></span> 👋</h2><p>مراجعة تفاعلية مبنية على ملف مراجعة نوفمبر المرفوع. ستظهر لك الإجابة الصحيحة وشرحها بعد كل اختيار، مع توضيح سبب الخطأ عند الإجابة غير الصحيحة.</p><p><b id="total"></b> · الأسئلة غير مكررة.</p><button id="begin" class="primary">ابدأ المراجعة</button></section>
+<section id="quiz" class="panel hidden"><div class="topline"><b id="sectionTitle">Compréhension · Lexique · Grammaire</b><span id="counter"></span></div><div class="progress"><span id="bar"></span></div><div id="question"></div><div class="actions"><button id="prev" class="secondary">السابق</button><button id="next" class="primary">السؤال التالي</button><button id="finish" class="primary hidden">إنهاء المراجعة</button></div></section>
+<section id="result" class="panel hidden"><h2 style="text-align:center">نتيجة المراجعة</h2><div id="score" class="score"></div><p id="summary" style="text-align:center;line-height:1.8"></p><div class="actions" style="justify-content:center"><button id="retry" class="primary">إعادة المراجعة</button><button id="logout" class="secondary">تسجيل الخروج</button></div><div class="note">تذكّر: الهدف من المراجعة فهم سبب الإجابة، وليس حفظ الاختيار فقط.</div></section>
+<section class="panel"><h2>Production écrite — نماذج استرشادية</h2><p>هذه الموضوعات موجودة في نهاية الملف. راجعها واكتب إجاباتك بنفسك؛ لا تُحسب ضمن الدرجة الآلية.</p>
+<div class="write"><h3>1) Présente-toi (nom – âge – ville – goûts)</h3><p>Je m’appelle Ali. J’ai quinze ans. J’habite au Caire. J’aime le français et le basket.</p></div>
+<div class="write"><h3>2) Décris ton sac à dos (taille – couleur – fournitures)</h3><p>Mon sac à dos est grand et bleu. J’ai trois cahiers, deux livres, une trousse et une règle.</p></div>
+<div class="write"><h3>3) Réponds au mail : Tu t’appelles comment ? Tu habites où ?</h3><p>Je m’appelle Omar. J’habite à Alexandrie.</p></div>
+<div class="write"><h3>4) Fais une liste : anniversaire de quatre camarades (nom – date)</h3><p>Ahmed : le 5 janvier. Mona : le 17 mars. Ali : le 2 juin. Salma : le 10 septembre.</p></div>
+<div class="write"><h3>5) Où habitent tes copains ? Comment sont-ils ?</h3><p>Mes copains habitent au Caire. Ils sont gentils et sociables.</p></div>
+<div class="write"><h3>6) Décris tes fournitures scolaires (couleur – nombre)</h3><p>J’ai deux stylos bleus, trois cahiers rouges, une règle verte et une gomme blanche.</p></div>
+<div class="note">النماذج السابقة أمثلة تدريبية توضيحية من مفردات وموضوعات الملف، ويمكن أن تختلف إجابة الطالب الصحيحة في الصياغة مع الحفاظ على المطلوب.</div>
+</section>
+</main>
+<script>
+const API='https://yvoprtjyxmurvcsaqsny.supabase.co/rest/v1/rpc/verify_student_access_code',KEY='sb_publishable_Z_2LUR4d22zrytwD4588FQ_ro_tc3BV';
+const $=id=>document.getElementById(id);
+function deviceId(){let x=localStorage.getItem('hm_student_browser_id');if(!x){x=crypto.randomUUID?crypto.randomUUID():'web-'+Date.now();localStorage.setItem('hm_student_browser_id',x)}return x}
+const sections=[
+{title:'Compréhension — Nour',text:"Salut tout le monde !\nJe m’appelle Nour. Je suis un garçon. J’ai 14 ans et demi. Mon anniversaire, c’est le 17 mars. J’aime le vert, mais je n’aime pas le violet. Je suis gentil et j’ai beaucoup d’amis.",qs:[
+["Nour présente qui dans le document ?",["Lui-même","Son ami","Sa sœur"],0,"« Je m’appelle Nour » : Nour se présente lui-même.","الاختيار الثاني أو الثالث يتحدث عن شخص آخر، بينما النص يبدأ بتقديم نور لنفسه."],
+["Quel âge a Nour ?",["Quatorze ans","Quatorze ans et demi","Quinze ans"],1,"النص يقول حرفيًا : « J’ai 14 ans et demi ».","14 ans فقط تحذف نصف السنة، و15 ans تزيد عمره عن المذكور."],
+["Quelle couleur Nour n’aime pas ?",["Le vert","Le bleu","Le violet"],2,"« Je n’aime pas le violet » تعني أنه لا يحب البنفسجي.","الأخضر هو اللون الذي يحبه، والأزرق غير مذكور."],
+["Comment est Nour ?",["Gentil","Bavard","Timide"],0,"« Je suis gentil » تصف نور بأنه طيب.","Bavard وTimide صفتان غير واردتين في النص."]
+]},
+{title:'Compréhension — Salma',text:"De : Salma\nÀ : Mona\nObjet : sac à dos\nJ’ai un sac à dos rouge. Dans mon sac, j’ai 4 cahiers, trois livres et une trousse noire. Dans la trousse, j’ai trois stylos, un crayon et une règle bleue. Je n’ai pas de feutres et de crayons de couleur car je déteste le dessin, mais j’adore la musique.",qs:[
+["Salma parle de quoi ?",["Son anniversaire","Son sac à dos et son contenu","Sa famille"],1,"عنوان الرسالة « sac à dos » ومحتواها يصف الحقيبة وما بداخلها.","الرسالة لا تتحدث عن عيد ميلاد أو الأسرة."],
+["Quelle est la couleur de la trousse ?",["Rouge","Bleue","Noire"],2,"« une trousse noire » أي مقلمة سوداء.","الأحمر لون الحقيبة، والأزرق لون المسطرة."],
+["Combien de cahiers a Salma ?",["Trois","Quatre","Cinq"],1,"« j’ai 4 cahiers » إذن لديها أربعة كراسات.","ثلاثة عدد الكتب، وليس الكراسات."],
+["Quelle activité Salma adore ?",["Le dessin","La lecture","La musique"],2,"« j’adore la musique » تعني أنها تحب الموسيقى جدًا.","هي تكره الرسم، والقراءة غير مذكورة."]
+]},
+{title:'Compréhension — Anas',text:"Salut Nicolas !\nJe m’appelle Anas, j’ai 15 ans. Je suis égyptien, j’habite au Caire. J’ai des amis français comme toi à l’école. J’aime beaucoup le basket et le dessin, mais je n’aime pas la lecture.\nÉcris-moi, qu’est-ce que tu aimes à l’école ?\nAnas",qs:[
+["Anas se présente à qui ?",["À Adam","À Nicolas","À Karim"],1,"الرسالة تبدأ بـ « Salut Nicolas ! » فهي موجهة إلى نيكولا.","Adam وKarim غير مذكورين كمستلم للرسالة."],
+["Quel âge a Anas ?",["Quatorze ans","Seize ans","Quinze ans"],2,"« j’ai 15 ans » أي عمره 15 سنة.","14 و16 لا يطابقان الرقم الوارد."],
+["Qu’est-ce qu’Anas aime ?",["Le basket et le dessin","La lecture et la musique","Le tennis et la lecture"],0,"النص يذكر أنه يحب كرة السلة والرسم، ولا يحب القراءة.","القراءة مرفوضة صراحةً في النص، والتنس والموسيقى غير مذكورين."],
+["Quelle est la nationalité de Nicolas ?",["Égyptien","Français","Le document ne le précise pas"],2,"النص يقول إن لأنس أصدقاء فرنسيين مثل نيكولا، لكنه لا يصرّح بجنسية نيكولا مباشرة.","لا يجوز الجزم بأنه مصري أو فرنسي اعتمادًا على صياغة « comme toi » وحدها؛ الجنسية المصرّح بها تخص أنس."]
+]},
+{title:'Compréhension — Yara',text:"Bonjour Adam,\nJ’ai un nouveau sac à dos. Il est grand et de couleur verte. Dans mon sac, j’ai 3 cahiers bleus, 2 livres rouges et une trousse rose. Dans ma trousse, il y a 4 stylos, une règle noire et une gomme blanche. J’ai aussi un kit d’artiste : des ciseaux, un tube de colle et des feutres. Moi, j’adore les activités manuelles. Mon frère Karim a quinze ans. Il est très sociable.\nÀ bientôt, Yara !",qs:[
+["Comment est le sac de Yara ?",["Petit","Grand","Rouge"],1,"« Il est grand » أي الحقيبة كبيرة.","النص يصفها بأنها كبيرة وخضراء، وليست صغيرة أو حمراء."],
+["Qu’est-ce qu’il y a dans la trousse ?",["Un tube de colle","Une règle noire","Un livre rouge"],1,"المقلمة تحتوي على مسطرة سوداء وأربعة أقلام وممحاة بيضاء.","أنبوب اللصق ضمن kit d’artiste، والكتاب الأحمر داخل الحقيبة."],
+["Combien de cahiers Yara a-t-elle ?",["Deux","Quatre","Trois"],2,"« 3 cahiers bleus » أي ثلاثة كراسات.","العدد اثنان يخص الكتب، وليس الكراسات."],
+["Quelle est la passion de Yara ?",["Les activités manuelles","Le sport","La musique"],0,"« j’adore les activités manuelles » أي تحب الأنشطة اليدوية.","الرياضة والموسيقى غير مذكورتين كهواية ليارا."],
+["Le sac de Yara est petit.",["Vrai","Faux"],1,"الحقيبة كبيرة « Il est grand »؛ إذن العبارة خطأ.","اختيار Vrai يناقض الوصف المباشر في النص."],
+["Yara a quatre stylos dans sa trousse.",["Vrai","Faux"],0,"« il y a 4 stylos »؛ إذن العبارة صحيحة.","اختيار Faux يخالف العدد المذكور صراحةً."],
+["Karim est timide.",["Vrai","Faux"],1,"Karim est « très sociable », أي اجتماعي جدًا، وليس خجولًا.","timide عكس sociable تقريبًا في هذا السياق."]
+]},
+{title:'Lexique et communication',qs:[
+["Tu demandes à ton ami d’identifier un objet. Qu’est-ce que tu dis ?",["Qu’est-ce que c’est ?","Comment tu t’appelles ?","Où habites-tu ?"],0,"السؤال « Qu’est-ce que c’est ? » يُستخدم للسؤال عن ماهية الشيء.","الاختيار الثاني يسأل عن الاسم، والثالث عن مكان السكن."],
+["Tu présentes une personne. Qu’est-ce que tu dis ?",["C’est une gomme.","Voici Nada, une copine.","J’ai quinze ans."],1,"« Voici Nada, une copine » تقدّم شخصًا للآخرين.","الأول يعرّف أداة، والثالث يذكر العمر."],
+["Tu décris ton sac à dos. Tu dis :",["Il est gourmand.","Il est grand.","Elle est timide."],1,"Il يعود على sac à dos، ويمكن وصف الحقيبة بالحجم « grand ».","gourmand صفة لشخص يأكل كثيرًا، وtimide تصف شخصًا مؤنثًا."],
+["Tu quittes ton ami. Tu dis :",["Bienvenue !","Enchanté !","À plus !"],2,"« À plus ! » تعبير غير رسمي عند الوداع.","Bienvenue للترحيب، وEnchanté عند التعارف."],
+["Tu arrives au club à 8 heures du soir. Tu dis :",["Bonjour !","Bonsoir !","Bonne nuit !"],1,"في المساء نقول « Bonsoir ».","Bonjour للصباح/النهار، وBonne nuit قبل النوم أو عند التوجه للنوم."],
+["Tu parles à ton professeur (une dame). Tu dis :",["Salut, madame !","Bonjour, madame !","Ciao, madame !"],1,"التحية المهذبة المناسبة للمعلمة هي « Bonjour, madame ! ».","Salut وCiao أقل رسمية ولا يناسبان مخاطبة المعلمة في هذا الموقف."],
+["Tu demandes poliment à ton professeur comment il va :",["Comment vas-tu ?","Comment allez-vous ?","Comment allez-tu ?"],1,"مع الأستاذ نستخدم صيغة الاحترام vous: « Comment allez-vous ? ».","vas-tu صيغة tu غير الرسمية، وallez-tu تركيب غير صحيح."],
+["Ton ami dit « Ça va ? ». Tu réponds :",["Ça va bien, merci. Et toi ?","Ça va bien, merci. Et tu ?","Ça va bien, merci. Et vous ?"],0,"مع صديق نستخدم toi في السؤال المقابل: « Et toi ? ».","Et tu غير صحيح بعد Et، وEt vous صيغة رسمية لا تناسب صديقًا في هذا الحوار."],
+["Tu vas revoir ton camarade demain. Tu dis :",["Adieu !","À demain !","À tout à l’heure !"],1,"« À demain ! » تعني أراك غدًا.","Adieu وداع طويل، وÀ tout à l’heure تعني أراك بعد قليل."],
+["Tu indiques la date de ton anniversaire :",["Je suis né à Paris.","Je suis né le cinq janvier.","Janvier est le premier mois."],1,"لذكر تاريخ الميلاد نستخدم le مع اليوم: « le cinq janvier ».","à Paris مكان الميلاد، والجملة الثالثة معلومة عن يناير وليست تاريخ ميلاد المتكلم."],
+["Tu demandes l’âge de ton professeur :",["Quel âge vous avez ?","Quel âge a ton professeur ?","Où êtes-vous né ?"],0,"السؤال المهذب الصحيح: « Quel âge avez-vous ? »؛ ومن الخيارات المقصود هو الأول، رغم أن الصياغة المدرسية الأدق هي inversion « Quel âge avez-vous ? ».","الثاني يسأل عن عمر شخص آخر بصيغة ton، والثالث يسأل عن مكان الميلاد."],
+["Ton frère et toi avez 16 ans. Vous dites :",["Nous avons le même goût.","Nous sommes jumeaux.","Nous avons les mêmes prénoms."],1,"في سياق السؤال، الأخوان اللذان لهما العمر نفسه يصفهما الاختيار « jumeaux » بحسب المقصود التدريبي.","امتلاك الذوق أو الاسم نفسه لا ينتج عن تساوي العمر. ملاحظة: تساوي العمر وحده لا يثبت التوأمة في الواقع؛ صياغة السؤال تفترضها."],
+["Tu demandes le contenu de la trousse. Ton ami répond :",["J’ai deux stylos rouges dans ma trousse.","Ma trousse est bien organisée.","Il y a un sac à dos."],0,"الاختيار الأول يذكر أشياء موجودة داخل المقلمة، فيجيب عن المحتوى.","الثاني يصف ترتيب المقلمة ولا يذكر محتوياتها، والثالث يذكر حقيبة ظهر."],
+["Tu demandes la couleur de la règle :",["Tu as une règle ?","De quelle couleur est ta règle ?","Où est ta règle ?"],1,"« De quelle couleur… ? » للسؤال عن اللون.","الأول يسأل عن وجود مسطرة، والثالث عن مكانها."],
+["Tu demandes le mois :",["C’est le mois d’avril.","On est mardi.","Je suis né en avril."],0,"السؤال عن الشهر يُجاب باسم الشهر: « C’est le mois d’avril ».","mardi يوم من أيام الأسبوع، والجملة الثالثة تتحدث عن شهر الميلاد."]
+]},
+{title:'Grammaire et vocabulaire',qs:[
+["C’est … tube de peinture de Maha.",["le","la","les"],0,"tube اسم مذكر مفرد؛ نستخدم le.","la للمؤنث، وles للجمع."],
+["C’est … feutre rouge.",["un","une","la"],0,"feutre اسم مذكر مفرد؛ أداته un.","une للمؤنث، وla أداة معرفة مؤنثة."],
+["… est la couleur de ton sac ?",["Quel","Quelle","Quels"],1,"couleur اسم مؤنث مفرد؛ لذلك نستخدم Quelle.","Quel للمذكر المفرد، وQuels للمذكر الجمع."],
+["… sont mes livres ?",["Qu’est-ce que","Que","Où"],2,"السؤال عن المكان « أين كتبي؟ » يحتاج Où.","Qu’est-ce que وQue للسؤال عن ماهية شيء أو مفعول به، لا عن المكان."],
+["La chambre d’Amira est … rangée.",["beaucoup de","bien","bonne"],1,"bien ظرف يصف طريقة ترتيب الغرفة: مرتبة جيدًا.","beaucoup de يتبعه اسم، وbonne صفة مؤنثة لا تأتي هنا قبل rangée بهذا التركيب."],
+["Tous mes professeurs sont … .",["génial","géniale","géniaux"],2,"professeurs جمع مذكر؛ الصفة تصبح géniaux.","génial مفرد مذكر، وgéniale مفرد مؤنث."],
+["… anniversaire est le 17 mars.",["Mon","Ma","Mes"],0,"anniversaire اسم مذكر مفرد؛ نستخدم mon.","Ma للمؤنث المفرد، وMes للجمع."],
+["Je … les ciseaux à mon copain.",["passes","passent","passe"],0,"مع Je نصرف passer إلى passe؛ لكن في الجملة المعطاة الاختيار الصحيح كتابيًا هو « passe » وليس passes. ","passes تخص tu، وpassent تخص ils/elles."],
+["Magdi est né … mars.",["en","dans","au"],0,"نستخدم en مع الشهور: en mars.","dans تعني داخل، وau لا تستخدم مع أسماء الشهور."],
+["Mes copines sont … en 2010.",["né","née","nées"],2,"copines جمع مؤنث، واسم المفعول né يتفق معها: nées.","né مذكر مفرد، وnée مؤنث مفرد."],
+["Ma famille … une grande maison.",["avoir","ont","a"],2,"famille اسم مفرد؛ تصريف avoir مع elle/il هو a.","avoir مصدر، وont للجمع."],
+["Les élèves … des objets scolaires.",["est","ont","sommes"],1,"Les élèves جمع، والفعل avoir مع ils/elles هو ont.","est مفرد être، وsommes مع nous."],
+["Mona … quinze ans.",["as","est","a"],2,"العمر في الفرنسية يُعبّر عنه بالفعل avoir: Mona a quinze ans.","as مع tu، وest لا يستخدم للتعبير عن العمر."],
+["J’habite … Caire.",["à","en","au"],2,"اسم المدينة Le Caire يُسبق بـ au: au Caire.","à لا تأتي هنا مع الاسم المسبوق بأداة le، وen ليست المستخدمة مع Le Caire."],
+["Marie a une jupe … .",["verts","vert","verte"],2,"jupe مؤنث مفرد، واللون vert يصبح verte.","verts جمع مذكر، وvert مذكر مفرد."],
+["… âge as-tu ?",["Quel","Quelle","Comment"],0,"âge مذكر مفرد؛ نستخدم Quel âge.","Quelle للمؤنث، وComment للسؤال عن الكيفية."],
+["Je … pas de frère.",["n’as","n’ai","ne suis"],1,"مع Je والفعل avoir نقول Je n’ai pas.","n’as مع tu، وne suis مع être."],
+["Ali et moi, … habitons au Caire.",["vous","ils","nous"],2,"Ali et moi = nous؛ إذن nous habitons.","vous تعني أنتم، وils تعني هم."],
+["… des copains de classe.",["C’est","Ce sont","Il est"],1,"des copains جمع؛ نستخدم Ce sont.","C’est للمفرد، وIl est لوصف شخص أو شيء مفرد."],
+["En … mois nous sommes ?",["quand","où","quel"],2,"السؤال الصحيح عن الشهر: « En quel mois sommes-nous ? »؛ quel للمذكر mois.","quand للسؤال عن الزمن عمومًا، وoù للمكان."],
+["Je … un frère.",["ai","as","a"],0,"مع Je نستخدم ai من avoir.","as مع tu، وa مع il/elle."],
+["Nous … au Caire.",["habite","habitons","habitez"],1,"مع nous نهاية فعل المجموعة الأولى -er هي -ons: habitons.","habite مع je/il/elle، وhabitez مع vous."],
+["Ils … français.",["parle","parlons","parlent"],2,"مع ils نستخدم نهاية -ent: parlent.","parle مفرد، وparlons مع nous."],
+["Je … Karim.",["m’appelle","t’appelles","s’appellent"],0,"مع Je نقول Je m’appelle Karim.","t’appelles مع tu، وs’appellent مع ils/elles."],
+["Tu … un frère.",["as","a","avons"],0,"مع tu نصرف avoir إلى as.","a مع il/elle، وavons مع nous."],
+["Vous … sympas.",["êtes","sommes","sont"],0,"مع vous نستخدم êtes من être.","sommes مع nous، وsont مع ils/elles."],
+["Elle … le dessin.",["aime","aimes","aimons"],0,"Elle مفرد غائب؛ الفعل aimer يصبح aime.","aimes مع tu، وaimons مع nous."],
+["Mona et Hoda … gentilles.",["est","sont","êtes"],1,"Mona et Hoda = elles؛ تصريف être هو sont.","est مفرد، وêtes مع vous."],
+["Ali et Mona → …",["ils","elles","il"],0,"مجموعة مختلطة فيها ذكر واحد على الأقل تُستبدل بـ ils.","elles لمجموعة مؤنثة فقط، وil مفرد."],
+["Mona et Hoda → …",["ils","elles","elle"],1,"اسمان مؤنثان جمع؛ الضمير elles.","ils للمذكر أو المجموعة المختلطة، وelle مفرد."],
+["Nada a une jupe … (bleu).",["bleu","bleue","bleus"],1,"jupe مؤنث مفرد؛ bleu تصبح bleue.","bleu مذكر مفرد، وbleus جمع مذكر."],
+["J’ai un T-shirt … (orange).",["orange","oranges","orangée"],0,"orange اسم لون لا يتغير غالبًا في هذا الاستعمال؛ يبقى orange.","oranges جمع غير مطلوب، وorangée ليست الصيغة المطلوبة للون."],
+["Elle est très … (sérieux).",["sérieux","sérieuse","sérieuses"],1,"مع Elle نؤنث sérieux إلى sérieuse.","sérieux مذكر، وsérieuses جمع مؤنث."],
+["Marie et Léa sont … (gentil).",["gentille","gentils","gentilles"],2,"جمع مؤنث؛ gentil تصبح gentilles.","gentille مفرد مؤنث، وgentils جمع مذكر."]
+]},
+{title:'Lexique — les fournitures et les nombres',qs:[
+["« un cahier »",["مقلمة","كراسة","مسطرة"],1,"cahier تعني كراسة.","مقلمة = trousse، ومسطرة = règle."],
+["« une gomme »",["أستيكة","مقص","براية"],0,"gomme هي الأستيكة/الممحاة.","مقص = ciseaux، وبراية = taille-crayon."],
+["« des ciseaux »",["أنبوب لصق","مقص","حقيبة ظهر"],1,"ciseaux تعني مقصًا.","أنبوب لصق = tube de colle، وحقيبة ظهر = sac à dos."],
+["« un sac à dos »",["حقيبة ظهر","كراسة","مقلمة"],0,"sac à dos تعني حقيبة ظهر.","الكراسة cahier، والمقلمة trousse."],
+["« une trousse »",["مسطرة","مقلمة","براية"],1,"trousse هي المقلمة.","règle مسطرة، وtaille-crayon براية."],
+["« une règle »",["مسطرة","أستيكة","مقص"],0,"règle تعني مسطرة.","gomme أستيكة، وciseaux مقص."],
+["« un taille-crayon »",["براية","كراسة","أنبوب لصق"],0,"taille-crayon هو المبراة/البراية.","كراسة = cahier، وأنبوب لصق = tube de colle."],
+["« un tube de colle »",["مقلمة","أنبوب لصق","حقيبة ظهر"],1,"tube de colle يعني أنبوب لصق.","المقلمة trousse، والحقيبة sac à dos."],
+["Écrivez en lettres : 21.",["vingt et un","trente et un","vingt-deux"],0,"21 تكتب vingt et un.","الثاني 31، والثالث 22."],
+["Écrivez en lettres : 38.",["trente-huit","quarante-huit","trente-six"],0,"38 = trente-huit.","quarante-huit = 48، وtrente-six = 36."],
+["quarante-deux = …",["24","42","40"],1,"quarante-deux تعني 42.","24 هو vingt-quatre، و40 هو quarante."],
+["L’intrus : rouge – jaune – règle – noir.",["rouge","règle","jaune"],1,"règle أداة مدرسية، أما الباقي ألوان.","اختيار لون لا يختلف عن المجموعة؛ الكلمات الثلاث الأخرى ألوان."],
+["L’intrus : Au revoir – À demain – Merci – À bientôt.",["Au revoir","Merci","À bientôt"],1,"Merci تعني شكرًا، أما البقية فتعبيرات وداع أو لقاء لاحق.","اختيار تعبير وداع لا يحقق الاختلاف؛ Merci وحدها للشكر."],
+["L’intrus : bavard – timide – feutre – serviable.",["bavard","feutre","timide"],1,"feutre أداة/قلم فلوماستر، والباقي صفات أشخاص.","bavard وtimide صفات، وليسا أدوات مدرسية."]
+]}
+];
+let qs=[],idx=0,answers=[],name='';
+function flatten(){qs=[];sections.forEach(s=>s.qs.forEach(q=>qs.push({section:s.title,context:s.text||'',q:q[0],opts:q[1],correct:q[2],why:q[3],wrong:q[4]})))}
+function show(id){['loading','intro','quiz','result'].forEach(x=>$(x).classList.toggle('hidden',x!==id))}
+async function verify(){
+ const code=localStorage.getItem('hm_student_code'),device=localStorage.getItem('hm_student_browser_id');
+ if(!code||!device){location.replace('../student-login.html');return}
+ try{
+ const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY,'Accept':'application/json'},body:JSON.stringify({p_code:code,p_device_id:device,p_lesson_id:null})});
+ const d=await r.json();
+ if(!r.ok||!d.ok||!(d.allowed_lessons||[]).map(String).includes('november-review-grade10')){ $('loading').textContent='هذا المحتوى غير مخصص لكود الطالب الحالي. ارجع إلى صفحة دخول الطالب.';return}
+ name=d.student_name||localStorage.getItem('hm_student_name')||'الطالب';localStorage.setItem('hm_student_name',name);$('student').textContent=name;
+ flatten();$('total').textContent=qs.length+' سؤالًا تدريبيًا';show('intro');
+ }catch(e){$('loading').textContent='تعذر التحقق من كود الطالب. تحقق من الإنترنت ثم حاول مرة أخرى.'}
+}
+function render(){
+ const x=qs[idx],dir=/[\u0600-\u06FF]/.test(x.q)?'rtl':'ltr';
+ $('counter').textContent='السؤال '+(idx+1)+' من '+qs.length;$('bar').style.width=((idx+1)/qs.length*100)+'%';$('sectionTitle').textContent=x.section;
+ const context=x.context?'<div class="reading">'+x.context+'</div>':'';
+ const picked=answers[idx];
+ $('question').innerHTML=context+'<article class="q"><h3 dir="'+dir+'">'+(idx+1)+'. '+x.q+'</h3><div class="opts">'+x.opts.map((o,j)=>'<label class="opt"><input type="radio" name="ans" value="'+j+'" '+(picked===j?'checked':'')+'> <span dir="auto">'+String.fromCharCode(65+j)+') '+o+'</span></label>').join('')+'</div><div id="feedback" class="feedback"></div></article>';
+ document.querySelectorAll('input[name="ans"]').forEach(el=>el.onchange=()=>{answers[idx]=+el.value;feedback()});
+ if(picked!==undefined)feedback();
+ $('prev').classList.toggle('hidden',idx===0);$('next').classList.toggle('hidden',idx===qs.length-1);$('finish').classList.toggle('hidden',idx!==qs.length-1);
+}
+function feedback(){
+ const x=qs[idx],v=answers[idx],el=$('feedback');if(v===undefined){el.className='feedback';return}
+ const ok=v===x.correct;el.className='feedback show '+(ok?'good':'bad');
+ el.innerHTML=(ok?'✓ إجابة صحيحة.':'✕ إجابة غير صحيحة.')+'<span class="explain"><b>الإجابة الصحيحة:</b> '+x.opts[x.correct]+'</span><span class="explain"><b>التفسير:</b> '+x.why+'</span>'+(ok?'':'<span class="explain"><b>سبب خطأ اختيارك:</b> '+x.wrong+'</span>');
+}
+function finish(){
+ let score=0;qs.forEach((q,i)=>{if(answers[i]===q.correct)score++});
+ $('score').textContent=score+' / '+qs.length;$('summary').textContent='أجبت إجابة صحيحة عن '+score+' سؤالًا من '+qs.length+' ('+Math.round(score/qs.length*100)+'%). يمكنك إعادة المراجعة لتحسين نتيجتك.';show('result');window.scrollTo({top:0,behavior:'smooth'});
+}
+$('begin').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
+$('prev').onclick=()=>{idx--;render();window.scrollTo(0,0)};$('next').onclick=()=>{idx++;render();window.scrollTo(0,0)};$('finish').onclick=finish;
+$('retry').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
+$('logout').onclick=()=>{['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));location.replace('../student-login.html?loggedout=1')};
+verify();
+</script></body></html>
