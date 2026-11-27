@@ -191,6 +191,9 @@ function finish(){
 $('begin').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
 $('prev').onclick=()=>{idx--;render();window.scrollTo(0,0)};$('next').onclick=()=>{idx++;render();window.scrollTo(0,0)};$('finish').onclick=finish;
 $('retry').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
-function logoutStudent(){['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));location.replace('../student-login.html?loggedout=1')}\n $('logout').onclick=logoutStudent;\n $('headerLogout').onclick=logoutStudent;\n $('headerSwitch').onclick=()=>location.href='../student-login.html?switch=1';
+function logoutStudent(){['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));location.replace('../student-login.html?loggedout=1')}
+$('logout').onclick=logoutStudent;
+$('headerLogout').onclick=logoutStudent;
+$('headerSwitch').onclick=()=>location.href='../student-login.html?switch=1';
 verify();
 </script></body></html>
