@@ -8,7 +8,7 @@
 <style>
 :root{--navy:#14264a;--blue:#2456a6;--gold:#d6a84f;--ink:#1c2940;--muted:#718096;--bg:#f3f6fb;--line:#e1e8f2;--green:#087443;--red:#b42318}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#f4f7fc,#f8f5ee);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
-header{background:linear-gradient(115deg,#14264a,#214e91);color:#fff;padding:18px 15px 20px;text-align:center;border-bottom:4px solid var(--gold);position:relative}.header-actions{max-width:1050px;margin:0 auto 12px;display:flex;justify-content:flex-start}.header-actions button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.38);padding:9px 14px;border-radius:10px;font-size:14px}
+header{background:linear-gradient(115deg,#14264a,#214e91);color:#fff;padding:18px 15px 20px;text-align:center;border-bottom:4px solid var(--gold);position:relative}.header-actions{max-width:1050px;margin:0 auto 12px;display:flex;justify-content:flex-start;gap:8px;flex-wrap:wrap}.header-actions button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.38);padding:9px 14px;border-radius:10px;font-size:14px}
 .brand{font-size:13px;letter-spacing:2px;color:#dce7fa;font-weight:bold}h1{font-size:clamp(23px,5vw,34px);margin:12px 0 6px}.subtitle{margin:0;color:#e1eaf9;line-height:1.8}
 main{max-width:920px;margin:22px auto;padding:0 13px 45px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(16px,3vw,24px);box-shadow:0 14px 40px #14264a0c;margin-bottom:14px}
 .topline{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:13px}.progress{height:8px;background:#edf1f7;border-radius:20px;overflow:hidden;margin:13px 0 20px}.progress span{display:block;height:100%;background:var(--gold);width:0}
@@ -21,7 +21,7 @@ button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:12px 17px
 @media(max-width:600px){.topline{align-items:flex-start;flex-direction:column}.actions button{flex:1}}
 </style></head>
 <body>
-<header><div class="header-actions"><button id="headerLogout" type="button">🚪 تسجيل الخروج</button></div><div class="brand">HM ACADEMY · FRANÇAIS</div><h1>مراجعة مقرر شهر نوفمبر</h1><p class="subtitle">اللغة الفرنسية — الصف الأول الثانوي · الفصل الدراسي الأول</p></header>
+<header><div class="header-actions"><button id="headerSwitch" type="button">🔑 دخول درس آخر</button><button id="headerLogout" type="button">🚪 تسجيل الخروج</button></div><div class="brand">HM ACADEMY · FRANÇAIS</div><h1>مراجعة مقرر شهر نوفمبر</h1><p class="subtitle">اللغة الفرنسية — الصف الأول الثانوي · الفصل الدراسي الأول</p></header>
 <main>
 <section id="loading" class="panel">جارٍ التحقق من كود الطالب…</section>
 <section id="intro" class="panel hidden"><h2>مرحبًا <span id="student"></span> 👋</h2><p>تدرّب على مقرر شهر نوفمبر من خلال أسئلة تفاعلية تغطي الفهم والمفردات والقواعد. بعد كل إجابة، ستظهر لك الإجابة الصحيحة مع شرح مختصر، كما ستتعرف على سبب الخطأ لتتمكن من تصحيحه.</p><p><b id="total"></b> · تدريب متنوع دون تكرار للأسئلة.</p><button id="begin" class="primary">ابدأ المراجعة</button></section>
@@ -191,6 +191,6 @@ function finish(){
 $('begin').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
 $('prev').onclick=()=>{idx--;render();window.scrollTo(0,0)};$('next').onclick=()=>{idx++;render();window.scrollTo(0,0)};$('finish').onclick=finish;
 $('retry').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
-function logoutStudent(){['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));location.replace('../student-login.html?loggedout=1')}\n $('logout').onclick=logoutStudent;\n $('headerLogout').onclick=logoutStudent;
+function logoutStudent(){['hm_student_code','hm_student_current_lesson','hm_student_verified_lesson','hm_student_verified_at','hm_student_name'].forEach(k=>localStorage.removeItem(k));location.replace('../student-login.html?loggedout=1')}\n $('logout').onclick=logoutStudent;\n $('headerLogout').onclick=logoutStudent;\n $('headerSwitch').onclick=()=>location.href='../student-login.html?switch=1';
 verify();
 </script></body></html>
