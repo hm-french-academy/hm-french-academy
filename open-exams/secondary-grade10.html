@@ -70,10 +70,10 @@ const sections=[
 ["Karim est timide.",["Vrai","Faux"],1,"Karim est « très sociable », أي اجتماعي جدًا، وليس خجولًا.","timide عكس sociable تقريبًا في هذا السياق."]
 ]},
 {title:'Lexique et communication',qs:[
-["Tu demandes à ton ami d’identifier un objet. Qu’est-ce que tu dis ?",["Qu’est-ce que c’est ?","Comment tu t’appelles ?","Où habites-tu ?"],0,"السؤال « Qu’est-ce que c’est ? » يُستخدم للسؤال عن ماهية الشيء.","الاختيار الثاني يسأل عن الاسم، والثالث عن مكان السكن."],
-["Tu présentes une personne. Qu’est-ce que tu dis ?",["C’est une gomme.","Voici Nada, une copine.","J’ai quinze ans."],1,"« Voici Nada, une copine » تقدّم شخصًا للآخرين.","الأول يعرّف أداة، والثالث يذكر العمر."],
-["Tu décris ton sac à dos. Tu dis :",["Il est gourmand.","Il est grand.","Elle est timide."],1,"Il يعود على sac à dos، ويمكن وصف الحقيبة بالحجم « grand ».","gourmand صفة لشخص يأكل كثيرًا، وtimide تصف شخصًا مؤنثًا."],
-["Tu quittes ton ami. Tu dis :",["Bienvenue !","Enchanté !","À plus !"],2,"« À plus ! » تعبير غير رسمي عند الوداع.","Bienvenue للترحيب، وEnchanté عند التعارف."],
+["Tu demandes à ton ami d’identifier un objet. Quelles deux formules peux-tu utiliser ?",["Qu’est-ce que c’est ?","Comment tu t’appelles ?","C’est quoi ?","Quel âge as-tu ?","Où habites-tu ?"],[0,2],"كلتا الصيغتين « Qu’est-ce que c’est ? » و« C’est quoi ? » تسألان عن ماهية الشيء؛ والتمرين الأصلي يطلب اختيار إجابتين.","الاختيارات الأخرى تسأل عن الاسم أو العمر أو مكان السكن، ولا تعرّف الشيء."],
+["Tu présentes une personne. Quelles deux expressions peux-tu utiliser ?",["Voici Nada, une copine.","C’est une gomme.","Je te présente Karim.","Qu’est-ce que c’est ?","J’ai quinze ans."],[0,2],"« Voici Nada, une copine » و« Je te présente Karim » كلتاهما تقدّمان شخصًا؛ وهذا يطابق طلب اختيار إجابتين.","الاختيارات الأخرى تتحدث عن أداة أو تسأل عن ماهيتها أو تذكر العمر."],
+["Tu décris ton sac à dos. Quelles deux descriptions conviennent ?",["Il est grand.","Il est gourmand.","Il est coloré.","Il est nerveux.","Elle est timide."],[0,2],"« Il est grand » تصف الحجم و« Il est coloré » تصف الألوان؛ والتمرين الأصلي يطلب اختيار إجابتين.","gourmand وnerveux صفات لا تناسب وصف الحقيبة في هذا السياق، وElle est timide تصف شخصًا مؤنثًا."],
+["Tu quittes ton ami. Quelles deux expressions peux-tu dire ?",["Salut !","Enchanté !","Bienvenue !","À plus !","Bonjour !"],[0,3],"« Salut ! » و« À plus ! » يمكن استخدامهما عند الوداع غير الرسمي؛ والتمرين يطلب اختيار إجابتين.","Enchanté تُقال عند التعارف، وBienvenue وBonjour للترحيب."],
 ["Tu arrives au club à 8 heures du soir. Tu dis :",["Bonjour !","Bonsoir !","Bonne nuit !"],1,"في المساء نقول « Bonsoir ».","Bonjour للصباح/النهار، وBonne nuit قبل النوم أو عند التوجه للنوم."],
 ["Tu parles à ton professeur (une dame). Tu dis :",["Salut, madame !","Bonjour, madame !","Ciao, madame !"],1,"التحية المهذبة المناسبة للمعلمة هي « Bonjour, madame ! ».","Salut وCiao أقل رسمية ولا يناسبان مخاطبة المعلمة في هذا الموقف."],
 ["Tu demandes poliment à ton professeur comment il va :",["Comment vas-tu ?","Comment allez-vous ?","Comment allez-tu ?"],1,"مع الأستاذ نستخدم صيغة الاحترام vous: « Comment allez-vous ? ».","vas-tu صيغة tu غير الرسمية، وallez-tu تركيب غير صحيح."],
@@ -157,19 +157,21 @@ function render(){
  const x=qs[idx],dir=/[\u0600-\u06FF]/.test(x.q)?'rtl':'ltr';
  $('counter').textContent='السؤال '+(idx+1)+' من '+qs.length;$('bar').style.width=((idx+1)/qs.length*100)+'%';$('sectionTitle').textContent=x.section;
  const context=x.context?'<div class="reading">'+x.context+'</div>':'';
- const picked=answers[idx];
- $('question').innerHTML=context+'<article class="q"><h3 dir="'+dir+'">'+(idx+1)+'. '+x.q+'</h3><div class="opts">'+x.opts.map((o,j)=>'<label class="opt"><input type="radio" name="ans" value="'+j+'" '+(picked===j?'checked':'')+'> <span dir="auto">'+String.fromCharCode(65+j)+') '+o+'</span></label>').join('')+'</div><div id="feedback" class="feedback"></div></article>';
- document.querySelectorAll('input[name="ans"]').forEach(el=>el.onchange=()=>{answers[idx]=+el.value;feedback()});
+ const picked=answers[idx],multi=Array.isArray(x.correct);
+ $('question').innerHTML=context+'<article class="q"><h3 dir="'+dir+'">'+(idx+1)+'. '+x.q+'</h3><div class="opts">'+x.opts.map((o,j)=>'<label class="opt"><input type="'+(multi?'checkbox':'radio')+'" name="ans" value="'+j+'" '+(multi?(Array.isArray(picked)&&picked.includes(j)?'checked':''):(picked===j?'checked':''))+'> <span dir="auto">'+String.fromCharCode(65+j)+') '+o+'</span></label>').join('')+'</div><div id="feedback" class="feedback"></div></article>';
+ document.querySelectorAll('input[name="ans"]').forEach(el=>el.onchange=()=>{if(multi){answers[idx]=[...document.querySelectorAll('input[name="ans"]:checked')].map(n=>+n.value)}else answers[idx]=+el.value;feedback()});
  if(picked!==undefined)feedback();
  $('prev').classList.toggle('hidden',idx===0);$('next').classList.toggle('hidden',idx===qs.length-1);$('finish').classList.toggle('hidden',idx!==qs.length-1);
 }
 function feedback(){
  const x=qs[idx],v=answers[idx],el=$('feedback');if(v===undefined){el.className='feedback';return}
- const ok=v===x.correct;el.className='feedback show '+(ok?'good':'bad');
- el.innerHTML=(ok?'✓ إجابة صحيحة.':'✕ إجابة غير صحيحة.')+'<span class="explain"><b>الإجابة الصحيحة:</b> '+x.opts[x.correct]+'</span><span class="explain"><b>التفسير:</b> '+x.why+'</span>'+(ok?'':'<span class="explain"><b>سبب خطأ اختيارك:</b> '+x.wrong+'</span>');
+ const multi=Array.isArray(x.correct),ok=multi?Array.isArray(v)&&v.length===x.correct.length&&[...v].sort().every((n,i)=>n===[...x.correct].sort()[i]):v===x.correct;
+ const answer=multi?x.correct.map(n=>x.opts[n]).join(' + '):x.opts[x.correct];
+ el.className='feedback show '+(ok?'good':'bad');
+ el.innerHTML=(ok?'✓ إجابة صحيحة.':'✕ إجابة غير صحيحة.')+'<span class="explain"><b>الإجابة الصحيحة:</b> '+answer+'</span><span class="explain"><b>التفسير:</b> '+x.why+'</span>'+(ok?'':'<span class="explain"><b>سبب خطأ اختيارك:</b> '+x.wrong+'</span>');
 }
 function finish(){
- let score=0;qs.forEach((q,i)=>{if(answers[i]===q.correct)score++});
+ let score=0;qs.forEach((q,i)=>{const v=answers[i],ok=Array.isArray(q.correct)?Array.isArray(v)&&v.length===q.correct.length&&[...v].sort().every((n,j)=>n===[...q.correct].sort()[j]):v===q.correct;if(ok)score++});
  $('score').textContent=score+' / '+qs.length;$('summary').textContent='أجبت إجابة صحيحة عن '+score+' سؤالًا من '+qs.length+' ('+Math.round(score/qs.length*100)+'%). يمكنك إعادة المراجعة لتحسين نتيجتك.';show('result');window.scrollTo({top:0,behavior:'smooth'});
 }
 $('begin').onclick=()=>{answers=Array(qs.length).fill(undefined);idx=0;render();show('quiz');window.scrollTo(0,0)};
