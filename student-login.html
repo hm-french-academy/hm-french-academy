@@ -58,7 +58,7 @@ function lessonUrl(id){
   if(String(id)==='g4-l04'||String(id)==='g4-l05'||String(id)==='g4-l07')return 'grade-4-face-possessives-studio.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
   // Grade 4 Le corps uses the upgraded dedicated lesson studio for both public and student-code entry.
   if(String(id)==='g4-l06')return 'grade-4-start-under-presentation.html?id='+encodeURIComponent(id)+'&section=start&student=1&v=20261112-anatomy-illustrations-v6';
-  const novemberGrades={'november-review-grade4':4,'november-review-grade6':6,'november-review-grade7':7,'november-review-grade8':8,'november-review-grade10':10};
+  const novemberGrades={'november-review-grade4':4,'november-review-grade6':6,'november-review-grade7':7,'november-review-grade8':8};
   if(Object.prototype.hasOwnProperty.call(novemberGrades,String(id))){
     const grade=novemberGrades[String(id)];
     return 'open-exams/student.html?lesson='+encodeURIComponent(id)+'&grade='+grade+'&student=1&v=20261123-student-november';
@@ -234,7 +234,7 @@ async function showLessons(name,list){
   lessonsBox.classList.remove('hidden');
   // November private revisions are accessed only through their separate code-entry portal.
   // Keep them authorized in Supabase, but never list them in the regular student dashboard.
-  const regularLessons=list.filter(id=>!/^november-review-grade(4|6|7|8|10)$/i.test(String(id)));
+  const regularLessons=list.filter(id=>!/^november-review-grade(4|6|7|8)$/i.test(String(id)));
   if(!regularLessons.length){
     lessonsBox.innerHTML='<div class="portal-intro"><strong>لا توجد دروس أخرى متاحة حاليًا.</strong><p>مراجعات نوفمبر الخاصة لها رابط دخول مستقل.</p></div>';
     document.getElementById('actions').classList.remove('hidden');
